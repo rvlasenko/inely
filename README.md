@@ -103,23 +103,22 @@ Application configuration process include:
 
 ### Vagrant
 If you want, you can use bundled Vagrant instead of installing app to your local machine.
-1. Install [Vagrant](https://www.vagrantup.com/)
-2. Rename `vagrant.dist.yaml` to `vagrant.yaml`
-3. Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens) and paste in into `vagrant.yml`
-4. Run:
+Install [Vagrant](https://www.vagrantup.com/)
+Rename `vagrant.dist.yaml` to `vagrant.yaml`
+Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens) and paste in into `vagrant.yml`
+Run:
 ```
 vagrant plugin install vagrant-hostmanager
 vagrant up
 ```
-That`s all. After provision application will be accessible on http://yii2-starter-kit.dev
 
-#### 0. Initialization
+#### 1. Initialization
 Initialise application
 ```
-./init #init.bat for windows
+./init // init.bat for windows
 ```
 
-#### 1. Web Server
+#### 2. Web Server
 
 You should configure web server with three different web roots:
 
@@ -131,16 +130,10 @@ You should configure web server with three different web roots:
 
 **NOTE:** You can use `nginx.conf` file that is located in the project root.
 
-#### 1. Initialization
-Initialise application
-```
-./init // init.bat for windows
-```
-
-#### 2. Setup environment
+#### 3. Setup environment
 Adjust settings in `.env` file
 
-##### 2.1 Database
+##### 3.1 Database
 Edit the file `.env` with your data:
 ```
 DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=yii2-starter-kit
@@ -150,7 +143,7 @@ DB_PASSWORD      = password
 **NOTE:** Yii won't create the database for you, this has to be done manually before you can access it.
 
 
-##### 2.2 Application urls
+##### 3.2 Application urls
 Set your current application urls in `.env`
 
 ```php
@@ -158,24 +151,18 @@ FRONTEND_URL    = http://yii2-starter-kit.dev
 BACKEND_URL     = http://backend.yii2-starter-kit.dev
 STORAGE_URL     = http://storage.yii2-starter-kit.dev
 ```
-#### 3. Apply migrations
+#### 4. Apply migrations
 
 ```php
 php console/yii migrate
 ```
 
-#### 4. Initialise RBAC config
+#### 5. Initialise RBAC config
 
 ```php
 php console/yii rbac/init
 ```
 **IMPORTANT: without rbac/init you CAN'T LOG IN into backend**
-
-### Demo user
-~~~
-Login: webmaster
-Password: webmaster
-~~~
 
 COMPONENTS
 ----------
@@ -231,71 +218,6 @@ Additional configuration options can be found in a corresponding class.
 
 Starter kit configured to turn on maintenance mode if ``frontend.maintenance`` key in KeyStorage is set to ``true``
 
-### Behaviors
-#### CacheInvalidateBehavior
-```php
- public function behaviors()
- {
-     return [
-         [
-             'class' => `common\components\behaviors\CacheInvalidateBehavior`,
-             'tags' => [
-                  'awesomeTag',
-                   function($model){
-                       return "tag-{$model->id}"
-                  }
-              ],
-             'keys' => [
-                  'awesomeKey',
-                  function($model){
-                      return "key-{$model->id}"
-                  }
-              ]
-         ],
-     ];
- }
-```
-#### GlobalAccessBehavior
-usage example in ``backend\config\web.php``
-
-### Widgets configurable from backend
-#### Carousel
-TBD
-
-#### DbText
-TBD
-
-#### DbMenu
-```php
-echo common\components\widgets\DbMenu::widget([
-      'key'=>'stored-menu-key',
-      /* any other option from \yii\widgets\Menu */ 
-])
-``` 
-
-### Input widgets
-- WYSIWYG Redactor widget (https://github.com/asofter/yii2-imperavi-redactor)  
-- Datetimepicker - (http://eonasdan.github.io/bootstrap-datetimepicker, https://github.com/trntv/yii2-bootstrap-datetimepicker)
-- Ace Editor - (https://github.com/trntv/yii2-aceeditor)
-
-### Grid
-#### EnumColumn
-```php
- [
-      'class'=>'\common\components\grid\EnumColumn',
-      'attribute'=>'status',
-      'enum'=>User::getStatuses() // [0=>'Deleted', 1=>'Active']
- ]
-```
-### API
-TBD
-
-### Many more useful components
-- ``common\components\behaviors\GlobalAccessBehavior`` allows to set access rules for your application in application config
-- ``common\components\validators\JsonValidator`` validates a value to be a valid json
-- ElFinder - (https://github.com/MihailDev/yii2-elfinder)
-- RBAC OwnModelRule - simple rule to check if the current user is model owner
-
 OTHER
 -----
 ### Updates
@@ -312,10 +234,6 @@ Merge these changes into your repository
 git merge upstream/master
 ```
 **IMPORTANT: there might be a conflicts between `upstream` and your code. You should resolve conflicts on your own**
-
-### READ MORE
-https://github.com/yiisoft/yii2/blob/master/apps/advanced/README.md
-https://github.com/yiisoft/yii2/tree/master/docs
 
 ### Have any questions?
 mail to `eugene@terentev.net`
