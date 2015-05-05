@@ -18,6 +18,7 @@ class m140703_123000_user extends Migration
             'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
             'password_hash' => Schema::TYPE_STRING . ' NOT NULL',
             'password_reset_token' => Schema::TYPE_STRING,
+            'email_confirm_token' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',
             'oauth_client' => Schema::TYPE_STRING,
             'oauth_client_user_id' => Schema::TYPE_STRING,
             'email' => Schema::TYPE_STRING . ' NOT NULL',

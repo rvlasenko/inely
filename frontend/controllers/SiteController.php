@@ -38,6 +38,11 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
+        if ($user = Yii::$app->user->identity) {
+            $model->name = $user->username;
+            $model->email = $user->email;
+        }
+
         if ($model->load(Yii::$app->request->post())) {
             if ($model->contact(Yii::$app->params['adminEmail'])) {
                 Yii::$app->getSession()->setFlash('alert', [

@@ -59,7 +59,7 @@ return [
     'Title' => 'Название',
     'Type' => 'Тип',
     'Updated At' => 'Обновлено',
-    'Updater' => 'Обновивщий',
+    'Updater' => 'Обновивший',
     'Upload Ip' => 'IP',
     'Url' => 'Url',
     'User' => 'Пользователь',

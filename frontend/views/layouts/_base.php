@@ -34,7 +34,7 @@ use yii\bootstrap\NavBar;
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => Yii::t('frontend', 'Home'), 'url' => ['/']],
-            ['label' => Yii::t('frontend', 'About'), 'url' => ['/about', 'slug' => 'about']],
+            ['label' => Yii::t('frontend', 'About'), 'url' => ['/about']],
             ['label' => Yii::t('frontend', 'Articles'), 'url' => ['/article']],
             ['label' => Yii::t('frontend', 'Contact'), 'url' => ['/contact']],
             ['label' => Yii::t('frontend', 'Signup'), 'url' => ['/sign-up'], 'visible' => Yii::$app->user->isGuest],

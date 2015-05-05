@@ -12,6 +12,7 @@ $this->title = Yii::t('frontend', 'Profile')
 ?>
 
 <div class="user-profile-form">
+    <?= \common\components\alert\Alert::widget() ?>
 
     <?php $form = ActiveForm::begin(); ?>
 

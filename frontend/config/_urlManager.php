@@ -9,6 +9,7 @@ return [
         'contact' => '/site/contact',
         'sign-up' => '/user/sign-in/signup',
         'login' => '/user/sign-in/login',
+        '<_a:(confirm-email)>' => 'user/sign-in/<_a>',
 
         // Pages
         ['pattern' => 'page/<slug>', 'route' => 'page/view'],

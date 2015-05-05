@@ -21,6 +21,7 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property string $publicIdentity
  * @property integer $status
+ * @property string $email_confirm_token
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $logged_at
@@ -249,7 +250,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $statuses = [
             self::STATUS_ACTIVE => Yii::t('common', 'Active'),
-            self::STATUS_DELETED => Yii::t('common', 'Deleted')
+            self::STATUS_DELETED => Yii::t('common', 'Deleted'),
         ];
         return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
     }
@@ -291,5 +292,33 @@ class User extends ActiveRecord implements IdentityInterface
             return $this->username;
         }
         return $this->email;
+    }
+
+    /**
+     * @param string $email_confirm_token
+     * @return static|null
+     */
+    public static function findByEmailConfirmToken($email_confirm_token)
+    {
+        return static::findOne([
+            'email_confirm_token' => $email_confirm_token,
+            //'status' => self::STATUS_ACTIVE,
+        ]);
+    }
+
+    /**
+     * Generates email confirmation token
+     */
+    public function generateEmailConfirmToken()
+    {
+        $this->email_confirm_token = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * Removes email confirmation token
+     */
+    public function removeEmailConfirmToken()
+    {
+        $this->email_confirm_token = null;
     }
 }

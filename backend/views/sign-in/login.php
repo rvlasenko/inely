@@ -18,9 +18,18 @@ $this->params['body-class'] = 'login-page';
     <div class="header"></div>
     <div class="login-box-body">
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-        <div class="body">
-            <?= $form->field($model, 'username') ?>
-            <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'username', [
+            'inputOptions' => [
+                'placeholder' => $model->getAttributeLabel('username')
+            ],
+            'template' => '<div class="form-group has-feedback">{input}<span class="glyphicon glyphicon-envelope form-control-feedback"></span>{error}</div>'
+        ]) ?>
+        <?= $form->field($model, 'password', [
+            'inputOptions' => [
+                'placeholder' => $model->getAttributeLabel('password')
+            ],
+            'template' => '<div class="form-group has-feedback">{input}<span class="glyphicon glyphicon-lock form-control-feedback"></span>{error}</div>'
+        ])->passwordInput() ?>
             <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'simple']) ?>
         </div>
         <div class="footer">
@@ -30,6 +39,8 @@ $this->params['body-class'] = 'login-page';
             ]) ?>
         </div>
         <?php ActiveForm::end(); ?>
-    </div>
+
+
+</div>
 
 </div>

@@ -7,6 +7,7 @@ use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\PasswordResetRequestForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
+use frontend\modules\user\models\ConfirmEmailForm;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
@@ -37,9 +38,9 @@ class SignInController extends \yii\web\Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['signup', 'login', 'request-password-reset', 'reset-password', 'oauth'],
+                        'actions' => ['signup', 'confirm-email', 'login', 'request-password-reset', 'reset-password', 'oauth'],
                         'allow' => true,
-                        'roles' => ['?']
+
                     ],
                     [
                         'actions' => ['signup', 'login', 'request-password-reset', 'reset-password', 'oauth'],
@@ -92,15 +93,37 @@ class SignInController extends \yii\web\Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-            $user = $model->signup();
-            if ($user && Yii::$app->getUser()->login($user)) {
-                return $this->goHome();
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    Yii::$app->getSession()->setFlash(
+                        'success',
+                        'Вы успешно зарегистрировались! Чтобы стать полноправным участником, осталось подтвердить электронный адрес!'
+                    );
+                    return $this->goHome();
+                }
             }
         }
 
         return $this->render('signup', [
             'model' => $model
         ]);
+    }
+
+    public function actionConfirmEmail($token)
+    {
+        try {
+            $model = new ConfirmEmailForm($token);
+        } catch (InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->confirmEmail()) {
+            Yii::$app->getSession()->setFlash('success', 'Спасибо! Ваш Email успешно подтверждён.');
+        } else {
+            Yii::$app->getSession()->setFlash('error', 'Ошибка подтверждения Email.');
+        }
+
+        return $this->goHome();
     }
 
     public function actionRequestPasswordReset()

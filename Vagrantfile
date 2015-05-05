@@ -38,12 +38,12 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: options['network']['ip']
   config.vm.synced_folder "./", "/var/www", id: "vagrant-root", :nfs => false, owner: "www-data", group: "www-data"
 
-  config.vm.provision :hostmanager
-  config.hostmanager.enabled            = true
-  config.hostmanager.manage_host        = true
-  config.hostmanager.ignore_private_ip  = false
-  config.hostmanager.include_offline    = true
-  config.hostmanager.aliases            = domains
+#   config.vm.provision :hostmanager
+#   config.hostmanager.enabled            = true
+#   config.hostmanager.manage_host        = true
+#   config.hostmanager.ignore_private_ip  = false
+#   config.hostmanager.include_offline    = true
+#   config.hostmanager.aliases            = domains
 
   config.vm.provision "shell", path: "./vagrant.sh", args: [
     packages.join(" "),

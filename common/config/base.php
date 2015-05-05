@@ -32,13 +32,19 @@ $config = [
             'maxImageSize' => getenv('GLIDE_MAX_IMAGE_SIZE'),
             'signKey' => getenv('GLIDE_SIGN_KEY')
         ],
-
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => YII_ENV_DEV,
             'messageConfig' => [
                 'charset' => 'UTF-8',
                 'from' => getenv('ADMIN_EMAIL')
+            ],
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'mavrolilo@yandex.ru',
+                'password' => 'asdfghjkl',
+                'port' => '465',
+                'encryption' => 'ssl',
             ]
         ],
 
