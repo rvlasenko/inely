@@ -1,27 +1,23 @@
-Yii 2 Starter Kit
+List
 ================================
-This is Yii2 start application template.
-
-It was created and developing as a fast start for building an advanced sites based on Yii2. 
-
-It covers typical use cases for a new project and will help you not to waste your time doing the same work in every project
+Project Description
 
 
 FEATURES
 --------
-- Beautiful and open source dashboard theme for backend AdminLTE 2 (http://almsaeedstudio.com/AdminLTE)
+## BACKEND ##
+- Beautiful and open source dashboard theme for backend AdminLTE 2
 - I18N + 3 translations: English, Russian, Ukrainian
 - I18N DbMessageSource CRUD module
 - Language change action + behavior to choose locale based on browser preferred language 
-- Sign in, Sign up, profile(avatar, locale, personal data) etc
+- Sign in, Sign up, Profile
 - OAuth authorization
 - User management: CRUD
 - RBAC with predefined `guest`, `user`, `manager` and `administrator` roles
-- Content management components: articles, categories, static pages, editable menu, editable carousels, text blocks
+- Content management components: articles, categories, static pages
 - Ready-to-go RESTful API module
 - File storage component + file upload widget (https://github.com/trntv/yii2-file-kit)
-- [thephpleague/glide](https://github.com/thephpleague/glide) integration with [trntv/yii2-glide](https://github.com/trntv/yii2-glide)
-- Key-value storage component
+- [thephpleague/glide](https://github.com/thephpleague/glide)
 - Useful behaviors (GlobalAccessBehavior, CacheInvalidateBehavior, MaintenanceBehavior)
 - Yii2 log web interface
 - Application timeline component
@@ -30,16 +26,14 @@ FEATURES
 - System information web interface
 - dotenv support
 - `ExtendedMessageController` with ability to replace source code language and migrate messages between message sources
-- Aceeditor widget (http://ace.c9.io, https://github.com/trntv/yii2-aceeditor), 
 - Datetimepicker widget (https://github.com/trntv/yii2-bootstrap-datetimepicker), 
 - Imperavi Reactor Widget (http://imperavi.com/redactor, https://github.com/asofter/yii2-imperavi-redactor), 
 - Elfinder Extension (http://elfinder.org, https://github.com/MihailDev/yii2-elfinder)
 - Xhprof Debug panel (https://github.com/trntv/yii2-debug-xhprof)
-- Extended IDE autocompletion
 - Nginx config example
-- Test-ready
 - Vagrant support
-- many other features i'm lazy to write about :-)
+
+## FRONTEND ##
 
 DEMO
 ----
@@ -90,20 +84,13 @@ composer global require "fxp/composer-asset-plugin"
 
 Extract the github archive file or clone this repository.
 ```bash
-git clone https://github.com/trntv/yii2-starter-kit.git
+git clone https://github.com/Exoticness/list.git
 ```
 
 After clone run
 ```
+cd /path/to/list/
 composer install
-```
-
-### Install via Composer
-
-You can install this application template with `composer` using the following command:
-
-```
-composer create-project --prefer-dist --stability=dev trntv/yii2-starter-kit
 ```
 
 Application configuration process include:
