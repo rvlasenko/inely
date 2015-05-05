@@ -5,7 +5,7 @@ Project Description
 
 FEATURES
 --------
-## BACKEND ##
+### BACKEND
 - Beautiful and open source dashboard theme for backend AdminLTE 2
 - I18N + 3 translations: English, Russian, Ukrainian
 - I18N DbMessageSource CRUD module
@@ -33,7 +33,7 @@ FEATURES
 - Nginx config example
 - Vagrant support
 
-## FRONTEND ##
+### FRONTEND
 
 DEMO
 ----
