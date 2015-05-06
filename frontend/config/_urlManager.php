@@ -9,6 +9,9 @@ return [
         'contact' => '/site/contact',
         'sign-up' => '/user/sign-in/signup',
         'login' => '/user/sign-in/login',
+        'account' => '/user/default/index',
+        'profile' => '/user/default/profile',
+        'logout' => '/user/sign-in/logout',
         '<_a:(confirm-email)>' => 'user/sign-in/<_a>',
 
         // Pages

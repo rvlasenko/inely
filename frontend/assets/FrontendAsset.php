@@ -18,7 +18,11 @@ class FrontendAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/style.css',
+        'css/components-md.css',
+    ];
+
+    public $js = [
+        'js/click.js',
     ];
 
     public $depends = [

@@ -107,7 +107,7 @@ return [
     'Save' => 'Сохранить',
     'Search' => 'Поиск',
     'Select cache' => 'Выберите кеш',
-    'Sign In' => 'Вход',
+    'Sign In' => 'Вход в учетную запись',
     'Sign me in' => 'Войти',
     'Software' => 'ПО',
     'Sorry, application failed to collect information about your system. See {link}.' => 'Извините, но приложению не удалось собрать информацию о вашей системе. Смотрите {link}',

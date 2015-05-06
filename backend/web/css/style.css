@@ -1,5 +1,5 @@
-body > .header .logo {
-    font-family: inherit;
+body {
+    font-family: "Open Sans", sans-serif;
 }
 
 body > .header .navbar .nav > li > a > .badge {
@@ -18,4 +18,144 @@ body .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a > .i
 
 body .user-panel > .info {
     padding-left: 10px;
+}
+
+.login-logo, .register-logo {
+    font-size: 32px;
+}
+
+.login-box-body, .register-box-body {
+    background: url(../img/bg-white-lock.png) repeat;
+    width: 360px;
+    margin: 0 auto;
+    margin-bottom: 0px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+}
+
+.input-icon > i {
+    color: #ccc;
+    display: block;
+    position: absolute;
+    margin: 9px 2px 4px 10px;
+    z-index: 3;
+    width: 16px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.input-icon > .form-control {
+    padding-left: 33px;
+}
+
+.login-box {
+    margin-top: 14em;
+}
+
+.form-control {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px !important;
+}
+
+.blue.btn {
+    color: #FFFFFF;
+    background-color: #3598dc;
+}
+
+.btn {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    border-width: 0 !important;
+    overflow: hidden;
+    position: relative;
+    padding: 9px 14px 8px 14px;
+}
+
+.btn {
+    border-width: 0;
+    padding: 7px 14px;
+    font-size: 14px;
+    outline: none !important;
+    background-image: none !important;
+    filter: none;
+    text-shadow: none;
+}
+
+.md-shadow-z-1, .alert, .badge, .btn, .btn-group > .btn, .btn.btn-link:hover, .icon-btn, .label, .list-group1, .note, .social-icons li > a, .social-icons.social-icons-color > li > a, .well {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.md-shadow-z-2-hover, .btn:hover, .icon-btn:hover, .social-icons li:hover > a, .social-icons.social-icons-color > li > a:hover, .portlet.box.blue > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-madison > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-chambray > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-ebonyclay > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-hoki > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-steel > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-soft > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-dark > .portlet-title > .actions .btn-default:hover, .portlet.box.blue-sharp > .portlet-title > .actions .btn-default:hover, .portlet.box.green > .portlet-title > .actions .btn-default:hover, .portlet.box.green-meadow > .portlet-title > .actions .btn-default:hover, .portlet.box.green-seagreen > .portlet-title > .actions .btn-default:hover, .portlet.box.green-turquoise > .portlet-title > .actions .btn-default:hover, .portlet.box.green-haze > .portlet-title > .actions .btn-default:hover, .portlet.box.green-jungle > .portlet-title > .actions .btn-default:hover, .portlet.box.green-sharp > .portlet-title > .actions .btn-default:hover, .portlet.box.green-soft > .portlet-title > .actions .btn-default:hover, .portlet.box.grey > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-steel > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-cararra > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-gallery > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-cascade > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-silver > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-salsa > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-salt > .portlet-title > .actions .btn-default:hover, .portlet.box.grey-mint > .portlet-title > .actions .btn-default:hover, .portlet.box.red > .portlet-title > .actions .btn-default:hover, .portlet.box.red-pink > .portlet-title > .actions .btn-default:hover, .portlet.box.red-sunglo > .portlet-title > .actions .btn-default:hover, .portlet.box.red-intense > .portlet-title > .actions .btn-default:hover, .portlet.box.red-thunderbird > .portlet-title > .actions .btn-default:hover, .portlet.box.red-flamingo > .portlet-title > .actions .btn-default:hover, .portlet.box.red-soft > .portlet-title > .actions .btn-default:hover, .portlet.box.red-haze > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow-gold > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow-casablanca > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow-crusta > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow-lemon > .portlet-title > .actions .btn-default:hover, .portlet.box.yellow-saffron > .portlet-title > .actions .btn-default:hover, .portlet.box.purple > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-plum > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-medium > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-studio > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-wisteria > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-seance > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-intense > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-sharp > .portlet-title > .actions .btn-default:hover, .portlet.box.purple-soft > .portlet-title > .actions .btn-default:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.26);
+}
+
+div.checker span {
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    text-align: center;
+    background-position: 0 -260px;
+}
+
+div.checker, div.checker span, div.checker input {
+    width: 19px;
+    height: 19px;
+}
+
+div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {
+    background-image: url("../img/sprite.png");
+    background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased;
+}
+
+div.selector, div.selector *, div.radio, div.radio *, div.checker, div.checker *, div.uploader, div.uploader *, div.button, div.button * {
+    margin: 0;
+    padding: 0;
+}
+
+div.checker input {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+}
+
+div.checker span.checked {
+    background-position: -76px -260px;
+}
+
+div.checker, div.checker span, div.checker input {
+    width: 19px;
+    height: 19px;
+}
+
+div.checker input, input[type="search"], input[type="search"]:active {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.checker input, .radio input {
+    outline: none !important;
+}
+
+div.selector, div.selector *, div.radio, div.radio *, div.checker, div.checker *, div.uploader, div.uploader *, div.button, div.button * {
+    margin: 0;
+    padding: 0;
 }

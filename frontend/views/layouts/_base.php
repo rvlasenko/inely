@@ -31,7 +31,7 @@ use yii\bootstrap\NavBar;
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
             ['label' => Yii::t('frontend', 'Home'), 'url' => ['/']],
             ['label' => Yii::t('frontend', 'About'), 'url' => ['/about']],
@@ -45,11 +45,11 @@ use yii\bootstrap\NavBar;
                 'items' => [
                     [
                         'label' => Yii::t('frontend', 'Account'),
-                        'url' => ['/user/default/index']
+                        'url' => ['/account']
                     ],
                     [
                         'label' => Yii::t('frontend', 'Profile'),
-                        'url' => ['/user/default/profile']
+                        'url' => ['/profile']
                     ],
                     [
                         'label' => Yii::t('frontend', 'Backend'),
@@ -58,7 +58,7 @@ use yii\bootstrap\NavBar;
                     ],
                     [
                         'label' => Yii::t('frontend', 'Logout'),
-                        'url' => ['/user/sign-in/logout'],
+                        'url' => ['/logout'],
                         'linkOptions' => ['data-method' => 'post']
                     ]
                 ]
@@ -81,14 +81,6 @@ use yii\bootstrap\NavBar;
     <?= $content ?>
 
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
