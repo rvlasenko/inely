@@ -22,6 +22,7 @@ body .user-panel > .info {
 
 .login-logo, .register-logo {
     font-size: 32px;
+    color: white;
 }
 
 .login-box-body, .register-box-body {
@@ -49,6 +50,11 @@ body .user-panel > .info {
 
 .input-icon > .form-control {
     padding-left: 33px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    color: white;
 }
 
 .login-box {

@@ -8,9 +8,9 @@ if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
 require(__DIR__ . '/../../tests/bootstrap.php');
 
 // TEST ENV
-defined('YII_DEBUG') or define('YII_DEBUG', false);
-defined('YII_ENV') or define('YII_ENV', 'test');
-defined('YII_APP_BASE_PATH') or define('YII_APP_BASE_PATH', dirname(dirname(__DIR__)));
+defined('YII_DEBUG') || define('YII_DEBUG', false);
+defined('YII_ENV') || define('YII_ENV', 'test');
+defined('YII_APP_BASE_PATH') || define('YII_APP_BASE_PATH', dirname(dirname(__DIR__)));
 
 // Environment
 require(__DIR__ . '/../../common/env.php');

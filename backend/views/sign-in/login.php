@@ -7,14 +7,13 @@ use yii\bootstrap\ActiveForm;
 /* @var $model \backend\models\LoginForm */
 
 $this->title = Yii::t('backend', 'Sign In');
-$this->params['breadcrumbs'][] = $this->title;
 $this->params['body-class'] = 'login-page';
 $this->registerJs('$.backstretch([
         "../img/media/1.jpg",
         "../img/media/3.jpg"
         ], {
           fade: 1000,
-          duration: 600
+          duration: 5000
     }
     );');
 ?>
@@ -43,7 +42,7 @@ $this->registerJs('$.backstretch([
             'class' => 'btn blue pull-right',
             'name' => 'login-button'
         ]) ?>
-        <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'simple', 'template' => 'Remember me<div class="checker" style="float: left"><span class="checked">{input}</span></div>']) ?>
+        <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'simple', 'template' => 'Запомнить меня<div class="checker" style="float: left"><span class="checked">{input}</span></div>']) ?>
         </div>
         <?php ActiveForm::end(); ?>
 
