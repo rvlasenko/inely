@@ -14,7 +14,7 @@ $this->registerJs('$.backstretch([
         "../img/media/3.jpg"
         ], {
           fade: 1000,
-          duration: 6000
+          duration: 600
     }
     );');
 ?>
