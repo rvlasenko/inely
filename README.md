@@ -4,39 +4,37 @@ List
 Project Description
 
 
-FEATURES
+Особенности
 --------
 ### BACKEND
-- Beautiful and open source dashboard theme for backend AdminLTE 2
-- I18N + 3 translations: English, Russian, Ukrainian
-- I18N DbMessageSource CRUD module
-- Language change action + behavior to choose locale based on browser preferred language 
-- Sign in, Sign up, Profile
-- OAuth authorization
-- User management: CRUD
-- RBAC with predefined `guest`, `user`, `manager` and `administrator` roles
-- Content management components: articles, categories, static pages
-- Ready-to-go RESTful API module
-- File storage component + file upload widget (https://github.com/trntv/yii2-file-kit)
-- [thephpleague/glide](https://github.com/thephpleague/glide)
-- Useful behaviors (GlobalAccessBehavior, CacheInvalidateBehavior, MaintenanceBehavior)
-- Yii2 log web interface
-- Application timeline component
-- Cache web controller
+- Прекрасная open source тема для админки AdminLTE 2
+- I18N + 3 трансляции: Английский, Русский, Украинский
+- Смена текущей локали + поведение, позволяющее автоматически менять локаль основываясь на языке в браузере
+- Авторизация, регистрация, профиль пользователя
+- Авторизация по протоколу OAuth
+- Управление пользователями CRUD
+- Управление доступом на основе ролей, с предопределенными ролями: `guest`, `user`, `manager` и `administrator` 
+- Компоненты для управления содержимым, таким как: статьи, категории, статические страницы
+- Полная поддержка модуля RESTful API
+- Файловое хранилище + виджет загрузки файлов
+- Библиотека для управления изображениями Glide
+- Веб-интерфейс логгирования событий
+- Графическое представление активности (Timeline)
+- Веб-контроллер кэширования
 - Maintenance mode component ([more](#maintenance-mode))
-- System information web interface
-- dotenv support
-- `ExtendedMessageController` with ability to replace source code language and migrate messages between message sources
-- Datetimepicker widget (https://github.com/trntv/yii2-bootstrap-datetimepicker), 
+- Отображение системной информации
+- Поддержка dotenv
+
 - Imperavi Reactor Widget (http://imperavi.com/redactor, https://github.com/asofter/yii2-imperavi-redactor), 
 - Elfinder Extension (http://elfinder.org, https://github.com/MihailDev/yii2-elfinder)
-- Xhprof Debug panel (https://github.com/trntv/yii2-debug-xhprof)
-- Nginx config example
-- Vagrant support
+- Nginx конфигурация
+- Поддержка Vagrant
 
 ### FRONTEND
+- первое
+- второе
 
-DEMO
+Демонстрация
 ----
 Frontend:
 http://yii2-starter-kit.terentev.net
@@ -44,57 +42,43 @@ http://yii2-starter-kit.terentev.net
 Backend:
 http://backend.yii2-starter-kit.terentev.net
 
-`administrator` role account
-```
-Login: webmaster
-Password: webmaster
-```
-
-`manager` role account
-```
-Login: manager
-Password: manager
-```
-
-`user` role account
+Аккаунт обычного пользователя:
 ```
 Login: user
 Password: user
 ```
 
-REQUIREMENTS
+Требования
 ------------
 
-The minimum requirement by this application template that your Web server supports PHP 5.4.0.
+Минимальные требования подразумевают, что ваш веб-сервер поддерживает PHP 5.4
 
-
-INSTALLATION
+Установка и развёртывание
 ------------
 
-### Before installation
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+### Перед установкой
+Если на вашем ПК нет [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
-Install composer-asset-plugin needed for yii assets management
+Установите необходимый плагин для управления ассетами composer-asset-plugin
 ```bash
 composer global require "fxp/composer-asset-plugin"
 ```
 
 
-### Clone from GitHub
+### Клон репозитория c GitHub
 
-Extract the github archive file or clone this repository.
+Извлеките файл архива c GitHub или клонируйте этот репозиторий
 ```bash
 git clone https://github.com/Exoticness/list.git
 ```
 
-After clone run
+После завершения запустите команду в консоли
 ```
 cd /path/to/list/
 composer install
 ```
 
-Application configuration process include:
+Процесс конфигурации приложения включает в себя:
 
 1. Initialise application
 2. Prepare web server
