@@ -12,7 +12,7 @@
 - Авторизация, регистрация, профиль пользователя
 - Авторизация по протоколу OAuth
 - Управление пользователями CRUD
-- Управление доступом на основе ролей, с предопределенными ролями: `guest`, `user`, `manager` и `administrator` 
+- Управление доступом, с предопределенными ролями: `guest`, `user`, `manager` и `administrator` 
 - Компоненты для управления содержимым, таким как: статьи, категории, статические страницы
 - Полная поддержка модуля RESTful API
 - Файловое хранилище + виджет загрузки файлов
@@ -23,7 +23,6 @@
 - Maintenance mode component ([more](#maintenance-mode))
 - Отображение системной информации
 - Поддержка dotenv
-
 - Imperavi Reactor Widget (http://imperavi.com/redactor, https://github.com/asofter/yii2-imperavi-redactor), 
 - Elfinder Extension (http://elfinder.org, https://github.com/MihailDev/yii2-elfinder)
 - Nginx конфигурация
