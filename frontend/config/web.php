@@ -49,7 +49,7 @@ $config = [
                     'clientSecret' => getenv('GOOGLE_CLIENT_SECRET')
                 ],
                 'vkontakte' => [
-                    'class' => 'yii\authclient\clients\VKontakte',
+                    'class' => 'frontend\modules\auth\clients\VK',
                     'clientId' => getenv('VK_CLIENT_ID'),
                     'clientSecret' => getenv('VK_CLIENT_SECRET'),
                 ],

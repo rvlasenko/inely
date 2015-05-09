@@ -3,11 +3,11 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\User;
+use frontend\modules\user\models\ConfirmEmailForm;
 use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\PasswordResetRequestForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
-use frontend\modules\user\models\ConfirmEmailForm;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
@@ -188,7 +188,7 @@ class SignInController extends \yii\web\Controller
         if (!$user) {
             $user = new User();
             $user->scenario = 'oauth_create';
-            $user->username = ArrayHelper::getValue($attributes, 'login');
+            $user->username = ArrayHelper::getValue($attributes, 'name');
             $user->email = ArrayHelper::getValue($attributes, 'email');
             $user->oauth_client = $client->getName();
             $user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
@@ -203,37 +203,15 @@ class SignInController extends \yii\web\Controller
                     ->setTo($user->email)
                     ->send();
                 if ($sentSuccess) {
-                    Yii::$app->session->setFlash(
-                        'alert',
-                        [
-                            'options' => ['class' => 'alert-success'],
-                            'body' => Yii::t('frontend', 'Welcome to {app-name}. Email with your login information was sent to your email.', [
-                                'app-name' => Yii::$app->name
-                            ])
-                        ]
-                    );
+                    Yii::$app->getSession()->setFlash('alert', 'Welcome to {app-name}. Email with your login information was sent to your email.');
                 }
 
             } else {
                 // We already have a user with this email. Do what you want in such case
                 if (User::find()->where(['email' => $user->email])->count()) {
-                    Yii::$app->session->setFlash(
-                        'alert',
-                        [
-                            'options' => ['class' => 'alert-danger'],
-                            'body' => Yii::t('frontend', 'We already have a user with email {email}', [
-                                'email' => $user->email
-                            ])
-                        ]
-                    );
+                    Yii::$app->getSession()->setFlash('alert', 'We already have a user with email {email}');
                 } else {
-                    Yii::$app->session->setFlash(
-                        'alert',
-                        [
-                            'options' => ['class' => 'alert-danger'],
-                            'body' => Yii::t('frontend', 'Error while oauth process.')
-                        ]
-                    );
+                    Yii::$app->getSession()->setFlash('alert', 'Error while oauth process.');
                 }
 
             };
