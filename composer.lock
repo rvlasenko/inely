@@ -59,16 +59,16 @@
         },
         {
             "name": "bower-asset/admin-lte",
-            "version": "v2.0.5",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "c25a8710f419a1be142f9b46037be00388a7272c"
+                "reference": "e55c2b85aa037e9ecd4ef30f913104dde91a2826"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/c25a8710f419a1be142f9b46037be00388a7272c",
-                "reference": "c25a8710f419a1be142f9b46037be00388a7272c",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/e55c2b85aa037e9ecd4ef30f913104dde91a2826",
+                "reference": "e55c2b85aa037e9ecd4ef30f913104dde91a2826",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -84,7 +84,7 @@
                     "node_modules",
                     "bower_components",
                     "composer.json",
-                    "documentaion"
+                    "documentation"
                 ]
             },
             "license": [
@@ -1507,12 +1507,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/trntv/probe.git",
-                "reference": "92239cdfd8f95969f27bfac6b3a75581157f515b"
+                "reference": "be84ca286d3b3b9d540d9bae4fdcb9f97bc8e4f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/trntv/probe/zipball/92239cdfd8f95969f27bfac6b3a75581157f515b",
-                "reference": "92239cdfd8f95969f27bfac6b3a75581157f515b",
+                "url": "https://api.github.com/repos/trntv/probe/zipball/be84ca286d3b3b9d540d9bae4fdcb9f97bc8e4f6",
+                "reference": "be84ca286d3b3b9d540d9bae4fdcb9f97bc8e4f6",
                 "shasum": ""
             },
             "require-dev": {
@@ -1535,7 +1535,7 @@
                 }
             ],
             "description": "System information provider",
-            "time": "2015-04-03 19:32:59"
+            "time": "2015-05-08 20:02:10"
         },
         {
             "name": "trntv/yii2-bootstrap-datetimepicker",
@@ -1788,12 +1788,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "d0e6d63001273aeb343a69ae74e42bf35ea5d964"
+                "reference": "e587ae5d26786dfa69cf091e9df0587ee55bdfa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d0e6d63001273aeb343a69ae74e42bf35ea5d964",
-                "reference": "d0e6d63001273aeb343a69ae74e42bf35ea5d964",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e587ae5d26786dfa69cf091e9df0587ee55bdfa9",
+                "reference": "e587ae5d26786dfa69cf091e9df0587ee55bdfa9",
                 "shasum": ""
             },
             "require": {
@@ -1868,7 +1868,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-05-06 14:32:55"
+            "time": "2015-05-08 20:38:49"
         },
         {
             "name": "yiisoft/yii2-authclient",

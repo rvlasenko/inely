@@ -1,7 +1,7 @@
 <?php
 
-use yii\db\Schema;
 use yii\db\Migration;
+use yii\db\Schema;
 
 class m140703_123000_user extends Migration
 {
@@ -21,7 +21,7 @@ class m140703_123000_user extends Migration
             'email_confirm_token' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',
             'oauth_client' => Schema::TYPE_STRING,
             'oauth_client_user_id' => Schema::TYPE_STRING,
-            'email' => Schema::TYPE_STRING . ' NOT NULL',
+            'email' => Schema::TYPE_STRING . ' NOT NULL DEFAULT NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT ' . \common\models\User::STATUS_ACTIVE,
             'created_at' => Schema::TYPE_INTEGER,
             'updated_at' => Schema::TYPE_INTEGER,

@@ -41,7 +41,6 @@ class LoginForm extends Model
         ];
     }
 
-
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -79,7 +78,9 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::find()->where(['or', ['username' => $this->identity], ['email' => $this->identity]])->one();
+            $this->_user = User::find()->where(['or',
+                ['username' => $this->identity],
+                ['email' => $this->identity]])->one();
         }
 
         return $this->_user;
