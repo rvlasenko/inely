@@ -203,7 +203,7 @@ class SignInController extends \yii\web\Controller
                     ->setTo($user->email)
                     ->send();
                 if ($sentSuccess) {
-                    Yii::$app->getSession()->setFlash('alert', 'Welcome to {app-name}. Email with your login information was sent to your email.');
+                    Yii::$app->getSession()->setFlash('alert', 'Email with your login information was sent to your email.');
                 }
 
             } else {
