@@ -9,6 +9,7 @@ use frontend\modules\user\models\PasswordResetRequestForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
 use Yii;
+use yii\authclient\OAuthToken;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
@@ -178,43 +179,46 @@ class SignInController extends \yii\web\Controller
      */
     public function successOAuthCallback($client)
     {
-        // use BaseClient::normalizeUserAttributeMap to provide consistency for user attribute`s names
         $attributes = $client->getUserAttributes();
+        // getting user email
+        try {
+            $obj = new OAuthToken();
+            $attributes['email'] = $obj->getParam('email');
+            var_dump($attributes);
+        } catch (\yii\authclient\InvalidResponseException $e) {
+            // no email :-(
+        }
+
         $user = User::find()->where([
             'oauth_client' => $client->getName(),
             'oauth_client_user_id' => ArrayHelper::getValue($attributes, 'id')
-        ])
-            ->one();
+        ])->one();
         if (!$user) {
             $user = new User();
             $user->scenario = 'oauth_create';
-            $user->username = ArrayHelper::getValue($attributes, 'name');
-            $user->email = ArrayHelper::getValue($attributes, 'email');
+            if ($client->getName() == 'vkontakte') {
+                $first_name = ArrayHelper::getValue($attributes, 'first_name');
+                $last_name = ArrayHelper::getValue($attributes, 'last_name');
+                $user->username = $first_name . ' ' . $last_name;
+                $user->email = ArrayHelper::getValue($attributes, 'email');
+            }
             $user->oauth_client = $client->getName();
             $user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
             $password = Yii::$app->security->generateRandomString(8);
             $user->setPassword($password);
             if ($user->save()) {
                 $user->afterSignup();
-                $sentSuccess = Yii::$app->mailer->compose('oauth_welcome', ['user' => $user, 'password' => $password])
+                /*$sentSuccess = Yii::$app->mailer->compose('oauth_welcome', ['user' => $user, 'password' => $password])
                     ->setSubject(Yii::t('frontend', '{app-name} | Your login information', [
                         'app-name' => Yii::$app->name
                     ]))
                     ->setTo($user->email)
                     ->send();
-                if ($sentSuccess) {
-                    Yii::$app->getSession()->setFlash('alert', 'Email with your login information was sent to your email.');
-                }
+                if ($sentSuccess) {*/
+                Yii::$app->getSession()->setFlash('alert', 'Email with your login information was sent to your email.');
+                //}
 
-            } else {
-                // We already have a user with this email. Do what you want in such case
-                if (User::find()->where(['email' => $user->email])->count()) {
-                    Yii::$app->getSession()->setFlash('alert', 'We already have a user with email {email}');
-                } else {
-                    Yii::$app->getSession()->setFlash('alert', 'Error while oauth process.');
-                }
-
-            };
+            }
         }
         if (Yii::$app->user->login($user, 3600 * 24 * 30)) {
             return true;

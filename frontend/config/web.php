@@ -41,7 +41,8 @@ $config = [
                 'github' => [
                     'class' => 'yii\authclient\clients\GitHub',
                     'clientId' => getenv('GITHUB_CLIENT_ID'),
-                    'clientSecret' => getenv('GITHUB_CLIENT_SECRET')
+                    'clientSecret' => getenv('GITHUB_CLIENT_SECRET'),
+                    'scope' => 'user'
                 ],
                 'google' => [
                     'class' => 'yii\authclient\clients\GoogleOAuth',
@@ -52,6 +53,7 @@ $config = [
                     'class' => 'yii\authclient\clients\Vkontakte',
                     'clientId' => getenv('VK_CLIENT_ID'),
                     'clientSecret' => getenv('VK_CLIENT_SECRET'),
+                    'scope' => 'email'
                 ],
             ]
         ],
