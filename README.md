@@ -26,7 +26,6 @@
 - Imperavi Reactor Widget (http://imperavi.com/redactor, https://github.com/asofter/yii2-imperavi-redactor), 
 - Elfinder Extension (http://elfinder.org, https://github.com/MihailDev/yii2-elfinder)
 - Nginx конфигурация
-- Поддержка Vagrant
 
 ### FRONTEND
 - первое
@@ -35,12 +34,12 @@
 Демонстрация
 ----
 Frontend:
-http://yii2-starter-kit.terentev.net
+http://domain.net
 
 Backend:
-http://backend.yii2-starter-kit.terentev.net
+http://backend.domain.net
 
-Аккаунт обычного пользователя:
+Аккаунт пользователя:
 ```
 Login: user
 Password: user
@@ -49,23 +48,23 @@ Password: user
 Требования
 ------------
 
-Минимальные требования подразумевают, что ваш веб-сервер поддерживает PHP 5.4
+Минимальные требования подразумевают, что веб-сервер поддерживает PHP 5.4
 
 Установка и развёртывание
 ------------
 
 ### Перед установкой
-Если на вашем ПК нет [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+Если на вашем ПК не установлен [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
-Установите необходимый плагин для управления ассетами composer-asset-plugin
+После завершения добавьте плагин для управления ассетами composer-asset-plugin
 ```bash
 composer global require "fxp/composer-asset-plugin"
 ```
 
 
-### Клон репозитория c GitHub
+### Клон c GitHub
 
-Извлеките файл архива c GitHub или клонируйте этот репозиторий
+Клонируйте репозиторий
 ```bash
 git clone https://github.com/Exoticness/list.git
 ```
@@ -78,74 +77,62 @@ composer install
 
 Процесс конфигурации приложения включает в себя:
 
-1. Initialise application
-2. Prepare web server
-3. Configure environment local settings
-4. Apply migrations
-5. Initialise RBAC
+1. Инициализация приложения
+2. Подготовка веб-сервера
+3. Конфигурирование среды разработки
+4. Применение миграций
+5. Инициализация RBAC
 
-### Vagrant
-If you want, you can use bundled Vagrant instead of installing app to your local machine.
-Install [Vagrant](https://www.vagrantup.com/)
-Rename `vagrant.dist.yaml` to `vagrant.yaml`
-Create GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens) and paste in into `vagrant.yml`
-Run:
-```
-vagrant plugin install vagrant-hostmanager
-vagrant up
+#### 1. Инициализация приложения
+```php
+cd /path/to/list/
+php init
 ```
 
-#### 1. Initialization
-Initialise application
-```
-./init // init.bat for windows
-```
+#### 2. Веб-сервер
 
-#### 2. Web Server
+Сперва необходимо настроить виртуальные хосты на своем веб-сервере:
 
-You should configure web server with three different web roots:
+`example.dev` => `/path/to/list/frontend/web`
 
-`yii2-starter-kit.dev` => `/path/to/yii2-starter-kit/frontend/web`
+`backend.example.dev` => `/path/to/list/backend/web`
 
-`backend.yii2-starter-kit.dev` => `/path/to/yii2-starter-kit/backend/web`
+`storage.examplet.dev` => `/path/to/list/storage`
 
-`storage.yii2-starter-kit.dev` => `/path/to/yii2-starter-kit/storage`
+**NOTE:** Также можно использовать файл `nginx.conf` расположенный в корне проекта.
 
-**NOTE:** You can use `nginx.conf` file that is located in the project root.
+#### 3. Настройка среды
+Настройка параметров в файле `.env`
 
-#### 3. Setup environment
-Adjust settings in `.env` file
-
-##### 3.1 Database
-Edit the file `.env` with your data:
-```
-DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=yii2-starter-kit
+##### 3.1 База данных
+Внесите собственные данные в `.env`:
+```php
+DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=list
 DB_USERNAME      = user
 DB_PASSWORD      = password
 ```
-**NOTE:** Yii won't create the database for you, this has to be done manually before you can access it.
+**NOTE:** Yii не будет создавать базу данных, это должно быть сделано вручную, прежде чем вы можете получить доступ к ней.
 
-
-##### 3.2 Application urls
-Set your current application urls in `.env`
+##### 3.2 URL-адреса приложения
+Установите адреса приложения в файле `.env` идентичные виртуальным хостам
 
 ```php
-FRONTEND_URL    = http://yii2-starter-kit.dev
-BACKEND_URL     = http://backend.yii2-starter-kit.dev
-STORAGE_URL     = http://storage.yii2-starter-kit.dev
+FRONTEND_URL    = http://example.dev
+BACKEND_URL     = http://backend.example.dev
+STORAGE_URL     = http://storage.example.dev
 ```
-#### 4. Apply migrations
+#### 4. Применение миграций
 
 ```php
 php console/yii migrate
 ```
 
-#### 5. Initialise RBAC config
+#### 5. Инициализирование RBAC конфигурации
 
 ```php
 php console/yii rbac/init
 ```
-**IMPORTANT: without rbac/init you CAN'T LOG IN into backend**
+**IMPORTANT: не применив эту команду вы НЕ сможете авторизироваться в админке**
 
 COMPONENTS
 ----------
@@ -160,26 +147,6 @@ Then uncomment config for `DbMessageSource` in
 ```php
 common/config/base.php
 ```
-
-### KeyStorage
-Key storage is a key-value storage to store different information. Application params for example.
-Values can be stored both via api or by backend CRUD component.
-```
-Yii::$app->keyStorage->set('key', 'value');
-Yii::$app->keyStorage->get('articles-per-page');
-```
-
-### ExtendedMessageController
-This controller extends default MessageController to provide some useful actions
-
-Migrate messages between different message sources:
-``yii message/migrate @common/config/messages/php.php @common/config/messages/db.php``
-
-Replace source code language:
-``yii message/replace-source-language @path language-LOCALE``
-
-Remove Yii::t from code
-``yii message/replace-source-language @path``
 
 ### Maintenance mode
 Starter kit has built-in component to provide a maintenance functionality. All you have to do is to configure ``maintenance``
@@ -201,27 +168,9 @@ Additional configuration options can be found in a corresponding class.
 
 Starter kit configured to turn on maintenance mode if ``frontend.maintenance`` key in KeyStorage is set to ``true``
 
-OTHER
+Прочее
 -----
-### Updates
-Add remote repository `upstream`.
-```
-git remote add upstream https://github.com/trntv/yii2-starter-kit.git
-```
-Fetch latest changes from it
-```
-git fetch upstream
-```
-Merge these changes into your repository
-```
-git merge upstream/master
-```
-**IMPORTANT: there might be a conflicts between `upstream` and your code. You should resolve conflicts on your own**
 
-### Have any questions?
-mail to `eugene@terentev.net`
-
-#### NOTE
-This template was created mostly for developers NOT for end users.
-This is a point where you can begin your application, rather than creating it from scratch.
-Good luck!
+#### Небольшое замечание
+Этот шаблон был создан в основном для разработчиков, но НЕ для конечных пользователей.
+Разработка проводилась по большей части в одиночку и находилась в системе контроля версий.
