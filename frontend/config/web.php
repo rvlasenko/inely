@@ -38,22 +38,34 @@ $config = [
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
-                'github' => [
-                    'class' => 'yii\authclient\clients\GitHub',
-                    'clientId' => getenv('GITHUB_CLIENT_ID'),
-                    'clientSecret' => getenv('GITHUB_CLIENT_SECRET'),
-                    'scope' => 'user'
-                ],
                 'google' => [
                     'class' => 'yii\authclient\clients\GoogleOAuth',
                     'clientId' => getenv('GOOGLE_CLIENT_ID'),
-                    'clientSecret' => getenv('GOOGLE_CLIENT_SECRET')
+                    'clientSecret' => getenv('GOOGLE_CLIENT_SECRET'),
+                    'viewOptions' => [
+                        'popupWidth' => 400,
+                        'popupHeight' => 450,
+                    ]
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => getenv('FB_CLIENT_ID'),
+                    'clientSecret' => getenv('FB_CLIENT_SECRET'),
+                    'authUrl' => 'https://www.facebook.com/dialog/oauth?display=popup',
+                    'viewOptions' => [
+                        'popupWidth' => 600,
+                        'popupHeight' => 400,
+                    ]
                 ],
                 'vkontakte' => [
                     'class' => 'yii\authclient\clients\Vkontakte',
                     'clientId' => getenv('VK_CLIENT_ID'),
                     'clientSecret' => getenv('VK_CLIENT_SECRET'),
-                    'scope' => 'email'
+                    'scope' => 'email',
+                    'viewOptions' => [
+                        'popupWidth' => 650,
+                        'popupHeight' => 350,
+                    ]
                 ],
             ]
         ],

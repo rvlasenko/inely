@@ -9,7 +9,6 @@ use frontend\modules\user\models\PasswordResetRequestForm;
 use frontend\modules\user\models\ResetPasswordForm;
 use frontend\modules\user\models\SignupForm;
 use Yii;
-use yii\authclient\OAuthToken;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
@@ -180,14 +179,6 @@ class SignInController extends \yii\web\Controller
     public function successOAuthCallback($client)
     {
         $attributes = $client->getUserAttributes();
-        // getting user email
-        try {
-            $obj = new OAuthToken();
-            $attributes['email'] = $obj->getParam('email');
-            var_dump($attributes);
-        } catch (\yii\authclient\InvalidResponseException $e) {
-            // no email :-(
-        }
 
         $user = User::find()->where([
             'oauth_client' => $client->getName(),
@@ -197,6 +188,13 @@ class SignInController extends \yii\web\Controller
             $user = new User();
             $user->scenario = 'oauth_create';
             if ($client->getName() == 'vkontakte') {
+                try {
+                    $obj = $client->getAccessToken();
+                    $attributes['email'] = $obj->getParam('email');
+                    unset($obj);
+                } catch (\yii\authclient\InvalidResponseException $e) {
+                    // no email :-(
+                }
                 $first_name = ArrayHelper::getValue($attributes, 'first_name');
                 $last_name = ArrayHelper::getValue($attributes, 'last_name');
                 $user->username = $first_name . ' ' . $last_name;
@@ -208,16 +206,7 @@ class SignInController extends \yii\web\Controller
             $user->setPassword($password);
             if ($user->save()) {
                 $user->afterSignup();
-                /*$sentSuccess = Yii::$app->mailer->compose('oauth_welcome', ['user' => $user, 'password' => $password])
-                    ->setSubject(Yii::t('frontend', '{app-name} | Your login information', [
-                        'app-name' => Yii::$app->name
-                    ]))
-                    ->setTo($user->email)
-                    ->send();
-                if ($sentSuccess) {*/
                 Yii::$app->getSession()->setFlash('alert', 'Email with your login information was sent to your email.');
-                //}
-
             }
         }
         if (Yii::$app->user->login($user, 3600 * 24 * 30)) {
