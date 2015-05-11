@@ -6,8 +6,6 @@ $this->title = Yii::$app->name;
 
     <div class="jumbotron">
 
-        <?= \common\components\alert\Alert::widget() ?>
-
     </div>
 
     <div class="body-content">

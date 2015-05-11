@@ -12,7 +12,12 @@ $this->title = Yii::t('frontend', 'Profile')
 ?>
 
 <div class="user-profile-form">
-    <?= \common\components\alert\Alert::widget() ?>
+    <?php if (Yii::$app->session->hasFlash('alert')): ?>
+        <?= \yii\bootstrap\Alert::widget([
+            'body' => yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+            'options' => yii\helpers\ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+        ]) ?>
+    <?php endif; ?>
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -29,8 +34,8 @@ $this->title = Yii::t('frontend', 'Profile')
     <?= $form->field($model, 'locale')->dropDownlist(Yii::$app->params['availableLocales']) ?>
 
     <?= $form->field($model, 'gender')->dropDownlist([
-        \common\models\UserProfile::GENDER_FEMALE => Yii::t('frontend', 'Female'),
-        \common\models\UserProfile::GENDER_MALE => Yii::t('frontend', 'Male')
+        \common\models\UserProfile::GENDER_MALE => Yii::t('frontend', 'Male'),
+        \common\models\UserProfile::GENDER_FEMALE => Yii::t('frontend', 'Female')
     ]) ?>
 
     <div class="form-group">

@@ -3,6 +3,7 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\User;
+use common\models\UserProfile;
 use frontend\modules\user\models\ConfirmEmailForm;
 use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\PasswordResetRequestForm;
@@ -187,26 +188,44 @@ class SignInController extends \yii\web\Controller
         if (!$user) {
             $user = new User();
             $user->scenario = 'oauth_create';
-            if ($client->getName() == 'vkontakte') {
-                try {
+
+            switch ($client->getName()) {
+                case 'vkontakte':
                     $obj = $client->getAccessToken();
                     $attributes['email'] = $obj->getParam('email');
-                    unset($obj);
-                } catch (\yii\authclient\InvalidResponseException $e) {
-                    // no email :-(
-                }
-                $first_name = ArrayHelper::getValue($attributes, 'first_name');
-                $last_name = ArrayHelper::getValue($attributes, 'last_name');
-                $user->username = $first_name . ' ' . $last_name;
-                $user->email = ArrayHelper::getValue($attributes, 'email');
+                    $attributes['username'] = implode(' ', [
+                        $attributes['first_name'],
+                        $attributes['last_name']
+                    ]);
+                    break;
+                case 'facebook':
+                    $attributes['username'] = implode(' ', [
+                        $attributes['first_name'],
+                        $attributes['last_name']
+                    ]);
+                    break;
+                case 'google':
+                    $attributes['username'] = $attributes['displayName'];
+                    $attributes['first_name'] = $attributes['name']['givenName'];
+                    $attributes['last_name'] = $attributes['name']['familyName'];
+                    $attributes['email'] = $attributes['emails'][0]['value'];
+                    break;
             }
+
+            //$avatar = ArrayHelper::getValue($attributes, 'photo');
+            $user->username = $attributes['username'];
+            $user->email = $attributes['email'];
+
             $user->oauth_client = $client->getName();
             $user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
             $password = Yii::$app->security->generateRandomString(8);
             $user->setPassword($password);
             if ($user->save()) {
-                $user->afterSignup();
-                Yii::$app->getSession()->setFlash('alert', 'Email with your login information was sent to your email.');
+                $user->afterSignup([
+                    'firstname' => $attributes['first_name'],
+                    'lastname' => $attributes['last_name']
+                ]);
+                //Yii::$app->getSession()->setFlash('alert', 'Email with your login information was sent to your email.');
             }
         }
         if (Yii::$app->user->login($user, 3600 * 24 * 30)) {

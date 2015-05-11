@@ -23,8 +23,8 @@ use Yii;
  */
 class UserProfile extends \yii\db\ActiveRecord
 {
-    const GENDER_MALE = 1;
-    const GENDER_FEMALE = 2;
+    const GENDER_MALE = 2;
+    const GENDER_FEMALE = 1;
 
     public $picture;
 

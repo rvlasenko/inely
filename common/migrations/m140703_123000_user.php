@@ -21,7 +21,7 @@ class m140703_123000_user extends Migration
             'email_confirm_token' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',
             'oauth_client' => Schema::TYPE_STRING,
             'oauth_client_user_id' => Schema::TYPE_STRING,
-            'email' => Schema::TYPE_STRING . ' NOT NULL',
+            'email' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT ' . \common\models\User::STATUS_ACTIVE,
             'created_at' => Schema::TYPE_INTEGER,
             'updated_at' => Schema::TYPE_INTEGER,
@@ -62,7 +62,6 @@ class m140703_123000_user extends Migration
         $this->createTable('{{%user_profile}}', [
             'user_id' => Schema::TYPE_PK,
             'firstname' => Schema::TYPE_STRING . '(255) ',
-            'middlename' => Schema::TYPE_STRING . '(255) ',
             'lastname' => Schema::TYPE_STRING . '(255) ',
             'avatar_path' => Schema::TYPE_STRING . '(255) ',
             'avatar_base_url' => Schema::TYPE_STRING . '(255) ',
