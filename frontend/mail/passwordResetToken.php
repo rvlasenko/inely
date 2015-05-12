@@ -293,8 +293,9 @@ $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['/user/sign-in/reset-pass
                                             <td style="font-family: Tahoma, sans-serif; font-size: 16px; color: #666666; text-align:center; line-height: 30px;"
                                                 st-content="fulltext-content">
                                                 Кто-то ввел ваш email в форму восстановления пароля.
-                                                Если не вы, то ни за что не ходите по ссылке, удалите это письмо и дело
-                                                с концом. Иначе, следующая ссылка специально для вас:
+                                                Если это не вы, то ни за что не ходите по ссылке, удалите это письмо и
+                                                дело
+                                                с концом. Или, вы? Тогда следующая ссылка специально для вас:
                                                 <a href="<?= $resetLink ?>"
                                                    style="text-decoration: none; color: #0a8cce">нужен новый пароль</a>
                                             </td>

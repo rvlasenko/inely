@@ -274,7 +274,6 @@ class User extends ActiveRecord implements IdentityInterface
         $profile->load($profileData, '');
         $profile->firstname = $profileData['firstname'];
         $profile->lastname = $profileData['lastname'];
-        //$profile->avatar_base_url = $profileData['avatar'];
         $this->link('userProfile', $profile);
         $this->trigger(self::EVENT_AFTER_SIGNUP);
         // Default role

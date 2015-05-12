@@ -3,7 +3,6 @@
 namespace frontend\modules\user\controllers;
 
 use common\models\User;
-use common\models\UserProfile;
 use frontend\modules\user\models\ConfirmEmailForm;
 use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\PasswordResetRequestForm;

@@ -7,6 +7,7 @@ return [
         '' => '/site/index',
         'article' => '/article/index',
         'contact' => '/site/contact',
+        'about' => '/site/about',
         'sign-up' => '/user/sign-in/signup',
         'login' => '/user/sign-in/login',
         'account' => '/user/default/index',
