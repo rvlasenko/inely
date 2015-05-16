@@ -5,7 +5,10 @@ use yii\widgets\Breadcrumbs;
 
 /* @var $content string */
 
-$this->beginContent('@frontend/views/layouts/_base.php')
+if (!Yii::$app->user->isGuest)
+    $this->beginContent('@frontend/views/layouts/_base.php');
+else
+    $this->beginContent('@frontend/views/layouts/_landing.php');
 ?>
     <div class="container">
 
@@ -23,4 +26,6 @@ $this->beginContent('@frontend/views/layouts/_base.php')
         <?= $content ?>
 
     </div>
-<?php $this->endContent() ?>
+<?php
+$this->endContent();
+?>
