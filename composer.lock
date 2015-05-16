@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d80ba0038cf42bc9d4a8cbf74893cc00",
+    "hash": "38da58662f3b6fb5e4b5763b6b6593b8",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/asofter/yii2-imperavi-redactor.git",
-                "reference": "8b50aab61bb6718878d3ace48d99d2a71e700229"
+                "reference": "5cf87eaa1d79eca21c98bc8bb7610af05ea36b40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asofter/yii2-imperavi-redactor/zipball/8b50aab61bb6718878d3ace48d99d2a71e700229",
-                "reference": "8b50aab61bb6718878d3ace48d99d2a71e700229",
+                "url": "https://api.github.com/repos/asofter/yii2-imperavi-redactor/zipball/5cf87eaa1d79eca21c98bc8bb7610af05ea36b40",
+                "reference": "5cf87eaa1d79eca21c98bc8bb7610af05ea36b40",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
                 "imperavi redactor",
                 "yii"
             ],
-            "time": "2015-04-25 11:23:13"
+            "time": "2015-05-13 12:21:31"
         },
         {
             "name": "bower-asset/admin-lte",
@@ -630,16 +630,16 @@
         },
         {
             "name": "bower-asset/moment",
-            "version": "2.10.2",
+            "version": "2.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "ce233cecf3d07aa15869a1db0fd8a8c43efccfcd"
+                "reference": "25cc720fbaab7323a1016cd0beb6a36e349c41be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/ce233cecf3d07aa15869a1db0fd8a8c43efccfcd",
-                "reference": "ce233cecf3d07aa15869a1db0fd8a8c43efccfcd",
+                "url": "https://api.github.com/repos/moment/moment/zipball/25cc720fbaab7323a1016cd0beb6a36e349c41be",
+                "reference": "25cc720fbaab7323a1016cd0beb6a36e349c41be",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -647,16 +647,19 @@
                 "bower-asset-main": "moment.js",
                 "bower-asset-ignore": [
                     "**/.*",
-                    "node_modules",
+                    "benchmarks",
                     "bower_components",
-                    "test",
-                    "tests",
+                    "meteor",
+                    "node_modules",
+                    "scripts",
                     "tasks",
+                    "test",
                     "component.json",
                     "composer.json",
                     "CONTRIBUTING.md",
                     "ender.js",
                     "Gruntfile.js",
+                    "Moment.js.nuspec",
                     "package.js",
                     "package.json"
                 ]
@@ -826,6 +829,54 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "fortawesome/font-awesome",
+            "version": "v4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "shasum": ""
+            },
+            "require-dev": {
+                "jekyll": "1.0.2",
+                "lessc": "1.4.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OFL-1.1",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Gandy",
+                    "email": "dave@fontawesome.io",
+                    "homepage": "http://twitter.com/davegandy",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The iconic font and CSS framework",
+            "homepage": "http://fontawesome.io/",
+            "keywords": [
+                "FontAwesome",
+                "awesome",
+                "bootstrap",
+                "font",
+                "icon"
+            ],
+            "time": "2015-01-22 18:09:42"
         },
         {
             "name": "intervention/image",
@@ -1030,16 +1081,16 @@
         },
         {
             "name": "league/url",
-            "version": "3.3.1",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/url.git",
-                "reference": "a096be483bec9abcae34f4e21ec74696f7beed55"
+                "reference": "73fe5a6eb3d0f399535572cb9897fbdec0803c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/url/zipball/a096be483bec9abcae34f4e21ec74696f7beed55",
-                "reference": "a096be483bec9abcae34f4e21ec74696f7beed55",
+                "url": "https://api.github.com/repos/thephpleague/url/zipball/73fe5a6eb3d0f399535572cb9897fbdec0803c39",
+                "reference": "73fe5a6eb3d0f399535572cb9897fbdec0803c39",
                 "shasum": ""
             },
             "require": {
@@ -1080,7 +1131,7 @@
                 "php",
                 "url"
             ],
-            "time": "2015-03-26 10:07:42"
+            "time": "2015-05-13 07:51:53"
         },
         {
             "name": "mihaildev/yii2-elfinder",
@@ -1507,12 +1558,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/trntv/probe.git",
-                "reference": "be84ca286d3b3b9d540d9bae4fdcb9f97bc8e4f6"
+                "reference": "fde961c9d6ff20289a6ed564ade786e1548010ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/trntv/probe/zipball/be84ca286d3b3b9d540d9bae4fdcb9f97bc8e4f6",
-                "reference": "be84ca286d3b3b9d540d9bae4fdcb9f97bc8e4f6",
+                "url": "https://api.github.com/repos/trntv/probe/zipball/fde961c9d6ff20289a6ed564ade786e1548010ac",
+                "reference": "fde961c9d6ff20289a6ed564ade786e1548010ac",
                 "shasum": ""
             },
             "require-dev": {
@@ -1535,7 +1586,7 @@
                 }
             ],
             "description": "System information provider",
-            "time": "2015-05-08 20:02:10"
+            "time": "2015-05-12 18:57:33"
         },
         {
             "name": "trntv/yii2-bootstrap-datetimepicker",
@@ -1788,12 +1839,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "492aeb766b30eb00747c54096f790d2afd1090c8"
+                "reference": "3fba060fa1638b1e86dde9794630bafc436df2ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/492aeb766b30eb00747c54096f790d2afd1090c8",
-                "reference": "492aeb766b30eb00747c54096f790d2afd1090c8",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3fba060fa1638b1e86dde9794630bafc436df2ae",
+                "reference": "3fba060fa1638b1e86dde9794630bafc436df2ae",
                 "shasum": ""
             },
             "require": {
@@ -1868,7 +1919,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-05-11 09:52:29"
+            "time": "2015-05-16 07:34:35"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2280,16 +2331,16 @@
         },
         {
             "name": "facebook/webdriver",
-            "version": "v0.5.1",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-webdriver.git",
-                "reference": "bbcb697efb394d17bd9ec3d467e7da847cde4509"
+                "reference": "2c5b305ea91b00ebbc433ad1663b7f16c1b31ec5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/bbcb697efb394d17bd9ec3d467e7da847cde4509",
-                "reference": "bbcb697efb394d17bd9ec3d467e7da847cde4509",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/2c5b305ea91b00ebbc433ad1663b7f16c1b31ec5",
+                "reference": "2c5b305ea91b00ebbc433ad1663b7f16c1b31ec5",
                 "shasum": ""
             },
             "require": {
@@ -2317,7 +2368,7 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2014-11-05 20:53:09"
+            "time": "2015-02-09 19:39:34"
         },
         {
             "name": "fzaninotto/faker",

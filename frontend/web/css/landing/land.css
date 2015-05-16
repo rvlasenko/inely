@@ -183,14 +183,14 @@ h5 {
 /* SECTION */
 .section {
     position: relative;
-    background-image: url(../images/backgrounds/section-light-bg.png);
+    background-image: url(../../images/backgrounds/section-light-bg.png);
     background-position: bottom center;
     background-repeat: repeat-x;
     overflow: hidden;
 }
 
 .section-inverse-color {
-    background-image: url(../images/backgrounds/section-dark-bg.png);
+    background-image: url(../../images/backgrounds/section-dark-bg.png);
     background-color: #222222;
     color: #cccccc;
 }
@@ -630,7 +630,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-section {
     height: 100%;
-    background-image: url(../images/backgrounds/hero-bg.jpg);
+    background-image: url(../../images/backgrounds/hero-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -638,6 +638,10 @@ h1, h2, h3, h4, h5, h6 {
 .hero-logo {
     margin-bottom: 30px;
     max-height: 70px;
+}
+
+.navbar-brand > img {
+    display: initial;
 }
 
 .hero-title {
@@ -882,7 +886,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .video-section {
     padding: 80px 0;
-    background-image: url(../images/backgrounds/video-bg.jpg);
+    background-image: url(../../images/backgrounds/video-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -954,7 +958,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .testimonials-section {
     padding: 80px 0;
-    background-image: url(../images/backgrounds/testimonials-bg.jpg);
+    background-image: url(../../images/backgrounds/testimonials-bg.jpg);
     background-repeat: repeat;
     color: #ffffff;
 }
@@ -1305,7 +1309,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .subscribe-section {
     padding: 80px 0;
-    background-image: url(../images/backgrounds/subscribe-bg.jpg);
+    background-image: url(../../images/backgrounds/subscribe-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
