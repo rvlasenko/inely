@@ -33,18 +33,19 @@ HEADER
             </button>
 
             <!-- NAVBAR LOGO -->
-            <a class="navbar-brand navbar-logo" href="#home"><img src="images/logos/navbar-logo.png"
-                                                                  alt="EOS - App Landing Page Template"/></a>
+            <a class="navbar-brand navbar-logo" href="#home">
+                <img src="images/logos/navbar-logo.png" alt="EOS - App Landing Page Template"/></a>
         </div>
 
         <div id="navigation" class="navbar-collapse collapse">
 
             <!-- NAVIGATION LINKS -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#home">Download</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#video">Watch the Video</a></li>
-                <li><a href="#pricing">Go Premium</a></li>
+                <li><a href="#home">Обзор</a></li>
+                <li><a href="#features">Особенности</a></li>
+                <li><a href="#features">Особенности</a></li>
+                <li><a href="#screenshots">Скриншоты</a></li>
+                <li><a href="#login">Вход</a></li>
             </ul>
 
         </div>
@@ -63,7 +64,7 @@ HERO SECTION
     <!-- VIDEO BACKGROUND -->
     <div class="video-background-container parallax" data-stellar-ratio="0.4">
         <video preload="auto" autoplay loop muted class="video-background">
-            <source src="//tinyurl.com/q6bf785" type="video/webm"/>
+            <source src="//a.pomf.se/nfcrav.webm" type="video/webm"/>
             <source src="//tinyurl.com/q6bf785" type="video/mp4"/>
         </video>
     </div>
@@ -131,7 +132,7 @@ HERO SECTION
 FEATURES WITH ICONS SECTION
 =================================
 -->
-<section id="features-icons" class="features-icons-section section">
+<section id="features" class="features-icons-section section">
     <div class="container">
 
         <div class="row">
@@ -477,35 +478,21 @@ SUBSCRIBE SECTION
 FOOTER SECTION
 =================================
 -->
-<footer class="footer-section section">
+<footer id="login" class="footer-section section">
 
     <div class="container">
 
         <!-- AUTH BUTTONS -->
         <p class="download-buttons">
-            <!-- GOOGLE AUTH -->
-            <a href="#please-edit-this-link" class="btn btn-app-download btn-ios">
-                <i class="fa fa-google-plus"></i>
-                <strong>Войти</strong> <span>через Google +</span>
-            </a>
-            <!-- VK AUTH -->
-            <a href="#please-edit-this-link" class="btn btn-app-download btn-primary">
-                <i class="fa fa-vk"></i>
-                <strong>Войти</strong> <span>через ВКонтакте</span>
-            </a>
-            <!-- FB AUTH -->
-            <a href="#please-edit-this-link" class="btn btn-app-download btn-windows-phone">
-                <i class="fa fa-facebook"></i>
-                <strong>Войти</strong> <span>через FaceBook</span>
-            </a>
+            <span class="join">Присоединиться к нам:</span>
         </p>
 
         <!-- SOCIAL MEDIA LINKS -->
-        <ul class="social-media-links wow fadeIn" data-wow-duration="1s">
-            <li><a href="http://facebook.com"><i class="fa fa-facebook"></i><span class="sr-only">Facebook</span></a>
-            <li><a href="http://twitter.com"><i class="fa fa-twitter"></i><span class="sr-only">Twitter</span></a>
-            <li><a href="http://instagram.com"><i class="fa fa-instagram"></i><span class="sr-only">Instagram</span></a>
-            <li><a href="#"><i class="fa fa-envelope"></i><span class="sr-only">Email</span></a>
+        <ul class="social-media-links">
+            <li><a href="#" class="icon-button vk"><i class="fa fa-vk"></i><span></span></a></li>
+            <li><a href="#" class="icon-button facebook"><i class="fa fa-facebook"></i><span></span></a></li>
+            <li><a href="#" class="icon-button google-plus"><i class="fa fa-google-plus"></i><span></span></a></li>
+            <li><a href="#" class="icon-button envelope"><i class="fa fa fa-envelope"></i><span></span></a></li>
         </ul>
 
         <!-- COPYRIGHT -->

@@ -53,14 +53,15 @@ a.bg-primary:hover {
     border-color: #45668e;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
+.btn-primary.active,
 .btn-primary.focus,
 .btn-primary:active,
-.btn-primary.active,
+.btn-primary:focus,
+.btn-primary:hover,
 .open > .dropdown-toggle.btn-primary {
-    background-color: #45668e;
-    border-color: #45668e;
+    color: #FFF;
+    background-color: #337AB7 !important;
+    border-color: #337AB7 !important;
 }
 
 .btn-primary.disabled,
@@ -254,8 +255,8 @@ a.thumbnail.active {
  * ========================================
  */
 
-.social-media-links li a:focus, .social-media-links li a:hover {
-    background-color: #2c8ecc;
+.join {
+    font-size: 1.3em;
 }
 
 /**

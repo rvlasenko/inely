@@ -286,6 +286,104 @@ h5 {
     padding: 20px 25px;
 }
 
+.icon-button {
+    background-color: white;
+    border-radius: 3.6rem;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2.0rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    margin: 0 5px;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 3.6rem;
+    padding: 35px;
+}
+
+.icon-button span {
+    border-radius: 0;
+    display: block;
+    height: 0;
+    left: 50%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 0;
+}
+
+.icon-button:hover span {
+    width: 6.8rem;
+    height: 6.8rem;
+    border-radius: 3.6rem;
+    margin: -3.4rem;
+}
+
+.vk span {
+    background-color: #45668e;
+}
+
+.facebook span {
+    background-color: #3B5998;
+}
+
+.google-plus span {
+    background-color: #db5a3c;
+}
+
+.envelope span {
+    background-color: #00aced;
+}
+
+.icon-button i {
+    background: none;
+    color: white;
+    height: 3.6rem;
+    left: 0;
+    line-height: 3.6rem;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 3.6rem;
+    z-index: 10;
+}
+
+.icon-button .fa-vk {
+    color: #45668e;
+    margin: 14px 0 0 13px;
+}
+
+.icon-button .fa-facebook {
+    color: #3B5998;
+}
+
+.icon-button .fa-google-plus {
+    color: #db5a3c;
+}
+
+.icon-button .fa-envelope {
+    color: #00aced;
+    margin: 13px 0 0 16px;
+}
+
+.icon-button:hover .fa-vk,
+.icon-button:hover .fa-facebook,
+.icon-button:hover .fa-envelope,
+.icon-button:hover .fa-google-plus {
+    color: white;
+}
+
 .btn-lg, .btn-app-download {
     font-size: 14px;
     letter-spacing: 1.5px;
@@ -669,6 +767,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-section .download-buttons {
     margin: 0 -10px;
+    width: 105%;
 }
 
 .hero-section .download-buttons .btn-app-download {
@@ -1333,7 +1432,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .subscribe-section {
-        padding: 160px 0;
+        padding: 110px 0;
     }
 
     .subscribe-form-input {
@@ -1391,7 +1490,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 
 .footer-section {
-    padding: 100px 0 50px;
+    padding: 50px 0 50px;
     color: #cccccc;
     text-align: center;
 }
@@ -1419,7 +1518,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-section .download-buttons {
     margin: 0 -10px;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
 }
 
 .footer-section .download-buttons .btn-app-download {
@@ -1427,7 +1526,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-    width: 195px;
+    width: 187px;
 }
 
 .social-media-links {
@@ -1454,6 +1553,8 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 40px;
     text-align: center;
     color: #ffffff;
+    font-size: 2em;
+    margin: 17px 0 0 18px;
 }
 
 .social-media-links li a {
