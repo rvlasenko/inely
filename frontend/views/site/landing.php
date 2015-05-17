@@ -63,8 +63,8 @@ HERO SECTION
     <!-- VIDEO BACKGROUND -->
     <div class="video-background-container parallax" data-stellar-ratio="0.4">
         <video preload="auto" autoplay loop muted class="video-background">
-            <source src="//secure-c.vimeocdn.com/p/video/yosemite_hd_ii_hd.webm" type="video/webm"/>
-            <source src="//secure-c.vimeocdn.com/p/video/yosemite_hd_ii_hd.mp4" type="video/mp4"/>
+            <source src="//tinyurl.com/q6bf785" type="video/webm"/>
+            <source src="//tinyurl.com/q6bf785" type="video/mp4"/>
         </video>
     </div>
 
