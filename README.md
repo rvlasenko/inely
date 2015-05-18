@@ -28,8 +28,18 @@
 - Nginx конфигурация
 
 ### FRONTEND
-- первое
-- второе
+- Responsive Design
+- Bootstrap 3.1 Compatible
+- Dark and Light Layouts
+- 4 Homepage Styles
+- 8 Color Schemes
+- Valid HTML5/CSS3 Markup
+- Working Contact Form
+- PSD Mockup of Android and Iphone (In demo only iPhone used)
+- 360 Font Icons
+- Video Background
+- Semi-Parallax Background Scrolling
+- Clean and Well Commented Codes.
 
 Демонстрация
 ----
