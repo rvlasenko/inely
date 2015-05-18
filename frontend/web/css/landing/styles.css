@@ -20,6 +20,9 @@ body {
     margin: auto !important;
 }
 
+::selection {background: #67cfff;}
+::-moz-selection {background: #67cfff;}
+::-webkit-selection {background: #67cfff; color:#fff;}
 
 /* Internet Explorer 10 in Windows 8 and Windows Phone 8 Bug fix */
 
