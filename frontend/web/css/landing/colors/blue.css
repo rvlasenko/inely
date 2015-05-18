@@ -1,268 +1,94 @@
-/**
- * ==============================================================
- * EOS - RESPONSIVE BOOTSTRAP MOBILE APP LANDING PAGE TEMPLATE
- * ==============================================================
- *
- * PALETTE:
- * #2c8ecc
- * #1f81bf
- * #1375b3
- * #0668a6
- * #005b99
- * #004e8c
- * #004280
- */
+/* --------------------------------------
+=========================================
+COLOR : BLUE 
 
-/**
- * ========================================
- * MAIN LAYOUT
- * ========================================
- */
+MAIN COLOR CODE: #008ed6
 
-.accent-background-overlay {
-    background-color: #2c8ecc;
+DEEP COLOR CODE: #005885
+=========================================
+----------------------------------------- */
+
+.color-overlay {
+     background: rgba(0, 0, 0, 0.45); 
+   /* background: url(../patterns/06.png); */
 }
 
-/* BOOTSTRAP PRIMARY COLOR */
-a {
-    color: #2c8ecc;
+.standard-button {
+    background: #008ed6;
 }
 
-a:focus, a:hover {
-    color: #1f81bf;
+.standard-button2 {
+    background: #008ed6;
 }
 
-.text-primary {
-    color: #2c8ecc;
+.standard-button2:hover {
+    background: #005885;
 }
 
-a.text-primary:hover {
-    color: #1f81bf;
+.btn-primary:focus, 
+.btn-primary:active, 
+.btn-primary.active, 
+.open .dropdown-toggle.btn-primary {
+    background: #005885;
+    border-color: inherit;
 }
 
-.bg-primary {
-    background-color: #2c8ecc;
+.colored-line,
+.colored-line-left {
+    background: #008ed6;
 }
 
-a.bg-primary:hover {
-    background-color: #1f81bf;
+.main-color {
+    color: #008ed6;
 }
 
-.btn-primary {
-    background-color: #45668e;
-    border-color: #45668e;
+.color-bg {
+	background: #008ed6;
+	color: #FFFFFF;
 }
 
-.btn-primary.active,
-.btn-primary.focus,
-.btn-primary:active,
-.btn-primary:focus,
-.btn-primary:hover,
-.open > .dropdown-toggle.btn-primary {
-    color: #FFF;
-    background-color: #337AB7 !important;
-    border-color: #337AB7 !important;
+.features .feature:hover .icon-container .icon {
+    background: #008ed6;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    -webkit-box-shadow: 0px 0px 0px 2px #008ed6;
+            box-shadow: 0px 0px 0px 2px #008ed6;
 }
 
-.btn-primary.disabled,
-.btn-primary[disabled],
-fieldset[disabled] .btn-primary,
-.btn-primary.disabled:hover,
-.btn-primary[disabled]:hover,
-fieldset[disabled] .btn-primary:hover,
-.btn-primary.disabled:focus,
-.btn-primary[disabled]:focus,
-fieldset[disabled] .btn-primary:focus,
-.btn-primary.disabled.focus,
-.btn-primary[disabled].focus,
-fieldset[disabled] .btn-primary.focus,
-.btn-primary.disabled:active,
-.btn-primary[disabled]:active,
-fieldset[disabled] .btn-primary:active,
-.btn-primary.disabled.active,
-.btn-primary[disabled].active,
-fieldset[disabled] .btn-primary.active {
-    background-color: #2c8ecc;
+.features .feature .icon-container .icon {
+    border: 1px solid #008ed6;
+    color: #008ed6;
 }
 
-.btn-primary .badge {
-    color: #2c8ecc;
+.feature-list li i {
+    color: #008ed6;
 }
 
-.btn-link {
-    color: #2c8ecc;
+.services .single-service .service-icon,
+.services .single-service h3 {
+    color: #008ed6;
 }
 
-.btn-link:hover,
-.btn-link:focus {
-    color: #1f81bf;
+.screenshots .owl-theme .owl-controls .owl-page span {
+    background: #008ed6;
 }
 
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus {
-    background-color: #2c8ecc;
+footer .contact-button {
+    border: 2px solid #008ed6;
+    color: #008ed6;
 }
 
-.nav .open > a,
-.nav .open > a:hover,
-.nav .open > a:focus {
-    border-color: #2c8ecc;
+footer .contact-button:hover {
+    background: #008ed6;
 }
 
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:hover,
-.nav-pills > li.active > a:focus {
-    background-color: #2c8ecc;
+footer .contact-box .expanded-contact-form .input-box:active,
+footer .contact-box .expanded-contact-form .textarea-box:active,
+footer .contact-box .expanded-contact-form .input-box:focus,
+footer .contact-box .expanded-contact-form .textarea-box:focus {
+    border: 1px solid #008ed6;
 }
 
-.pagination > li > a,
-.pagination > li > span {
-    color: #2c8ecc;
-}
-
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-    color: #1f81bf;
-}
-
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-    background-color: #2c8ecc;
-    border-color: #2c8ecc;
-}
-
-.label-primary {
-    background-color: #1f81bf;
-}
-
-.label-primary[href]:hover,
-.label-primary[href]:focus {
-    background-color: #2c8ecc;
-}
-
-a.list-group-item.active > .badge,
-.nav-pills > .active > a > .badge {
-    color: #2c8ecc;
-}
-
-a.thumbnail:hover,
-a.thumbnail:focus,
-a.thumbnail.active {
-    border-color: #2c8ecc;
-}
-
-.progress-bar {
-    background-color: #2c8ecc;
-}
-
-.list-group-item.active,
-.list-group-item.active:hover,
-.list-group-item.active:focus {
-    background-color: #2c8ecc;
-    border-color: #2c8ecc;
-}
-
-.panel-primary {
-    border-color: #2c8ecc;
-}
-
-.panel-primary > .panel-heading {
-    background-color: #2c8ecc;
-    border-color: #2c8ecc;
-}
-
-.panel-primary > .panel-heading + .panel-collapse > .panel-body {
-    border-top-color: #2c8ecc;
-}
-
-.panel-primary > .panel-heading .badge {
-    color: #2c8ecc;
-}
-
-.panel-primary > .panel-footer + .panel-collapse > .panel-body {
-    border-bottom-color: #2c8ecc;
-}
-
-/**
- * ========================================
- * HEADINGS
- * ========================================
- */
-
-.section-heading:after {
-    background-color: #2c8ecc;
-}
-
-/**
- * ========================================
- * LIST
- * ========================================
- */
-
-.features-icon-list-item:hover i {
-    background-color: #2c8ecc;
-}
-
-.list-with-icons li > i[class*="icon-"],
-.list-with-icons li > i[class*="fa-"] {
-    color: #2c8ecc;
-}
-
-/**
- * ========================================
- * HEADER SECTION
- * ========================================
- */
-
-.navbar-default .navbar-nav > li > a:focus,
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li.current > a {
-    color: #2c8ecc;
-}
-
-/**
- * ========================================
- * PRICING SECTION
- * ========================================
- */
-
-.pricing-package-items li > i.fa-check {
-    color: #2c8ecc;
-}
-
-.pricing-table li:nth-child(1) .pricing-package-strip {
-    background-color: #2c8ecc;
-}
-
-.pricing-table li:nth-child(2) .pricing-package-strip {
-    background-color: #0668a6;
-}
-
-.pricing-table li:nth-child(3) .pricing-package-strip {
-    background-color: #004280;
-}
-
-/**
- * ========================================
- * FOOTER SECTION
- * ========================================
- */
-
-.join {
-    font-size: 1.3em;
-}
-
-/**
- * JPRELOADER
- */
-
-#jpreBar {
-    background-color: #2c8ecc;
+footer .social-icons li a:hover {
+    color: #008ed6;
 }

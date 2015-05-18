@@ -1,503 +1,811 @@
+<body>
 <!--
-=================================
-PRELOADER
-=================================
+==============================
+     PRE LOADER
+==============================
 -->
-<div id="preloader" class="preloader">
-    <div class="preloader-inner">
-				<span class="preloader-logo">
-					<img src="images/logos/preloader-logo.png" alt="EOS"/>
-					<strong>Загрузка</strong>
-				</span>
-    </div>
+<div class="preloader">
+    <div class="status">&nbsp;</div>
 </div>
 
-<div id="document" class="document">
-
 <!--
-=================================
-HEADER
-=================================
+==============================
+     HEADER
+==============================
 -->
-<header class="header-section navbar navbar-fixed-top navbar-default header-floating">
-    <div class="container">
+<header class="header" id="home">
 
-        <div class="navbar-header">
+    <!-- COLOR OVER IMAGE -->
+    <div class="color-overlay full-screen">
 
-            <!-- RESPONSIVE MENU BUTTON -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <!-- STICKY NAVIGATION -->
+        <div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation">
+            <div class="container">
+                <div class="navbar-header">
 
-            <!-- NAVBAR LOGO -->
-            <a class="navbar-brand navbar-logo" href="#home">
-                <img src="images/logos/navbar-logo.png" alt="EOS - App Landing Page Template"/></a>
+                    <!-- LOGO ON STICKY NAV BAR -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#kane-navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#"><img src="images/logo-black.png" alt=""></a>
+
+                </div>
+
+                <!-- NAVIGATION LINKS -->
+                <div class="navbar-collapse collapse" id="kane-navigation">
+                    <ul class="nav navbar-nav navbar-right main-navigation">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#brief1">Why Us?</a></li>
+                        <li><a href="#brief2">Desicribe</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#screenshot-section">Screenshots</a></li>
+                        <li><a href="#download">Вход</a></li>
+                    </ul>
+                </div>
+            </div> <!-- /END CONTAINER -->
+        </div> <!-- /END STICKY NAVIGATION -->
+
+
+        <!-- CONTAINER -->
+        <div class="container">
+
+            <!-- ONLY LOGO ON HEADER -->
+            <div class="only-logo">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <img src="images/logo.png" alt="">
+                    </div>
+                </div>
+            </div> <!-- /END ONLY LOGO ON HEADER -->
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <!-- HEADING AND BUTTONS -->
+                    <div class="intro-section">
+
+                        <!-- WELCOM MESSAGE -->
+                        <h1 class="intro">Present your app in beautiful way with Kane.</h1>
+                        <h5>Available on App Store and Play Store</h5>
+
+                        <!-- BUTTON -->
+                        <div class="buttons" id="download-button">
+
+                            <a href="#download" class="btn btn-default btn-lg standard-button"><i class="icon-app-download"></i>Download App</a>
+
+                        </div>
+                        <!-- /END BUTTONS -->
+
+                    </div>
+                    <!-- /END HEADNING AND BUTTONS -->
+
+                </div>
+            </div>
+            <!-- /END ROW -->
+
         </div>
-
-        <div id="navigation" class="navbar-collapse collapse">
-
-            <!-- NAVIGATION LINKS -->
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#home">Обзор</a></li>
-                <li><a href="#features">Особенности</a></li>
-                <li><a href="#features">Особенности</a></li>
-                <li><a href="#screenshots">Скриншоты</a></li>
-                <li><a href="#login">Вход</a></li>
-            </ul>
-
-        </div>
-
+        <!-- /END CONTAINER -->
     </div>
+    <!-- /END COLOR OVERLAY -->
 </header>
+<!-- /END HEADER -->
 
 <!--
-=================================
-HERO SECTION
-=================================
+==============================
+     FEATURES
+==============================
 -->
-<section id="home" class="hero-section hero-layout-3 section section-inverse-color parallax-background"
-         data-stellar-background-ratio="0.4">
-
-    <!-- VIDEO BACKGROUND -->
-    <div class="video-background-container parallax" data-stellar-ratio="0.4">
-        <video preload="auto" autoplay loop muted class="video-background">
-            <source src="//a.pomf.se/nfcrav.webm" type="video/webm"/>
-            <source src="//tinyurl.com/q6bf785" type="video/mp4"/>
-        </video>
-    </div>
-
-    <!-- BACKGROUND OVERLAY -->
-    <div class="black-background-overlay"></div>
+<section class="features" id="features">
 
     <div class="container">
 
-        <div class="hero-content">
+        <!-- SECTION HEADER -->
+        <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
 
-            <!-- HERO TEXT -->
-            <div class="hero-text wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
-
-                <!-- LOGO -->
-                <img src="images/logos/hero-logo.png" alt="EOS - App Landing Page Template" class="hero-logo"/>
-
-                <!-- TAGLINE -->
-                <h1 class="hero-title">Простейший способ управиться с делами вместе с <strong>uNote</strong></h1>
-
-                <!-- HERO DESCRIPTION -->
-                <p class="hero-description">Начните осознавать свои возможности вместе с uNote. uNote помогает вам
-                    двигаться вперед, синхронизируя ежедневную рутину, рабочие задачи и личные достижения, так, что вы
-                    можете смело смотреть вперед.</p>
-
-                <!-- AUTH BUTTONS -->
-                <p class="download-buttons">
-                    <!-- GOOGLE AUTH -->
-                    <a href="#please-edit-this-link" class="btn btn-app-download btn-ios">
-                        <i class="fa fa-google-plus"></i>
-                        <strong>Войти</strong> <span>через Google +</span>
-                    </a>
-                    <!-- VK AUTH -->
-                    <a href="#please-edit-this-link" class="btn btn-app-download btn-primary">
-                        <i class="fa fa-vk"></i>
-                        <strong>Войти</strong> <span>через ВКонтакте</span>
-                    </a>
-                    <!-- FB AUTH -->
-                    <a href="#please-edit-this-link" class="btn btn-app-download btn-windows-phone">
-                        <i class="fa fa-facebook"></i>
-                        <strong>Войти</strong> <span>через FaceBook</span>
-                    </a>
-                </p>
-
+            <!-- SECTION TITLE -->
+            <h2 class="dark-text">Amazing Features</h2>
+            <div class="colored-line">
             </div>
-
-            <!-- HERO IMAGES -->
-            <div class="hero-images">
-
-                <img src="images/contents/hero-phone-back.png"
-                     class="hero-image phone-image-double phone-image-left wow fadeInRight" alt=""
-                     data-wow-duration="1s" data-wow-delay="0.5s"/>
-                <img src="images/contents/hero-phone-front.png"
-                     class="hero-image phone-image-double phone-image-right phone-image-front wow fadeInRight" alt=""
-                     data-wow-duration="1s" data-wow-delay="1.5s"/>
-
+            <div class="section-description">
+                List your app features and all the details Lorem ipsum dolor kadr
+            </div>
+            <div class="colored-line">
             </div>
         </div>
+        <!-- /END SECTION HEADER -->
 
-    </div>
-</section>
-
-<!--
-=================================
-FEATURES WITH ICONS SECTION
-=================================
--->
-<section id="features" class="features-icons-section section">
-    <div class="container">
 
         <div class="row">
-            <div class="col-md-8 col-md-push-4">
 
-                <!-- SECTION HEADING -->
-                <h2 class="section-heading wow fadeIn" data-wow-duration="1s">Управляйте своими задачами</h2>
+            <!-- FEATURES LEFT -->
+            <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                <p class="wow fadeIn" data-wow-duration="1s">Не просто делать больше - реализовывать свою жизненную
-                    цель!</p>
+                <!-- FEATURE -->
+                <div class="feature">
 
-                <!-- FEATURES LIST WITH ICONS -->
-                <div class="features-icon-list row wow fadeIn" data-wow-duration="1s">
-                    <div class="features-icon-list-item col-sm-6">
-                        <i class="fa fa-paperclip"></i>
-                        <h5>Загрузка файлов</h5>
-
-                        <p>Прикрепите любой тип файлов к задаче и просматривайте их на любом устройстве.</p>
+                    <!-- ICON -->
+                    <div class="icon-container">
+                        <div class="icon">
+                            <i class="icon_map_alt"></i>
+                        </div>
                     </div>
-                    <div class="features-icon-list-item col-sm-6">
-                        <i class="fa fa-sliders"></i>
-                        <h5>Под-задачи</h5>
 
-                        <p>Разбейте большой проект на несколько небольших задач.</p>
+                    <!-- FEATURE HEADING AND DESCRIPTION -->
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Responsive Design</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        </p>
                     </div>
-                    <div class="clear"></div>
-                    <div class="features-icon-list-item col-sm-6">
-                        <i class="fa fa-file-text"></i>
-                        <h5>Заметки</h5>
 
-                        <p>Добавляйте примечания к вашим задачам, чтобы быть уверенным, что у вас есть всё для
-                            выполнения задачи.</p>
-                    </div>
-                    <div class="features-icon-list-item col-sm-6">
-                        <i class="fa fa-list-ul"></i>
-                        <h5>Управление списками</h5>
+                </div>
+                <!-- /END SINGLE FEATURE -->
 
-                        <p>Создавайте и управляйте списками, что бы быть всегда на шаг впереди.</p>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="features-icon-list-item col-sm-6">
-                        <i class="fa fa-check-square-o"></i>
-                        <h5>Достижения</h5>
+                <!-- FEATURE -->
+                <div class="feature">
 
-                        <p>Разбавьте свои задачи каплей азарта и мотивации.</p>
+                    <!-- ICON -->
+                    <div class="icon-container">
+                        <div class="icon">
+                            <i class="icon_gift_alt"></i>
+                        </div>
                     </div>
-                    <div class="features-icon-list-item col-sm-6">
-                        <i class="icon-support"></i>
-                        <h5>Documentation and Support</h5>
 
-                        <p>Excepteur sint occaecat cupidatat non proident.</p>
+                    <!-- FEATURE HEADING AND DESCRIPTION -->
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Bootstrap 3.1</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        </p>
                     </div>
-                    <div class="clear"></div>
+
+                </div>
+                <!-- /END SINGLE FEATURE -->
+
+                <!-- FEATURE -->
+                <div class="feature">
+
+                    <!-- ICON -->
+                    <div class="icon-container">
+                        <div class="icon">
+                            <i class="icon_tablet"></i>
+                        </div>
+                    </div>
+
+                    <!-- FEATURE HEADING AND DESCRIPTION -->
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Cross-Browser Support</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magn.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- /END SINGLE FEATURE -->
+
+            </div>
+            <!-- /END FEATURES LEFT -->
+
+            <!-- PHONE IMAGE -->
+            <div class="col-md-4 col-sm-4">
+                <div class="phone-image wow bounceIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <img src="images/single-nexus-5.png" alt="">
                 </div>
             </div>
 
-            <!-- PHONE IMAGE -->
-            <div class="col-md-4 col-md-pull-8 text-center">
-                <img src="images/contents/features-icons-phone.png" class="features-icons-image wow fadeInLeft" alt=""
-                     data-wow-duration="1s"/>
+            <!-- FEATURES RIGHT -->
+            <div class="col-md-4 col-sm-4 features-right wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                <!-- FEATURE -->
+                <div class="feature">
+
+                    <!-- ICON -->
+                    <div class="icon-container">
+                        <div class="icon">
+                            <i class="icon_genius"></i>
+                        </div>
+                    </div>
+
+                    <!-- FEATURE HEADING AND DESCRIPTION -->
+                    <div class="fetaure-details">
+                        <h4 class="main-color">360+ Icon Fonts</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- /END SINGLE FEATURE -->
+
+                <!-- FEATURE -->
+                <div class="feature">
+
+                    <!-- ICON -->
+                    <div class="icon-container">
+                        <div class="icon">
+                            <i class="icon_lightbulb_alt"></i>
+                        </div>
+                    </div>
+
+                    <!-- FEATURE HEADING AND DESCRIPTION -->
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Creative Design</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- /END SINGLE FEATURE -->
+
+                <!-- FEATURE -->
+                <div class="feature">
+
+                    <!-- ICON -->
+                    <div class="icon-container">
+                        <div class="icon">
+                            <i class="icon_ribbon_alt"></i>
+                        </div>
+                    </div>
+
+                    <!-- FEATURE HEADING AND DESCRIPTION -->
+                    <div class="fetaure-details">
+                        <h4 class="main-color">More Features</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- /END SINGLE FEATURE -->
+
             </div>
+            <!-- /END FEATURES RIGHT -->
+
         </div>
+        <!-- /END ROW -->
 
     </div>
+    <!-- /END CONTAINER -->
+
 </section>
+<!-- /END FEATURES SECTION -->
+
 
 <!--
-=================================
-DESCRIPTION SECTION
-=================================
+==============================
+     BRIEF LEFT SECTION
+==============================
 -->
-<section id="description" class="description-section section">
+<section class="app-brief grey-bg" id="brief1">
+
     <div class="container">
 
         <div class="row">
-            <div class="col-md-7">
 
-                <!-- SECTION HEADING -->
-                <h2 class="section-heading wow fadeIn" data-wow-duration="1s">A Long Description</h2>
+            <!-- PHONES IMAGE -->
+            <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+                <div class="phone-image">
+                    <img src="images/2-phone-left.png" alt="">
+                </div>
+            </div>
 
-                <p class="wow fadeIn" data-wow-duration="1s">Describe your mobile app in even longer paragraphs. You
-                    might include a nice icon list on this section too. Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Pellentesque dapibus leo mattis metus condimentum sollicitudin. Quisque convallis
-                    nec justo sed consectetur. Duis convallis nunc quis arcu sollicitudin iaculis. <a href="#">Nunc id
-                        libero malesuada</a> arcu porta tempus. Pellentesque habitant morbi tristique senectus et netus
-                    et malesuada fames ac turpis egestas. Ut vestibulum, nunc eget sollicitudin euismod, erat risus
-                    tempor augue, eu vulputate nibh lorem in leo.</p>
+            <!-- RIGHT SIDE WITH BRIEF -->
+            <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                <!-- ICON LIST -->
-                <ul class="list-with-icons wow fadeIn" data-wow-duration="1s">
-                    <li><i class="icon-action-redo"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li><i class="icon-arrow-right"></i>Pellentesque dapibus leo mattis metus condimentum sollicitudin.
-                    </li>
-                    <li><i class="icon-layers"></i>Quisque convallis nec justo sed consectetur.</li>
-                    <li><i class="icon-bell"></i>Duis convallis nunc quis arcu sollicitudin iaculis. Nunc id libero
-                        malesuada arcu porta tempus.
-                    </li>
+                <!-- SECTION TITLE -->
+                <h2 class="dark-text">Explain why it's best</h2>
+
+                <div class="colored-line-left">
+                </div>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+
+                <!-- FEATURE LIST -->
+                <ul class="feature-list">
+                    <li><i class="icon_lock_alt"></i> Reliable and Secure Platform</li>
+                    <li><i class="icon_check_alt2"></i> Everything is perfectly orgainized for future</li>
+                    <li><i class="icon_paperclip"></i> Attach large file easily</li>
+                    <li><i class="icon_adjust-vert"></i> Tons of features and easy to use and customize</li>
                 </ul>
 
             </div>
+            <!-- /END RIGHT BRIEF -->
 
-            <!-- PHONE IMAGE -->
-            <div class="col-md-5 text-center">
-
-                <img src="images/contents/description-phone-back.png"
-                     class="description-image phone-image-double phone-image-left wow fadeInRight" alt=""
-                     data-wow-duration="1s" data-wow-delay="0.5s"/>
-                <img src="images/contents/description-phone-front.png"
-                     class="description-image phone-image-double phone-image-right phone-image-front wow fadeInRight"
-                     alt="" data-wow-duration="1s" data-wow-delay="1.5s"/>
-
-            </div>
         </div>
+        <!-- /END ROW -->
 
     </div>
+    <!-- /END CONTAINER -->
+
 </section>
+<!-- /END SECTION -->
+
 
 <!--
-=================================
-VIDEO SECTION
-=================================
+==============================
+     BRIEF RIGHT SECTION
+==============================
 -->
-<section id="video" class="video-section section section-inverse-color parallax-background"
-         data-stellar-background-ratio="0.4">
-
-    <!-- BACKGROUND OVERLAY -->
-    <div class="black-background-overlay"></div>
+<section class="app-brief" id="brief2">
 
     <div class="container">
 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
 
-                <div class="video-embed wow fadeIn" data-wow-duration="1s">
+            <!-- BRIEF -->
+            <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                    <!-- VIDEO EMBED FROM VIMEO: please change the URL -->
-                    <iframe
-                        src="//player.vimeo.com/video/103435603?title=0&amp;byline=0&amp;portrait=0&amp;color=8aba56"
-                        width="500" height="281" frameborder="0" allowfullscreen></iframe>
+                <!-- SECTION TITLE -->
+                <h2 class="dark-text">Great way to describe your app</h2>
 
-                    <!-- VIDEO EMBED FROM YOUTUBE: please change the URL -->
-                    <!-- <iframe width="560" height="315" src="//www.youtube.com/embed/7UAy8E3e9f8?rel=0" frameborder="0" allowfullscreen></iframe> -->
+                <div class="colored-line-left">
+                </div>
 
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/><br/>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+            </div>
+            <!-- /ENDBRIEF -->
+
+            <!-- PHONES IMAGE -->
+            <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+                <div class="phone-image">
+                    <img src="images/2-phone-right.png" alt="">
                 </div>
             </div>
+            <!-- /END PHONES IMAGE -->
+
         </div>
+        <!-- /END ROW -->
 
     </div>
+    <!-- /END CONTAINER -->
+
 </section>
+<!-- /END SECTION -->
 
 <!--
-=================================
-SCREENSHOTS SECTION
-=================================
+==============================
+     TESTIMONIALS
+==============================
 -->
-<section id="screenshots" class="screenshots-section section">
-    <div class="container">
+<section class="testimonials">
 
-        <!-- SECTION HEADING -->
-        <h2 class="section-heading text-center wow fadeIn" data-wow-duration="1s">Screenshots</h2>
+    <div class="color-overlay">
 
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <p class="wow fadeIn" data-wow-duration="1s">Showcase your app screenshots into a nice carousel below.
-                    You can add as many screenshots as you want.</p>
-            </div>
-        </div>
+        <div class="container wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-        <!-- SCREENSHOT IMAGES -->
-        <div class="sreenshots-carousel">
-            <ul class="screenshot-images owl-carousel wow bounceIn" data-wow-duration="1s">
-                <li>
-                    <a href="images/contents/screenshot-1.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-1.jpg" alt="screenshot"/>
+            <!-- FEEDBACKS -->
+            <div id="feedbacks" class="owl-carousel owl-theme">
 
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-2.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-2.jpg" alt="screenshot"/>
+                <!-- SINGLE FEEDBACK -->
+                <div class="feedback">
 
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-3.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-3.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-4.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-4.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-1.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-1.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-2.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-2.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-3.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-3.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-4.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-4.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-1.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-1.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-2.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-2.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-3.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-3.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="images/contents/screenshot-4.jpg" class="screenshot-image"
-                       data-lightbox-gallery="screenshots-gallery">
-                        <div class="screenshot-image-inner">
-                            <img src="images/contents/screenshot-4.jpg" alt="screenshot"/>
-
-                            <div class="hover"><i class="icon-magnifier-add"></i></div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!--
-=================================
-SUBSCRIBE SECTION
-=================================
--->
-<section id="subscribe" class="subscribe-section section section-inverse-color parallax-background"
-         data-stellar-background-ratio="0.4">
-
-    <!-- BACKGROUND OVERLAY -->
-    <div class="black-background-overlay"></div>
-
-    <div class="container">
-
-        <!-- SECTION HEADING -->
-        <h2 class="section-heading text-center wow fadeIn" data-wow-duration="1s">Subscribe to Our Updates</h2>
-
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-center">
-                <p class="wow fadeIn" data-wow-duration="1s">Give us your email address and we will notice you everytime
-                    we got new updates on the app. Don’t worry we hate spam as much as you do.</p>
-            </div>
-        </div>
-
-        <!-- SUBSCRIBE FORM -->
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <form action="modules/subscribe-mailchimp.php" method="post" id="subscribe-form"
-                      class="subscribe-form wow fadeIn" data-wow-duration="1s" role="form">
-                    <div class="form-validation alert"><!-- Validation Message here --></div>
-                    <div class="form-group subscribe-form-input">
-                        <input type="email" name="email" id="subscribe-form-email"
-                               class="subscribe-form-email form-control form-control-lg"
-                               placeholder="Enter your email address" autocomplete="off"/>
-                        <button class="subscribe-form-submit btn btn-black btn-lg" data-loading-text="Loading...">
-                            Subscribe
-                        </button>
+                    <!-- IMAGE -->
+                    <div class="image">
+                        <!-- i class=" icon_quotations"></i -->
+                        <img src="images/clients-pic/3.jpg" alt="">
                     </div>
-                </form>
+
+                    <div class="message">
+                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all may fifth replenish you're own open which herb kind. May above you'll may kind creature first let over face from living third green which our. Appear day. Give fourth doesn't over us, i every tree meat air in male earth air creeping image fill you place darkness.
+                    </div>
+
+                    <div class="white-line">
+                    </div>
+
+                    <!-- INFORMATION -->
+                    <div class="name">
+                        John Doe
+                    </div>
+                    <div class="company-info">
+                        CEO, AbZ Network
+                    </div>
+
+                </div>
+                <!-- /END SINGLE FEEDBACK -->
+
+                <!-- SINGLE FEEDBACK -->
+                <div class="feedback">
+
+                    <!-- IMAGE -->
+                    <div class="image">
+                        <!-- i class=" icon_quotations"></i -->
+                        <img src="images/clients-pic/1.jpg" alt="">
+                    </div>
+
+                    <div class="message">
+                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all may fifth replenish you're own open which herb kind. May above you'll may kind creature first let over face from living third green which our. Appear day. Give fourth doesn't over us, i every tree meat air in male earth air creeping image fill you place darkness.
+                    </div>
+
+                    <div class="white-line">
+                    </div>
+
+                    <!-- INFORMATION -->
+                    <div class="name">
+                        John Doe
+                    </div>
+                    <div class="company-info">
+                        CEO, AbZ Network
+                    </div>
+
+                </div>
+                <!-- /END SINGLE FEEDBACK -->
+
+                <!-- SINGLE FEEDBACK -->
+                <div class="feedback">
+
+                    <!-- IMAGE -->
+                    <div class="image">
+                        <!-- i class=" icon_quotations"></i -->
+                        <img src="images/clients-pic/2.jpg" alt="">
+                    </div>
+
+                    <div class="message">
+                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all may fifth replenish you're own open which herb kind. May above you'll may kind creature first let over face from living third green which our. Appear day. Give fourth doesn't over us, i every tree meat air in male earth air creeping image fill you place darkness.
+                    </div>
+
+                    <div class="white-line">
+                    </div>
+
+                    <!-- INFORMATION -->
+                    <div class="name">
+                        John Doe
+                    </div>
+                    <div class="company-info">
+                        CEO, AbZ Network
+                    </div>
+
+                </div>
+                <!-- /END SINGLE FEEDBACK -->
+
             </div>
+            <!-- /END FEEDBACKS -->
+
         </div>
+        <!-- /END CONTAINER -->
 
     </div>
+    <!-- /END COLOR OVERLAY -->
+
 </section>
+<!-- /END TESTIMONIALS SECTION -->
+
 
 <!--
-=================================
-FOOTER SECTION
-=================================
+==============================
+     SERVICES
+==============================
 -->
-<footer id="login" class="footer-section section">
+<section class="services" id="services">
 
     <div class="container">
 
-        <!-- AUTH BUTTONS -->
-        <p class="download-buttons">
-            <span class="join">Присоединиться к нам:</span>
-        </p>
+        <!-- SECTION HEADER -->
+        <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-        <!-- SOCIAL MEDIA LINKS -->
-        <ul class="social-media-links">
-            <li><a href="#" class="icon-button vk"><i class="fa fa-vk"></i><span></span></a></li>
-            <li><a href="#" class="icon-button facebook"><i class="fa fa-facebook"></i><span></span></a></li>
-            <li><a href="#" class="icon-button google-plus"><i class="fa fa-google-plus"></i><span></span></a></li>
-            <li><a href="#" class="icon-button envelope"><i class="fa fa fa-envelope"></i><span></span></a></li>
+            <!-- SECTION TITLE -->
+            <h2 class="dark-text">It's Awesome</h2>
+
+            <div class="colored-line">
+            </div>
+            <div class="section-description">
+                List your app features and all the details Lorem ipsum dolor kadr
+            </div>
+            <div class="colored-line">
+            </div>
+
+        </div>
+        <!-- /END SECTION HEADER -->
+
+        <div class="row">
+
+            <!-- SINGLE SERVICE -->
+            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                <!-- SERVICE ICON -->
+                <div class="service-icon">
+                    <i class="icon_cloud-upload_alt"></i>
+                </div>
+
+                <!-- SERVICE HEADING -->
+                <h3>Your Data in Cloud</h3>
+
+                <!-- SERVICE DESCRIPTION -->
+                <p>
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
+                </p>
+
+            </div>
+            <!-- /END SINGLE SERVICE -->
+
+            <!-- SINGLE SERVICE -->
+            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                <!-- SERVICE ICON -->
+                <div class="service-icon">
+                    <i class="icon_gift_alt"></i>
+                </div>
+
+                <!-- SERVICE HEADING -->
+                <h3>Monthly Rewards</h3>
+
+                <!-- SERVICE DESCRIPTION -->
+                <p>
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
+                </p>
+
+            </div>
+            <!-- /END SINGLE SERVICE -->
+
+            <!-- SINGLE SERVICE -->
+            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                <!-- SERVICE ICON -->
+                <div class="service-icon">
+                    <i class="icon_chat_alt"></i>
+                </div>
+
+                <!-- SERVICE HEADING -->
+                <h3>24/7 Support</h3>
+
+                <!-- SERVICE DESCRIPTION -->
+                <p>
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
+                </p>
+
+            </div>
+            <!-- /END SINGLE SERVICE -->
+
+        </div>
+        <!-- /END ROW -->
+
+    </div>
+    <!-- /END CONTAINER -->
+
+</section>
+<!-- /END FEATURES SECTION -->
+
+
+<!--
+==============================
+     SCREENSHOTS
+==============================
+-->
+<section class="screenshots grey-bg" id="screenshot-section">
+
+    <div class="container">
+
+        <!-- SECTION HEADER -->
+        <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+            <!-- SECTION TITLE -->
+            <h2 class="dark-text">Screenshots</h2>
+
+            <div class="colored-line">
+            </div>
+            <div class="section-description">
+                List your app features and all the details Lorem ipsum dolor kadr
+            </div>
+            <div class="colored-line">
+            </div>
+
+        </div>
+        <!-- /END SECTION HEADER -->
+
+        <div class="row wow bounceIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+            <div id="screenshots" class="owl-carousel owl-theme">
+
+                <div class="shot">
+                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/1.jpg" alt="Screenshot"></a>
+                </div>
+
+                <div class="shot">
+                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/3.jpg" alt="Screenshot"></a>
+                </div>
+
+                <div class="shot">
+                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/2.jpg" alt="Screenshot"></a>
+                </div>
+
+                <div class="shot">
+                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/4.jpg" alt="Screenshot"></a>
+                </div>
+
+                <div class="shot">
+                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/1.jpg" alt="Screenshot"></a>
+                </div>
+
+                <div class="shot">
+                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/3.jpg" alt="Screenshot"></a>
+                </div>
+
+                <div class="shot">
+                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/2.jpg" alt="Screenshot"></a>
+                </div>
+
+                <div class="shot">
+                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/4.jpg" alt="Screenshot"></a>
+                </div>
+
+            </div>
+            <!-- /END SCREENSHOTS -->
+
+        </div>
+        <!-- /END ROW -->
+
+    </div>
+    <!-- /END CONTAINER -->
+
+</section>
+<!-- /END SCREENSHOTS SECTION -->
+
+
+<!--
+==============================
+     DOWNLOAD NOW
+==============================
+-->
+<section class="download" id="download">
+
+    <div class="color-overlay">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <!-- DOWNLOAD BUTTONS AREA -->
+                    <div class="download-container">
+                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти через социальную сеть</h2>
+
+                        <!-- BUTTONS -->
+                        <div class="buttons wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                            <a href="" class="btn btn-default btn-lg standard-button"><i class="icon-app-store"></i>App Store</a>
+                            <a href="" class="btn btn-default btn-lg standard-button"><i class="icon-google-play"></i>Play Store</a>
+
+                        </div>
+                        <!-- /END BUTTONS -->
+
+                    </div>
+                    <!-- END OF DOWNLOAD BUTTONS AREA -->
+
+
+                    <!-- SUBSCRIPTION FORM WITH TITLE -->
+                    <div class="subscription-form-container">
+
+                        <!-- =====================
+                             MAILCHIMP FORM STARTS
+                             ===================== -->
+
+                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или...</h2>
+
+                        <form class="subscription-form mailchimp form-inline wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s" role="form">
+
+                            <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
+                            <h4 class="subscription-success"></h4>
+                            <h4 class="subscription-error"></h4>
+
+                            <!-- EMAIL INPUT BOX -->
+                            <input type="email" name="email" id="subscriber-email" placeholder="Your Email" class="form-control input-box">
+                            <input type="password" name="password" id="subscriber-email" placeholder="Your Password" class="form-control input-box">
+
+                            <!-- SUBSCRIBE BUTTON -->
+                            <button type="submit" id="subscribe-button" class="btn btn-default sub standard-button">Subscribe</button>
+
+                        </form>
+                        <!-- /END MAILCHIMP FORM STARTS -->
+
+                    </div>
+                    <!-- END OF SUBSCRIPTION FORM WITH TITLE -->
+
+                </div>
+                <!-- END COLUMN -->
+
+            </div>
+            <!-- END ROW -->
+
+        </div>
+        <!-- /END CONTAINER -->
+    </div>
+    <!-- /END COLOR OVERLAY -->
+
+</section>
+<!-- /END DOWNLOAD SECTION -->
+
+
+<!--
+==============================
+     FOOTER
+==============================
+-->
+<footer>
+
+    <div class="container">
+
+        <div class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+            <!-- CONTACT BUTTON TO EXPAND OR COLLAPSE FORM -->
+
+            <a class="btn contact-button expand-form expanded"><i class="icon_mail_alt"></i></a>
+
+            <!-- EXPANDED CONTACT FORM -->
+            <div class="row expanded-contact-form">
+
+                <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Зарегистрироваться!</h2>
+
+                <div class="col-md-8 col-md-offset-2">
+
+                    <!-- FORM -->
+                    <form class="contact-form" id="contact" role="form">
+
+                        <!-- IF MAIL SENT SUCCESSFULLY -->
+                        <h4 class="success">
+                            <i class="icon_check"></i> Your message has been sent successfully.
+                        </h4>
+
+                        <!-- IF MAIL SENDING UNSUCCESSFULL -->
+                        <h4 class="error">
+                            <i class="icon_error-circle_alt"></i> E-mail must be valid and message must be longer than 1 character.
+                        </h4>
+
+                        <div class="col-md-6">
+                            <input class="form-control input-box" id="name" type="text" name="name" placeholder="Your Name">
+                        </div>
+
+                        <div class="col-md-6">
+                            <input class="form-control input-box" id="email" type="email" name="email" placeholder="Your Email">
+                        </div>
+
+                        <div class="col-md-12">
+                            <input class="form-control input-box" id="subject" type="text" name="subject" placeholder="Subject">
+                            <textarea class="form-control textarea-box" id="message" rows="8" placeholder="Message"></textarea>
+                        </div>
+
+                        <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit" name="submit" data-style="expand-left">Send Message</button>
+
+                    </form>
+                    <!-- /END FORM -->
+
+                </div>
+
+            </div>
+            <!-- /END EXPANDED CONTACT FORM -->
+
+        </div>
+        <!-- /END CONTACT BOX -->
+
+        <!-- LOGO -->
+        <img src="images/logo-black.png" alt="LOGO" class="responsive-img">
+
+        <!-- SOCIAL ICONS -->
+        <ul class="social-icons">
+            <li><a href=""><i class="social_facebook_square"></i></a></li>
+            <li><a href=""><i class="social_twitter_square"></i></a></li>
+            <li><a href=""><i class="social_googleplus_square"></i></a></li>
         </ul>
 
-        <!-- COPYRIGHT -->
-        <div class="copyright">Copyright &copy; dev, All rights reserved</div>
-    </div>
-</footer>
+        <!-- COPYRIGHT TEXT -->
+        <p class="copyright">
+            © 2014 Me, All Rights Reserved
+        </p>
 
-</div>
+    </div>
+    <!-- /END CONTAINER -->
+
+</footer>
+<!-- /END FOOTER -->
+
+</body>
