@@ -1,17 +1,6 @@
 /* --------------------------------------
-=========================================
-COLOR : BLUE 
-
-MAIN COLOR CODE: #008ed6
-
-DEEP COLOR CODE: #005885
-=========================================
+COLOR : BLUE
 ----------------------------------------- */
-
-.color-overlay {
-     background: rgba(0, 0, 0, 0.45); 
-   /* background: url(../patterns/06.png); */
-}
 
 .standard-button {
     background: #008ed6;
@@ -25,9 +14,9 @@ DEEP COLOR CODE: #005885
     background: #005885;
 }
 
-.btn-primary:focus, 
-.btn-primary:active, 
-.btn-primary.active, 
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
 .open .dropdown-toggle.btn-primary {
     background: #005885;
     border-color: inherit;

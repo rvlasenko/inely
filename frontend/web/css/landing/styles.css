@@ -118,8 +118,8 @@ h2 {
 }
 
 h1 {
-    font-size: 3.75rem;
-    line-height: 4.688rem;
+    font-size: 3rem;
+    line-height: 4.3rem;
 }
 
 h2 {
@@ -140,7 +140,7 @@ h4 {
 }
 
 h5 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
 }
 
@@ -179,6 +179,117 @@ h5 {
 	margin: 10px;
 }
 
+section #services {
+    text-align: center;
+    transform: translatez(0);
+}
+
+section #services h2 {
+    margin: 80px 0px 40px;
+    color: #fff;
+    font-size: 2.4em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+section #services li {
+    width: 120px;
+    height: 140px;
+    display: inline-block;
+    margin: 20px;
+    list-style: none;
+}
+
+section #services li div {
+    width: 110px;
+    height: 110px;
+    font-size: 3.4em;
+    text-align: center;
+    line-height: 110px;
+    background-color: #fff;
+    transition: all 0.5s ease;
+}
+
+section #services li div:hover {
+    transform: rotate(360deg);
+    border-radius: 100px;
+}
+
+.fa-facebook {
+    color: #3b5998;
+}
+
+.fa-vk {
+    color: #45668e;
+}
+
+.fa-google-plus {
+    color: #dd4b39;
+}
+
+section #services li span {
+    width: 120px;
+    height: 20px;
+    display: block;
+    padding: 15px 0px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.buton {
+    border: none;
+    font-family: inherit;
+    font-size: 22px;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 25px 40px;
+    display: inline-block;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-1 {
+    border: 3px solid #fff;
+    color: #fff;
+}
+
+.buton:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-1c:after {
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+
+.btn-1c:hover,
+.btn-1c:active {
+    color: #0e83cd;
+}
+
+.btn-1c:hover:after,
+.btn-1c:active:after {
+    width: 100%;
+}
+
 /*---------------------------------------
    TEXTS               
 -----------------------------------------*/
@@ -214,6 +325,7 @@ h5 {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 1.1em;
 }
 
 /*---------------------------------------
@@ -328,7 +440,7 @@ header .intro-section h5 {
 }
 
 header .intro-section .buttons {
-    margin-top: 35px;
+    margin-top: 45px;
 }
 
 /*---------------------------------------
@@ -378,7 +490,7 @@ header .intro-section .buttons {
     height: 55px;
     border-radius: 50%;
     line-height: 55px;
-    font-size: 18px;
+    font-size: 1.5em;
     text-align: center;
     -webkit-transition: all ease-in 0.25s;
             transition: all ease-in 0.25s;
@@ -703,7 +815,7 @@ footer .contact-box .contact-button {
     border-radius: 50%;
     margin: auto;
     position: relative;
-    font-size: 30px;
+    font-size: 35px;
     line-height: 60px;
     vertical-align: middle;
     margin-top: -40px;

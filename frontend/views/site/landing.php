@@ -39,29 +39,29 @@
                 <div class="navbar-collapse collapse" id="kane-navigation">
                     <ul class="nav navbar-nav navbar-right main-navigation">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#brief1">Why Us?</a></li>
-                        <li><a href="#brief2">Desicribe</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#screenshot-section">Screenshots</a></li>
+                        <li><a href="#features">Особенности</a></li>
+                        <li><a href="#brief1">Почему мы?</a></li>
+                        <li><a href="#brief2">Описание</a></li>
+                        <li><a href="#services">Службы</a></li>
+                        <li><a href="#screenshot-section">Скриншоты</a></li>
                         <li><a href="#download">Вход</a></li>
                     </ul>
                 </div>
-            </div> <!-- /END CONTAINER -->
-        </div> <!-- /END STICKY NAVIGATION -->
+            </div> <!-- END CONTAINER -->
+        </div> <!-- END NAVIGATION -->
 
 
         <!-- CONTAINER -->
         <div class="container">
 
-            <!-- ONLY LOGO ON HEADER -->
+            <!-- LOGO ON HEADER -->
             <div class="only-logo">
                 <div class="navbar">
                     <div class="navbar-header">
                         <img src="images/logo.png" alt="">
                     </div>
                 </div>
-            </div> <!-- /END ONLY LOGO ON HEADER -->
+            </div> <!-- END LOGO ON HEADER -->
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -69,31 +69,30 @@
                     <!-- HEADING AND BUTTONS -->
                     <div class="intro-section">
 
-                        <!-- WELCOM MESSAGE -->
-                        <h1 class="intro">Present your app in beautiful way with Kane.</h1>
-                        <h5>Available on App Store and Play Store</h5>
+                        <h1 class="intro">Начните осознавать свои возможности вместе с uNote.</h1>
+                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком uNote.</h5>
 
-                        <!-- BUTTON -->
                         <div class="buttons" id="download-button">
 
-                            <a href="#download" class="btn btn-default btn-lg standard-button"><i class="icon-app-download"></i>Download App</a>
+                            <a href="#download"><button class="buton btn-1 btn-1c">Перейти к авторизации</button></a>
+
 
                         </div>
-                        <!-- /END BUTTONS -->
+                        <!-- END BUTTONS -->
 
                     </div>
-                    <!-- /END HEADNING AND BUTTONS -->
+                    <!-- END HEADNING AND BUTTONS -->
 
                 </div>
             </div>
-            <!-- /END ROW -->
+            <!-- END ROW -->
 
         </div>
-        <!-- /END CONTAINER -->
+        <!-- END CONTAINER -->
     </div>
-    <!-- /END COLOR OVERLAY -->
+    <!-- END COLOR OVERLAY -->
 </header>
-<!-- /END HEADER -->
+<!-- END HEADER -->
 
 <!--
 ==============================
@@ -107,17 +106,16 @@
         <!-- SECTION HEADER -->
         <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
 
-            <!-- SECTION TITLE -->
-            <h2 class="dark-text">Amazing Features</h2>
+            <h2 class="dark-text">Удивительные особенности</h2>
             <div class="colored-line">
             </div>
             <div class="section-description">
-                List your app features and all the details Lorem ipsum dolor kadr
+                Потрясающие функции, которые позволят Вам добиться успеха
             </div>
             <div class="colored-line">
             </div>
         </div>
-        <!-- /END SECTION HEADER -->
+        <!-- END SECTION HEADER -->
 
 
         <div class="row">
@@ -131,20 +129,20 @@
                     <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="icon_map_alt"></i>
+                            <i class="fa fa-paperclip"></i>
                         </div>
                     </div>
 
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
-                        <h4 class="main-color">Responsive Design</h4>
+                        <h4 class="main-color">Загрузка файлов</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                            Прикрепите любой тип файлов к задаче и просматривайте их на любом устройстве.
                         </p>
                     </div>
 
                 </div>
-                <!-- /END SINGLE FEATURE -->
+                <!-- END SINGLE FEATURE -->
 
                 <!-- FEATURE -->
                 <div class="feature">
@@ -152,20 +150,20 @@
                     <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="icon_gift_alt"></i>
+                            <i class="fa fa-sliders"></i>
                         </div>
                     </div>
 
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
-                        <h4 class="main-color">Bootstrap 3.1</h4>
+                        <h4 class="main-color">Под-задачи</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                            Разбейте большой проект на несколько небольших задач.
                         </p>
                     </div>
 
                 </div>
-                <!-- /END SINGLE FEATURE -->
+                <!-- END SINGLE FEATURE -->
 
                 <!-- FEATURE -->
                 <div class="feature">
@@ -173,23 +171,23 @@
                     <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="icon_tablet"></i>
+                            <i class="fa fa-file-text"></i>
                         </div>
                     </div>
 
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
-                        <h4 class="main-color">Cross-Browser Support</h4>
+                        <h4 class="main-color">Заметки</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magn.
+                            Добавляйте примечания к задачам, чтобы быть уверенным, что у вас есть всё для выполнения.
                         </p>
                     </div>
 
                 </div>
-                <!-- /END SINGLE FEATURE -->
+                <!-- END SINGLE FEATURE -->
 
             </div>
-            <!-- /END FEATURES LEFT -->
+            <!-- END FEATURES LEFT -->
 
             <!-- PHONE IMAGE -->
             <div class="col-md-4 col-sm-4">
@@ -207,20 +205,20 @@
                     <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="icon_genius"></i>
+                            <i class="fa fa-list-ul"></i>
                         </div>
                     </div>
 
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
-                        <h4 class="main-color">360+ Icon Fonts</h4>
+                        <h4 class="main-color">Управление списками</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                            Создавайте и управляйте списками, что бы быть всегда на шаг впереди.
                         </p>
                     </div>
 
                 </div>
-                <!-- /END SINGLE FEATURE -->
+                <!-- END SINGLE FEATURE -->
 
                 <!-- FEATURE -->
                 <div class="feature">
@@ -228,21 +226,21 @@
                     <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="icon_lightbulb_alt"></i>
+                            <i class="fa fa-check-square-o"></i>
                         </div>
                     </div>
 
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
-                        <h4 class="main-color">Creative Design</h4>
+                        <h4 class="main-color">Достижения</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                            Разбавьте свои задачи каплей азарта и мотивации.
                         </p>
                     </div>
 
                 </div>
 
-                <!-- /END SINGLE FEATURE -->
+                <!-- END SINGLE FEATURE -->
 
                 <!-- FEATURE -->
                 <div class="feature">
@@ -250,29 +248,29 @@
                     <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="icon_ribbon_alt"></i>
+                            <i class="fa fa-question"></i>
                         </div>
                     </div>
 
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
-                        <h4 class="main-color">More Features</h4>
+                        <h4 class="main-color">Документация</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, ed do eiusmod tempor incididunt ut labore et dolore magna.
+                            Расширенная документация даст ответы на возникшие, под углом трудности, вопросы.
                         </p>
                     </div>
 
                 </div>
-                <!-- /END SINGLE FEATURE -->
+                <!-- END SINGLE FEATURE -->
 
             </div>
-            <!-- /END FEATURES RIGHT -->
+            <!-- END FEATURES RIGHT -->
 
         </div>
-        <!-- /END ROW -->
+        <!-- END ROW -->
 
     </div>
-    <!-- /END CONTAINER -->
+    <!-- END CONTAINER -->
 
 </section>
 <!-- /END FEATURES SECTION -->
@@ -318,16 +316,16 @@
                 </ul>
 
             </div>
-            <!-- /END RIGHT BRIEF -->
+            <!-- END RIGHT BRIEF -->
 
         </div>
-        <!-- /END ROW -->
+        <!-- END ROW -->
 
     </div>
-    <!-- /END CONTAINER -->
+    <!-- END CONTAINER -->
 
 </section>
-<!-- /END SECTION -->
+<!-- END SECTION -->
 
 
 <!--
@@ -668,13 +666,33 @@
 
                     <!-- DOWNLOAD BUTTONS AREA -->
                     <div class="download-container">
-                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти через социальную сеть</h2>
+                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти с помощью</h2>
 
                         <!-- BUTTONS -->
                         <div class="buttons wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                            <a href="" class="btn btn-default btn-lg standard-button"><i class="icon-app-store"></i>App Store</a>
-                            <a href="" class="btn btn-default btn-lg standard-button"><i class="icon-google-play"></i>Play Store</a>
+                            <section>
+                                <ul id='services'>
+                                    <li>
+                                        <div>
+                                            <a href=""><i class="fa fa-facebook"></i></a>
+                                        </div>
+                                        <span>Facebook</span>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <a href=""><i class="fa fa-vk"></i></a>
+                                        </div>
+                                        <span>Twitter</span>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <a href=""><i class="fa fa-google-plus"></i></a>
+                                        </div>
+                                        <span>Google</span>
+                                    </li>
+                                </ul>
+                            </section>
 
                         </div>
                         <!-- /END BUTTONS -->
@@ -686,9 +704,11 @@
                     <!-- SUBSCRIPTION FORM WITH TITLE -->
                     <div class="subscription-form-container">
 
-                        <!-- =====================
+                        <!--
+                             =====================
                              MAILCHIMP FORM STARTS
-                             ===================== -->
+                             =====================
+                        -->
 
                         <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или...</h2>
 
@@ -706,7 +726,7 @@
                             <button type="submit" id="subscribe-button" class="btn btn-default sub standard-button">Subscribe</button>
 
                         </form>
-                        <!-- /END MAILCHIMP FORM STARTS -->
+                        <!-- END MAILCHIMP FORM STARTS -->
 
                     </div>
                     <!-- END OF SUBSCRIPTION FORM WITH TITLE -->
@@ -739,7 +759,9 @@
 
             <!-- CONTACT BUTTON TO EXPAND OR COLLAPSE FORM -->
 
-            <a class="btn contact-button expand-form expanded"><i class="icon_mail_alt"></i></a>
+            <a class="btn contact-button expand-form expanded">
+                <i class="fa fa-envelope-o"></i>
+            </a>
 
             <!-- EXPANDED CONTACT FORM -->
             <div class="row expanded-contact-form">

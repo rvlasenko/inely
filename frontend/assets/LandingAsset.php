@@ -14,9 +14,6 @@ class LandingAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        // FONT ICONS
-        'icons/elegant-icons/style.css',
-        'icons/app-icons/styles.css',
 
         // CAROUSEL AND LIGHTBOX
         'css/landing/owl.theme.css',
