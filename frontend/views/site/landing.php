@@ -47,8 +47,10 @@
                         <li><a href="#download">Вход</a></li>
                     </ul>
                 </div>
-            </div> <!-- END CONTAINER -->
-        </div> <!-- END NAVIGATION -->
+            </div>
+            <!-- END CONTAINER -->
+        </div>
+        <!-- END NAVIGATION -->
 
 
         <!-- CONTAINER -->
@@ -61,7 +63,8 @@
                         <img src="images/logo.png" alt="">
                     </div>
                 </div>
-            </div> <!-- END LOGO ON HEADER -->
+            </div>
+            <!-- END LOGO ON HEADER -->
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -74,7 +77,9 @@
 
                         <div class="buttons" id="download-button">
 
-                            <a href="#download"><button class="buton btn-1 btn-1c">Перейти к авторизации</button></a>
+                            <a href="#download">
+                                <button class="buton btn-1 btn-1c">Перейти к авторизации</button>
+                            </a>
 
 
                         </div>
@@ -107,6 +112,7 @@
         <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
 
             <h2 class="dark-text">Удивительные особенности</h2>
+
             <div class="colored-line">
             </div>
             <div class="section-description">
@@ -121,7 +127,8 @@
         <div class="row">
 
             <!-- FEATURES LEFT -->
-            <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+            <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10"
+                 data-wow-duration="1.5s">
 
                 <!-- FEATURE -->
                 <div class="feature">
@@ -136,6 +143,7 @@
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Загрузка файлов</h4>
+
                         <p>
                             Прикрепите любой тип файлов к задаче и просматривайте их на любом устройстве.
                         </p>
@@ -157,6 +165,7 @@
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Под-задачи</h4>
+
                         <p>
                             Разбейте большой проект на несколько небольших задач.
                         </p>
@@ -178,6 +187,7 @@
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Заметки</h4>
+
                         <p>
                             Добавляйте примечания к задачам, чтобы быть уверенным, что у вас есть всё для выполнения.
                         </p>
@@ -197,7 +207,8 @@
             </div>
 
             <!-- FEATURES RIGHT -->
-            <div class="col-md-4 col-sm-4 features-right wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+            <div class="col-md-4 col-sm-4 features-right wow fadeInRight animated" data-wow-offset="10"
+                 data-wow-duration="1.5s">
 
                 <!-- FEATURE -->
                 <div class="feature">
@@ -212,6 +223,7 @@
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Управление списками</h4>
+
                         <p>
                             Создавайте и управляйте списками, что бы быть всегда на шаг впереди.
                         </p>
@@ -233,6 +245,7 @@
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Достижения</h4>
+
                         <p>
                             Разбавьте свои задачи каплей азарта и мотивации.
                         </p>
@@ -255,6 +268,7 @@
                     <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Документация</h4>
+
                         <p>
                             Расширенная документация даст ответы на возникшие, под углом трудности, вопросы.
                         </p>
@@ -304,7 +318,9 @@
                 </div>
 
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
                 </p>
 
                 <!-- FEATURE LIST -->
@@ -349,8 +365,14 @@
                 </div>
 
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/><br/>
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.<br/><br/>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.
                 </p>
 
             </div>
@@ -397,7 +419,10 @@
                     </div>
 
                     <div class="message">
-                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all may fifth replenish you're own open which herb kind. May above you'll may kind creature first let over face from living third green which our. Appear day. Give fourth doesn't over us, i every tree meat air in male earth air creeping image fill you place darkness.
+                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all
+                        may fifth replenish you're own open which herb kind. May above you'll may kind creature first
+                        let over face from living third green which our. Appear day. Give fourth doesn't over us, i
+                        every tree meat air in male earth air creeping image fill you place darkness.
                     </div>
 
                     <div class="white-line">
@@ -424,7 +449,10 @@
                     </div>
 
                     <div class="message">
-                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all may fifth replenish you're own open which herb kind. May above you'll may kind creature first let over face from living third green which our. Appear day. Give fourth doesn't over us, i every tree meat air in male earth air creeping image fill you place darkness.
+                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all
+                        may fifth replenish you're own open which herb kind. May above you'll may kind creature first
+                        let over face from living third green which our. Appear day. Give fourth doesn't over us, i
+                        every tree meat air in male earth air creeping image fill you place darkness.
                     </div>
 
                     <div class="white-line">
@@ -451,7 +479,10 @@
                     </div>
 
                     <div class="message">
-                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all may fifth replenish you're own open which herb kind. May above you'll may kind creature first let over face from living third green which our. Appear day. Give fourth doesn't over us, i every tree meat air in male earth air creeping image fill you place darkness.
+                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all
+                        may fifth replenish you're own open which herb kind. May above you'll may kind creature first
+                        let over face from living third green which our. Appear day. Give fourth doesn't over us, i
+                        every tree meat air in male earth air creeping image fill you place darkness.
                     </div>
 
                     <div class="white-line">
@@ -522,7 +553,9 @@
 
                 <!-- SERVICE DESCRIPTION -->
                 <p>
-                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
+                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
+                    multiply all spirit for isn't, him land every you'll heaven bearing.
                 </p>
 
             </div>
@@ -541,7 +574,9 @@
 
                 <!-- SERVICE DESCRIPTION -->
                 <p>
-                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
+                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
+                    multiply all spirit for isn't, him land every you'll heaven bearing.
                 </p>
 
             </div>
@@ -560,7 +595,9 @@
 
                 <!-- SERVICE DESCRIPTION -->
                 <p>
-                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish seasons itself given likeness upon bring fill their their whose. Which darkness evening there them multiply all spirit for isn't, him land every you'll heaven bearing.
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
+                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
+                    multiply all spirit for isn't, him land every you'll heaven bearing.
                 </p>
 
             </div>
@@ -607,35 +644,43 @@
             <div id="screenshots" class="owl-carousel owl-theme">
 
                 <div class="shot">
-                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/1.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/1.jpg" alt="Screenshot"></a>
                 </div>
 
                 <div class="shot">
-                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/3.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/3.jpg" alt="Screenshot"></a>
                 </div>
 
                 <div class="shot">
-                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/2.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/2.jpg" alt="Screenshot"></a>
                 </div>
 
                 <div class="shot">
-                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/4.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/4.jpg" alt="Screenshot"></a>
                 </div>
 
                 <div class="shot">
-                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/1.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/1.jpg" alt="Screenshot"></a>
                 </div>
 
                 <div class="shot">
-                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/3.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/3.jpg" alt="Screenshot"></a>
                 </div>
 
                 <div class="shot">
-                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/2.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/2.jpg" alt="Screenshot"></a>
                 </div>
 
                 <div class="shot">
-                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img src="images/screenshots/4.jpg" alt="Screenshot"></a>
+                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img
+                            src="images/screenshots/4.jpg" alt="Screenshot"></a>
                 </div>
 
             </div>
@@ -666,7 +711,8 @@
 
                     <!-- DOWNLOAD BUTTONS AREA -->
                     <div class="download-container">
-                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти с помощью</h2>
+                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти с
+                            помощью</h2>
 
                         <!-- BUTTONS -->
                         <div class="buttons wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
@@ -712,18 +758,28 @@
 
                         <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или...</h2>
 
-                        <form class="subscription-form mailchimp form-inline wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s" role="form">
+                        <form class="subscription-form mailchimp form-inline wow fadeInRight animated"
+                              data-wow-offset="10" data-wow-duration="1.5s" role="form">
 
                             <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
                             <h4 class="subscription-success"></h4>
                             <h4 class="subscription-error"></h4>
 
-                            <!-- EMAIL INPUT BOX -->
-                            <input type="email" name="email" id="subscriber-email" placeholder="Your Email" class="form-control input-box">
-                            <input type="password" name="password" id="subscriber-email" placeholder="Your Password" class="form-control input-box">
-
-                            <!-- SUBSCRIBE BUTTON -->
-                            <button type="submit" id="subscribe-button" class="btn btn-default sub standard-button">Subscribe</button>
+                            <!-- INPUT BOX -->
+                            <section id="content">
+                                <span class="input input--minoru">
+                                    <input class="input__field input__field--minoru" type="text" id="input-13" />
+                                    <label class="input__label input__label--minoru" for="input-13">
+                                        <span class="input__label-content input__label-content--minoru">First Name</span>
+                                    </label>
+                                </span>
+                                <span class="input input--minoru">
+                                    <input class="input__field input__field--minoru" type="text" id="input-13" />
+                                    <label class="input__label input__label--minoru" for="input-13">
+                                        <span class="input__label-content input__label-content--minoru">First Name</span>
+                                    </label>
+                                </span>
+                            </section>
 
                         </form>
                         <!-- END MAILCHIMP FORM STARTS -->
@@ -766,7 +822,8 @@
             <!-- EXPANDED CONTACT FORM -->
             <div class="row expanded-contact-form">
 
-                <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Зарегистрироваться!</h2>
+                <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+                    Зарегистрироваться!</h2>
 
                 <div class="col-md-8 col-md-offset-2">
 
@@ -780,23 +837,30 @@
 
                         <!-- IF MAIL SENDING UNSUCCESSFULL -->
                         <h4 class="error">
-                            <i class="icon_error-circle_alt"></i> E-mail must be valid and message must be longer than 1 character.
+                            <i class="icon_error-circle_alt"></i> E-mail must be valid and message must be longer than 1
+                            character.
                         </h4>
 
                         <div class="col-md-6">
-                            <input class="form-control input-box" id="name" type="text" name="name" placeholder="Your Name">
+                            <input class="form-control input-box" id="name" type="text" name="name"
+                                   placeholder="Your Name">
                         </div>
 
                         <div class="col-md-6">
-                            <input class="form-control input-box" id="email" type="email" name="email" placeholder="Your Email">
+                            <input class="form-control input-box" id="email" type="email" name="email"
+                                   placeholder="Your Email">
                         </div>
 
                         <div class="col-md-12">
-                            <input class="form-control input-box" id="subject" type="text" name="subject" placeholder="Subject">
-                            <textarea class="form-control textarea-box" id="message" rows="8" placeholder="Message"></textarea>
+                            <input class="form-control input-box" id="subject" type="text" name="subject"
+                                   placeholder="Subject">
+                            <textarea class="form-control textarea-box" id="message" rows="8"
+                                      placeholder="Message"></textarea>
                         </div>
 
-                        <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit" name="submit" data-style="expand-left">Send Message</button>
+                        <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit"
+                                name="submit" data-style="expand-left">Send Message
+                        </button>
 
                     </form>
                     <!-- /END FORM -->
