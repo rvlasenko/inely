@@ -53,6 +53,7 @@ class LandingAsset extends AssetBundle
         'js/landing/jquery.ajaxchimp.min.js',
         'js/landing/jquery.fitvids.js',
         'js/landing/custom.js',
+        'js/landing/bootstrap.min.js',
     ];
 
     public $jsOptions = ['position' => \yii\web\View::POS_END];

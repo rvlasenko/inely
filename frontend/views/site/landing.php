@@ -1,3 +1,9 @@
+<?php
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+?>
+
 <body>
 <!--
 ==============================
@@ -720,19 +726,19 @@
                                 <ul id='services'>
                                     <li>
                                         <div>
-                                            <a href=""><i class="fa fa-facebook"></i></a>
+                                            <a href="user/sign-in/oauth?authclient=facebook" rel="external"><i class="fa fa-facebook"></i></a>
                                         </div>
                                         <span>Facebook</span>
                                     </li>
                                     <li>
                                         <div>
-                                            <a href=""><i class="fa fa-vk"></i></a>
+                                            <a href="user/sign-in/oauth?authclient=vkontakte"><i class="fa fa-vk"></i></a>
                                         </div>
-                                        <span>Twitter</span>
+                                        <span>VK</span>
                                     </li>
                                     <li>
                                         <div>
-                                            <a href=""><i class="fa fa-google-plus"></i></a>
+                                            <a href="user/sign-in/oauth?authclient=google"><i class="fa fa-google-plus"></i></a>
                                         </div>
                                         <span>Google</span>
                                     </li>
@@ -749,34 +755,35 @@
                     <!-- SUBSCRIPTION FORM WITH TITLE -->
                     <div class="subscription-form-container">
 
-                        <!--
-                             =====================
-                             MAILCHIMP FORM STARTS
-                             =====================
-                        -->
+                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или учетной записи</h2>
 
-                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или учетной
-                            записи</h2>
+                        <?php $form = ActiveForm::begin([
+                            'action' => '/login',
+                            'options' => [
+                                'class' => 'subscription-form mailchimp form-inline wow fadeInRight animated animated',
+                                'data-wow-offset' => '10',
+                                'data-wow-duration' => '2s',
+                                'role' => 'form',
+                            ],
+                        ]); ?>
+                        <?= $form->field($model, 'email', [
+                            'options' => [
+                                'class' => 'col-md-6',
+                            ],
+                        ])->textInput(['placeholder' => 'Email'])->label(false) ?>
+                        <?= $form->field($model, 'password', [
+                            'options' => [
+                                'class' => 'col-md-6',
+                            ],
+                        ])->passwordInput()->textInput(['placeholder' => 'Пароль'])->label(false) ?>
 
-                        <form class="subscription-form mailchimp form-inline wow fadeInRight animated"
-                              data-wow-offset="10" data-wow-duration="1.5s" role="form">
+                        <div class="col-md-12">
+                            <?= Html::submitButton(Yii::t('frontend', 'Login'), [
+                                'class' => 'buton btn-1 btn-1b login',
+                            ]) ?>
+                        </div>
 
-                            <!-- SUBSCRIPTION SUCCESSFUL OR ERROR MESSAGES -->
-                            <h4 class="subscription-success"></h4>
-                            <h4 class="subscription-error"></h4>
-
-                            <!-- INPUT BOX -->
-                            <input type="email" name="email" id="subscriber-email" placeholder="Email"
-                                   class="form-control input-box">
-                            <input type="password" name="password" id="subscriber-email" placeholder="Пароль"
-                                   class="form-control input-box">
-
-                            <!-- BUTTON -->
-                            <a href="#download">
-                                <button class="buton btn-1 btn-1b login">Войти</button>
-                            </a>
-                        </form>
-                        <!-- END MAILCHIMP FORM STARTS -->
+                        <?php ActiveForm::end(); ?>
 
                     </div>
                     <!-- END OF SUBSCRIPTION FORM WITH TITLE -->
@@ -821,48 +828,51 @@
 
                 <div class="col-md-8 col-md-offset-2">
 
-                    <!-- FORM -->
-                    <form class="contact-form" id="contact" role="form">
+                    <?php $form = ActiveForm::begin([
+                        'action' => '/sign-up',
+                        'options' => [
+                            'class' => 'contact-form',
+                        ],
+                    ]) ?>
+                    <?= $form->field($model, 'username', [
+                        'options' => [
+                            'class' => 'col-md-12', //input-box
+                        ],
+                    ])->textInput(['placeholder' => 'Ваше имя'])->label(false) ?>
+                    <?= $form->field($model, 'email', [
+                        'options' => [
+                            'class' => 'col-md-6', //input-box
+                        ],
+                    ])->textInput(['placeholder' => 'Email'])->label(false) ?>
+                    <?= $form->field($model, 'password', [
+                        'options' => [
+                            'class' => 'col-md-6', //input-box
+                        ],
+                    ])->passwordInput()->textInput(['placeholder' => 'Пароль'])->label(false) ?>
 
-                        <!-- IF MAIL SENT SUCCESSFULLY -->
-                        <h4 class="success">
-                            <i class="icon_check"></i> Your message has been sent successfully.
-                        </h4>
+                    <div class="col-md-12">
+                        <?= Html::submitButton(Yii::t('frontend', 'Signup'), [
+                                'class' => 'btn btn-primary standard-button2 ladda-button',
+                            ])
+                        ?>
+                    </div>
 
-                        <!-- IF MAIL SENDING UNSUCCESSFULL -->
-                        <h4 class="error">
-                            <i class="icon_error-circle_alt"></i> E-mail must be valid and message must be longer than 1
-                            character.
-                        </h4>
+                    <?php ActiveForm::end(); ?>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <input class="form-control input-box" id="name" type="text" name="name"
-                                   placeholder="Your Name">
+                                   placeholder="Имя">
                         </div>
 
                         <div class="col-md-6">
                             <input class="form-control input-box" id="email" type="email" name="email"
-                                   placeholder="Your Email">
+                                   placeholder="Email">
                         </div>
 
-                        <div class="col-md-12">
-                            <input class="form-control input-box" id="subject" type="text" name="subject"
-                                   placeholder="Subject">
-                            <textarea class="form-control textarea-box" id="message" rows="8"
-                                      placeholder="Message"></textarea>
-                        </div>
-
-                        <a href="">
-                            <div class="center">
-                                <button
-                                    class="buttton button--moema button--inverted button--text-thick button--size-s">
-                                    Make it so
-                                </button>
-                            </div>
-                        </a>
-
-                    </form>
-                    <!-- /END FORM -->
+                        <div class="col-md-6">
+                            <input class="form-control input-box" id="name" type="password" name="pass"
+                                   placeholder="Пароль">
+                        </div> -->
 
                 </div>
 

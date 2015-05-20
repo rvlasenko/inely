@@ -53,7 +53,7 @@ body {
 
 a {
     -webkit-transition: all ease 0.25s;
-            transition: all ease 0.25s;
+    transition: all ease 0.25s;
 }
 
 a:hover {
@@ -73,7 +73,7 @@ a:hover {
 *:after {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 ul,
@@ -110,7 +110,7 @@ li {
     background-repeat: no-repeat;
     background-position: center;
     -webkit-background-size: cover;
-            background-size: cover;
+    background-size: cover;
     margin: -20px 0 0 -20px;
 }
 
@@ -165,7 +165,7 @@ h5 {
     padding: 16px 25px 16px 25px;
     margin: 5px;
     -webkit-transition: all ease 0.25s;
-            transition: all ease 0.25s;
+    transition: all ease 0.25s;
 }
 
 .standard-button:hover,
@@ -181,7 +181,7 @@ h5 {
 }
 
 .sub {
-	margin: 10px;
+    margin: 10px;
 }
 
 section #services {
@@ -210,7 +210,7 @@ section #services li div {
     height: 100px;
     font-size: 3.4em;
     text-align: center;
-    line-height: 100px;
+    line-height: 105px;
     background-color: #fff;
     transition: all 0.6s ease;
 }
@@ -236,7 +236,7 @@ section #services li span {
     width: 120px;
     height: 20px;
     display: block;
-    padding: 15px 0px;
+    padding: 10px 20px 0 0;
     color: #fff;
     text-transform: uppercase;
     font-size: 1.4em;
@@ -297,7 +297,6 @@ section #services li span {
 
 .login {
     padding: 10px 30px;
-    margin: 30px;
 }
 
 .btn-1b:after {
@@ -405,32 +404,32 @@ header .full-screen {
 /* TOP BAR WITH NAVIGATION */
 
 .sticky-navigation {
-  min-height: 60px;
-  background: #FFFFFF;
-  border: none;
-  padding: 0 !important;
-  margin-bottom: 0 !important;
-  -webkit-backface-visibility: hidden;
-  -webkit-box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
-          box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
+    min-height: 60px;
+    background: #FFFFFF;
+    border: none;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    -webkit-backface-visibility: hidden;
+    -webkit-box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
+    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
 }
 
 .sticky-navigation .navbar-header img {
-  max-height: 30px;
-  -webkit-backface-visibility: hidden;
+    max-height: 30px;
+    -webkit-backface-visibility: hidden;
 }
 
 .sticky-navigation .main-navigation .current a {
-  color: #000000 !important;
-  position: relative;
-  outline: none;
+    color: #000000 !important;
+    position: relative;
+    outline: none;
 }
 
 .sticky-navigation .main-navigation li a {
-  line-height: 30px;
-  font-weight: 400;
-  font-size: 13px;
-  text-transform: uppercase;
+    line-height: 30px;
+    font-weight: 400;
+    font-size: 13px;
+    text-transform: uppercase;
 }
 
 .sticky-navigation .main-navigation li a:hover {
@@ -438,8 +437,8 @@ header .full-screen {
 }
 
 .navbar-inverse .navbar-toggle {
-border-color: #313131;
-background: #313131;
+    border-color: #313131;
+    background: #313131;
 }
 
 header .only-logo .navbar {
@@ -521,10 +520,10 @@ header .intro-section .buttons {
     font-size: 1.5em;
     text-align: center;
     -webkit-transition: all ease-in 0.25s;
-            transition: all ease-in 0.25s;
+    transition: all ease-in 0.25s;
     -webkit-background-clip: padding-box;
-           -moz-background-clip: padding;
-            background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
 }
 
 .features .phone-image {
@@ -633,7 +632,7 @@ object {
     font-size: 24px;
     border: 2px solid transparent;
     -webkit-box-shadow: 0px 0px 0px 2px #ffffff;
-            box-shadow: 0px 0px 0px 2px #ffffff;
+    box-shadow: 0px 0px 0px 2px #ffffff;
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -673,7 +672,7 @@ object {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-            user-select: none;
+    user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -717,7 +716,7 @@ object {
     margin: 13px;
     border-radius: 4px;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     display: block;
 }
 
@@ -769,17 +768,17 @@ object {
 }
 
 .single-package .package-feature {
-  margin-top: 25px;
-  margin-bottom: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .single-package .package-feature > li {
-  margin-top: 15px;
-  margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .single-package .package-feature > li > span {
-  margin-right: 7px;
+    margin-right: 7px;
 }
 
 
@@ -809,6 +808,10 @@ object {
 .bg-3 {
     background: #37474f;
     color: #fff;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #fff;
 }
 
 .button--moema {
@@ -903,10 +906,6 @@ object {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
     }
-}
-
-.center {
-    margin: 0px 25% 0px 38.5%;
 }
 
 .buttton {
@@ -1015,9 +1014,9 @@ object {
     padding-left: 20px;
     width: 296px;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     background: #FFF;
-	margin: 5px;
+    margin: 5px;
 }
 
 .download .subscription-form .input-box:focus,
@@ -1058,7 +1057,7 @@ footer .contact-box .contact-button {
     margin-top: -40px;
     background: #ffffff;
     -webkit-box-shadow: 0px 0px 0px 3px #ffffff;
-            box-shadow: 0px 0px 0px 3px #ffffff;
+    box-shadow: 0px 0px 0px 3px #ffffff;
     -webkit-backface-visibility: hidden;
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
@@ -1084,7 +1083,7 @@ footer .contact-box .expanded-contact-form .input-box {
     margin-top: 10px;
     height: 50px;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
 }
 
 .form-control:focus {
@@ -1096,13 +1095,20 @@ footer .contact-box .expanded-contact-form .input-box {
 .form-control {
     font-size: 18px;
     border-radius: 0;
+    height: 55px;
+    padding-left: 20px;
+    width: 100% !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #FFF;
+    margin: 5px;
 }
 
 footer .contact-box .expanded-contact-form .textarea-box {
     margin-top: 20px;
     margin-bottom: 20px;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
 }
 
 footer .contact-box .expanded-contact-form .textarea-box:active {

@@ -34,8 +34,10 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest)
             return $this->render('index');
-        else
-            return $this->render('landing');
+        else {
+            $model = new \frontend\modules\user\models\SignupForm();
+            return $this->render('landing', ['model' => $model]);
+        }
     }
 
     public function actionAbout()

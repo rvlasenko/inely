@@ -29,6 +29,5 @@ class FrontendAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'common\assets\Html5shiv',
-
     ];
 }
