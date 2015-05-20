@@ -42,7 +42,6 @@
                         <li><a href="#features">Особенности</a></li>
                         <li><a href="#brief1">Почему мы?</a></li>
                         <li><a href="#brief2">Описание</a></li>
-                        <li><a href="#services">Службы</a></li>
                         <li><a href="#screenshot-section">Скриншоты</a></li>
                         <li><a href="#download">Вход</a></li>
                     </ul>
@@ -853,9 +852,14 @@
                                       placeholder="Message"></textarea>
                         </div>
 
-                        <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit"
-                                name="submit" data-style="expand-left">Send Message
-                        </button>
+                        <a href="">
+                            <div class="center">
+                                <button
+                                    class="buttton button--moema button--inverted button--text-thick button--size-s">
+                                    Make it so
+                                </button>
+                            </div>
+                        </a>
 
                     </form>
                     <!-- /END FORM -->
