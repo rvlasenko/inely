@@ -756,7 +756,8 @@
                              =====================
                         -->
 
-                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или...</h2>
+                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или учетной
+                            записи</h2>
 
                         <form class="subscription-form mailchimp form-inline wow fadeInRight animated"
                               data-wow-offset="10" data-wow-duration="1.5s" role="form">
@@ -766,21 +767,15 @@
                             <h4 class="subscription-error"></h4>
 
                             <!-- INPUT BOX -->
-                            <section id="content">
-                                <span class="input input--minoru">
-                                    <input class="input__field input__field--minoru" type="text" id="input-13" />
-                                    <label class="input__label input__label--minoru" for="input-13">
-                                        <span class="input__label-content input__label-content--minoru">First Name</span>
-                                    </label>
-                                </span>
-                                <span class="input input--minoru">
-                                    <input class="input__field input__field--minoru" type="text" id="input-13" />
-                                    <label class="input__label input__label--minoru" for="input-13">
-                                        <span class="input__label-content input__label-content--minoru">First Name</span>
-                                    </label>
-                                </span>
-                            </section>
+                            <input type="email" name="email" id="subscriber-email" placeholder="Email"
+                                   class="form-control input-box">
+                            <input type="password" name="password" id="subscriber-email" placeholder="Пароль"
+                                   class="form-control input-box">
 
+                            <!-- BUTTON -->
+                            <a href="#download">
+                                <button class="buton btn-1 btn-1b login">Войти</button>
+                            </a>
                         </form>
                         <!-- END MAILCHIMP FORM STARTS -->
 

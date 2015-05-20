@@ -206,13 +206,13 @@ section #services li {
 }
 
 section #services li div {
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     font-size: 3.4em;
     text-align: center;
-    line-height: 110px;
+    line-height: 100px;
     background-color: #fff;
-    transition: all 0.5s ease;
+    transition: all 0.6s ease;
 }
 
 section #services li div:hover {
@@ -250,7 +250,7 @@ section #services li span {
     color: inherit;
     background: none;
     cursor: pointer;
-    padding: 25px 40px;
+    padding: 20px 35px;
     display: inline-block;
     margin: 15px 30px;
     text-transform: uppercase;
@@ -272,9 +272,9 @@ section #services li span {
     content: '';
     position: absolute;
     z-index: -1;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
 }
 
 .btn-1c:after {
@@ -296,135 +296,30 @@ section #services li span {
 }
 
 .login {
-    padding: 25px 40px;
+    padding: 10px 30px;
+    margin: 30px;
 }
 
-.input {
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    margin: 1em;
-    max-width: 320px;
-    width: calc(100% - 2em);
-    vertical-align: top;
-}
-
-.input__field {
-    position: relative;
-    display: block;
-    float: right;
-    padding: 0.8em;
-    width: 60%;
-    border: none;
-    border-radius: 0;
-    background: #f0f0f0;
-    color: #aaa;
-    font-weight: bold;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    -webkit-appearance: none; /* for box shadows to show on iOS */
-}
-
-.input__field:focus {
-    outline: none;
-}
-
-.input__label {
-    display: inline-block;
-    float: right;
-    padding: 0 1em;
-    width: 40%;
-    color: #6a7989;
-    font-weight: bold;
-    font-size: 70.25%;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.input__label-content {
-    position: relative;
-    display: block;
-    padding: 1.6em 0;
+.btn-1b:after {
     width: 100%;
-}
-
-.graphic {
-    position: absolute;
+    height: 0;
     top: 0;
     left: 0;
-    fill: none;
-}
-
-.icon {
-    color: #ddd;
-    font-size: 150%;
-}
-
-.input__field--minoru {
-    width: 100%;
     background: #fff;
-    box-shadow: 0px 0px 0px 2px transparent;
-    color: #eca29b;
-    -webkit-transition: box-shadow 0.3s;
-    transition: box-shadow 0.3s;
 }
 
-.input__label--minoru {
-    padding: 0;
-    width: 100%;
-    text-align: left;
+.btn-1b:hover,
+.btn-1b:active {
+    color: #0e83cd;
 }
 
-.input__label--minoru::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    width: 100%;
-    height: 4em;
-    box-shadow: 0px 0px 0px 0px;
-    color: rgba(199,152,157, 0.6);
+.btn-1b:hover:after,
+.btn-1b:active:after {
+    height: 100%;
 }
-
-.input__field--minoru:focus {
-    box-shadow: 0px 0px 0px 2px #eca29b;
-}
-
-.input__field--minoru:focus + .input__label--minoru {
-    pointer-events: none;
-}
-
-.input__field--minoru:focus + .input__label--minoru::after {
-    -webkit-animation: anim-shadow 0.3s forwards;
-    animation: anim-shadow 0.3s forwards;
-}
-
-@-webkit-keyframes anim-shadow {
-    to {
-        box-shadow: 0px 0px 100px 50px;
-        opacity: 0;
-    }
-}
-
-@keyframes anim-shadow {
-    to {
-        box-shadow: 0px 0px 100px 50px;
-        opacity: 0;
-    }
-}
-
-.input__label-content--minoru {
-    padding: 0.75em 0.15em;
-}
-
 
 /*---------------------------------------
-   TEXTS               
+   TEXTS
 -----------------------------------------*/
 
 .white-text {
@@ -441,7 +336,7 @@ section #services li span {
 
 
 /*---------------------------------------
-   SECTIONS          
+   SECTIONS
 -----------------------------------------*/
 
 .section-header {
@@ -462,7 +357,7 @@ section #services li span {
 }
 
 /*---------------------------------------
-   LINES          
+   LINES
 -----------------------------------------*/
 
 .colored-line {
@@ -490,12 +385,12 @@ section #services li span {
 
 /*---------------------------------------
 =========================================
- **   SECTION STYLES                
+ **   SECTION STYLES
 =========================================
 -----------------------------------------*/
 
 /*---------------------------------------
-   SECTION:  HOME                 
+   SECTION:  HOME
 -----------------------------------------*/
 
 header .color-overlay {
@@ -560,7 +455,7 @@ header .only-logo .navbar .navbar-header {
 
 header .intro-section {
     margin: auto;
-    padding-top: 10%;
+    padding-top: 5%;
 }
 
 header .intro-section .intro {
@@ -577,7 +472,7 @@ header .intro-section .buttons {
 }
 
 /*---------------------------------------
-   SECTION:  FEATURES                 
+   SECTION:  FEATURES
 -----------------------------------------*/
 
 .features {
@@ -644,7 +539,7 @@ header .intro-section .buttons {
 
 
 /*---------------------------------------
-   SECTION:  BRIEF                 
+   SECTION:  BRIEF
 -----------------------------------------*/
 
 .app-brief {
@@ -709,7 +604,7 @@ object {
     background: transparent !important;
     margin: auto;
     margin-bottom: 50px;
-    margin-top: 40px; 
+    margin-top: 40px;
 }
 
 .video {
@@ -718,7 +613,7 @@ object {
 
 
 /*---------------------------------------
-   SECTION:  TESTIMONIALS                 
+   SECTION:  TESTIMONIALS
 -----------------------------------------*/
 .testimonials {
     color: #ffffff;
@@ -784,7 +679,7 @@ object {
 
 
 /*---------------------------------------
-   SECTION:  SERVICES           
+   SECTION:  SERVICES
 -----------------------------------------*/
 
 .services {
@@ -808,7 +703,7 @@ object {
 
 
 /*---------------------------------------
-   SECTION:  SCREENSHOTS 
+   SECTION:  SCREENSHOTS
 -----------------------------------------*/
 
 .screenshots {
@@ -832,7 +727,7 @@ object {
 }
 
 /*---------------------------------------
-   SECTION:  PACKAGES | Added on version 1.7      
+   SECTION:  PACKAGES | Added on version 1.7
 -----------------------------------------*/
 
 .packages {
@@ -860,7 +755,7 @@ object {
 
 .single-package .price .color-bg h2 {
     color: #FFFFFF !important;
-} 
+}
 
 .single-package .price .sign {
     vertical-align: super;
@@ -889,7 +784,7 @@ object {
 
 
 /*---------------------------------------
-   SECTION:  DOWNLOAD                 
+   SECTION:  DOWNLOAD
 -----------------------------------------*/
 
 .download {
@@ -902,21 +797,20 @@ object {
 }
 
 .download .subscription-form-container {
-    padding-bottom: 80px;
+    padding-bottom: 60px;
 }
 
 .download .subscription-form .input-box {
-    height: 57px;
+    height: 55px;
     padding-left: 20px;
-    width: 320px;
+    width: 300px;
     -webkit-box-shadow: none;
             box-shadow: none;
     background: #FFF;
-    border: 2px solid #FFF;
 	margin: 5px;
 }
 
-.download .subscription-form .input-box:focus, 
+.download .subscription-form .input-box:focus,
 .download .subscription-form .input-box:active {
     color: #000;
     font-weight: 400;
@@ -981,6 +875,17 @@ footer .contact-box .expanded-contact-form .input-box {
     height: 50px;
     -webkit-box-shadow: none;
             box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: #66AFE9 !important;
+    outline: 0px none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 15px rgba(102, 175, 233, 1) !important;
+}
+
+.form-control {
+    font-size: 18px;
+    border-radius: 0;
 }
 
 footer .contact-box .expanded-contact-form .textarea-box {
