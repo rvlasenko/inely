@@ -5,31 +5,18 @@ use yii\widgets\ActiveForm;
 ?>
 
 <body>
-<!--
-==============================
-     PRE LOADER
-==============================
--->
 <div class="preloader">
     <div class="status">&nbsp;</div>
 </div>
 
-<!--
-==============================
-     HEADER
-==============================
--->
 <header class="header" id="home">
 
-    <!-- COLOR OVER IMAGE -->
     <div class="color-overlay full-screen">
 
-        <!-- STICKY NAVIGATION -->
         <div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation">
             <div class="container">
                 <div class="navbar-header">
 
-                    <!-- LOGO ON STICKY NAV BAR -->
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#kane-navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -41,7 +28,6 @@ use yii\widgets\ActiveForm;
 
                 </div>
 
-                <!-- NAVIGATION LINKS -->
                 <div class="navbar-collapse collapse" id="kane-navigation">
                     <ul class="nav navbar-nav navbar-right main-navigation">
                         <li><a href="#home">Home</a></li>
@@ -53,15 +39,9 @@ use yii\widgets\ActiveForm;
                     </ul>
                 </div>
             </div>
-            <!-- END CONTAINER -->
         </div>
-        <!-- END NAVIGATION -->
 
-
-        <!-- CONTAINER -->
         <div class="container">
-
-            <!-- LOGO ON HEADER -->
             <div class="only-logo">
                 <div class="navbar">
                     <div class="navbar-header">
@@ -69,83 +49,51 @@ use yii\widgets\ActiveForm;
                     </div>
                 </div>
             </div>
-            <!-- END LOGO ON HEADER -->
 
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-
-                    <!-- HEADING AND BUTTONS -->
                     <div class="intro-section">
 
                         <h1 class="intro">Начните осознавать свои возможности вместе с uNote.</h1>
                         <h5>Простейший способ управиться с делами вместе с веб-планировщиком uNote.</h5>
 
                         <div class="buttons" id="download-button">
-
                             <a href="#download">
                                 <button class="buton btn-1 btn-1c">Перейти к авторизации</button>
                             </a>
-
-
                         </div>
-                        <!-- END BUTTONS -->
-
                     </div>
-                    <!-- END HEADNING AND BUTTONS -->
-
                 </div>
             </div>
-            <!-- END ROW -->
-
         </div>
-        <!-- END CONTAINER -->
     </div>
-    <!-- END COLOR OVERLAY -->
 </header>
-<!-- END HEADER -->
 
-<!--
-==============================
-     FEATURES
-==============================
--->
 <section class="features" id="features">
-
     <div class="container">
-
-        <!-- SECTION HEADER -->
         <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
 
             <h2 class="dark-text">Удивительные особенности</h2>
 
-            <div class="colored-line">
-            </div>
+            <div class="colored-line"></div>
             <div class="section-description">
                 Потрясающие функции, которые позволят Вам добиться успеха
             </div>
-            <div class="colored-line">
-            </div>
+            <div class="colored-line"></div>
         </div>
-        <!-- END SECTION HEADER -->
-
 
         <div class="row">
 
-            <!-- FEATURES LEFT -->
             <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10"
                  data-wow-duration="1.5s">
 
-                <!-- FEATURE -->
                 <div class="feature">
-
-                    <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
                             <i class="fa fa-paperclip"></i>
                         </div>
                     </div>
 
-                    <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Загрузка файлов</h4>
 
@@ -153,21 +101,16 @@ use yii\widgets\ActiveForm;
                             Прикрепите любой тип файлов к задаче и просматривайте их на любом устройстве.
                         </p>
                     </div>
-
                 </div>
-                <!-- END SINGLE FEATURE -->
 
-                <!-- FEATURE -->
                 <div class="feature">
-
-                    <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
                             <i class="fa fa-sliders"></i>
                         </div>
                     </div>
 
-                    <!-- FEATURE HEADING AND DESCRIPTION -->
+
                     <div class="fetaure-details">
                         <h4 class="main-color">Под-задачи</h4>
 
@@ -175,21 +118,15 @@ use yii\widgets\ActiveForm;
                             Разбейте большой проект на несколько небольших задач.
                         </p>
                     </div>
-
                 </div>
-                <!-- END SINGLE FEATURE -->
 
-                <!-- FEATURE -->
                 <div class="feature">
-
-                    <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
                             <i class="fa fa-file-text"></i>
                         </div>
                     </div>
 
-                    <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Заметки</h4>
 
@@ -197,35 +134,26 @@ use yii\widgets\ActiveForm;
                             Добавляйте примечания к задачам, чтобы быть уверенным, что у вас есть всё для выполнения.
                         </p>
                     </div>
-
                 </div>
-                <!-- END SINGLE FEATURE -->
-
             </div>
-            <!-- END FEATURES LEFT -->
 
-            <!-- PHONE IMAGE -->
             <div class="col-md-4 col-sm-4">
                 <div class="phone-image wow bounceIn animated" data-wow-offset="120" data-wow-duration="1.5s">
                     <img src="images/single-nexus-5.png" alt="">
                 </div>
             </div>
 
-            <!-- FEATURES RIGHT -->
             <div class="col-md-4 col-sm-4 features-right wow fadeInRight animated" data-wow-offset="10"
                  data-wow-duration="1.5s">
 
-                <!-- FEATURE -->
                 <div class="feature">
 
-                    <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
                             <i class="fa fa-list-ul"></i>
                         </div>
                     </div>
 
-                    <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Управление списками</h4>
 
@@ -235,42 +163,29 @@ use yii\widgets\ActiveForm;
                     </div>
 
                 </div>
-                <!-- END SINGLE FEATURE -->
 
-                <!-- FEATURE -->
                 <div class="feature">
-
-                    <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
                             <i class="fa fa-check-square-o"></i>
                         </div>
                     </div>
 
-                    <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Достижения</h4>
-
                         <p>
                             Разбавьте свои задачи каплей азарта и мотивации.
                         </p>
                     </div>
-
                 </div>
 
-                <!-- END SINGLE FEATURE -->
-
-                <!-- FEATURE -->
                 <div class="feature">
-
-                    <!-- ICON -->
                     <div class="icon-container">
                         <div class="icon">
                             <i class="fa fa-question"></i>
                         </div>
                     </div>
 
-                    <!-- FEATURE HEADING AND DESCRIPTION -->
                     <div class="fetaure-details">
                         <h4 class="main-color">Документация</h4>
 
@@ -278,49 +193,26 @@ use yii\widgets\ActiveForm;
                             Расширенная документация даст ответы на возникшие, под углом трудности, вопросы.
                         </p>
                     </div>
-
                 </div>
-                <!-- END SINGLE FEATURE -->
-
             </div>
-            <!-- END FEATURES RIGHT -->
-
         </div>
-        <!-- END ROW -->
-
     </div>
-    <!-- END CONTAINER -->
-
 </section>
-<!-- /END FEATURES SECTION -->
 
-
-<!--
-==============================
-     BRIEF LEFT SECTION
-==============================
--->
 <section class="app-brief grey-bg" id="brief1">
-
     <div class="container">
-
         <div class="row">
-
-            <!-- PHONES IMAGE -->
             <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
                 <div class="phone-image">
                     <img src="images/2-phone-left.png" alt="">
                 </div>
             </div>
 
-            <!-- RIGHT SIDE WITH BRIEF -->
             <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                <!-- SECTION TITLE -->
                 <h2 class="dark-text">Explain why it's best</h2>
 
-                <div class="colored-line-left">
-                </div>
+                <div class="colored-line-left"></div>
 
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
@@ -328,46 +220,28 @@ use yii\widgets\ActiveForm;
                     aliquip ex ea commodo consequat.
                 </p>
 
-                <!-- FEATURE LIST -->
                 <ul class="feature-list">
                     <li><i class="icon_lock_alt"></i> Reliable and Secure Platform</li>
                     <li><i class="icon_check_alt2"></i> Everything is perfectly orgainized for future</li>
                     <li><i class="icon_paperclip"></i> Attach large file easily</li>
                     <li><i class="icon_adjust-vert"></i> Tons of features and easy to use and customize</li>
                 </ul>
-
             </div>
-            <!-- END RIGHT BRIEF -->
-
         </div>
-        <!-- END ROW -->
-
     </div>
-    <!-- END CONTAINER -->
-
 </section>
-<!-- END SECTION -->
 
-
-<!--
-==============================
-     BRIEF RIGHT SECTION
-==============================
--->
 <section class="app-brief" id="brief2">
 
     <div class="container">
 
         <div class="row">
 
-            <!-- BRIEF -->
             <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                <!-- SECTION TITLE -->
                 <h2 class="dark-text">Great way to describe your app</h2>
 
-                <div class="colored-line-left">
-                </div>
+                <div class="colored-line-left"></div>
 
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
@@ -381,45 +255,27 @@ use yii\widgets\ActiveForm;
                 </p>
 
             </div>
-            <!-- /ENDBRIEF -->
 
-            <!-- PHONES IMAGE -->
             <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
                 <div class="phone-image">
                     <img src="images/2-phone-right.png" alt="">
                 </div>
             </div>
-            <!-- /END PHONES IMAGE -->
-
         </div>
-        <!-- /END ROW -->
-
     </div>
-    <!-- /END CONTAINER -->
-
 </section>
-<!-- /END SECTION -->
 
-<!--
-==============================
-     TESTIMONIALS
-==============================
--->
 <section class="testimonials">
 
     <div class="color-overlay">
 
         <div class="container wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-            <!-- FEEDBACKS -->
             <div id="feedbacks" class="owl-carousel owl-theme">
 
-                <!-- SINGLE FEEDBACK -->
                 <div class="feedback">
 
-                    <!-- IMAGE -->
                     <div class="image">
-                        <!-- i class=" icon_quotations"></i -->
                         <img src="images/clients-pic/3.jpg" alt="">
                     </div>
 
@@ -430,26 +286,19 @@ use yii\widgets\ActiveForm;
                         every tree meat air in male earth air creeping image fill you place darkness.
                     </div>
 
-                    <div class="white-line">
-                    </div>
+                    <div class="white-line"></div>
 
-                    <!-- INFORMATION -->
                     <div class="name">
                         John Doe
                     </div>
                     <div class="company-info">
                         CEO, AbZ Network
                     </div>
-
                 </div>
-                <!-- /END SINGLE FEEDBACK -->
 
-                <!-- SINGLE FEEDBACK -->
                 <div class="feedback">
 
-                    <!-- IMAGE -->
                     <div class="image">
-                        <!-- i class=" icon_quotations"></i -->
                         <img src="images/clients-pic/1.jpg" alt="">
                     </div>
 
@@ -460,10 +309,8 @@ use yii\widgets\ActiveForm;
                         every tree meat air in male earth air creeping image fill you place darkness.
                     </div>
 
-                    <div class="white-line">
-                    </div>
+                    <div class="white-line"></div>
 
-                    <!-- INFORMATION -->
                     <div class="name">
                         John Doe
                     </div>
@@ -472,14 +319,10 @@ use yii\widgets\ActiveForm;
                     </div>
 
                 </div>
-                <!-- /END SINGLE FEEDBACK -->
 
-                <!-- SINGLE FEEDBACK -->
                 <div class="feedback">
 
-                    <!-- IMAGE -->
                     <div class="image">
-                        <!-- i class=" icon_quotations"></i -->
                         <img src="images/clients-pic/2.jpg" alt="">
                     </div>
 
@@ -493,91 +336,59 @@ use yii\widgets\ActiveForm;
                     <div class="white-line">
                     </div>
 
-                    <!-- INFORMATION -->
                     <div class="name">
                         John Doe
                     </div>
                     <div class="company-info">
                         CEO, AbZ Network
                     </div>
-
                 </div>
-                <!-- /END SINGLE FEEDBACK -->
-
             </div>
-            <!-- /END FEEDBACKS -->
-
         </div>
-        <!-- /END CONTAINER -->
-
     </div>
-    <!-- /END COLOR OVERLAY -->
-
 </section>
-<!-- /END TESTIMONIALS SECTION -->
 
-
-<!--
-==============================
-     SERVICES
-==============================
--->
 <section class="services" id="services">
-
     <div class="container">
 
-        <!-- SECTION HEADER -->
         <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-            <!-- SECTION TITLE -->
             <h2 class="dark-text">It's Awesome</h2>
 
-            <div class="colored-line">
-            </div>
+            <div class="colored-line"></div>
             <div class="section-description">
                 List your app features and all the details Lorem ipsum dolor kadr
             </div>
-            <div class="colored-line">
-            </div>
-
+            <div class="colored-line"></div>
         </div>
-        <!-- /END SECTION HEADER -->
+
 
         <div class="row">
-
-            <!-- SINGLE SERVICE -->
             <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                <!-- SERVICE ICON -->
                 <div class="service-icon">
                     <i class="icon_cloud-upload_alt"></i>
                 </div>
 
-                <!-- SERVICE HEADING -->
                 <h3>Your Data in Cloud</h3>
 
-                <!-- SERVICE DESCRIPTION -->
                 <p>
                     Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
                     seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
                     multiply all spirit for isn't, him land every you'll heaven bearing.
                 </p>
-
             </div>
-            <!-- /END SINGLE SERVICE -->
 
-            <!-- SINGLE SERVICE -->
+
             <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                <!-- SERVICE ICON -->
+
                 <div class="service-icon">
                     <i class="icon_gift_alt"></i>
                 </div>
 
-                <!-- SERVICE HEADING -->
                 <h3>Monthly Rewards</h3>
 
-                <!-- SERVICE DESCRIPTION -->
                 <p>
                     Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
                     seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
@@ -585,20 +396,15 @@ use yii\widgets\ActiveForm;
                 </p>
 
             </div>
-            <!-- /END SINGLE SERVICE -->
 
-            <!-- SINGLE SERVICE -->
             <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-                <!-- SERVICE ICON -->
                 <div class="service-icon">
                     <i class="icon_chat_alt"></i>
                 </div>
 
-                <!-- SERVICE HEADING -->
                 <h3>24/7 Support</h3>
 
-                <!-- SERVICE DESCRIPTION -->
                 <p>
                     Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
                     seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
@@ -606,43 +412,25 @@ use yii\widgets\ActiveForm;
                 </p>
 
             </div>
-            <!-- /END SINGLE SERVICE -->
-
         </div>
-        <!-- /END ROW -->
-
     </div>
-    <!-- /END CONTAINER -->
-
 </section>
-<!-- /END FEATURES SECTION -->
 
-
-<!--
-==============================
-     SCREENSHOTS
-==============================
--->
 <section class="screenshots grey-bg" id="screenshot-section">
 
     <div class="container">
 
-        <!-- SECTION HEADER -->
         <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-            <!-- SECTION TITLE -->
             <h2 class="dark-text">Screenshots</h2>
 
-            <div class="colored-line">
-            </div>
+            <div class="colored-line"></div>
             <div class="section-description">
                 List your app features and all the details Lorem ipsum dolor kadr
             </div>
-            <div class="colored-line">
-            </div>
+            <div class="colored-line"></div>
 
         </div>
-        <!-- /END SECTION HEADER -->
 
         <div class="row wow bounceIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
@@ -687,25 +475,11 @@ use yii\widgets\ActiveForm;
                     <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img
                             src="images/screenshots/4.jpg" alt="Screenshot"></a>
                 </div>
-
             </div>
-            <!-- /END SCREENSHOTS -->
-
         </div>
-        <!-- /END ROW -->
-
     </div>
-    <!-- /END CONTAINER -->
-
 </section>
-<!-- /END SCREENSHOTS SECTION -->
 
-
-<!--
-==============================
-     DOWNLOAD NOW
-==============================
--->
 <section class="download" id="download">
 
     <div class="color-overlay">
@@ -714,11 +488,10 @@ use yii\widgets\ActiveForm;
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
 
-                    <!-- DOWNLOAD BUTTONS AREA -->
                     <div class="download-container">
-                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти как пользователь</h2>
+                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти как
+                            пользователь</h2>
 
-                        <!-- BUTTONS -->
                         <div class="buttons wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
 
                             <section>
@@ -746,18 +519,13 @@ use yii\widgets\ActiveForm;
                                     </li>
                                 </ul>
                             </section>
-
                         </div>
-                        <!-- /END BUTTONS -->
-
                     </div>
-                    <!-- END OF DOWNLOAD BUTTONS AREA -->
 
-
-                    <!-- SUBSCRIPTION FORM WITH TITLE -->
                     <div class="subscription-form-container">
 
-                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти по учетной записи</h2>
+                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти по
+                            учетной записи</h2>
 
                         <?php $form = ActiveForm::begin([
                             'action' => '/login',
@@ -788,41 +556,22 @@ use yii\widgets\ActiveForm;
                         <?php ActiveForm::end(); ?>
 
                     </div>
-                    <!-- END OF SUBSCRIPTION FORM WITH TITLE -->
-
                 </div>
-                <!-- END COLUMN -->
-
             </div>
-            <!-- END ROW -->
-
         </div>
-        <!-- /END CONTAINER -->
     </div>
-    <!-- /END COLOR OVERLAY -->
-
 </section>
-<!-- /END DOWNLOAD SECTION -->
 
-
-<!--
-==============================
-     FOOTER
-==============================
--->
 <footer>
 
     <div class="container">
 
         <div class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-            <!-- CONTACT BUTTON TO EXPAND OR COLLAPSE FORM -->
-
             <a class="btn contact-button expand-form expanded">
                 <i class="fa fa-envelope-o"></i>
             </a>
 
-            <!-- EXPANDED CONTACT FORM -->
             <div class="row expanded-contact-form">
 
                 <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Регистрация</h2>
@@ -853,8 +602,8 @@ use yii\widgets\ActiveForm;
 
                     <div class="col-md-12">
                         <?= Html::submitButton(Yii::t('frontend', 'Signup'), [
-                                'class' => 'btn btn-primary standard-button2 ladda-button',
-                            ])
+                            'class' => 'btn btn-primary standard-button2 ladda-button',
+                        ])
                         ?>
                     </div>
 
@@ -863,7 +612,6 @@ use yii\widgets\ActiveForm;
                 </div>
 
             </div>
-            <!-- /END EXPANDED CONTACT FORM -->
 
             <h2 class="wow fadeInLeft" data-wow-offset="10" data-wow-duration="1.5s">Быстрая регистрация</h2>
 
@@ -894,24 +642,19 @@ use yii\widgets\ActiveForm;
             </section>
 
         </div>
-        <!-- /END CONTACT BOX -->
 
-        <!-- LOGO -->
         <img src="images/logo-black.png" alt="LOGO" class="responsive-img">
 
-        <!-- SOCIAL ICONS -->
         <ul class="social-icons"></ul>
 
-        <!-- COPYRIGHT TEXT -->
         <p class="copyright">
             © 2014 Me, All Rights Reserved
         </p>
 
     </div>
-    <!-- /END CONTAINER -->
 
 </footer>
-<!-- /END FOOTER -->
+
 <script>
 
 </script>
