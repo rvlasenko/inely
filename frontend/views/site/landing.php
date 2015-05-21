@@ -716,8 +716,7 @@ use yii\widgets\ActiveForm;
 
                     <!-- DOWNLOAD BUTTONS AREA -->
                     <div class="download-container">
-                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти с
-                            помощью</h2>
+                        <h2 class=" wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти как пользователь</h2>
 
                         <!-- BUTTONS -->
                         <div class="buttons wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
@@ -726,19 +725,22 @@ use yii\widgets\ActiveForm;
                                 <ul id='services'>
                                     <li>
                                         <div>
-                                            <a href="user/sign-in/oauth?authclient=facebook" rel="external"><i class="fa fa-facebook"></i></a>
+                                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=facebook',
+                                            'Facebook', 600, 400); return false"><i class="fa fa-facebook"></i></a>
                                         </div>
                                         <span>Facebook</span>
                                     </li>
                                     <li>
                                         <div>
-                                            <a href="user/sign-in/oauth?authclient=vkontakte"><i class="fa fa-vk"></i></a>
+                                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=vkontakte',
+                                            'Vkontakte', 660, 385); return false"><i class="fa fa-vk"></i></a>
                                         </div>
-                                        <span>VK</span>
+                                        <span>vk.com</span>
                                     </li>
                                     <li>
                                         <div>
-                                            <a href="user/sign-in/oauth?authclient=google"><i class="fa fa-google-plus"></i></a>
+                                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=google',
+                                            'Google', 400, 500); return false"><i class="fa fa-google-plus"></i></a>
                                         </div>
                                         <span>Google</span>
                                     </li>
@@ -755,7 +757,7 @@ use yii\widgets\ActiveForm;
                     <!-- SUBSCRIPTION FORM WITH TITLE -->
                     <div class="subscription-form-container">
 
-                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">или учетной записи</h2>
+                        <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти по учетной записи</h2>
 
                         <?php $form = ActiveForm::begin([
                             'action' => '/login',
@@ -823,8 +825,7 @@ use yii\widgets\ActiveForm;
             <!-- EXPANDED CONTACT FORM -->
             <div class="row expanded-contact-form">
 
-                <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
-                    Зарегистрироваться!</h2>
+                <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Регистрация</h2>
 
                 <div class="col-md-8 col-md-offset-2">
 
@@ -859,25 +860,38 @@ use yii\widgets\ActiveForm;
 
                     <?php ActiveForm::end(); ?>
 
-                        <!-- <div class="col-md-6">
-                            <input class="form-control input-box" id="name" type="text" name="name"
-                                   placeholder="Имя">
-                        </div>
-
-                        <div class="col-md-6">
-                            <input class="form-control input-box" id="email" type="email" name="email"
-                                   placeholder="Email">
-                        </div>
-
-                        <div class="col-md-6">
-                            <input class="form-control input-box" id="name" type="password" name="pass"
-                                   placeholder="Пароль">
-                        </div> -->
-
                 </div>
 
             </div>
             <!-- /END EXPANDED CONTACT FORM -->
+
+            <h2 class="wow fadeInLeft" data-wow-offset="10" data-wow-duration="1.5s">Быстрая регистрация</h2>
+
+            <section>
+                <ul id='services'>
+                    <li>
+                        <div>
+                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=facebook',
+                                            'Facebook', 600, 400); return false"><i class="fa fa-facebook"></i></a>
+                        </div>
+                        <span>Facebook</span>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=vkontakte',
+                                            'Vkontakte', 660, 385); return false"><i class="fa fa-vk"></i></a>
+                        </div>
+                        <span>vk.com</span>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=google',
+                                            'Google', 400, 500); return false"><i class="fa fa-google-plus"></i></a>
+                        </div>
+                        <span>Google</span>
+                    </li>
+                </ul>
+            </section>
 
         </div>
         <!-- /END CONTACT BOX -->
@@ -886,11 +900,7 @@ use yii\widgets\ActiveForm;
         <img src="images/logo-black.png" alt="LOGO" class="responsive-img">
 
         <!-- SOCIAL ICONS -->
-        <ul class="social-icons">
-            <li><a href=""><i class="social_facebook_square"></i></a></li>
-            <li><a href=""><i class="social_twitter_square"></i></a></li>
-            <li><a href=""><i class="social_googleplus_square"></i></a></li>
-        </ul>
+        <ul class="social-icons"></ul>
 
         <!-- COPYRIGHT TEXT -->
         <p class="copyright">
@@ -902,5 +912,7 @@ use yii\widgets\ActiveForm;
 
 </footer>
 <!-- /END FOOTER -->
+<script>
 
+</script>
 </body>

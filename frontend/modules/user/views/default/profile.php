@@ -27,8 +27,6 @@ $this->title = Yii::t('frontend', 'Profile')
 
     <?= $form->field($model, 'firstname')->textInput(['maxlength' => 255]) ?>
 
-    <?= $form->field($model, 'middlename')->textInput(['maxlength' => 255]) ?>
-
     <?= $form->field($model, 'lastname')->textInput(['maxlength' => 255]) ?>
 
     <?= $form->field($model, 'locale')->dropDownlist(Yii::$app->params['availableLocales']) ?>

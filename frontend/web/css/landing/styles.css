@@ -76,11 +76,6 @@ a:hover {
     box-sizing: border-box;
 }
 
-ul,
-ol {
-    padding-left: 0 !important;
-}
-
 li {
     list-style: none;
 }
@@ -123,7 +118,7 @@ h2 {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.9rem;
     line-height: 4.3rem;
 }
 
@@ -1041,10 +1036,6 @@ footer {
     background: #FFFFFF;
 }
 
-footer .contact-box {
-    margin-bottom: 78px;
-}
-
 footer .contact-box .contact-button {
     height: 80px;
     width: 80px;
@@ -1116,8 +1107,6 @@ footer .contact-box .expanded-contact-form .textarea-box:active {
 }
 
 footer .social-icons {
-    margin-top: 30px;
-    border-bottom: 1px solid #e5e5e5;
     padding-bottom: 50px;
 }
 
@@ -1135,4 +1124,12 @@ footer .copyright {
     color: #808080;
     padding-top: 10px;
     margin-bottom: 50px;
+}
+
+div.contact-box > h2 {
+    margin-top: 0.8em;
+}
+
+div.contact-box > section {
+    margin-top: -1.5em;
 }
