@@ -2,7 +2,6 @@
 namespace frontend\controllers;
 
 use frontend\models\ContactForm;
-use frontend\modules\user\models\LoginForm;
 use frontend\modules\user\models\SignupForm;
 use Yii;
 use yii\web\Controller;
@@ -38,11 +37,9 @@ class SiteController extends Controller
             return $this->render('index');
         else {
             $sign = new SignupForm();
-            $login = new LoginForm();
 
             return $this->render('landing', [
                 'sign' => $sign,
-                'login' => $login,
             ]);
         }
     }

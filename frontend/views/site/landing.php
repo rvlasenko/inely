@@ -642,6 +642,18 @@ use yii\widgets\ActiveForm;
                 $('myModal').modal('show', {backdrop: 'static'});
             });
         });
+
+        $('.sign-a').click(function (ev) {
+            alert(67567);
+            /*ev.preventDefault();
+
+            var url = 'sign-up';
+
+            $.get(url, function (html) {
+                $('#myModal .modal-body').html(html);
+                $('myModal').modal('show', {backdrop: 'static'});
+            });*/
+        });
     });
     /*$('button.log').click(function (event) {
         event.preventDefault();

@@ -39,19 +39,12 @@ class LandingAsset extends AssetBundle
 
     public $js = [
         'js/landing/smoothscroll.js',
-        'js/landing/jquery.scrollTo.min.js',
-        'js/landing/jquery.localScroll.min.js',
+        'js/landing/jquery.plugins.js',
         'js/landing/owl.carousel.min.js',
         'js/landing/nivo-lightbox.min.js',
         'js/landing/simple-expand.min.js',
         'js/landing/wow.min.js',
-        'js/landing/jquery.stellar.min.js',
         'js/landing/retina.min.js',
-        'js/landing/matchMedia.js',
-        'js/landing/jquery.backgroundvideo.min.js',
-        'js/landing/jquery.nav.js',
-        'js/landing/jquery.ajaxchimp.min.js',
-        'js/landing/jquery.fitvids.js',
         'js/landing/custom.js',
         'js/landing/bootstrap.min.js',
     ];

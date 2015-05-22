@@ -1,8 +1,8 @@
 <?php
-/* @var $this \yii\web\View */
 use yii\helpers\ArrayHelper;
 use yii\widgets\Breadcrumbs;
 
+/* @var $this \yii\web\View */
 /* @var $content string */
 
 if (!Yii::$app->user->isGuest)
@@ -28,12 +28,11 @@ else
     $this->endContent();
 ?>
 
-<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                ...
+
             </div>
         </div>
     </div>
