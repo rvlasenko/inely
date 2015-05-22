@@ -2,19 +2,71 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $this yii\web\View */
-/* @var $form yii\widgets\ActiveForm */
-/* @var $model \frontend\modules\user\models\LoginForm */
-
-$this->title = Yii::t('frontend', 'Login');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+    <?php /*\yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
+    <?php $form = ActiveForm::begin([
+        'action' => '/login',
+        'options' => [
+            'class' => 'subscription-form form-inline wow fadeInRight animated animated',
+            'data-wow-offset' => '10',
+            'data-wow-duration' => '2s',
+            'role' => 'form',
+            'data-pjax' => true
+        ],
+    ]); ?>
+    <?= $form->field($model, 'identity', [
+        'options' => [
+            'class' => 'col-md-6',
+        ],
+    ])->textInput(['placeholder' => 'Имя или Email'])->label(false) ?>
+    <?= $form->field($model, 'password', [
+        'options' => [
+            'class' => 'col-md-6',
+        ],
+    ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
+
+    <div class="col-md-12">
+        <?= Html::submitButton(Yii::t('frontend', 'Login'), [
+            'class' => 'buton btn-1 btn-1b login',
+        ]) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+    <?php \yii\widgets\Pjax::end() */?>
+
+
+<!-- SUBSCRIPTION FORM WITH TITLE -->
+<div class="subscription-form-container">
+
+    <!-- =====================
+         MAILCHIMP FORM STARTS
+         ===================== -->
+
+    <h4 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s"></h4>
+
+    <form class="subscription-form mailchimp form-inline wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s" role="form">
+        <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
+        <?php $form = ActiveForm::begin() ?>
+
+        <?= $form->field($model, 'identity')->textInput(['placeholder' => 'Имя или Email'])->label(false) ?>
+        <input type="email" name="email" id="subscriber-email" placeholder="Your Email" class="form-control input-box">
+        <input type="password" name="password" id="subscriber-email" placeholder="Your Password" class="form-control input-box">
+
+        <div class="col-md-12">
+            <?= Html::submitButton(Yii::t('frontend', 'Login'), [
+                'class' => 'buton btn-1 btn-1b login',
+            ]) ?>
+        </div>
+
+    </form>
+    <?php ActiveForm::end(); ?>
+    <?php \yii\widgets\Pjax::end() ?>
+
+</div>
+<!-- END OF SUBSCRIPTION FORM WITH TITLE -->
+
+        <?php /*$form = ActiveForm::begin(['id' => 'login-form']); ?>
             <?= $form->field($model, 'identity') ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
             <?= $form->field($model, 'rememberMe')->checkbox() ?>
@@ -36,7 +88,5 @@ $this->params['breadcrumbs'][] = $this->title;
                     'baseAuthUrl' => ['/user/sign-in/oauth']
                 ]) ?>
             </div>
-            <?php ActiveForm::end(); ?>
-        </div>
-    </div>
-</div>
+            <?php ActiveForm::e
+nd(); */?>

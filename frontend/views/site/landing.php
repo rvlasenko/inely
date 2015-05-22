@@ -61,6 +61,7 @@ use yii\widgets\ActiveForm;
                             <a href="#download">
                                 <button class="buton btn-1 btn-1c">Перейти к авторизации</button>
                             </a>
+                            <button type="button" class="btn btn-primary log" data-toggle="modal" data-target="#myModal">Large modal</button>
                         </div>
                     </div>
                 </div>
@@ -527,6 +528,7 @@ use yii\widgets\ActiveForm;
                         <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Войти по
                             учетной записи</h2>
 
+                        <?php /*\yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
                         <?php $form = ActiveForm::begin([
                             'action' => '/login',
                             'options' => [
@@ -534,18 +536,19 @@ use yii\widgets\ActiveForm;
                                 'data-wow-offset' => '10',
                                 'data-wow-duration' => '2s',
                                 'role' => 'form',
+                                'data-pjax' => true
                             ],
                         ]); ?>
-                        <?= $form->field($model, 'email', [
+                        <?= $form->field($login, 'identity', [
                             'options' => [
                                 'class' => 'col-md-6',
                             ],
-                        ])->textInput(['placeholder' => 'Email'])->label(false) ?>
-                        <?= $form->field($model, 'password', [
+                        ])->textInput(['placeholder' => 'Имя или Email'])->label(false) ?>
+                        <?= $form->field($login, 'password', [
                             'options' => [
                                 'class' => 'col-md-6',
                             ],
-                        ])->passwordInput()->textInput(['placeholder' => 'Пароль'])->label(false) ?>
+                        ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
                         <div class="col-md-12">
                             <?= Html::submitButton(Yii::t('frontend', 'Login'), [
@@ -554,6 +557,7 @@ use yii\widgets\ActiveForm;
                         </div>
 
                         <?php ActiveForm::end(); ?>
+                        <?php \yii\widgets\Pjax::end() */?>
 
                     </div>
                 </div>
@@ -578,27 +582,29 @@ use yii\widgets\ActiveForm;
 
                 <div class="col-md-8 col-md-offset-2">
 
+                    <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
                     <?php $form = ActiveForm::begin([
                         'action' => '/sign-up',
                         'options' => [
                             'class' => 'contact-form',
+                            'data-pjax' => true
                         ],
                     ]) ?>
-                    <?= $form->field($model, 'username', [
+                    <?= $form->field($sign, 'username', [
                         'options' => [
-                            'class' => 'col-md-12', //input-box
+                            'class' => 'col-md-12',
                         ],
                     ])->textInput(['placeholder' => 'Ваше имя'])->label(false) ?>
-                    <?= $form->field($model, 'email', [
+                    <?= $form->field($sign, 'email', [
                         'options' => [
-                            'class' => 'col-md-6', //input-box
+                            'class' => 'col-md-6',
                         ],
                     ])->textInput(['placeholder' => 'Email'])->label(false) ?>
-                    <?= $form->field($model, 'password', [
+                    <?= $form->field($sign, 'password', [
                         'options' => [
-                            'class' => 'col-md-6', //input-box
+                            'class' => 'col-md-6',
                         ],
-                    ])->passwordInput()->textInput(['placeholder' => 'Пароль'])->label(false) ?>
+                    ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
                     <div class="col-md-12">
                         <?= Html::submitButton(Yii::t('frontend', 'Signup'), [
@@ -608,6 +614,7 @@ use yii\widgets\ActiveForm;
                     </div>
 
                     <?php ActiveForm::end(); ?>
+                    <?php \yii\widgets\Pjax::end() ?>
 
                 </div>
 
@@ -620,21 +627,21 @@ use yii\widgets\ActiveForm;
                     <li>
                         <div>
                             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=facebook',
-                                            'Facebook', 600, 400); return false"><i class="fa fa-facebook"></i></a>
+                             'Facebook', 600, 400); return false"><i class="fa fa-facebook"></i></a>
                         </div>
                         <span>Facebook</span>
                     </li>
                     <li>
                         <div>
                             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=vkontakte',
-                                            'Vkontakte', 660, 385); return false"><i class="fa fa-vk"></i></a>
+                             'Vkontakte', 660, 385); return false"><i class="fa fa-vk"></i></a>
                         </div>
                         <span>vk.com</span>
                     </li>
                     <li>
                         <div>
                             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=google',
-                                            'Google', 400, 500); return false"><i class="fa fa-google-plus"></i></a>
+                             'Google', 400, 500); return false"><i class="fa fa-google-plus"></i></a>
                         </div>
                         <span>Google</span>
                     </li>
@@ -656,6 +663,23 @@ use yii\widgets\ActiveForm;
 </footer>
 
 <script>
+    $('button.log').click(function (event) {
+        event.preventDefault();
 
+        var url = 'login';
+
+        var modalContainer = $('#myModal');
+        modalContainer.find('.modal-body');
+        modalContainer.modal({show: true});
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: {},
+            success: function (data) {
+                $('.modal-body').html(data);
+                modalContainer.modal({show: true});
+            }
+        });
+    });
 </script>
 </body>
