@@ -364,7 +364,7 @@ $resetLink = Yii::$app->urlManager->createAbsoluteUrl(['/user/sign-in/reset-pass
                                 <td align="center" valign="middle"
                                     style="font-family: Tahoma, sans-serif; font-size: 14px;color: #666666"
                                     st-content="postfooter">
-                                    Робот <a href="#" style="text-decoration: none; color: #0a8cce">todo</a>
+                                    Робот <a href="#" style="text-decoration: none; color: #0a8cce">unote</a>
                                 </td>
                             </tr>
                             <!-- Spacing -->

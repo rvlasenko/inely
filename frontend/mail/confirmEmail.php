@@ -364,9 +364,9 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                                 <td align="center" valign="middle"
                                     style="font-family: Tahoma, sans-serif; font-size: 14px;color: #666666"
                                     st-content="postfooter">
-                                    Спасибо за то, что зарегистрировались на <a href="#"
+                                    Спасибо, что зарегистрировались на <a href="#"
                                                                                 style="text-decoration: none; color: #0a8cce"
-                                                                                target="_blank">todo</a>
+                                                                                target="_blank">unote</a>
                                 </td>
                             </tr>
                             <!-- Spacing -->

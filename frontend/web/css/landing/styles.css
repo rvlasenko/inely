@@ -128,7 +128,7 @@ h2 {
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 28px;
     line-height: 38px;
     font-weight: 300;
 }
@@ -245,7 +245,7 @@ section #services li span {
     color: inherit;
     background: none;
     cursor: pointer;
-    padding: 20px 35px;
+    padding: 15px 30px;
     display: inline-block;
     margin: 15px 30px;
     text-transform: uppercase;
@@ -300,6 +300,11 @@ section #services li span {
     top: 0;
     left: 0;
     background: #fff;
+}
+
+form > button:hover,
+form > button:after {
+    color: #337AB7;
 }
 
 .btn-1b:hover,
@@ -454,7 +459,15 @@ header .intro-section {
 
 header .intro-section .intro {
     color: #ffffff;
-    margin-bottom: 36px;
+    margin-bottom: 30px;
+}
+
+div h3 {
+    text-align: center;
+}
+
+div div.form-group {
+    text-align: center;
 }
 
 header .intro-section h5 {
@@ -463,6 +476,11 @@ header .intro-section h5 {
 
 header .intro-section .buttons {
     margin-top: 45px;
+}
+
+.buttons {
+    text-align: center;
+    margin-bottom: 1em;
 }
 
 /*---------------------------------------
@@ -1080,13 +1098,102 @@ footer .contact-box .expanded-contact-form .input-box {
 .form-control:focus {
     border-color: #66AFE9 !important;
     outline: 0px none;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 15px rgba(102, 175, 233, 1) !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px rgba(102, 175, 233, 1) !important;
+}
+
+/* Wrapper */
+.icon-button {
+    background-color: #F5F5F5;
+    border-radius: 3.6rem;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2.0rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+    margin: 0 5px;
+    position: relative;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 3.6rem;
+}
+
+/* Circle */
+.icon-button span {
+    border-radius: 0;
+    display: block;
+    height: 0;
+    left: 50%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 0;
+}
+
+.icon-button:hover span {
+    width: 3.6rem;
+    height: 3.6rem;
+    border-radius: 3.6rem;
+    margin: -1.8rem;
+}
+
+.vk span {
+    background-color: #45668e;
+}
+
+.facebook span {
+    background-color: #3B5998;
+}
+
+.google-plus span {
+    background-color: #db5a3c;
+}
+
+/* Icons */
+.icon-button i {
+    background: none;
+    color: white;
+    height: 3.65rem;
+    left: 0;
+    line-height: 3.7rem;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    width: 3.6rem;
+    z-index: 10;
+}
+
+.icon-button .fa-vk {
+    color: #45668e;
+}
+
+.icon-button .fa-facebook {
+    color: #3B5998;
+}
+
+.icon-button .fa-google-plus {
+    color: #db5a3c;
+}
+
+.icon-button:hover .fa-vk,
+.icon-button:hover .fa-facebook,
+.icon-button:hover .fa-google-plus {
+    color: white;
 }
 
 .form-control {
     font-size: 18px;
     border-radius: 0;
-    height: 55px;
+    height: 45px;
     padding-left: 20px;
     width: 100% !important;
     -webkit-box-shadow: none;

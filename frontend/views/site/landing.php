@@ -58,10 +58,8 @@ use yii\widgets\ActiveForm;
                         <h5>Простейший способ управиться с делами вместе с веб-планировщиком uNote.</h5>
 
                         <div class="buttons" id="download-button">
-                            <a href="#download">
-                                <button class="buton btn-1 btn-1c">Перейти к авторизации</button>
-                            </a>
-                            <button type="button" class="btn btn-primary log" data-toggle="modal" data-target="#myModal">Large modal</button>
+                            <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -617,37 +615,7 @@ use yii\widgets\ActiveForm;
                     <?php \yii\widgets\Pjax::end() ?>
 
                 </div>
-
             </div>
-
-            <h2 class="wow fadeInLeft" data-wow-offset="10" data-wow-duration="1.5s">Быстрая регистрация</h2>
-
-            <section>
-                <ul id='services'>
-                    <li>
-                        <div>
-                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=facebook',
-                             'Facebook', 600, 400); return false"><i class="fa fa-facebook"></i></a>
-                        </div>
-                        <span>Facebook</span>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=vkontakte',
-                             'Vkontakte', 660, 385); return false"><i class="fa fa-vk"></i></a>
-                        </div>
-                        <span>vk.com</span>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=google',
-                             'Google', 400, 500); return false"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                        <span>Google</span>
-                    </li>
-                </ul>
-            </section>
-
         </div>
 
         <img src="images/logo-black.png" alt="LOGO" class="responsive-img">
@@ -663,7 +631,19 @@ use yii\widgets\ActiveForm;
 </footer>
 
 <script>
-    $('button.log').click(function (event) {
+    jQuery(function ($) {
+        $('button.log').click(function (ev) {
+            ev.preventDefault();
+
+            var url = 'login';
+
+            $.get(url, function (html) {
+                $('#myModal .modal-body').html(html);
+                $('myModal').modal('show', {backdrop: 'static'});
+            });
+        });
+    });
+    /*$('button.log').click(function (event) {
         event.preventDefault();
 
         var url = 'login';
@@ -680,6 +660,6 @@ use yii\widgets\ActiveForm;
                 modalContainer.modal({show: true});
             }
         });
-    });
+     });*/
 </script>
 </body>
