@@ -39,7 +39,7 @@ return [
     'Incorrect username or password.' => 'Неправильный логин или пароль.',
     'Language' => 'Язык',
     'Log in with' => 'Войти с помощью',
-    'Login' => 'Войти',
+    'Login' => 'Войти!',
     'Login as user' => 'Войти как пользователь',
     'Login with account' => 'Войти по учетной записи',
     'Logout' => 'Выйти',

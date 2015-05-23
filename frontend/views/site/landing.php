@@ -600,7 +600,7 @@ use yii\widgets\ActiveForm;
         <img src="images/logo-black.png" alt="LOGO" class="logo responsive-img">
 
         <p class="copyright">
-            ©2014 Kane, All Rights Reserved
+            © 2015 Me, All Rights Reserved
         </p>
 
     </div>

@@ -74,7 +74,7 @@ class SignInController extends \yii\web\Controller
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            sleep(1); // well... submit button is so cute
+            //sleep(1); // well... submit button is so cute
             return $this->goBack();
         } else {
             return $this->renderAjax('login', [
@@ -95,6 +95,7 @@ class SignInController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
+                    //$this->renderAjax('login');
                     Yii::$app->getSession()->setFlash(
                         'success',
                         'Вы успешно зарегистрировались! Чтобы стать полноправным участником, осталось подтвердить электронный адрес!'

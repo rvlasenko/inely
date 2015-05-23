@@ -32,7 +32,7 @@ else
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                ...
+                <div class="loader">Загрузка...</div>
             </div>
         </div>
     </div>

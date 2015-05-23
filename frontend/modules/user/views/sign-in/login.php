@@ -96,12 +96,24 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
         new UIProgressButton( bttn, {
             callback : function( instance ) {
                 var progress = 0,
+                    success = 1;
+                    error = -1;
                     interval = setInterval( function() {
                         progress = Math.min( progress + 1, 1 );
                         instance.setProgress( progress );
 
                         if( progress === 1 ) {
-                            instance.stop( pos === 1 || pos === 3 ? 0.9 : -1 );
+                            if ($('form div').hasClass('has-error')) {
+                                error = -1;
+                                success = 1;
+                                //alert('er');
+                            } else {
+                                error = 1;
+                                success = -1;
+                                //alert('suc');
+                            }
+
+                            instance.stop( pos === 1 || pos === 3 ? success : error );
                             clearInterval( interval );
                         }
                     }, 150 );
