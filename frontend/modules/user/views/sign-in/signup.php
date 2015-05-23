@@ -65,7 +65,7 @@ use yii\widgets\ActiveForm;
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
                 <button type="submit">
-                    <span><?= Yii::t('frontend', 'Login') ?></span>
+                    <span><?= Yii::t('frontend', 'Ok!') ?></span>
                 </button>
 
                 <svg class="progress-circle" width="70" height="70">

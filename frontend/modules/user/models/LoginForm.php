@@ -29,8 +29,6 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
-            // recaptcha
-            [[], \himiklab\yii2\recaptcha\ReCaptchaValidator::className()],
         ];
     }
 

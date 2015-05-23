@@ -38,6 +38,7 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+            [[], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => '6Lc4QgcTAAAAAEhGIBT4Fnqqj-NG8_VvbuBuA-ME']
         ];
     }
 

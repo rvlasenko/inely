@@ -47,6 +47,7 @@ return [
     'Name' => 'Имя',
     'Need an account? Sign up.' => 'Нужен аккаунт? Зарегистрируйтесь!',
     'New password was saved.' => 'Новый пароль был сохранен',
+    'Ok!' => 'Готово!',
     'Page not found' => 'Страница не найдена',
     'Password' => 'Пароль',
     'Password reset for {name}' => 'Сброс пароля для {name}',

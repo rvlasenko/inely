@@ -36,8 +36,6 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest)
             return $this->render('index');
         else {
-            $sign = new SignupForm();
-
             return $this->render('landing');
         }
     }
