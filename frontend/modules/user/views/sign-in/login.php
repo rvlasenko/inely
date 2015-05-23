@@ -56,7 +56,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
         <?php //$form->field($model, 'rememberMe')->checkbox() ?>
 
-        <div style="margin:1em 0">
+        <div class="col-md-12" style="margin: 1em 0">
             <?php echo Yii::t('frontend', 'If you forgot your password you can reset it <a href="{link}">here</a>', [
                 'link' => yii\helpers\Url::to(['sign-in/request-password-reset'])
             ]) ?>

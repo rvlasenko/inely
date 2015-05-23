@@ -38,9 +38,7 @@ class SiteController extends Controller
         else {
             $sign = new SignupForm();
 
-            return $this->render('landing', [
-                'sign' => $sign,
-            ]);
+            return $this->render('landing');
         }
     }
 

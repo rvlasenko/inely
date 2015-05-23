@@ -58,8 +58,7 @@ use yii\widgets\ActiveForm;
                         <h5>Простейший способ управиться с делами вместе с веб-планировщиком uNote.</h5>
 
                         <div class="buttons" id="download-button">
-                            <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти
-                            </button>
+                            <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти</button>
                         </div>
                     </div>
                 </div>
@@ -568,68 +567,45 @@ use yii\widgets\ActiveForm;
 
     <div class="container">
 
-        <div class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;" class="contact-box wow rotateIn animated animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-            <a class="btn contact-button expand-form expanded">
-                <i class="fa fa-envelope-o"></i>
-            </a>
+            <a class="btn contact-button expand-form expanded"><i class="icon_mail_alt"></i></a>
 
-            <div class="row expanded-contact-form">
-
-                <h2 class="wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">Регистрация</h2>
+            <div style="display: block;" class="row expanded-contact-form">
 
                 <div class="col-md-8 col-md-offset-2">
 
-                    <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
-                    <?php $form = ActiveForm::begin([
-                        'action' => '/sign-up',
-                        'options' => [
-                            'class' => 'contact-form',
-                            'data-pjax' => true
-                        ],
-                    ]) ?>
-                    <?= $form->field($sign, 'username', [
-                        'options' => [
-                            'class' => 'col-md-12',
-                        ],
-                    ])->textInput(['placeholder' => 'Ваше имя'])->label(false) ?>
-                    <?= $form->field($sign, 'email', [
-                        'options' => [
-                            'class' => 'col-md-6',
-                        ],
-                    ])->textInput(['placeholder' => 'Email'])->label(false) ?>
-                    <?= $form->field($sign, 'password', [
-                        'options' => [
-                            'class' => 'col-md-6',
-                        ],
-                    ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
+                    <form class="contact-form" id="contact" role="form">
 
-                    <div class="col-md-12">
-                        <?= Html::submitButton(Yii::t('frontend', 'Signup'), [
-                            'class' => 'btn btn-primary standard-button2 ladda-button',
-                        ])
-                        ?>
-                    </div>
+                        <div class="col-md-6">
+                            <input class="form-control input-box" id="name" name="name" placeholder="Your Name" type="text">
+                        </div>
 
-                    <?php ActiveForm::end(); ?>
-                    <?php \yii\widgets\Pjax::end() ?>
+                        <div class="col-md-6">
+                            <input class="form-control input-box" id="email" name="email" placeholder="Your Email" type="email">
+                        </div>
 
+                        <div class="col-md-12">
+                            <input class="form-control input-box" id="subject" name="subject" placeholder="Subject" type="text">
+                            <textarea class="form-control textarea-box" id="message" rows="8" placeholder="Message"></textarea>
+                        </div>
+
+                        <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit" name="submit" data-style="expand-left">Send Message</button>
+
+                    </form>
                 </div>
             </div>
         </div>
 
-        <img src="images/logo-black.png" alt="LOGO" class="responsive-img">
-
-        <ul class="social-icons"></ul>
+        <img src="images/logo-black.png" alt="LOGO" class="logo responsive-img">
 
         <p class="copyright">
-            © 2014 Me, All Rights Reserved
+            ©2014 Kane, All Rights Reserved
         </p>
 
     </div>
 
 </footer>
-
 <script>
     jQuery(function ($) {
         $('button.log').click(function (ev) {
@@ -641,18 +617,6 @@ use yii\widgets\ActiveForm;
                 $('#myModal .modal-body').html(html);
                 $('myModal').modal('show', {backdrop: 'static'});
             });
-        });
-
-        $('.sign-a').click(function (ev) {
-            alert(67567);
-            /*ev.preventDefault();
-
-            var url = 'sign-up';
-
-            $.get(url, function (html) {
-                $('#myModal .modal-body').html(html);
-                $('myModal').modal('show', {backdrop: 'static'});
-            });*/
         });
     });
     /*$('button.log').click(function (event) {

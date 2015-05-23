@@ -450,6 +450,10 @@ header .only-logo .navbar .navbar-header {
     float: none;
 }
 
+.logo {
+    padding: 2em;
+}
+
 /* INTRO */
 
 header .intro-section {
@@ -462,20 +466,16 @@ header .intro-section .intro {
     margin-bottom: 30px;
 }
 
-div h3 {
+div h3,
+div div.form-group,
+.subscription-form .col-md-12,
+.subscription-form,
+form.contact-form .col-md-12 {
     text-align: center;
 }
 
-div div.form-group {
-    text-align: center;
-}
-
-.subscription-form .col-md-12 {
-    text-align: center;
-}
-
-.subscription-form  {
-    text-align: center;
+div.g-recaptcha.col-md-12 div div {
+    width: auto !important;
 }
 
 header .intro-section h5 {
