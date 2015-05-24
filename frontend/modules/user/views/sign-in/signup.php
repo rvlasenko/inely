@@ -11,13 +11,13 @@ use yii\widgets\ActiveForm;
 
         <div class="buttons fadeInRight animated">
             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=vkontakte',
-                    'Facebook', 600, 400); return false" class="icon-button vk">
+                    'Vkontakte', 600, 400); return false" class="icon-button vk">
                 <i class="fa fa-vk"></i><span></span></a>
             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=facebook',
                     'Facebook', 660, 385); return false" class="icon-button facebook">
                 <i class="fa fa-facebook"></i><span></span></a>
             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=google',
-                    'Facebook', 400, 500); return false" class="icon-button google-plus">
+                    'Google Plus', 440, 500); return false" class="icon-button google-plus">
                 <i class="fa fa-google-plus"></i><span></span></a>
         </div>
     </div>
@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
             'id' => 'sign-form',
             'action' => '/sign-up',
             'options' => [
-                'class' => 'subscription-form form-inline fadeInRight animated animated',
+                'class' => 'subscription-form form-inline fadeInRight animated',
                 'data-pjax' => true
             ],
         ]) ?>
@@ -59,7 +59,7 @@ use yii\widgets\ActiveForm;
 
         <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
             'name' => 'reCaptcha',
-            'siteKey' => '6Lc4QgcTAAAAAEhGIBT4Fnqqj-NG8_VvbuBuA-ME',
+            'siteKey' => getenv('RC_SITEKEY'),
             'widgetOptions' => ['class' => 'col-md-12']
         ]) ?>
         <?php ActiveForm::end(); ?>

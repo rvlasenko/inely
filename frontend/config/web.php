@@ -38,8 +38,8 @@ $config = [
         'reCaptcha' => [
             'name' => 'reCaptcha',
             'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
-            'siteKey' => '6Lc4QgcTAAAAAEhGIBT4Fnqqj-NG8_VvbuBuA-ME',
-            'secret' => '6Lc4QgcTAAAAAMKBwiljDU3j78juvX5W2BUgHrzR',
+            'siteKey' => getenv('RC_SITEKEY'),
+            'secret' => getenv('RC_SECRET'),
         ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',

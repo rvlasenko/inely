@@ -132,7 +132,7 @@ function icon(pos, instance, progress, success, error, interval) {
 	}
 
 	UIProgressButton.prototype.options = {
-		statusTime : 1500
+		statusTime : 2000
 	}
 
 	UIProgressButton.prototype._init = function() {

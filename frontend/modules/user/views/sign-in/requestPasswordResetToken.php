@@ -65,7 +65,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
             callback : function(instance) {
                 var progress = 0,
                     success = 1;
-                error = -1;
+                    error = -1;
 
                 var interval = setInterval(function() {
                     icon(pos, instance, progress, success, error, interval);

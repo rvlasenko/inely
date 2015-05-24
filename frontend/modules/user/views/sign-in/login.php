@@ -14,13 +14,13 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
         <div class="buttons fadeInRight animated">
             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=vkontakte',
-                    'Facebook', 600, 400); return false" class="icon-button vk">
+                    'Vkontakte', 600, 400); return false" class="icon-button vk">
                 <i class="fa fa-vk"></i><span></span></a>
             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=facebook',
                     'Facebook', 660, 385); return false" class="icon-button facebook">
                 <i class="fa fa-facebook"></i><span></span></a>
             <a href="" onclick="popupwindow('user/sign-in/oauth?authclient=google',
-                    'Facebook', 400, 500); return false" class="icon-button google-plus">
+                    'Google Plus', 440, 500); return false" class="icon-button google-plus">
                 <i class="fa fa-google-plus"></i><span></span></a>
         </div>
     </div>
