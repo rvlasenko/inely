@@ -539,7 +539,7 @@ div h3,
 div div.form-group,
 .subscription-form .col-md-12,
 .subscription-form,
-.contact-form .col-md-12,
+div.col-lg-5 div.col-md-12,
 div.row h4 {
     text-align: center;
 }

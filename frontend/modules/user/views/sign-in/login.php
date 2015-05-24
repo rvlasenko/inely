@@ -38,7 +38,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
             'id' => 'login-form',
             'action' => 'login',
             'options' => [
-                'class' => 'subscription-form form-inline fadeInRight animated animated',
+                'class' => 'subscription-form form-inline fadeInRight animated',
                 'data-pjax' => true
             ],
         ]); ?>
@@ -62,7 +62,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button class="submit">
+                <button form="login-form" class="fadeInRight animated">
                     <span><?= Yii::t('frontend', 'Login') ?></span>
                 </button>
 
@@ -88,57 +88,30 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 </div>
 
 <script>
-     [].slice.call( document.querySelectorAll( '.progress-button' ) ).forEach( function( bttn, pos ) {
+    [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
         new UIProgressButton( bttn, {
-            callback : function( instance ) {
+            callback : function(instance) {
                 var progress = 0,
                     success = 1;
                     error = -1;
-                    interval = setInterval( function() {
-                        progress = Math.min( progress + 1, 1 );
-                        instance.setProgress( progress );
+                    value = $.trim($("#loginform-identity").val());
 
-                        if( progress === 1 ) {
-                            if ($('form div').hasClass('has-error')) {
-                                error = -1;
-                                success = 1;
-                                //alert('er');
-                            } else {
-                                error = 1;
-                                success = -1;
-                                //alert('suc');
-                            }
-
-                            $('.submit').click(function() {
-                                event.preventDefault();
-
-                                    var url = 'login';
-
-                                    $.ajax({
-                                        url: url,
-                                        type: "GET",
-                                        data: {},
-                                        success: function (data) {
-                                            $('.modal-body').html(data);
-                                            modalContainer.modal({show: true});
-                                        }
-                                    });
-                                });
-
-                            instance.stop( pos === 1 || pos === 3 ? success : error );
-                            clearInterval( interval );
-                        }
-                    }, 150 );
+                if (value.length > 0)
+                    var interval = setInterval(function() {
+                        icon(pos, instance, progress, success, error, interval);
+                    }, 1500);
+                else
+                    icon(pos, instance, progress, success, error);
             }
         } );
     } );
 
-    jQuery(function ($) {
+    jQuery(function($) {
 
         function showModal(url, ev) {
             ev.preventDefault();
 
-            $.get(url, function (html) {
+            $.get(url, function(html) {
                 $('#myModal .modal-body').html(html);
                 $('myModal').modal('show', {backdrop: 'static'});
             });

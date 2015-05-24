@@ -64,6 +64,7 @@ return [
     'Subject' => 'Тема',
     'Thank you for contacting us. We will respond to you as soon as possible.' => 'Спасибо. Мы свяжемся с Вами в ближайщее время',
     'There was an error sending email.' => 'Ошибка при отправке сообщения.',
+    'There is no user with such email.' => 'Пользователя с такой электронной почтой не существует.',
     'This email address has already been taken.' => 'Этот e-mail уже занят',
     'This username has already been taken.' => 'Это имя пользователя уже занято',
     'Update' => 'Редактировать',

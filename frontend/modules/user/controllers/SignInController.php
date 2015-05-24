@@ -74,6 +74,7 @@ class SignInController extends \yii\web\Controller
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            sleep(1); // button is so cute
             return $this->goBack();
         } else {
             return $this->renderAjax('login', [

@@ -17,6 +17,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
         <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
         <?php $form = ActiveForm::begin([
+            'id' => 'reset-form',
             'action' => 'user/sign-in/request-password-reset',
             'options' => [
                 'class' => 'subscription-form form-inline fadeInRight animated animated',
@@ -28,10 +29,12 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
                 'class' => 'col-md-12',
             ],
         ])->textInput(['placeholder' => 'Email'])->label(false) ?>
+        <?php ActiveForm::end(); ?>
+        <?php \yii\widgets\Pjax::end() ?>
 
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button type="submit">
+                <button form="reset-form" class="fadeInRight animated">
                     <span><?= Yii::t('frontend', 'Send') ?></span>
                 </button>
 
@@ -53,37 +56,20 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
             </div>
         </div>
-        <?php ActiveForm::end(); ?>
-        <?php \yii\widgets\Pjax::end() ?>
     </div>
 </div>
 
 <script>
-    [].slice.call( document.querySelectorAll( '.progress-button' ) ).forEach( function( bttn, pos ) {
+    [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
         new UIProgressButton( bttn, {
-            callback : function( instance ) {
+            callback : function(instance) {
                 var progress = 0,
                     success = 1;
                 error = -1;
-                interval = setInterval( function() {
-                    progress = Math.min( progress + 1, 1 );
-                    instance.setProgress( progress );
 
-                    if( progress === 1 ) {
-                        if ($('form div').hasClass('has-error')) {
-                            error = -1;
-                            success = 1;
-                            //alert('er');
-                        } else {
-                            error = 1;
-                            success = -1;
-                            //alert('suc');
-                        }
-
-                        instance.stop( pos === 1 || pos === 3 ? success : error );
-                        clearInterval( interval );
-                    }
-                }, 150 );
+                var interval = setInterval(function() {
+                    icon(pos, instance, progress, success, error, interval);
+                }, 250);
             }
         } );
     } );
