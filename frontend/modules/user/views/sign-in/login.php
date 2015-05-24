@@ -35,7 +35,8 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
         <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
         <?php $form = ActiveForm::begin([
-            'action' => '/login',
+            'id' => 'login-form',
+            'action' => 'login',
             'options' => [
                 'class' => 'subscription-form form-inline fadeInRight animated animated',
                 'data-pjax' => true
@@ -56,10 +57,12 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
         <div class="col-md-12" style="margin: 1em 0">
             <?= Yii::t('frontend', 'If you forgot your password you can reset it <a class="reset-a" href="#">here</a>') ?>
         </div>
+        <?php ActiveForm::end(); ?>
+        <?php \yii\widgets\Pjax::end() ?>
 
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button>
+                <button class="submit">
                     <span><?= Yii::t('frontend', 'Login') ?></span>
                 </button>
 
@@ -81,8 +84,6 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
             </div>
         </div>
-        <?php ActiveForm::end(); ?>
-        <?php \yii\widgets\Pjax::end() ?>
     </div>
 </div>
 
@@ -107,6 +108,22 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
                                 success = -1;
                                 //alert('suc');
                             }
+
+                            $('.submit').click(function() {
+                                event.preventDefault();
+
+                                    var url = 'login';
+
+                                    $.ajax({
+                                        url: url,
+                                        type: "GET",
+                                        data: {},
+                                        success: function (data) {
+                                            $('.modal-body').html(data);
+                                            modalContainer.modal({show: true});
+                                        }
+                                    });
+                                });
 
                             instance.stop( pos === 1 || pos === 3 ? success : error );
                             clearInterval( interval );
