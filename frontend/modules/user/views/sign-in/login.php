@@ -46,7 +46,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
             'options' => [
                 'class' => 'col-md-6',
             ],
-        ])->textInput(['placeholder' => 'Логин или email'])->label(false) ?>
+        ])->textInput(['placeholder' => 'Логин или e-mail'])->label(false) ?>
 
         <?= $form->field($model, 'password', [
             'options' => [
@@ -54,12 +54,8 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
             ],
         ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
-        <?php //$form->field($model, 'rememberMe')->checkbox() ?>
-
         <div class="col-md-12" style="margin: 1em 0">
-            <?php echo Yii::t('frontend', 'If you forgot your password you can reset it <a href="{link}">here</a>', [
-                'link' => yii\helpers\Url::to(['sign-in/request-password-reset'])
-            ]) ?>
+            <?= Yii::t('frontend', 'If you forgot your password you can reset it <a class="reset-a" href="#">here</a>') ?>
         </div>
 
         <div class="col-md-12">
@@ -122,15 +118,22 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
     } );
 
     jQuery(function ($) {
-        $('.sign-a').click(function (ev) {
+
+        function showModal(url, ev) {
             ev.preventDefault();
 
-            var url = 'sign-up';
-
             $.get(url, function (html) {
-            $('#myModal .modal-body').html(html);
-            $('myModal').modal('show', {backdrop: 'static'});
+                $('#myModal .modal-body').html(html);
+                $('myModal').modal('show', {backdrop: 'static'});
             });
+        }
+
+        $('.sign-a').click(function(ev) {
+            showModal('sign-up', ev);
+        });
+
+        $('.reset-a').click(function(ev) {
+            showModal('user/sign-in/request-password-reset', ev);
         });
     });
 </script>

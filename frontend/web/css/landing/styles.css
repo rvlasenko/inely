@@ -539,7 +539,8 @@ div h3,
 div div.form-group,
 .subscription-form .col-md-12,
 .subscription-form,
-form.contact-form .col-md-12 {
+form.contact-form .col-md-12,
+div.row h4 {
     text-align: center;
 }
 
@@ -1336,6 +1337,10 @@ div.contact-box > section {
 
 .modal-content {
     border-radius: 0;
+}
+
+.modal-open {
+    overflow: scroll;
 }
 
 /* Button container */
