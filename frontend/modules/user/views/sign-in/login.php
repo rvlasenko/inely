@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 
@@ -39,6 +40,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
             'action' => '/login',
             'options' => [
                 'class' => 'subscription-form form-inline fadeInRight animated animated',
+                'enableClientValidation' => false,
                 'data-pjax' => true
             ],
         ]); ?>
@@ -60,7 +62,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button type="submit">
+                <button>
                     <span><?= Yii::t('frontend', 'Login') ?></span>
                 </button>
 

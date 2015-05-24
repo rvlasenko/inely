@@ -69,7 +69,7 @@ class SignInController extends \yii\web\Controller
     public function actionLogin()
     {
         $model = new LoginForm();
-        if (Yii::$app->request->get() && $model->load($_POST)) {
+        if (Yii::$app->request->isGet && $model->load($_POST)) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }

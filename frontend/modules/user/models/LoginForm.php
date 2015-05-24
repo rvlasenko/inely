@@ -5,6 +5,7 @@ use cheatsheet\Time;
 use common\models\User;
 use Yii;
 use yii\base\Model;
+use yii\base\View;
 
 /**
  * Login form
@@ -50,7 +51,8 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                //$this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+                $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+                //echo Yii::$app->view->renderAjax('/user/sign-in/login');
             }
         }
     }

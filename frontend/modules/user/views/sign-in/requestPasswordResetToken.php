@@ -17,7 +17,7 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
 
         <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
         <?php $form = ActiveForm::begin([
-            'action' => '/user/sign-in/request-password-reset',
+            'action' => 'user/sign-in/request-password-reset',
             'options' => [
                 'class' => 'subscription-form form-inline fadeInRight animated animated',
                 'data-pjax' => true
