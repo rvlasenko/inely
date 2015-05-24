@@ -4,8 +4,6 @@ use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 
-$this->registerJsFile('@web/js/landing/classie.js', ['position' => yii\web\View::POS_BEGIN]);
-$this->registerJsFile('@web/js/landing/modernizr.custom.js', ['position' => yii\web\View::POS_BEGIN]);
 $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\web\View::POS_BEGIN]);
 ?>
 
@@ -40,7 +38,6 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
             'action' => '/login',
             'options' => [
                 'class' => 'subscription-form form-inline fadeInRight animated animated',
-                'enableClientValidation' => false,
                 'data-pjax' => true
             ],
         ]); ?>

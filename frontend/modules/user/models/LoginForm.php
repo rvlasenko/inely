@@ -52,7 +52,7 @@ class LoginForm extends Model
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
-                //echo Yii::$app->view->renderAjax('/user/sign-in/login');
+                //echo Yii::$app->view->renderAjax('@frontend/modules/user/views/default/index.php');
             }
         }
     }
