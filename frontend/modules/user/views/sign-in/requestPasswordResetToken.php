@@ -13,6 +13,10 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
     <h4 class="fadeInLeft animated"><?= Yii::t('frontend',
             'Please enter your e-mail. It will receive a letter with instructions to reset your password.') ?></h4>
 
+    <div class="form-group fadeInLeft animated">
+        <a class="forget-a" href="#"><?= Yii::t('frontend', 'Nope') ?></a>
+    </div>
+
     <div class="col-lg-5" style="width: 100%">
 
         <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
@@ -73,4 +77,18 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
             }
         } );
     } );
+
+    jQuery(function($) {
+
+        $('.forget-a').click(function(ev) {
+            ev.preventDefault();
+
+            var url = 'login';
+
+            $.get(url, function(html) {
+                $('#myModal .modal-body').html(html);
+                $('myModal').modal('show', {backdrop: 'static'});
+            });
+        });
+    });
 </script>

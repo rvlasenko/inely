@@ -540,12 +540,13 @@ div div.form-group,
 .subscription-form .col-md-12,
 .subscription-form,
 div.col-lg-5 div.col-md-12,
-div.row h4 {
+div.row h4.fadeInLeft.animated {
     text-align: center;
 }
 
 div.g-recaptcha.col-md-12 div div {
     width: auto !important;
+    margin-bottom: 1em;
 }
 
 header .intro-section h5 {
@@ -1139,7 +1140,8 @@ footer .contact-box .contact-button {
     margin: auto;
     position: relative;
     font-size: 35px;
-    line-height: 60px;
+    line-height: 62px;
+    padding-right: 15px;
     vertical-align: middle;
     margin-top: -40px;
     background: #ffffff;
