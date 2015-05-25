@@ -39,6 +39,11 @@ use yii\widgets\ActiveForm;
                 'data-pjax' => true
             ],
         ]) ?>
+        <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
+            'name' => 'reCaptcha',
+            'siteKey' => getenv('RC_SITEKEY'),
+            'widgetOptions' => ['class' => 'col-md-12']
+        ]) ?>
         <?= $form->field($model, 'username', [
             'options' => [
                 'class' => 'col-md-12',
@@ -57,11 +62,6 @@ use yii\widgets\ActiveForm;
             ],
         ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
-        <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
-            'name' => 'reCaptcha',
-            'siteKey' => getenv('RC_SITEKEY'),
-            'widgetOptions' => ['class' => 'col-md-12']
-        ]) ?>
         <?php ActiveForm::end(); ?>
         <?php \yii\widgets\Pjax::end() ?>
 

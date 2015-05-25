@@ -9,14 +9,13 @@ use yii\helpers\Html;
 
 LandingAsset::register($this);
 FontAwesomeAsset::register($this);
-$this->title = Yii::t('frontend', 'uNote');
+$this->title = Yii::t('frontend', 'flatastik');
 ?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <!-- METADATA -->
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,7 +26,6 @@ $this->title = Yii::t('frontend', 'uNote');
     <?php $this->registerJsFile('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
         ['position' => yii\web\View::POS_HEAD]) ?>
 
-    <!-- FAV AND TOUCH ICONS -->
     <link rel="icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">

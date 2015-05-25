@@ -54,8 +54,8 @@ use yii\widgets\ActiveForm;
                 <div class="col-md-8 col-md-offset-2">
                     <div class="intro-section">
 
-                        <h1 class="intro">Начните осознавать свои возможности вместе с uNote.</h1>
-                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком uNote.</h5>
+                        <h1 class="intro">Начните осознавать свои возможности вместе с Flat Note.</h1>
+                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком Flexnote.</h5>
 
                         <div class="buttons" id="download-button">
                             <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти</button>
@@ -619,23 +619,5 @@ use yii\widgets\ActiveForm;
             });
         });
     });
-    /*$('button.log').click(function (event) {
-        event.preventDefault();
-
-        var url = 'login';
-
-        var modalContainer = $('#myModal');
-        modalContainer.find('.modal-body');
-        modalContainer.modal({show: true});
-        $.ajax({
-            url: url,
-            type: "GET",
-            data: {},
-            success: function (data) {
-                $('.modal-body').html(data);
-                modalContainer.modal({show: true});
-            }
-        });
-     });*/
 </script>
 </body>
