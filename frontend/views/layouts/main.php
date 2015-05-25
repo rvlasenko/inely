@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\ArrayHelper;
 use yii\widgets\Breadcrumbs;
+use kartik\alert\AlertBlock;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -15,12 +16,20 @@ else
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]) ?>
 
-<?php if (Yii::$app->session->hasFlash('alert')): ?>
-    <?= \yii\bootstrap\Alert::widget([
-        'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
-        'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
-        ]) ?>
-<?php endif; ?>
+<?php
+    echo AlertBlock::widget([
+        'useSessionFlash' => false,
+        'type' => AlertBlock::TYPE_GROWL,
+        'alertSettings' => [
+            'alert' => [
+                'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+            ],
+            'settings' => [
+                'type' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+            ]
+        ]
+    ]);
+?>
 
 <?= $content ?>
 

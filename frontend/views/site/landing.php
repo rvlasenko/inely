@@ -54,8 +54,8 @@ use yii\widgets\ActiveForm;
                 <div class="col-md-8 col-md-offset-2">
                     <div class="intro-section">
 
-                        <h1 class="intro">Начните осознавать свои возможности вместе с flatastik.</h1>
-                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatastik.</h5>
+                        <h1 class="intro">Начните осознавать свои возможности вместе с flatask.</h1>
+                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
 
                         <div class="buttons" id="download-button">
                             <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти</button>
@@ -450,36 +450,13 @@ use yii\widgets\ActiveForm;
 
     <div class="container">
 
-        <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;" class="contact-box wow rotateIn animated animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;" class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
             <a class="btn contact-button expand-form expanded">
                 <i class="fa fa-send-o"></i>
             </a>
 
-            <div style="display: block;" class="row expanded-contact-form">
-
-                <div class="col-md-8 col-md-offset-2">
-
-                    <form class="contact-form" id="contact" role="form">
-
-                        <div class="col-md-6">
-                            <input class="form-control input-box" id="name" name="name" placeholder="Your Name" type="text">
-                        </div>
-
-                        <div class="col-md-6">
-                            <input class="form-control input-box" id="email" name="email" placeholder="Your Email" type="email">
-                        </div>
-
-                        <div class="col-md-12">
-                            <input class="form-control input-box" id="subject" name="subject" placeholder="Subject" type="text">
-                            <textarea class="form-control textarea-box" id="message" rows="8" placeholder="Message"></textarea>
-                        </div>
-
-                        <button class="btn btn-primary standard-button2 ladda-button" type="submit" id="submit" name="submit" data-style="expand-left">Send Message</button>
-
-                    </form>
-                </div>
-            </div>
+            <div style="display: block;" class="row expanded-contact-form"></div>
         </div>
 
         <img src="images/logo-black.png" alt="LOGO" class="logo responsive-img">
@@ -491,18 +468,14 @@ use yii\widgets\ActiveForm;
     </div>
 
 </footer>
-
 <script>
-    jQuery(function ($) {
-        $('button.log').click(function (ev) {
-            ev.preventDefault();
+    jQuery(function($) {
+        $('button.log').click(function(ev) {
+            showModal('login', ev);
+        });
 
-            var url = 'login';
-
-            $.get(url, function (html) {
-                $('#myModal .modal-body').html(html);
-                $('myModal').modal('show', {backdrop: 'static'});
-            });
+        $.get('contact', function(html) {
+            $('div.contact-box.wow div.expanded-contact-form').html(html);
         });
     });
 </script>

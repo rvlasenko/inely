@@ -15,25 +15,25 @@ class LandingAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
 
-        // CAROUSEL AND LIGHTBOX
+        // Carousel and lightbox
         'css/landing/owl.theme.css',
         'css/landing/owl.carousel.css',
         'css/landing/nivo-lightbox.css',
         'css/landing/nivo_themes/default/default.css',
 
-        // ANIMATIONS
+        // Animations
         'css/landing/animate.min.css',
 
-        // CUSTOM STYLESHEETS
+        // Custom stylesheets
         'css/landing/styles.css',
 
-        // COLORS
+        // Colors
         'css/landing/colors/blue.css',
 
-        // RESPONSIVE FIXES
+        // Responsive fixes
         'css/landing/responsive.css',
 
-        // WEB FONT
+        // Web font
         '//fonts.googleapis.com/css?family=Roboto:300,100&subset=latin,cyrillic-ext',
     ];
 

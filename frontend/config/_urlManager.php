@@ -4,12 +4,18 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
+        // Base
         '' => '/site/index',
         'article' => '/article/index',
         'contact' => '/site/contact',
         'about' => '/site/about',
+
+        // Register
         'sign-up' => '/user/sign-in/signup',
+        'reset' => 'user/sign-in/request-password-reset',
         'login' => '/user/sign-in/login',
+
+        // Account
         'account' => '/user/default/index',
         'profile' => '/user/default/profile',
         'logout' => '/user/sign-in/logout',

@@ -1,42 +1,12 @@
 /* =================================
    LOADER                     
 =================================== */
-// makes sure the whole site is loaded
 jQuery(window).load(function() {
-        // will first fade out the loading animation
 	jQuery(".status").fadeOut();
-        // will fade out the whole DIV that covers the website.
 	jQuery(".preloader").delay(1000).fadeOut("slow");
 });
 
-/* =================================
-===  RESPONSIVE VIDEO           ====
-=================================== */
-
 $(".video-container").fitVids();
-
-/* =================================
-===  MAILCHIMP                 ====
-=================================== */
-
-$('.mailchimp').ajaxChimp({
-    callback: mailchimpCallback,
-    url: "http://webdesign7.us6.list-manage.com/subscribe/post?u=9445a2e155b82208d73433060&amp;id=16dc80e353" //Replace this with your own mailchimp post URL. Don't remove the "". Just paste the url inside "".  
-});
-
-function mailchimpCallback(resp) {
-     if (resp.result === 'success') {
-        $('.subscription-success').html('<i class="icon_check_alt2"></i><br/>' + resp.msg).fadeIn(1000);
-        $('.subscription-error').fadeOut(500);
-        
-    } else if(resp.result === 'error') {
-        $('.subscription-error').html('<i class="icon_close_alt2"></i><br/>' + resp.msg).fadeIn(1000);
-    }  
-}
-
-/* =================================
-===  STICKY NAV                 ====
-=================================== */
 
 $(document).ready(function() {
   $('.main-navigation').onePageNav({
@@ -47,8 +17,17 @@ $(document).ready(function() {
   
 });
 
+function showModal(url, ev) {
+    ev.preventDefault();
 
-/* COLLAPSE NAVIGATION ON MOBILE AFTER CLICKING ON LINK - ADDED ON V1.5*/
+    $.get(url, function(html) {
+        $('#myModal .modal-body').html(html);
+        $('myModal').modal('show', {backdrop: 'static'});
+    });
+}
+
+
+/* COLLAPSE NAVIGATION ON MOBILE AFTER CLICKING ON LINK */
 
 if (matchMedia('(max-width: 480px)').matches) {
     $('.main-navigation a').on('click', function () {
@@ -282,7 +261,7 @@ $('.expand-form').simpleexpand({
 ===  STELLAR                    ====
 =================================== */
 $(window).stellar({ 
-horizontalScrolling: false 
+    horizontalScrolling: false
 });
 
 

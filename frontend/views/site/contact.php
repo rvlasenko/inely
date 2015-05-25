@@ -1,33 +1,50 @@
 <?php
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\captcha\Captcha;
-
-/* @var $this yii\web\View */
-/* @var $form yii\widgets\ActiveForm */
-/* @var $model \frontend\models\ContactForm */
-
-$this->title = Yii::t('frontend', 'Contact');
-$this->params['breadcrumbs'][] = $this->title;
+    use yii\widgets\ActiveForm;
 ?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-            <?php echo $form->field($model, 'name') ?>
-            <?php echo $form->field($model, 'email') ?>
-            <?php echo $form->field($model, 'subject') ?>
-            <?php echo $form->field($model, 'body')->textArea(['rows' => 6]) ?>
-            <?php echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-            ]) ?>
-            <div class="form-group">
-                <?= Html::submitButton(Yii::t('frontend', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-            </div>
-            <?php ActiveForm::end(); ?>
+<div class="row">
+    <h2 class="dark-text">Оставьте своё мнение</h2>
+
+    <div class="col-md-8 col-md-offset-2">
+
+        <?php $form = ActiveForm::begin([
+            'id' => 'contact-form',
+            'options' => [
+                'class' => 'contact-form form-inline fadeInRight animated',
+            ],
+            'enableAjaxValidation' => true,
+            'enableClientValidation' => false,
+        ]); ?>
+        <?= $form->field($model, 'name', [
+            'options' => [
+                'class' => 'col-md-6',
+            ],
+        ])->textInput(['placeholder' => 'Представьтесь, пожалуйста'])->label(false) ?>
+
+        <?= $form->field($model, 'email', [
+            'options' => [
+                'class' => 'col-md-6',
+            ],
+        ])->textInput(['placeholder' => 'Ваш e-mail'])->label(false) ?>
+
+        <?= $form->field($model, 'subject', [
+            'options' => [
+                'class' => 'col-md-12',
+            ],
+        ])->textInput(['placeholder' => 'Тема Вашего обращения'])->label(false) ?>
+
+        <?= $form->field($model, 'body', [
+            'options' => [
+                'class' => 'col-md-12',
+            ],
+        ])->textArea(['rows' => 6, 'placeholder' => 'Изложите свои мысли'])->label(false) ?>
+
+        <div class="form-group">
+            <button class="bttn btn-2 btn-2a">
+                <?= Yii::t('frontend', 'Submit') ?>
+            </button>
         </div>
-    </div>
+        <?php ActiveForm::end(); ?>
 
+    </div>
 </div>

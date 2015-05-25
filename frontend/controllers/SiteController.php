@@ -2,7 +2,6 @@
 namespace frontend\controllers;
 
 use frontend\models\ContactForm;
-use frontend\modules\user\models\SignupForm;
 use Yii;
 use yii\web\Controller;
 
@@ -48,18 +47,13 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
-        if ($user = Yii::$app->user->identity) {
-            $model->name = $user->username;
-            $model->email = $user->email;
-        }
-
         if ($model->load(Yii::$app->request->post())) {
             if ($model->contact(Yii::$app->params['adminEmail'])) {
                 Yii::$app->getSession()->setFlash('alert', [
                     'body' => Yii::t('frontend', 'Thank you for contacting us. We will respond to you as soon as possible.'),
                     'options' => ['class' => 'alert-success']
                 ]);
-                return $this->refresh();
+                return $this->redirect(\Yii::$app->request->getReferrer());
             } else {
                 Yii::$app->getSession()->setFlash('alert', [
                     'body' => \Yii::t('frontend', 'There was an error sending email.'),
@@ -68,7 +62,7 @@ class SiteController extends Controller
             }
         }
 
-        return $this->render('contact', [
+        return $this->renderAjax('contact', [
             'model' => $model
         ]);
     }

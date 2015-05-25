@@ -146,7 +146,7 @@ class SignInController extends \yii\web\Controller
             }
         }
 
-        return $this->render('requestPasswordResetToken', [
+        return $this->renderAjax('requestPasswordResetToken', [
             'model' => $model,
         ]);
     }

@@ -37,6 +37,8 @@
         "trntv/yii2-file-kit": "~1.0.0",
         "trntv/yii2-glide": "~1.0",
         "trntv/cheatsheet": "~0.1@dev",
+        "kartik-v/yii2-widget-alert": "*",
+        "kartik-v/yii2-widget-growl": "*",
         "himiklab/yii2-recaptcha-widget" : "*",
         "intervention/image": "~2.1",
         "vlucas/phpdotenv": "~1.0",

@@ -1,11 +1,7 @@
 <?php
-use yii\widgets\ActiveForm;
+    use yii\widgets\ActiveForm;
 
-/* @var $this \yii\web\View */
-
-$this->registerJsFile('@web/js/landing/classie.js', ['position' => yii\web\View::POS_BEGIN]);
-$this->registerJsFile('@web/js/landing/modernizr.custom.js', ['position' => yii\web\View::POS_BEGIN]);
-$this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\web\View::POS_BEGIN]);
+    $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\web\View::POS_BEGIN]);
 ?>
 
 <div class="row">
@@ -22,9 +18,9 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
         <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
         <?php $form = ActiveForm::begin([
             'id' => 'reset-form',
-            'action' => 'user/sign-in/request-password-reset',
+            'action' => 'reset',
             'options' => [
-                'class' => 'subscription-form form-inline fadeInRight animated animated',
+                'class' => 'subscription-form form-inline fadeInRight animated',
                 'data-pjax' => true
             ],
         ]); ?>
@@ -79,16 +75,8 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
     } );
 
     jQuery(function($) {
-
         $('.forget-a').click(function(ev) {
-            ev.preventDefault();
-
-            var url = 'login';
-
-            $.get(url, function(html) {
-                $('#myModal .modal-body').html(html);
-                $('myModal').modal('show', {backdrop: 'static'});
-            });
+            showModal('login', ev);
         });
     });
 </script>

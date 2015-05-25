@@ -1,7 +1,6 @@
 <?php
 use yii\widgets\ActiveForm;
 
-/* @var $this \yii\web\View */
 ?>
 
 <div class="row">
@@ -98,7 +97,7 @@ use yii\widgets\ActiveForm;
             callback : function(instance) {
                 var progress = 0,
                     success = 1;
-                error = -1;
+                    error = -1;
 
                 var interval = setInterval(function() {
                     icon(pos, instance, progress, success, error, interval);
@@ -107,16 +106,9 @@ use yii\widgets\ActiveForm;
         } );
     } );
 
-    jQuery(function ($) {
-        $('.login-a').click(function (ev) {
-            ev.preventDefault();
-
-            var url = 'login';
-
-            $.get(url, function (html) {
-                $('#myModal .modal-body').html(html);
-                $('myModal').modal('show', {backdrop: 'static'});
-            });
+    jQuery(function($) {
+        $('.login-a').click(function(ev) {
+            showModal('login', ev);
         });
     });
 </script>

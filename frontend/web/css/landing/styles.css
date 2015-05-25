@@ -608,7 +608,7 @@ header .intro-section .buttons {
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    line-height: 55px;
+    line-height: 52px;
     font-size: 1.5em;
     text-align: center;
     -webkit-transition: all ease-in 0.25s;
@@ -1459,4 +1459,151 @@ div.contact-box > section {
     opacity: 1;
     -webkit-transition: stroke-dashoffset 0.2s;
     transition: stroke-dashoffset 0.2s;
+}
+
+/* General button style (reset) */
+.bttn {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 20px 60px;
+    display: inline-block;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.bttn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+/* Pseudo elements for icons */
+.bttn:before,
+.icon-heart:after,
+.icon-star:after,
+.icon-plus:after,
+.icon-file:before {
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-envelope:before {
+    content: "\e000";
+}
+
+.icon-cart:before {
+    content: "\e007";
+}
+
+.icon-cart-2:before {
+    content: "\e008";
+}
+
+.icon-heart:before {
+    content: "\e009";
+}
+
+/* Filled heart */
+.icon-heart:after,
+.icon-heart-2:before {
+    content: "\e00a";
+}
+
+.icon-star:before {
+    content: "\e00b";
+}
+
+/* Filled star */
+.icon-star:after,
+.icon-star-2:before {
+    content: "\e00c";
+}
+
+.icon-arrow-right:before {
+    content: "\e00d";
+}
+
+.icon-arrow-left:before {
+    content: "\e003";
+}
+
+.icon-truck:before {
+    content: "\e00e";
+}
+
+.icon-remove:before {
+    content: "\e00f";
+}
+
+.icon-cog:before {
+    content: "\e010";
+}
+
+.icon-plus:before,
+.icon-plus:after {
+    content: "\e011";
+}
+
+.icon-minus:before {
+    content: "\e012";
+}
+
+.bh-icon-smiley:before {
+    content: "\e001";
+}
+
+.bh-icon-sad:before {
+    content: "\e002";
+}
+
+.icon-file:before {
+    content: "\e004";
+}
+
+.icon-remove-2:before {
+    content: "\e005";
+}
+
+.btn-2 {
+    /*background: #cb4e4e;*/
+    background: #1ECD97;
+    color: #fff;
+    box-shadow: 0 6px #17A87E;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+
+.btn-2a {
+    border-radius: 0 0 5px 5px;
+}
+
+.btn-2a:hover {
+    box-shadow: 0 4px #17A87E;
+    top: 2px;
+}
+
+.btn-2a:active {
+    box-shadow: 0 0 #ab3c3c;
+    top: 6px;
 }

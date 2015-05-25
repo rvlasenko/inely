@@ -9,7 +9,7 @@ use yii\helpers\Html;
 
 LandingAsset::register($this);
 FontAwesomeAsset::register($this);
-$this->title = Yii::t('frontend', 'flatastik');
+$this->title = Yii::t('frontend', 'flatask');
 ?>
 
 <?php $this->beginPage() ?>

@@ -1,9 +1,7 @@
 <?php
-use yii\widgets\ActiveForm;
+    use yii\widgets\ActiveForm;
 
-/* @var $this \yii\web\View */
-
-$this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\web\View::POS_BEGIN]);
+    $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\web\View::POS_BEGIN]);
 ?>
 
 <div class="row">
@@ -106,22 +104,12 @@ $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\
     } );
 
     jQuery(function($) {
-
-        function showModal(url, ev) {
-            ev.preventDefault();
-
-            $.get(url, function(html) {
-                $('#myModal .modal-body').html(html);
-                $('myModal').modal('show', {backdrop: 'static'});
-            });
-        }
-
         $('.sign-a').click(function(ev) {
             showModal('sign-up', ev);
         });
 
         $('.reset-a').click(function(ev) {
-            showModal('user/sign-in/request-password-reset', ev);
+            showModal('reset', ev);
         });
     });
 </script>
