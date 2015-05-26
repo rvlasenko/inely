@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "19ccb92d11b5fc43c568b823f0845bd9",
+    "hash": "42b0fdcf9900cca342578e5c6983ebed",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -410,43 +410,6 @@
             "type": "bower-asset-library"
         },
         {
-            "name": "bower-asset/font-awesome",
-            "version": "v4.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
-                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "./css/font-awesome.css",
-                    "./fonts/*"
-                ],
-                "bower-asset-ignore": [
-                    "*/.*",
-                    "*.json",
-                    "src",
-                    "*.yml",
-                    "Gemfile",
-                    "Gemfile.lock",
-                    "*.md"
-                ]
-            },
-            "license": [
-                "OFL-1.1",
-                "MIT",
-                "CC-BY-3.0"
-            ],
-            "description": "Font Awesome"
-        },
-        {
             "name": "bower-asset/html5shiv",
             "version": "3.7.2",
             "source": {
@@ -517,38 +480,6 @@
                 "javascript",
                 "jquery",
                 "library"
-            ]
-        },
-        {
-            "name": "bower-asset/jquery-slimscroll",
-            "version": "v1.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rochal/jQuery-slimScroll.git",
-                "reference": "c1d1c794f8364d751b188c8b21859501c7991249"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rochal/jQuery-slimScroll/zipball/c1d1c794f8364d751b188c8b21859501c7991249",
-                "reference": "c1d1c794f8364d751b188c8b21859501c7991249",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery": ">=1.7"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "./jquery.slimscroll.min.js"
-            },
-            "description": "slimScroll is a small jQuery plugin that transforms any div into a scrollable area. slimScroll doesn't occupy any visual space as it only appears on a user initiated mouse-over.",
-            "keywords": [
-                "scroll",
-                "scrollable",
-                "scrollbar",
-                "scroller",
-                "scrolling",
-                "slimscroll",
-                "ui"
             ]
         },
         {
@@ -1828,16 +1759,16 @@
         },
         {
             "name": "trntv/yii2-file-kit",
-            "version": "1.0.3",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/trntv/yii2-file-kit.git",
-                "reference": "21c898e0df9ce81c8a305c073e972de9ffbac288"
+                "reference": "6c8db295755860fbab627ee444b355b7a023a551"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/trntv/yii2-file-kit/zipball/21c898e0df9ce81c8a305c073e972de9ffbac288",
-                "reference": "21c898e0df9ce81c8a305c073e972de9ffbac288",
+                "url": "https://api.github.com/repos/trntv/yii2-file-kit/zipball/6c8db295755860fbab627ee444b355b7a023a551",
+                "reference": "6c8db295755860fbab627ee444b355b7a023a551",
                 "shasum": ""
             },
             "require": {
@@ -1874,7 +1805,7 @@
                 }
             ],
             "description": "Yii2 file upload and storage kit",
-            "time": "2015-05-14 13:32:47"
+            "time": "2015-05-25 18:45:08"
         },
         {
             "name": "trntv/yii2-glide",
