@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master)[![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg)]()
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cae3a13f-11d4-49a7-8db1-6681d00e388d/small.png)](https://insight.sensiolabs.com/projects/cae3a13f-11d4-49a7-8db1-6681d00e388d)
 
 Здесь будет описание проекта
  
