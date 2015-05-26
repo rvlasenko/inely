@@ -55,7 +55,7 @@ class ContactForm extends Model
         if ($this->validate()) {
             return Yii::$app->mailer->compose()
                 ->setTo($email)
-                ->setFrom(Yii::$app->params['robotEmail'])
+                ->setFrom(getenv('ROBOT_EMAIL'))
                 ->setReplyTo([$this->email => $this->name])
                 ->setSubject($this->subject)
                 ->setTextBody($this->body)

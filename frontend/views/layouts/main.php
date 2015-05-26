@@ -16,8 +16,8 @@ else
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 ]) ?>
 
-<?php
-    echo AlertBlock::widget([
+<?php if (Yii::$app->session->hasFlash('alert')): ?>
+<?= AlertBlock::widget([
         'useSessionFlash' => false,
         'type' => AlertBlock::TYPE_GROWL,
         'alertSettings' => [
@@ -30,6 +30,7 @@ else
         ]
     ]);
 ?>
+<?php endif; ?>
 
 <?= $content ?>
 

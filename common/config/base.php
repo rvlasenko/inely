@@ -40,11 +40,11 @@ $config = [
             ],
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.yandex.ru',
-                'username' => 'mavrolilo@yandex.ru',
-                'password' => 'asdfghjkl',
-                'port' => '465',
-                'encryption' => 'ssl',
+                'host' => 'smtp.gmail.com',
+                'port' => '587',
+                'username' => getenv('ROBOT_EMAIL'),
+                'password' => getenv('PASSWD'),
+                'encryption' => 'tls',
             ]
         ],
 
