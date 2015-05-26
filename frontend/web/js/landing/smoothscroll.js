@@ -15,7 +15,7 @@ function ssc_init() {
     ssc_root = document.compatMode.indexOf("CSS") >= 0 ? t : e;
     ssc_activeElement = e;
     ssc_initdone = true;
-    if (top != self) {
+    if (top !== self) {
         ssc_frame = true
     } else if (r > n && (e.offsetHeight <= n || t.offsetHeight <= n)) {
         ssc_root.style.height = "auto";
