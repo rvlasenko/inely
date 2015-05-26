@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master)<br>
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master)[![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg)]()
 
 Здесь будет описание проекта
  
@@ -8,9 +8,9 @@
 ### BACKEND
 - Прекрасная open source тема для админки AdminLTE 2
 - I18N + 3 трансляции: Английский, Русский, Украинский
-- Смена текущей локали + поведение, позволяющее автоматически менять локаль основываясь на языке в браузере
+- Смена текущей локали + поведение, позволяющее автоматически менять локаль основываясь на языке системы
 - Авторизация, регистрация, профиль пользователя
-- Авторизация по протоколу OAuth
+- Авторизация по протоколу OAuth2
 - Управление пользователями CRUD
 - Управление доступом, с предопределенными ролями: `guest`, `user`, `manager` и `administrator` 
 - Компоненты для управления содержимым, таким как: статьи, категории, статические страницы
@@ -20,11 +20,10 @@
 - Веб-интерфейс логгирования событий
 - Графическое представление активности (Timeline)
 - Веб-контроллер кэширования
-- Maintenance mode component ([more](#maintenance-mode))
 - Отображение системной информации
 - Поддержка dotenv
-- Imperavi Reactor Widget (http://imperavi.com/redactor, https://github.com/asofter/yii2-imperavi-redactor), 
-- Elfinder Extension (http://elfinder.org, https://github.com/MihailDev/yii2-elfinder)
+- Imperavi Reactor (http://imperavi.com/redactor, https://github.com/asofter/yii2-imperavi-redactor), 
+- Elfinder (http://elfinder.org, https://github.com/MihailDev/yii2-elfinder)
 - Nginx конфигурация
 
 ### FRONTEND
@@ -45,7 +44,7 @@ http://domain.net
 Backend:
 http://backend.domain.net
 
-Аккаунт пользователя:
+Демо аккаунт пользователя:
 ```
 Login: user
 Password: user
@@ -60,7 +59,7 @@ Password: user
 ------------
 
 ### Перед установкой
-Если на вашем ПК не установлен [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+Если на вашем ПК нет [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
 После завершения добавьте плагин для управления ассетами composer-asset-plugin
 ```bash
@@ -68,7 +67,7 @@ composer global require "fxp/composer-asset-plugin"
 ```
 
 
-### Клон c GitHub
+### GitHub
 
 Клонируйте репозиторий
 ```bash
@@ -139,43 +138,3 @@ php console/yii migrate
 php console/yii rbac/init
 ```
 **IMPORTANT: не применив эту команду вы НЕ сможете авторизироваться в админке**
-
-COMPONENTS
-----------
-### I18N
-If you want to store application messages in DB and to have ability to edit them from backend, run:
-```php
-php console/yii message/migrate @common/config/messages/php.php @common/config/messages/db.php
-```
-it will copy all existing messages to database
-
-Then uncomment config for `DbMessageSource` in
-```php
-common/config/base.php
-```
-
-### Maintenance mode
-Starter kit has built-in component to provide a maintenance functionality. All you have to do is to configure ``maintenance``
-component in your config
-```php
-'bootstrap' => ['maintenance'],
-...
-'components' => [
-    ...
-    'maintenance' => [
-        'class' => 'common\components\maintenance\Maintenance',
-        'enabled' => Astronomy::isAFullMoonToday()
-    ]
-    ...
-]
-```
-This component will catch all incoming requests, set proper response HTTP headers (503, "Retry After") and show a maintenance message.
-Additional configuration options can be found in a corresponding class.
-
-Starter kit configured to turn on maintenance mode if ``frontend.maintenance`` key in KeyStorage is set to ``true``
-
-Прочее
------
-
-#### Небольшое замечание
-Этот шаблон был создан для разработчиков, желающих продвигать разработку, но не для конечных пользователей.
