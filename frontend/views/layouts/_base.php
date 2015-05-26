@@ -7,6 +7,7 @@ use yii\bootstrap\NavBar;
 /* @var $content string */
 
 \frontend\assets\FrontendAsset::register($this);
+\frontend\assets\FontAwesomeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -21,17 +22,16 @@ use yii\bootstrap\NavBar;
 <body>
 
 <?php $this->beginBody() ?>
-<div class="wrap">
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'page-header navbar navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-left'],
+        'options' => ['class' => 'navbar-nav navbar-left page-header-inner'],
         'items' => [
             ['label' => Yii::t('frontend', 'Home'), 'url' => ['/']],
             ['label' => Yii::t('frontend', 'About'), 'url' => ['/about']],
@@ -79,8 +79,6 @@ use yii\bootstrap\NavBar;
     ?>
 
     <?= $content ?>
-
-</div>
 
 <?php $this->endBody() ?>
 </body>
