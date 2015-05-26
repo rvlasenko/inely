@@ -4,7 +4,6 @@ namespace frontend\controllers;
 
 use common\models\Article;
 use frontend\models\search\ArticleSearch;
-use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 

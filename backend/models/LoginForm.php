@@ -4,7 +4,6 @@ namespace backend\models;
 use cheatsheet\Time;
 use common\models\User;
 use Yii;
-use yii\base\Exception;
 use yii\base\Model;
 use yii\web\ForbiddenHttpException;
 

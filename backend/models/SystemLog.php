@@ -2,7 +2,6 @@
 
 namespace backend\models;
 
-use backend\models\query\SystemLogQuery;
 use Yii;
 
 /**

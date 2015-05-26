@@ -9,7 +9,6 @@ use Yii;
 use yii\caching\Cache;
 use yii\caching\TagDependency;
 use yii\data\ArrayDataProvider;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\HttpException;
 

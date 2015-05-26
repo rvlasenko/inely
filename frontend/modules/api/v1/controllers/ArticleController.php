@@ -5,7 +5,6 @@ use Yii;
 use frontend\modules\api\v1\resources\Article;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
-use yii\web\ForbiddenHttpException;
 use yii\web\HttpException;
 
 /**

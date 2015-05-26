@@ -134,7 +134,7 @@ function ssc_keydown(e) {
         s = 0;
     var o = ssc_overflowingAncestor(ssc_activeElement);
     var u = o.clientHeight;
-    if (o == document.body) {
+    if (o === document.body) {
         u = window.innerHeight
     }
     switch (e.keyCode) {

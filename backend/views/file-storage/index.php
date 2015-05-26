@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -14,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="file-storage-item-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div class="row text-right">
         <div class="pull-right">
             <div class="col-xs-12">

@@ -87,7 +87,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                 };
             }
         }
-        if ($newSourceLanguage == false && !empty($unremoved)) {
+        if ($newSourceLanguage === false && !empty($unremoved)) {
             Console::output('Messages with params, can`t be removed by this tool. Remove it manually');
             foreach ($unremoved as $fileName => $messages) {
                 $messages = implode(PHP_EOL, $messages);
@@ -249,7 +249,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                 foreach ($msgs as $m => $translation) {
                     Console::updateProgress(++$i, $messagesCount);
                     $lastId = array_search($m, ArrayHelper::getValue($insertedSourceMessages, $category, []));
-                    if ($lastId == false) {
+                    if ($lastId === false) {
                         $db->createCommand()
                             ->insert($sourceMessageTable, ['category' => $category, 'message' => $m])->execute();
                         $lastId = $db->getLastInsertID($db->driverName == 'pgsql' ? 'i18n_source_message_id_seq' : null);

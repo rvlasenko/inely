@@ -1,14 +1,13 @@
 <?php
 
-use common\models\User;
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+    use yii\bootstrap\ActiveForm;
+    use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model backend\models\UserForm */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $roles yii\rbac\Role[] */
-/* @var $permissions yii\rbac\Permission[] */
+    /* @var $this yii\web\View */
+    /* @var $model backend\models\UserForm */
+    /* @var $form yii\bootstrap\ActiveForm */
+    /* @var $roles yii\rbac\Role[] */
+    /* @var $permissions yii\rbac\Permission[] */
 ?>
 
 <div class="user-form">

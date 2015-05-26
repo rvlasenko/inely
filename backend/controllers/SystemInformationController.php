@@ -6,7 +6,6 @@
 namespace backend\controllers;
 
 use probe\Factory;
-use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\Response;
 use Yii;

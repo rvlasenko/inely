@@ -94,7 +94,6 @@ class SignInController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
-                    //$this->renderAjax('login');
                     Yii::$app->getSession()->setFlash(
                         'success',
                         'Вы успешно зарегистрировались! Чтобы стать полноправным участником, осталось подтвердить электронный адрес!'
@@ -211,7 +210,6 @@ class SignInController extends \yii\web\Controller
                     break;
             }
 
-            //$avatar = ArrayHelper::getValue($attributes, 'photo');
             $user->username = $attributes['username'];
             $user->email = $attributes['email'];
 
@@ -224,7 +222,6 @@ class SignInController extends \yii\web\Controller
                     'firstname' => $attributes['first_name'],
                     'lastname' => $attributes['last_name']
                 ]);
-                //Yii::$app->getSession()->setFlash('alert', 'Email with your login information was sent to your email.');
             }
         }
         if (Yii::$app->user->login($user, 3600 * 24 * 30)) {
