@@ -28,7 +28,7 @@ class ArticleCategoryController extends Controller
 
     /**
      * Lists all ArticleCategory models.
-     * @return mixed
+     * @return string
      */
     public function actionIndex()
     {
@@ -44,7 +44,7 @@ class ArticleCategoryController extends Controller
     /**
      * Displays a single ArticleCategory model.
      * @param integer $id
-     * @return mixed
+     * @return string
      */
     public function actionView($id)
     {
@@ -96,7 +96,7 @@ class ArticleCategoryController extends Controller
      * Deletes an existing ArticleCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
-     * @return mixed
+     * @return \yii\web\Response
      */
     public function actionDelete($id)
     {

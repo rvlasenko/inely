@@ -29,7 +29,7 @@ class ArticleController extends Controller
 
     /**
      * Lists all Article models.
-     * @return mixed
+     * @return string
      */
     public function actionIndex()
     {
@@ -87,7 +87,7 @@ class ArticleController extends Controller
      * Deletes an existing Article model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
-     * @return mixed
+     * @return \yii\web\Response
      */
     public function actionDelete($id)
     {
