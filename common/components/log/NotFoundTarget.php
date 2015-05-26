@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zein
- * Date: 7/6/14
- * Time: 1:53 PM
- */
 
 namespace common\components\log;
 

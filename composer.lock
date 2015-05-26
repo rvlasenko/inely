@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ad3da1d95a0b628d971f970111171413",
+    "hash": "4523f0abf8880b630a6d354a0d9f8d7a",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -2027,12 +2027,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "e5ae35c602ebdbd7a00dd473ff276d8dc7aefead"
+                "reference": "443c1c6d4c50d3cb40f00943897524395e990b23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e5ae35c602ebdbd7a00dd473ff276d8dc7aefead",
-                "reference": "e5ae35c602ebdbd7a00dd473ff276d8dc7aefead",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/443c1c6d4c50d3cb40f00943897524395e990b23",
+                "reference": "443c1c6d4c50d3cb40f00943897524395e990b23",
                 "shasum": ""
             },
             "require": {
@@ -2107,7 +2107,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-05-26 09:00:28"
+            "time": "2015-05-26 11:17:11"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -2384,6 +2384,51 @@
             }
         },
         {
+            "name": "codacy/coverage",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codacy/php-codacy-coverage.git",
+                "reference": "974aadb84df7cc11f2baa45f6769bd76e68819f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codacy/php-codacy-coverage/zipball/974aadb84df7cc11f2baa45f6769bd76e68819f3",
+                "reference": "974aadb84df7cc11f2baa45f6769bd76e68819f3",
+                "shasum": ""
+            },
+            "require": {
+                "gitonomy/gitlib": "0.1.7",
+                "php": ">=5.3.3",
+                "symfony/console": "2.6.7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
+            },
+            "bin": [
+                "bin/codacycoverage"
+            ],
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jakob Pupke",
+                    "email": "jakob.pupke@gmail.com"
+                }
+            ],
+            "description": "Sends PHP test coverage information to Codacy.",
+            "homepage": "https://github.com/codacy/php-codacy-coverage",
+            "time": "2015-05-19 11:12:29"
+        },
+        {
             "name": "codeception/codeception",
             "version": "2.0.13",
             "source": {
@@ -2605,6 +2650,58 @@
                 "fixtures"
             ],
             "time": "2014-06-04 14:43:02"
+        },
+        {
+            "name": "gitonomy/gitlib",
+            "version": "v0.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gitonomy/gitlib.git",
+                "reference": "7a46107cfb8552b312101e0d5906e95d54d7ddc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gitonomy/gitlib/zipball/7a46107cfb8552b312101e0d5906e95d54d7ddc6",
+                "reference": "7a46107cfb8552b312101e0d5906e95d54d7ddc6",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/process": "~2.4"
+            },
+            "require-dev": {
+                "psr/log": "~1"
+            },
+            "suggest": {
+                "psr/log": "Add some log"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Gitonomy\\Git": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandre Salomé",
+                    "email": "alexandre.salome@gmail.com",
+                    "homepage": "http://alexandre-salome.fr"
+                },
+                {
+                    "name": "Julien DIDIER",
+                    "email": "genzo.wm@gmail.com",
+                    "homepage": "http://www.jdidier.net"
+                }
+            ],
+            "description": "Library for accessing git",
+            "homepage": "http://gitonomy.com",
+            "time": "2014-07-13 19:02:31"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3969,6 +4066,56 @@
             "time": "2015-05-02 15:18:45"
         },
         {
+            "name": "symfony/process",
+            "version": "v2.6.7",
+            "target-dir": "Symfony/Component/Process",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Process.git",
+                "reference": "9f3c4baaf840ed849e1b1f7bfd5ae246e8509562"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/9f3c4baaf840ed849e1b1f7bfd5ae246e8509562",
+                "reference": "9f3c4baaf840ed849e1b1f7bfd5ae246e8509562",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Process\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-05-02 15:18:45"
+        },
+        {
             "name": "symfony/yaml",
             "version": "v2.6.7",
             "target-dir": "Symfony/Component/Yaml",
@@ -4217,7 +4364,8 @@
         "yiisoft/yii2": 20,
         "asofter/yii2-imperavi-redactor": 20,
         "trntv/probe": 20,
-        "trntv/cheatsheet": 20
+        "trntv/cheatsheet": 20,
+        "codacy/coverage": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

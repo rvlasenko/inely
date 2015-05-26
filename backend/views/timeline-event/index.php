@@ -1,10 +1,5 @@
 <?php
-/**
- * Eugine Terentev <eugine@terentev.net>
- * @var $this \yii\web\View
- * @var $model \common\models\TimelineEvent
- * @var $dataProvider \yii\data\ActiveDataProvider
- */
+
 $this->title = Yii::t('backend', 'Application timeline');
 $icons = [
     'user' => '<i class="fa fa-user bg-blue"></i>'
