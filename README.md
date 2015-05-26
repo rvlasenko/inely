@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cae3a13f-11d4-49a7-8db1-6681d00e388d/small.png)](https://insight.sensiolabs.com/projects/cae3a13f-11d4-49a7-8db1-6681d00e388d)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master) [![Codacy Badge](https://www.codacy.com/project/badge/207cb7efb78445e2b063c10c049a3824)](https://www.codacy.com/app/roof1rst/list)
 
 Здесь будет описание проекта
  
