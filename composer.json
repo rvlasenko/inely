@@ -15,7 +15,7 @@
         "trntv/yii2-bootstrap-datetimepicker": "~1.5",
         "mihaildev/yii2-elfinder": "~1.0",
         "trntv/probe": "dev-master",
-        "trntv/yii2-file-kit": "~1.0.0",
+        "trntv/yii2-file-kit": "~1.1.0",
         "trntv/yii2-glide": "~1.0",
         "trntv/cheatsheet": "~0.1@dev",
         "kartik-v/yii2-widget-alert": "*",
@@ -37,8 +37,7 @@
         "yiisoft/yii2-codeception": "~2.0",
         "yiisoft/yii2-faker": "~2.0",
         "phpunit/phpunit": "~4.5",
-        "codeception/codeception": "~2.0",
-        "codacy/coverage": "dev-master"
+        "codeception/codeception": "~2.0"
     },
     "suggest": {
         "trntv/yii2-deploy": "dev-master@dev",

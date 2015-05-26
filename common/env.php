@@ -1,5 +1,5 @@
 <?php
-    
+
 /**
  * Setup application environment
  */
