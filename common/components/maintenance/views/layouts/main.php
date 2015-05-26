@@ -1,7 +1,5 @@
 <?php
-/**
- * @author Eugene Terentev <eugene@terentev.net>
- */
+
 use yii\helpers\Html;
 
 \yii\bootstrap\BootstrapAsset::register($this)

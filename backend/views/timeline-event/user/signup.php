@@ -1,9 +1,3 @@
-<?php
-/**
- * @author Eugene Terentev <eugene@terentev.net>
- * @var $model common\models\TimelineEvent
- */
-?>
 <div class="timeline-item">
     <span class="time">
         <i class="fa fa-clock-o"></i>
