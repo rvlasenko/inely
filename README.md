@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master) [![Codacy Badge](https://www.codacy.com/project/badge/207cb7efb78445e2b063c10c049a3824)](https://www.codacy.com/app/roof1rst/list) [![Build Status](https://scrutinizer-ci.com/g/Exoticness/list/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/build-status/master) [![Requirements Status](https://requires.io/github/Exoticness/list/requirements.svg?branch=master)](https://requires.io/github/Exoticness/list/requirements/?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)]()
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master) [![Codacy Badge](https://img.shields.io/badge/codacy-B-brightgreen.svg)](https://www.codacy.com/app/roof1rst/list) [![Build Status](https://scrutinizer-ci.com/g/Exoticness/list/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/build-status/master) [![Requirements Status](https://requires.io/github/Exoticness/list/requirements.svg?branch=master)](https://requires.io/github/Exoticness/list/requirements/?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)]()
 
 Здесь будет описание проекта
  
@@ -7,7 +7,7 @@
 --------
 ### BACKEND
 - Прекрасная open source тема для админки AdminLTE 2
-- I18N + 3 трансляции: Английский, Русский, Украинский
+- I18N + 2 трансляции: Английский, Русский
 - Смена текущей локали + поведение, позволяющее автоматически менять локаль основываясь на языке системы
 - Авторизация, регистрация, профиль пользователя
 - Авторизация по протоколу OAuth2
@@ -22,17 +22,16 @@
 - Веб-контроллер кэширования
 - Отображение системной информации
 - Поддержка dotenv
-- Imperavi Reactor (http://imperavi.com/redactor, https://github.com/asofter/yii2-imperavi-redactor), 
-- Elfinder (http://elfinder.org, https://github.com/MihailDev/yii2-elfinder)
 - Nginx конфигурация
 
 ### FRONTEND
-- Адаптивный дизайн
-- Bootstrap 3.1
+- Адаптивный дизайн (ПК, планшеты, мобильные устройства)
+- Quickview sidebar (заметки, настройки)
+- Фиксированный / плавающий sidebar
+- Разнообразные виджеты
+- Bootstrap 3.3 Framework
 - 8 цветовых схем
-- HTML5/CSS3 разметка
-- Форма контакной связи
-- Видео на заднем фоне
+- HTML5 / CSS3
 - Parallax
 - Динамические кнопки
 
