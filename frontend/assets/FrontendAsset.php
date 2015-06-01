@@ -18,13 +18,43 @@ class FrontendAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/components.css',
-        'css/layout.css',
-        'css/plugins.css',
+        '//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic',
+        '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=cyrillic,latin',
+        'css/style.css',
+        'css/theme.css',
+        'css/ui.css',
+        'plugins/metrojs/metrojs.min.css',
     ];
 
     public $js = [
-        'js/click.js',
+        'plugins/jquery/jquery-migrate-1.2.1.min.js',
+        'plugins/jquery-ui/jquery-ui-1.11.2.min.js',
+        'plugins/gsap/main-gsap.min.js',
+        'plugins/jquery-cookies/jquery.cookies.min.js',
+        'js/landing/bootstrap.min.js',
+        'plugins/jquery-block-ui/jquery.blockUI.min.js',
+        'plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js',
+        'plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js',
+        'plugins/retina/retina.min.js',
+        'plugins/icheck/icheck.min.js',
+        'plugins/bootstrap-progressbar/bootstrap-progressbar.min.js',
+        'plugins/bootstrap-editable/js/bootstrap-editable.min.js',
+        'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
+        'plugins/multidatepicker/multidatespicker.min.js',
+        'plugins/metrojs/metrojs.min.js',
+        'plugins/countup/countUp.min.js',
+        'js/widgets/todo_list.js',
+        'js/builder.js',
+        'js/sidebar_hover.js',
+        'js/application.js',
+        'js/plugins.js',
+        'js/widgets/notes.js',
+        //'js/widgets/widget_weather.js',
+        'js/pages/dashboard.js',
+    ];
+
+    public $jsOptions = [
+        'position' => \yii\web\View::POS_END
     ];
 
     public $depends = [

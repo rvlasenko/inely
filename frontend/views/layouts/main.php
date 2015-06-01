@@ -47,15 +47,3 @@ else
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        Metronic.init();
-        Layout.init();
-        Demo.init();
-
-        $(".pace").ajaxStart(function () {
-            Pace.start();
-        });
-    });
-</script>
