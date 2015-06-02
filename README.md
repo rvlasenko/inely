@@ -136,4 +136,3 @@ php console/yii migrate
 ```php
 php console/yii rbac/init
 ```
-**IMPORTANT: не применив эту команду вы НЕ сможете авторизироваться в админке**
