@@ -628,25 +628,6 @@ use yii\helpers\Html;
                 <span class="switch-handle"></span>
             </label>
         </div>
-        <div class="title">STATISTICS</div>
-        <div class="settings-chart">
-            <div class="clearfix">
-                <div class="chart-title">Stat 1</div>
-                <div class="chart-number">82%</div>
-            </div>
-            <div class="progress">
-                <div class="progress-bar progress-bar-primary setting1" data-transitiongoal="82"></div>
-            </div>
-        </div>
-        <div class="settings-chart">
-            <div class="clearfix">
-                <div class="chart-title">Stat 2</div>
-                <div class="chart-number">43%</div>
-            </div>
-            <div class="progress">
-                <div class="progress-bar progress-bar-primary setting2" data-transitiongoal="43"></div>
-            </div>
-        </div>
         <div class="m-t-30" style="width:100%">
             <canvas id="setting-chart" height="300"></canvas>
         </div>

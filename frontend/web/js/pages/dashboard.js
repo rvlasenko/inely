@@ -2,12 +2,6 @@ $(function() {
 
     $(document).on("click", ".panel-header .panel-maximize", function(event) {
         var panel = $(this).parents(".panel:first");
-        if (panel.hasClass("maximized")) {
-            map.invalidateSize();
-        }
-        else {
-            map.invalidateSize();
-        }
     });
 
     $(document).on("click", ".theme-color", function(event) {

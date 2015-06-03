@@ -49,7 +49,7 @@ class FrontendAsset extends AssetBundle
         'js/application.js',
         'js/plugins.js',
         'js/widgets/notes.js',
-        //'js/widgets/widget_weather.js',
+        'js/widgets/widget_weather.js',
         'js/pages/dashboard.js',
     ];
 
