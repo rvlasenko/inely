@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2495dd7faebdcbc59ade3384702f5576",
+    "hash": "0a8aafab36534abce7d890206cedb53d",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",
@@ -1948,16 +1948,16 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "dev-master",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "b970f32f3d489cb04239620d72a8e889394d5298"
+                "reference": "726867caee3f23aa7a6975c801e64b6021e14f86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/b970f32f3d489cb04239620d72a8e889394d5298",
-                "reference": "b970f32f3d489cb04239620d72a8e889394d5298",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/726867caee3f23aa7a6975c801e64b6021e14f86",
+                "reference": "726867caee3f23aa7a6975c801e64b6021e14f86",
                 "shasum": ""
             },
             "require": {
@@ -2032,7 +2032,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-06-02 10:45:28"
+            "time": "2015-05-10 20:09:47"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -4137,7 +4137,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "yiisoft/yii2": 20,
         "asofter/yii2-imperavi-redactor": 20,
         "trntv/probe": 20,
         "trntv/cheatsheet": 20
