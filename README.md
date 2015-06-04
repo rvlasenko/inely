@@ -76,7 +76,7 @@ git clone https://github.com/Exoticness/list.git
 После завершения запустите команду в консоли
 ```
 cd /path/to/list/
-composer install
+composer update
 ```
 
 Процесс конфигурации приложения включает в себя:
@@ -95,15 +95,13 @@ php init
 
 #### 2. Веб-сервер
 
-Сперва необходимо настроить виртуальные хосты на своем веб-сервере:
+Необходимо настроить виртуальные хосты на своем веб-сервере:
 
 `example.dev` => `/path/to/list/frontend/web`
 
 `backend.example.dev` => `/path/to/list/backend/web`
 
 `storage.examplet.dev` => `/path/to/list/storage`
-
-**NOTE:** Также можно использовать файл `nginx.conf` расположенный в корне проекта.
 
 #### 3. Настройка среды
 Настройка параметров в файле `.env`
