@@ -1,9 +1,9 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master) [![Codacy Badge](https://img.shields.io/badge/codacy-B-brightgreen.svg)](https://www.codacy.com/app/roof1rst/list) [![Build Status](https://scrutinizer-ci.com/g/Exoticness/list/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/build-status/master) [![Requirements Status](https://requires.io/github/Exoticness/list/requirements.svg?branch=master)](https://requires.io/github/Exoticness/list/requirements/?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)]()
 
-Здесь будет описание проекта
+Здесь будет описание
  
 
-Особенности проекта
+Особенности
 --------
 ### BACKEND
 - Прекрасная open source тема для админки AdminLTE 2
@@ -49,88 +49,72 @@ Login: user
 Password: user
 ```
 
-Требования
-------------
-
-Минимальные требования подразумевают, что веб-сервер поддерживает PHP 5.4
-
 Установка и развёртывание
 ------------
 
-### Перед установкой
-Если на вашем ПК нет [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+Требования
 
-После завершения добавьте плагин для управления ассетами composer-asset-plugin
+Минимальные требования подразумевают, что веб-сервер поддерживает PHP 5.4
+
+### Перед началом
+Если вы не имеете [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+
+После завершения добавьте плагин:
 ```bash
 composer global require "fxp/composer-asset-plugin"
 ```
 
-
-### GitHub
-
-Клонируйте репозиторий
-```bash
-git clone https://github.com/Exoticness/list.git
-```
-
-После завершения запустите команду в консоли
+Клонируйте этот репозиторий и обновите зависимости:
 ```
 cd /path/to/list/
 composer update
 ```
 
-Процесс конфигурации приложения включает в себя:
+### Инициализация
+1. Настройка параметров в `.env`
+	- Укажите режим отладки и ваше текущее окружение
+	
+	```
+	YII_DEBUG   = true
+	YII_ENV     = dev
+	```
+	- Укажите конфигурацию базы данных
+	
+	```
+	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=schedule
+	DB_USERNAME      = user
+	DB_PASSWORD      = password
+	```
 
-1. Инициализация приложения
-2. Подготовка веб-сервера
-3. Конфигурирование среды разработки
-4. Применение миграций
-5. Инициализация RBAC
+	- Укажите URL-адреса для отдельных доменов
+	
+	```
+	FRONTEND_URL    = http://schedule.dev
+	BACKEND_URL     = http://backend.schedule.dev
+	STORAGE_URL     = http://storage.schedule.dev
+	```
 
-#### 1. Инициализация приложения
-```php
-cd /path/to/list/
-php init
+2. Запуск
+```
+php console/yii app/setup
 ```
 
-#### 2. Веб-сервер
+### Configure your web server
+Copy `vhost.conf.dist` to `vhost.conf`, change it with your local settings and copy (symlink) it to nginx ``sites-enabled`` directory.
+Or configure your web server with three different web roots:
+- yii2-starter-kit.dev => /path/to/yii2-starter-kit/frontend/web
+- backend.yii2-starter-kit.dev => /path/to/yii2-starter-kit/backend/web
+- storage.yii2-starter-kit.dev => /path/to/yii2-starter-kit/storage/web
 
-Необходимо настроить виртуальные хосты на своем веб-сервере:
 
-`example.dev` => `/path/to/list/frontend/web`
+### Vagrant
+Если хотите, можете использовать Vagrant вместо установки приложения на локальном компьютере.
 
-`backend.example.dev` => `/path/to/list/backend/web`
-
-`storage.examplet.dev` => `/path/to/list/storage`
-
-#### 3. Настройка среды
-Настройка параметров в файле `.env`
-
-##### 3.1 База данных
-Внесите собственные данные в `.env`:
-```php
-DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=list
-DB_USERNAME      = user
-DB_PASSWORD      = password
+1. Установите [Vagrant](https://www.vagrantup.com/)
+2. Создайте GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens) и скопируйте его в `vagrant.yml`
+3. Запустите:
 ```
-**NOTE:** Yii не будет создавать базу данных, это должно быть сделано вручную, прежде чем вы можете получить доступ к ней.
-
-##### 3.2 URL-адреса приложения
-Установите адреса приложения в файле `.env` идентичные виртуальным хостам
-
-```php
-FRONTEND_URL    = http://example.dev
-BACKEND_URL     = http://backend.example.dev
-STORAGE_URL     = http://storage.example.dev
+vagrant plugin install vagrant-hostmanager
+vagrant up
 ```
-#### 4. Применение миграций
-
-```php
-php console/yii migrate
-```
-
-#### 5. Инициализирование RBAC конфигурации
-
-```php
-php console/yii rbac/init
-```
+На этом всё. После этих команд приложение будет доступно по адресу http://schedule.dev
