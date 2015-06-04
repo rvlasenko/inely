@@ -13,7 +13,6 @@
     RewriteCond %{REQUEST_URI} ^/(admin)
     RewriteRule ^.*$ backend/web/index.php [L]
 
-
     RewriteCond %{REQUEST_URI} ^/(assets|css)
     RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
     RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
