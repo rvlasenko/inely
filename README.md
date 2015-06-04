@@ -97,12 +97,12 @@ composer update
 php console/yii app/setup
 ```
 
-### Configure your web server
-Copy `vhost.conf.dist` to `vhost.conf`, change it with your local settings and copy (symlink) it to nginx ``sites-enabled`` directory.
-Or configure your web server with three different web roots:
-- yii2-starter-kit.dev => /path/to/yii2-starter-kit/frontend/web
-- backend.yii2-starter-kit.dev => /path/to/yii2-starter-kit/backend/web
-- storage.yii2-starter-kit.dev => /path/to/yii2-starter-kit/storage/web
+### Конфигурация сервера
+`vhost.conf`, предназначен для nginx серверов и имеет оптимальные настройки.
+Либо вы можете конфигурировать сервер самостоятельно:
+- schedule.dev => /path/to/yii2-starter-kit/frontend/web
+- backend.schedule.dev => /path/to/yii2-starter-kit/backend/web
+- storage.schedule.dev => /path/to/yii2-starter-kit/storage/web
 
 
 ### Vagrant
