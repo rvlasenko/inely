@@ -453,7 +453,6 @@
             <div style="display: block;" class="row expanded-contact-form"></div>
         </div>
 
-        <img src="images/logo-black.png" alt="LOGO" class="logo responsive-img">
         <div id="myflashwrapper" style="display: none;"></div>
         <p class="copyright">
             © 2015 Me, All Rights Reserved

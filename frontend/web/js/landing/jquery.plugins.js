@@ -20,7 +20,38 @@
  * Released under the MIT, BSD, and GPL Licenses.
  * based on jQuery Plugin Boilerplate 1.3
  */
-!function(i){i.backgroundVideo=function(e,t){var o={videoid:"video_background"},n=this;n.settings={};var d=function(){n.settings=i.extend({},o,t),n.el=e,s()},s=function(){var e="";e+='<video id="'+n.settings.videoid+'" preload="auto" autoplay="autoplay" loop="loop"',e+='poster="/images/dusk_mountains.jpg"',e+='style="display:none; position:fixed; top:0; left:0; bottom:0; right:0; z-index:-100; width:100%; height:100%;">',e+='<source src="//a.pomf.se/hkjttt.webm" type="video/webm" />',e+='<source src="//tinyurl.com/q6bf785" type="video/mp4" />',e+="bgvideo</video>",n.el.prepend(e),n.videoEl=document.getElementById(n.settings.videoid),n.$videoEl=i(n.videoEl),n.$videoEl.fadeIn(2e3),g()},g=function(){var i=l();n.$videoEl.width(i*n.settings.width),n.$videoEl.height(i*n.settings.height),"undefined"!=typeof n.settings.align&&v()},l=function(){var e=i(window).width(),t=i(window).height(),o=e/t,d=n.settings.width/n.settings.height,s=t/n.settings.height;return o>=d&&(s=e/n.settings.width),s},v=function(){var e=(i(window).width()>>1)-(n.$videoEl.width()>>1)|0,t=(i(window).height()>>1)-(n.$videoEl.height()>>1)|0;return"centerXY"==n.settings.align?void n.$videoEl.css({left:e,top:t}):"centerX"==n.settings.align?void n.$videoEl.css("left",e):"centerY"==n.settings.align?void n.$videoEl.css("top",t):void 0};d(),i(window).resize(function(){g()}),n.$videoEl.bind("ended",function(){this.play()})}}(jQuery);
+!function (i) {
+    i.backgroundVideo = function (e, t) {
+        var o = {videoid: "video_background"}, n = this;
+        n.settings = {};
+        var d = function () {
+            n.settings = i.extend({}, o, t), n.el = e, s()
+        }, s = function () {
+            var e = "";
+            e += '<video id="' + n.settings.videoid + '" preload="auto" autoplay="autoplay" loop="loop"', e += 'poster="/images/dusk_mountains.jpg"', e += 'style="display:none; position:fixed; top:0; left:0; bottom:0; right:0; z-index:-100; width:100%; height:100%;">',
+                e += '<source src="" type="video/webm" />',
+                e += '<source src="" type="video/mp4" />',
+                e += "bgvideo</video>", n.el.prepend(e), n.videoEl = document.getElementById(n.settings.videoid), n.$videoEl = i(n.videoEl), n.$videoEl.fadeIn(2e3), g()
+        }, g = function () {
+            var i = l();
+            n.$videoEl.width(i * n.settings.width), n.$videoEl.height(i * n.settings.height), "undefined" != typeof n.settings.align && v()
+        }, l = function () {
+            var e = i(window).width(), t = i(window).height(), o = e / t, d = n.settings.width / n.settings.height, s = t / n.settings.height;
+            return o >= d && (s = e / n.settings.width), s
+        }, v = function () {
+            var e = (i(window).width() >> 1) - (n.$videoEl.width() >> 1) | 0, t = (i(window).height() >> 1) - (n.$videoEl.height() >> 1) | 0;
+            return "centerXY" == n.settings.align ? void n.$videoEl.css({
+                left: e,
+                top: t
+            }) : "centerX" == n.settings.align ? void n.$videoEl.css("left", e) : "centerY" == n.settings.align ? void n.$videoEl.css("top", t) : void 0
+        };
+        d(), i(window).resize(function () {
+            g()
+        }), n.$videoEl.bind("ended", function () {
+            this.play()
+        })
+    }
+}(jQuery);
 
 /*
  * jQuery One Page Nav Plugin

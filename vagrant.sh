@@ -62,9 +62,9 @@ fi
 php /var/www/init --env=dev --overwrite=n
 
 # create nginx config
-#if [ ! -f /etc/nginx/sites-enabled/yii2-starter-kit.dev ]; then
-#    sudo ln -s /var/www/vhost.conf /etc/nginx/sites-enabled/yii2-starter-kit.dev
-#fi
+if [ ! -f /etc/nginx/sites-enabled/yii2-starter-kit.dev ]; then
+    sudo ln -s /var/www/nginx.conf /etc/nginx/sites-enabled/yii2-starter-kit.dev
+fi
 
 # Configuring application
 echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root'" | mysql -uroot -proot
@@ -76,4 +76,4 @@ php /var/www/console/yii rbac/init
 
 sudo service mysql restart
 sudo service php5-fpm restart
-sudo service apache2 restart
+sudo service nginx restart

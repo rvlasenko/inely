@@ -1,5 +1,5 @@
 /* =================================
-   LOADER                     
+   LOADER
 =================================== */
 jQuery(window).load(function() {
 	jQuery(".status").fadeOut();
@@ -85,7 +85,7 @@ if (matchMedia('(min-width: 640px)').matches) {
       "align": "centerXY",
       "width": 1280,
       "height": 720,
-      "path": "http://a.pomf.se/nfcrav",
+      "path": "",
       "types": ["webm"]
     });
   });
@@ -260,7 +260,7 @@ $('.expand-form').simpleexpand({
 /* =================================
 ===  STELLAR                    ====
 =================================== */
-$(window).stellar({ 
+$(window).stellar({
     horizontalScrolling: false
 });
 
