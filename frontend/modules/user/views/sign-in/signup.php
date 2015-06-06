@@ -1,6 +1,7 @@
 <?php
-use yii\widgets\ActiveForm;
+    use yii\widgets\ActiveForm;
 
+    $this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
 ?>
 
 <div class="row">
@@ -38,11 +39,13 @@ use yii\widgets\ActiveForm;
                 'data-pjax' => true
             ],
         ]) ?>
+
         <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
             'name' => 'reCaptcha',
             'siteKey' => getenv('RC_SITEKEY'),
             'widgetOptions' => ['class' => 'col-md-12']
         ]) ?>
+
         <?= $form->field($model, 'username', [
             'options' => [
                 'class' => 'col-md-12',

@@ -6,8 +6,6 @@ jQuery(window).load(function() {
 	jQuery(".preloader").delay(1000).fadeOut("slow");
 });
 
-/*$(".video-container").fitVids();*/
-
 (function($) {
     'use strict';
     $("#client-wrapper, #owl-testimoni").owlCarousel({
@@ -58,7 +56,6 @@ function showModal(url, ev) {
         $('#myModal').modal('show');
     });
 }
-
 
 /* COLLAPSE NAVIGATION ON MOBILE AFTER CLICKING ON LINK */
 

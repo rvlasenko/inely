@@ -1,5 +1,4 @@
 <?php
-    use frontend\assets\FontAwesomeAsset;
     use frontend\assets\LandingAsset;
     use yii\helpers\Html;
 
@@ -8,7 +7,6 @@
     /* @var $model \frontend\models\ContactForm */
 
     LandingAsset::register($this);
-    FontAwesomeAsset::register($this);
     $this->title = Yii::t('frontend', 'flatask');
 ?>
 

@@ -630,7 +630,7 @@ header .intro-section .buttons {
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    line-height: 52px;
+    line-height: 57px;
     font-size: 1.5em;
     text-align: center;
     -webkit-transition: all ease-in 0.25s;
@@ -1182,7 +1182,7 @@ footer .contact-box .contact-button {
     margin: auto;
     position: relative;
     font-size: 35px;
-    line-height: 62px;
+    line-height: 73px;
     padding-right: 15px;
     vertical-align: middle;
     margin-top: -40px;

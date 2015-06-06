@@ -35,6 +35,7 @@ class LandingAsset extends AssetBundle
         'css/landing/responsive.css',
 
         // Web font
+        'css/icons/simple-line-icons/css/simple-line-icons.css',
         '//fonts.googleapis.com/css?family=Roboto:300,100&subset=latin,cyrillic-ext',
     ];
 
@@ -50,7 +51,9 @@ class LandingAsset extends AssetBundle
         'js/landing/bootstrap.min.js',
     ];
 
-    public $jsOptions = ['position' => \yii\web\View::POS_END];
+    public $jsOptions = [
+        'position' => \yii\web\View::POS_END
+    ];
 
     public $depends = [
         'yii\bootstrap\BootstrapAsset',

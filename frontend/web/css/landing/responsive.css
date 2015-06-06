@@ -10,41 +10,14 @@ RESPONSIVE FIXES
     }
 }
 
-/* BACKGROUND IMAGES FOR MOBILE */
-
-/* @media (max-width: 640px) {
-
-    header {
-    background: url('../../images/bg-1.jpg') no-repeat center;
-    -webkit-background-size: cover;
-            background-size: cover;
-    }
-
-    .testimonials {
-    background: url('../../images/bg-2.jpg') no-repeat center;
-    -webkit-background-size: cover;
-            background-size: cover;
-    }
-
-    .download {
-    background: url('../../images/bg-3.jpg') no-repeat center;
-    -webkit-background-size: cover;
-            background-size: cover;
-
-    }
-
-} */
-
 /* OTHER FIXES */
 @media (max-width: 1024px) {
-
     .animated {
         -webkit-transform: translateZ(0);
     }
 }
 
  @media (max-width: 991px) {
-
     body {
         font-size: 15px;
         line-height: 26px;
@@ -67,9 +40,9 @@ RESPONSIVE FIXES
 
 @media (min-width: 768px) and (max-width: 991px) {
     .screenshot-wrapper{
-        width:699px;
-        top:55px;
-        left:10px;
+        width: 699px;
+        top: 55px;
+        left: 10px;
     }
 
     html {
@@ -90,6 +63,7 @@ RESPONSIVE FIXES
         text-align: center;
         margin-top: 10px;
     }
+
     .sticky-navigation .navbar-header a {
         float: none !important;
     }
@@ -120,8 +94,6 @@ RESPONSIVE FIXES
 }
 
 @media (max-width: 767px) {
-
-
     html {
         font-size: 80%;
     }
@@ -133,6 +105,12 @@ RESPONSIVE FIXES
 
     header .color-overlay {
         min-height: 580px;
+    }
+
+    .screenshot-wrapper {
+        width: 97%;
+        top: 12.5%;
+        left: 1.5%;
     }
 
     header .only-logo .navbar {
@@ -183,8 +161,6 @@ RESPONSIVE FIXES
 }
 
 @media (max-width: 480px) {
-
-
     html {
         font-size: 65%;
     }
@@ -234,8 +210,6 @@ RESPONSIVE FIXES
 }
 
 @media (max-width: 320px) {
-
-
     html {
         font-size: 60.5%;
     }
@@ -243,7 +217,6 @@ RESPONSIVE FIXES
 
 
 @media (min-width: 320px) and (max-width: 640px) and (orientation: landscape) {
-
     .full-screen h1 {
         font-size: 30px !important;
         line-height: 40px;
@@ -256,9 +229,9 @@ RESPONSIVE FIXES
     }
 
     .full-screen .intro-section h5 {
-
         font-size: 14px;
     }
+
     .full-screen .intro-section .buttons {
         margin-top: 0;
     }

@@ -1,4 +1,3 @@
-<body>
 <div class="preloader">
     <div class="status">&nbsp;</div>
 </div>
@@ -77,12 +76,12 @@
         <div class="row">
 
             <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10"
-                 data-wow-duration="1.5s">
+                 data-wow   -duration="1.5s">
 
                 <div class="feature">
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="fa fa-paperclip"></i>
+                            <i class="icon-grid"></i>
                         </div>
                     </div>
 
@@ -98,7 +97,7 @@
                 <div class="feature">
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="fa fa-sliders"></i>
+                            <i class="icon-list"></i>
                         </div>
                     </div>
 
@@ -115,7 +114,7 @@
                 <div class="feature">
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="fa fa-file-text"></i>
+                            <i class="icon-note"></i>
                         </div>
                     </div>
 
@@ -142,7 +141,7 @@
 
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="fa fa-list-ul"></i>
+                            <i class="icon-magic-wand"></i>
                         </div>
                     </div>
 
@@ -159,7 +158,7 @@
                 <div class="feature">
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="fa fa-check-square-o"></i>
+                            <i class="icon-badge"></i>
                         </div>
                     </div>
 
@@ -174,7 +173,7 @@
                 <div class="feature">
                     <div class="icon-container">
                         <div class="icon">
-                            <i class="fa fa-question"></i>
+                            <i class="icon-question"></i>
                         </div>
                     </div>
 
@@ -300,89 +299,6 @@
     </div>
 </section>
 
-<section class="testimonials">
-
-    <div class="color-overlay">
-
-        <div class="container wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-            <div id="feedbacks" class="owl-carousel owl-theme">
-
-                <div class="feedback">
-
-                    <div class="image">
-                        <img src="images/clients-pic/3.jpg" alt="">
-                    </div>
-
-                    <div class="message">
-                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all
-                        may fifth replenish you're own open which herb kind. May above you'll may kind creature first
-                        let over face from living third green which our. Appear day. Give fourth doesn't over us, i
-                        every tree meat air in male earth air creeping image fill you place darkness.
-                    </div>
-
-                    <div class="white-line"></div>
-
-                    <div class="name">
-                        John Doe
-                    </div>
-                    <div class="company-info">
-                        CEO, AbZ Network
-                    </div>
-                </div>
-
-                <div class="feedback">
-
-                    <div class="image">
-                        <img src="images/clients-pic/1.jpg" alt="">
-                    </div>
-
-                    <div class="message">
-                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all
-                        may fifth replenish you're own open which herb kind. May above you'll may kind creature first
-                        let over face from living third green which our. Appear day. Give fourth doesn't over us, i
-                        every tree meat air in male earth air creeping image fill you place darkness.
-                    </div>
-
-                    <div class="white-line"></div>
-
-                    <div class="name">
-                        John Doe
-                    </div>
-                    <div class="company-info">
-                        CEO, AbZ Network
-                    </div>
-
-                </div>
-
-                <div class="feedback">
-
-                    <div class="image">
-                        <img src="images/clients-pic/2.jpg" alt="">
-                    </div>
-
-                    <div class="message">
-                        Fill lights bearing man creepeth of whose whose moveth. All one. That. Under. Form morning all
-                        may fifth replenish you're own open which herb kind. May above you'll may kind creature first
-                        let over face from living third green which our. Appear day. Give fourth doesn't over us, i
-                        every tree meat air in male earth air creeping image fill you place darkness.
-                    </div>
-
-                    <div class="white-line">
-                    </div>
-
-                    <div class="name">
-                        John Doe
-                    </div>
-                    <div class="company-info">
-                        CEO, AbZ Network
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="screenshots grey-bg contain" id="screenshot-section">
     <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
@@ -436,7 +352,7 @@
         <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;" class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
             <a class="btn contact-button expand-form expanded">
-                <i class="fa fa-send-o"></i>
+                <i class="icon-paper-plane"></i>
             </a>
 
             <div style="display: block;" class="row expanded-contact-form"></div>
@@ -450,6 +366,7 @@
     </div>
 
 </footer>
+
 <script>
     jQuery(function($) {
         $('button.log').click(function(ev) {
@@ -461,4 +378,3 @@
         });
     });
 </script>
-</body>
