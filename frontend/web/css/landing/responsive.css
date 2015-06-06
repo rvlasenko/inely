@@ -2,6 +2,14 @@
 RESPONSIVE FIXES
 -----------------------------------------*/
 
+@media (min-width: 1200px) {
+    .screenshot-wrapper{
+        width:917px;
+        top:73px;
+        left:14px;
+    }
+}
+
 /* BACKGROUND IMAGES FOR MOBILE */
 
 /* @media (max-width: 640px) {
@@ -37,7 +45,6 @@ RESPONSIVE FIXES
 
  @media (max-width: 991px) {
 
-
     body {
         font-size: 15px;
         line-height: 26px;
@@ -49,6 +56,7 @@ RESPONSIVE FIXES
 
     .app-brief .left-align {
         text-align: center;
+
     }
 
     .colored-line-left {
@@ -58,7 +66,11 @@ RESPONSIVE FIXES
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-
+    .screenshot-wrapper{
+        width:699px;
+        top:55px;
+        left:10px;
+    }
 
     html {
         font-size: 90%;
@@ -237,6 +249,7 @@ RESPONSIVE FIXES
         line-height: 40px;
         margin-top: 0;
     }
+
     .full-screen .intro-section .intro {
        margin-bottom: 0;
 

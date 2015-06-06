@@ -17,6 +17,7 @@ class LandingAsset extends AssetBundle
 
         // Carousel and lightbox
         'css/landing/owl.theme.css',
+        'css/landing/flexslider.css',
         'css/landing/owl.carousel.css',
         'css/landing/nivo-lightbox.css',
         'css/landing/nivo_themes/default/default.css',

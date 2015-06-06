@@ -261,15 +261,22 @@
 
 <section class="app-brief" id="brief2">
 
+    <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+
+        <h2 class="dark-text">Удивительные особенности</h2>
+
+        <div class="colored-line"></div>
+        <div class="section-description">
+            Потрясающие функции, которые позволят Вам добиться успеха
+        </div>
+        <div class="colored-line"></div>
+    </div>
+
     <div class="container">
 
         <div class="row">
 
             <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-                <h2 class="dark-text">Great way to describe your app</h2>
-
-                <div class="colored-line-left"></div>
 
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
@@ -286,7 +293,7 @@
 
             <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
                 <div class="phone-image">
-                    <img src="images/2-phone-right.png" alt="">
+                    <img src="images/device.png" alt="">
                 </div>
             </div>
         </div>
@@ -376,64 +383,46 @@
     </div>
 </section>
 
-<section class="screenshots grey-bg" id="screenshot-section">
+<section class="screenshots grey-bg contain" id="screenshot-section">
+    <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-    <div class="container">
+        <h2 class="dark-text">Screenshots</h2>
 
-        <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-            <h2 class="dark-text">Screenshots</h2>
-
-            <div class="colored-line"></div>
-            <div class="section-description">
-                List your app features and all the details Lorem ipsum dolor kadr
-            </div>
-            <div class="colored-line"></div>
-
+        <div class="colored-line"></div>
+        <div class="section-description">
+            List your app features and all the details Lorem ipsum dolor kadr
         </div>
+        <div class="colored-line"></div>
 
-        <div class="row wow bounceIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-            <div id="screenshots" class="owl-carousel owl-theme">
-
-                <div class="shot">
-                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/1.jpg" alt="Screenshot"></a>
-                </div>
-
-                <div class="shot">
-                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/3.jpg" alt="Screenshot"></a>
-                </div>
-
-                <div class="shot">
-                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/2.jpg" alt="Screenshot"></a>
-                </div>
-
-                <div class="shot">
-                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/4.jpg" alt="Screenshot"></a>
-                </div>
-
-                <div class="shot">
-                    <a href="images/screenshots/1.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/1.jpg" alt="Screenshot"></a>
-                </div>
-
-                <div class="shot">
-                    <a href="images/screenshots/3.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/3.jpg" alt="Screenshot"></a>
-                </div>
-
-                <div class="shot">
-                    <a href="images/screenshots/2.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/2.jpg" alt="Screenshot"></a>
-                </div>
-
-                <div class="shot">
-                    <a href="images/screenshots/4.jpg" data-lightbox-gallery="screenshots-gallery"><img
-                            src="images/screenshots/4.jpg" alt="Screenshot"></a>
+    </div>
+    <div id="screenshot-contain" class="wow fadeInDown" data-wow-delay="0.4s">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="screenshot-slider">
+                        <div class="screenshot-wrapper">
+                            <div class="flexslider text-center">
+                                <ul class="slides">
+                                    <li>
+                                        <a href="#"><img src="images/img1.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img2.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img3.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img4.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img5.png" alt="" /></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <img src="images/browser.png" class="img-responsive" alt="" />
+                    </div>
                 </div>
             </div>
         </div>

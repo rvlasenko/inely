@@ -8,13 +8,46 @@ jQuery(window).load(function() {
 
 /*$(".video-container").fitVids();*/
 
+(function($) {
+    'use strict';
+    $("#client-wrapper, #owl-testimoni").owlCarousel({
+        autoPlay : false,
+        stopOnHover : true,
+        pagination : false,
+        navigation:true,
+        paginationSpeed : 1000,
+        goToFirstSpeed : 2000,
+        singleItem : true,
+        autoHeight : true
+    });
+})(jQuery);
+
+(function($) {
+    'use strict';
+    $('.flexslider').flexslider({
+        animation: "slide",
+        directionNav: true,
+        controlNav: true,
+        slideshow: true,
+    });
+
+    $('.imac-device').flexslider({
+        animation: "slide",
+        directionNav: false,
+        controlNav: false,
+        slideshow: true,
+        pausePlay: true,
+        mousewheel: true,
+    });
+})(jQuery);
+
 $(document).ready(function() {
   $('.main-navigation').onePageNav({
     scrollThreshold: 0.2, // Adjust if Navigation highlights too early or too late
     filter: ':not(.external)',
     changeHash: true
   });
-  
+
 });
 
 function showModal(url, ev) {
@@ -85,7 +118,7 @@ if (matchMedia('(min-width: 640px)').matches) {
       "align": "centerXY",
       "width": 1280,
       "height": 720,
-      "path": "",
+      "path": "http://www7.online-convert.com/ru/download-file/f05d8253f56d278b1b0d03a11ae4cfd3/converted-03442273.webm",
       "types": ["webm"]
     });
   });
