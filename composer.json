@@ -1,6 +1,6 @@
 {
     "name": "dev/flatask",
-    "description": "just awesome todo",
+    "description": "just awesome schedule",
     "type": "project",
     "license": "BSD-3-Clause",
     "require": {
@@ -24,7 +24,6 @@
         "intervention/image": "~2.1",
         "vlucas/phpdotenv": "~1.0",
         "league/glide": "~0.3",
-        "fortawesome/font-awesome": "~4.2",
         "bower-asset/admin-lte": "~2.0",
         "bower-asset/html5shiv": "~3.0",
         "bower-asset/flot": "~0.8"
