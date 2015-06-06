@@ -1,6 +1,5 @@
 <?php
 use yii\helpers\ArrayHelper;
-use yii\widgets\Breadcrumbs;
 use kartik\alert\AlertBlock;
 
 /* @var $this \yii\web\View */
@@ -11,10 +10,6 @@ if (!Yii::$app->user->isGuest)
 else
     $this->beginContent('@frontend/views/layouts/_landing.php');
 ?>
-
-<?= Breadcrumbs::widget([
-    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-]) ?>
 
 <?php if (Yii::$app->session->hasFlash('alert')): ?>
 <?= AlertBlock::widget([
@@ -42,7 +37,7 @@ else
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="loader">Загрузка...</div>
+                <div class="loader"></div>
             </div>
         </div>
     </div>

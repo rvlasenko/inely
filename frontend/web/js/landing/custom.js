@@ -6,7 +6,7 @@ jQuery(window).load(function() {
 	jQuery(".preloader").delay(1000).fadeOut("slow");
 });
 
-$(".video-container").fitVids();
+/*$(".video-container").fitVids();*/
 
 $(document).ready(function() {
   $('.main-navigation').onePageNav({
@@ -22,7 +22,7 @@ function showModal(url, ev) {
 
     $.get(url, function(html) {
         $('#myModal .modal-body').html(html);
-        $('myModal').modal('show', {backdrop: 'static'});
+        $('#myModal').modal('show');
     });
 }
 
@@ -77,7 +77,7 @@ jQuery(function( $ ){
 
 /* =================================
 ===  VIDEO BACKGROUND           ====
-=================================== */
+===================================
 if (matchMedia('(min-width: 640px)').matches) {
 
    $(document).ready(function() {
@@ -90,7 +90,7 @@ if (matchMedia('(min-width: 640px)').matches) {
     });
   });
 
-}
+}*/
 
 
 /* =================================

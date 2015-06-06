@@ -1,5 +1,5 @@
 # Env
-/nginx.conf
+vhost.conf
 
 # composer
 /vendor
@@ -24,4 +24,3 @@ phpunit.phar
 
 # Vagrant
 /.vagrant
-/vagrant.yaml

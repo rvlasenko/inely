@@ -69,11 +69,11 @@ class SignInController extends \yii\web\Controller
     public function actionLogin()
     {
         $model = new LoginForm();
-        if (Yii::$app->request->isGet && $model->load($_POST)) {
+        if (Yii::$app->request->get() && $model->load($_POST)) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->request->get()) && $model->login()) {
             return $this->goBack();
         } else {
             return $this->renderAjax('login', [
@@ -91,7 +91,7 @@ class SignInController extends \yii\web\Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->get())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     Yii::$app->getSession()->setFlash(
@@ -128,7 +128,7 @@ class SignInController extends \yii\web\Controller
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->get()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->getSession()->setFlash('alert', [
                     'body' => Yii::t('frontend', 'Check your email for further instructions.'),

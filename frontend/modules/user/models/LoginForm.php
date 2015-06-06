@@ -45,11 +45,10 @@ class LoginForm extends Model
      */
     public function validatePassword()
     {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
-            }
+        $user = User::findByUsername($this->username);
+
+        if (!$user || !$user->validatePassword($this->password)) {
+            $this->addError('password', 'Incorrect username or password.');
         }
     }
 

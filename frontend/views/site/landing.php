@@ -3,7 +3,7 @@
     <div class="status">&nbsp;</div>
 </div>
 
-<header class="header" id="home">
+<header class="header" data-stellar-background-ratio="0.5" id="home">
 
     <div class="color-overlay full-screen">
 

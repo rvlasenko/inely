@@ -20,6 +20,7 @@
  * Released under the MIT, BSD, and GPL Licenses.
  * based on jQuery Plugin Boilerplate 1.3
  */
+/*
 !function (i) {
     i.backgroundVideo = function (e, t) {
         var o = {videoid: "video_background"}, n = this;
@@ -52,7 +53,7 @@
         })
     }
 }(jQuery);
-
+*/
 /*
  * jQuery One Page Nav Plugin
  * http://github.com/davist11/jQuery-One-Page-Nav

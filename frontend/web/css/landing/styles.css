@@ -4,6 +4,28 @@ GLOBAL STYLES
 =========================================
 -----------------------------------------*/
 
+header {
+    background: url(../../images/bg-1.jpg) no-repeat center top fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+header .color-overlay {
+    min-height: 900px;
+}
+
+header .full-screen {
+    width: 100%;
+    height: 100px;
+}
+
+.testimonials {
+    background: url(../../images/bg-2.jpg) no-repeat center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+}
+
 html {
     font-size: 100%;
 }
