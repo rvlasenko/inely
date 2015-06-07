@@ -105,11 +105,8 @@ php console/yii app/setup
 ### Vagrant
 Если вы хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
 
-1. Установите [Vagrant](https://www.vagrantup.com/)
-2. Установите плагин и поднимите виртуальную машину:
-```
-vagrant plugin install vagrant-hostmanager
-cd /path/to/schedule
-vagrant up
-```
+1. Установите [Vagrant](https://www.vagrantup.com/).
+2. Откройте терминал и перейдите в папку madeasy.
+3. Установите плагин ```vagrant plugin install vagrant-hostmanager```
+4. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв.
 На этом всё. После этих действий приложение будет доступно по адресу http://schedule.dev на базе сервера Apache. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
