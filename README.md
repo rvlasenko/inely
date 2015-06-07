@@ -96,22 +96,20 @@ php console/yii app/setup
 ```
 
 ### Конфигурация сервера
-`vhost.conf`, предназначен для nginx серверов и имеет оптимальные настройки.
+`vhost.conf`, предназначен для Apache серверов и имеет оптимальные настройки.
 Для любого другого сервера вы можете настроить конфигурацию самостоятельно:
 - schedule.dev => /path/to/yii2-starter-kit/frontend/web
 - backend.schedule.dev => /path/to/yii2-starter-kit/backend/web
 - storage.schedule.dev => /path/to/yii2-starter-kit/storage/web
 
-
 ### Vagrant
-Если хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
+Если вы хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
 
 1. Установите [Vagrant](https://www.vagrantup.com/)
-2. Создайте GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens) и скопируйте его в `vagrant.yml`
-3. Установите плагин и поднимите виртуальную машину:
+2. Установите плагин и поднимите виртуальную машину:
 ```
 vagrant plugin install vagrant-hostmanager
 cd /path/to/schedule
 vagrant up
 ```
-На этом всё. После этих действий приложение будет доступно по адресу http://schedule.dev на базе сервера nginx. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
+На этом всё. После этих действий приложение будет доступно по адресу http://schedule.dev на базе сервера Apache. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
