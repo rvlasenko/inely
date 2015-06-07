@@ -1636,10 +1636,6 @@ div.contact-box > section {
     transition: none;
 }
 
-.btn-2a {
-    border-radius: 0 0 5px 5px;
-}
-
 .btn-2a:hover {
     box-shadow: 0 4px #17A87E;
     top: 2px;
@@ -1648,4 +1644,8 @@ div.contact-box > section {
 .btn-2a:active {
     box-shadow: 0 0 #ab3c3c;
     top: 6px;
+}
+
+div.col-md-6 .bttn {
+    padding: 10px 40px;
 }

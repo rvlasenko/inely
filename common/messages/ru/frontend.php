@@ -38,6 +38,7 @@ return [
     'If you forgot your password you can reset it <a class="reset-a" href="#">here</a>' => 'Если вы забыли пароль, вы можете сбросить его <a class="reset-a" href="#">здесь</a>',
     'Incorrect username or password.' => 'Неправильный логин или пароль.',
     'Language' => 'Язык',
+    'Learn more' => 'Узнать больше',
     'Log in with' => 'Войти с помощью',
     'Login' => 'Войти!',
     'Login as user' => 'Войти как пользователь',

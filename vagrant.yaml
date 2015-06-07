@@ -1,9 +1,0 @@
-vm:
-  memory: 1536
-  cpus: 1
-system:
-  swapsize: 1024
-network:
-  ip: 192.168.33.10
-github:
-  token: 24211376521a521a07d2c435037d164180bbc2b0

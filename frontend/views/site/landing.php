@@ -288,6 +288,11 @@
                     anim id est laborum.
                 </p>
 
+                <div class="form-group">
+                    <button class="bttn btn-2 btn-2a">
+                        <?= Yii::t('frontend', 'Learn more') ?>
+                    </button>
+                </div>
             </div>
 
             <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">

@@ -4,7 +4,6 @@
 </IfModule>
 
 <IfModule mod_rewrite.c>
-    # deal with admin first
     RewriteCond %{REQUEST_URI} ^/(admin)
     RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
     RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]

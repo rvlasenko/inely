@@ -15,6 +15,7 @@
             'enableAjaxValidation' => true,
             'enableClientValidation' => false,
         ]); ?>
+
         <?= $form->field($model, 'name', [
             'options' => [
                 'class' => 'col-md-6',
