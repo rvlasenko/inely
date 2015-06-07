@@ -114,4 +114,4 @@ vagrant plugin install vagrant-hostmanager
 cd /path/to/schedule
 vagrant up
 ```
-На этом всё. После этих действий приложение будет доступно по адресу http://schedule.dev
+На этом всё. После этих действий приложение будет доступно по адресу http://schedule.dev на базе сервера nginx. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
