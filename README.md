@@ -1,7 +1,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/list/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/?branch=master) [![Codacy Badge](https://img.shields.io/badge/codacy-B-brightgreen.svg)](https://www.codacy.com/app/roof1rst/list) [![Build Status](https://scrutinizer-ci.com/g/Exoticness/list/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/list/build-status/master) [![Requirements Status](https://requires.io/github/Exoticness/list/requirements.svg?branch=master)](https://requires.io/github/Exoticness/list/requirements/?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)]()
 
 Здесь будет описание
- 
+
 
 Особенности
 --------
@@ -35,7 +35,7 @@
 - Parallax
 - Динамические кнопки
 
-Демонстрация
+Рабочий сервер
 ----
 Frontend:
 http://domain.net
@@ -55,7 +55,7 @@ Password: user
 Минимальные требования подразумевают, что веб-сервер поддерживает PHP 5.4
 
 ### Перед началом
-Если вы не имеете [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+Если у вас нет [Composer](http://getcomposer.org/), установите его следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
 После завершения добавьте плагин:
 ```bash
@@ -64,7 +64,7 @@ composer global require "fxp/composer-asset-plugin"
 
 Клонируйте этот репозиторий и обновите зависимости:
 ```
-cd /path/to/list/
+cd /path/to/schedule
 composer update
 ```
 
@@ -77,7 +77,6 @@ composer update
 	YII_ENV     = dev
 	```
 	- Укажите конфигурацию базы данных
-	
 	```
 	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=schedule
 	DB_USERNAME      = user
@@ -85,34 +84,34 @@ composer update
 	```
 
 	- Укажите URL-адреса для отдельных доменов
-	
 	```
 	FRONTEND_URL    = http://schedule.dev
 	BACKEND_URL     = http://backend.schedule.dev
 	STORAGE_URL     = http://storage.schedule.dev
 	```
 
-2. Запуск
+2. Запуск миграций, установка окружения и RBAC
 ```
 php console/yii app/setup
 ```
 
 ### Конфигурация сервера
 `vhost.conf`, предназначен для nginx серверов и имеет оптимальные настройки.
-Либо вы можете конфигурировать сервер самостоятельно:
+Для любого другого сервера вы можете настроить конфигурацию самостоятельно:
 - schedule.dev => /path/to/yii2-starter-kit/frontend/web
 - backend.schedule.dev => /path/to/yii2-starter-kit/backend/web
 - storage.schedule.dev => /path/to/yii2-starter-kit/storage/web
 
 
 ### Vagrant
-Если хотите, можете использовать Vagrant вместо установки приложения на локальном компьютере.
+Если хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
 
 1. Установите [Vagrant](https://www.vagrantup.com/)
 2. Создайте GitHub [personal API token](https://github.com/blog/1509-personal-api-tokens) и скопируйте его в `vagrant.yml`
-3. Запустите:
+3. Установите плагин и поднимите виртуальную машину:
 ```
 vagrant plugin install vagrant-hostmanager
+cd /path/to/schedule
 vagrant up
 ```
-На этом всё. После этих команд приложение будет доступно по адресу http://schedule.dev
+На этом всё. После этих действий приложение будет доступно по адресу http://schedule.dev
