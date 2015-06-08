@@ -101,12 +101,12 @@ php console/yii app/setup
 - backend.madeasy.dev => /path/to/madeasy/backend/web
 - storage.madeasy.dev => /path/to/madeasy/storage/web
 
-### Vagrant
+### Инициализация c Vagrant
 Если вы хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
 
 1. Установите [Vagrant](https://www.vagrantup.com/).
-2. Откройте терминал и перейдите в папку madeasy.
-3. Инициализируйте окружение ```php console/yii app/setup```
-4. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
+2. Откройте терминал, обновите зависимости и перейдите в папку madeasy.
+3. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
+4. Инициализируйте окружение ```php console/yii app/setup```
 
 На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.dev на базе сервера Apache2. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
