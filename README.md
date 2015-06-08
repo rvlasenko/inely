@@ -64,7 +64,7 @@ composer global require "fxp/composer-asset-plugin"
 
 Клонируйте этот репозиторий и обновите зависимости:
 ```
-cd /path/to/schedule
+cd /path/to/madeasy
 composer update
 ```
 
@@ -78,16 +78,16 @@ composer update
 	```
 	- Укажите конфигурацию базы данных
 	```
-	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=schedule
+	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=madeasy
 	DB_USERNAME      = user
 	DB_PASSWORD      = password
 	```
 
 	- Укажите URL-адреса для отдельных доменов
 	```
-	FRONTEND_URL    = http://schedule.dev
-	BACKEND_URL     = http://backend.schedule.dev
-	STORAGE_URL     = http://storage.schedule.dev
+	FRONTEND_URL    = http://madeasy.dev
+	BACKEND_URL     = http://backend.madeasy.dev
+	STORAGE_URL     = http://storage.madeasy.dev
 	```
 
 2. Запуск миграций, установка окружения и RBAC
@@ -96,18 +96,18 @@ php console/yii app/setup
 ```
 
 ### Конфигурация сервера
-`vhost.conf`, предназначен для Apache серверов и имеет оптимальные настройки.
-Для любого другого сервера вы можете настроить конфигурацию самостоятельно:
-- schedule.dev => /path/to/yii2-starter-kit/frontend/web
-- backend.schedule.dev => /path/to/yii2-starter-kit/backend/web
-- storage.schedule.dev => /path/to/yii2-starter-kit/storage/web
+Настройка заключается в установке виртуальных хостов:
+- madeasy.dev => /path/to/madeasy/frontend/web
+- backend.madeasy.dev => /path/to/madeasy/backend/web
+- storage.madeasy.dev => /path/to/madeasy/storage/web
 
 ### Vagrant
 Если вы хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
 
 1. Установите [Vagrant](https://www.vagrantup.com/).
 2. Откройте терминал и перейдите в папку madeasy.
-3. Установите плагин ```vagrant plugin install vagrant-hostmanager```
-4. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв.
+3. Обновите зависимости ```composer update```
+4. Инициализируйте окружение ```php console/yii app/setup```
+5. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
 
-На этом всё. После этих действий приложение будет доступно по адресу http://schedule.dev на базе сервера Apache. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
+На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.dev на базе сервера Apache2. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
