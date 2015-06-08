@@ -69,7 +69,8 @@ composer update
 ```
 
 ### Инициализация
-1. Настройка параметров в `.env`
+
+Настройте параметры в `.env` файле
 	- Укажите режим отладки и ваше текущее окружение
 	
 	```
@@ -90,13 +91,12 @@ composer update
 	STORAGE_URL     = http://storage.madeasy.dev
 	```
 
-2. Запуск миграций, установка окружения и RBAC
+Запустите миграции, окружение и RBAC
 ```
 php console/yii app/setup
 ```
 
-### Конфигурация сервера
-Настройка заключается в установке виртуальных хостов:
+И в завершение сконфигурируйте виртуальные хосты:
 - madeasy.dev => /path/to/madeasy/frontend/web
 - backend.madeasy.dev => /path/to/madeasy/backend/web
 - storage.madeasy.dev => /path/to/madeasy/storage/web
