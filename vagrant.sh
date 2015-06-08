@@ -1,68 +1,83 @@
-#!/usr/bin/env bash
-# Options
-packages=$(echo "$1")
-github_token=$(echo "$2")
-swapsize=$(echo "$3")
-# Helpers
-composer="hhvm /usr/local/bin/composer"
+#! /usr/bin/env bash
+# Vagrant provision script for PHP development. This script based on @rrosiek gist: https://gist.github.com/rrosiek/8190550
+DBHOST=localhost
+DBNAME=madeasy
+DBUSER=root
+DBPASSWD=qwerty
+XDEBUGIDEKEY=PHPSTORM
 
-# System configuration
-if ! grep --quiet "swapfile" /etc/fstab; then
-  fallocate -l ${swapsize}M /swapfile
-  chmod 600 /swapfile
-  mkswap /swapfile
-  swapon /swapfile
-  echo '/swapfile none swap defaults 0 0' >> /etc/fstab
-fi
+echo -e "\n-- Start installing now... ---\n"
 
-# Additional repositories
-if [ ! -f /etc/apt/sources.list.d/hhvm.list ]; then
-    sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0x5a16e7281be7a449
-    sudo echo 'deb http://dl.hhvm.com/ubuntu trusty main' >> /etc/apt/sources.list.d/hhvm.list
-fi
+echo -e "\n--- Updating packages list ---\n"
+apt-get -qq update
 
-# Configuring server software
-sudo update-locale LC_ALL="C"
-sudo dpkg-reconfigure locales
-echo "mysql-server-5.6 mysql-server/root_password password root" | debconf-set-selections
-echo "mysql-server-5.6 mysql-server/root_password_again password root" | debconf-set-selections
+echo -e "\n--- Install base packages ---\n"
+apt-get -y install vim curl build-essential python-software-properties git > /dev/null 2>&1
 
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install -y ${packages}
+echo -e "\n--- Install MySQL specific packages and settings ---\n"
+echo "mysql-server mysql-server/root_password password $DBPASSWD" | debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/app-password-confirm password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/admin-pass password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/mysql/app-pass password $DBPASSWD" | debconf-set-selections
+echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect none" | debconf-set-selections
+apt-get -y install mysql-server-5.5 phpmyadmin > /dev/null 2>&1
 
-sudo php5enmod mcrypt
-sudo sed -i 's/bind-address.*/bind-address = 0.0.0.0/g' /etc/mysql/my.cnf;
-if ! grep --quiet '^xdebug.remote_enable = on$' /etc/php5/mods-available/xdebug.ini; then
-    (
-     echo "xdebug.remote_enable = on";
-     echo "xdebug.remote_connect_back = on";
-     echo "xdebug.remote_host = 10.0.2.2";
-     echo "xdebug.idekey = \"vagrant\""
-    ) >> /etc/php5/mods-available/xdebug.ini
-fi
+# Changing the bind-address to 0.0.0.0 makes it so your vagrant MySQL server will accept connections from any IP, not just localhost.
+sed -i "s/bind-address.*/bind-address\t= 0.0.0.0/g" /etc/mysql/my.cnf
 
-# Init application
-if [ ! -d /var/www/vendor ]; then
-    cd /var/www && ${composer} install --prefer-dist --optimize-autoloader
-else
-    cd /var/www && ${composer} update --prefer-dist --optimize-autoloader
-fi
+echo -e "\n--- Setting up our MySQL user and db ---\n"
+mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
+mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'%' identified by '$DBPASSWD'"
 
-sudo php /var/www/init --env=dev --overwrite=n
+echo -e "\n--- Restarting MySQL ---\n"
+/etc/init.d/mysql restart > /dev/null 2>&1
 
-# Create nginx config
-if [ ! -f /etc/apache2/sites-enabled/madeasy.dev ]; then
-    sudo ln -s /var/www/vhost.conf /etc/apache2/sites-enabled/madeasy.dev
-fi
+echo -e "\n--- Installing PHP-specific packages ---\n"
+apt-get -y install php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt php5-mysql php-apc php5-xdebug > /dev/null 2>&1
 
-# Configuring application
-echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root'" | mysql -uroot -proot
-echo "FLUSH PRIVILEGES'" | mysql -uroot -proot
-echo "CREATE DATABASE IF NOT EXISTS \`yii2-starter-kit\` CHARACTER SET utf8 COLLATE utf8_unicode_ci" | mysql -uroot -proot
+echo -e "\n--- Enabling PHP mcrypt module ---\n"
+php5enmod mcrypt
 
-sudo php /var/www/console/yii app/setup
+echo -e "\n--- Configure php.ini... ---\n"
+sed -i "$ a \ \n[xdebug]\nxdebug.remote_enable = On\nxdebug.remote_connect_back = On\nxdebug.max_nesting_level = 400\nhtml_errors = 1\nxdebug.extended_info = 1\nxdebug.profiler_output_dir=\"/vagrant/logs/xdebug\"\nxdebug.profiler_output_name = \"cachegrind.out.%H%R\"\nxdebug.trace_output_dir = \"/vagrant/logs/xdebug/\"\nxdebug.remote_log = \"/vagrant/logs/xdebug-access.log\"\nxdebug.idekey = \"$XDEBUGIDEKEY\"" /etc/php5/apache2/php.ini
+sed -i "s/display_errors = Off/display_errors = On/g" /etc/php5/apache2/php.ini
 
-sudo service mysql restart
-sudo service php5-fpm restart
-sudo service apache2 restart
+echo -e "\n--- Enabling mod-rewrite ---\n"
+a2enmod rewrite > /dev/null 2>&1
+
+echo -e "\n--- Setting document root to public directory ---\n"
+rm -rf /var/www
+mkdir /vagrant/public
+mkdir /vagrant/logs
+ln -fs /vagrant/public /var/www
+
+echo -e "\n--- Include phpmyadmin config to apache2.conf  ---\n"
+sudo sed -i '$ a \\nInclude /etc/phpmyadmin/apache.conf' /etc/apache2/apache2.conf
+
+echo -e "\n--- Configure Apache virtual host ---\n"
+cat > /etc/apache2/sites-available/000-default.conf <<EOF
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www
+	<Directory /var/www>
+        AllowOverride All
+        Options FollowSymLinks
+    </Directory>
+	ErrorLog /vagrant/logs/apache-error.log
+	CustomLog /vagrant/logs/apache-access.log combined
+</VirtualHost>
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+EOF
+
+cat > /vagrant/public/index.php <<EOF
+<?php phpinfo();
+EOF
+
+echo -e "\n--- Restarting Apache ---\n"
+service apache2 restart > /dev/null 2>&1
+
+echo -e "\n--- Installing Composer for PHP package management ---\n"
+curl --silent https://getcomposer.org/installer | php > /dev/null 2>&1
+mv composer.phar /usr/local/bin/composer
