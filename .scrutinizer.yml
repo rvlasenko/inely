@@ -2,5 +2,4 @@ imports:
     - php
 
 tools:
-    php_sim: false
-    php_cpd: false
+    external_code_coverage: true
