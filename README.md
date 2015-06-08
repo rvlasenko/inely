@@ -82,7 +82,7 @@ composer update
 	DB_USERNAME      = user
 	DB_PASSWORD      = password
 	```
-
+	
 	- Укажите URL-адреса для отдельных доменов
 	```
 	FRONTEND_URL    = http://madeasy.dev
@@ -106,8 +106,7 @@ php console/yii app/setup
 
 1. Установите [Vagrant](https://www.vagrantup.com/).
 2. Откройте терминал и перейдите в папку madeasy.
-3. Обновите зависимости ```composer update```
-4. Инициализируйте окружение ```php console/yii app/setup```
-5. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
+3. Инициализируйте окружение ```php console/yii app/setup```
+4. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
 
 На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.dev на базе сервера Apache2. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
