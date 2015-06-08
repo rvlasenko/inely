@@ -109,4 +109,4 @@ php console/yii app/setup
 3. Установите плагин ```vagrant plugin install vagrant-hostmanager```
 4. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
 
-На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.dev на базе сервера Apache2. Для создания собственной конфигурации воспользуйтесь [PuPHPet](https://www.puphpet.com/)
+На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.dev на базе сервера Apache2.
