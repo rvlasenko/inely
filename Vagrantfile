@@ -10,29 +10,20 @@ domains = [
     "storage.madeasy.dev"
 ]
 packages = [
-    "php5-cli",
-    "php5-fpm",
-    "php5-intl",
-    "php5-gd",
-    "php5-mysqlnd",
-    "php5-curl",
-    "php5-mcrypt",
-    "php5-xdebug",
-    "apache2",
-    "mysql-server-5.6",
-    "hhvm"
+
 ]
 
 Vagrant.configure(2) do |config|
   config.vm.post_up_message = "Done! Now you can access site at http://madeasy.dev"
-  config.vm.provider "virtualbox" do |vb|
+
+    config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.memory = options['vm']['memory']
     vb.cpus = options['vm']['cpus']
   end
 
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/trusty32"
   config.vm.hostname = domains[0]
   config.vm.network "private_network", ip: options['network']['ip']
   config.vm.synced_folder "./", "/var/www", id: "vagrant-root", :nfs => false, owner: "www-data", group: "www-data"
