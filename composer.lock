@@ -59,16 +59,16 @@
         },
         {
             "name": "bower-asset/admin-lte",
-            "version": "2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "e55c2b85aa037e9ecd4ef30f913104dde91a2826"
+                "reference": "406de4e708e84ed0abbc08b09870828254a6b2ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/e55c2b85aa037e9ecd4ef30f913104dde91a2826",
-                "reference": "e55c2b85aa037e9ecd4ef30f913104dde91a2826",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/406de4e708e84ed0abbc08b09870828254a6b2ef",
+                "reference": "406de4e708e84ed0abbc08b09870828254a6b2ef",
                 "shasum": ""
             },
             "type": "bower-asset-library",

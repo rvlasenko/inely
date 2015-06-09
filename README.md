@@ -86,9 +86,9 @@ composer update
 	
 	- Укажите URL-адреса для отдельных доменов
 	```
-	FRONTEND_URL    = http://madeasy.dev
-	BACKEND_URL     = http://backend.madeasy.dev
-	STORAGE_URL     = http://storage.madeasy.dev
+	FRONTEND_URL    = http://madeasy.local
+	BACKEND_URL     = http://backend.madeasy.local
+	STORAGE_URL     = http://storage.madeasy.local
 	```
 
 Запустите миграции, окружение и RBAC
@@ -97,9 +97,9 @@ php console/yii app/setup
 ```
 
 И в завершение сконфигурируйте виртуальные хосты:
-- madeasy.dev => /path/to/madeasy/frontend/web
-- backend.madeasy.dev => /path/to/madeasy/backend/web
-- storage.madeasy.dev => /path/to/madeasy/storage/web
+- madeasy.local => /path/to/madeasy/frontend/web
+- backend.madeasy.local => /path/to/madeasy/backend/web
+- storage.madeasy.local => /path/to/madeasy/storage/web
 
 ### Инициализация c Vagrant
 Если вы хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
@@ -107,7 +107,7 @@ php console/yii app/setup
 1. Установите [Vagrant](https://www.vagrantup.com/).
 2. Откройте терминал и перейдите в папку madeasy.
 3. Обновите зависимости, если вы этого ещё не делали.
-4. Установите плагин ```vagrant plugin install vagrant-hostmanager```
-5. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
+4. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
+5. Инициализируйте окружение ```php console/yii app/setup```.
 
-На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.dev на базе сервера Apache2.
+На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.local на базе сервера Apache2. Доступ к базе данных осуществляется по адресу http://192.168.56.101/adminer/
