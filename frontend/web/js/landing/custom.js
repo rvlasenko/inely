@@ -49,13 +49,11 @@ $(document).ready(function() {
 });
 
 function showModal(url, ev) {
-    $(function(){
-        $(document).ready(function(){
+
             $.get(url, function (html) {
                 $('#myModal .modal-body').html(html);
                 $('myModal').modal('show', {backdrop: 'static'});
-            });
-        });
+
     });
 }
 
