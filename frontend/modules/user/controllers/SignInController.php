@@ -91,7 +91,7 @@ class SignInController extends \yii\web\Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->get())) {
+        if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     Yii::$app->getSession()->setFlash(

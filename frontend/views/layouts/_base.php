@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $content string */
 
 \frontend\assets\FrontendAsset::register($this);
-\frontend\assets\FontAwesomeAsset::register($this);
+$this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

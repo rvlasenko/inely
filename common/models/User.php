@@ -272,8 +272,10 @@ class User extends ActiveRecord implements IdentityInterface
         $profile = new UserProfile();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
-        $profile->firstname = $profileData['firstname'];
-        $profile->lastname = $profileData['lastname'];
+        if ($profile->firstname)
+            $profile->firstname = $profileData['firstname'];
+        if ($profile->lastname)
+            $profile->lastname = $profileData['lastname'];
         $this->link('userProfile', $profile);
         $this->trigger(self::EVENT_AFTER_SIGNUP);
         // Default role

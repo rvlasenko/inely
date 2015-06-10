@@ -375,12 +375,6 @@
 <script>
     jQuery(function($) {
         $('button.log').click(function (ev) {
-            /*ev.preventDefault();
-
-            $.get('login', function (html) {
-                $('#myModal .modal-body').html(html);
-                $('myModal').modal('show', {backdrop: 'static'});
-            });*/
             showModal('login', ev);
         });
 

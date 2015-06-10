@@ -49,12 +49,17 @@ $(document).ready(function() {
 });
 
 function showModal(url, ev) {
-
-            $.get(url, function (html) {
-                $('#myModal .modal-body').html(html);
-                $('myModal').modal('show', {backdrop: 'static'});
-
+    $.get(url, function (html) {
+        $('#myModal .modal-body').html(html);
+        $('myModal').modal('show', {backdrop: 'static'});
     });
+}
+
+function popUpWindow(url, title, w, h) {
+    var left = (screen.width/2)-(w/2);
+    var top = (screen.height/2)-(h/2);
+    return window.open(url, title, 'toolbar=no, location=no, ' +
+    'resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 }
 
 /* COLLAPSE NAVIGATION ON MOBILE AFTER CLICKING ON LINK */

@@ -150,7 +150,7 @@
                     <?php endforeach; ?>
                 <div class="col-md-12">
                     <ul class="list-unstyled weather-days row">
-                        <?php unset($num); foreach ($arrayForecast as $forecastObj): ?>
+                        <?php unset($num); $num = 1; foreach ($arrayForecast as $forecastObj): ?>
 
                         <li class="col-xs-4 col-sm-2">
                             <span><?= $forecastObj['weekday'] ?></span>
