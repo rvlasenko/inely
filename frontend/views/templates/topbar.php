@@ -1,3 +1,5 @@
+<?php $this->beginBlock('topBar') ?>
+
 <div class="header-left">
     <div class="topnav">
         <a class="menutoggle" href="#" data-toggle="sidebar-collapsed">
@@ -76,3 +78,5 @@
         </li>
     </ul>
 </div>
+
+<?php $this->endBlock() ?>

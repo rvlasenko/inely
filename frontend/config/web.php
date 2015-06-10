@@ -15,7 +15,7 @@ $config = [
         ]
     ],
     'components' => [
-        'view' => [
+        /*'view' => [
             'renderers' => [
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',
@@ -25,7 +25,7 @@ $config = [
                     ],
                 ],
             ],
-        ],
+        ],*/
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
             'bundles' => [
