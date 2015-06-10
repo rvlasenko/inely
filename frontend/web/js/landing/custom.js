@@ -56,10 +56,10 @@ function showModal(url, ev) {
 }
 
 function popUpWindow(url, title, w, h) {
-    var left = (screen.width/2)-(w/2);
-    var top = (screen.height/2)-(h/2);
+    var left = (screen.width / 2)-(w / 2);
+    var top = (screen.height / 2)-(h / 2);
     return window.open(url, title, 'toolbar=no, location=no, ' +
-    'resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    'resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 }
 
 /* COLLAPSE NAVIGATION ON MOBILE AFTER CLICKING ON LINK */

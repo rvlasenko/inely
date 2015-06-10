@@ -1190,7 +1190,7 @@ div.weather-top h2 {
   background: #f5f5f5;
 }
 .topbar .header-right .header-menu .dropdown-menu li ul li {
-  padding: 12px 10px 6px 10px;
+  padding: 12px 12px 12px 12px;
 }
 .topbar .header-right .header-menu .dropdown-menu li ul li:hover {
   background: #eaeaea;

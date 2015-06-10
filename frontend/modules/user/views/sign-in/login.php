@@ -2,8 +2,7 @@
     use yii\widgets\ActiveForm;
 
     $this->registerJsFile('@web/js/landing/uiProgressButton.js', [
-        'position' => yii\web\View::POS_BEGIN
-    ]);
+        'position' => yii\web\View::POS_BEGIN]);
     $this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
 ?>
 
@@ -15,20 +14,24 @@
         <div class="buttons fadeInRight animated">
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=vkontakte',
                     'Vkontakte', 600, 400); return false" class="icon-button vk">
-                <i class="fa fa-vk"></i><span></span></a>
+                <i class="fa fa-vk"></i><span></span>
+            </a>
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=facebook',
                     'Facebook', 660, 385); return false" class="icon-button facebook">
-                <i class="fa fa-facebook"></i><span></span></a>
+                <i class="fa fa-facebook"></i><span></span>
+            </a>
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=google',
                     'Google Plus', 440, 500); return false" class="icon-button google-plus">
-                <i class="fa fa-google-plus"></i><span></span></a>
+                <i class="fa fa-google-plus"></i><span></span>
+            </a>
         </div>
     </div>
 
     <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Login with account') ?></h3>
 
     <div class="form-group fadeInLeft animated">
-        <a class="sign-a" href="#"><?= Yii::t('frontend', 'Need an account? Sign up.') ?></a>
+        <a class="sign-a" href="#">
+            <?= Yii::t('frontend', 'Need an account? Sign up.') ?></a>
     </div>
 
     <div class="col-lg-5" style="width: 100%">
@@ -107,7 +110,6 @@
     } );
 
     jQuery(function($) {
-
         $('.sign-a').click(function(ev) {
             showModal('sign-up', ev);
         });

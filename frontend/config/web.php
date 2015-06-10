@@ -15,6 +15,17 @@ $config = [
         ]
     ],
     'components' => [
+        'view' => [
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                ],
+            ],
+        ],
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
             'bundles' => [

@@ -4,7 +4,7 @@ function quickviewSidebar() {
     function toggleqQuickview(){
         $('#quickview-toggle').on('click', function(e){
             e.preventDefault();
-            if($('#quickview-sidebar').hasClass('open')) $('#builder').removeClass('open');
+            if ($('#quickview-sidebar').hasClass('open')) $('#builder').removeClass('open');
             else $('#quickview-sidebar').addClass('open');
         });
     }
@@ -39,7 +39,7 @@ function quickviewSidebar() {
 function quickviewHeight(){
     $('.chat-conversation').height('');
     chatConversationHeight = $('.chat-conversation').height();
-    windowHeight= $(window).height();
+    windowHeight = $(window).height();
     if(chatConversationHeight < windowHeight) {
         $('.chat-conversation').height($(window).height() - 50);
     }
@@ -78,7 +78,7 @@ $(function (){
         var ampm = hours >= 12 ? 'pm' : 'am';
         hours = hours % 12;
         hours = hours ? hours : 12;
-        minutes = minutes < 10 ? '0'+minutes : minutes;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
         var strTime = dayNames[date.getDay()] + " " + date.getDate() + ' ' + monthNames[date.getMonth()] + ', ' + hours + ':' + minutes + ' ' + ampm;
         $(container).text(strTime);
     }

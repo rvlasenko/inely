@@ -1,5 +1,5 @@
 {
-    "name": "dev/flatask",
+    "name": "dev/madeasy",
     "description": "just awesome schedule",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -11,6 +11,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0",
         "yiisoft/yii2-authclient": "~2.0",
         "yiisoft/yii2-jui": "~2.0",
+        "yiisoft/yii2-twig": "~2.0.0",
         "asofter/yii2-imperavi-redactor": "dev-master@dev",
         "trntv/yii2-bootstrap-datetimepicker": "~1.5",
         "mihaildev/yii2-elfinder": "~1.0",
