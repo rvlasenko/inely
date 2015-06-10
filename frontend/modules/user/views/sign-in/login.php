@@ -107,12 +107,13 @@
     } );
 
     jQuery(function($) {
+
         $('.sign-a').click(function(ev) {
             showModal('sign-up', ev);
         });
 
         $('.reset-a').click(function(ev) {
-            showModal('reset', ev);
+            showModal('user/sign-in/request-password-reset', ev);
         });
     });
 </script>
