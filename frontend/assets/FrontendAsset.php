@@ -39,7 +39,7 @@ class FrontendAsset extends AssetBundle
         'plugins/bootstrap-editable/js/bootstrap-editable.min.js',
         'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
         'plugins/multidatepicker/multidatespicker.min.js',
-        'plugins/metrojs/metrojs.min.js',
+        'plugins/jquery-translator/jqueryTranslator.min.js',
         'plugins/countup/countUp.min.js',
         'js/widgets/todo_list.js',
         'js/builder.js',
@@ -49,6 +49,7 @@ class FrontendAsset extends AssetBundle
         'js/widgets/notes.js',
         'js/widgets/widget_weather.js',
         'js/pages/dashboard.js',
+        'js/pages/translation.js',
     ];
 
     public $jsOptions = [

@@ -1,10 +1,8 @@
-<?php $this->beginBlock('topBar') ?>
-
 <div class="header-left">
     <div class="topnav">
         <a class="menutoggle" href="#" data-toggle="sidebar-collapsed">
             <span class="menu__handle">
-                <span>Menu</span>
+                <span data-translate="menu-title">Menu</span>
             </span>
         </a>
         <ul class="nav nav-icons">
@@ -23,7 +21,7 @@
                 <i class="icon-globe"></i>
                 <span data-translate="Language">Language</span>
             </a>
-            <ul class="dropdown-menu lang">
+            <ul class="dropdown-menu lang" id="switch-lang">
                 <li>
                     <a href="#" data-lang="ru">
                         <img src="images/flags/Russia.png" alt="flag-english">
@@ -78,5 +76,3 @@
         </li>
     </ul>
 </div>
-
-<?php $this->endBlock() ?>

@@ -1,11 +1,11 @@
 <?php
-use yii\helpers\Html;
+    use yii\helpers\Html;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+    /* @var $this \yii\web\View */
+    /* @var $content string */
 
-\frontend\assets\FrontendAsset::register($this);
-$this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
+    \frontend\assets\FrontendAsset::register($this);
+    $this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
