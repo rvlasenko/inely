@@ -19,12 +19,6 @@ header .full-screen {
     height: 100px;
 }
 
-.testimonials {
-    background: url(../../images/bg-2.jpg) no-repeat center fixed;
-    -webkit-background-size: cover;
-    background-size: cover;
-    color: #ffffff;
-}
 
 html {
     font-size: 100%;
@@ -68,10 +62,6 @@ body {
     width: device-width;
 }
 
-#content {
-    font-size: 150%;
-    padding: 3em 0;
-}
 
 a {
     -webkit-transition: all ease 0.25s;
@@ -192,9 +182,7 @@ li {
     position: absolute;
     left: 50%;
     top: 50%;
-    background-image: url(../../images/loading.gif);
-    background-repeat: no-repeat;
-    background-position: center;
+    background: url(../../images/loading.gif) no-repeat center;
     -webkit-background-size: cover;
     background-size: cover;
     margin: -20px 0 0 -20px;
@@ -236,75 +224,8 @@ h5 {
 }
 
 /*---------------------------------------
-   CUSTOM BUTTON              
+   CUSTOM BUTTON
 -----------------------------------------*/
-
-.standard-button,
-.standard-button2 {
-    font-size: 18px;
-    font-weight: 400 !important;
-    border-radius: 4px !important;
-    text-shadow: 0 !important;
-    color: #ffffff;
-    min-width: 150px;
-    border: none;
-    padding: 16px 25px 16px 25px;
-    margin: 5px;
-    -webkit-transition: all ease 0.25s;
-    transition: all ease 0.25s;
-}
-
-.standard-button:hover,
-.standard-button2:hover {
-    border: none;
-}
-
-.standard-button i,
-.standard-button2 i {
-    vertical-align: inherit;
-    margin-right: 8px;
-    font-size: 20px;
-}
-
-.sub {
-    margin: 10px;
-}
-
-section #services {
-    text-align: center;
-    transform: translatez(0);
-}
-
-section #services h2 {
-    margin: 80px 0px 40px;
-    color: #fff;
-    font-size: 2.4em;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-section #services li {
-    width: 120px;
-    height: 140px;
-    display: inline-block;
-    margin: 20px;
-    list-style: none;
-}
-
-section #services li div {
-    width: 100px;
-    height: 100px;
-    font-size: 3.4em;
-    text-align: center;
-    line-height: 105px;
-    background-color: #fff;
-    transition: all 0.6s ease;
-}
-
-section #services li div:hover {
-    transform: rotate(360deg);
-    border-radius: 100px;
-}
 
 .fa-facebook {
     color: #3b5998;
@@ -316,17 +237,6 @@ section #services li div:hover {
 
 .fa-google-plus {
     color: #dd4b39;
-}
-
-section #services li span {
-    width: 120px;
-    height: 20px;
-    display: block;
-    padding: 10px 20px 0 0;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 1.4em;
-    text-align: center;
 }
 
 .buton {
@@ -364,7 +274,7 @@ section #services li span {
 }
 
 .btn-1c:after {
-    width: 0%;
+    width: 0;
     height: 100%;
     top: 0;
     left: 0;
@@ -381,40 +291,9 @@ section #services li span {
     width: 100%;
 }
 
-.login {
-    padding: 10px 30px;
-}
-
-.btn-1b:after {
-    width: 100%;
-    height: 0;
-    top: 0;
-    left: 0;
-    background: #fff;
-}
-
-form > button:hover,
-form > button:after {
-    color: #337AB7;
-}
-
-.btn-1b:hover,
-.btn-1b:active {
-    color: #0e83cd;
-}
-
-.btn-1b:hover:after,
-.btn-1b:active:after {
-    height: 100%;
-}
-
 /*---------------------------------------
    TEXTS
 -----------------------------------------*/
-
-.white-text {
-    color: #ffffff;
-}
 
 .dark-text {
     color: #272727;
@@ -423,7 +302,6 @@ form > button:after {
 .grey-bg {
     background: #F7F8FA !important;
 }
-
 
 /*---------------------------------------
    SECTIONS
@@ -457,21 +335,6 @@ form > button:after {
     height: 1px;
 }
 
-.white-line {
-    margin: auto;
-    z-index: 1;
-    width: 165px;
-    height: 1px;
-    background: #ffffff;
-}
-
-.colored-line-left {
-    float: left;
-    z-index: 1;
-    display: block;
-    width: 165px;
-    height: 1px;
-}
 
 /*---------------------------------------
 =========================================
@@ -492,6 +355,12 @@ header .full-screen {
     height: 100px;
 }
 
+div h3, div div.form-group, .subscription-form .col-md-12,
+.subscription-form, div.col-lg-5 div.col-md-12,
+div.row h4.fadeInLeft.animated {
+    text-align: center;
+}
+
 /* TOP BAR WITH NAVIGATION */
 
 .sticky-navigation {
@@ -501,8 +370,8 @@ header .full-screen {
     padding: 0 !important;
     margin-bottom: 0 !important;
     -webkit-backface-visibility: hidden;
-    -webkit-box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
-    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.08);
+    -webkit-box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.08);
+    box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.08);
 }
 
 .sticky-navigation .navbar-header img {
@@ -541,10 +410,6 @@ header .only-logo .navbar .navbar-header {
     float: none;
 }
 
-.logo {
-    padding: 2em;
-}
-
 /* INTRO */
 
 header .intro-section {
@@ -561,15 +426,10 @@ div h3,
 div div.form-group,
 .subscription-form .col-md-12,
 .subscription-form,
-div.col-lg-5 div.col-md-12,
-div.row h4.fadeInLeft.animated {
+div.col-lg-5 div.col-md-12 {
     text-align: center;
 }
 
-div.g-recaptcha.col-md-12 div div {
-    width: auto !important;
-    margin-bottom: 1em;
-}
 
 header .intro-section h5 {
     color: #ffffff;
@@ -642,14 +502,12 @@ header .intro-section .buttons {
 
 .features .phone-image {
     max-width: 250px;
-    margin: auto;
-    margin-bottom: 80px;
+    margin: auto auto 80px;
 }
 
 .features .phone-image img {
     width: 100%;
 }
-
 
 /*---------------------------------------
    SECTION:  BRIEF
@@ -666,9 +524,8 @@ header .intro-section .buttons {
 }
 
 .app-brief .phone-image {
-    margin: auto;
     max-width: 420px;
-    margin-bottom: 50px;
+    margin: auto auto 50px;
 }
 
 .app-brief .phone-image img {
@@ -686,20 +543,6 @@ header .intro-section .buttons {
     margin-top: 40px;
 }
 
-.app-brief .left-align .feature-list {
-    margin-top: 40px;
-}
-
-.app-brief .left-align .feature-list li {
-    margin-bottom: 26px;
-}
-
-.app-brief .left-align .feature-list li i {
-    margin-right: 10px;
-    vertical-align: inherit;
-}
-
-
 /* VIDEO */
 
 video {
@@ -711,85 +554,6 @@ embed,
 object {
     max-width: 100%;
 }
-
-.video-container {
-    width: 90%;
-    background: transparent !important;
-    margin: auto;
-    margin-bottom: 50px;
-    margin-top: 40px;
-}
-
-.video {
-    background: transparent !important;
-}
-
-
-/*---------------------------------------
-   SECTION:  TESTIMONIALS
------------------------------------------*/
-.testimonials {
-    color: #ffffff;
-}
-
-.testimonials .color-overlay {
-    padding-top: 110px;
-    padding-bottom: 110px;
-}
-
-.testimonials .feedback {
-    max-width: 750px;
-    margin: auto;
-}
-
-.testimonials .feedback .image {
-    font-size: 24px;
-    border: 2px solid transparent;
-    -webkit-box-shadow: 0px 0px 0px 2px #ffffff;
-    box-shadow: 0px 0px 0px 2px #ffffff;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
-    margin: auto;
-    margin-top: 5px;
-    overflow: hidden;
-}
-
-.testimonials .feedback .image img {
-    width: 100%;
-    vertical-align: top;
-}
-
-.testimonials .feedback .message {
-    font-size: 18px;
-    font-style: italic;
-    margin-top: 40px;
-    margin-bottom: 30px;
-}
-
-.testimonials .feedback .name {
-    margin-top: 15px;
-    font-weight: 400;
-}
-
-.testimonials .feedback .company-info {
-    font-size: 12px;
-}
-
-.testimonials .owl-theme .owl-controls .owl-page span {
-    background: #ffffff;
-    border-radius: 50%;
-}
-
-.testimonials .customNavigation a {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
 
 /*---------------------------------------
    SECTION:  SERVICES
@@ -816,10 +580,6 @@ object {
 /*---------------------------------------
    SECTION:  SCREENSHOTS
 -----------------------------------------*/
-#screenshot{
-    padding:80px 0 130px 0;
-    margin:0;
-}
 
 .screenshot-slider{
     position:relative;
@@ -844,156 +604,13 @@ object {
     padding-bottom: 120px;
 }
 
-.screenshots .shot {
-    background: #FFFFFF;
-    padding: 10px;
-    margin: 13px;
-    border-radius: 4px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    display: block;
-}
-
-.screenshots .shot img {
-    border-radius: 4px;
-    width: 100%;
-}
-
-/*---------------------------------------
-   SECTION:  PACKAGES | Added on version 1.7
------------------------------------------*/
-
-.packages {
-    padding-top: 80px;
-    padding-bottom: 60px;
-    background: #ffffff;
-}
-
-.single-package {
-    background: #F7F8FA;
-    overflow: auto;
-    border: 0px solid #161616;
-    border-radius: 3px;
-    margin-bottom: 60px;
-}
-
-.single-package .price {
-    background: #FFFFFF;
-
-}
-
-.single-package .price h2 {
-    color: #272727;
-}
-
-.single-package .price .color-bg h2 {
-    color: #FFFFFF !important;
-}
-
-.single-package .price .sign {
-    vertical-align: super;
-    font-size: 20px;
-}
-
-.single-package .price .month {
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-}
-
-.single-package .package-feature {
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-.single-package .package-feature > li {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.single-package .package-feature > li > span {
-    margin-right: 7px;
-}
-
 
 /*---------------------------------------
    SECTION:  DOWNLOAD
 -----------------------------------------*/
 
-.download {
-    color: #ffffff;
-}
-
-.download .color-overlay {
-    padding-top: 80px;
-    padding-bottom: 70px;
-}
-
-.bg-1 {
-    background: #ECEFF1;
-    color: #37474f;
-}
-
-.bg-2 {
-    background: #7986cb;
-    color: #ECEFF1;
-}
-
-.bg-3 {
-    background: #37474f;
-    color: #fff;
-}
-
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+.navbar-inverse .navbar-collapse {
     border-color: #fff;
-}
-
-.button--moema {
-    padding: 1.5em 3em;
-    border-radius: 50px;
-    background: #7986cb;
-    color: #fff;
-    -webkit-transition: background-color 0.3s, color 0.3s;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.button--moema.button--inverted {
-    background: #ECEFF1;
-    color: #37474f;
-}
-
-.button--moema::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    bottom: -20px;
-    right: -20px;
-    background: inherit;
-    border-radius: 50px;
-    z-index: -1;
-    opacity: 0.4;
-    -webkit-transform: scale3d(0.8, 0.5, 1);
-    transform: scale3d(0.8, 0.5, 1);
-}
-
-.button--moema:hover {
-    -webkit-transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
-    transition: background-color 0.1s 0.3s, color 0.1s 0.3s;
-    color: #ECEFF1;
-    background-color: #3f51b5;
-    -webkit-animation: anim-moema-1 0.3s forwards;
-    animation: anim-moema-1 0.3s forwards;
-}
-
-.button--moema.button--inverted:hover {
-    color: #ECEFF1;
-    background-color: #7986cb;
-}
-
-.button--moema:hover::before {
-    -webkit-animation: anim-moema-2 0.3s 0.3s forwards;
-    animation: anim-moema-2 0.3s 0.3s forwards;
 }
 
 @-webkit-keyframes anim-moema-1 {
@@ -1042,134 +659,8 @@ object {
     }
 }
 
-.buttton {
-    float: left;
-    min-width: 150px;
-    max-width: 250px;
-    display: block;
-    margin: 1em;
-    padding: 1em 2em;
-    border: none;
-    background: none;
-    color: inherit;
-    vertical-align: middle;
-    position: relative;
-    z-index: 1;
-    -webkit-backface-visibility: hidden;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.buttton:focus {
-    outline: none;
-}
-
-.buttton > span {
-    vertical-align: middle;
-}
-
-/* Text color adjustments (we could stick to the "inherit" but that does not work well in Safari) */
-.bg-1 .buttton {
-    color: #37474f;
-    border-color: #37474f;
-}
-
-.bg-2 .buttton {
-    color: #ECEFF1;
-    border-color: #ECEFF1;
-}
-
-.bg-3 .buttton {
-    color: #fff;
-    border-color: #fff;
-}
-
-/* Sizes */
-.button--size-s {
-    font-size: 14px;
-}
-
-.button--size-m {
-    font-size: 16px;
-}
-
-.button--size-l {
-    font-size: 18px;
-}
-
-/* Typography and Roundedness */
-.button--text-upper {
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.button--text-thin {
-    font-weight: 300;
-}
-
-.button--text-medium {
-    font-weight: 500;
-}
-
-.button--text-thick {
-    font-weight: 600;
-}
-
-.button--round-s {
-    border-radius: 5px;
-}
-
-.button--round-m {
-    border-radius: 15px;
-}
-
-.button--round-l {
-    border-radius: 40px;
-}
-
-/* Borders */
-.button--border-thin {
-    border: 1px solid;
-}
-
-.button--border-medium {
-    border: 2px solid;
-}
-
-.button--border-thick {
-    border: 3px solid;
-}
-
-.download .subscription-form-container {
-    padding-bottom: 60px;
-}
-
-.download .subscription-form .input-box {
-    height: 55px;
-    padding-left: 20px;
-    width: 296px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    background: #FFF;
-    margin: 5px;
-}
-
-.download .subscription-form .input-box:focus,
-.download .subscription-form .input-box:active {
-    color: #000;
-    font-weight: 400;
-}
-
-.download .subscription-form .subscription-success,
-.download .subscription-form .subscription-error {
-    display: none;
-}
-
-.download h2 {
-    margin-bottom: 30px;
-}
-
 /*---------------------------------------
-   SECTION:  FOOTER                
+   SECTION:  FOOTER
 -----------------------------------------*/
 footer {
     background: #FFFFFF;
@@ -1179,16 +670,15 @@ footer .contact-box .contact-button {
     height: 80px;
     width: 80px;
     border-radius: 50%;
-    margin: auto;
     position: relative;
     font-size: 35px;
     line-height: 73px;
     padding-right: 15px;
     vertical-align: middle;
-    margin-top: -40px;
+    margin: -40px auto auto;
     background: #ffffff;
-    -webkit-box-shadow: 0px 0px 0px 3px #ffffff;
-    box-shadow: 0px 0px 0px 3px #ffffff;
+    -webkit-box-shadow: 0 0 0 3px #ffffff;
+    box-shadow: 0 0 0 3px #ffffff;
     -webkit-backface-visibility: hidden;
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
@@ -1204,22 +694,10 @@ footer .contact-box .expanded-contact-form {
     display: none;
 }
 
-footer .contact-box .expanded-contact-form .success,
-footer .contact-box .expanded-contact-form .error {
-    display: none;
-}
-
-footer .contact-box .expanded-contact-form .input-box {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    height: 50px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
 
 .form-control:focus {
     border-color: #66AFE9 !important;
-    outline: 0px none;
+    outline: 0 none;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px rgba(102, 175, 233, 1) !important;
 }
 
@@ -1323,43 +801,11 @@ footer .contact-box .expanded-contact-form .input-box {
     margin: 5px;
 }
 
-footer .contact-box .expanded-contact-form .textarea-box {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
-footer .contact-box .expanded-contact-form .textarea-box:active {
-    color: #000;
-}
-
-footer .social-icons {
-    padding-bottom: 50px;
-}
-
-footer .social-icons li {
-    display: inline-block;
-    margin: 5px;
-}
-
-footer .social-icons li a {
-    font-size: 30px;
-    color: #c2c2c2;
-}
 
 footer .copyright {
     color: #808080;
     padding-top: 10px;
     margin-bottom: 50px;
-}
-
-div.contact-box > h2 {
-    margin-top: 0.8em;
-}
-
-div.contact-box > section {
-    margin-top: -1.5em;
 }
 
 .modal {
@@ -1532,102 +978,7 @@ div.contact-box > section {
     transition: all 0.3s;
 }
 
-/* Pseudo elements for icons */
-.bttn:before,
-.icon-heart:after,
-.icon-star:after,
-.icon-plus:after,
-.icon-file:before {
-    font-family: 'icomoon';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    position: relative;
-    -webkit-font-smoothing: antialiased;
-}
-
-.icon-envelope:before {
-    content: "\e000";
-}
-
-.icon-cart:before {
-    content: "\e007";
-}
-
-.icon-cart-2:before {
-    content: "\e008";
-}
-
-.icon-heart:before {
-    content: "\e009";
-}
-
-/* Filled heart */
-.icon-heart:after,
-.icon-heart-2:before {
-    content: "\e00a";
-}
-
-.icon-star:before {
-    content: "\e00b";
-}
-
-/* Filled star */
-.icon-star:after,
-.icon-star-2:before {
-    content: "\e00c";
-}
-
-.icon-arrow-right:before {
-    content: "\e00d";
-}
-
-.icon-arrow-left:before {
-    content: "\e003";
-}
-
-.icon-truck:before {
-    content: "\e00e";
-}
-
-.icon-remove:before {
-    content: "\e00f";
-}
-
-.icon-cog:before {
-    content: "\e010";
-}
-
-.icon-plus:before,
-.icon-plus:after {
-    content: "\e011";
-}
-
-.icon-minus:before {
-    content: "\e012";
-}
-
-.bh-icon-smiley:before {
-    content: "\e001";
-}
-
-.bh-icon-sad:before {
-    content: "\e002";
-}
-
-.icon-file:before {
-    content: "\e004";
-}
-
-.icon-remove-2:before {
-    content: "\e005";
-}
-
 .btn-2 {
-    /*background: #cb4e4e;*/
     background: #1ECD97;
     color: #fff;
     box-shadow: 0 6px #17A87E;
@@ -1648,4 +999,8 @@ div.contact-box > section {
 
 div.col-md-6 .bttn {
     padding: 10px 40px;
+}
+
+#sign-form div div div {
+    width: auto !important;
 }

@@ -15,12 +15,12 @@ class LandingAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
 
-        // Carousel and lightbox
-        'css/landing/owl.theme.css',
+        // Carousel
+        //'css/landing/owl.theme.css',
         'css/landing/flexslider.css',
-        'css/landing/owl.carousel.css',
-        'css/landing/nivo-lightbox.css',
-        'css/landing/nivo_themes/default/default.css',
+        //'css/landing/owl.carousel.css',
+        //'css/landing/nivo-lightbox.css',
+        //'css/landing/nivo_themes/default/default.css',
 
         // Animations
         'css/landing/animate.min.css',
@@ -49,6 +49,7 @@ class LandingAsset extends AssetBundle
         'js/landing/retina.min.js',
         'js/landing/custom.js',
         'js/landing/bootstrap.min.js',
+        'plugins/noty/jquery.noty.packaged.min.js',
     ];
 
     public $jsOptions = [

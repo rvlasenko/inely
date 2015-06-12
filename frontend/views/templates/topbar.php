@@ -51,7 +51,6 @@
                         <li>
                             <a href="#">
                                 <i class="fa fa-star p-r-10 f-18 c-orange"></i>Steve have rated your photo
-                                <span class="dropdown-time">Just now</span>
                             </a>
                         </li>
                     </ul>

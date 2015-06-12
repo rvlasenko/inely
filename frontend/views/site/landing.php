@@ -76,7 +76,7 @@
         <div class="row">
 
             <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10"
-                 data-wow   -duration="1.5s">
+                 data-wow-duration="1.5s">
 
                 <div class="feature">
                     <div class="icon-container">
@@ -181,7 +181,7 @@
                         <h4 class="main-color">Документация</h4>
 
                         <p>
-                            Расширенная документация даст ответы на возникшие, под углом трудности, вопросы.
+                            Справка даст ответы на возникшие, под углом трудности, вопросы.
                         </p>
                     </div>
                 </div>
@@ -269,6 +269,7 @@
             Потрясающие функции, которые позволят Вам добиться успеха
         </div>
         <div class="colored-line"></div>
+
     </div>
 
     <div class="container">
@@ -293,6 +294,7 @@
                         <?= Yii::t('frontend', 'Learn more') ?>
                     </button>
                 </div>
+
             </div>
 
             <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
@@ -354,7 +356,8 @@
 
     <div class="container">
 
-        <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;" class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;"
+             class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
             <a class="btn contact-button expand-form expanded">
                 <i class="icon-paper-plane"></i>

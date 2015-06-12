@@ -17,7 +17,7 @@ RESPONSIVE FIXES
     }
 }
 
- @media (max-width: 991px) {
+@media (max-width: 991px) {
     body {
         font-size: 15px;
         line-height: 26px;
@@ -32,10 +32,6 @@ RESPONSIVE FIXES
 
     }
 
-    .colored-line-left {
-        float: none;
-        margin: auto;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -140,24 +136,16 @@ RESPONSIVE FIXES
 
     .features .feature {
         margin-bottom: 35px;
+        width: 33.3333%;
+        float: left;
     }
 
     .features .features-left .icon-container,
-    .features .features-right .icon-container {
-        float: none;
-        margin-left: inherit;
-        min-height: 70px;
+    .features .features-right .icon-container,
+    .features .phone-image {
+        display: none;
     }
 
-    .features .feature .icon-container .icon {
-        margin: auto;
-    }
-
-    .download .subscription-form .input-box {
-        margin: auto;
-        width: 80%;
-        margin-bottom: 10px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -189,17 +177,6 @@ RESPONSIVE FIXES
         margin-top: 15px;
     }
 
-    .download .subscription-form .input-box {
-        width: 95%;
-        height: 50px;
-    }
-
-    .standard-button,
-    .standard-button2 {
-        font-size: 15px;
-        min-width: 100px;
-        padding: 11px 20px 11px 20px;
-    }
 
     .features .feature:hover .icon-container .icon,
     footer .contact-button:hover {
@@ -224,7 +201,7 @@ RESPONSIVE FIXES
     }
 
     .full-screen .intro-section .intro {
-       margin-bottom: 0;
+        margin-bottom: 0;
 
     }
 
@@ -236,8 +213,4 @@ RESPONSIVE FIXES
         margin-top: 0;
     }
 
-    .full-screen .standard-button {
-        font-size: 14px;
-        padding: 8px 5px;
-    }
 }

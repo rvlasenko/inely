@@ -6218,6 +6218,12 @@ body:not(.fixed-topbar) .main-content .page-content {
 .widget-member .col-xlg-6 {
   font-size: 12px;
 }
+ul.weather-days li:hover {
+    color: #23527c;
+}
+ul.weather-days li {
+    color: #0096BA;
+}
 .widget-member .col-xlg-6 p {
   margin-bottom: 5px;
   overflow: hidden;

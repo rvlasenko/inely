@@ -27,7 +27,7 @@ $config = [
             ],
         ],
         'assetManager' => [
-            'bundles' => require(__DIR__ . '/../assets/' . 'CompressedAsset.php'),
+            //'bundles' => require(__DIR__ . '/../assets/' . 'CompressedAsset.php'),
         ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
