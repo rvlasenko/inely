@@ -18,8 +18,6 @@ class FrontendAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        '//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic',
-        '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=cyrillic,latin',
         'css/style.css',
         'css/theme.css',
         'css/ui.css',

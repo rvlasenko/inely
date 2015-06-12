@@ -19,6 +19,10 @@ $this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
     <?= Html::csrfMetaTags() ?>
     <?php $this->registerJsFile('@web/plugins/modernizr/modernizr-2.6.2-respond-1.1.0.min.js',
         ['position' => \yii\web\View::POS_HEAD]) ?>
+    <?php $this->registerCssFile('//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=cyrillic,latin',
+        ['position' => \yii\web\View::POS_HEAD]) ?>
+    <?php $this->registerCssFile('//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic',
+        ['position' => \yii\web\View::POS_HEAD]) ?>
 </head>
 <body class="fixed-topbar fixed-sidebar theme-sdtl color-default">
 

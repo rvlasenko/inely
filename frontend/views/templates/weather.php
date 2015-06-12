@@ -1,13 +1,26 @@
 <?php
-    $city = "Alatyr'";
-    $key = "0313908bbc748d05";
-    $url = "http://api.wunderground.com/api/$key/geolookup/conditions/forecast/lang:RU/q/Russia/$city.json";
+    define('CITY', "Alatyr'");
+    define('KEY', "0313908bbc748d05");
+    define('URL', "http://api.wunderground.com/api/" . KEY .
+        "/geolookup/conditions/forecast/lang:RU/q/Russia/" . CITY . ".json");
+    define('CACHING', 300);
+
     $num = 1;
     $object = 0;
     $forecastDays = [];
     $arrayForecast = [];
 
-    $jsonString = file_get_contents($url);
+    $fileName = basename('weather.json');
+    $fileTime = file_exists($fileName) ? filemtime($fileName) : time() - CACHING - 1;
+
+    if (time() - CACHING > $fileTime) {
+        $jsonString = file_get_contents(URL);
+
+        file_put_contents($fileName, $jsonString);
+    } else {
+        $jsonString = file_get_contents($fileName);
+    }
+
     $parsedJson = json_decode($jsonString);
     $location = $parsedJson->{'location'}->{'city'};
     $parsedСonditions = $parsedJson->{'current_observation'};
@@ -69,7 +82,6 @@
             $arrayForecast[$objectNum]['icon_url_day'] = $forecast->{'icon_url'};
         }
     }
-
 
 ?>
 
@@ -150,7 +162,7 @@
                     <?php endforeach; ?>
                 <div class="col-md-12">
                     <ul class="list-unstyled weather-days row">
-                        <?php unset($num); $num = 1; foreach ($arrayForecast as $forecastObj): ?>
+                        <?php unset($num); $num = 0; foreach ($arrayForecast as $forecastObj): ?>
 
                         <li class="col-xs-4 col-sm-2">
                             <span><?= $forecastObj['weekday'] ?></span>

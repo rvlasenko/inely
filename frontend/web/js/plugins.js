@@ -606,7 +606,7 @@ function editorSummernote(){
                     ["color", ["color"]],
                     ["para", ["ul", "ol", "paragraph"]],
                     ["height", ["height"]],
-                    ["table", ["table"]],
+                    ["table", ["table"]]
                 ]
             });
         });
@@ -815,7 +815,7 @@ function barCharts() {
                 scaleShowLabels: false,
                 showScale: true,
                 scaleLineColor: "rgba(0,0,0,.1)",
-                scaleShowGridLines : false,
+                scaleShowGridLines : false
             });
         });
     }
@@ -828,12 +828,7 @@ function animateNumber(){
         duration = $(this).data("duration") ? $(this).data("duration") : 2;
         delay    = $(this).data("delay") ? $(this).data("delay") : 1000;
         decimals = $(this).data("decimals") ? $(this).data("decimals") : 0;
-        var options = {
-          useEasing : true,
-          useGrouping : true, 
-          separator : ',', 
-          prefix : $(this).data("prefix") ? $(this).data("  prefix") : '',
-          suffix : $(this).data("suffix") ? $(this).data("suffix") : ''
+        var options = {useEasing : true, useGrouping : true,  separator : ',', prefix : $(this).data("prefix") ? $(this).data("  prefix") : '', suffix : $(this).data("suffix") ? $(this).data("suffix") : ''
         }
         var numAnim = new countUp($(this).get(0),from, to, decimals, duration, options);
         setTimeout(function(){
