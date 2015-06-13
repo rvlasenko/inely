@@ -299,6 +299,51 @@ h5 {
     color: #272727;
 }
 
+.noty_message {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.noty_message .alert {
+    border: none;
+    margin-bottom: 10px;
+    z-index: 3;
+    border-radius: 0;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    padding: 5px 5px 5px 15px;
+}
+
+.alert-success {
+    background-color: #d1ede8;
+    border-color: rgba(0, 0, 0, 0);
+    color: #0D2213;
+}
+
+.alert i {
+    font-size: 26px;
+    line-height: 2.4em;
+    padding-right: 18px;
+    float: left;
+}
+
+h4.alert-title {
+    color: #252525;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+div.alert p {
+    color: #0D2213;
+    font-size: 15px;
+}
+
+#noty_topRight_layout_container li:first-child {
+    margin-top: 50px !important;
+}
+
 .grey-bg {
     background: #F7F8FA !important;
 }

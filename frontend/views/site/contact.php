@@ -49,3 +49,30 @@
 
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        function generate(type, icon, desc) {
+            var n = noty({
+                text        : '<div class="alert ' + type + ' media fade in"> ' +
+                              '<i class=" ' + icon + ' "></i> ' +
+                              '<p> ' + desc + ' </p> </div>',
+                layout      : 'topRight',
+                theme       : 'made',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceIn',
+                    close : 'animated bounceOut',
+                    easing: 'swing',
+                    speed : 1000
+                },
+                timeout: 300000
+            });
+        }
+
+        $("#show").click(function () {
+            generate('alert-success', 'icon-heart', 'Спасибо! Ваше мнение будет услышано!');
+        });
+
+    });
+</script>

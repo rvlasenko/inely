@@ -36,7 +36,7 @@ class LandingAsset extends AssetBundle
 
         // Web font
         'css/icons/simple-line-icons/css/simple-line-icons.css',
-        '//fonts.googleapis.com/css?family=Roboto:300,100&subset=latin,cyrillic-ext',
+        '//fonts.googleapis.com/css?family=Roboto:300,100,500&subset=latin,cyrillic-ext',
     ];
 
     public $js = [

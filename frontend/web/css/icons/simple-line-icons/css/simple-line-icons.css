@@ -17,7 +17,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-magic-wand, .icon-badge, .icon-question, .icon-note, .icon-list, .icon-grid, .icon-paper-plane {
+.icon-magic-wand, .icon-badge, .icon-question, .icon-note, .icon-list, .icon-grid, .icon-paper-plane, .icon-heart, .icon-close {
 	font-family: 'Simple-Line-Icons';
 	font-style: normal;
 	font-weight: normal;
@@ -38,8 +38,14 @@ you can use the generic selector below, but it's slower:
 .icon-note:before {
 	content: "\e060";
 }
+.icon-close:before {
+    content: "\e082";
+}
 .icon-list:before {
 	content: "\e067";
+}
+.icon-heart:before {
+    content: "\e08a";
 }
 .icon-grid:before {
 	content: "\e06a";

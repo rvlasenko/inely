@@ -318,7 +318,7 @@
         <div class="colored-line"></div>
 
     </div>
-    <div id="screenshot-contain" class="wow fadeInDown" data-wow-delay="0.4s">
+    <div id="screenshot-contain" class="wow fadeInRight" data-wow-delay="0.4s">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-10 col-md-offset-1">
@@ -357,7 +357,7 @@
     <div class="container">
 
         <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;"
-             class="contact-box wow rotateIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+             class="contact-box wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
             <a class="btn contact-button expand-form expanded">
                 <i class="icon-paper-plane"></i>
