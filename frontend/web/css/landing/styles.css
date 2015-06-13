@@ -5,7 +5,7 @@ GLOBAL STYLES
 -----------------------------------------*/
 
 header {
-    background: url(../../images/bg-1.jpg) no-repeat center top fixed;
+    background: url("../../images/bg-1.jpg") no-repeat center top fixed;
     -webkit-background-size: cover;
     background-size: cover;
 }
@@ -239,7 +239,7 @@ h5 {
     color: #dd4b39;
 }
 
-.buton {
+/*.buton {
     border: none;
     font-family: inherit;
     font-size: 22px;
@@ -289,7 +289,7 @@ h5 {
 .btn-1c:hover:after,
 .btn-1c:active:after {
     width: 100%;
-}
+}*/
 
 /*---------------------------------------
    TEXTS

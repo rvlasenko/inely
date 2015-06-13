@@ -49,17 +49,7 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->contact(getenv('ROBOT_EMAIL'))) {
-                /*Yii::$app->getSession()->setFlash('alert', [
-                    'body' => Yii::t('frontend', 'Thank you for contacting us. We will respond to you as soon as possible.'),
-                    'options' => ['class' => 'alert-success']
-                ]);
                 return $this->redirect(\Yii::$app->request->getReferrer());
-            } else {
-                Yii::$app->getSession()->setFlash('alert', [
-                    'body' => \Yii::t('frontend', 'There was an error sending email.'),
-                    'options' => ['class' => 'alert-danger']
-                ]);*/
-                return true;
             }
         }
 

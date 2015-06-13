@@ -64,14 +64,18 @@
                     open  : 'animated bounceIn',
                     close : 'animated bounceOut',
                     easing: 'swing',
-                    speed : 1000
+                    speed : 100
                 },
-                timeout: 300000
+                timeout: 3000
             });
         }
 
         $("#show").click(function () {
-            generate('alert-success', 'icon-heart', 'Спасибо! Ваше мнение будет услышано!');
+            if (!$('#contactform-name').val() || !$('#contactform-email').val() ||
+                !$('#contactform-subject').val() || !$('#contactform-body').val())
+                generate('alert-danger', 'icon-close', 'Кажется, вы не заполнили некоторые поля!');
+            else
+                generate('alert-success', 'icon-heart', 'Спасибо! Ваше мнение будет услышано!');
         });
 
     });
