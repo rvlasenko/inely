@@ -953,7 +953,7 @@ footer .copyright {
 .bttn {
     border: none;
     font-family: inherit;
-    font-size: inherit;
+    font-size: 18px;
     color: inherit;
     background: none;
     cursor: pointer;

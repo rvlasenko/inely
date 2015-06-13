@@ -41,7 +41,7 @@
         ])->textArea(['rows' => 6, 'placeholder' => 'Изложите свои мысли'])->label(false) ?>
 
         <div class="form-group">
-            <button class="bttn btn-2 btn-2a">
+            <button class="bttn btn-2 btn-2a" id="show">
                 <?= Yii::t('frontend', 'Submit') ?>
             </button>
         </div>
