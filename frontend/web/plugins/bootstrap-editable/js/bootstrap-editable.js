@@ -5570,19 +5570,22 @@ Editableform based on Twitter Bootstrap 3
 					case 'span':
 						if (!target.is('.disabled')) {
 							this.viewDate.setUTCDate(1);
+                            var day;
+                            var month;
+                            var year;
 							if (target.is('.month')) {
-								var day = 1;
-								var month = target.parent().find('span').index(target);
-								var year = this.viewDate.getUTCFullYear();
+								day = 1;
+								month = target.parent().find('span').index(target);
+								year = this.viewDate.getUTCFullYear();
 								this.viewDate.setUTCMonth(month);
 								this._trigger('changeMonth', this.viewDate);
 								if (this.o.minViewMode === 1) {
 									this._setDate(UTCDate(year, month, day,0,0,0,0));
 								}
 							} else {
-								var year = parseInt(target.text(), 10)||0;
-								var day = 1;
-								var month = 0;
+								year = parseInt(target.text(), 10)||0;
+								day = 1;
+								month = 0;
 								this.viewDate.setUTCFullYear(year);
 								this._trigger('changeYear', this.viewDate);
 								if (this.o.minViewMode === 2) {
@@ -5595,9 +5598,9 @@ Editableform based on Twitter Bootstrap 3
 						break;
 					case 'td':
 						if (target.is('.day') && !target.is('.disabled')){
-							var day = parseInt(target.text(), 10)||1;
-							var year = this.viewDate.getUTCFullYear(),
-								month = this.viewDate.getUTCMonth();
+							day = parseInt(target.text(), 10)||1;
+							year = this.viewDate.getUTCFullYear(),
+							month = this.viewDate.getUTCMonth();
 							if (target.is('.old')) {
 								if (month === 0) {
 									month = 11;

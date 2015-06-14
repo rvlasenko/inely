@@ -34,8 +34,9 @@
 
             this.options.layout = (this.options.custom) ? $.noty.layouts['inline'] : $.noty.layouts[this.options.layout];
 
-            if($.noty.themes[this.options.theme])
+            if($.noty.themes[this.options.theme]) {
                 this.options.theme = $.noty.themes[this.options.theme];
+            }
             else
                 options.themeClassName = this.options.theme;
 
@@ -127,10 +128,11 @@
                     self.close();
                 });
 
-            if($.inArray('hover', self.options.closeWith) > -1)
-                self.$bar.one('mouseenter', function() {
+            if($.inArray('hover', self.options.closeWith) > -1) {
+                self.$bar.one('mouseenter', function () {
                     self.close();
                 });
+            }
 
             if($.inArray('button', self.options.closeWith) > -1)
                 self.$closeButton.one('click', function(evt) {
@@ -176,7 +178,7 @@
 
         close: function() {
 
-            if(this.closed) return;
+            if(this.closed) { return }
             if(this.$bar && this.$bar.hasClass('i-am-closing-now')) return;
 
             var self = this;
@@ -241,7 +243,9 @@
 
             // Layout Cleaning
             $.notyRenderer.setLayoutCountFor(self, -1);
-            if($.notyRenderer.getLayoutCountFor(self) == 0) $(self.options.layout.container.selector).remove();
+            if($.notyRenderer.getLayoutCountFor(self) == 0) {
+                $(self.options.layout.container.selector).remove()
+            }
 
             // Make sure self.$bar has not been removed before attempting to remove it
             if(typeof self.$bar !== 'undefined' && self.$bar !== null) {
@@ -334,8 +338,7 @@
         // Renderer creates a new noty
         var notification = Object.create(NotyObject).init(options);
 
-        if(notification.options.killer)
-            $.noty.closeAll();
+        if(notification.options.killer) { $.noty.closeAll() }
 
         (notification.options.force) ? $.noty.queue.unshift(notification) : $.noty.queue.push(notification);
 
@@ -415,7 +418,7 @@
             modal.prependTo($('body')).fadeIn('fast');
 
             if($.inArray('backdrop', notification.options.closeWith) > -1)
-                modal.on('click', function(e) {
+                modal.on('click', function() {
                     $.noty.closeAll();
                 });
         }
@@ -1396,6 +1399,4 @@ $.noty.themes.relax = {
         }
     }
 };
-
-
 });

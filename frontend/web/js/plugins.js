@@ -334,9 +334,9 @@ function inputTags(){
 function tableResponsive(){
     setTimeout(function () {
        $('.table').each(function () {
-            window_width = $(window).width();
-            table_width = $(this).width();
-            content_width = $(this).parent().width();
+            var window_width = $(window).width();
+            var table_width = $(this).width();
+            var content_width = $(this).parent().width();
             if(table_width > content_width) {
                 $(this).parent().addClass('force-table-responsive');
             }

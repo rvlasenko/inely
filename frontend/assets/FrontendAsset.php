@@ -21,7 +21,7 @@ class FrontendAsset extends AssetBundle
         'css/style.css',
         'css/theme.css',
         'css/ui.css',
-        'plugins/metrojs/metrojs.min.css',
+        //'plugins/metrojs/metrojs.min.css',
     ];
 
     public $js = [

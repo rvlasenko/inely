@@ -20,7 +20,7 @@ function quickviewSidebar() {
     });
 
     content.addEventListener('click', function(ev) {
-        chatSidebar = document.getElementById('quickview-sidebar');
+        var chatSidebar = document.getElementById('quickview-sidebar');
         var target = ev.target;
         if( target !== chatSidebar ) {
             if($('#quickview-sidebar').hasClass('open')){
@@ -38,8 +38,8 @@ function quickviewSidebar() {
 
 function quickviewHeight(){
     $('.chat-conversation').height('');
-    chatConversationHeight = $('.chat-conversation').height();
-    windowHeight = $(window).height();
+    var chatConversationHeight = $('.chat-conversation').height();
+    var windowHeight = $(window).height();
     if(chatConversationHeight < windowHeight) {
         $('.chat-conversation').height($(window).height() - 50);
     }
@@ -102,7 +102,7 @@ $(function (){
                 notes.$currentNoteTitle = $current_note.find('.note-name');
                 notes.$currentNoteDescription = $current_note.find('.note-desc');
                 var $space = notes.$currentNoteTitle.text().indexOf( "\r" );
-                $note_title = notes.$currentNoteTitle.html();
+                var $note_title = notes.$currentNoteTitle.html();
                 if($space == -1) {
                     $note_title = notes.$currentNoteTitle.append('&#13;').html();
                 }

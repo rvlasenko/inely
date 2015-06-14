@@ -151,7 +151,7 @@ the specific language governing permissions and limitations under the Apache Lic
     function equal(a, b) {
         if (a === b) return true;
         if (a === undefined || b === undefined) return false;
-        if (a === null || b === null) return false;
+        if (a === null || b === null) { return false }
         // Check whether 'a' or 'b' is a string (primitive or object).
         // The concatenation of an empty string (+'') converts its argument to a string's primitive.
         if (a.constructor === String) return a+'' === b+''; // a+'' - in case 'a' is a String object
@@ -561,7 +561,7 @@ the specific language governing permissions and limitations under the Apache Lic
      * @param formatter
      */
     function checkFormatter(formatter, formatterName) {
-        if ($.isFunction(formatter)) return true;
+        if ($.isFunction(formatter)) { return true }
         if (!formatter) return false;
         if (typeof(formatter) === 'string') return true;
         throw new Error(formatterName +" must be a string, function, or falsy value");
@@ -645,7 +645,7 @@ the specific language governing permissions and limitations under the Apache Lic
             }
         }
 
-        if (original!==input) return input;
+        if (original!==input) { return input }
     }
 
     function cleanupJQueryElements() {
@@ -1200,7 +1200,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         enable: function(enabled) {
-            if (enabled === undefined) enabled = true;
+            if (enabled === undefined) { enabled = true }
             if (this._enabled === enabled) return;
             this._enabled = enabled;
 
@@ -1371,7 +1371,7 @@ the specific language governing permissions and limitations under the Apache Lic
         // abstract
         open: function () {
 
-            if (!this.shouldOpen()) return false;
+            if (!this.shouldOpen()) { return false }
 
             this.opening();
 
@@ -3248,8 +3248,8 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // multi
         buildChangeDetails: function (old, current) {
-            var current = current.slice(0),
-                old = old.slice(0);
+            current = current.slice(0);
+            old = old.slice(0);
 
             // remove intersection from each array
             for (var i = 0; i < current.length; i++) {

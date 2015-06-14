@@ -363,7 +363,7 @@ h2 small {
 .weather-day small {
     font-size: 11px;
     color: #8E8E8E;
-    margin: 0px;
+    margin: 0;
 }
 .weather-info {
     width: 100%;

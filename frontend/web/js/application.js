@@ -4,19 +4,12 @@ var docEl = document.documentElement;
 var $body = $('body');
 var $sidebar = $('.sidebar');
 var $sidebarFooter = $('.sidebar .sidebar-footer');
-//var $mainContent = $('.main-content');
-//var $pageContent = $('.page-content');
 var $topbar = $('.topbar');
 var $logopanel = $('.logopanel');
 var $sidebarWidth = $(".sidebar").width();
 var content = document.querySelector('.page-content');
 var is_RTL = false;
-//var $loader = $('#preloader');
-//var docHeight = $(document).height();
 var windowHeight = $(window).height();
-//var topbarWidth = $('.topbar').width();
-//var headerLeftWidth = $('.header-left').width();
-//var headerRightWidth = $('.header-right').width();
 var start = delta = end = 0;
 $(window).load(function() {
     "use strict";
@@ -140,8 +133,8 @@ function removeSidebarTop() {
 
 /* Toggle Sidebar on Top */
 function toggleSidebarTop() {
-    if ($('body').hasClass('sidebar-top')) removeSidebarTop();
-    else createSidebarTop();
+    if ($('body').hasClass('sidebar-top')) { removeSidebarTop() }
+    else { createSidebarTop() }
 }
 
 /* Create Sidebar only visible on Hover */
@@ -191,38 +184,6 @@ function toggleSidebarHover() {
     if ($('body').hasClass('sidebar-hover')) removeSidebarHover();
     else createSidebarHover();
 }
-
-/* Create Sidebar Submenu visible on Hover
- function createSubmenuHover() {
- removeSidebarHover();
- removeSidebarTop();
- handleSidebarFluid();
- $('#switch-submenu-hover').prop('checked', true);
- $('body').addClass('submenu-hover');
- $('.nav-sidebar .children').css('display', '');
- $.cookie('submenu-hover', 1);
- $.cookie('submenu-hover', 1, {
- path: '/'
- });
- $('#switch-sidebar').prop('checked', false);
- }*/
-
-/* Remove Submenu on Hover
- function removeSubmenuHover() {
- $('#switch-submenu-hover').prop('checked', false);
- $('body').removeClass('submenu-hover');
- $('.nav-sidebar .nav-parent.active .children').css('display', 'block');
- $.removeCookie('submenu-hover');
- $.removeCookie('submenu-hover', {
- path: '/'
- });
- }*/
-
-/* Toggle Submenu on Hover
- function toggleSubmenuHover() {
- if ($('body').hasClass('submenu-hover')) removeSubmenuHover();
- else createSubmenuHover();
- }*/
 
 /* Create Topbar Fixed */
 function handleTopbarFixed() {
@@ -274,7 +235,7 @@ function handleboxedLayout() {
                 else {
                     if ($('body').hasClass('fixed-sidebar')) {
                         $sidebar.css('margin-right', margin);
-                        topbarWidth = (1200 - $sidebarWidth);
+                        var topbarWidth = (1200 - $sidebarWidth);
                         $('.topbar').css('width', topbarWidth);
                     }
                     $sidebarFooter.css('right', margin);
@@ -302,50 +263,13 @@ function handleboxedLayout() {
             duration: 4000
         });
     }
-    /*if ($(window).width() < 1220) {
-     removeBoxedLayout();
-     }*/
 }
-
-/* Create Boxed Layout
- function createBoxedLayout() {
- removeSidebarHover();
- $('body').addClass('boxed');
- handleboxedLayout();
- $('#switch-boxed').prop('checked', true);
- $.cookie('boxed-layout', 1);
- $.cookie('boxed-layout', 1, {
- path: '/'
- });
- }*/
-
-/* Remove boxed layout
- function removeBoxedLayout() {
- if ($('body').hasClass('boxed')) {
- $('body').removeClass('boxed');
- $logopanel.css('left', '').css('right', '');
- $topbar.css('width', '');
- $sidebar.css('margin-left', '').css('margin-right', '');
- $sidebarFooter.css('left', '').css('right', '');
- $.removeCookie('boxed-layout');
- $.removeCookie('boxed-layout', {
- path: '/'
- });
- $('#switch-boxed').prop('checked', false);
- $.backstretch("destroy");
- }
- }
-
- function toggleboxedLayout() {
- if ($('body').hasClass('boxed')) removeBoxedLayout();
- else createBoxedLayout();
- }*/
 
 /* Toggle Sidebar Collapsed */
 function collapsedSidebar() {
     if ($body.css('position') != 'relative') {
-        if (!$body.hasClass('sidebar-collapsed')) createCollapsedSidebar();
-        else removeCollapsedSidebar();
+        if (!$body.hasClass('sidebar-collapsed')) { createCollapsedSidebar() }
+        else { removeCollapsedSidebar() }
     } else {
         if ($body.hasClass('sidebar-show')) $body.removeClass('sidebar-show');
         else $body.addClass('sidebar-show');
@@ -651,8 +575,9 @@ function handleSidebarRemove() {
         $(this).attr("id", "remove-menu").html('Remove menu');
     });
     $('.sidebar').on('click', '.remove-menu > li', function() {
-        $menu = $(this);
-        if ($(this).hasClass('nav-parent')) $remove_txt = "Are you sure to remove this menu (all submenus will be deleted too)?";
+        var $menu = $(this);
+        if ($(this).hasClass('nav-parent'))
+            var $remove_txt = "Are you sure to remove this menu (all submenus will be deleted too)?";
         else $remove_txt = "Are you sure to remove this menu?";
         bootbox.confirm($remove_txt, function(result) {
             if (result === true) {
@@ -667,8 +592,8 @@ function handleSidebarRemove() {
 
 /* Hide User & Search Sidebar */
 function handleSidebarHide() {
-    hiddenElements = $(':hidden');
-    visibleElements = $(':visible');
+    var hiddenElements = $(':hidden');
+    var     visileElements = $(':visible');
     $('.menu-settings').on('click', '#hide-top-sidebar', function(e) {
         e.preventDefault();
         var this_text = $(this).text();
@@ -688,25 +613,6 @@ function handleSidebarHide() {
         }
     });
 }
-
-/* Change statut of user in sidebar: available, busy, away, invisible
- function changeUserStatut() {
- $('.sidebar').on('click', '.user-login li a', function(e) {
- e.preventDefault();
- var statut = $(this).find('span').text();
- currentStatut = $('.user-login button span').text();
- $('.user-login button span').text(statut);
- if (statut == 'Busy') {
- $('.user-login button i:not(.fa)').removeClass().addClass('busy');
- }
- if (statut == 'Invisible') {
- $('.user-login button i:not(.fa)').removeClass().addClass('turquoise');
- }
- if (statut == 'Away') {
- $('.user-login button i:not(.fa)').removeClass().addClass('away');
- }
- });
- }*/
 
 /* Create custom scroll for sidebar used for fixed sidebar */
 function createSideScroll() {
@@ -775,119 +681,6 @@ function toggleSidebarMenu() {
 }
 
 /**** Handle Sidebar Widgets ****/
-function sidebarWidgets() {
-    /* Folders Widget
-     if ($('.sidebar-widgets .folders').length) {
-     $('.new-folder').on('click', function() {
-     $('.sidebar-widgets .add-folder').show();
-     return false;
-     });
-     $(".add-folder input").keypress(function(e) {
-     if (e.which == 13) {
-     $('.sidebar-widgets .add-folder').hide();
-     $('<li><a href="#"><i class="icon-docs c-blue"></i>' + $(this).val() + '</a> </li>').insertBefore(".add-folder");
-     $(this).val('');
-     }
-     });
-     content.addEventListener('click', function(ev) {
-     addFolder = document.getElementById('add-folder');
-     var target = ev.target;
-     if (target !== addFolder) {
-     $('.sidebar-widgets .add-folder').hide();
-     }
-     });
-     }*/
-    /* Labels Widget
-     if ($('.sidebar-widgets .folders').length) {
-     $('.new-label').on('click', function() {
-     $('.sidebar-widgets .add-label').show();
-     return false;
-     });
-     $(".add-label input").keypress(function(e) {
-     if (e.which == 13) {
-     $('.sidebar-widgets .add-label').hide();
-     $('<li><a href="#"><i class="fa fa-circle-o c-blue"></i>' + $(this).val() + '</a> </li>').insertBefore(".add-label");
-     $(this).val('');
-     }
-     });
-     content.addEventListener('click', function(ev) {
-     addFolder = document.getElementById('add-label');
-     var target = ev.target;
-     if (target !== addFolder) {
-     $('.sidebar-widgets .add-label').hide();
-     }
-     });
-     }*/
-    /* Sparkline  Widget
-     if ($.fn.sparkline && $('.dynamicbar1').length) {
-     var myvalues1 = [13, 14, 16, 15, 11, 14, 20, 14, 12, 16, 11, 17, 19, 16];
-     var myvalues2 = [14, 17, 16, 12, 18, 16, 22, 15, 14, 17, 11, 18, 11, 12];
-     var myvalues3 = [18, 14, 15, 14, 15, 12, 21, 16, 18, 14, 12, 15, 17, 19];
-     var sparkline1 = $('.dynamicbar1').sparkline(myvalues1, {
-     type: 'bar',
-     barColor: '#319DB5',
-     barWidth: 4,
-     barSpacing: 1,
-     height: '28px'
-     });
-     var sparkline2 = $('.dynamicbar2').sparkline(myvalues2, {
-     type: 'bar',
-     barColor: '#C75757',
-     barWidth: 4,
-     barSpacing: 1,
-     height: '28px'
-     });
-     var sparkline3 = $('.dynamicbar3').sparkline(myvalues3, {
-     type: 'bar',
-     barColor: '#18A689',
-     barWidth: 4,
-     barSpacing: 1,
-     height: '28px'
-     });
-     };*/
-    /* Progress Bar Widget
-     if ($('.sidebar-widgets .progress-chart').length) {
-     $(window).load(function() {
-     setTimeout(function() {
-     $('.sidebar-widgets .progress-chart .stat1').progressbar();
-     }, 900);
-     setTimeout(function() {
-     $('.sidebar-widgets .progress-chart .stat2').progressbar();
-     }, 1200);
-     setTimeout(function() {
-     $('.sidebar-widgets .progress-chart .stat3').progressbar();
-     }, 1500);
-     });
-     };
-     $('.sidebar').on('click', '.hide-widget', function(e) {
-     e.preventDefault();
-     if (start == 0) {
-     start = new Date().getTime();
-     $(this).toggleClass('widget-hidden');
-     var this_widget = $(this).parent().parent().next();
-     this_widget.slideToggle(200, function() {
-     createSideScroll();
-     });
-     end = new Date().getTime();
-     delta = end - start;
-     }
-     else {
-     end = new Date().getTime();
-     delta = end - start;
-     if (delta > 200) {
-     start = new Date().getTime();
-     $(this).toggleClass('widget-hidden');
-     var this_widget = $(this).parent().parent().next();
-     this_widget.slideToggle(200, function() {
-     createSideScroll();
-     });
-     end = new Date().getTime();
-     delta = end - start;
-     }
-     }
-     });*/
-}
-
 // Add class everytime a mouse pointer hover over it
 var hoverTimeout;
 $('.nav-sidebar > li').hover(function() {
@@ -912,56 +705,6 @@ $('.nav-sidebar > li .children').hover(function() {
 });
 /* END SIDEBAR                                               */
 /* ========================================================= */
-/* Switch Top navigation to Sidebar
-function reposition_topnav() {
-    if ($('.nav-horizontal').length > 0) {
-        topbarWidth = $('.topbar').width();
-        headerRightWidth = $('.header-right').width();
-        if ($('.header-left .nav-horizontal').length) headerLeftWidth = $('.header-left').width() + 40;
-        else headerLeftWidth = $('.nav-sidebar.nav-horizontal > li').length * 140;
-        var topbarSpace = topbarWidth - headerLeftWidth - headerRightWidth;
-        // top navigation move to left nav if not enough space in topbar
-        if ($('.nav-horizontal').css('position') == 'relative' || topbarSpace < 0) {
-            if ($('.sidebar .nav-sidebar').length == 2) {
-                $('.nav-horizontal').insertAfter('.nav-sidebar:eq(1)');
-            } else {
-                // only add to bottom if .nav-horizontal is not yet in the left panel
-                if ($('.sidebar .nav-horizontal').length == 0) {
-                    $('.nav-horizontal').appendTo('.sidebar-inner');
-                    $('.sidebar-widgets').css('margin-bottom', 20);
-                }
-            }
-            $('.nav-horizontal').css({
-                display: 'block'
-            }).addClass('nav-sidebar').css('margin-bottom', 100);
-            createSideScroll();
-            $('.nav-horizontal .children').removeClass('dropdown-menu');
-            $('.nav-horizontal > li').each(function() {
-                $(this).removeClass('open');
-                $(this).find('a').removeAttr('class');
-                $(this).find('a').removeAttr('data-toggle');
-            });
-            /* We hide mega menu in sidebar since video / images are too big and not adapted to sidebar
-            if ($('.nav-horizontal').hasClass('mmenu')) $('.nav-horizontal.mmenu').css('height', 0).css('overflow', 'hidden');
-        } else {
-            if ($('.sidebar .nav-horizontal').length > 0) {
-                $('.sidebar-widgets').css('margin-bottom', 100);
-                $('.nav-horizontal').removeClass('nav-sidebar').appendTo('.topnav');
-                $('.nav-horizontal .children').addClass('dropdown-menu').removeAttr('style');
-                $('.nav-horizontal li:last-child').show();
-                $('.nav-horizontal > li > a').each(function() {
-                    $(this).parent().removeClass('active');
-                    if ($(this).parent().find('.dropdown-menu').length > 0) {
-                        $(this).attr('class', 'dropdown-toggle');
-                        $(this).attr('data-toggle', 'dropdown');
-                    }
-                });
-            }
-            /* If mega menu, we make it visible
-            if ($('.nav-horizontal').hasClass('mmenu')) $('.nav-horizontal.mmenu').css('height', '').css('overflow', '');
-        }
-    }
-}*/
 
 // Check if sidebar is collapsed
 if ($('body').hasClass('sidebar-collapsed')) $('.nav-sidebar .children').css({
@@ -1043,11 +786,8 @@ $(document).ready(function() {
     toggleSidebarMenu();
     customScroll();
     handleSidebarSortable();
-    sidebarWidgets();
-    //reposition_topnav();
     handleSidebarRemove();
     handleSidebarHide();
-    //changeUserStatut();
     handlePanelAction();
     scrollTop();
     sidebarBehaviour();

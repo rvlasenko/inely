@@ -13,7 +13,7 @@ function handleTodoList(){
           var dt = new Date();
           var currentDay = dt.getDate();
           var monthNames = [ "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ];
-          currentMonth = monthNames[dt.getMonth()];
+          var currentMonth = monthNames[dt.getMonth()];
 
           /* Context Menu */
           var todoMenuContext = '<div id="context-menu" class="dropdown clearfix">'+

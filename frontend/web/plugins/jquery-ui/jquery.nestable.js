@@ -29,7 +29,7 @@
     var eStart  = hasTouch ? 'touchstart'  : 'mousedown',
         eMove   = hasTouch ? 'touchmove'   : 'mousemove',
         eEnd    = hasTouch ? 'touchend'    : 'mouseup';
-        eCancel = hasTouch ? 'touchcancel' : 'mouseup';
+    var eCancel = hasTouch ? 'touchcancel' : 'mouseup';
 
     var defaults = {
             listNodeName    : 'ol',
@@ -139,7 +139,7 @@
             var data,
                 depth = 0,
                 list  = this;
-                step  = function(level, depth)
+            var step  = function(level, depth)
                 {
                     var array = [ ],
                         items = level.children(list.options.itemNodeName);

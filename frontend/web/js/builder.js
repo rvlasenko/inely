@@ -210,14 +210,15 @@ function handleCookie(){
         $('body').addClass('color-default');
     }
     // Background Color
+    var bg_color;
     if($.cookie('bg-color')) {
-        var bg_color = $.cookie('bg-color');
+        bg_color = $.cookie('bg-color');
         $('.bg-color').each(function(){
             if($(this).data('color') == bg_color) $(this).addClass('active');
         });
     }
     if($.cookie('bg-name')) {
-        var bg_color = $.cookie('bg-name');
+        bg_color = $.cookie('bg-name');
         $('body').addClass('bg-'+bg_color);
     }
     if(!$.cookie('bg-color')) {
