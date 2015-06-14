@@ -5,7 +5,6 @@
 ?>
 
 <div class="row">
-
     <div class="download-container">
         <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Fast reg') ?></h3>
 
@@ -100,9 +99,9 @@
     [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
         new UIProgressButton( bttn, {
             callback : function(instance) {
-                var progress = 0,
-                    success = 1;
-                    error = -1;
+                var progress = 0;
+                var success = 1;
+                var error = -1;
 
                 var interval = setInterval(function() {
                     icon(pos, instance, progress, success, error, interval);
@@ -112,8 +111,8 @@
     } );
 
     jQuery(function($) {
-        $('.login-a').click(function(ev) {
-            showModal('login', ev);
+        $('.login-a').click(function() {
+            showModal('login');
         });
     });
 </script>

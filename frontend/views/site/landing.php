@@ -376,7 +376,7 @@
 <script>
     jQuery(function($) {
         $('button.log').click(function() {
-            if ( !$('.modal-body .row').length )
+            if (!$('.modal-body .row').length)
                 showModal('login');
         });
 

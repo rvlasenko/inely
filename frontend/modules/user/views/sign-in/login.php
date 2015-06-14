@@ -96,10 +96,10 @@
     [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
         new UIProgressButton( bttn, {
             callback : function(instance) {
-                var progress = 0,
-                    success = 1;
-                    error = -1;
-                    value = $.trim($("#loginform-identity").val());
+                var progress = 0;
+                var success = 1;
+                var error = -1;
+                var value = $.trim($("#loginform-identity").val());
 
                 if (value.length > 0)
                     var interval = setInterval(function() {
@@ -112,12 +112,12 @@
     } );
 
     jQuery(function($) {
-        $('.sign-a').click(function(ev) {
-            showModal('sign-up', ev);
+        $('.sign-a').click(function() {
+            showModal('sign-up');
         });
 
-        $('.reset-a').click(function(ev) {
-            showModal('user/sign-in/request-password-reset', ev);
+        $('.reset-a').click(function() {
+            showModal('user/sign-in/request-password-reset');
         });
     });
 </script>

@@ -3,7 +3,10 @@
 
     /* @var $this \yii\web\View */
     /* @var $content string */
-
+Yii::$app->session->setFlash('alert', [
+    'options' => ['class' => 'alert-success'],
+    'body' => Yii::t('frontend', 'Your account has been successfully saved')
+]);
     \frontend\assets\FrontendAsset::register($this);
     $this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
 ?>

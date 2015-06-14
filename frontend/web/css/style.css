@@ -6191,6 +6191,12 @@ body:not(.fixed-topbar) .main-content .page-content {
   margin-top: 5px;
   text-align: center;
 }
+.alert i {
+    font-size: 26px;
+    line-height: 2em;
+    padding-right: 18px;
+    float: left;
+}
 /* WIDGET USER */
 .widget-member {
   border: 1px solid #EBEBEB;

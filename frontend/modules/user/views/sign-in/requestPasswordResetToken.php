@@ -5,7 +5,6 @@
 ?>
 
 <div class="row">
-
     <h4 class="fadeInLeft animated"><?= Yii::t('frontend',
             'Please enter your e-mail. It will receive a letter with instructions to reset your password.') ?></h4>
 
@@ -77,8 +76,8 @@
     } );
 
     jQuery(function($) {
-        $('.forget-a').click(function(ev) {
-            showModal('login', ev);
+        $('.forget-a').click(function() {
+            showModal('login');
         });
     });
 </script>

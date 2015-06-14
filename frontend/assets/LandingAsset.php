@@ -1,9 +1,4 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace frontend\assets;
 
@@ -39,7 +34,7 @@ class LandingAsset extends AssetBundle
         'js/landing/smoothscroll.js',
         'js/landing/jquery.plugins.js',
         'js/landing/owl.carousel.min.js',
-        'js/landing/nivo-lightbox.min.js',
+        //'js/landing/nivo-lightbox.min.js',
         'js/landing/simple-expand.min.js',
         'js/landing/wow.min.js',
         'js/landing/retina.min.js',

@@ -43,9 +43,9 @@ RESPONSIVE FIXES
 
 @media (min-width: 768px) and (max-width: 991px) {
     .screenshot-wrapper{
-        width: 699px;
-        top: 55px;
-        left: 10px;
+        width: 768px;
+        top: 61px;
+        left: 11px;
     }
 
     .container {

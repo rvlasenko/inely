@@ -8,34 +8,20 @@ jQuery(window).load(function() {
 
 (function($) {
     'use strict';
-    $("#client-wrapper, #owl-testimoni").owlCarousel({
-        autoPlay : false,
-        stopOnHover : true,
-        pagination : false,
-        navigation:true,
-        paginationSpeed : 1000,
-        goToFirstSpeed : 2000,
-        singleItem : true,
-        autoHeight : true
-    });
-})(jQuery);
-
-(function($) {
-    'use strict';
     $('.flexslider').flexslider({
         animation: "slide",
         directionNav: true,
         controlNav: true,
-        slideshow: true
+        slideShow: true
     });
 
     $('.imac-device').flexslider({
         animation: "slide",
         directionNav: false,
         controlNav: false,
-        slideshow: true,
+        slideShow: true,
         pausePlay: true,
-        mousewheel: true
+        mouseWheel: true
     });
 })(jQuery);
 
@@ -47,9 +33,9 @@ $(document).ready(function() {
     });
 });
 
-function showModal(url, ev) {
+function showModal(url) {
     $.get(url, function (html) {
-        $('#myModal .modal-body').html(html);
+        $('.modal-body').html(html);
         $('myModal').modal('show', {backdrop: 'static'});
     });
 }
@@ -86,7 +72,7 @@ if (matchMedia('(min-width: 992px), (max-width: 767px)').matches) {
         if (top > 40) $('.sticky-navigation').stop().animate({"top": '0'});
 
         else $('.sticky-navigation').stop().animate({"top": '-60'});
-    }
+  }
 }
 
 if (matchMedia('(min-width: 768px) and (max-width: 991px)').matches) {
@@ -95,19 +81,8 @@ if (matchMedia('(min-width: 768px) and (max-width: 991px)').matches) {
         if (top > 40) $('.sticky-navigation').stop().animate({"top": '0'});
 
         else $('.sticky-navigation').stop().animate({"top": '-120'});
-    }
+  }
 }
-
-
-
-/* =================================
-===  DOWNLOAD BUTTON CLICK SCROLL ==
-=================================== */
-jQuery(function( $ ){
-			$('#download-button').localScroll({
-				duration:1000
-			});
-		});
 
 /* =================================
 ===  FULL SCREEN HEADER         ====
@@ -149,45 +124,6 @@ wow = new WOW(
   });
 wow.init();
 
-
-/* =================================
-===  OWL CROUSEL               ====
-=================================== */
-$(document).ready(function () {
-
-    $("#feedbacks").owlCarousel({
-
-        navigation: false, // Show next and prev buttons
-        slideSpeed: 800,
-        paginationSpeed: 400,
-        autoPlay: 5000,
-        singleItem: true
-    });
-
-    var owl = $("#screenshots");
-
-    owl.owlCarousel({
-        items: 4, //10 items above 1000px browser width
-        itemsDesktop: [1000, 4], //5 items between 1000px and 901px
-        itemsDesktopSmall: [900, 2], // betweem 900px and 601px
-        itemsTablet: [600, 1], //2 items between 600 and 0
-        itemsMobile: false // itemsMobile disabled - inherit from itemsTablet option
-    });
-
-
-});
-
-
-/* =================================
-===  Nivo Lightbox              ====
-=================================== */
-$(document).ready(function () {
-
-    $('#screenshots a').nivoLightbox({
-        effect: 'fadeScale'
-    });
-
-});
 
 /* =================================
 ===  EXPAND COLLAPSE            ====

@@ -78,6 +78,5 @@
             else
                 generate('alert-success', 'icon-heart', 'Спасибо! Ваше мнение будет услышано!');
         });
-
     });
 </script>

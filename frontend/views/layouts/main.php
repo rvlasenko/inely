@@ -12,7 +12,10 @@
 ?>
 
 <?php if (Yii::$app->session->hasFlash('alert')): ?>
-<?= AlertBlock::widget([
+<?php
+    $this->registerJs("$(document).ready(function() {
+        generate('alert-success', 'fa fa-heart', 'retert') });", \yii\web\View::POS_END);
+/*AlertBlock::widget([
         'useSessionFlash' => false,
         'type' => AlertBlock::TYPE_GROWL,
         'alertSettings' => [
@@ -23,7 +26,7 @@
                 'type' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
             ]
         ]
-    ]);
+    ]);*/
 ?>
 <?php endif; ?>
 

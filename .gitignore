@@ -21,3 +21,6 @@ phpunit.phar
 
 # Vagrant
 /.vagrant
+
+#env
+.env
