@@ -40,7 +40,7 @@ class FrontendAsset extends AssetBundle
         'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
         'plugins/multidatepicker/multidatespicker.min.js',
         'plugins/jquery-translator/jqueryTranslator.min.js',
-        'plugins/noty/jquery.noty.packaged.min.js',
+        'plugins/noty/jquery.noty.packaged.js',
         'plugins/countup/countUp.min.js',
         'js/widgets/todo_list.js',
         'js/builder.js',

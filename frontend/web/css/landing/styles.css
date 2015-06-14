@@ -33,35 +33,12 @@ body {
     line-height: 28px;
     text-align: center;
     overflow-x: hidden !important;
-    margin: auto !important;
+    margin: auto;
 }
 
 ::selection {background: #67cfff;}
 ::-moz-selection {background: #67cfff;}
 ::-webkit-selection {background: #67cfff; color:#fff;}
-
-/* Internet Explorer 10 in Windows 8 and Windows Phone 8 Bug fix */
-
-@-webkit-viewport {
-    width: device-width;
-}
-
-@-moz-viewport {
-    width: device-width;
-}
-
-@-ms-viewport {
-    width: device-width;
-}
-
-@-o-viewport {
-    width: device-width;
-}
-
-@viewport {
-    width: device-width;
-}
-
 
 a {
     -webkit-transition: all ease 0.25s;
@@ -80,24 +57,15 @@ a:hover {
 
 /* Other fixes*/
 
-*,
-*:before,
-*:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 li {
     list-style: none;
 }
-
 
 /* PRE LOADER */
 
 .loader {
     font-size: 90px;
-    text-indent: -9999em;
+    /* text-indent: -9999em; */
     overflow: hidden;
     width: 1em;
     height: 1em;
@@ -333,7 +301,7 @@ div.alert p {
 }
 
 .grey-bg {
-    background: #F7F8FA !important;
+    background: #F7F8FA;
 }
 
 /*---------------------------------------
@@ -390,7 +358,7 @@ header .full-screen {
 
 div h3, div div.form-group, .subscription-form .col-md-12,
 .subscription-form, div.col-lg-5 div.col-md-12,
-div.row h4.fadeInLeft.animated {
+.row h4.fadeInLeft.animated {
     text-align: center;
 }
 
@@ -400,8 +368,8 @@ div.row h4.fadeInLeft.animated {
     min-height: 60px;
     background: #FFFFFF;
     border: none;
-    padding: 0 !important;
-    margin-bottom: 0 !important;
+    padding: 0;
+    margin-bottom: 0;
     -webkit-backface-visibility: hidden;
     -webkit-box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.08);
     box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.08);
@@ -595,7 +563,6 @@ object {
 .services {
     padding-top: 40px;
     padding-bottom: 40px;
-    background: #ffffff;
 }
 
 .services .single-service {
@@ -718,7 +685,6 @@ footer .contact-box .contact-button {
     position: relative;
     font-size: 35px;
     line-height: 73px;
-    padding-right: 15px;
     vertical-align: middle;
     margin: -40px auto auto;
     background: #ffffff;
@@ -741,7 +707,7 @@ footer .contact-box .expanded-contact-form {
 
 
 .form-control:focus {
-    border-color: #66AFE9 !important;
+    border-color: #66AFE9;
     outline: 0 none;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 10px rgba(102, 175, 233, 1) !important;
 }

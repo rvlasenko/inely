@@ -40,7 +40,7 @@ class LandingAsset extends AssetBundle
         'js/landing/retina.min.js',
         'js/landing/custom.js',
         'js/landing/bootstrap.min.js',
-        'plugins/noty/jquery.noty.packaged.min.js',
+        'plugins/noty/jquery.noty.packaged.js',
     ];
 
     public $jsOptions = [
