@@ -16,11 +16,7 @@ class LandingAsset extends AssetBundle
     public $css = [
 
         // Carousel
-        //'css/landing/owl.theme.css',
         'css/landing/flexslider.css',
-        //'css/landing/owl.carousel.css',
-        //'css/landing/nivo-lightbox.css',
-        //'css/landing/nivo_themes/default/default.css',
 
         // Animations
         'css/landing/animate.min.css',
@@ -50,7 +46,6 @@ class LandingAsset extends AssetBundle
         'js/landing/custom.js',
         'js/landing/bootstrap.min.js',
         'plugins/noty/jquery.noty.packaged.min.js',
-        'js/landing/classie.js',
     ];
 
     public $jsOptions = [

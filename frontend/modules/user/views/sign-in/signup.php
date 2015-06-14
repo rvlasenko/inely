@@ -11,10 +11,10 @@
 
         <div class="buttons fadeInRight animated">
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=vkontakte',
-                    'Vkontakte', 600, 400); return false" class="icon-button vk">
+                    'Vkontakte', 700, 500); return false" class="icon-button vk">
                 <i class="fa fa-vk"></i><span></span></a>
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=facebook',
-                    'Facebook', 660, 385); return false" class="icon-button facebook">
+                    'Facebook', 700, 485); return false" class="icon-button facebook">
                 <i class="fa fa-facebook"></i><span></span></a>
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=google',
                     'Google Plus', 440, 500); return false" class="icon-button google-plus">
@@ -40,12 +40,6 @@
             ],
         ]) ?>
 
-        <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
-            'name' => 'reCaptcha',
-            'siteKey' => getenv('RC_SITEKEY'),
-            'widgetOptions' => ['class' => 'col-md-12']
-        ]) ?>
-
         <?= $form->field($model, 'username', [
             'options' => [
                 'class' => 'col-md-12',
@@ -64,17 +58,25 @@
             ],
         ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
+        <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
+            'name' => 'reCaptcha',
+            'siteKey' => getenv('RC_SITEKEY'),
+            'widgetOptions' => ['class' => 'col-md-12']
+        ]) ?>
+
         <?php ActiveForm::end(); ?>
         <?php \yii\widgets\Pjax::end() ?>
 
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button form="sign-form" class="fadeInRight animated">
+                <button form="sign-form" class="bounceIn animated">
                     <span><?= Yii::t('frontend', 'Ok!') ?></span>
                 </button>
 
                 <svg class="progress-circle" width="70" height="70">
-                    <path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/>
+                    <path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803
+                    -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197
+                    -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/>
                 </svg>
 
                 <svg class="checkmark" width="70" height="70">

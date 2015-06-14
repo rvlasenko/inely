@@ -3,7 +3,7 @@
     define('KEY', "0313908bbc748d05");
     define('URL', "http://api.wunderground.com/api/" . KEY .
         "/geolookup/conditions/forecast/lang:RU/q/Russia/" . CITY . ".json");
-    define('CACHING', 300);
+    define('CACHING', 400);
 
     $num = 1;
     $object = 0;

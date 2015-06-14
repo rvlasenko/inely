@@ -198,6 +198,7 @@ php:
             - cli
             - intl
             - mcrypt
+            - curl
         pear: {  }
         pecl:
             - pecl_http
@@ -219,7 +220,7 @@ php:
     composer: 1
     composer_home: ''
 xdebug:
-    install: '0'
+    install: '1'
     settings:
         xdebug.default_enable: '1'
         xdebug.remote_autostart: '0'

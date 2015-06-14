@@ -86,7 +86,7 @@
     </div>
     <ul class="nav nav-sidebar">
         <li class="nav-active active"><a href="dashboard.html"><i class="icon-home"></i>
-                <span data-translate="dashboard">Dashboard</span></a>
+                <span data-translate="dashboard">Доска</span></a>
         </li>
         <li class="nav-parent">
             <a href="#"><i class="icon-puzzle"></i><span data-translate="builder">Builder</span>
@@ -327,8 +327,8 @@
         <a class="pull-left" href="#" data-rel="tooltip" data-placement="top" data-original-title="Lockscreen">
             <i class="icon-lock"></i>
         </a>
-        <a class="pull-left btn-effect" href="#" data-modal="modal-1" data-rel="tooltip" data-placement="top"
-           data-original-title="Logout">
+        <a class="pull-left btn-effect" href="/logout" data-method="post"
+           data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
             <i class="icon-power"></i>
         </a>
     </div>

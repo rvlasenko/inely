@@ -94,10 +94,10 @@ class SignInController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
-                    Yii::$app->getSession()->setFlash(
+                    /*Yii::$app->getSession()->setFlash(
                         'success',
                         'Вы успешно зарегистрировались! Чтобы стать полноправным участником, осталось подтвердить электронный адрес!'
-                    );
+                    );*/
                     return $this->goHome();
                 }
             }
@@ -134,8 +134,6 @@ class SignInController extends \yii\web\Controller
                     'body' => Yii::t('frontend', 'Check your email for further instructions.'),
                     'options' => ['class' => 'alert-success']
                 ]);
-
-                return $this->goHome();
             } else {
                 Yii::$app->getSession()->setFlash('alert', [
                     'body' => Yii::t('frontend', 'Sorry, we are unable to reset password for email provided.'),

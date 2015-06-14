@@ -3,6 +3,7 @@
 ?>
 
 <div class="row">
+
     <h2 class="dark-text">Оставьте своё мнение</h2>
 
     <div class="col-md-8 col-md-offset-2">

@@ -7,17 +7,16 @@
 ?>
 
 <div class="row">
-    <span class="icon-close"></span>
     <div class="download-container">
         <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Login as user') ?></h3>
 
         <div class="buttons fadeInRight animated">
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=vkontakte',
-                    'Vkontakte', 600, 400); return false" class="icon-button vk">
+                    'Vkontakte', 700, 500); return false" class="icon-button vk">
                 <i class="fa fa-vk"></i><span></span>
             </a>
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=facebook',
-                    'Facebook', 660, 385); return false" class="icon-button facebook">
+                    'Facebook', 700, 485); return false" class="icon-button facebook">
                 <i class="fa fa-facebook"></i><span></span>
             </a>
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=google',
@@ -59,15 +58,16 @@
             ],
         ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
 
-        <div class="col-md-12" style="margin: 1em 0">
-            <?= Yii::t('frontend', 'If you forgot your password you can reset it <a class="reset-a" href="#">here</a>') ?>
-        </div>
         <?php ActiveForm::end(); ?>
         <?php \yii\widgets\Pjax::end() ?>
 
+        <div class="col-md-12 fadeInRight animated" style="margin: 1em 0">
+            <?= Yii::t('frontend', 'If you forgot your password you can reset it <a class="reset-a" href="#">here</a>') ?>
+        </div>
+
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button form="login-form" class="fadeInRight animated">
+                <button form="login-form" class="bounceIn animated">
                     <span><?= Yii::t('frontend', 'Login') ?></span>
                 </button>
 
@@ -104,7 +104,7 @@
                 if (value.length > 0)
                     var interval = setInterval(function() {
                         icon(pos, instance, progress, success, error, interval);
-                    }, 1500);
+                    }, 1800);
                 else
                     icon(pos, instance, progress, success, error);
             }

@@ -28,8 +28,15 @@ RESPONSIVE FIXES
     }
 
     .app-brief .left-align {
-        text-align: center;
+        text-align: left;
+        width: 50%;
+    }
 
+    div.col-md-6 div.phone-image {
+        float: right;
+        position: absolute;
+        top: -32em;
+        left: 28em;
     }
 
 }
@@ -41,6 +48,10 @@ RESPONSIVE FIXES
         left: 10px;
     }
 
+    .container {
+        width: 820px;
+    }
+
     html {
         font-size: 90%;
     }
@@ -50,7 +61,7 @@ RESPONSIVE FIXES
     }
 
     .sticky-navigation {
-        top: -170px !important;
+        display: none;
     }
 
     .sticky-navigation .navbar-header {
@@ -58,10 +69,6 @@ RESPONSIVE FIXES
         position: relative;
         text-align: center;
         margin-top: 10px;
-    }
-
-    .sticky-navigation .navbar-header a {
-        float: none !important;
     }
 
     .sticky-navigation .navbar-header img {
@@ -101,6 +108,14 @@ RESPONSIVE FIXES
 
     header .color-overlay {
         min-height: 580px;
+    }
+
+    .app-brief .left-align {
+        width: 100%;
+    }
+
+    div.col-md-6 div.phone-image {
+        display: none;
     }
 
     .screenshot-wrapper {
@@ -195,7 +210,7 @@ RESPONSIVE FIXES
 
 @media (min-width: 320px) and (max-width: 640px) and (orientation: landscape) {
     .full-screen h1 {
-        font-size: 30px !important;
+        font-size: 30px;
         line-height: 40px;
         margin-top: 0;
     }

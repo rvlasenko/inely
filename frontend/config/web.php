@@ -49,7 +49,7 @@ $config = [
                     'clientSecret' => getenv('FB_CLIENT_SECRET'),
                 ],
                 'vkontakte' => [
-                    'class' => 'yii\authclient\clients\Vkontakte',
+                    'class' => 'yii\authclient\clients\VKontakte',
                     'clientId' => getenv('VK_CLIENT_ID'),
                     'clientSecret' => getenv('VK_CLIENT_SECRET'),
                     'scope' => 'email',

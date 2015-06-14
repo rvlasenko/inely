@@ -49,29 +49,8 @@
 
                         <h1 class="intro">Начните осознавать свои возможности вместе с flatask.</h1>
                         <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
+                        <button class="butn butn-1 butn-1a log" data-toggle="modal" data-target="#myModal">Войти!</button>
 
-                        <div class="buttons" id="download-button">
-                            <!-- <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти</button> -->
-                            <div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
-                                <button class="log" type="button" data-toggle="modal" data-target="#myModal">Login</button>
-                                <div class="morph-content">
-                                    <!-- <div class="content-style-form content-style-form-1">
-                                        <span class="icon icon-close">Close the dialog</span>
-                                        <h2>Login</h2>
-
-                                    </div> -->
-                                    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <!-- <div class="loader"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -302,7 +281,7 @@
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.<br/><br/>
+                    culpa qui officia deserunt mollit anim id est laborum.<br><br>
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                     anim id est laborum.
@@ -328,16 +307,16 @@
 <section class="screenshots grey-bg contain" id="screenshot-section">
     <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
-        <h2 class="dark-text">Screenshots</h2>
+        <h2 class="dark-text">Краткий обзор</h2>
 
         <div class="colored-line"></div>
         <div class="section-description">
-            List your app features and all the details Lorem ipsum dolor kadr
+            Окиньте взглядом своё будущее рабочее пространство и на что оно способно.
         </div>
         <div class="colored-line"></div>
 
     </div>
-    <div id="screenshot-contain" class="wow fadeInRight" data-wow-delay="0.4s">
+    <div id="screenshot-contain" class="wow slideInRight" data-wow-delay="0.4s">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-10 col-md-offset-1">
@@ -375,8 +354,8 @@
 
     <div class="container">
 
-        <div style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft;"
-             class="contact-box wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+        <div style="visibility: visible; animation-duration: 1.5s; animation-name: slideInLeft;"
+             class="contact-box wow slideInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
             <a class="btn contact-button expand-form expanded">
                 <i class="icon-paper-plane"></i>
@@ -396,10 +375,9 @@
 
 <script>
     jQuery(function($) {
-        $('button.log').click(function (ev) {
-            $.get('login', function (html) {
-                $('div.morph-content').html(html);
-            });
+        $('button.log').click(function() {
+            if ( !$('.modal-body .row').length )
+                showModal('login');
         });
 
         $.get('contact', function(html) {
