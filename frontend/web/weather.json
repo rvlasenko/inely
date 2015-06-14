@@ -74,41 +74,41 @@
 		"estimated": {
 		},
 		"station_id":"27679",
-		"observation_time":"Last Updated on Июнь 14, 3:00 PM MSK",
-		"observation_time_rfc822":"Sun, 14 Jun 2015 15:00:00 +0300",
-		"observation_epoch":"1434283200",
-		"local_time_rfc822":"Sun, 14 Jun 2015 16:09:22 +0300",
-		"local_epoch":"1434287362",
+		"observation_time":"Last Updated on Июнь 14, 6:00 PM MSK",
+		"observation_time_rfc822":"Sun, 14 Jun 2015 18:00:00 +0300",
+		"observation_epoch":"1434294000",
+		"local_time_rfc822":"Sun, 14 Jun 2015 19:20:32 +0300",
+		"local_epoch":"1434298832",
 		"local_tz_short":"MSK",
 		"local_tz_long":"Europe/Moscow",
 		"local_tz_offset":"+0300",
 		"weather":"Небольшая Облачность",
-		"temperature_string":"79 F (26 C)",
-		"temp_f":79,
-		"temp_c":26,
-		"relative_humidity":"21%",
-		"wind_string":"From the West at 13 MPH",
-		"wind_dir":"West",
-		"wind_degrees":270,
-		"wind_mph":13,
+		"temperature_string":"76 F (24 C)",
+		"temp_f":76,
+		"temp_c":24,
+		"relative_humidity":"28%",
+		"wind_string":"From the WSW at 11 MPH",
+		"wind_dir":"WSW",
+		"wind_degrees":240,
+		"wind_mph":11,
 		"wind_gust_mph":0,
-		"wind_kph":22,
+		"wind_kph":18,
 		"wind_gust_kph":0,
 		"pressure_mb":"1012",
-		"pressure_in":"29.90",
+		"pressure_in":"29.87",
 		"pressure_trend":"-",
-		"dewpoint_string":"46 F (8 C)",
-		"dewpoint_f":46,
-		"dewpoint_c":8,
+		"dewpoint_string":"49 F (9 C)",
+		"dewpoint_f":49,
+		"dewpoint_c":9,
 		"heat_index_string":"NA",
 		"heat_index_f":"NA",
 		"heat_index_c":"NA",
 		"windchill_string":"NA",
 		"windchill_f":"NA",
 		"windchill_c":"NA",
-		"feelslike_string":"79 F (26 C)",
-		"feelslike_f":"79",
-		"feelslike_c":"26",
+		"feelslike_string":"76 F (24 C)",
+		"feelslike_f":"76",
+		"feelslike_c":"24",
 		"visibility_mi":"31.0",
 		"visibility_km":"50.0",
 		"solarradiation":"--",
@@ -128,7 +128,7 @@
 		,
 	"forecast":{
 		"txt_forecast": {
-		"date":"3:39 PM MSK",
+		"date":"5:59 PM MSK",
 		"forecastday": [
 		{
 		"period":0,
@@ -234,8 +234,8 @@
 },
 		"period":1,
 		"high": {
-		"fahrenheit":"79",
-		"celsius":"26"
+		"fahrenheit":"81",
+		"celsius":"27"
 		},
 		"low": {
 		"fahrenheit":"63",
@@ -422,13 +422,13 @@
 		"mph": 20,
 		"kph": 32,
 		"dir": "ЮЗ",
-		"degrees": 229
+		"degrees": 231
 		},
 		"avewind": {
 		"mph": 14,
 		"kph": 23,
 		"dir": "ЮЗ",
-		"degrees": 229
+		"degrees": 231
 		},
 		"avehumidity": 38,
 		"maxhumidity": 0,
@@ -504,7 +504,7 @@
 		"dir": "СВ",
 		"degrees": 34
 		},
-		"avehumidity": 59,
+		"avehumidity": 60,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}

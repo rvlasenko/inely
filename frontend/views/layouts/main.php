@@ -1,6 +1,5 @@
 <?php
     use yii\helpers\ArrayHelper;
-    use kartik\alert\AlertBlock;
 
     /* @var $this \yii\web\View */
     /* @var $content string */
@@ -13,21 +12,18 @@
 
 <?php if (Yii::$app->session->hasFlash('alert')): ?>
 <?php
-    $this->registerJs("$(document).ready(function() {
-        generate('alert-success', 'fa fa-heart', 'retert') });", \yii\web\View::POS_END);
-/*AlertBlock::widget([
-        'useSessionFlash' => false,
-        'type' => AlertBlock::TYPE_GROWL,
-        'alertSettings' => [
-            'alert' => [
-                'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
-            ],
-            'settings' => [
-                'type' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
-            ]
-        ]
-    ]);*/
+    $body = ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body');
+    $type = ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options');
+    $flash = <<<FLASH
+        $(document).ready(function() {
+            setTimeout(function() {
+                generate('{$type['class']}', '{$type['icon']}', '{$body}');
+            }, 1500);
+        });
+FLASH;
+    $this->registerJs($flash);
 ?>
+
 <?php endif; ?>
 
 <?= $content ?>

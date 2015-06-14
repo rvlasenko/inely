@@ -94,10 +94,10 @@ class SignInController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
-                    /*Yii::$app->getSession()->setFlash(
-                        'success',
-                        'Вы успешно зарегистрировались! Чтобы стать полноправным участником, осталось подтвердить электронный адрес!'
-                    );*/
+                    Yii::$app->session->setFlash('alert', [
+                        'options' => ['class' => 'alert-success', 'icon' => 'fa fa-heart'],
+                        'body' => 'Вы успешно зарегистрировались и осталось лишь подтвердить e-mail! Добро пожаловать!'
+                    ]);
                     return $this->goHome();
                 }
             }
@@ -117,9 +117,15 @@ class SignInController extends \yii\web\Controller
         }
 
         if ($model->confirmEmail()) {
-            Yii::$app->getSession()->setFlash('success', 'Спасибо! Ваш Email успешно подтверждён.');
+            Yii::$app->session->setFlash('alert', [
+                'options' => ['class' => 'alert-success', 'icon' => 'fa fa-check'],
+                'body' => 'Спасибо! Ваш Email успешно подтверждён.'
+            ]);
         } else {
-            Yii::$app->getSession()->setFlash('error', 'Ошибка подтверждения Email.');
+            Yii::$app->session->setFlash('alert', [
+                'options' => ['class' => 'alert-danger', 'icon' => 'fa fa-times'],
+                'body' => 'Ошибка подтверждения Email.'
+            ]);
         }
 
         return $this->goHome();
@@ -130,14 +136,14 @@ class SignInController extends \yii\web\Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->get()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->getSession()->setFlash('alert', [
+                Yii::$app->session->setFlash('alert', [
+                    'options' => ['class' => 'alert-success', 'icon' => 'fa fa-check'],
                     'body' => Yii::t('frontend', 'Check your email for further instructions.'),
-                    'options' => ['class' => 'alert-success']
                 ]);
             } else {
                 Yii::$app->getSession()->setFlash('alert', [
                     'body' => Yii::t('frontend', 'Sorry, we are unable to reset password for email provided.'),
-                    'options' => ['class' => 'alert-danger']
+                    'options' => ['class' => 'alert-danger', 'icon' => 'fa fa-times'],
                 ]);
             }
         }
@@ -158,7 +164,7 @@ class SignInController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->getSession()->setFlash('alert', [
                 'body' => Yii::t('frontend', 'New password was saved.'),
-                'options' => ['class' => 'alert-success']
+                'options' => ['class' => 'alert-success', 'icon' => 'fa fa-check'],
             ]);
             return $this->goHome();
         }

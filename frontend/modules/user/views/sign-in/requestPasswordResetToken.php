@@ -64,9 +64,9 @@
     [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
         new UIProgressButton( bttn, {
             callback : function(instance) {
-                var progress = 0,
-                    success = 1;
-                    error = -1;
+                var progress = 0;
+                var success = 1;
+                var error = -1;
 
                 var interval = setInterval(function() {
                     icon(pos, instance, progress, success, error, interval);

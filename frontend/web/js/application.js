@@ -1014,7 +1014,7 @@ function generate(type, icon, desc) {
             easing: 'swing',
             speed: 500
         },
-        timeout: 10000
+        timeout: 8000
     });
 }
 
