@@ -50,6 +50,7 @@ class LandingAsset extends AssetBundle
         'js/landing/custom.js',
         'js/landing/bootstrap.min.js',
         'plugins/noty/jquery.noty.packaged.min.js',
+        'js/landing/classie.js',
     ];
 
     public $jsOptions = [

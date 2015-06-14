@@ -7,7 +7,7 @@
     /* @var $model \frontend\models\ContactForm */
 
     LandingAsset::register($this);
-    $this->title = Yii::t('frontend', 'flatask');
+    $this->title = Yii::t('frontend', 'madeasy');
 ?>
 
 <?php $this->beginPage() ?>

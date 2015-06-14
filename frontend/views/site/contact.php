@@ -53,7 +53,7 @@
 <script>
     $(document).ready(function() {
         function generate(type, icon, desc) {
-            var n = noty({
+            noty({
                 text        : '<div class="alert ' + type + ' media fade in"> ' +
                               '<i class=" ' + icon + ' "></i> ' +
                               '<p> ' + desc + ' </p> </div>',

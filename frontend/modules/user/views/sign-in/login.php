@@ -7,7 +7,7 @@
 ?>
 
 <div class="row">
-
+    <span class="icon-close"></span>
     <div class="download-container">
         <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Login as user') ?></h3>
 
@@ -45,11 +45,13 @@
                 'data-pjax' => true
             ],
         ]); ?>
-        <?= $form->field($model, 'identity', [
+        <?= $field = $form->field($model, 'identity', [
             'options' => [
                 'class' => 'col-md-6',
             ],
-        ])->textInput(['placeholder' => 'Логин или e-mail'])->label(false) ?>
+        ])->textInput(['placeholder' => 'Логин или e-mail'])->label(false);
+        $field->template = "{label}\n{error}";
+        ?>
 
         <?= $form->field($model, 'password', [
             'options' => [

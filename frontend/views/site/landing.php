@@ -51,7 +51,26 @@
                         <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
 
                         <div class="buttons" id="download-button">
-                            <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти</button>
+                            <!-- <button class="buton btn-1 btn-1c log" data-toggle="modal" data-target="#myModal">Войти</button> -->
+                            <div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
+                                <button class="log" type="button" data-toggle="modal" data-target="#myModal">Login</button>
+                                <div class="morph-content">
+                                    <!-- <div class="content-style-form content-style-form-1">
+                                        <span class="icon icon-close">Close the dialog</span>
+                                        <h2>Login</h2>
+
+                                    </div> -->
+                                    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <!-- <div class="loader"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -356,7 +375,7 @@
 
     <div class="container">
 
-        <div style="visibility: visible; animation-duration: 1.5s; animation-name: rotateIn;"
+        <div style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInLeft;"
              class="contact-box wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
             <a class="btn contact-button expand-form expanded">
@@ -378,7 +397,9 @@
 <script>
     jQuery(function($) {
         $('button.log').click(function (ev) {
-            showModal('login', ev);
+            $.get('login', function (html) {
+                $('div.morph-content').html(html);
+            });
         });
 
         $.get('contact', function(html) {

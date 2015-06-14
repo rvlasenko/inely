@@ -45,28 +45,6 @@ $(document).ready(function() {
         filter: ':not(.external)',
         changeHash: true
     });
-
-    function generate(text) {
-        var n = noty({
-            text        : text,
-            dismissQueue: true,
-            layout      : 'topLeft',
-            closeWith   : ['click'],
-            theme       : 'relax',
-            maxVisible  : 10,
-            animation   : {
-                open  : 'animated bounceInLeft',
-                close : 'animated bounceOutLeft',
-                easing: 'swing',
-                speed : 500
-            }
-        });
-    }
-
-    $("button#show").click(function () {
-        generate('<div class="alert alert-success media fade in"><p>Your message.</p></div>');
-    });
-
 });
 
 function showModal(url, ev) {
@@ -237,4 +215,4 @@ if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
     )
   );
   document.querySelector('head').appendChild(msViewportStyle)
-z}
+}
