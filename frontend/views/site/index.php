@@ -7,7 +7,7 @@
 <!-- BEGIN PAGE CONTENT -->
 <div class="page-content page-thin">
 <div class="row">
-    <div class="col-xlg-3 col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel">
             <div class="panel-content widget-info">
                 <div class="row">
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xlg-3 col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel">
             <div class="panel-content widget-info">
                 <div class="row">
@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xlg-3 col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel">
             <div class="panel-content widget-info">
                 <div class="row">
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xlg-3 col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
         <div class="panel">
             <div class="panel-content widget-info">
                 <div class="row">
@@ -144,10 +144,10 @@
             </div>
         </div>
     </div>
-    <div class="col-xlg-3 col-lg-4">
+    <div class="col-xlg-3 col-sm-6 col-lg-4">
         <?php $this->beginContent('@app/views/templates/weather.php'); $this->endContent(); ?>
     </div>
-    <div class="col-xlg-2 col-lg-3 hidden-md hidden-sm hidden-xs">
+    <div class="col-xlg-2 col-sm-6 col-lg-3 hidden-xs">
         <div class="row">
             <div class="col-md-12">
                 <ul class="jquery-clock small" data-jquery-clock="">
@@ -195,7 +195,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4 col-sm-6 portlets">
+    <div class="col-lg-4 col-sm-6 portlets">
         <div class="panel">
             <div class="panel-header panel-controls">
                 <h3><i class="icon-list"></i> <strong>Todo</strong> List</h3>
@@ -244,7 +244,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 col-sm-6 portlets ui-sortable">
+    <div class="col-lg-4 col-sm-6 portlets ui-sortable">
 
         <div class="panel m-t-0" style="position: relative; opacity: 1; z-index: 0;">
             <div class="panel-header panel-controls">
@@ -351,7 +351,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 col-sm-6 portlets">
+    <div class="col-lg-4 col-sm-6 portlets">
         <div class="panel m-t-0">
             <div class="panel-header panel-controls">
                 <h3><i class="icon-basket"></i> <strong>Something</strong> is...</h3>
