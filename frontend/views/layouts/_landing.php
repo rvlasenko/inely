@@ -22,7 +22,7 @@
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
     <?php $this->registerJsFile('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-        ['position' => yii\web\View::POS_HEAD]) ?>
+        ['position' => yii\web\View::POS_HEAD, 'async' => '']) ?>
 
     <link rel="icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
