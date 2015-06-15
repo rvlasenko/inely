@@ -60,6 +60,7 @@
     ];
 
     $forecastDays = $parsedJson->{'forecast'}->{'simpleforecast'}->{'forecastday'};
+
     foreach ($forecastDays as $forecastDay) {
         $arrayForecast[$object]['weekday'] = $forecastDay->{'date'}->{'weekday'};
         $arrayForecast[$object]['day'] = $forecastDay->{'date'}->{'day'} . " " . $month[$forecastDay->{'date'}->{'month'}];
