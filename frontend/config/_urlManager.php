@@ -12,7 +12,7 @@ return [
 
         // Register
         'sign-up' => '/user/sign-in/signup',
-        'reset' => 'user/sign-in/request-password-reset',
+        'reset' => '/user/sign-in/request-password-reset',
         'login' => '/user/sign-in/login',
 
         // Account

@@ -10,9 +10,8 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
+    //public $layout = false;
+
     public function actions()
     {
         return [

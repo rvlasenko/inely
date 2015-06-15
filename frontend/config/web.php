@@ -1,5 +1,6 @@
 <?php
 $config = [
+    //'layout' => 'main.php',
     'homeUrl' => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'site/index',
@@ -19,10 +20,11 @@ $config = [
             'renderers' => [
                 'twig' => [
                     'class' => 'yii\twig\ViewRenderer',
-                    'cachePath' => '@runtime/Twig/cache',
+                    'cachePath' => false, //'@runtime/Twig/cache',
                     'options' => [
                         'auto_reload' => true,
                     ],
+                    'globals' => ['html' => '\yii\helpers\Html', 'arrayHelper' => 'yii\helpers\ArrayHelper'],
                 ],
             ],
         ],

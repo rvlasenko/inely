@@ -21,6 +21,7 @@ class FrontendAsset extends AssetBundle
         'css/style.css',
         'css/theme.css',
         'css/ui.css',
+        'css/icons/font-awesome/css/font-awesome.min.css'
         //'plugins/metrojs/metrojs.min.css',
     ];
 
