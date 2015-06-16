@@ -70,7 +70,7 @@
 
                 var interval = setInterval(function() {
                     icon(pos, instance, progress, success, error, interval);
-                }, 250);
+                }, 1000);
             }
         } );
     } );

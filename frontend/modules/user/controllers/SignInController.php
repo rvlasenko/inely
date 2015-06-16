@@ -134,7 +134,7 @@ class SignInController extends \yii\web\Controller
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->get()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('alert', [
                     'options' => ['class' => 'alert-success', 'icon' => 'fa fa-check'],
@@ -222,9 +222,18 @@ class SignInController extends \yii\web\Controller
             $password = Yii::$app->security->generateRandomString(8);
             $user->setPassword($password);
             if ($user->save()) {
+                Yii::$app->mailer->compose('confirmEmail', ['user' => $user, 'password' => $password])
+                    ->setTo($user->email)
+                    ->setSubject('Подтверждение аккаунта для ' . Yii::$app->name)
+                    ->send();
+
                 $user->afterSignup([
                     'firstname' => $attributes['first_name'],
                     'lastname' => $attributes['last_name']
+                ]);
+                Yii::$app->session->setFlash('alert', [
+                    'options' => ['class' => 'alert-success', 'icon' => 'fa fa-heart'],
+                    'body' => 'Вы успешно зарегистрировались и осталось лишь подтвердить e-mail! Добро пожаловать!'
                 ]);
             }
         }

@@ -12,7 +12,7 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Simples-Minimalistic Responsive Template</title>
+    <title>Активация</title>
 
     <style type="text/css">
         /* Client-specific Styles */
@@ -275,9 +275,9 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                                         <tbody>
                                         <!-- Title -->
                                         <tr>
-                                            <td style="font-family: Tahoma, sans-serif;font-size: 30px; color: #333333; text-align:center; line-height: 30px;"
+                                            <td style="font-family: Tahoma, sans-serif;font-size: 30px; text-align:center; line-height: 30px;"
                                                 st-title="fulltext-heading">
-                                                Добро пожаловать, <?= Html::encode($user->username) ?>
+                                                Привет, <?= Html::encode($user->username) ?>
                                             </td>
                                         </tr>
                                         <!-- End of Title -->
@@ -290,13 +290,14 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                                         <!-- End of spacing -->
                                         <!-- content -->
                                         <tr>
-                                            <td style="font-family: Tahoma, sans-serif; font-size: 16px; color: #666666; text-align:center; line-height: 30px;"
+                                            <td style="font-family: Tahoma, sans-serif; font-size: 16px; text-align:center; line-height: 30px;"
                                                 st-content="fulltext-content">
-                                                Ваша учётная запись уже активна, но ещё не до конца.
-                                                Вы можете пользоваться ею, но для подтверждения своей личности
-                                                вам необходимо перейти по следующей ссылке:
-                                                <a href="<?= $confirmLink ?>"
-                                                   style="text-decoration: none; color: #0a8cce">активировать профиль
+                                                Вы зарегистрировались на madeasy со следующими данными:<br>
+                                                Логин: <?= Html::encode($user->username) ?><br>
+                                                Пароль: <?= Html::encode($password) ?><br>
+                                                Пожалуйста, сохраните Ваши данные и не сообщайте третьим лицам.<br>
+                                                <a href="<?= Html::encode($confirmLink) ?>"
+                                                   style="text-decoration: none; color: #0a8cce">Активируйте мою запись!
                                                 </a>
                                             </td>
                                         </tr>
@@ -364,9 +365,7 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                                 <td align="center" valign="middle"
                                     style="font-family: Tahoma, sans-serif; font-size: 14px;color: #666666"
                                     st-content="postfooter">
-                                    Спасибо, что зарегистрировались на <a href="#"
-                                                                                style="text-decoration: none; color: #0a8cce"
-                                                                                target="_blank">unote</a>
+                                    Добро пожаловать на madeasy. Надеемся, Вам у нас понравится!
                                 </td>
                             </tr>
                             <!-- Spacing -->

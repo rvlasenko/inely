@@ -5,6 +5,7 @@ function icon(pos, instance, progress, success, error, interval) {
     if( progress === 1 ) {
         if (!$('form div').hasClass('has-error')) {
             $('.subscription-form').removeClass('fadeInRight').addClass('tada');
+            $('#reset-form').removeClass('fadeInRight').addClass('fadeInRight');
             error = 1;
             success = -1;
         } else {
