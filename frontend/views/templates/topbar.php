@@ -5,13 +5,6 @@
                 <span data-translate="menu-title">Menu</span>
             </span>
         </a>
-        <ul class="nav nav-icons">
-            <li>
-                <a href="#">
-                    <span class="icon-bulb"></span>
-                </a>
-            </li>
-        </ul>
     </div>
 </div>
 <div class="header-right">

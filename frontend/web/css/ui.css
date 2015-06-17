@@ -2261,7 +2261,7 @@ h4.alert-title {
   left: 60px !important;
 }
 .badge {
-  border-radius: 2px;
+  border-radius: 3px;
   font-weight: 300;
 }
 .badge-dark {

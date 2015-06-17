@@ -1,10 +1,11 @@
 <?php
-use yii\helpers\Html;
+    use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $user common\models\User */
+    /* @var $this yii\web\View */
+    /* @var $user common\models\User */
+    /* @var $password */
 
-$confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token' => $user->email_confirm_token,]);
+    $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token' => $user->email_confirm_token,]);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -15,12 +16,10 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
     <title>Активация</title>
 
     <style type="text/css">
-        /* Client-specific Styles */
         #outlook a {
             padding: 0;
         }
 
-        /* Force Outlook to provide a "view in browser" menu link. */
         body {
             width: 100% !important;
             -webkit-text-size-adjust: 100%;
@@ -29,17 +28,14 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
             padding: 0;
         }
 
-        /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
         .ExternalClass {
             width: 100%;
         }
 
-        /* Force Hotmail to display emails at full width */
         .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
             line-height: 100%;
         }
 
-        /* Force Hotmail to display normal line spacing.*/
         #backgroundTable {
             margin: 0;
             padding: 0;
@@ -82,17 +78,16 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
             text-decoration: none !important;
         }
 
-        /*STYLES*/
         table[class=full] {
             width: 100%;
             clear: both;
         }
 
-        /*IPAD STYLES*/
+        /* IPAD STYLES */
         @media only screen and (max-width: 640px) {
             a[href^="tel"], a[href^="sms"] {
                 text-decoration: none;
-                color: #0a8cce; /* or whatever your want */
+                color: #0a8cce;
                 pointer-events: none;
                 cursor: default;
             }
@@ -126,11 +121,11 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
 
         }
 
-        /*IPHONE STYLES*/
+        /* IPHONE STYLES */
         @media only screen and (max-width: 480px) {
             a[href^="tel"], a[href^="sms"] {
                 text-decoration: none;
-                color: #0a8cce; /* or whatever your want */
+                color: #0a8cce;
                 pointer-events: none;
                 cursor: default;
             }
@@ -174,7 +169,7 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
     </style>
 </head>
 <body>
-<!-- Start of header -->
+
 <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable"
        st-sortable="header">
     <tbody>
@@ -187,15 +182,12 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                         <table width="600" cellpadding="0" cellspacing="0" border="0" align="center"
                                class="devicewidth">
                             <tbody>
-                            <!-- Spacing -->
                             <tr>
                                 <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">
                                     &nbsp;</td>
                             </tr>
-                            <!-- Spacing -->
                             <tr>
                                 <td>
-                                    <!-- logo -->
                                     <table width="140" align="center" border="0" cellpadding="0" cellspacing="0"
                                            class="devicewidth">
                                         <tbody>
@@ -211,15 +203,12 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <!-- end of logo -->
                                 </td>
                             </tr>
-                            <!-- Spacing -->
                             <tr>
                                 <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">
                                     &nbsp;</td>
                             </tr>
-                            <!-- Spacing -->
                             </tbody>
                         </table>
                     </td>
@@ -230,8 +219,6 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
     </tr>
     </tbody>
 </table>
-<!-- End of Header -->
-<!-- Start of seperator -->
 <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable"
        st-sortable="seperator">
     <tbody>
@@ -248,8 +235,6 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
     </tr>
     </tbody>
 </table>
-<!-- End of seperator -->
-<!-- Start Full Text -->
 <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable"
        st-sortable="full-text">
     <tbody>
@@ -262,56 +247,46 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                         <table width="600" cellpadding="0" cellspacing="0" border="0" align="center"
                                class="devicewidth">
                             <tbody>
-                            <!-- Spacing -->
                             <tr>
                                 <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">
                                     &nbsp;</td>
                             </tr>
-                            <!-- Spacing -->
                             <tr>
                                 <td>
                                     <table width="560" align="center" cellpadding="0" cellspacing="0" border="0"
                                            class="devicewidthinner">
                                         <tbody>
-                                        <!-- Title -->
                                         <tr>
                                             <td style="font-family: Tahoma, sans-serif;font-size: 30px; text-align:center; line-height: 30px;"
                                                 st-title="fulltext-heading">
                                                 Привет, <?= Html::encode($user->username) ?>
                                             </td>
                                         </tr>
-                                        <!-- End of Title -->
-                                        <!-- spacing -->
                                         <tr>
                                             <td width="100%" height="20"
                                                 style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">
                                                 &nbsp;</td>
                                         </tr>
-                                        <!-- End of spacing -->
-                                        <!-- content -->
                                         <tr>
                                             <td style="font-family: Tahoma, sans-serif; font-size: 16px; text-align:center; line-height: 30px;"
                                                 st-content="fulltext-content">
                                                 Вы зарегистрировались на madeasy со следующими данными:<br>
                                                 Логин: <?= Html::encode($user->username) ?><br>
                                                 Пароль: <?= Html::encode($password) ?><br>
-                                                Пожалуйста, сохраните Ваши данные и не сообщайте третьим лицам.<br>
+                                                Пожалуйста, сохраните Ваши данные и не сообщайте их третьим лицам.<br><br>
                                                 <a href="<?= Html::encode($confirmLink) ?>"
                                                    style="text-decoration: none; color: #0a8cce">Активируйте мою запись!
                                                 </a>
                                             </td>
                                         </tr>
-                                        <!-- End of content -->
                                         </tbody>
                                     </table>
                                 </td>
                             </tr>
-                            <!-- Spacing -->
                             <tr>
                                 <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">
                                     &nbsp;</td>
                             </tr>
-                            <!-- Spacing -->
                             </tbody>
                         </table>
                     </td>
@@ -322,8 +297,6 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
     </tr>
     </tbody>
 </table>
-<!-- end of full text -->
-<!-- Start of seperator -->
 <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable"
        st-sortable="seperator">
     <tbody>
@@ -347,8 +320,6 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
     </tr>
     </tbody>
 </table>
-<!-- End of seperator -->
-<!-- Start of Postfooter -->
 <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable"
        st-sortable="postfooter">
     <tbody>
@@ -368,11 +339,9 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
                                     Добро пожаловать на madeasy. Надеемся, Вам у нас понравится!
                                 </td>
                             </tr>
-                            <!-- Spacing -->
                             <tr>
                                 <td width="100%" height="20"></td>
                             </tr>
-                            <!-- Spacing -->
                             </tbody>
                         </table>
                     </td>
@@ -383,6 +352,5 @@ $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token
     </tr>
     </tbody>
 </table>
-<!-- End of postfooter -->
 </body>
 </html>
