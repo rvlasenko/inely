@@ -71,77 +71,7 @@
 <div class="row">
     <div class="col-xlg-7 col-lg-5">
         <div class="panel widget-map">
-            <div class="panel-header">
-                <h3><i class="icon-list"></i> <strong>News</strong> List</h3>
-
-                <div class="control-btn"><span class="pull-right badge badge-primary">12</span></div>
-            </div>
-            <div class="panel-content widget-news">
-                <div class="withScroll _mCS_23 mCustomScrollbar _mCS_7" data-height="400" style="height: 400px;">
-                    <div class="mCustomScrollBox mCS-light mCS-mouse-over" id="mCSB_7"
-                         style="position:relative; height:100%; overflow:hidden; max-width:100%;">
-                        <div class="mCSB_container" style="position: relative; top: 0px;">
-                            <a href="#" class="message-item media">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <div class="pull-left p-r-10"><img
-                                                src="http://www.nose2tail.co.uk/cat-matlock-derbyshire.jpg"
-                                                style="width: 90px;"></div>
-                                        <div>
-                                            <small class="pull-right">28 Feb</small>
-                                            <h4 class="c-dark">Reset your account password</h4>
-
-                                            <p class="f-14 c-gray">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                                elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="message-item media">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <div class="pull-left p-r-10"><img
-                                                src="http://www.nose2tail.co.uk/cat-matlock-derbyshire.jpg"
-                                                style="width: 90px;"></div>
-                                        <div>
-                                            <small class="pull-right">27 Feb</small>
-                                            <h4 class="c-dark">Check Dropbox</h4>
-
-                                            <p class="f-14 c-gray">Hello Steve, I have added new files in your Dropbox
-                                                in order to show you how to...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="message-item media">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <div class="pull-left p-r-10"><img
-                                                src="http://www.nose2tail.co.uk/cat-matlock-derbyshire.jpg"
-                                                style="width: 90px;"></div>
-                                        <div>
-                                            <small class="pull-right">25 Feb</small>
-                                            <h4 class="c-dark">Appointment at 8pm today</h4>
-
-                                            <p class="f-14 c-gray">Hello Steve, I have added new files in your Dropbox
-                                                in order to show you how to...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mCSB_scrollTools" style="position: absolute; display: block; opacity: 0;">
-                            <div class="mCSB_draggerContainer">
-                                <div class="mCSB_dragger" style="position: absolute; height: 263px; top: 0px;"
-                                     oncontextmenu="return false;">
-                                    <div class="mCSB_dragger_bar" style="position: relative; line-height: 263px;"></div>
-                                </div>
-                                <div class="mCSB_draggerRail"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="calendar"></div>
         </div>
     </div>
     <div class="col-xlg-3 col-sm-6 col-lg-4">

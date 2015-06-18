@@ -797,6 +797,86 @@ $(document).ready(function() {
     }, 100);
 
     if ($('body').hasClass('sidebar-hover')) sidebarHover();
+
+    // Calendar form date picker
+    $("#eventDate").datepicker({
+        numberOfMonths: 1,
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        showButtonPanel: false,
+        beforeShow: function(input, inst) {
+            var newclass = 'admin-form';
+            var themeClass = $(this).parents('.admin-form').attr('class');
+            var smartpikr = inst.dpDiv.parent();
+            if (!smartpikr.hasClass(themeClass)) {
+                inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
+            }
+        }
+
+    });
+
+    // Init FullCalendar external events
+    $('#external-events .fc-event').each(function() {
+        // store data so the calendar knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true, // maintain when user navigates (see docs on the renderEvent method)
+            className: 'fc-event-' + $(this).attr('data-event') // add a contextual class name from data attr
+        });
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true, // will cause the event to go back to its
+            revertDuration: 0 //  original position after the drag
+        });
+
+    });
+
+    var Calendar = $('#calendar');
+
+    // Init FullCalendar Plugin
+    Calendar.fullCalendar({
+        header: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        viewRender: function(view) {
+            // Update mini calendar title
+            var titleContainer = $('.fc-title-clone');
+            if (!titleContainer.length) {
+                return;
+            }
+            titleContainer.html(view.title);
+        },
+        droppable: true, // this allows things to be dropped onto the calendar
+        drop: function() {
+            // is the "remove after drop" checkbox checked?
+            if (!$(this).hasClass('event-recurring')) {
+                $(this).remove();
+            }
+        },
+        eventRender: function(event, element) {
+            // create event tooltip using bootstrap tooltips
+            $(element).attr("data-original-title", event.title);
+            $(element).tooltip({
+                container: 'body',
+                delay: {
+                    "show": 100,
+                    "hide": 200
+                }
+            });
+            // create a tooltip auto close timer
+            $(element).on('show.bs.tooltip', function() {
+                var autoClose = setTimeout(function() {
+                    $('.tooltip').fadeOut();
+                }, 3500);
+            });
+        }
+    });
+
 });
 
 /****  Resize Event Functions  ****/

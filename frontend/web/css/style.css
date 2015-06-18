@@ -6492,7 +6492,6 @@ ul.weather-days li {
 }
 /* WIDGET MAP */
 .widget-map {
-  height: 450px;
   overflow: hidden;
 }
 .widget-map .col-md-3 {
@@ -10545,7 +10544,9 @@ a.message-item:hover {
   background: #E4E4E4;
 }
 .fc-toolbar {
-  margin-bottom: 40px;
+    margin-bottom: 32px !important;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 .fc-toolbar .fc-state-active {
   background: #319db5;
@@ -10553,6 +10554,10 @@ a.message-item:hover {
   color: #ffffff;
   cursor: default;
   margin-right: -1px;
+}
+.fc-toolbar .fc-center {
+    display: inline-block;
+    padding-top: 3px;
 }
 .fc-toolbar .ui-state-active {
   background: #319db5;
@@ -10609,12 +10614,12 @@ a.message-item:hover {
 .fc-unthemed thead,
 .fc-unthemed .fc-row,
 thead .fc-widget-header {
-  border-color: transparent !important;
+  /*border-color: transparent !important; */
   border-width: 0;
   border: none;
 }
 .fc-head td {
-  padding-bottom: 8px;
+    padding-bottom: 8px;
 }
 @keyframes pulsate {
   0% {
@@ -13267,4 +13272,304 @@ body.rtl .layout-options .img-sidebar-right {
 .rtl .sidebar-collapsed .sidebar .sidebar-inner .nav-sidebar li a i {
   float: none;
 }
-.rtl .widget-w                                                      
+.fc-event {
+    position: relative;
+    cursor: pointer;
+    padding: 8px;
+    margin: 10px;
+    color: #777;
+    font-size: 12px;
+    background: #f9f9f9;
+    border-radius: 2px;
+    border: 1px solid #ddd;
+    border-left: 4px solid #ddd;
+}
+.fc-event-desc {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+}
+.fc-event-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+.fc-event:hover,
+.fc-event:focus {
+    color: #777;
+    background: #f4f4f4;
+}
+.fc-view-container .fc-event {
+    padding: 6px;
+    background: #f4f4f4;
+}
+.fc-view-container .fc-event .fc-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.fc-event-primary {
+    border-left-color: #4a89dc;
+}
+.fc-event-primary .fc-event-icon {
+    color: #4a89dc;
+}
+.fc-event-info {
+    border-left-color: #3bafda;
+}
+.fc-event-info .fc-event-icon {
+    color: #3bafda;
+}
+.fc-event-success {
+    border-left-color: #70ca63;
+}
+.fc-event-success .fc-event-icon {
+    color: #70ca63;
+}
+.fc-event-warning {
+    border-left-color: #f6bb42;
+}
+.fc-event-warning .fc-event-icon {
+    color: #f6bb42;
+}
+.fc-event-danger {
+    border-left-color: #e9573f;
+}
+.fc-event-danger .fc-event-icon {
+    color: #e9573f;
+}
+.fc-event-alert {
+    border-left-color: #967adc;
+}
+.fc-event-alert .fc-event-icon {
+    color: #967adc;
+}
+.fc-event-system {
+    border-left-color: #37bc9b;
+}
+.fc-event-system .fc-event-icon {
+    color: #37bc9b;
+}
+/* Buttons (styled <button> tags, normalized to work cross-browser)
+--------------------------------------------------------------------------------------------------*/
+.fc button {
+    /* dimensions */
+    display: inline-block !important;
+    margin-bottom: 0 !important;
+    font-weight: normal !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    cursor: pointer !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    border-color: rgba(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    padding: 9px 12px !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    border-radius: 0px !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #666666 !important;
+    background-color: #f0f0f0 !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+}
+.fc button:focus,
+.fc button:active:focus,
+.fc button.active:focus {
+    outline: 0;
+    outline-offset: -2px;
+}
+.fc button:hover,
+.fc button:focus {
+    color: #666666;
+    text-decoration: none;
+}
+.fc button:active,
+.fc button.active {
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.fc button.disabled,
+.fc button[disabled],
+fieldset[disabled] .fc button {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.fc button.btn-gradient {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    border-color: rgba(0, 0, 0, 0.07) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.18);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3) 1%, rgba(255, 255, 255, 0.15) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 1%, rgba(255, 255, 255, 0.15) 100%);
+}
+.fc button.btn-rounded {
+    border-radius: 20px;
+}
+.fc button:hover,
+.fc button:focus,
+.fc button:active,
+.fc button.active,
+.open > .dropdown-toggle.fc button {
+    color: #666666;
+    background-color: #eaeaea;
+}
+.fc button:active,
+.fc button.active,
+.open > .dropdown-toggle.fc button {
+    background-image: none;
+}
+.fc button.disabled,
+.fc button[disabled],
+fieldset[disabled] .fc button,
+.fc button.disabled:hover,
+.fc button[disabled]:hover,
+fieldset[disabled] .fc button:hover,
+.fc button.disabled:focus,
+.fc button[disabled]:focus,
+fieldset[disabled] .fc button:focus,
+.fc button.disabled:active,
+.fc button[disabled]:active,
+fieldset[disabled] .fc button:active,
+.fc button.disabled.active,
+.fc button[disabled].active,
+fieldset[disabled] .fc button.active {
+    background-color: #f0f0f0;
+    border-color: #dddddd;
+}
+.fc button .badge {
+    color: #f0f0f0;
+    background-color: #666666;
+}
+.fc button.btn-gradient {
+    text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.4);
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.3) 100%);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.3) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#00ffffff', GradientType=0);
+}
+.fc button.light {
+    background-color: #FAFAFA;
+}
+.fc button.light:hover,
+.fc button.light:focus,
+.fc button.light:active,
+.fc button.light.active,
+.open > .dropdown-toggle.fc button.light {
+    background-color: #ececec;
+}
+.fc button.dark {
+    background-color: #e8e8e8;
+}
+.fc button.dark:hover,
+.fc button.dark:focus,
+.fc button.dark:active,
+.fc button.dark.active,
+.open > .dropdown-toggle.fc button.dark {
+    background-color: #e1e1e1;
+}
+.fc-state-default {
+    border: 1px solid;
+}
+.fc-state-default.fc-corner-left {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.fc-state-default.fc-corner-right {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+/* icons in buttons */
+.fc button .fc-icon {
+    position: relative;
+    margin: 0 .1em;
+}
+/*  button states
+*/
+.fc-state-default {
+    background-color: #f5f5f5;
+    background-image: none;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #333;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.fc-state-hover,
+.fc-state-down,
+.fc-state-active,
+.fc-state-disabled {
+    color: #333333;
+    background-color: #e6e6e6;
+}
+.fc-state-hover {
+    color: #333333;
+    text-decoration: none;
+}
+.fc-state-down,
+.fc-state-active {
+    background-color: #cccccc;
+    background-image: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.fc-state-disabled {
+    cursor: default;
+    background-image: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+}
+/* Buttons Groups
+--------------------------------------------------------------------------------------------------*/
+.fc-button-group {
+    display: inline-block;
+}
+/*
+every button that is not first in a button group should scootch over one pixel and cover the
+previous button's border...
+*/
+.fc .fc-button-group > * {
+    /* extra precedence b/c buttons have margin set to zero */
+    float: left;
+    margin: 0 0 0 -1px;
+}
+.fc .fc-button-group > :first-child {
+    /* same */
+    margin-left: 0;
+}
+
+/* Background
+--------------------------------------------------------------------------------------------------*/
+.fc-bg {
+    background-color: #fefefe;
+}
+.fc-bg .fc-today {
+    background-color: #FFFEF8;
+}
+.fc-bg .fc-other-month {
+    background-color: #f8f8f8;
+}
+/* Text
+--------------------------------------------------------------------------------------------------*/
+.fc-basic-view td.fc-day-number {
+    color: #777;
+    padding-top: 3px;
+    padding-right: 7px;
+    font-size: 12px;
+}
+.fc-basic-view td.fc-today.fc-day-number {
+    color: #444;
+    font-weight: 600;
+}

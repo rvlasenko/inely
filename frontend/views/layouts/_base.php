@@ -23,7 +23,7 @@
     <?php $this->registerCssFile('//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic',
         ['position' => \yii\web\View::POS_HEAD]) ?>
 </head>
-<body class="theme-sdtl color-default fixed-sidebar">
+<body class="fixed-sidebar theme-sdtl color-default sidebar-collapsed">
 
 <?php $this->beginBody() ?>
 
@@ -111,14 +111,6 @@
                         <span class="switch-handle"></span>
                     </label>
                 </div>
-                <div class="layout-option">
-                    <span> Sidebar on Top</span>
-                    <label class="switch pull-right">
-                        <input data-layout="sidebar-top" id="switch-sidebar-top" type="checkbox" class="switch-input">
-                        <span class="switch-label" data-on="On" data-off="Off"></span>
-                        <span class="switch-handle"></span>
-                    </label>
-                </div>
                 <h4 class="border-top">Color</h4>
                 <div class="row">
                     <div class="col-xs-12">
@@ -142,26 +134,10 @@
                         </div>
                     </div>
                     <div class="col-xs-6">
-                        <div class="theme clearfix sltd" data-theme="sltd">
-                            <div class="header theme-left"></div>
-                            <div class="header theme-right-dark"></div>
-                            <div class="theme-sidebar-light"></div>
-                            <div class="bg-light"></div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
                         <div class="theme clearfix sdtd" data-theme="sdtd">
                             <div class="header theme-left"></div>
                             <div class="header theme-right-dark"></div>
                             <div class="theme-sidebar-dark"></div>
-                            <div class="bg-light"></div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="theme clearfix sltl" data-theme="sltl">
-                            <div class="header theme-left"></div>
-                            <div class="header theme-right-light"></div>
-                            <div class="theme-sidebar-light"></div>
                             <div class="bg-light"></div>
                         </div>
                     </div>

@@ -52,6 +52,7 @@ class FrontendAsset extends AssetBundle
         'plugins/noty/jquery.noty.packaged.js',
         'plugins/countup/countUp.min.js',
         'plugins/fullcalendar/lib/moment.min.js',
+        'plugins/fullcalendar/lang/ru.js',
         'plugins/fullcalendar/fullcalendar.min.js',
         'js/widgets/todo_list.js',
         'js/builder.js',
