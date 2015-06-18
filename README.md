@@ -43,7 +43,7 @@ http://domain.net
 Backend:
 http://backend.domain.net
 
-Демо аккаунт пользователя:
+Демонстрационный аккаунт пользователя:
 ```
 Login: user
 Password: user
