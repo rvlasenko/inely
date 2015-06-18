@@ -23,7 +23,7 @@
     <?php $this->registerCssFile('//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic',
         ['position' => \yii\web\View::POS_HEAD]) ?>
 </head>
-<body class="fixed-topbar fixed-sidebar theme-sdtl color-default sidebar-top">
+<body class="theme-sdtl color-default fixed-sidebar">
 
 <?php $this->beginBody() ?>
 
@@ -41,26 +41,20 @@
     </div>
     <div class="sidebar-inner">
     <div class="menu-title">Navigation</div>
-    <ul class="nav nav-sidebar">
-        <li class="nav-active active">
-            <a href="">
-                <i class="icon-home"></i>
-                <span data-translate="dashboard">Dashboard</span>
-            </a>
-        </li>
-        <li class="nav-parent">
-            <a href="">
-                <i class="icon-home"></i>
-                <span data-translate="dashboard">Доска</span>
-            </a>
-        </li>
-        <li class="nav-parent">
-            <a href="">
-                <i class="icon-home"></i>
-                <span data-translate="dashboard">Доска</span>
-            </a>
-        </li>
-    </ul>
+        <ul class="nav sub-nav sidebar-menu" style="">
+            <li>
+                <a href="admin_plugins-panels.html">
+                    <span class="glyphicons glyphicons-book"></span> Admin Panels </a>
+            </li>
+            <li>
+                <a href="admin_plugins-modals.html">
+                    <span class="glyphicons glyphicons-show_big_thumbnails"></span> Admin Modals </a>
+            </li>
+            <li>
+                <a href="admin_plugins-dock.html">
+                    <span class="glyphicons glyphicons-sampler"></span> Admin Dock </a>
+            </li>
+        </ul>
     <!-- SIDEBAR WIDGET FOLDERS -->
     <div class="sidebar-widgets">
         <p class="menu-title widget-title">Folders <span class="pull-right"><a href="#" class="new-folder"> <i
@@ -79,19 +73,6 @@
                 <input type="text" placeholder="Folder's name..." class="form-control input-sm">
             </li>
         </ul>
-    </div>
-    <div class="sidebar-footer clearfix">
-        <a class="pull-left toggle_fullscreen" href="#" data-rel="tooltip" data-placement="top"
-           data-original-title="Fullscreen">
-            <i class="icon-size-fullscreen"></i>
-        </a>
-        <a class="pull-left" href="#" data-rel="tooltip" data-placement="top" data-original-title="Lockscreen">
-            <i class="icon-lock"></i>
-        </a>
-        <a class="pull-left btn-effect" href="/logout" data-method="post"
-           data-modal="modal-1" data-rel="tooltip" data-placement="top" data-original-title="Logout">
-            <i class="icon-power"></i>
-        </a>
     </div>
     </div>
     </div>
@@ -125,7 +106,7 @@
                 <div class="layout-option">
                     <span>Fixed Topbar</span>
                     <label class="switch pull-right">
-                        <input data-layout="topbar" id="switch-topbar" type="checkbox" class="switch-input" checked>
+                        <input data-layout="topbar" id="switch-topbar" type="checkbox" class="switch-input">
                         <span class="switch-label" data-on="On" data-off="Off"></span>
                         <span class="switch-handle"></span>
                     </label>

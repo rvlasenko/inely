@@ -21,7 +21,16 @@ class FrontendAsset extends AssetBundle
         'css/style.css',
         'css/theme.css',
         'css/ui.css',
-        'css/icons/font-awesome/css/font-awesome.min.css'
+        'css/icons/font-awesome/css/font-awesome.min.css',
+        'css/icons/glyphicons-pro/glyphicons-pro.css',
+        'plugins/animation-css/animate.min.css',
+        'plugins/mcustom-scrollbar/mcustom_scrollbar.min.css',
+        'plugins/select2/select2.css',
+        'plugins/slick/slick.css',
+        'plugins/fullcalendar/fullcalendar.min.css',
+        'plugins/icheck/skins/all.css',
+        'plugins/bootstrap-editable/css/jasny-bootstrap.min.css',
+        'plugins/bootstrap-editable/css/bootstrap-editable.css',
     ];
 
     public $js = [
@@ -42,6 +51,8 @@ class FrontendAsset extends AssetBundle
         'plugins/jquery-translator/jqueryTranslator.min.js',
         'plugins/noty/jquery.noty.packaged.js',
         'plugins/countup/countUp.min.js',
+        'plugins/fullcalendar/lib/moment.min.js',
+        'plugins/fullcalendar/fullcalendar.min.js',
         'js/widgets/todo_list.js',
         'js/builder.js',
         'js/sidebar_hover.js',

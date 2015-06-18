@@ -28,9 +28,6 @@
 .theme-sdtl.color-default .topbar {
   background: #ffffff;
 }
-.theme-sdtl.color-default .sidebar .sidebar-inner {
-  background: #2b2e33;
-}
 .theme-sdtl.color-default .sidebar .sidebar-inner .nav-sidebar .nav-parent .children,
 .theme-sdtl.color-default .sidebar .sidebar-inner .sidebar-footer,
 .theme-sdtl.color-default .sidebar .sidebar-inner .sidebar-top .searchform input {
@@ -530,9 +527,6 @@
 /* SD/TD : theme default */
 .theme-sdtd.color-default .logopanel {
   background: #181a1d;
-}
-.theme-sdtd.color-default .sidebar .sidebar-inner {
-  background: #2b2e33;
 }
 .theme-sdtd.color-default .sidebar .sidebar-inner .nav-sidebar .nav-parent .children,
 .theme-sdtd.color-default .sidebar .sidebar-inner .sidebar-footer,

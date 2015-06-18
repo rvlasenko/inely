@@ -1,46 +1,4 @@
-@import "../plugins/mcustom-scrollbar/mcustom_scrollbar.min.css";
-@import "../plugins/animation-css/animate.min.css";
-@import "icons/line-icons/simple-line-icons.css";
-@import "icons/line-icons/line-icons.css";
-@import "../plugins/select2/select2.css";
-@import "../plugins/slick/slick.css";
-@import "../plugins/icheck/skins/all.css";
-@import "../plugins/bootstrap-editable/css/jasny-bootstrap.min.css";
-@import "../plugins/bootstrap-editable/css/bootstrap-editable.css";
-/**** SIDEBAR  ****/
-/**** TOPBAR ****/
-/**** QUICKVIEW SIDEBAR ****/
-/**** BOXED LAYOUT ****/
-/**** MAIN CONTENT ****/
-/**** WIDGETS ****/
-/**** PAGES ****/
-/**** SEARCH ****/
-/**** BUILDER ****/
-/******** UI **********/
-/* Main Color */
-/* Alert & Notification */
-/* Popover */
-/* Form */
-/* Select Input */
-/* Tabs */
-/* Table */
-/* Summernote */
-/******* THEMES *******/
-/* Mixin */
-/* MANDATORY CSS */
-/* Select & Radio Inputs */
-/* Text & Image Slider */
-/* Checbox & Radio Icheck */
-/* File Upload and Input Masks */
-/* OPTIONAL CSS */
-/* Depend if you use this functionnalities in your project */
-/* Rounded Icons - See Icons Page - OPTIONAL */
-/* Topbar Left Icons - OPTIONAL */
-/* Weather Icons - See Icons Page - OPTIONAL */
-/* Buttons Loading State - See Buttons Page - OPTIONAL */
-/* Tags Input - See Form Elements Page - OPTIONAL */
-/* Inline Edition X-Editable - OPTIONAL */
-/* Show Html Code - OPTIONAL */
+
 html {
   height: 100%;
 }
@@ -1007,6 +965,192 @@ div.weather-top h2 {
 .topbar .header-left .topnav > ul > li .dropdown-menu i {
   display: none;
 }
+/* Sidebar Left Container */
+#sidebar_left {
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 230px;
+    min-height: 100%;
+    padding-bottom: 40px;
+    background-color: #30363e;
+}
+/* Sidebar Left Menu */
+.sidebar-menu {
+    padding-bottom: 20px;
+}
+/* Top Level Menu Items */
+.sidebar-menu > li {
+    margin: 0;
+}
+.sidebar-menu > li:first-child {
+    padding-top: 4px;
+}
+/* all menu Links */
+.sidebar-menu > li a {
+    color: #fff;
+}
+/* Top level menu Links */
+.sidebar-menu > li > a {
+    line-height: 40px;
+    height: 40px;
+    overflow: hidden;
+    color: #DCDCDC;
+    padding: 0 0 0 5px;
+}
+/* Top Level Menu Icon */
+.sidebar-menu > li > a > span:nth-child(1) {
+    float: left;
+    top: 0;
+    line-height: 40px;
+    width: 38px;
+    font-size: 13px;
+    text-align: center;
+    /*padding-left: 13px;*/
+}
+/* Top Level Menu Title */
+.sidebar-menu > li > a > span:nth-child(2) {
+    font-weight: 600;
+    padding-left: 6px;
+}
+/* Menu Item - Tray, used to hold badges and such */
+.sidebar-menu li > a > .sidebar-title-tray {
+    position: absolute;
+    right: 10px;
+    top: -2px;
+}
+.sidebar-menu li > a > .sidebar-title-tray .label {
+    padding: .0em .4em .2em;
+    font-size: 11px;
+}
+/* Menu item title caret */
+.sidebar-menu li > a > span.caret {
+    position: absolute;
+    top: 45%;
+    right: 13px;
+    border-top: 5px solid;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+/* Open Menu Item Caret - we simply flip the carets border */
+.sidebar-menu li > a.menu-open > span.caret {
+    border-top: 0;
+    border-bottom: 5px solid;
+}
+/* Sub Level Menu  */
+.sidebar-menu > li > ul {
+    clear: both;
+    display: none;
+    width: 230px;
+    height: auto;
+    background-color: #282d33;
+}
+.sidebar-menu li > a.menu-open + ul {
+    display: block;
+}
+/* Sub Level Menu Items */
+.sidebar-menu > li > ul > li > a {
+    color: #d1d1d1;
+    padding: 11px 20px 11px 30px;
+}
+/* Sub Level Menu first and last items */
+.sidebar-menu > li > ul > li:first-child > a {
+    padding-top: 14px;
+}
+.sidebar-menu > li > ul > li:last-child > a {
+    padding-bottom: 17px;
+}
+/* Sub Level Menu Item Icon */
+.sidebar-menu > li > ul > li > a > span:nth-child(1) {
+    margin-right: 10px;
+    font-size: 11px;
+}
+/* Sub Level Menu Item Label */
+.sidebar-menu > li > ul > li > a > span.label {
+    float: right;
+    line-height: 17px;
+}
+/* Multi Level Menu (submenu inside a submenu and so on) */
+.sidebar-menu > li > ul > li ul {
+    clear: both;
+    display: none;
+    width: 230px;
+    height: auto;
+    background-color: #22262c;
+}
+/* Multi Level Menu items */
+.sidebar-menu > li > ul > li > ul li a {
+    padding: 9px 20px 9px 50px;
+}
+.sidebar-menu > li > ul > li > ul li:last-child a {
+    padding-bottom: 13px;
+}
+/* Multi Level Menu item label */
+.sidebar-menu > li > ul > li > ul li a .label.label-xs {
+    float: right;
+    line-height: 17px;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #22262c;
+}
+/* Top Menu item active border */
+.sidebar-menu > li > a.menu-open:after,
+.sidebar-menu > li.active > a:after,
+.sidebar-menu > li:hover > a:after,
+.sidebar-menu > li:focus > a:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: #4a89dc;
+}
+/* Sub-Menu Menu item active border */
+.sidebar-menu > li > ul > li > a.menu-open:after,
+.sidebar-menu > li > ul > li.active > a:after,
+.sidebar-menu > li > ul > li:hover > a:after,
+.sidebar-menu > li > ul > li:focus > a:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: #AAA;
+}
+/* Multi-Menu childen active/hover border */
+.sidebar-menu > li > ul > li > ul > li.active > a:after,
+.sidebar-menu > li > ul > li > ul > li:hover > a:after,
+.sidebar-menu > li > ul > li > ul > li:focus > a:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5%;
+    height: 90%;
+    width: 3px;
+    background: #999;
+}
+/* Sidebar labels */
+.sidebar-menu .sidebar-label {
+    text-transform: uppercase;
+    color: #70829a;
+    font-weight: 600;
+    padding-left: 18px;
+    padding-bottom: 3px;
+    font-size: 12px;
+}
+/* Sidebar pProjects */
+/* Sidebar stats */
+.sidebar-menu .sidebar-stat .progress {
+    clear: both;
+    background-color: #26292e;
+}
+.sidebar-menu .sidebar-stat > a {
+    height: auto;
+    overflow: visible;
+}
 .topbar .header-left .topnav > ul > li .dropdown-menu > li > a {
   font-size: 13px;
   padding: 6px 10px;
@@ -1070,10 +1214,9 @@ div.weather-top h2 {
   display: none !important;
 }
 .topbar .header-left ul.nav-icons li span {
-  color: #484E55;
   display: block;
-  font-size: 20px;
-  padding-top: 4px;
+  font-size: 2.4rem;
+  padding-top: 2px;
 }
 .topbar .header-left ul.nav-icons li span.icon-user-unfollow {
   background: none !important;
@@ -1676,7 +1819,7 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   margin-top: -4px;
 }
 .sidebar .sidebar-inner {
-  background-color: #2b2e33;
+  background-color: #30363e;
   height: 100%;
   padding: 0;
   z-index: 2;
@@ -1689,6 +1832,10 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   text-align: left;
   text-overflow: ellipsis;
   text-transform: uppercase;
+  color: #fff;
+}
+.nav-icons li a:hover span {
+    color: #4a89dc;
 }
 .sidebar .sidebar-inner .menu-title a {
   color: #B9B9B9;
@@ -2311,7 +2458,7 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
 .sidebar .sidebar-inner .sidebar-footer .pull-left {
   padding: 12px 0 8px;
   text-align: center;
-  width: 33.333%;
+  width: 50%;
 }
 .sidebar .sidebar-inner .sidebar-footer .pull-left:hover {
   background-color: #373a41;
@@ -2960,7 +3107,7 @@ body:not(.sidebar-collapsed) .sidebar .sidebar-inner .nav-sidebar > li.nav-paren
     margin-left: -50px;
   }
   .sidebar-collapsed .topbar .header-left .topnav .menutoggle {
-    background: #319db5;
+    background: #4a89dc;
     color: #ffffff;
     opacity: 0.9;
     -webkit-transition: all 0s ease-out;

@@ -5,13 +5,25 @@
                 <span data-translate="menu-title">Menu</span>
             </span>
         </a>
+        <ul class="nav nav-icons">
+            <li>
+                <a class="pull-left toggle_fullscreen" href="#" data-placement="top" data-original-title="Fullscreen">
+                    <span class="glyphicons glyphicons-imac"></span>
+                </a>
+            </li>
+            <li>
+                <a class="pull-left btn-effect" href="/logout" data-method="post" data-modal="modal-1" data-placement="top" data-original-title="Logout">
+                    <span class="glyphicons glyphicons-power"></span>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 <div class="header-right">
     <ul class="header-menu nav navbar-nav">
         <li class="dropdown" id="language-header">
             <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                <i class="icon-globe"></i>
+                <i class="fa fa-globe"></i>
                 <span data-translate="Language">Language</span>
             </a>
             <ul class="dropdown-menu lang" id="switch-lang">
@@ -32,7 +44,7 @@
 
         <li class="dropdown" id="notifications-header">
             <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                <i class="icon-bell"></i>
+                <i class="fa fa-bell-o"></i>
                 <span class="badge badge-danger badge-header">2</span>
             </a>
             <ul class="dropdown-menu">
@@ -63,7 +75,7 @@
 
         <li id="quickview-toggle">
             <a href="#">
-                <i class="icon-notebook"></i>
+                <i class="fa fa-file-text-o"></i>
             </a>
         </li>
     </ul>

@@ -12,7 +12,7 @@
             <div class="panel-content widget-info">
                 <div class="row">
                     <div class="left">
-                        <i class="fa fa-umbrella bg-green"></i>
+                        <i class="fa fa-twitter bg-green"></i>
                     </div>
                     <div class="right">
                         <p class="number countup" data-from="0" data-to="52000">52,000</p>
