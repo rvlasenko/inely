@@ -264,10 +264,10 @@ div.main .desc {
     border-top: 1px solid #F1F1F1;
     text-align: center;
     margin: 0;
-    padding-top: 7px;
+    padding-top: 10px;
 }
 div.main p:nth-child(n+2) {
-    line-height: 4px;
+    line-height: 15px;
     font-size: .95em;
 }
 div.main img.weather-icon {
@@ -6170,8 +6170,8 @@ body:not(.fixed-topbar) .main-content .page-content {
   transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);
 }
 .jquery-clock.medium {
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
 }
 .jquery-clock.small {
   height: 200px;

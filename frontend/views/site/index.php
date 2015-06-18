@@ -71,7 +71,7 @@
 <div class="row">
     <div class="col-xlg-7 col-lg-5">
         <div class="panel widget-map">
-            <div id="calendar"></div>
+            <div class="ct-chart ct-major-twelfth" style="min-height: 470px;"></div>
         </div>
     </div>
     <div class="col-xlg-3 col-sm-6 col-lg-4">
@@ -80,7 +80,7 @@
     <div class="col-xlg-2 col-sm-6 col-lg-3 hidden-xs">
         <div class="row">
             <div class="col-md-12">
-                <ul class="jquery-clock small" data-jquery-clock="">
+                <ul class="jquery-clock medium" data-jquery-clock="">
                     <li class="jquery-clock-pin"></li>
                     <li class="jquery-clock-sec"></li>
                     <li class="jquery-clock-min"></li>
@@ -121,6 +121,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xlg-6 col-lg-6 col-sm-6">
+        <div class="panel widget-map">
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <div class="col-xlg-6 col-lg-6">
+        <div class="panel panel-white">
+
         </div>
     </div>
 </div>
@@ -178,9 +190,10 @@
 
         <div class="panel m-t-0" style="position: relative; opacity: 1; z-index: 0;">
             <div class="panel-header panel-controls">
-                <h3><i class="icon-basket"></i> <strong>News</strong> for you</h3>
-
-
+                <h3>
+                    <i class="icon-basket"></i>
+                    <strong>News</strong> for you
+                </h3>
             </div>
             <div class="panel-content p-t-0 p-b-0 widget-news">
                 <div class="withScroll _mCS_23 _mCS_7 _mCS_21 mCustomScrollbar _mCS_31" data-height="400"
@@ -284,7 +297,10 @@
     <div class="col-lg-4 col-sm-6 portlets">
         <div class="panel m-t-0">
             <div class="panel-header panel-controls">
-                <h3><i class="icon-basket"></i> <strong>Something</strong> is...</h3>
+                <h3>
+                    <i class="icon-basket"></i>
+                    <strong>Something</strong> is...
+                </h3>
             </div>
             <div class="panel-content p-t-0 p-b-0">
                 <div id="bar-chart"></div>
