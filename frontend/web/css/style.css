@@ -3693,7 +3693,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
 }
 #quickview-toggle i {
   color: #232323;
-  font-size: 20px;
+  font-size: 23px;
 }
 #quickview-sidebar {
   bottom: 0;
@@ -4093,7 +4093,6 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
   display: block;
   float: none;
   font-family: 'Roboto', arial, sans-serif;
-  font-weight: 700;
   margin-right: 10px;
   padding: 10px 20px;
   text-align: center;
@@ -4225,10 +4224,10 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
 #quickview-sidebar .quickview .tab-content #notes .detail-note .note-header .note-back {
   color: #424242;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 26px;
   left: 20px;
   position: absolute;
-  top: 22px;
+  top: 10px;
 }
 #quickview-sidebar .quickview .tab-content #notes .detail-note.current {
   -ms-transform: translate(-100%, 0);
@@ -4255,8 +4254,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
   background: none;
   color: #909090;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  padding: 16px 15px;
+  padding: 17px 15px;
   text-transform: uppercase;
 }
 #quickview-sidebar .quickview-header .nav.nav-tabs > li.active > a {
@@ -11481,7 +11479,7 @@ thead .fc-widget-header {
 .builder h4 {
   font-family: 'Roboto', 'Open Sans';
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 10px;
   margin-top: 10px;
   padding-top: 10px;

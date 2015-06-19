@@ -114,9 +114,7 @@
                 <h4 class="border-top">Color</h4>
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="theme-color bg-dark" data-main="default" data-color="#2B2E33"></div>
-                        <div class="theme-color background-primary" data-main="primary" data-color="#319DB5"></div>
-                        <div class="theme-color bg-red" data-main="red" data-color="#C75757"></div>
+                        <div class="theme-color bg-dark active" data-main="default" data-color="#2B2E33"></div>
                         <div class="theme-color bg-green" data-main="green" data-color="#1DA079"></div>
                         <div class="theme-color bg-orange" data-main="orange" data-color="#D28857"></div>
                         <div class="theme-color bg-purple" data-main="purple" data-color="#B179D7"></div>
@@ -275,7 +273,7 @@
         <div class="detail-note note-hidden-sm">
             <div class="note-header clearfix">
                 <div class="note-back">
-                    <i class="icon-action-undo"></i>
+                    <i class="fa fa-angle-double-left"></i>
                 </div>
                 <div class="note-edit">Edit Note</div>
                 <div class="note-subtitle">title on first line</div>
