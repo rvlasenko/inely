@@ -90,9 +90,7 @@ span {
   text-align: left;
 }
 h2,
-.h2 {
-  font-size: 25px;
-}
+.h2,
 h3 {
   font-size: 20px;
 }
@@ -1258,7 +1256,7 @@ div.weather-top h2 {
   font-size: 12px;
   padding: 2px 5px;
   position: relative;
-  right: 8px;
+  right: 3px;
   top: -8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -1277,12 +1275,18 @@ div.weather-top h2 {
   border-top-right-radius: 1px !important;
   left: auto;
   margin: 0;
-  max-width: 290px !important;
+  max-width: 300px !important;
   min-width: 170px !important;
   padding: 0;
   right: 15px;
   top: 53px;
-  width: 280px;
+  width: 290px;
+}
+.separator {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 2px solid #f2f2f2;
 }
 .topbar .header-right .header-menu .dropdown-menu:after {
   border-bottom: 6px solid #2b2e33;
@@ -13572,4 +13576,93 @@ previous button's border...
 .fc-basic-view td.fc-today.fc-day-number {
     color: #444;
     font-weight: 600;
+}
+.tooltip {
+    font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    z-index: 1;
+    padding: 5px;
+    background: #000000;
+    opacity: 0.6;
+    text-align: center;
+    pointer-events: none;
+    color: white;
+    transition: opacity .1s ease-out;
+}
+
+.tooltip.tooltip-hidden {
+    opacity: 0;
+}
+
+.ct-chart,
+.ct-bar-chart {
+    position: relative;
+    left: -8px;
+    bottom: -11px;
+}
+
+ul.dropdown-menu li p {
+    margin-left: 1em;
+    margin-bottom: 0;
+}
+
+.ct-chart .ct-label.ct-horizontal,
+.ct-chart .ct-label.ct-vertical {
+    color: rgba(0, 0, 0, 0.3);
+}
+.ct-chart .ct-grid.ct-horizontal,
+.ct-chart .ct-grid.ct-vertical {
+    shape-rendering: crispEdges;
+    stroke-width: 1px;
+    stroke-dasharray: 1px 4px;
+    stroke: rgba(0, 0, 0, 0.2);
+}
+
+.ct-chart .ct-point {
+    stroke-width: 10px;
+}
+
+.ct-chart .ct-line {
+    stroke-width: 3px;
+}
+
+.ct-chart .ct-series.ct-series-a .ct-point {
+    stroke: #3299BB;
+}
+
+.ct-chart .ct-series.ct-series-a .ct-line {
+    stroke: #3299BB;
+}
+
+.ct-chart .ct-series.ct-series-b .ct-point {
+    stroke: #FF9900;
+}
+
+.ct-chart .ct-series.ct-series-b .ct-line {
+    stroke: #FF9900;
+}
+
+.ct-chart.ct-blured .ct-point,
+.ct-chart.ct-blured .ct-line {
+    stroke-opacity: 0.2;
+}
+
+.ct-label {
+    font-size: 1rem !important;
+}
+
+@keyframes dashoffset-seven {
+    0% {
+        stroke-dashoffset: 7px;
+    }
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
+
+.ct-chart .ct-series.ct-series-a .ct-line {
+    stroke: #3299BB;
+    stroke-width: 3px;
+    stroke-dasharray: 5px 3px;
+    animation: dashoffset-seven 250ms infinite linear;
 }

@@ -22,7 +22,7 @@
 <div class="header-right">
     <ul class="header-menu nav navbar-nav">
         <li class="dropdown" id="language-header">
-            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <a href="#" data-toggle="dropdown" data-close-others="true">
                 <i class="fa fa-globe"></i>
                 <span data-translate="Language">Language</span>
             </a>
@@ -43,7 +43,30 @@
         </li>
 
         <li class="dropdown" id="notifications-header">
-            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <a href="#" data-toggle="dropdown" data-close-others="true">
+                <i class="fa fa-bolt"></i>
+                <span class="badge badge-success badge-header">0</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-header clearfix">
+                    <p class="pull-left">Ваша производительность</p>
+                </li>
+                <li>
+                    <div class="ct-chart ct-major-fifth"></div>
+                    <div class="separator"></div>
+                    <p><strong>4</strong> завершенные задачи</p>
+                    <div class="separator"></div>
+                    <p>Завершено за последние 7 дней:</p>
+                    <div class="ct-bar-chart ct-major-fifth"></div>
+                </li>
+                <li class="dropdown-footer clearfix">
+                    <a href="#" class="pull-left">See all notifications</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="dropdown" id="notifications-header">
+            <a href="#" data-toggle="dropdown" data-close-others="true">
                 <i class="fa fa-bell-o"></i>
                 <span class="badge badge-danger badge-header">2</span>
             </a>
@@ -66,8 +89,9 @@
             </ul>
         </li>
 
+
         <li class="dropdown" id="user-header">
-            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+            <a href="#">
                 <img src="images/avatars/user1.png" alt="user image">
                 <span class="username">Hi, John Doe</span>
             </a>

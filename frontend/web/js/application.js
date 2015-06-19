@@ -796,47 +796,54 @@ $(document).ready(function() {
         handleboxedLayout();
     }, 100);
 
-    /* Add a basic data series with six labels and values */
-    var data = {
-        labels: ['1', '2', '3', '4', '5', '6'],
-        series: [
-            {
-                data: [1, 2, 3, 5, 8, 13]
-            }
-        ]
-    };
-
-    /* Set some base options (settings will override the default settings in Chartist.js *see default settings*). We are adding a basic label interpolation function for the xAxis labels. */
-    var options = {
-        axisX: {
-            labelInterpolationFnc: function(value) {
-                return 'Calendar Week ' + value;
-            }
-        }
-    };
-
-    /* Now we can specify multiple responsive settings that will override the base settings based on order and if the media queries match. In this example we are changing the visibility of dots and lines as well as use different label interpolations for space reasons. */
-    var responsiveOptions = [
-        ['screen and (min-width: 641px) and (max-width: 1024px)', {
-            showPoint: false,
-            axisX: {
-                labelInterpolationFnc: function(value) {
-                    return 'Week ' + value;
-                }
-            }
-        }],
-        ['screen and (max-width: 640px)', {
-            showLine: false,
-            axisX: {
-                labelInterpolationFnc: function(value) {
-                    return 'W' + value;
-                }
-            }
+    var chart = new Chartist.Line('.ct-chart', {
+        labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+        series: [{
+            name: 'XP',
+            data: [5, 7, 3, 4]
         }]
-    ];
+    }, {
+        width: 290,
+        height: 150
+    });
 
-    /* Initialize the chart with the above settings */
-    new Chartist.Line('.ct-chart', data, options, responsiveOptions);
+    new Chartist.Bar('.ct-bar-chart', {
+        labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+        series: [
+            [5, 4, 3, 7, 0, 0, 0]
+        ]
+    }, {
+        seriesBarDistance: 30,
+        axisY: {
+            showGrid: false
+        },
+        reverseData: true,
+        horizontalBars: true,
+        width: 290,
+        height: 180
+    });
+
+    var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
+
+    $(document).on('mouseenter', '.ct-point', function() {
+        var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
+            value = $(this).attr('ct:value');
+
+        $tooltip.text(seriesName + ': ' + value);
+        $tooltip.removeClass('tooltip-hidden');
+    });
+
+    $(document).on('mouseleave', '.ct-point', function() {
+        $tooltip.addClass('tooltip-hidden');
+    });
+
+    $(document).on('mousemove', '.ct-point', function(event) {
+        console.log(event);
+        $tooltip.css({
+            left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
+            top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
+        });
+    });
 
     if ($('body').hasClass('sidebar-hover')) sidebarHover();
 
@@ -853,7 +860,7 @@ $(document).ready(function() {
             if (!smartpikr.hasClass(themeClass)) {
                 inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
             }
-        }
+       }
 
     });
 

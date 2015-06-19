@@ -71,7 +71,7 @@
 <div class="row">
     <div class="col-xlg-7 col-lg-5">
         <div class="panel widget-map">
-            <div class="ct-chart ct-major-twelfth" style="min-height: 470px;"></div>
+            <div id="calendar"></div>
         </div>
     </div>
     <div class="col-xlg-3 col-sm-6 col-lg-4">
