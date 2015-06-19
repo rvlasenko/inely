@@ -54,13 +54,19 @@
                 <li>
                     <div class="ct-chart ct-major-fifth"></div>
                     <div class="separator"></div>
-                    <p><strong>4</strong> завершенные задачи</p>
+                    <p>
+                        <strong>4</strong>
+                        завершенные задачи
+                    </p>
                     <div class="separator"></div>
                     <p>Завершено за последние 7 дней:</p>
                     <div class="ct-bar-chart ct-major-fifth"></div>
                 </li>
                 <li class="dropdown-footer clearfix">
-                    <a href="#" class="pull-left">See all notifications</a>
+                    <a href="#" class="pull-left">
+                        <i class="fa fa-cog"></i>
+                        Настройка ОО и целей
+                    </a>
                 </li>
             </ul>
         </li>

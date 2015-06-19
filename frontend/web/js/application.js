@@ -799,7 +799,7 @@ $(document).ready(function() {
     var chart = new Chartist.Line('.ct-chart', {
         labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
         series: [{
-            name: 'XP',
+            name: 'ОО',
             data: [5, 7, 3, 4]
         }]
     }, {
@@ -939,3 +939,4 @@ $(window).resize(function() {
         handleboxedLayout();
     }, 100);
 });
+
