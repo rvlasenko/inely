@@ -29,7 +29,7 @@ class FrontendAsset extends AssetBundle
         'plugins/slick/slick.css',
         'plugins/fullcalendar/fullcalendar.min.css',
         'plugins/icheck/skins/all.css',
-        'plugins/bootstrap-editable/css/jasny-bootstrap.min.css',
+        //'plugins/bootstrap-editable/css/jasny-bootstrap.min.css',
         'plugins/bootstrap-editable/css/bootstrap-editable.css',
         'plugins/chartist-js-develop/dist/chartist.min.css',
     ];
@@ -56,7 +56,7 @@ class FrontendAsset extends AssetBundle
         'plugins/fullcalendar/lang/ru.js',
         'plugins/fullcalendar/fullcalendar.min.js',
         'plugins/chartist-js-develop/dist/chartist.min.js',
-        'plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js',
+        //'plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js',
         'js/widgets/todo_list.js',
         'js/builder.js',
         'js/sidebar_hover.js',

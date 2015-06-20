@@ -20,7 +20,7 @@
                                 <span class="todo-task">Send email to Bob Linch</span>
                                 <div class="todo-date clearfix">
                                     <div class="completed-date"></div>
-                                    <div class="due-date">До
+                                    <div class="due-date">Сделать до
                                         <span class="due-date-span">15 декабря</span>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                 <span class="todo-task">Send email to Bob Linch</span>
                                 <div class="todo-date clearfix">
                                     <div class="completed-date"></div>
-                                    <div class="due-date">До
+                                    <div class="due-date">Сделать до
                                         <span class="due-date-span">15 декабря</span>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                 <span class="todo-task">Send email to Bob Linch</span>
                                 <div class="todo-date clearfix">
                                     <div class="completed-date"></div>
-                                    <div class="due-date">До
+                                    <div class="due-date">Сделать до
                                         <span class="due-date-span">15 декабря</span>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                 <span class="todo-task">Send email to Bob Linch</span>
                                 <div class="todo-date clearfix">
                                     <div class="completed-date"></div>
-                                    <div class="due-date">До
+                                    <div class="due-date">Сделать до
                                         <span class="due-date-span">15 декабря</span>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@
                                 <span class="todo-task">Send email to Bob Linch</span>
                                 <div class="todo-date clearfix">
                                     <div class="completed-date"></div>
-                                    <div class="due-date">До
+                                    <div class="due-date">Сделать до
                                         <span class="due-date-span">15 декабря</span>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                                 <span class="todo-task">Send email to Bob Linch</span>
                                 <div class="todo-date clearfix">
                                     <div class="completed-date"></div>
-                                    <div class="due-date">До
+                                    <div class="due-date">Сделать до
                                         <span class="due-date-span">15 декабря</span>
                                     </div>
                                 </div>

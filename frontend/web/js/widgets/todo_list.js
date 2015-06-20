@@ -42,12 +42,21 @@ function handleTodoList() {
             type: 'text',
             mode: 'inline'
         });
-        $('.todo-list .due-date-span').editable({
+        /*$('.due-date-span').editable({
             type: 'combodate',
             format: 'MM-DD',
             placement: 'bottom',
             viewformat: 'DD.MM',
             template: 'D / MMMM',
+            language: 'ru'
+        });*/
+        $('.due-date-span').editable({
+            type: 'date',
+            clear: false,
+            mode: 'inline',
+            datepicker: { weekStart: 0, startView: 0, minViewMode: 0, autoclose: false },
+            placement: 'right',
+            format: 'dd MM',
             language: 'ru'
         });
         /* Sortable Task */
@@ -122,7 +131,7 @@ function handleTodoList() {
         /* Remove Task */
         $(document).on("click", ".todo-delete", function () {
             var parent = $(this).parents("li:first");
-            $(parent).hide(200);
+            $(parent).hide(250);
         });
 
     }
