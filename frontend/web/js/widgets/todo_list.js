@@ -13,7 +13,7 @@ function handleTodoList() {
         var dt = new Date();
         var currentDay = dt.getDate();
         var monthNames = ["января", "февраля", "марта", "апреля", "мая",
-            "июня", "July", "августа", "сентября", "октобря", "ноября", "декабря"];
+            "июня", "июля", "августа", "сентября", "октобря", "ноября", "декабря"];
         var currentMonth = monthNames[dt.getMonth()];
 
         /* Context Menu */
@@ -37,6 +37,19 @@ function handleTodoList() {
             });
         });
 
+        /* Editable Task & Date */
+        $('.todo-list .todo-task').editable({
+            type: 'text',
+            mode: 'inline'
+        });
+        $('.todo-list .due-date-span').editable({
+            type: 'combodate',
+            format: 'MM-DD',
+            placement: 'bottom',
+            viewformat: 'DD.MM',
+            template: 'D / MMMM',
+            language: 'ru'
+        });
         /* Sortable Task */
         $(".todo-list").sortable({
             cancel: ".done",
@@ -46,7 +59,7 @@ function handleTodoList() {
         });
 
         /* Done / Undone Task */
-        $(".todo-list").on("ifChecked", ".span-check input", function () {
+        $(".todo-list").on("ifChecked", ".span-check input", function() {
             var parent = $(this).parents("li:first");
             $(parent).removeClass('bounceInDown').addClass("done");
             $(parent).data("task-order", $(parent).index()).insertAfter($(".todo-list li:last"));
@@ -54,7 +67,7 @@ function handleTodoList() {
             $('.completed-date', parent).text('Сделано: ' + currentDay + ' ' + currentMonth);
             $('.due-date-span', parent).editable("disable");
         });
-        $(".todo-list").on("ifUnchecked", ".span-check input", function () {
+        $(".todo-list").on("ifUnchecked", ".span-check input", function() {
             var parent = $(this).parents("li:first");
             $(parent).removeClass("done");
             if ($(parent).data("task-order")) {
@@ -70,7 +83,7 @@ function handleTodoList() {
         });
 
         /* Add Task */
-        $(document).on("click", ".add-task", function () {
+        $(document).on("click", ".add-task", function() {
             item = '';
             number_items++;
             item = '<li class="new-task animated bounceInDown">' +
@@ -78,14 +91,18 @@ function handleTodoList() {
             '<input id="task-' + number_items + '" type="checkbox" data-checkbox="icheckbox_square-blue"/>' +
             '<label for="task-' + number_items + '"></label>' +
             '</span>' +
-            '<span class="todo-task editable editable-click">New Task</span>' +
+            '<span class="todo-task editable editable-click">Новая задача</span>' +
             '<div class="todo-date clearfix">' +
             '<div class="completed-date"></div>' +
-            '<div class="due-date">' + currentDay + ' ' + currentMonth + '</div>' +
+            '<div class="due-date">До ' + currentDay + ' ' + currentMonth + '</div>' +
             '</div>' +
             '<span class="todo-options pull-right">' +
-            '<a href="javascript:;" class="todo-delete" data-rel="tooltip" data-original-title="Remove task"><i class="fa fa-times"></i></a>' +
+            '<a href="#" class="todo-delete" data-rel="tooltip" data-original-title="Remove task">' +
+            '<i class="fa fa-times"></i></a>' +
             '</span>' +
+            '<div class="todo-tags pull-right">' +
+            '<div class="label label-system">Без категории</div>' +
+            '</div>' +
             '</li>';
             $(this).parent().parent().parent().find(".todo-list").append(item);
             $('.todo-list .todo-task').editable({

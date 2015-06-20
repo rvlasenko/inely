@@ -207,25 +207,28 @@ address {
     font-weight: 300;
 }
 .badge-success {
-    background-color: #18a689;
+    background-color: #70CA63;
 }
 .badge-danger {
-    background-color: #c75757;
+    background-color: #EC6F5A;
 }
 .label {
     font-weight: 500;
 }
 .label-success {
-    background-color: #18a689;
+    background-color: #70CA63;
 }
 .label-success:hover {
-    background-color: #159077;
+    background-color: #70CA63;
 }
 .label-info {
-    background-color: #b066ff;
+    background-color: #55BADF;
+}
+.label-system {
+    background-color: #48C9A9;
 }
 .label-info:hover {
-    background-color: #a34cff;
+    background-color: #55BADF;
 }
 .progress {
     -webkit-box-shadow: none;
@@ -236,7 +239,7 @@ address {
 }
 .progress-bar {
     -webkit-box-shadow: none;
-    background: #319db5;
+    background: #3BAFDA;
     box-shadow: none;
     line-height: 12px;
 }

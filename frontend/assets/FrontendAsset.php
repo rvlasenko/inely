@@ -56,6 +56,7 @@ class FrontendAsset extends AssetBundle
         'plugins/fullcalendar/lang/ru.js',
         'plugins/fullcalendar/fullcalendar.min.js',
         'plugins/chartist-js-develop/dist/chartist.min.js',
+        'plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js',
         'js/widgets/todo_list.js',
         'js/builder.js',
         'js/sidebar_hover.js',
