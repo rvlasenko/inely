@@ -3,9 +3,10 @@
 namespace frontend\modules\user\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "tasks".
+ * Это класс модели для таблицы tasks
  *
  * @property integer $id
  * @property string $name
@@ -14,10 +15,11 @@ use Yii;
  * @property integer $priority
  * @property string $time
  */
-class Tasks extends \yii\db\ActiveRecord
+class Tasks extends ActiveRecord
 {
     /**
-     * @inheritdoc
+     * Имя таблицы
+     * @return string
      */
     public static function tableName()
     {
@@ -25,7 +27,17 @@ class Tasks extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * @return \yii\db\ActiveQuery
+     * Для дальнейшего использования JOIN в ActiveRecord потребуется объявлять связи :(
+     * И в соседнем классе сделать то же самое
+     */
+    public function getTasks_cat()
+    {
+        return $this->hasOne(TasksCatForm::className(), ['id' => 'category']);
+    }
+
+    /**
+     * Правила
      */
     public function rules()
     {
@@ -37,7 +49,7 @@ class Tasks extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Метки для полей
      */
     public function attributeLabels()
     {
@@ -49,5 +61,23 @@ class Tasks extends \yii\db\ActiveRecord
             'priority' => 'Priority',
             'time' => 'Time',
         ];
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     * Метод получения всех записей таблицы tasks с join
+     */
+    public function getTasks()
+    {
+
+        $query = Tasks::find();
+
+        $tasks = $query
+            ->limit(8)
+            ->joinWith('tasks_cat')
+            ->orderBy('name')
+            ->all();
+
+        return $tasks;
     }
 }

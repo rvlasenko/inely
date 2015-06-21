@@ -4,13 +4,11 @@ namespace frontend\modules\user\controllers;
 
 use Yii;
 use frontend\modules\user\models\Tasks;
-use yii\data\ActiveDataProvider;
-use frontend\modules\user\controllers\DefaultController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TodoController implements the CRUD actions for Tasks model.
+ * TodoController
  */
 class TodoController extends DefaultController
 {
@@ -27,53 +25,39 @@ class TodoController extends DefaultController
     }
 
     /**
-     * Lists all Tasks models.
+     * Создание модели
+     * Получение записей из таблицы с помощью метода модели
      * @return mixed
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Tasks::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Tasks model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Tasks model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
         $model = new Tasks();
+        $tasks = $model->getTasks();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        return $this->render('@app/views/templates/todo', [
+            'tasks' => $tasks,
+        ]);
+    }
+
+    /**
+     * Создание основной модели для todo
+     * @return mixed
+     */
+    public function actionTodo()
+    {
+        $todoModel = new Tasks();
+
+        if ($todoModel->load(Yii::$app->request->post()) && $todoModel->save()) {
+            return true;
         } else {
-            return $this->render('create', [
-                'model' => $model,
+            return $this->renderAjax('@app/views/templates/todo', [
+                'todoModel' => $todoModel,
             ]);
         }
     }
 
     /**
-     * Updates an existing Tasks model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Обновление существующей Tasks модели
      * @param integer $id
      * @return mixed
      */
@@ -82,7 +66,7 @@ class TodoController extends DefaultController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return true;
         } else {
             return $this->render('update', [
                 'model' => $model,

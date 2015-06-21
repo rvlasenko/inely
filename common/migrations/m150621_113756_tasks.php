@@ -17,8 +17,9 @@ class m150621_113756_tasks extends Migration
             'name' => Schema::TYPE_STRING . '(255) NULL',
             'category' => Schema::TYPE_INTEGER . '(1)',
             'is_done' => Schema::TYPE_INTEGER . '(1)',
-            'priority' => Schema::TYPE_INTEGER . '(1)',
+            'priority' => Schema::TYPE_STRING . '(12) NULL',
             'time' => Schema::TYPE_STRING . '(15) NULL',
+            'is_done_date' => Schema::TYPE_STRING . '(3) NULL'
         ], $tableOptions);
 
         $this->insert('{{%tasks}}', [
@@ -26,7 +27,7 @@ class m150621_113756_tasks extends Migration
             'name' => 'Заполнить резюме и отправить работодателю',
             'category' => 1,
             'is_done' => 0,
-            'priority' => 2,
+            'priority' => 'medium',
             'time' => '12/08 11:43'
         ]);
 

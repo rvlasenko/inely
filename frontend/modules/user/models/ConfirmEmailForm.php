@@ -44,7 +44,6 @@ class ConfirmEmailForm extends Model
     public function confirmEmail()
     {
         $user = $this->_user;
-        //$user->status = User::STATUS_ACTIVE;
         $user->removeEmailConfirmToken();
         return $user->save();
     }

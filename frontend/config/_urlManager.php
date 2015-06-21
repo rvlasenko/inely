@@ -8,7 +8,7 @@ return [
         '' => '/site/index',
         'article' => '/article/index',
         'contact' => '/site/contact',
-        'about' => '/site/about',
+        'todo' => '/user/todo/index',
 
         // Register
         'sign-up' => '/user/sign-in/signup',

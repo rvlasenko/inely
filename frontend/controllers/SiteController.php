@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use frontend\models\ContactForm;
+use frontend\modules\user\models\Tasks;
 use Yii;
 use yii\web\Controller;
 
@@ -31,16 +32,12 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        if (!Yii::$app->user->isGuest)
+        if (!Yii::$app->user->isGuest) {
             return $this->render('index');
+        }
         else {
             return $this->render('landing');
         }
-    }
-
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 
     public function actionContact()

@@ -348,9 +348,6 @@
                     <span class="switch-handle"></span>
                 </label>
             </div>
-            <div class="m-t-30" style="width:100%">
-                <canvas id="setting-chart" height="300"></canvas>
-            </div>
         </div>
     </div>
     </div>

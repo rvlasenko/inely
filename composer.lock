@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5470b592611b76eacb5e1c67c1d36cfb",
+    "hash": "f86fed2e79f07b79da9430265aa73339",
     "packages": [
         {
             "name": "asofter/yii2-imperavi-redactor",

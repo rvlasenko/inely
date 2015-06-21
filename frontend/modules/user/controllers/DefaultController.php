@@ -70,7 +70,9 @@ class DefaultController extends Controller
             ]);
             return $this->refresh();
         }
-        return $this->render('index', ['model' => $model]);
+        return $this->render('index', [
+            'model' => $model
+        ]);
     }
 
     /**

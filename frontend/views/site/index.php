@@ -1,3 +1,11 @@
+<?php
+    /*$this->registerJS("
+        $.get('todo', function (data) {
+            $('.todo-pan').html(data);
+        });
+    ");*/
+?>
+
 <div class="main-content">
 <div class="topbar">
 
@@ -74,8 +82,8 @@
             <div id="calendar"></div>
         </div>
     </div>
-    <div class="col-xlg-4 col-sm-6 col-lg-4">
-        <?php $this->beginContent('@app/views/templates/todo.php'); $this->endContent(); ?>
+    <div class="col-xlg-4 col-sm-6 col-lg-4 todo-pan">
+
     </div>
     <div class="col-xlg-2 col-sm-6 col-lg-3 hidden-xs">
         <div class="row">
@@ -125,18 +133,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xlg-6 col-lg-6 col-sm-6">
-        <div class="panel widget-map">
-
-        </div>
-    </div>
-    <div class="col-xlg-6 col-lg-6">
-        <div class="panel panel-white">
-
         </div>
     </div>
 </div>
