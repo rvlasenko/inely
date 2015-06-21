@@ -13,7 +13,6 @@
         "yiisoft/yii2-jui": "~2.0",
         "yiisoft/yii2-twig": "~2.0.0",
         "asofter/yii2-imperavi-redactor": "dev-master@dev",
-        "trntv/yii2-bootstrap-datetimepicker": "~1.5",
         "mihaildev/yii2-elfinder": "~1.0",
         "trntv/probe": "dev-master",
         "trntv/yii2-file-kit": "~1.1.0",
