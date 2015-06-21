@@ -95,8 +95,13 @@ class SignInController extends \yii\web\Controller
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     Yii::$app->session->setFlash('alert', [
-                        'options' => ['class' => 'alert-success', 'icon' => 'fa fa-heart'],
-                        'body' => 'Вы успешно зарегистрировались и осталось лишь подтвердить e-mail! Добро пожаловать!'
+                        'options' => [
+                            'title' => 'Регистрация',
+                            'img' => 'images/ballicons 2/svg/heart.svg',
+                            'link' => 'http://google.com',
+                            'linkDesc' => 'Пройти тур'
+                        ],
+                        'body' => 'Вы успешно прошли регистрацию! Рекомендуем вам пройти знакомство с нашим планировщиком.'
                     ]);
                     return $this->goHome();
                 }
@@ -118,12 +123,22 @@ class SignInController extends \yii\web\Controller
 
         if ($model->confirmEmail()) {
             Yii::$app->session->setFlash('alert', [
-                'options' => ['class' => 'alert-success', 'icon' => 'fa fa-check'],
+                'options' => [
+                    'title' => 'Подтверждение',
+                    'img' => 'images/ballicons 2/svg/letter.svg',
+                    'link' => '',
+                    'linkDesc' => ''
+                ],
                 'body' => 'Спасибо! Ваш Email успешно подтверждён.'
             ]);
         } else {
             Yii::$app->session->setFlash('alert', [
-                'options' => ['class' => 'alert-danger', 'icon' => 'fa fa-times'],
+                'options' => [
+                    'title' => 'Подтверждение',
+                    'img' => 'images/ballicons 2/svg/fire extinguisher.svg',
+                    'link' => '',
+                    'linkDesc' => ''
+                ],
                 'body' => 'Ошибка подтверждения Email.'
             ]);
         }
@@ -137,13 +152,23 @@ class SignInController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('alert', [
-                    'options' => ['class' => 'alert-success', 'icon' => 'fa fa-check'],
+                    'options' => [
+                        'title' => 'Восстановление пароля',
+                        'img' => 'images/ballicons 2/svg/letter.svg',
+                        'link' => '',
+                        'linkDesc' => ''
+                    ],
                     'body' => Yii::t('frontend', 'Check your email for further instructions.'),
                 ]);
             } else {
-                Yii::$app->getSession()->setFlash('alert', [
+                Yii::$app->session->setFlash('alert', [
+                    'options' => [
+                        'title' => 'Восстановление пароля',
+                        'img' => 'images/ballicons 2/svg/letter.svg',
+                        'link' => '',
+                        'linkDesc' => ''
+                    ],
                     'body' => Yii::t('frontend', 'Sorry, we are unable to reset password for email provided.'),
-                    'options' => ['class' => 'alert-danger', 'icon' => 'fa fa-times'],
                 ]);
             }
         }
@@ -162,9 +187,14 @@ class SignInController extends \yii\web\Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->getSession()->setFlash('alert', [
+            Yii::$app->session->setFlash('alert', [
+                'options' => [
+                    'title' => 'Восстановление пароля',
+                    'img' => 'images/ballicons 2/svg/pencil.svg',
+                    'link' => '',
+                    'linkDesc' => ''
+                ],
                 'body' => Yii::t('frontend', 'New password was saved.'),
-                'options' => ['class' => 'alert-success', 'icon' => 'fa fa-check'],
             ]);
             return $this->goHome();
         }
@@ -232,8 +262,13 @@ class SignInController extends \yii\web\Controller
                     'lastname' => $attributes['last_name']
                 ]);
                 Yii::$app->session->setFlash('alert', [
-                    'options' => ['class' => 'alert-success', 'icon' => 'fa fa-heart'],
-                    'body' => 'Вы успешно зарегистрировались и осталось лишь подтвердить e-mail! Добро пожаловать!'
+                    'options' => [
+                        'title' => 'Регистрация',
+                        'img' => 'images/ballicons 2/svg/heart.svg',
+                        'link' => 'http://google.com',
+                        'linkDesc' => 'Пройти тур'
+                    ],
+                    'body' => 'Вы успешно прошли регистрацию! Рекомендуем вам пройти знакомство с нашим планировщиком.'
                 ]);
             }
         }

@@ -11,9 +11,9 @@ var content = document.querySelector('.page-content');
 var is_RTL = false;
 var windowHeight = $(window).height();
 var start = delta = end = 0;
-$(window).load(function() {
+$(window).load(function () {
     "use strict";
-    setTimeout(function() {
+    setTimeout(function () {
         $('.loader-overlay').addClass('loaded');
         $('body > section').animate({
             opacity: 1
@@ -50,7 +50,7 @@ function handleSidebarFixed() {
     //if (!$('body').hasClass('sidebar-collapsed')) removeSubmenuHover();
     createSideScroll();
     $.removeCookie('fluid-sidebar');
-    $.removeCookie('fluid-sidebar', { path: '/'});
+    $.removeCookie('fluid-sidebar', {path: '/'});
     $.cookie('fixed-sidebar', 1);
     $.cookie('fixed-sidebar', 1, {
         path: '/'
@@ -133,8 +133,12 @@ function removeSidebarTop() {
 
 /* Toggle Sidebar on Top */
 function toggleSidebarTop() {
-    if ($('body').hasClass('sidebar-top')) { removeSidebarTop() }
-    else { createSidebarTop() }
+    if ($('body').hasClass('sidebar-top')) {
+        removeSidebarTop()
+    }
+    else {
+        createSidebarTop()
+    }
 }
 
 /* Create Sidebar only visible on Hover */
@@ -268,8 +272,12 @@ function handleboxedLayout() {
 /* Toggle Sidebar Collapsed */
 function collapsedSidebar() {
     if ($body.css('position') != 'relative') {
-        if (!$body.hasClass('sidebar-collapsed')) { createCollapsedSidebar() }
-        else { removeCollapsedSidebar() }
+        if (!$body.hasClass('sidebar-collapsed')) {
+            createCollapsedSidebar()
+        }
+        else {
+            removeCollapsedSidebar()
+        }
     } else {
         if ($body.hasClass('sidebar-show')) $body.removeClass('sidebar-show');
         else $body.addClass('sidebar-show');
@@ -305,7 +313,7 @@ function removeCollapsedSidebar() {
         path: '/'
     });
 }
-$('[data-toggle]').on('click', function(event) {
+$('[data-toggle]').on('click', function (event) {
     event.preventDefault();
     var toggleLayout = $(this).data('toggle');
     //if (toggleLayout == 'rtl') toggleRTL();
@@ -320,7 +328,7 @@ $('[data-toggle]').on('click', function(event) {
 
 /* Reset to Default Style, remove all cookie and custom layouts */
 function resetStyle() {
-    $('#reset-style').on('click', function(event) {
+    $('#reset-style').on('click', function (event) {
         event.preventDefault();
         //removeBoxedLayout();
         removeSidebarTop();
@@ -337,7 +345,7 @@ function resetStyle() {
         $.removeCookie('submenu-hover');
         $.removeCookie('sidebar-collapsed');
         $.removeCookie('app-language');
-        $.removeCookie('app-language', { path: '/'});
+        $.removeCookie('app-language', {path: '/'});
         $.removeCookie('rtl', {
             path: '/'
         });
@@ -362,18 +370,18 @@ function resetStyle() {
         $.removeCookie('sidebar-collapsed', {
             path: '/'
         });
-        $('body').removeClass(function(index, css) {
+        $('body').removeClass(function (index, css) {
             return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
         });
-        $('body').removeClass(function(index, css) {
+        $('body').removeClass(function (index, css) {
             return (css.match(/(^|\s)color-\S+/g) || []).join(' ');
         });
-        $('body').removeClass(function(index, css) {
+        $('body').removeClass(function (index, css) {
             return (css.match(/(^|\s)theme-\S+/g) || []).join(' ');
         });
         $('body').addClass('theme-sdtl').addClass('color-default');
         $('.builder .theme-color').removeClass('active');
-        $('.theme-color').each(function() {
+        $('.theme-color').each(function () {
             if ($(this).data('color') == '#319DB5') $(this).addClass('active');
         });
         $('.builder .theme').removeClass('active');
@@ -413,7 +421,7 @@ function toggleFullScreen() {
         }
     }
 }
-$('.toggle_fullscreen').click(function() {
+$('.toggle_fullscreen').click(function () {
     toggleFullScreen();
 });
 
@@ -442,28 +450,29 @@ function unblockUI(item) {
 function handlePanelAction() {
     /* Create Portlets Controls automatically */
     function handlePanelControls() {
-        $('.panel-controls').each(function() {
+        $('.panel-controls').each(function () {
             var controls_html = '<div class="control-btn">' + '<a href="#" class="panel-reload"><i class="icon-reload"></i></a>' + '<a href="#" class="panel-maximize"><i class="icon-size-fullscreen"></i></a>' + '<a href="#" class="panel-toggle"><i class="fa fa-angle-down"></i></a>' + '</div>';
             $(this).append(controls_html);
         });
     }
+
     handlePanelControls();
     // Toggle Panel Content
-    $(document).on("click", ".panel-header .panel-toggle", function(event) {
+    $(document).on("click", ".panel-header .panel-toggle", function (event) {
         event.preventDefault();
         $(this).toggleClass("closed").parents(".panel:first").find(".panel-content").slideToggle();
     });
     // Reload Panel Content
-    $(document).on("click", '.panel-header .panel-reload', function(event) {
+    $(document).on("click", '.panel-header .panel-reload', function (event) {
         event.preventDefault();
         var el = $(this).parents(".panel:first");
         blockUI(el);
-        window.setTimeout(function() {
+        window.setTimeout(function () {
             unblockUI(el);
         }, 1800);
     });
     // Maximize Panel Dimension 
-    $(document).on("click", ".panel-header .panel-maximize", function(event) {
+    $(document).on("click", ".panel-header .panel-maximize", function (event) {
         event.preventDefault();
         var panel = $(this).parents(".panel:first");
         panel.removeAttr("style").toggleClass("maximized");
@@ -486,7 +495,7 @@ function handlePanelAction() {
 /* Create Custom Scroll for elements like Portlets or Dropdown menu */
 function customScroll() {
     if ($.fn.mCustomScrollbar) {
-        $('.withScroll').each(function() {
+        $('.withScroll').each(function () {
             $(this).mCustomScrollbar("destroy");
             var scroll_height = $(this).data('height') ? $(this).data('height') : 'auto';
             var data_padding = $(this).data('padding') ? $(this).data('padding') : 0;
@@ -516,7 +525,7 @@ function customScroll() {
 /* BEGIN SIDEBAR                                             */
 /* Sidebar Sortable menu & submenu */
 function handleSidebarSortable() {
-    $('.menu-settings').on('click', '#reorder-menu', function(e) {
+    $('.menu-settings').on('click', '#reorder-menu', function (e) {
         e.preventDefault();
         $('.nav-sidebar').removeClass('remove-menu');
         $(".nav-sidebar").sortable({
@@ -527,7 +536,7 @@ function handleSidebarSortable() {
             axis: "y",
             dropOnEmpty: true,
             forcePlaceholderSize: true,
-            receive: function(event, ui) {
+            receive: function (event, ui) {
                 $("body").trigger("resize")
             }
         });
@@ -538,7 +547,7 @@ function handleSidebarSortable() {
             opacity: 0.5,
             dropOnEmpty: true,
             forcePlaceholderSize: true,
-            receive: function(event, ui) {
+            receive: function (event, ui) {
                 $("body").trigger("resize")
             }
         });
@@ -547,7 +556,7 @@ function handleSidebarSortable() {
         $('.remove-menu').attr("id", "remove-menu").html('Remove menu');
     });
     /* End Sortable Menu Elements*/
-    $('.menu-settings').on('click', '#end-reorder-menu', function(e) {
+    $('.menu-settings').on('click', '#end-reorder-menu', function (e) {
         e.preventDefault();
         $(".nav-sidebar").sortable();
         $(".nav-sidebar").sortable("destroy");
@@ -559,7 +568,7 @@ function handleSidebarSortable() {
 /* Sidebar Remove Menu Elements*/
 function handleSidebarRemove() {
     /* Remove Menu Elements*/
-    $('.menu-settings').on('click', '#remove-menu', function(e) {
+    $('.menu-settings').on('click', '#remove-menu', function (e) {
         e.preventDefault();
         $(".nav-sidebar").sortable();
         $(".nav-sidebar").sortable("destroy");
@@ -569,20 +578,20 @@ function handleSidebarRemove() {
         $('.reorder-menu').attr("id", "reorder-menu").html('Reorder menu');
     });
     /* End Remove Menu Elements*/
-    $('.menu-settings').on('click', '#end-remove-menu', function(e) {
+    $('.menu-settings').on('click', '#end-remove-menu', function (e) {
         e.preventDefault();
         $('.nav-sidebar').removeClass('remove-menu');
         $(this).attr("id", "remove-menu").html('Remove menu');
     });
-    $('.sidebar').on('click', '.remove-menu > li', function() {
+    $('.sidebar').on('click', '.remove-menu > li', function () {
         var $menu = $(this);
         if ($(this).hasClass('nav-parent'))
             var $remove_txt = "Are you sure to remove this menu (all submenus will be deleted too)?";
         else $remove_txt = "Are you sure to remove this menu?";
-        bootbox.confirm($remove_txt, function(result) {
+        bootbox.confirm($remove_txt, function (result) {
             if (result === true) {
                 $menu.addClass("animated bounceOutLeft");
-                window.setTimeout(function() {
+                window.setTimeout(function () {
                     $menu.remove();
                 }, 300);
             }
@@ -593,8 +602,8 @@ function handleSidebarRemove() {
 /* Hide User & Search Sidebar */
 function handleSidebarHide() {
     var hiddenElements = $(':hidden');
-    var     visileElements = $(':visible');
-    $('.menu-settings').on('click', '#hide-top-sidebar', function(e) {
+    var visileElements = $(':visible');
+    $('.menu-settings').on('click', '#hide-top-sidebar', function (e) {
         e.preventDefault();
         var this_text = $(this).text();
         $('.sidebar .sidebar-top').slideToggle(300);
@@ -602,7 +611,7 @@ function handleSidebarHide() {
             $(this).text('Show user & search');
         }
     });
-    $('.topbar').on('click', '.toggle-sidebar-top', function(e) {
+    $('.topbar').on('click', '.toggle-sidebar-top', function (e) {
         e.preventDefault();
         $('.sidebar .sidebar-top').slideToggle(300);
         if ($('.toggle-sidebar-top span').hasClass('icon-user-following')) {
@@ -649,7 +658,7 @@ function toggleSidebarMenu() {
         display: ''
     });
     else $('.nav-active.active .children').css('display', 'block');
-    $('.sidebar').on('click', '.nav-sidebar li.nav-parent > a', function(e) {
+    $('.sidebar').on('click', '.nav-sidebar li.nav-parent > a', function (e) {
         e.preventDefault();
         if ($('body').hasClass('sidebar-collapsed') && !$('body').hasClass('sidebar-hover')) return;
         if ($('body').hasClass('submenu-hover')) return;
@@ -661,18 +670,18 @@ function toggleSidebarMenu() {
         if (sub.is(":visible")) {
             sub.children().addClass('hidden-item')
             $(this).parent().removeClass("active");
-            sub.slideUp(200, function() {
+            sub.slideUp(200, function () {
                 sub.children().removeClass('hidden-item')
             });
         } else {
             $(this).find('.arrow').addClass('active');
             sub.children().addClass('is-hidden');
-            setTimeout(function() {
+            setTimeout(function () {
                 sub.children().addClass('is-shown');
             }, 0);
-            sub.slideDown(200, function() {
+            sub.slideDown(200, function () {
                 $(this).parent().addClass("active");
-                setTimeout(function() {
+                setTimeout(function () {
                     sub.children().removeClass('is-hidden').removeClass('is-shown');
                 }, 500);
             });
@@ -683,23 +692,23 @@ function toggleSidebarMenu() {
 /**** Handle Sidebar Widgets ****/
 // Add class everytime a mouse pointer hover over it
 var hoverTimeout;
-$('.nav-sidebar > li').hover(function() {
+$('.nav-sidebar > li').hover(function () {
     clearTimeout(hoverTimeout);
     $(this).siblings().removeClass('nav-hover');
     $(this).addClass('nav-hover');
-}, function() {
+}, function () {
     var $self = $(this);
-    hoverTimeout = setTimeout(function() {
+    hoverTimeout = setTimeout(function () {
         $self.removeClass('nav-hover');
     }, 200);
 });
-$('.nav-sidebar > li .children').hover(function() {
+$('.nav-sidebar > li .children').hover(function () {
     clearTimeout(hoverTimeout);
     $(this).closest('.nav-parent').siblings().removeClass('nav-hover');
     $(this).closest('.nav-parent').addClass('nav-hover');
-}, function() {
+}, function () {
     var $self = $(this);
-    hoverTimeout = setTimeout(function() {
+    hoverTimeout = setTimeout(function () {
         $(this).closest('.nav-parent').removeClass('nav-hover');
     }, 200);
 });
@@ -711,19 +720,19 @@ if ($('body').hasClass('sidebar-collapsed')) $('.nav-sidebar .children').css({
     display: ''
 });
 // Handles form inside of dropdown 
-$('.dropdown-menu').find('form').click(function(e) {
+$('.dropdown-menu').find('form').click(function (e) {
     e.stopPropagation();
 });
 /***** Scroll to top button *****/
 function scrollTop() {
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
             $('.scrollup').fadeIn();
         } else {
             $('.scrollup').fadeOut();
         }
     });
-    $('.scrollup').click(function() {
+    $('.scrollup').click(function () {
         $("html, body").animate({
             scrollTop: 0
         }, 1000);
@@ -743,11 +752,19 @@ function sidebarBehaviour() {
         destroySideScroll();
     }
 }
-function generate(type, icon, desc) {
+function generate(title, img, desc, link, linkDesc) {
     noty({
-        text: '<div class="alert ' + type + ' media fade in"> ' +
-        '<i class=" ' + icon + ' "></i> ' +
-        '<p> ' + desc + ' </p> </div>',
+        text: '<div class="alert alert-dark media fade in bd-0" id="message-alert">' +
+        '<div class="media-left">' +
+        '<img src="' + img + '" ' +
+        'class="dis-block">' +
+        '</div><div class="media-body width-100p">' +
+        '<h4 class="alert-title f-14">' + title + '</h4>' +
+        '<p class="f-12 alert-message pull-left">' +
+        '' + desc + '</p>' +
+        '<p class="pull-right">' +
+        '<a href="' + link + '" class="f-12">' + linkDesc + '</a>' +
+        '</p></div></div>',
         layout: 'topRight',
         theme: 'made',
         maxVisible: 10,
@@ -757,7 +774,7 @@ function generate(type, icon, desc) {
             easing: 'swing',
             speed: 500
         },
-        timeout: 8000
+        timeout: 9000
     });
 }
 
@@ -781,7 +798,7 @@ function detectIE() {
 }
 
 /****  Initiation of Main Functions  ****/
-$(document).ready(function() {
+$(document).ready(function () {
     createSideScroll();
     toggleSidebarMenu();
     customScroll();
@@ -792,7 +809,7 @@ $(document).ready(function() {
     scrollTop();
     sidebarBehaviour();
     detectIE();
-    setTimeout(function() {
+    setTimeout(function () {
         handleboxedLayout();
     }, 100);
 
@@ -825,7 +842,7 @@ $(document).ready(function() {
 
     var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
 
-    $(document).on('mouseenter', '.ct-point', function() {
+    $(document).on('mouseenter', '.ct-point', function () {
         var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
             value = $(this).attr('ct:value');
 
@@ -833,11 +850,11 @@ $(document).ready(function() {
         $tooltip.removeClass('tooltip-hidden');
     });
 
-    $(document).on('mouseleave', '.ct-point', function() {
+    $(document).on('mouseleave', '.ct-point', function () {
         $tooltip.addClass('tooltip-hidden');
     });
 
-    $(document).on('mousemove', '.ct-point', function(event) {
+    $(document).on('mousemove', '.ct-point', function (event) {
         console.log(event);
         $tooltip.css({
             left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
@@ -853,19 +870,19 @@ $(document).ready(function() {
         prevText: '<i class="fa fa-chevron-left"></i>',
         nextText: '<i class="fa fa-chevron-right"></i>',
         showButtonPanel: false,
-        beforeShow: function(input, inst) {
+        beforeShow: function (input, inst) {
             var newclass = 'admin-form';
             var themeClass = $(this).parents('.admin-form').attr('class');
             var smartpikr = inst.dpDiv.parent();
             if (!smartpikr.hasClass(themeClass)) {
                 inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
             }
-       }
+        }
 
     });
 
     // Init FullCalendar external events
-    $('#external-events .fc-event').each(function() {
+    $('#external-events .fc-event').each(function () {
         // store data so the calendar knows to render an event upon drop
         $(this).data('event', {
             title: $.trim($(this).text()), // use the element's text as the event title
@@ -893,7 +910,7 @@ $(document).ready(function() {
             right: 'month,agendaWeek,agendaDay'
         },
         editable: true,
-        viewRender: function(view) {
+        viewRender: function (view) {
             // Update mini calendar title
             var titleContainer = $('.fc-title-clone');
             if (!titleContainer.length) {
@@ -902,13 +919,13 @@ $(document).ready(function() {
             titleContainer.html(view.title);
         },
         droppable: true, // this allows things to be dropped onto the calendar
-        drop: function() {
+        drop: function () {
             // is the "remove after drop" checkbox checked?
             if (!$(this).hasClass('event-recurring')) {
                 $(this).remove();
             }
         },
-        eventRender: function(event, element) {
+        eventRender: function (event, element) {
             // create event tooltip using bootstrap tooltips
             $(element).attr("data-original-title", event.title);
             $(element).tooltip({
@@ -919,8 +936,8 @@ $(document).ready(function() {
                 }
             });
             // create a tooltip auto close timer
-            $(element).on('show.bs.tooltip', function() {
-                var autoClose = setTimeout(function() {
+            $(element).on('show.bs.tooltip', function () {
+                var autoClose = setTimeout(function () {
                     $('.tooltip').fadeOut();
                 }, 3500);
             });
@@ -931,8 +948,8 @@ $(document).ready(function() {
 
 /****  Resize Event Functions  ****/
 
-$(window).resize(function() {
-    setTimeout(function() {
+$(window).resize(function () {
+    setTimeout(function () {
         customScroll();
         //reposition_topnav();
         if (!$('body').hasClass('fixed-sidebar') && !$('body').hasClass('builder-admin')) sidebarBehaviour();

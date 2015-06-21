@@ -42,23 +42,24 @@ function handleTodoList() {
             type: 'text',
             mode: 'inline'
         });
-        /*$('.due-date-span').editable({
+        $('.due-date-span').editable({
             type: 'combodate',
-            format: 'MM-DD',
+            format: 'dd MM',
+            emptytext: 'Без имени',
             placement: 'bottom',
-            viewformat: 'DD.MM',
+            viewformat: 'D MMMM',
             template: 'D / MMMM',
             language: 'ru'
-        });*/
-        $('.due-date-span').editable({
+        });
+        /*$('.due-date-span').editable({
             type: 'date',
             clear: false,
-            mode: 'inline',
+
             datepicker: { weekStart: 0, startView: 0, minViewMode: 0, autoclose: false },
-            placement: 'right',
+            placement: 'bottom',
             format: 'dd MM',
             language: 'ru'
-        });
+        });*/
         /* Sortable Task */
         $(".todo-list").sortable({
             cancel: ".done",
@@ -103,16 +104,15 @@ function handleTodoList() {
             '<span class="todo-task editable editable-click">Новая задача</span>' +
             '<div class="todo-date clearfix">' +
             '<div class="completed-date"></div>' +
-            '<div class="due-date">До ' + currentDay + ' ' + currentMonth + '</div>' +
-            '</div>' +
+            '<div class="due-date">Выполнить до <span class="due-date-span">' + currentDay +
+            ' ' + currentMonth + '</span></div></div>' +
             '<span class="todo-options pull-right">' +
-            '<a href="#" class="todo-delete" data-rel="tooltip" data-original-title="Remove task">' +
+            '<a href="#" class="todo-delete" data-rel="tooltip" data-original-title="Не нужно">' +
             '<i class="fa fa-times"></i></a>' +
             '</span>' +
             '<div class="todo-tags pull-right">' +
             '<div class="label label-system">Без категории</div>' +
-            '</div>' +
-            '</li>';
+            '</div></li>';
             $(this).parent().parent().parent().find(".todo-list").append(item);
             $('.todo-list .todo-task').editable({
                 type: 'text',

@@ -18,7 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><?= Html::encode($this->title) ?></title>
-
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
     <?php $this->registerJsFile('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',

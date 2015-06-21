@@ -5183,8 +5183,22 @@ body:not(.fixed-topbar) .main-content .page-content {
 .todo-list li .todo-task:hover {
   border-bottom: 1px dashed rgba(0, 0, 0, 0.2) !important;
 }
-.todo-list li .due-date span {
-  border-bottom: 1px dashed rgba(0, 0, 0, 0) !important;
+.jquery-clock .jquery-clock-noty {
+    -webkit-transform: rotate(296deg);
+    -webkit-background-size: contain;
+    /*background-image: url(../images/clock/sechand.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;*/
+    height: 100%;
+    left: 45%;
+    position: absolute;
+    top: 0;
+    width: 10%;
+    z-index: 3;
+}
+.due-date-span {
+  border-bottom: 1px dashed rgba(100, 100, 100, 1) !important;
   font-size: 12px;
 }
 .todo-list li .todo-date {

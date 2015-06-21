@@ -53,30 +53,47 @@
 
 <script>
     $(document).ready(function() {
-        function generate(type, icon, desc) {
+        function generate(title, img, desc, link, linkDesc) {
             noty({
-                text        : '<div class="alert ' + type + ' media fade in"> ' +
-                              '<i class=" ' + icon + ' "></i> ' +
-                              '<p> ' + desc + ' </p> </div>',
-                layout      : 'topRight',
-                theme       : 'made',
-                maxVisible  : 10,
-                animation   : {
-                    open  : 'animated bounceIn',
-                    close : 'animated bounceOut',
+                text: '<div class="alert alert-dark media fade in bd-0" id="message-alert">' +
+                '<div class="media-left">' +
+                '<img src="' + img + '" ' +
+                'class="dis-block">' +
+                '</div><div class="media-body width-100p">' +
+                '<h4 class="alert-title f-14">' + title + '</h4>' +
+                '<p class="f-12 alert-message pull-left">' +
+                '' + desc + '</p>' +
+                '<p class="pull-right">' +
+                '<a href="' + link + '" class="f-12">' + linkDesc + '</a>' +
+                '</p></div></div>',
+                layout: 'topRight',
+                theme: 'made',
+                maxVisible: 10,
+                animation: {
+                    open: 'animated bounceIn',
+                    close: 'animated bounceOut',
                     easing: 'swing',
-                    speed : 100
+                    speed: 500
                 },
-                timeout: 3000
+                timeout: 4000
             });
         }
 
         $("#show").click(function () {
             if (!$('#contactform-name').val() || !$('#contactform-email').val() ||
                 !$('#contactform-subject').val() || !$('#contactform-body').val())
-                generate('alert-danger', 'icon-close', 'Кажется, вы не заполнили некоторые поля!');
+                generate('Ошибка',
+                         'images/ballicons 2/svg/wrench.svg',
+                         'Хм, похоже, что Вы забыли заполнить необходимые поля!',
+                         '',
+                         '');
             else
-                generate('alert-success', 'icon-heart', 'Спасибо! Ваше мнение будет услышано!');
+                generate(
+                    'Спасибо!',
+                    'images/ballicons 2/svg/heart.svg',
+                    'Благодарим за проявленную инициативу к проекту! Ваше мнение будет услышано.',
+                    '',
+                    '');
         });
     });
 </script>

@@ -6000,7 +6000,7 @@ Editableform based on Twitter Bootstrap 3
 					parts = date.match(/([\-+]\d+)([dmwy])/g),
 					part, dir;
 				date = new Date();
-				for (var i=0; i<parts.length; i++) {
+				for (var=0; i<parts.length; i++) {
 					part = part_re.exec(parts[i]);
 					dir = parseInt(part[1]);
 					switch(part[2]){

@@ -83,6 +83,11 @@
                 <ul class="jquery-clock medium" data-jquery-clock="">
                     <li class="jquery-clock-pin"></li>
                     <li class="jquery-clock-sec"></li>
+                    <li class="jquery-clock-noty">
+                        <div class="tooltipp tooltip-west">
+                            <span class="tooltip-item"></span>
+                        </div>
+                    </li>
                     <li class="jquery-clock-min"></li>
                     <li class="jquery-clock-hour"></li>
                 </ul>
