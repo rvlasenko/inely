@@ -3,15 +3,7 @@
 
     /* @var $this \yii\web\View */
     /* @var $content string */
-Yii::$app->session->setFlash('alert', [
-    'options' => [
-        'title' => 'Регистрация',
-        'img' => 'images/ballicons 2/svg/heart.svg',
-        'link' => 'http://google.com',
-        'linkDesc' => 'Пройти тур'
-    ],
-    'body' => 'Вы успешно прошли регистрацию! Рекомендуем вам пройти знакомство с нашим планировщиком.'
-]);
+
     frontend\assets\FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>

@@ -81,7 +81,6 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="jquery-clock medium" data-jquery-clock="">
-                    <li class="jquery-clock-pin"></li>
                     <li class="jquery-clock-sec"></li>
                     <li class="jquery-clock-noty">
                         <div class="tooltipp tooltip-west">

@@ -774,7 +774,7 @@ function generate(title, img, desc, link, linkDesc) {
             easing: 'swing',
             speed: 500
         },
-        timeout: 9000
+        timeout: 8000
     });
 }
 
@@ -863,6 +863,14 @@ $(document).ready(function () {
     });
 
     if ($('body').hasClass('sidebar-hover')) sidebarHover();
+
+    $('span.tooltip-item').click(function () {
+        generate('Предстоящее событие',
+            'images/ballicons 2/svg/watch.svg',
+            '15:43<br><br>Отправить письмо Бобу',
+            '',
+            '');
+    });
 
     // Calendar form date picker
     $("#eventDate").datepicker({

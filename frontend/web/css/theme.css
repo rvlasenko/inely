@@ -1328,9 +1328,9 @@ h4.alert-title {
     white-space: normal;
 }
 
-.media:first-child {
+.alert.alert-dark.media.fade.in.bd-0:first-child {
     margin-top: 0;
     position: absolute;
     top: 1em;
-    left: -6em;
+    left: -5em;
 }

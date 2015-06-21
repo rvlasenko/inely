@@ -6167,17 +6167,6 @@ body:not(.fixed-topbar) .main-content .page-content {
   width: 10%;
   z-index: 1;
 }
-.jquery-clock .jquery-clock-pin {
-  background: #fff;
-  border-radius: 50%;
-  height: 3%;
-  left: 50%;
-  margin: -1.5%;
-  position: absolute;
-  top: 50%;
-  width: 3%;
-  z-index: 10;
-}
 .jquery-clock .jquery-clock-transitions {
   -webkit-transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);
   -moz-transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);

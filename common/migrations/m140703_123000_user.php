@@ -65,7 +65,6 @@ class m140703_123000_user extends Migration
             'lastname' => Schema::TYPE_STRING . '(255) ',
             'avatar_path' => Schema::TYPE_STRING . '(255) ',
             'avatar_base_url' => Schema::TYPE_STRING . '(255) ',
-            'locale' => Schema::TYPE_STRING . '(32) NOT NULL',
             'gender' => Schema::TYPE_INTEGER . '(1)'
         ], $tableOptions);
 

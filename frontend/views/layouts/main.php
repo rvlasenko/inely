@@ -32,12 +32,21 @@ FLASH;
 <?php
     $this->endContent();
 ?>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
                 <div class="loader"></div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="full-colored" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content bg-gray-light">
+            <div class="modal-body"></div>
         </div>
     </div>
 </div>

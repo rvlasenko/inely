@@ -1,8 +1,12 @@
+<?php
+
+?>
+
 <div class="panel">
     <div class="panel-header">
         <h3>
             <i class="icon-list"></i>
-            <strong>Todo</strong>List
+            <strong>Todo</strong> List
         </h3>
     </div>
     <div class="panel-content p-t-0 p-b-0 widget-news">
@@ -21,7 +25,7 @@
                                 <div class="todo-date clearfix">
                                     <div class="completed-date"></div>
                                     <div class="due-date">Выполнить до
-                                        <span class="due-date-span">15 декабря</span>
+                                        <span class="due-date-span">12/07 12:34</span>
                                     </div>
                                 </div>
                                 <span class="todo-options pull-right">
