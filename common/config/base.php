@@ -55,7 +55,13 @@ $config = [
             'password' => getenv('DB_PASSWORD'),
             'tablePrefix' => getenv('DB_TABLE_PREFIX'),
             'charset' => 'utf8',
-            'enableSchemaCache' => YII_ENV_PROD,
+            'enableSchemaCache' => true,
+
+            // Duration of schema cache.
+            'schemaCacheDuration' => 3600,
+
+            // Name of the cache component used to store schema information
+            'schemaCache' => 'cache',
         ],
 
         'log' => [

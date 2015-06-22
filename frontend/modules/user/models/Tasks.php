@@ -76,6 +76,7 @@ class Tasks extends ActiveRecord
             ->limit(8)
             ->joinWith('tasks_cat')
             ->orderBy('name')
+            ->asArray()
             ->all();
 
         return $tasks;
