@@ -74,41 +74,41 @@
 		"estimated": {
 		},
 		"station_id":"27679",
-		"observation_time":"Last Updated on Июнь 22, 9:00 AM MSK",
-		"observation_time_rfc822":"Mon, 22 Jun 2015 09:00:00 +0300",
-		"observation_epoch":"1434952800",
-		"local_time_rfc822":"Mon, 22 Jun 2015 11:45:38 +0300",
-		"local_epoch":"1434962738",
+		"observation_time":"Last Updated on Июнь 22, 12:00 PM MSK",
+		"observation_time_rfc822":"Mon, 22 Jun 2015 12:00:00 +0300",
+		"observation_epoch":"1434963600",
+		"local_time_rfc822":"Mon, 22 Jun 2015 14:25:15 +0300",
+		"local_epoch":"1434972315",
 		"local_tz_short":"MSK",
 		"local_tz_long":"Europe/Moscow",
 		"local_tz_offset":"+0300",
-		"weather":"Ясно",
-		"temperature_string":"76 F (24 C)",
-		"temp_f":76,
-		"temp_c":24,
-		"relative_humidity":"52%",
-		"wind_string":"From the SW at 4 MPH",
+		"weather":"Переменная Облачность",
+		"temperature_string":"84 F (29 C)",
+		"temp_f":84,
+		"temp_c":29,
+		"relative_humidity":"38%",
+		"wind_string":"From the SW at 7 MPH",
 		"wind_dir":"SW",
 		"wind_degrees":230,
-		"wind_mph":4,
+		"wind_mph":7,
 		"wind_gust_mph":0,
-		"wind_kph":7,
+		"wind_kph":11,
 		"wind_gust_kph":0,
 		"pressure_mb":"1011",
-		"pressure_in":"29.86",
+		"pressure_in":"29.87",
 		"pressure_trend":"+",
-		"dewpoint_string":"62 F (16 C)",
+		"dewpoint_string":"62 F (17 C)",
 		"dewpoint_f":62,
-		"dewpoint_c":16,
+		"dewpoint_c":17,
 		"heat_index_string":"NA",
 		"heat_index_f":"NA",
 		"heat_index_c":"NA",
 		"windchill_string":"NA",
 		"windchill_f":"NA",
 		"windchill_c":"NA",
-		"feelslike_string":"76 F (24 C)",
-		"feelslike_f":"76",
-		"feelslike_c":"24",
+		"feelslike_string":"84 F (29 C)",
+		"feelslike_f":"84",
+		"feelslike_c":"29",
 		"visibility_mi":"31.0",
 		"visibility_km":"50.0",
 		"solarradiation":"--",
@@ -118,8 +118,8 @@
 		"precip_today_string":" in ( mm)",
 		"precip_today_in":"",
 		"precip_today_metric":"--",
-		"icon":"clear",
-		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"icon":"partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
 		"forecast_url":"http://www.wunderground.com/global/stations/27679.html",
 		"history_url":"http://www.wunderground.com/history/airport/27679/2015/6/22/DailyHistory.html",
 		"ob_url":"http://www.wunderground.com/cgi-bin/findweather/getForecast?query=54.81666565,46.58333206",
@@ -128,16 +128,16 @@
 		,
 	"forecast":{
 		"txt_forecast": {
-		"date":"10:33 AM MSK",
+		"date":"1:47 PM MSK",
 		"forecastday": [
 		{
 		"period":0,
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
 		"title":"Понедельник",
-		"fcttext":"Переменная облачность. Повышение 85F. Ветер З и переменный.",
-		"fcttext_metric":"Переменная облачность. Повышение 29C. Ветер З и переменный.",
-		"pop":"0"
+		"fcttext":"Малооблачно. Повышение 85F. Ветер ЗСЗ и переменный.",
+		"fcttext_metric":"Малооблачно. Повышение 29C. Ветер ЗСЗ и переменный.",
+		"pop":"10"
 		}
 		,
 		{
@@ -145,7 +145,7 @@
 		"icon":"nt_tstorms",
 		"icon_url":"http://icons.wxug.com/i/c/k/nt_tstorms.gif",
 		"title":"В ночь на Вторник",
-		"fcttext":"Грозы. Понижение 65F. Ветер ССЗ от 5 до 10 миль/ч. Вероятность дождя 80%.",
+		"fcttext":"Грозы. Понижение 64F. Ветер ССЗ от 5 до 10 миль/ч. Вероятность дождя 80%.",
 		"fcttext_metric":"Грозы. Понижение 18C. Ветер ССЗ от 10 до 15 км/ч. Вероятность дождя 80%.",
 		"pop":"80"
 		}
@@ -165,8 +165,8 @@
 		"icon":"nt_clear",
 		"icon_url":"http://icons.wxug.com/i/c/k/nt_clear.gif",
 		"title":"В ночь на Среду",
-		"fcttext":"Малооблачно. Понижение 62F. Ветер С и переменный.",
-		"fcttext_metric":"Малооблачно. Понижение 16C. Ветер С и переменный.",
+		"fcttext":"Малооблачно. Понижение 62F. Ветер ССВ и переменный.",
+		"fcttext_metric":"Малооблачно. Понижение 16C. Ветер ССВ и переменный.",
 		"pop":"10"
 		}
 		,
@@ -195,8 +195,8 @@
 		"icon":"tstorms",
 		"icon_url":"http://icons.wxug.com/i/c/k/tstorms.gif",
 		"title":"Четверг",
-		"fcttext":"Грозы. Повышение 90F. Ветер СВ от 5 до 10 миль/ч. Вероятность дождя 80%.",
-		"fcttext_metric":"Грозы. Повышение 32C. Ветер СВ от 10 до 15 км/ч. Вероятность дождя 80%.",
+		"fcttext":"Грозы. Повышение 91F. Ветер СВ от 5 до 10 миль/ч. Вероятность дождя 80%.",
+		"fcttext_metric":"Грозы. Повышение 33C. Ветер СВ от 10 до 15 км/ч. Вероятность дождя 80%.",
 		"pop":"80"
 		}
 		,
@@ -238,25 +238,25 @@
 		"celsius":"29"
 		},
 		"low": {
-		"fahrenheit":"65",
+		"fahrenheit":"64",
 		"celsius":"18"
 		},
-		"conditions":"Небольшая Облачность",
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"conditions":"Ясно",
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
 		"skyicon":"",
-		"pop":0,
+		"pop":10,
 		"qpf_allday": {
-		"in": 0.44,
-		"mm": 11
+		"in": 0.48,
+		"mm": 12
 		},
 		"qpf_day": {
 		"in": 0.00,
 		"mm": 0
 		},
 		"qpf_night": {
-		"in": 0.44,
-		"mm": 11
+		"in": 0.48,
+		"mm": 12
 		},
 		"snow_allday": {
 		"in": 0.0,
@@ -273,16 +273,16 @@
 		"maxwind": {
 		"mph": 10,
 		"kph": 16,
-		"dir": "З",
-		"degrees": 276
+		"dir": "ЗСЗ",
+		"degrees": 290
 		},
 		"avewind": {
 		"mph": 5,
 		"kph": 8,
-		"dir": "З",
-		"degrees": 276
+		"dir": "ЗСЗ",
+		"degrees": 290
 		},
-		"avehumidity": 51,
+		"avehumidity": 50,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
@@ -348,15 +348,15 @@
 		"mph": 10,
 		"kph": 16,
 		"dir": "ЗСЗ",
-		"degrees": 294
+		"degrees": 295
 		},
 		"avewind": {
 		"mph": 6,
 		"kph": 10,
 		"dir": "ЗСЗ",
-		"degrees": 294
+		"degrees": 295
 		},
-		"avehumidity": 67,
+		"avehumidity": 68,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
@@ -422,13 +422,13 @@
 		"mph": 5,
 		"kph": 8,
 		"dir": "ВСВ",
-		"degrees": 57
+		"degrees": 60
 		},
 		"avewind": {
 		"mph": 4,
 		"kph": 6,
 		"dir": "ВСВ",
-		"degrees": 57
+		"degrees": 60
 		},
 		"avehumidity": 68,
 		"maxhumidity": 0,
@@ -456,8 +456,8 @@
 },
 		"period":4,
 		"high": {
-		"fahrenheit":"90",
-		"celsius":"32"
+		"fahrenheit":"91",
+		"celsius":"33"
 		},
 		"low": {
 		"fahrenheit":"66",
@@ -496,15 +496,15 @@
 		"mph": 10,
 		"kph": 16,
 		"dir": "СВ",
-		"degrees": 48
+		"degrees": 50
 		},
 		"avewind": {
 		"mph": 6,
 		"kph": 10,
 		"dir": "СВ",
-		"degrees": 48
+		"degrees": 50
 		},
-		"avehumidity": 60,
+		"avehumidity": 59,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}

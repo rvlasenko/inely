@@ -55,25 +55,7 @@ class DefaultController extends Controller
     /**
      * @return string|\yii\web\Response
      */
-    public function actionIndex()
-    {
-        $user = Yii::$app->user->identity;
-        $model = new AccountForm();
-        $model->username = $user->username;
-        if ($model->load($_POST) && $model->validate()) {
-            $user->username = $model->username;
-            $user->setPassword($model->password);
-            $user->save();
-            Yii::$app->session->setFlash('alert', [
-                'options' => ['class' => 'alert-success'],
-                'body' => Yii::t('frontend', 'Your account has been successfully saved')
-            ]);
-            return $this->refresh();
-        }
-        return $this->render('index', [
-            'model' => $model
-        ]);
-    }
+
 
     /**
      * @return string|\yii\web\Response

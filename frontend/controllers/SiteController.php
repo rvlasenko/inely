@@ -11,7 +11,17 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
-    //public $layout = false;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 60
+            ],
+        ];
+    }
 
     public function actions()
     {
