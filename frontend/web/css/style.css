@@ -1181,8 +1181,9 @@ div.weather-top h2 {
   width: 100%;
 }
 .topbar .header-left .topnav > ul > li > a i {
-  font-size: 14px;
-  margin-right: 6px;
+    margin-right: 6px;
+    font-size: 2.6rem;
+    padding-top: 3px;
 }
 .topbar .header-left .topnav > ul > li > a i.icons-arrows-06 {
   display: inline-block;
@@ -3693,7 +3694,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
 }
 #quickview-toggle i {
   color: #232323;
-  font-size: 23px;
+    font-size: 2.4rem;
 }
 #quickview-sidebar {
   bottom: 0;
@@ -5170,7 +5171,7 @@ body:not(.fixed-topbar) .main-content .page-content {
   font-size: 18px;
 }
 .todo-list li .span-check {
-  height: 22px;
+  height: 11px;
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
@@ -5266,7 +5267,6 @@ body:not(.fixed-topbar) .main-content .page-content {
   display: inline-block;
   height: 24px;
   line-height: 26px;
-  margin-top: 5px;
   max-width: 72%;
   text-overflow: ellipsis;
   vertical-align: middle;

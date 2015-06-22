@@ -8,12 +8,12 @@
         <ul class="nav nav-icons">
             <li>
                 <a class="pull-left toggle_fullscreen" href="#" data-placement="top" data-original-title="Fullscreen">
-                    <span class="glyphicons glyphicons-imac"></span>
+                    <i class="fa fa-desktop"></i>
                 </a>
             </li>
             <li>
                 <a class="pull-left btn-effect" href="/logout" data-method="post" data-modal="modal-1" data-placement="top" data-original-title="Logout">
-                    <span class="glyphicons glyphicons-power"></span>
+                    <i class="fa fa-power-off"></i>
                 </a>
             </li>
         </ul>
@@ -99,7 +99,7 @@
         <li class="dropdown" id="user-header">
             <a href="#">
                 <img src="images/avatars/user1.png" alt="user image">
-                <span class="username">Hi, John Doe</span>
+                <span class="username">Hi, <?= \Yii::$app->user->id ?></span>
             </a>
         </li>
 

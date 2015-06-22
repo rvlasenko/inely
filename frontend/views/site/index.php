@@ -5,7 +5,9 @@
 <div class="main-content">
 <div class="topbar">
 
-    <?php $this->beginContent('@app/views/templates/topbar.php'); $this->endContent(); ?>
+    <?php $this->beginContent('@app/views/layouts/templates/topbar.php') ?>
+
+    <?php $this->endContent(); ?>
 
 </div>
 <!-- BEGIN PAGE CONTENT -->

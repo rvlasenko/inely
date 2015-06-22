@@ -4,29 +4,20 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
-        // Base
+        // ОБазовые правила
         '' => '/site/index',
-        'article' => '/article/index',
-        'contact' => '/site/contact',
         'todo' => '/user/todo/index',
 
-        // Register
+        // Регистрация
         'sign-up' => '/user/sign-in/signup',
         'reset' => '/user/sign-in/request-password-reset',
         'login' => '/user/sign-in/login',
 
-        // Account
+        // Пользователь
         'account' => '/user/default/index',
         'profile' => '/user/default/profile',
         'logout' => '/user/sign-in/logout',
         '<_a:(confirm-email)>' => 'user/sign-in/<_a>',
-
-        // Pages
-        ['pattern' => 'page/<slug>', 'route' => 'page/view'],
-
-        // Articles
-        ['pattern' => 'article/index', 'route' => 'article/index'],
-        ['pattern' => 'article/<slug>', 'route' => 'article/view'],
 
         // Api
         ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/article', 'only' => ['index', 'view', 'options']],

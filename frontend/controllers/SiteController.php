@@ -7,7 +7,7 @@ use Yii;
 use yii\web\Controller;
 
 /**
- * Site controller
+ * Основной контроллер
  */
 class SiteController extends Controller
 {
@@ -39,6 +39,12 @@ class SiteController extends Controller
             ]
         ];
     }
+
+    /**
+     * @return string
+     * Определение категории пользователя и вывод
+     * Также из модели дергаются методы и всё отправляется в index
+     */
 
     public function actionIndex()
     {

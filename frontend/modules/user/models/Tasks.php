@@ -11,6 +11,7 @@ use yii\db\ActiveRecord;
  * @property integer $id
  * @property string $name
  * @property integer $category
+ * @property integer $author
  * @property integer $is_done
  * @property integer $priority
  * @property string $time
@@ -37,33 +38,6 @@ class Tasks extends ActiveRecord
     }
 
     /**
-     * Правила
-     */
-    public function rules()
-    {
-        return [
-            [['category', 'is_done', 'priority'], 'integer'],
-            [['name'], 'string', 'max' => 255],
-            [['time'], 'string', 'max' => 15]
-        ];
-    }
-
-    /**
-     * Метки для полей
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'category' => 'Category',
-            'is_done' => 'Is Done',
-            'priority' => 'Priority',
-            'time' => 'Time',
-        ];
-    }
-
-    /**
      * @return array|\yii\db\ActiveRecord[]
      * Метод получения всех записей таблицы tasks с join
      */
@@ -76,6 +50,7 @@ class Tasks extends ActiveRecord
             ->limit(8)
             ->joinWith('tasks_cat')
             ->orderBy('name')
+            ->where(['author' => \Yii::$app->user->id])
             ->asArray()
             ->all();
 
