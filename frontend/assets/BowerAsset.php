@@ -9,7 +9,7 @@ class BowerAsset extends BootstrapAsset
     public $sourcePath = '@bower/bootstrap/dist';
 
     public $css = [
-        'css/bootstrap.css',
+        //'css/bootstrap.css',
     ];
 
     public $js = [
@@ -17,6 +17,10 @@ class BowerAsset extends BootstrapAsset
     ];
 
     public $jsOptions = [
-        'position' => \yii\web\View::POS_END
+        'position' => \yii\web\View::POS_HEAD
+    ];
+
+    public $depends = [
+        'yii\web\JqueryAsset'
     ];
 }

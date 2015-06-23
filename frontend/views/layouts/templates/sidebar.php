@@ -10,11 +10,11 @@
         <ul class="nav sub-nav sidebar-menu" style="">
             <li>
                 <a href="admin_plugins-panels.html">
-                    <span class="glyphicons glyphicons-book"></span> Admin Panels </a>
+                    <i class="fa fa-calendar"></i>Календарь</a>
             </li>
             <li>
                 <a href="admin_plugins-modals.html">
-                    <span class="glyphicons glyphicons-show_big_thumbnails"></span> Admin Modals </a>
+                    <i class="fa fa-tasks"></i>Задачник</a>
             </li>
             <li>
                 <a href="admin_plugins-dock.html">

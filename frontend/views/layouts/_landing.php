@@ -1,6 +1,5 @@
 <?php
     use frontend\assets\LandingAsset;
-
     use yii\helpers\Html;
 
     /* @var $this yii\web\View */
@@ -21,8 +20,7 @@
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
-    <?php $this->registerAssetBundle('\yii\web\YiiAsset',
-        yii\web\View::POS_HEAD) ?>
+    <?php $this->registerAssetBundle('frontend\assets\BowerAsset') ?>
 
     <link rel="icon" href="images/favicon.ico">
 </head>

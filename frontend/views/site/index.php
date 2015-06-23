@@ -63,11 +63,11 @@
             <div class="panel-content widget-info">
                 <div class="row">
                     <div class="left">
-                        <i class="icon-microphone bg-purple"></i>
+                        <i class="fa fa-fire-extinguisher bg-purple"></i>
                     </div>
                     <div class="right">
-                        <p class="number countup" data-from="0" data-to="1210">1,210</p>
-                        <p class="text">Left to exit</p>
+                        <p class="number countup" data-from="0" data-to="1210">1210</p>
+                        <p class="text">Extinguishers</p>
                     </div>
                 </div>
             </div>
@@ -97,28 +97,28 @@
                             <div class="panel-content">
                                 <ul class="todo-list">
                                     <?php foreach ($tasks as $task): ?>
-                                        <li class="<?= Html::encode($task['priority']) ?>">
-                            <span class="span-check">
-                                <input id="task-1" type="checkbox" data-checkbox="icheckbox_square-blue"
-                                    <?= Html::encode($task['is_done']) ? 'checked' : null ?>>
-                                <label for="task-1"></label>
-                            </span>
-                                <span class="todo-task">
-                                    <?= Html::encode($task['name']) ?>
-                                </span>
+                                        <li class="<?= Html::encode($task['priority']) ?> <?= Html::encode($task['is_done']) ? 'done' : null ?>">
+                                        <span class="span-check">
+                                            <input id="task-1" type="checkbox" data-checkbox="icheckbox_square-blue"
+                                                <?= Html::encode($task['is_done']) ? 'checked' : null ?>>
+                                            <label for="task-1"></label>
+                                        </span>
+                                        <span class="todo-task">
+                                            <?= Html::encode($task['name']) ?>
+                                        </span>
                                             <div class="todo-date clearfix">
                                                 <div class="completed-date"></div>
                                                 <div class="due-date">Выполнить до
-                                        <span class="due-date-span">
-                                            <?= Html::encode($task['time']) ?>
-                                        </span>
+                                                <span class="due-date-span">
+                                                    <?= Html::encode($task['time']) ?>
+                                                </span>
                                                 </div>
                                             </div>
-                            <span class="todo-options pull-right">
-                                <a href="#" class="todo-delete">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </span>
+                                            <span class="todo-options pull-right">
+                                                <a href="#" class="todo-delete">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </span>
                                             <div class="todo-tags pull-right">
                                                 <div class="label label-success">
                                                     <?= Html::encode($task['tasks_cat']['name']) ?>
