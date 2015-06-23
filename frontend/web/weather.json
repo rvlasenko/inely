@@ -77,8 +77,8 @@
 		"observation_time":"Last Updated on Июнь 23, 3:00 PM MSK",
 		"observation_time_rfc822":"Tue, 23 Jun 2015 15:00:00 +0300",
 		"observation_epoch":"1435060800",
-		"local_time_rfc822":"Tue, 23 Jun 2015 15:47:21 +0300",
-		"local_epoch":"1435063641",
+		"local_time_rfc822":"Tue, 23 Jun 2015 16:44:13 +0300",
+		"local_epoch":"1435067053",
 		"local_tz_short":"MSK",
 		"local_tz_long":"Europe/Moscow",
 		"local_tz_offset":"+0300",
@@ -128,7 +128,7 @@
 		,
 	"forecast":{
 		"txt_forecast": {
-		"date":"2:48 PM MSK",
+		"date":"4:01 PM MSK",
 		"forecastday": [
 		{
 		"period":0,
@@ -176,7 +176,7 @@
 		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
 		"title":"Четверг",
 		"fcttext":"Переменная облачность. Повышение 85F. Ветер ВСВ и переменный.",
-		"fcttext_metric":"Переменная облачность. Повышение 30C. Ветер ВСВ и переменный.",
+		"fcttext_metric":"Переменная облачность. Повышение 29C. Ветер ВСВ и переменный.",
 		"pop":"10"
 		}
 		,
@@ -205,8 +205,8 @@
 		"icon":"nt_clear",
 		"icon_url":"http://icons.wxug.com/i/c/k/nt_clear.gif",
 		"title":"В Ночь на Субботу",
-		"fcttext":"Малооблачно. Понижение 66F. Ветер ВЮВ от 5 до 10 миль/ч.",
-		"fcttext_metric":"Малооблачно. Понижение 19C. Ветер ВЮВ от 10 до 15 км/ч.",
+		"fcttext":"Малооблачно. Понижение 66F. Ветер В от 5 до 10 миль/ч.",
+		"fcttext_metric":"Малооблачно. Понижение 19C. Ветер В от 10 до 15 км/ч.",
 		"pop":"10"
 		}
 		]
@@ -247,7 +247,7 @@
 		"skyicon":"",
 		"pop":0,
 		"qpf_allday": {
-		"in": 0.01,
+		"in": 0.00,
 		"mm": 0
 		},
 		"qpf_day": {

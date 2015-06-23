@@ -289,7 +289,7 @@
 
                 <div class="form-group">
                     <button class="bttn btn-2 btn-2a">
-                        <?= Yii::t('frontend', 'Learn more') ?>
+                        Узнать больше
                     </button>
                 </div>
 

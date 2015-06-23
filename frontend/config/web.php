@@ -29,7 +29,22 @@ $config = [
             ],
         ],
         'assetManager' => [
-            //'bundles' => require(__DIR__ . '/../assets/' . 'CompressedAsset.php'),
+            'class' => 'yii\web\AssetManager',
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => [
+                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
+                    ]
+                ],
+                'frontend\assets\BowerAsset' => [
+                    'css' => [
+                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css',
+                    ],
+                    'js' => [
+                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js',
+                    ]
+                ],
+            ],
         ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
