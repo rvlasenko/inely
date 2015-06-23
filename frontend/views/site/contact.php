@@ -4,7 +4,7 @@
 
 <div class="row">
 
-    <h2 class="dark-text">Оставьте своё мнение</h2>
+    <h2 class="dark-text">Оставьте пожелание</h2>
 
     <div class="col-md-8 col-md-offset-2">
 
@@ -43,7 +43,7 @@
 
         <div class="form-group">
             <button class="bttn btn-2 btn-2a" id="show">
-                <?= Yii::t('frontend', 'Submit') ?>
+                Отправить!
             </button>
         </div>
         <?php ActiveForm::end(); ?>

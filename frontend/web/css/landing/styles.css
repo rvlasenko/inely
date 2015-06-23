@@ -72,7 +72,6 @@ li {
 
 .loader {
     font-size: 90px;
-    /* text-indent: -9999em; */
     overflow: hidden;
     width: 1em;
     height: 1em;
@@ -159,7 +158,7 @@ li {
     position: absolute;
     left: 50%;
     top: 50%;
-    background: url(../../images/loading.gif) no-repeat center;
+    background: url(../../images/loader.gif) no-repeat center;
     -webkit-background-size: cover;
     background-size: cover;
     margin: -20px 0 0 -20px;

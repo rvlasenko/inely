@@ -34,7 +34,7 @@ class LandingAsset extends AssetBundle
         'js/landing/smoothscroll.js',
         'js/landing/jquery.plugins.js',
         'js/landing/owl.carousel.min.js',
-        'js/landing/simple-expand.min.js',
+        //'js/landing/simple-expand.min.js',
         'js/landing/wow.min.js',
         'js/landing/retina.min.js',
         'js/landing/custom.js',

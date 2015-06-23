@@ -47,7 +47,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="intro-section">
 
-                        <h1 class="intro">Начните осознавать свои возможности вместе с flatask.</h1>
+                        <h1 class="intro">Начните осознавать свои возможности с flatask.</h1>
                         <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
                         <button class="butn butn-1 butn-1a log" data-toggle="modal" data-target="#myModal">Войти!</button>
 

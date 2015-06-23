@@ -4,9 +4,10 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [
-        // ОБазовые правила
+        // Базовые правила
         '' => '/site/index',
         'todo' => '/user/todo/index',
+        'contact' => '/site/contact',
 
         // Регистрация
         'sign-up' => '/user/sign-in/signup',
