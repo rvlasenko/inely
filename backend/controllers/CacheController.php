@@ -1,7 +1,4 @@
 <?php
-/**
- * Eugine Terentev <eugine@terentev.net>
- */
 
 namespace backend\controllers;
 

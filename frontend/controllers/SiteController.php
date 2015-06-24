@@ -11,7 +11,6 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
-
     public function behaviors()
     {
         return [
@@ -26,14 +25,22 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction'
-            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null
             ]
         ];
+    }
+
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            if ($action->id == 'error')
+                $this->layout = '_error';
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -69,5 +76,13 @@ class SiteController extends Controller
         return $this->renderAjax('contact', [
             'model' => $model
         ]);
+    }
+
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception !== null) {
+            return $this->render('error', ['exception' => $exception]);
+        }
     }
 }

@@ -2,12 +2,12 @@
 
 namespace backend\controllers;
 
+use Intervention\Image\ImageManagerStatic;
+use Yii;
 use backend\models\LoginForm;
 use backend\models\AccountForm;
-use Intervention\Image\ImageManagerStatic;
 use trntv\filekit\actions\DeleteAction;
 use trntv\filekit\actions\UploadAction;
-use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
@@ -34,7 +34,7 @@ class SignInController extends Controller
             'avatar-upload' => [
                 'class' => UploadAction::className(),
                 'deleteRoute' => 'avatar-delete',
-                'on afterSave' => function ($event) {
+                'on afterSave' => function($event) {
                     /* @var $file \League\Flysystem\File */
                     $file = $event->file;
                     $img = ImageManagerStatic::make($file->read())->fit(215, 215);

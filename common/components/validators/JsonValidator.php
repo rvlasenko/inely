@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zein
- * Date: 7/10/14
- * Time: 9:57 AM
- */
 
 namespace common\components\validators;
 

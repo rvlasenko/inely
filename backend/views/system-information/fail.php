@@ -1,7 +1,5 @@
 <?php
-/**
- * @author Eugene Terentev <eugene@terentev.net>
- */
+
 use yii\helpers\Html;
 
 $this->title = Yii::t('backend', 'System Information');

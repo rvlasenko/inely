@@ -1,14 +1,11 @@
 <?php
-/**
- * Author: Eugine Terentev <eugine@terentev.net>
- */
 
 namespace backend\controllers;
 
+use Yii;
 use probe\Factory;
 use yii\web\Controller;
 use yii\web\Response;
-use Yii;
 
 class SystemInformationController extends Controller
 {

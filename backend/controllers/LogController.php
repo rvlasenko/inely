@@ -5,9 +5,9 @@ namespace backend\controllers;
 use Yii;
 use backend\models\SystemLog;
 use backend\models\search\SystemLogSearch;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * LogController implements the CRUD actions for SystemLog model.
@@ -53,7 +53,7 @@ class LogController extends Controller
     /**
      * Displays a single SystemLog model.
      * @param integer $id
-     * @return mixed
+     * @return string
      */
     public function actionView($id)
     {

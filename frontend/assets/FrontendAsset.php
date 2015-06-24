@@ -1,18 +1,9 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace frontend\assets;
 
 use yii\web\AssetBundle;
 
-/**
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
 class FrontendAsset extends AssetBundle
 {
     public $basePath = '@webroot';
@@ -39,7 +30,7 @@ class FrontendAsset extends AssetBundle
         'plugins/jquery-ui/jquery-ui-1.11.2.min.js',
         'plugins/gsap/main-gsap.min.js',
         'plugins/jquery-cookies/jquery.cookies.min.js',
-        'js/landing/bootstrap.min.js',
+        //'js/landing/bootstrap.min.js',
         'plugins/jquery-block-ui/jquery.blockUI.min.js',
         'plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js',
         //'plugins/bootstrap-dropdown/bootstrap-hover-dropdown.min.js',
@@ -73,7 +64,8 @@ class FrontendAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        //'yii\web\YiiAsset',
+        //'yii\bootstrap\BootstrapAsset',
+        'frontend\assets\BowerAsset'
     ];
 }

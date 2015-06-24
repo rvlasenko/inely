@@ -47,8 +47,6 @@ class LandingAsset extends AssetBundle
     ];
 
     public $depends = [
-        //'yii\bootstrap\BootstrapAsset',
         'frontend\assets\BowerAsset'
-        //'yii\bootstrap\BootstrapPluginAsset'
     ];
 }
