@@ -1334,3 +1334,279 @@ h4.alert-title {
     top: 1em;
     left: -5em;
 }
+
+/****  404 and 500 Error Page  ****/
+.error-page {
+    background: -moz-radial-gradient(center, ellipse cover, #dfe5e9 2%, #dfe5e9 2%, #b2c0ca 100%);
+    background: -ms-radial-gradient(center, ellipse cover, #dfe5e9 2%, #dfe5e9 2%, #b2c0ca 100%);
+    background: -o-radial-gradient(center, ellipse cover, #dfe5e9 2%, #dfe5e9 2%, #b2c0ca 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(2%, #dfe5e9), color-stop(2%, #dfe5e9), color-stop(100%, #b2c0ca));
+    background: -webkit-radial-gradient(center, ellipse cover, #dfe5e9 2%, #dfe5e9 2%, #b2c0ca 100%);
+    background: radial-gradient(ellipse at center, #dfe5e9 2%, #dfe5e9 2%, #b2c0ca 100%);
+    background: #dfe5e9;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfe5e9', endColorstr='#b2c0ca', GradientType=1);
+    overflow: hidden;
+    padding: 0;
+}
+.error-page h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 120px;
+    font-weight: 600;
+    height: 132px;
+    min-width: 30px;
+    text-align: center;
+    padding-left: 0.5em;
+}
+.error-page a {
+    color: #FFF;
+}
+.error-page a:hover {
+    color: #616873;
+    text-decoration: none;
+}
+.error-page .footer {
+    bottom: 30px;
+    position: absolute;
+    width: 100%;
+}
+.error-page .copyright {
+    font-size: 12px;
+    text-align: center;
+}
+.error-page .btn {
+    padding: 8px 50px;
+}
+.error-page .col-md-12 {
+    text-align: center !important;
+}
+.error-page .col-md-6 {
+    text-align: center !important;
+}
+.error-page p {
+    text-align: center !important;
+}
+.error-page .btn-group .btn {
+    padding: 8px 10px;
+}
+.error-main {
+    color: #2B2E33;
+    margin-top: 20%;
+    text-align: center;
+}
+#content-404 {
+    display: none;
+    text-align: center;
+}
+#content-500 {
+    display: none;
+}
+@media (max-width: 1505px) {
+    .btn.btn-home {
+        display: none;
+    }
+}
+@media (max-width: 450px) {
+    .btn.btn-message {
+        display: none;
+    }
+}
+
+/* Page Full Calendar */
+#calendar {
+    margin-top: 22px;
+}
+.page-calendar .add-category {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+}
+.page-calendar .add-category i {
+    padding-right: 8px;
+}
+.fc-draggable.fc-event {
+    border: none;
+}
+.external-event {
+    cursor: move;
+    margin: 10px 0;
+    padding: 6px;
+}
+.fc-event {
+    border-radius: 0;
+    margin: 3px 6px;
+    padding: 4px 8px;
+}
+.fc-state-default {
+    background: #ffffff;
+    box-shadow: none !important;
+    color: #000000;
+    margin-right: -1px;
+    outline: none !important;
+    text-shadow: none;
+}
+.fc-state-default:hover {
+    background: #E4E4E4;
+}
+.fc-state-default.fc-corner-right {
+    background-color: #ffffff;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    border: none;
+    color: #111111;
+}
+.fc-state-default.fc-corner-right:hover {
+    background: #E4E4E4;
+}
+.fc-toolbar {
+    margin-bottom: 32px !important;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.fc-toolbar .fc-state-active {
+    background: #319db5;
+    box-shadow: none;
+    color: #ffffff;
+    cursor: default;
+    margin-right: -1px;
+}
+.fc-toolbar .fc-center {
+    display: inline-block;
+    padding-top: 3px;
+}
+.fc-toolbar .ui-state-active {
+    background: #319db5;
+    box-shadow: none;
+    color: #ffffff;
+    cursor: default;
+    margin-right: -1px;
+}
+.fc-state-default.fc-corner-right.fc-state-active {
+    background: #319db5;
+    box-shadow: none;
+    color: #ffffff;
+    cursor: default;
+    margin-right: -1px;
+}
+.fc-state-default.fc-state-disabled {
+    background-color: #cccccc;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #111111;
+}
+.fc .fc-toolbar > *:first-child {
+    border: none;
+}
+.fc .fc-button-group > * {
+    border: none;
+}
+.fc .fc-button-group .fc-prev-button {
+    background: #2b2e33;
+    color: #ffffff;
+}
+.fc .fc-button-group .fc-next-button {
+    background: #2b2e33;
+    color: #ffffff;
+}
+.fc-state-default.fc-corner-right.fc-state-disabled {
+    background: #C8C8C8;
+}
+.fc-unthemed .fc-today {
+    background: #ffffff;
+}
+.fc-unthemed .fc-future {
+    background: #ffffff;
+}
+.fc-basic-view td.fc-day-number {
+    padding-right: 8px;
+    padding-top: 8px;
+}
+.fc-basic-view td.fc-day-number.fc-past {
+    filter: alpha(opacity=30);
+    opacity: 0.3;
+}
+.fc th,
+.fc-unthemed thead,
+.fc-unthemed .fc-row,
+thead .fc-widget-header {
+    /*border-color: transparent !important; */
+    border-width: 0;
+    border: none;
+}
+.fc-head td {
+    padding-bottom: 8px;
+}
+@keyframes pulsate {
+    0% {
+        transform: scale(0.1, 0.1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2, 1.2);
+        opacity: 0;
+    }
+}
+@-webkit-keyframes pulse {
+    40% {
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@-moz-keyframes pulse {
+    40% {
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@keyframes pulse {
+    40% {
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@media screen and (max-width: 1400px) {
+    .coming-soon #countdown {
+        left: 40px;
+        position: relative;
+        right: auto;
+    }
+    .coming-soon .content {
+        float: none;
+        margin: 40px;
+        position: relative;
+        top: 200px;
+        width: 600px;
+    }
+}
+@media (max-width: 1100px) {
+    .map-container {
+        margin-right: -40px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .coming-soon .content {
+        width: 100%;
+        margin: 0;
+        padding: 30px;
+    }
+}
