@@ -10,8 +10,8 @@ class FrontendAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/style.css',
-        'css/style2.css',
-        'css/cleanedStyle.css',
+        //'css/style2.css',
+        //'css/cleanedStyle.css',
         'css/theme.css',
         'css/ui.css',
         'css/icons/font-awesome/css/font-awesome.min.css',

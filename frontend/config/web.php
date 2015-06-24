@@ -89,7 +89,7 @@ $config = [
     ]
 ];
 
-if (YII_ENV_DEV) {
+if (YII_ENV_PROD) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         'generators' => [
@@ -98,15 +98,6 @@ if (YII_ENV_DEV) {
                 'messageCategory' => 'frontend'
             ]
         ]
-    ];
-}
-
-if (YII_ENV_PROD) {
-    // Maintenance mode
-    $config['bootstrap'] = ['maintenance'];
-    $config['components']['maintenance'] = [
-        'class' => 'common\components\maintenance\Maintenance',
-        'enabled' => false
     ];
 }
 

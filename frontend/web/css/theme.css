@@ -1333,6 +1333,7 @@ h4.alert-title {
     position: absolute;
     top: 1em;
     left: -5em;
+    width: 370px;
 }
 
 /****  404 and 500 Error Page  ****/
