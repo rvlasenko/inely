@@ -34,11 +34,11 @@ class LandingAsset extends AssetBundle
         'js/landing/smoothscroll.js',
         'js/landing/jquery.plugins.js',
         'js/landing/owl.carousel.min.js',
-        //'js/landing/simple-expand.min.js',
+        'js/landing/simple-expand.min.js',
         'js/landing/wow.min.js',
         'js/landing/retina.min.js',
         'js/landing/custom.js',
-        'js/landing/bootstrap.min.js',
+        //'js/landing/bootstrap.min.js',
         'plugins/noty/jquery.noty.packaged.js',
     ];
 
@@ -47,6 +47,8 @@ class LandingAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\bootstrap\BootstrapAsset',
+        //'yii\bootstrap\BootstrapAsset',
+        'frontend\assets\BowerAsset'
+        //'yii\bootstrap\BootstrapPluginAsset'
     ];
 }

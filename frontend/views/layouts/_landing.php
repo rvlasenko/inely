@@ -20,8 +20,7 @@
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
-    <?php $this->registerJsFile('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-        ['position' => yii\web\View::POS_HEAD]) ?>
+    <?php $this->registerAssetBundle('frontend\assets\BowerAsset') ?>
 
     <link rel="icon" href="images/favicon.ico">
 </head>

@@ -998,17 +998,17 @@ div.weather-top h2 {
     padding: 0 0 0 5px;
 }
 /* Top Level Menu Icon */
-.sidebar-menu > li > a > span:nth-child(1) {
+.sidebar-menu > li > a > i:nth-child(1) {
     float: left;
     top: 0;
     line-height: 40px;
     width: 38px;
-    font-size: 13px;
+    font-size: 21px;
     text-align: center;
     /*padding-left: 13px;*/
 }
 /* Top Level Menu Title */
-.sidebar-menu > li > a > span:nth-child(2) {
+.sidebar-menu > li > a > i:nth-child(2) {
     font-weight: 600;
     padding-left: 6px;
 }

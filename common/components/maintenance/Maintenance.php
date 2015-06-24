@@ -9,7 +9,7 @@ use yii\base\BootstrapInterface;
  * Class Maintenance
  * @author Eugene Terentev <eugene@terentev.net>
  */
-class Maintenance extends Component implements BootstrapInterface
+class Maintenance extends Component
 {
     /**
      * @var boolean|\Closure boolean value or Closure that return
@@ -44,7 +44,7 @@ class Maintenance extends Component implements BootstrapInterface
      * Bootstrap method to be called during application bootstrap stage.
      * @param \yii\web\Application $app the application currently running
      */
-    public function bootstrap($app)
+    /*public function bootstrap($app)
     {
         if ($this->enabled instanceof \Closure) {
             $enabled = call_user_func($this->enabled, $app);
@@ -71,5 +71,5 @@ class Maintenance extends Component implements BootstrapInterface
                 ];
             }
         }
-    }
+    }*/
 }

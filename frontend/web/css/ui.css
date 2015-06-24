@@ -164,6 +164,16 @@ address {
     border-radius: 4px;
 }
 
+.bg-purple:not(i) {
+    background-color: #A58BD3 !important;
+    color: #fff !important;
+}
+
+i.bg-purple::before {
+    background-color: #A58BD3 !important;
+    color: #fff !important;
+}
+
 .btn:hover {
     color: #fff;
     outline: 0;
