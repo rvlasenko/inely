@@ -33,15 +33,15 @@ $config = [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'js' => [
-                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
+                        'jquery.min.js'
                     ]
                 ],
                 'frontend\assets\BowerAsset' => [
                     'css' => [
-                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css',
+                        'css/bootstrap.min.css',
                     ],
                     'js' => [
-                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js',
+                        'js/bootstrap.min.js',
                     ]
                 ],
             ],
@@ -106,9 +106,7 @@ if (YII_ENV_PROD) {
     $config['bootstrap'] = ['maintenance'];
     $config['components']['maintenance'] = [
         'class' => 'common\components\maintenance\Maintenance',
-        'enabled' => function ($app) {
-            return $app->keyStorage->get('frontend.maintenance') === 'true';
-        }
+        'enabled' => false
     ];
 }
 
