@@ -38,6 +38,6 @@ class LocaleBehavior extends Behavior
      */
     public function beforeRequest()
     {
-
+        \Yii::$app->language = 'ru-RU';
     }
 }

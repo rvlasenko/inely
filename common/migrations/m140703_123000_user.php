@@ -70,17 +70,14 @@ class m140703_123000_user extends Migration
 
         $this->insert('{{%user_profile}}', [
             'user_id' => 1,
-            'locale' => Yii::$app->sourceLanguage,
             'firstname' => 'John',
             'lastname' => 'Doe'
         ]);
         $this->insert('{{%user_profile}}', [
             'user_id' => 2,
-            'locale' => Yii::$app->sourceLanguage
         ]);
         $this->insert('{{%user_profile}}', [
             'user_id' => 3,
-            'locale' => Yii::$app->sourceLanguage
         ]);
         if ($this->db->driverName === 'mysql') {
             $this->addForeignKey('fk_user', '{{%user_profile}}', 'user_id', '{{%user}}', 'id', 'cascade', 'cascade');
