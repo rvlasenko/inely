@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: zein
+ * Date: 8/5/14
+ * Time: 12:11 PM
+ */
 
 namespace common\components\behaviors;
 
@@ -32,6 +38,6 @@ class LocaleBehavior extends Behavior
      */
     public function beforeRequest()
     {
-        Yii::$app->language = 'ru-RU';
+        \Yii::$app->language = 'ru-RU';
     }
 }
