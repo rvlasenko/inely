@@ -78,9 +78,7 @@
 
                 <div class="feature">
                     <div class="icon-container">
-                        <div class="icon">
-                            <i class="icon-grid"></i>
-                        </div>
+                        <img src="/images/flat/speedometer.png">
                     </div>
 
                     <div class="fetaure-details">
@@ -94,9 +92,7 @@
 
                 <div class="feature">
                     <div class="icon-container">
-                        <div class="icon">
-                            <i class="icon-list"></i>
-                        </div>
+                        <img src="/images/flat/check.png">
                     </div>
 
 
@@ -111,8 +107,8 @@
 
                 <div class="feature">
                     <div class="icon-container">
-                        <div class="icon">
-                            <i class="icon-note"></i>
+                        <div class="icon-container">
+                            <img src="/images/flat/booklet.png">
                         </div>
                     </div>
 
@@ -136,11 +132,8 @@
                  data-wow-duration="1.5s">
 
                 <div class="feature">
-
                     <div class="icon-container">
-                        <div class="icon">
-                            <i class="icon-magic-wand"></i>
-                        </div>
+                        <img src="/images/flat/power.png">
                     </div>
 
                     <div class="fetaure-details">
@@ -155,8 +148,8 @@
 
                 <div class="feature">
                     <div class="icon-container">
-                        <div class="icon">
-                            <i class="icon-badge"></i>
+                        <div class="icon-container">
+                            <img src="/images/flat/trophy.png">
                         </div>
                     </div>
 
@@ -170,16 +163,14 @@
 
                 <div class="feature">
                     <div class="icon-container">
-                        <div class="icon">
-                            <i class="icon-question"></i>
-                        </div>
+                        <img src="/images/flat/trends.png">
                     </div>
 
                     <div class="fetaure-details">
-                        <h4 class="main-color">Документация</h4>
+                        <h4 class="main-color">Визуализируйте</h4>
 
                         <p>
-                            Справка даст ответы на возникшие, под углом трудности, вопросы.
+                            Анализируйте Вашу производительность в графиках.
                         </p>
                     </div>
                 </div>

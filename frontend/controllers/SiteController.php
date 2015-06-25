@@ -18,7 +18,7 @@ class SiteController extends Controller
                 'class' => 'yii\filters\PageCache',
                 'only' => ['index'],
                 'duration' => 60
-            ],
+            ]
         ];
     }
 

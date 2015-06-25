@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li>
-                <a class="pull-left btn-effect" href="/logout" data-method="post" data-modal="modal-1" data-placement="top" data-original-title="Logout">
+                <a class="pull-left btn-effect" href="logout" data-original-title="Logout">
                     <i class="fa fa-power-off"></i>
                 </a>
             </li>
@@ -55,8 +55,7 @@
                     <div class="ct-chart ct-major-fifth"></div>
                     <div class="separator"></div>
                     <p>
-                        <strong>4</strong>
-                        завершенные задачи
+                        <strong>4</strong>завершенные задачи
                     </p>
                     <div class="separator"></div>
                     <p>Завершено за последние 7 дней:</p>

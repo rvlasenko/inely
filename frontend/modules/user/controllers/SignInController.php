@@ -56,12 +56,6 @@ class SignInController extends \yii\web\Controller
                         'roles' => ['@'],
                     ]
                 ]
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post']
-                ]
             ]
         ];
     }

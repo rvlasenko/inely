@@ -5,7 +5,7 @@ GLOBAL STYLES
 -----------------------------------------*/
 
 header {
-    background: url("../../images/bg-1.jpg") no-repeat center top fixed;
+    background: url("../../images/landing.jpg") no-repeat center top fixed;
     -webkit-background-size: cover;
     background-size: cover;
 }
@@ -359,7 +359,6 @@ div h3, div div.form-group, .subscription-form .col-md-12,
 
 .sticky-navigation .main-navigation li a {
     line-height: 30px;
-    font-weight: 400;
     font-size: 13px;
     text-transform: uppercase;
 }
@@ -371,6 +370,10 @@ div h3, div div.form-group, .subscription-form .col-md-12,
 .navbar-inverse .navbar-toggle {
     border-color: #313131;
     background: #313131;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #797979;
 }
 
 header .only-logo .navbar {
@@ -406,10 +409,6 @@ header .intro-section h5 {
     color: #ffffff;
 }
 
-/*header .intro-section .buttons {
-    margin-top: 45px;
-}*/
-
 .buttons {
     text-align: center;
     margin-bottom: 1em;
@@ -444,7 +443,7 @@ header .intro-section h5 {
 
 .features .features-right .icon-container {
     float: left;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .features .feature {
@@ -457,10 +456,10 @@ header .intro-section h5 {
     margin-top: 5px;
 }
 
-.features .feature .icon-container .icon {
+/*.features .feature .icon-container .icon {
     width: 55px;
     height: 55px;
-    border-radius: 50%;
+    /*border-radius: 50%;
     line-height: 57px;
     font-size: 1.5em;
     text-align: center;
@@ -468,7 +467,18 @@ header .intro-section h5 {
     transition: all ease-in 0.25s;
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
+    background-clip: padding-box;*/
+/*}*/
+
+.features .feature .icon-container img {
+    width: 55px;
+    height: 55px;
+    -webkit-transition: all ease-in 0.25s;
+    transition: all ease-in 0.25s;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
     background-clip: padding-box;
+    margin-top: 13px;
 }
 
 .features .phone-image {
