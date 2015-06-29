@@ -7,6 +7,7 @@ return [
         // Базовые правила
         '' => '/site/index',
         'todo' => '/user/todo/index',
+        'todoAdd' => '/user/todo/insert',
         'contact' => '/site/contact',
 
         // Регистрация

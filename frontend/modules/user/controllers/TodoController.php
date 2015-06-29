@@ -40,18 +40,20 @@ class TodoController extends DefaultController
     }
 
     /**
-     * Создание основной модели для todo
-     * @return mixed
+     * @param integer $cat
+     * @param bool $isDone
+     * @return bool
+     * Создание основной модели
      */
-    public function actionTodo()
+    public function actionInsert() //$name, $time, $cat, $isDone, $priority
     {
-        $todoModel = new Tasks();
+        $tasks = new Tasks();
 
-        if ($todoModel->load(Yii::$app->request->post()) && $todoModel->save()) {
+        if ($tasks->load(Yii::$app->request->post()) && $tasks->save()) { //setTasks($name, $time, $cat, $isDone, $priority)
             return true;
         } else {
             return $this->renderAjax('@app/views/templates/todo', [
-                'todoModel' => $todoModel,
+                'tasks' => $tasks,
             ]);
         }
     }

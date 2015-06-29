@@ -107,9 +107,7 @@
 
                 <div class="feature">
                     <div class="icon-container">
-                        <div class="icon-container">
-                            <img src="/images/flat/booklet.png">
-                        </div>
+                        <img src="/images/flat/booklet.png">
                     </div>
 
                     <div class="fetaure-details">
@@ -148,9 +146,7 @@
 
                 <div class="feature">
                     <div class="icon-container">
-                        <div class="icon-container">
-                            <img src="/images/flat/trophy.png">
-                        </div>
+                        <img src="/images/flat/trophy.png">
                     </div>
 
                     <div class="fetaure-details">

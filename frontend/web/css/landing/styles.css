@@ -443,7 +443,7 @@ header .intro-section h5 {
 
 .features .features-right .icon-container {
     float: left;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .features .feature {
@@ -453,22 +453,7 @@ header .intro-section h5 {
 .features .feature .icon-container {
     display: block;
     min-height: 120px;
-    margin-top: 5px;
 }
-
-/*.features .feature .icon-container .icon {
-    width: 55px;
-    height: 55px;
-    /*border-radius: 50%;
-    line-height: 57px;
-    font-size: 1.5em;
-    text-align: center;
-    -webkit-transition: all ease-in 0.25s;
-    transition: all ease-in 0.25s;
-    -webkit-background-clip: padding-box;
-    -moz-background-clip: padding;
-    background-clip: padding-box;*/
-/*}*/
 
 .features .feature .icon-container img {
     width: 55px;
@@ -478,7 +463,7 @@ header .intro-section h5 {
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
     background-clip: padding-box;
-    margin-top: 13px;
+    margin-top: 15px;
 }
 
 .features .phone-image {

@@ -1447,6 +1447,7 @@ ul.weather-days > li {
 
 .widget-news.panel-content {
     padding: 0 !important;
+    height: 420px;
 }
 
 .widget-news .message-item {

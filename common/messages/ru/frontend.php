@@ -40,7 +40,7 @@ return [
     'Language' => 'Язык',
     'Learn more' => 'Узнать больше',
     'Log in with' => 'Войти с помощью',
-    'Login' => 'Войти!',
+    'Login' => 'Пустите меня!',
     'Login as user' => 'Войти как пользователь',
     'Login with account' => 'Войти по учетной записи',
     'Logout' => 'Выйти',

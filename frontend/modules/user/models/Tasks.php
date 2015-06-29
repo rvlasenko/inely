@@ -18,6 +18,10 @@ use yii\db\ActiveRecord;
  */
 class Tasks extends ActiveRecord
 {
+    const NULL_CAT = 1;
+    const NULL_IS_DONE = 0;
+    const NULL_PRIOR = 0;
+
     /**
      * Имя таблицы
      * @return string
@@ -43,7 +47,6 @@ class Tasks extends ActiveRecord
      */
     public function getTasks()
     {
-
         $query = Tasks::find();
 
         $tasks = $query
@@ -55,5 +58,26 @@ class Tasks extends ActiveRecord
             ->all();
 
         return $tasks;
+    }
+
+    /**
+     * @param int $cat
+     * @param int $isDone
+     * @param int $priority
+     * @param int $time
+     * @param $name
+     * @return array|\yii\db\ActiveRecord[]
+     * Метод сохранения записи
+     */
+    public function setTasks($name, $time, $cat = self::NULL_CAT, $isDone = self::NULL_IS_DONE, $priority = self::NULL_PRIOR)
+    {
+        $tasks = new Tasks();
+
+        $tasks->author = \Yii::$app->user->id;
+        $tasks->category = $cat;
+        $tasks->is_done = $isDone;
+        $tasks->priority = $priority;
+        $tasks->name = $name;
+        $tasks->time = $time;
     }
 }

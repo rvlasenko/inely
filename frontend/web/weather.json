@@ -74,31 +74,31 @@
 		"estimated": {
 		},
 		"station_id":"27679",
-		"observation_time":"Last Updated on Июнь 25, 3:00 PM MSK",
-		"observation_time_rfc822":"Thu, 25 Jun 2015 15:00:00 +0300",
-		"observation_epoch":"1435233600",
-		"local_time_rfc822":"Thu, 25 Jun 2015 17:23:14 +0300",
-		"local_epoch":"1435242194",
+		"observation_time":"Last Updated on Июнь 29, 9:00 PM MSK",
+		"observation_time_rfc822":"Mon, 29 Jun 2015 21:00:00 +0300",
+		"observation_epoch":"1435600800",
+		"local_time_rfc822":"Mon, 29 Jun 2015 21:59:28 +0300",
+		"local_epoch":"1435604368",
 		"local_tz_short":"MSK",
 		"local_tz_long":"Europe/Moscow",
 		"local_tz_offset":"+0300",
-		"weather":"Облачно",
-		"temperature_string":"85 F (29 C)",
-		"temp_f":85,
-		"temp_c":29,
-		"relative_humidity":"33%",
-		"wind_string":"From the North at 4 MPH",
+		"weather":"Небольшая Облачность",
+		"temperature_string":"65 F (18 C)",
+		"temp_f":65,
+		"temp_c":18,
+		"relative_humidity":"83%",
+		"wind_string":"From the North at 7 MPH",
 		"wind_dir":"North",
-		"wind_degrees":10,
-		"wind_mph":4,
+		"wind_degrees":0,
+		"wind_mph":7,
 		"wind_gust_mph":0,
-		"wind_kph":7,
+		"wind_kph":11,
 		"wind_gust_kph":0,
-		"pressure_mb":"1012",
-		"pressure_in":"29.89",
-		"pressure_trend":"-",
-		"dewpoint_string":"60 F (16 C)",
-		"dewpoint_f":60,
+		"pressure_mb":"1010",
+		"pressure_in":"29.82",
+		"pressure_trend":"+",
+		"dewpoint_string":"61 F (16 C)",
+		"dewpoint_f":61,
 		"dewpoint_c":16,
 		"heat_index_string":"NA",
 		"heat_index_f":"NA",
@@ -106,9 +106,9 @@
 		"windchill_string":"NA",
 		"windchill_f":"NA",
 		"windchill_c":"NA",
-		"feelslike_string":"85 F (29 C)",
-		"feelslike_f":"85",
-		"feelslike_c":"29",
+		"feelslike_string":"65 F (18 C)",
+		"feelslike_f":"65",
+		"feelslike_c":"18",
 		"visibility_mi":"31.0",
 		"visibility_km":"50.0",
 		"solarradiation":"--",
@@ -118,95 +118,95 @@
 		"precip_today_string":" in ( mm)",
 		"precip_today_in":"",
 		"precip_today_metric":"--",
-		"icon":"mostlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/mostlycloudy.gif",
+		"icon":"partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
 		"forecast_url":"http://www.wunderground.com/global/stations/27679.html",
-		"history_url":"http://www.wunderground.com/history/airport/27679/2015/6/25/DailyHistory.html",
+		"history_url":"http://www.wunderground.com/history/airport/27679/2015/6/29/DailyHistory.html",
 		"ob_url":"http://www.wunderground.com/cgi-bin/findweather/getForecast?query=54.81666565,46.58333206",
 		"nowcast":""
 	}
 		,
 	"forecast":{
 		"txt_forecast": {
-		"date":"4:44 PM MSK",
+		"date":"9:29 PM MSK",
 		"forecastday": [
 		{
 		"period":0,
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
-		"title":"Четверг",
-		"fcttext":"Переменная облачность. Понижение 63F.",
-		"fcttext_metric":"Переменная облачность. Понижение 17C.",
-		"pop":"0"
-		}
-		,
-		{
-		"period":1,
-		"icon":"nt_partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
-		"title":"В ночь на Пятницу",
-		"fcttext":"Переменная облачность. Понижение 63F. Ветер ВЮВ и переменный.",
-		"fcttext_metric":"Переменная облачность. Понижение 17C. Ветер ВЮВ и переменный.",
-		"pop":"0"
-		}
-		,
-		{
-		"period":2,
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
-		"title":"Пятница",
-		"fcttext":"Переменная облачность. Повышение 89F. Ветер и переменный.",
-		"fcttext_metric":"Переменная облачность. Повышение 32C. Ветер и переменный.",
+		"icon":"cloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/cloudy.gif",
+		"title":"Понедельник",
+		"fcttext":"Облачно. Понижение 61F.",
+		"fcttext_metric":"Облачно. Понижение 16C.",
 		"pop":"20"
 		}
 		,
 		{
+		"period":1,
+		"icon":"nt_cloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_cloudy.gif",
+		"title":"В ночь на Вторник",
+		"fcttext":"Облачно. Понижение 61F. Ветер ССЗ от 5 до 10 миль/ч.",
+		"fcttext_metric":"Облачно. Понижение 16C. Ветер ССЗ от 10 до 15 км/ч.",
+		"pop":"20"
+		}
+		,
+		{
+		"period":2,
+		"icon":"rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/rain.gif",
+		"title":"Вторник",
+		"fcttext":"Дождь. Повышение 74F. Ветер СЗ от 5 до 10 миль/ч. Вероятность дождя 70%. Осадки примерно ~ 0.25 дюйм.",
+		"fcttext_metric":"Дождь. Повышение 23C. Ветер СЗ от 10 до 15 км/ч. Вероятность дождя 70%. Осадки примерно ~ 6 мм.",
+		"pop":"70"
+		}
+		,
+		{
 		"period":3,
-		"icon":"nt_partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/nt_partlycloudy.gif",
-		"title":"В Ночь на Субботу",
-		"fcttext":"Переменная облачность. Понижение 64F. Ветер ВЮВ и переменный.",
-		"fcttext_metric":"Переменная облачность. Понижение 18C. Ветер ВЮВ и переменный.",
-		"pop":"0"
+		"icon":"nt_mostlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_mostlycloudy.gif",
+		"title":"В ночь на Среду",
+		"fcttext":"Значительная облачность. Понижение 58F. Ветер С от 5 до 10 миль/ч.",
+		"fcttext_metric":"Значительная облачность. Понижение 14C. Ветер С от 10 до 15 км/ч.",
+		"pop":"20"
 		}
 		,
 		{
 		"period":4,
-		"icon":"clear",
-		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
-		"title":"Суббота",
-		"fcttext":"Малооблачно. Повышение 88F. Ветер ВЮВ от 5 до 10 миль/ч.",
-		"fcttext_metric":"Малооблачно. Повышение 31C. Ветер ВЮВ от 10 до 15 км/ч.",
-		"pop":"0"
+		"icon":"tstorms",
+		"icon_url":"http://icons.wxug.com/i/c/k/tstorms.gif",
+		"title":"Среда",
+		"fcttext":"Грозы. Повышение 76F. Ветер ССЗ от 5 до 10 миль/ч. Вероятность дождя 80%.",
+		"fcttext_metric":"Грозы. Повышение 24C. Ветер ССЗ от 10 до 15 км/ч. Вероятность дождя 80%.",
+		"pop":"80"
 		}
 		,
 		{
 		"period":5,
-		"icon":"nt_clear",
-		"icon_url":"http://icons.wxug.com/i/c/k/nt_clear.gif",
-		"title":"В ночь на Воскресенье",
-		"fcttext":"Малооблачно. Понижение 64F. Ветер ВЮВ от 5 до 10 миль/ч.",
-		"fcttext_metric":"Малооблачно. Понижение 18C. Ветер ВЮВ от 10 до 15 км/ч.",
-		"pop":"0"
+		"icon":"nt_chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_chancerain.gif",
+		"title":"В ночь на Четверг",
+		"fcttext":"Проливные дожди. Понижение 57F. Ветер ССЗ от 5 до 10 миль/ч. Вероятность дождя 40%.",
+		"fcttext_metric":"Проливные дожди. Понижение 14C. Ветер ССЗ от 10 до 15 км/ч. Вероятность дождя 40%.",
+		"pop":"40"
 		}
 		,
 		{
 		"period":6,
-		"icon":"clear",
-		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
-		"title":"Воскресенье",
-		"fcttext":"Малооблачно. Повышение 92F. Ветер ЮВ от 5 до 10 миль/ч.",
-		"fcttext_metric":"Малооблачно. Повышение 34C. Ветер ЮВ от 10 до 15 км/ч.",
+		"icon":"partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"title":"Четверг",
+		"fcttext":"Переменная облачность. Повышение 76F. Ветер СЗ от 5 до 10 миль/ч.",
+		"fcttext_metric":"Переменная облачность. Повышение 24C. Ветер СЗ от 10 до 15 км/ч.",
 		"pop":"10"
 		}
 		,
 		{
 		"period":7,
-		"icon":"nt_chancetstorms",
-		"icon_url":"http://icons.wxug.com/i/c/k/nt_chancetstorms.gif",
-		"title":"В Ночь на Понедельник",
-		"fcttext":"Местами грозы. Понижение 68F. Ветер от 5 до 10 миль/ч. Вероятность дождя 40%.",
-		"fcttext_metric":"Местами грозы. Понижение 20C. Ветер от 10 до 15 км/ч. Вероятность дождя 40%.",
+		"icon":"nt_chancerain",
+		"icon_url":"http://icons.wxug.com/i/c/k/nt_chancerain.gif",
+		"title":"В ночь на Пятницу",
+		"fcttext":"Проливные дожди позднее вечером. Понижение 54F. Ветер СЗ от 10 до 15 миль/ч. Вероятность дождя 40%.",
+		"fcttext_metric":"Проливные дожди позднее вечером. Понижение 12C. Ветер СЗ от 10 до 15 км/ч. Вероятность дождя 40%.",
 		"pop":"40"
 		}
 		]
@@ -214,38 +214,38 @@
 		"simpleforecast": {
 		"forecastday": [
 		{"date":{
-	"epoch":"1435248000",
-	"pretty":"25 06, 2015 19:00 MSK",
-	"day":25,
+	"epoch":"1435593600",
+	"pretty":"29 06, 2015 19:00 MSK",
+	"day":29,
 	"month":6,
 	"year":2015,
-	"yday":175,
+	"yday":179,
 	"hour":19,
 	"min":"00",
 	"sec":0,
 	"isdst":"0",
 	"monthname":"Июнь",
 	"monthname_short":"Июнь",
-	"weekday_short":"Чт",
-	"weekday":"Четверг",
+	"weekday_short":"Пн",
+	"weekday":"Понедельник",
 	"ampm":"PM",
 	"tz_short":"MSK",
 	"tz_long":"Europe/Moscow"
 },
 		"period":1,
 		"high": {
-		"fahrenheit":"85",
-		"celsius":"29"
+		"fahrenheit":"92",
+		"celsius":"33"
 		},
 		"low": {
-		"fahrenheit":"63",
-		"celsius":"17"
+		"fahrenheit":"61",
+		"celsius":"16"
 		},
-		"conditions":"Небольшая Облачность",
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"conditions":"Пасмурно",
+		"icon":"cloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/cloudy.gif",
 		"skyicon":"",
-		"pop":0,
+		"pop":20,
 		"qpf_allday": {
 		"in": 0.00,
 		"mm": 0
@@ -271,62 +271,62 @@
 		"cm": 0.0
 		},
 		"maxwind": {
-		"mph": 9,
-		"kph": 14,
+		"mph": 13,
+		"kph": 22,
 		"dir": "переменчевый",
 		"degrees": 0
 		},
 		"avewind": {
-		"mph": 3,
-		"kph": 5,
+		"mph": 7,
+		"kph": 11,
 		"dir": "переменчевый",
 		"degrees": 0
 		},
-		"avehumidity": 71,
+		"avehumidity": 93,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
 		,
 		{"date":{
-	"epoch":"1435334400",
-	"pretty":"26 06, 2015 19:00 MSK",
-	"day":26,
+	"epoch":"1435680000",
+	"pretty":"30 06, 2015 19:00 MSK",
+	"day":30,
 	"month":6,
 	"year":2015,
-	"yday":176,
+	"yday":180,
 	"hour":19,
 	"min":"00",
 	"sec":0,
 	"isdst":"0",
 	"monthname":"Июнь",
 	"monthname_short":"Июнь",
-	"weekday_short":"Пт",
-	"weekday":"Пятница",
+	"weekday_short":"Вт",
+	"weekday":"Вторник",
 	"ampm":"PM",
 	"tz_short":"MSK",
 	"tz_long":"Europe/Moscow"
 },
 		"period":2,
 		"high": {
-		"fahrenheit":"89",
-		"celsius":"32"
+		"fahrenheit":"74",
+		"celsius":"23"
 		},
 		"low": {
-		"fahrenheit":"64",
-		"celsius":"18"
+		"fahrenheit":"58",
+		"celsius":"14"
 		},
-		"conditions":"Небольшая Облачность",
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"conditions":"Дождь",
+		"icon":"rain",
+		"icon_url":"http://icons.wxug.com/i/c/k/rain.gif",
 		"skyicon":"",
-		"pop":20,
+		"pop":70,
 		"qpf_allday": {
-		"in": 0.00,
-		"mm": 0
+		"in": 0.25,
+		"mm": 6
 		},
 		"qpf_day": {
-		"in": 0.00,
-		"mm": 0
+		"in": 0.25,
+		"mm": 6
 		},
 		"qpf_night": {
 		"in": 0.00,
@@ -345,66 +345,66 @@
 		"cm": 0.0
 		},
 		"maxwind": {
-		"mph": 5,
-		"kph": 8,
-		"dir": "ВСВ",
-		"degrees": 76
+		"mph": 10,
+		"kph": 16,
+		"dir": "СЗ",
+		"degrees": 307
 		},
 		"avewind": {
-		"mph": 4,
-		"kph": 6,
-		"dir": "ВСВ",
-		"degrees": 76
+		"mph": 6,
+		"kph": 10,
+		"dir": "СЗ",
+		"degrees": 307
 		},
-		"avehumidity": 52,
+		"avehumidity": 74,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
 		,
 		{"date":{
-	"epoch":"1435420800",
-	"pretty":"27 06, 2015 19:00 MSK",
-	"day":27,
-	"month":6,
+	"epoch":"1435766400",
+	"pretty":"01 07, 2015 19:00 MSK",
+	"day":1,
+	"month":7,
 	"year":2015,
-	"yday":177,
+	"yday":181,
 	"hour":19,
 	"min":"00",
 	"sec":0,
 	"isdst":"0",
-	"monthname":"Июнь",
-	"monthname_short":"Июнь",
-	"weekday_short":"Сб",
-	"weekday":"Суббота",
+	"monthname":"Июль",
+	"monthname_short":"Июль",
+	"weekday_short":"Ср",
+	"weekday":"Среда",
 	"ampm":"PM",
 	"tz_short":"MSK",
 	"tz_long":"Europe/Moscow"
 },
 		"period":3,
 		"high": {
-		"fahrenheit":"88",
-		"celsius":"31"
+		"fahrenheit":"76",
+		"celsius":"24"
 		},
 		"low": {
-		"fahrenheit":"64",
-		"celsius":"18"
+		"fahrenheit":"57",
+		"celsius":"14"
 		},
-		"conditions":"Ясно",
-		"icon":"clear",
-		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"conditions":"Гроза",
+		"icon":"tstorms",
+		"icon_url":"http://icons.wxug.com/i/c/k/tstorms.gif",
 		"skyicon":"",
-		"pop":0,
+		"pop":80,
 		"qpf_allday": {
-		"in": 0.00,
-		"mm": 0
+		"in": 0.17,
+		"mm": 4
 		},
 		"qpf_day": {
-		"in": 0.00,
-		"mm": 0
+		"in": 0.12,
+		"mm": 3
 		},
 		"qpf_night": {
-		"in": 0.00,
-		"mm": 0
+		"in": 0.05,
+		"mm": 1
 		},
 		"snow_allday": {
 		"in": 0.0,
@@ -421,55 +421,55 @@
 		"maxwind": {
 		"mph": 10,
 		"kph": 16,
-		"dir": "ВЮВ",
-		"degrees": 103
+		"dir": "ССЗ",
+		"degrees": 341
 		},
 		"avewind": {
 		"mph": 7,
 		"kph": 11,
-		"dir": "ВЮВ",
-		"degrees": 103
+		"dir": "ССЗ",
+		"degrees": 341
 		},
-		"avehumidity": 50,
+		"avehumidity": 70,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
 		,
 		{"date":{
-	"epoch":"1435507200",
-	"pretty":"28 06, 2015 19:00 MSK",
-	"day":28,
-	"month":6,
+	"epoch":"1435852800",
+	"pretty":"02 07, 2015 19:00 MSK",
+	"day":2,
+	"month":7,
 	"year":2015,
-	"yday":178,
+	"yday":182,
 	"hour":19,
 	"min":"00",
 	"sec":0,
 	"isdst":"0",
-	"monthname":"Июнь",
-	"monthname_short":"Июнь",
-	"weekday_short":"Вс",
-	"weekday":"Воскресенье",
+	"monthname":"Июль",
+	"monthname_short":"Июль",
+	"weekday_short":"Чт",
+	"weekday":"Четверг",
 	"ampm":"PM",
 	"tz_short":"MSK",
 	"tz_long":"Europe/Moscow"
 },
 		"period":4,
 		"high": {
-		"fahrenheit":"92",
-		"celsius":"33"
+		"fahrenheit":"76",
+		"celsius":"24"
 		},
 		"low": {
-		"fahrenheit":"68",
-		"celsius":"20"
+		"fahrenheit":"54",
+		"celsius":"12"
 		},
-		"conditions":"Ясно",
-		"icon":"clear",
-		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
+		"conditions":"Небольшая Облачность",
+		"icon":"partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
 		"skyicon":"",
 		"pop":10,
 		"qpf_allday": {
-		"in": 0.05,
+		"in": 0.04,
 		"mm": 1
 		},
 		"qpf_day": {
@@ -477,7 +477,7 @@
 		"mm": 0
 		},
 		"qpf_night": {
-		"in": 0.05,
+		"in": 0.04,
 		"mm": 1
 		},
 		"snow_allday": {
@@ -495,16 +495,16 @@
 		"maxwind": {
 		"mph": 10,
 		"kph": 16,
-		"dir": "ЮВ",
-		"degrees": 130
+		"dir": "СЗ",
+		"degrees": 324
 		},
 		"avewind": {
-		"mph": 6,
-		"kph": 10,
-		"dir": "ЮВ",
-		"degrees": 130
+		"mph": 9,
+		"kph": 14,
+		"dir": "СЗ",
+		"degrees": 324
 		},
-		"avehumidity": 49,
+		"avehumidity": 58,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
