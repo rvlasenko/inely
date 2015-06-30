@@ -61,6 +61,16 @@ class Tasks extends ActiveRecord
     }
 
     /**
+     * @param bool $val
+     */
+    public function done($val)
+    {
+        $tasks = new Tasks();
+
+        $tasks->is_done = $val;
+    }
+
+    /**
      * @param int $cat
      * @param int $isDone
      * @param int $priority
@@ -79,5 +89,7 @@ class Tasks extends ActiveRecord
         $tasks->priority = $priority;
         $tasks->name = $name;
         $tasks->time = $time;
+
+        $tasks->save();
     }
 }

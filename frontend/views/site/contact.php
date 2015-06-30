@@ -83,14 +83,14 @@
             if (!$('#contactform-name').val() || !$('#contactform-email').val() ||
                 !$('#contactform-subject').val() || !$('#contactform-body').val())
                 generate('Ошибка',
-                         'images/ballicons 2/svg/wrench.svg',
-                         'Хм, похоже, что Вы забыли заполнить необходимые поля!',
+                         'images/flat/caution.png',
+                         'Похоже, что Вы забыли заполнить необходимые поля!',
                          '',
                          '');
             else
                 generate(
                     'Спасибо!',
-                    'images/ballicons 2/svg/heart.svg',
+                    'images/flat/heart.png',
                     'Благодарим за проявленную инициативу к проекту! Ваше мнение будет услышано.',
                     '',
                     '');
