@@ -6,8 +6,6 @@ return [
     'rules' => [
         // Базовые правила
         '' => '/site/index',
-        'todo' => '/user/todo/index',
-        'todoAdd' => '/user/todo/insert',
         'contact' => '/site/contact',
 
         // Регистрация
@@ -20,6 +18,11 @@ return [
         'profile' => '/user/default/profile',
         'logout' => '/user/sign-in/logout',
         '<_a:(confirm-email)>' => 'user/sign-in/<_a>',
+
+        // Задачи
+        'todo' => '/user/todo/index',
+        'todoQAdd' => '/user/todo/quickinsert',
+        'todoDone' => '/user/todo/done',
 
         // Api
         ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/article', 'only' => ['index', 'view', 'options']],

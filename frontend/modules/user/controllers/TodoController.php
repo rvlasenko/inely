@@ -6,6 +6,7 @@ use Yii;
 use frontend\modules\user\models\Tasks;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 
 /**
  * TodoController
@@ -59,13 +60,19 @@ class TodoController extends DefaultController
         }
     }
 
-    public function actionDone($val)
+    /**
+     * @param $val
+     * @param $id
+     * @return bool
+     * Выполненная задача
+     */
+    public function actionDone($id, $val)
     {
         $tasks = new Tasks();
 
         if ($val && $tasks->load(Yii::$app->request->post())) {
-            $tasks->done($val)
 
+            $tasks->done($id, $val);
             return true;
         }
     }

@@ -63,11 +63,12 @@ class Tasks extends ActiveRecord
     /**
      * @param bool $val
      */
-    public function done($val)
+    public function done($id, $val)
     {
-        $tasks = new Tasks();
+        $tasks = Tasks::findOne($id);
 
         $tasks->is_done = $val;
+        $tasks->save();
     }
 
     /**
