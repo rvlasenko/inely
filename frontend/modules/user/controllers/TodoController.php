@@ -5,8 +5,9 @@ namespace frontend\modules\user\controllers;
 use Yii;
 use frontend\modules\user\models\Tasks;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use yii\filters\VerbFilter;
-use yii\helpers\Json;
+use yii\helpers\VarDumper;
 
 /**
  * TodoController
@@ -61,19 +62,20 @@ class TodoController extends DefaultController
     }
 
     /**
-     * @param $val
-     * @param $id
      * @return bool
      * Выполненная задача
      */
-    public function actionDone($id, $val)
+    public function actionDone()
     {
-        $tasks = new Tasks();
+        $model = new Tasks();
 
-        if ($val && $tasks->load(Yii::$app->request->post())) {
-
-            $tasks->done($id, $val);
-            return true;
+        if ($model->load(Yii::$app->request->get()) && $model->done()) {
+            //if ($model->load($get) && $model->done())
+            //if (Yii::$app->request->isAjax && $model->load($_POST)) {
+            return 'ok';
+        } else {
+            $m = Yii::$app->request->get();
+            return var_dump($m);
         }
     }
 

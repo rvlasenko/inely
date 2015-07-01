@@ -20,53 +20,25 @@
             }, 1000);
         });
 
-        $('input.task-check').click(function() {
-            var checked = $(this).is(':checked');
+        $('input.task-check').on('ifChecked', function(){
+            var id = $("input.task-check").attr('id');
 
-            if ($('input.task-check').prop('checked')) {
-                alert(56);
-            }
-            /*$.ajax({
-                type: 'post',
-                url: 'todoDone',
-                data: { checked : checked },
-                success: function() {
-                    alert('it worked');
+            $.ajax({
+                type: 'get',
+                url: '/user/todo/done',
+                data: "id=" + id + "&val=1",  //{ id : id, val: 1 },
+                success: function(data) {
+                    alert(data);
                 },
-                error: function() {
-                    alert('it broke');
-                },
-                complete: function() {
-                    alert('it completed');
+                error: function(data) {
+                    alert(data);
                 }
-            });*/
+            });
         });
 
-        /*$("input.task-check").change(function() {
-            var input = $(this);
-            alert(input.prop("checked"));
-        }).change();
-
-        //if ($('input.checkbox_check').is(':checked'))
-        //$(".span-check input").change(function() {
-            //var input = $(this);
-            //if ($('input.task-check').prop('checked')) {
-                //blah blah
-            //}
-            //if ($('ul.todo-list input').is(':checked')) {
-                //if ($input.prop("checked")) {
-                /*$.ajax({
-                    method: "POST",
-                    url: "todoDone",
-                    data: {
-                        id: $input.prop("id"),
-                        val: 1
-                    }
-                });*/
-                    //alert(56);
-                //}
-            //}
-        //}).change();
+        $('input.task-check').on('ifUnchecked', function(){
+            //alert(0);
+        });
     });
 </script>
 
@@ -161,43 +133,36 @@
                 <div class="withScroll" data-height="400">
                     <div class="panel-content">
                         <ul class="todo-list">
-                            <?php Pjax::begin(['enablePushState' => false]) ?>
-                            <?php $form = ActiveForm::begin([
-                                'id' => 'form',
-                                'action' => 'todoQAdd',
-                                'options' => ['data-pjax' => true]]) ?>
-                                <?php foreach ($tasks as $task): ?>
-                                    <li class="<?= Html::encode($task['priority']) ?>
-                                        <?= Html::encode($task['is_done']) ? 'done' : null ?>">
-                                    <span class="span-check">
-                                        <input id="<?= Html::encode($task['id']) ?>" class="task-check" type="checkbox" data-checkbox="icheckbox_square-blue"
-                                               checked="<?= Html::encode($task['is_done']) ? 'checked' : null ?>">
-                                    </span>
-                                    <span class="todo-task">
-                                        <?= Html::encode($task['name']) ?>
-                                    </span>
-                                        <div class="todo-date clearfix">
-                                            <div class="completed-date"></div>
-                                            <div class="due-date">Выполнить до
-                                            <span class="due-date-span">
-                                                <?= Html::encode($task['time']) ?>
-                                            </span>
-                                            </div>
-                                        </div>
-                                        <span class="todo-options pull-right">
-                                            <a href="#" class="todo-delete">
-                                                <i class="fa fa-times"></i>
-                                            </a>
+                            <?php foreach ($tasks as $task): ?>
+                                <li class="<?= Html::encode($task['priority']) ?>
+                                    <?= Html::encode($task['is_done']) ? 'done' : null ?>">
+                                <span class="span-check">
+                                    <input id="<?= Html::encode($task['id']) ?>" class="task-check" type="checkbox" data-checkbox="icheckbox_square-blue"
+                                           <?= Html::encode($task['is_done']) ? 'checked' : null ?>>
+                                </span>
+                                <span class="todo-task">
+                                    <?= Html::encode($task['name']) ?>
+                                </span>
+                                    <div class="todo-date clearfix">
+                                        <div class="completed-date"></div>
+                                        <div class="due-date">Выполнить до
+                                        <span class="due-date-span">
+                                            <?= Html::encode($task['time']) ?>
                                         </span>
-                                        <div class="todo-tags pull-right">
-                                            <div class="label label-success">
-                                                <?= Html::encode($task['tasks_cat']['name']) ?>
-                                            </div>
                                         </div>
-                                    </li>
-                                <?php endforeach ?>
-                            <?php ActiveForm::end(); ?>
-                            <?php Pjax::end() ?>
+                                    </div>
+                                    <span class="todo-options pull-right">
+                                        <a href="#" class="todo-delete">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </span>
+                                    <div class="todo-tags pull-right">
+                                        <div class="label label-success">
+                                            <?= Html::encode($task['tasks_cat']['name']) ?>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endforeach ?>
                         </ul>
                         <div class="clearfix m-t-10">
                             <div class="pull-right">

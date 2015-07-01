@@ -19,7 +19,7 @@ use yii\db\ActiveRecord;
 class Tasks extends ActiveRecord
 {
     const NULL_CAT = 1;
-    const NULL_IS_DONE = 0;
+    const IS_DONE = 1;
     const NULL_PRIOR = 0;
 
     /**
@@ -60,15 +60,17 @@ class Tasks extends ActiveRecord
         return $tasks;
     }
 
-    /**
-     * @param bool $val
-     */
-    public function done($id, $val)
-    {
-        $tasks = Tasks::findOne($id);
 
-        $tasks->is_done = $val;
-        $tasks->save();
+    public function done()
+    {
+        $tasks = Tasks::find($this->id);
+
+        $tasks->is_done = $this->val;
+
+        if ($tasks->save())
+            return true;
+        else
+            return false;
     }
 
     /**
