@@ -35,19 +35,13 @@
     </p>
     <![endif]-->
     <section>
-    <?php $this->beginContent('@app/views/layouts/templates/sidebar.php') ?>
-
-    <?php $this->endContent() ?>
+    <?php $this->beginContent('@app/views/layouts/templates/sidebar.php'); $this->endContent(); ?>
 
     <?= $content ?>
 
-    <?php $this->beginContent('@app/views/layouts/templates/builder.php') ?>
-
-    <?php $this->endContent() ?>
+    <?php $this->beginContent('@app/views/layouts/templates/builder.php'); $this->endContent(); ?>
     </section>
-    <?php $this->beginContent('@app/views/layouts/templates/quickSidebar.php') ?>
-
-    <?php $this->endContent() ?>
+    <?php $this->beginContent('@app/views/layouts/templates/quickSidebar.php'); $this->endContent(); ?>
 
     <div class="loader-overlay">
         <div class="spinner">

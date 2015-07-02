@@ -133,7 +133,7 @@
                 <div class="withScroll" data-height="400">
                     <div class="panel-content">
                         <ul class="todo-list">
-                            <?php foreach ($tasks as $task): ?>
+                            <?php /*foreach ($tasks as $task): ?>
                                 <li class="<?= Html::encode($task['priority']) ?>
                                     <?= Html::encode($task['is_done']) ? 'done' : null ?>">
                                 <span class="span-check">
@@ -162,7 +162,7 @@
                                         </div>
                                     </div>
                                 </li>
-                            <?php endforeach ?>
+                            <?php endforeach */?>
                         </ul>
                         <div class="clearfix m-t-10">
                             <div class="pull-right">

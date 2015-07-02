@@ -52,11 +52,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
-            $model = new Tasks();
-            $tasks = $model->getTasks();
+            //$model = new Tasks();
+            //$tasks = $model->getTasks();
 
             return $this->render('index', [
-                'tasks' => $tasks,
+                //'tasks' => $tasks,
             ]);
         }
         else {

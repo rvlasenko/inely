@@ -11,7 +11,6 @@
         "yiisoft/yii2-swiftmailer": "~2.0",
         "yiisoft/yii2-authclient": "~2.0",
         "yiisoft/yii2-jui": "~2.0",
-        "yiisoft/yii2-twig": "~2.0.0",
         "asofter/yii2-imperavi-redactor": "dev-master@dev",
         "mihaildev/yii2-elfinder": "~1.0",
         "trntv/probe": "dev-master",
@@ -24,7 +23,8 @@
         "league/glide": "~0.3",
         "bower-asset/admin-lte": "~2.0",
         "bower-asset/html5shiv": "~3.0",
-        "bower-asset/flot": "~0.8"
+        "bower-asset/flot": "~0.8",
+        "kartik-v/yii2-grid": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",

@@ -20,9 +20,9 @@ return [
         '<_a:(confirm-email)>' => 'user/sign-in/<_a>',
 
         // Задачи
-        'todo' => '/user/todo/index',
-        'todoQAdd' => '/user/todo/quickinsert',
-        'todoDone' => '/user/todo/done',
+        'todo' => '/user/task/index',
+        //'todoQAdd' => '/user/todo/quickinsert',
+        //'todoDone' => '/user/todo/done',
 
         // Api
         ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/article', 'only' => ['index', 'view', 'options']],

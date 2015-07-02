@@ -13,21 +13,12 @@ $config = [
             'modules' => [
                 'v1' => 'frontend\modules\api\v1\Module'
             ]
+        ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
         ]
     ],
     'components' => [
-        'view' => [
-            'renderers' => [
-                'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
-                    'cachePath' => false, //'@runtime/Twig/cache',
-                    'options' => [
-                        'auto_reload' => true,
-                    ],
-                    'globals' => ['html' => '\yii\helpers\Html', 'arrayHelper' => 'yii\helpers\ArrayHelper'],
-                ],
-            ],
-        ],
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
             'bundles' => [
