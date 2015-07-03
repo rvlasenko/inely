@@ -13,7 +13,6 @@ class FrontendAsset extends AssetBundle
         'css/theme.css',
         'css/ui.css',
         'css/icons/font-awesome/css/font-awesome.min.css',
-        //'css/icons/glyphicons-pro/glyphicons-pro.css',
         'plugins/animation-css/animate.min.css',
         'plugins/mcustom-scrollbar/mcustom_scrollbar.min.css',
         'plugins/slick/slick.css',
@@ -59,6 +58,7 @@ class FrontendAsset extends AssetBundle
     ];
 
     public $depends = [
-        'frontend\assets\BowerAsset'
+        'frontend\assets\BowerAsset',
+        'frontend\assets\FontAwesomeAsset'
     ];
 }

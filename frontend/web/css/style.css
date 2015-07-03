@@ -1009,7 +1009,7 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
     position: fixed;
     top: 0;
     right: 0;
-    left: 50px;
+    left: 240px;
     z-index: 801;
     z-index: 300;
     -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
@@ -2332,6 +2332,10 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
     left: 0;
 }
 
+.sidebar-collapsed.fixed-topbar .topbar {
+    left: 50px;
+}
+
 .fixed-sidebar .sidebar {
     position: fixed;
     right: auto;
@@ -2426,7 +2430,7 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
     }
 
     .fixed-topbar .topbar {
-        left: 0 !important;
+        left: -17.2em !important;
     }
 
     .main-content {

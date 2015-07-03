@@ -276,7 +276,7 @@
 
                 <div class="form-group">
                     <button class="bttn btn-2 btn-2a">
-                        Узнать больше
+                        Узнать больше...
                     </button>
                 </div>
 

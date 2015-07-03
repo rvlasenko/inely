@@ -24,6 +24,7 @@
         "bower-asset/admin-lte": "~2.0",
         "bower-asset/html5shiv": "~3.0",
         "bower-asset/flot": "~0.8",
+        "FortAwesome/Font-Awesome": "*",
         "kartik-v/yii2-grid": "*",
         "kartik-v/yii2-editable": "*"
     },
