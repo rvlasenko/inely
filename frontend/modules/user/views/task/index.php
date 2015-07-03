@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use kartik\editable\Editable;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -24,37 +25,27 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('Create Task', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
+        <?php
+            $gridColumns = [
+            // the name column configuration
+                ['class' => 'yii\grid\SerialColumn'],
+
+                //'id',
+                'name',
+                'category',
+                //'author',
+                'is_done',
+                'priority',
+                'time',
+                //'is_done_date',
+
+            ];
+        ?>
+
         <?=
             GridView::widget([
                 'dataProvider'=> $dataProvider,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
-
-                    //'id',
-                    'name',
-                    'category',
-                    //'author',
-                    'is_done',
-                    'priority',
-                    'time',
-                    //'is_done_date',
-
-                    ['class' => 'yii\grid\ActionColumn'],
-                ],
-                'toolbar' => [
-                    [
-                        'content' =>
-                            Html::button('<i class="glyphicon glyphicon-plus"></i>', [
-                                'type'=>'button',
-                                'title'=>'Add Book',
-                                'class'=>'btn btn-success'
-                            ]) . ' '.
-                            Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], [
-                                'class' => 'btn btn-default',
-                                'title' => 'Reset Grid'
-                            ]),
-                    ],
-                ],
+                'columns' => $gridColumns,
                 'responsive' => true,
                 'hover' => true,
                 'export' => false,

@@ -37,7 +37,7 @@ class TaskController extends DefaultController
         ]);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 

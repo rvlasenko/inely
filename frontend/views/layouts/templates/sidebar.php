@@ -9,16 +9,16 @@
         <div class="menu-title">Navigation</div>
         <ul class="nav sub-nav sidebar-menu" style="">
             <li>
+                <a href="/">
+                    <i class="fa fa-tachometer"></i>Ваша доска</a>
+            </li>
+            <li>
                 <a href="admin_plugins-panels.html">
                     <i class="fa fa-calendar"></i>Календарь</a>
             </li>
             <li>
-                <a href="admin_plugins-modals.html">
+                <a href="todo">
                     <i class="fa fa-tasks"></i>Задачник</a>
-            </li>
-            <li>
-                <a href="admin_plugins-dock.html">
-                    <span class="glyphicons glyphicons-sampler"></span> Admin Dock </a>
             </li>
         </ul>
         <!-- SIDEBAR WIDGET FOLDERS -->
