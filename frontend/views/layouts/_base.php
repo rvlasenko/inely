@@ -23,7 +23,7 @@
     <?php $this->registerCssFile('//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic',
         ['position' => \yii\web\View::POS_HEAD]) ?>
 </head>
-<body class="theme-sdtl color-default fixed-sidebar sidebar-collapsed">
+<body class="theme-sdtl color-default fixed-sidebar fixed-topbar sidebar-collapsed">
 
 <?php $this->beginBody() ?>
 

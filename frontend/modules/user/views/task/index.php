@@ -1,14 +1,12 @@
 <?php
 
-use yii\helpers\Html;
-use kartik\grid\GridView;
-use kartik\editable\Editable;
+    use yii\helpers\Html;
+    use kartik\grid\GridView;
+    use kartik\editable\Editable;
 
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+    /* @var $this yii\web\View */
+    /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tasks';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="main-content">
@@ -19,26 +17,32 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="page-content page-thin">
     <div class="task-index">
 
-        <h1><?= Html::encode($this->title) ?></h1>
-
-        <p>
-            <?= Html::a('Create Task', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
-
         <?php
             $gridColumns = [
             // the name column configuration
                 ['class' => 'yii\grid\SerialColumn'],
 
                 //'id',
-                'name',
+                //'name',
+                [
+                    'class' => 'kartik\grid\EditableColumn',
+                    'attribute' => 'name',
+                    'editableOptions' => [
+                        'header' => 'вашу задачу',
+                        'inputType' => \kartik\editable\Editable::INPUT_HTML5_INPUT,
+                        'size' => 'md',
+                        'placement' => 'top'
+                    ],
+                    'hAlign' => 'bottom',
+                    'vAlign' => 'middle',
+                    'width' => '700px',
+                ],
                 'category',
                 //'author',
                 'is_done',
                 'priority',
                 'time',
-                //'is_done_date',
-
+                //'is_done_date',*/
             ];
         ?>
 
@@ -47,9 +51,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider'=> $dataProvider,
                 'columns' => $gridColumns,
                 'responsive' => true,
+                'resizableColumns' => true,
+                'persistResize' => true,
+                'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
                 'hover' => true,
                 'export' => false,
                 'pjax' => true,
+                'pjaxSettings' => [
+                    'neverTimeout' => true,
+                    'loadingCssClass' => false
+                ],
+                'panel' => [
+                    'heading' => '<i class="fa fa-inbox"></i> <span>Countries</span>',
+                    'type' => GridView::TYPE_PRIMARY,
+                    'before' => Html::a('<i class="glyphicon glyphicon-plus"></i> Create Country', ['create'], [
+                        'class' => 'btn btn-success btn-square']),
+                    'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Grid', ['index'], [
+                        'class' => 'btn btn-info btn-square']),
+                    'footer' => false
+                ],
+
             ]);
         ?>
 

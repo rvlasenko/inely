@@ -313,6 +313,16 @@ ul.list-unstyled {
     padding: 0;
 }
 
+.btn-square {
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+.popover-footer .btn + .btn {
+    margin-bottom: 10px;
+}
+
 .modal-content {
     border-radius: 0px;
     border: none;

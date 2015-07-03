@@ -38,20 +38,20 @@ function handleTodoList() {
         });
 
         /* Editable Task & Date */
-        $('.todo-list .todo-task').editable({
+        /*$('.todo-list .todo-task').editable({
             type: 'text',
             mode: 'inline'
-        });
+        });*/
         $('.modal-body').html(
             '<span class="due-date-span"></span>'
         );
-        $('.due-date-span').editable({
+        /*$('.due-date-span').editable({
             type: 'text',
             placement: 'bottom',
             emptytext: 'Без имени',
             name: 'date',
             tpl: '<input type="text" class="mask form-control input-sm">'
-        });
+        });*/
 
         $(document).on("focus", ".mask", function () {
             $(this).mask("99/99 99:99");
@@ -84,8 +84,8 @@ function handleTodoList() {
             else {
                 $(".todo-list").prepend($(parent));
             }
-            $('.todo-task', parent).editable("enable");
-            $('.due-date-span', parent).editable("enable");
+            /*$('.todo-task', parent).editable("enable");
+            $('.due-date-span', parent).editable("enable");*/
             $('.completed-date', parent).text("");
         });
 
@@ -111,13 +111,13 @@ function handleTodoList() {
             '<div class="label label-system">Без категории</div>' +
             '</div></li>';
             $(this).parent().parent().parent().find(".todo-list").append(item);
-            $('.due-date-span').editable({
+            /*$('.due-date-span').editable({
                 type: 'text',
                 placement: 'bottom',
                 emptytext: 'Без имени',
                 name: 'date',
                 tpl: '<input type="text" class="mask form-control input-sm">'
-            });
+            });*/
             window.setTimeout(function () {
                 $(".todo-list li").removeClass("animated");
             }, 500);

@@ -1033,10 +1033,20 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
 
 .main-content .page-content h3 {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    margin-bottom: 15px;
-    margin-top: 25px;
-    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.panel-heading .fa-inbox {
+    font-size: 2.5em;
+}
+
+.panel-heading span {
+    font-size: 2.5em;
+    padding-left: 15px;
+}
+
+.summary {
+    font-size: 16px;
 }
 
 .main-content .page-content::after {

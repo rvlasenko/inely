@@ -24,7 +24,7 @@
             <div class="layout-option">
                 <span>Fixed Topbar</span>
                 <label class="switch pull-right">
-                    <input data-layout="topbar" id="switch-topbar" type="checkbox" class="switch-input">
+                    <input data-layout="topbar" id="switch-topbar" type="checkbox" class="switch-input" checked>
                     <span class="switch-label" data-on="On" data-off="Off"></span>
                     <span class="switch-handle"></span>
                 </label>
@@ -56,17 +56,6 @@
                         <div class="theme-sidebar-dark"></div>
                         <div class="bg-light"></div>
                     </div>
-                </div>
-            </div>
-            <h4 class="border-top">Background</h4>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="bg-color bg-clean" data-bg="clean" data-color="#F8F8F8"></div>
-                    <div class="bg-color bg-lighter" data-bg="lighter" data-color="#EFEFEF"></div>
-                    <div class="bg-color bg-light-default" data-bg="light-default" data-color="#E9E9E9"></div>
-                    <div class="bg-color bg-light-blue" data-bg="light-blue" data-color="#E2EBEF"></div>
-                    <div class="bg-color bg-light-purple" data-bg="light-purple" data-color="#E9ECF5"></div>
-                    <div class="bg-color bg-light-dark" data-bg="light-dark" data-color="#DCE1E4"></div>
                 </div>
             </div>
         </div>

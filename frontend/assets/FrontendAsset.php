@@ -32,7 +32,7 @@ class FrontendAsset extends AssetBundle
         'plugins/retina/retina.min.js',
         'plugins/icheck/icheck.min.js',
         'plugins/bootstrap-progressbar/bootstrap-progressbar.min.js',
-        'plugins/bootstrap-editable/js/bootstrap-editable.min.js',
+        //'plugins/bootstrap-editable/js/bootstrap-editable.min.js',
         'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
         'plugins/multidatepicker/multidatespicker.min.js',
         'plugins/jquery-translator/jqueryTranslator.min.js',

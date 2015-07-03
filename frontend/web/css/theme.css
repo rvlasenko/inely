@@ -1165,7 +1165,7 @@
 .bg-clean .sidebar-mailbox.sidebar .sidebar-inner .nav-sidebar > li.active > a,
 .bg-clean .sidebar-mailbox.sidebar .nav-sidebar > li.active > a:hover,
 .bg-clean .sidebar-mailbox.sidebar .nav-sidebar > li.active > a:focus {
-    background: #f8f8f8;
+    background: #fcfcfc;
 }
 
 .bg-lighter,
