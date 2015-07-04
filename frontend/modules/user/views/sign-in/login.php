@@ -3,7 +3,6 @@
 
     $this->registerJsFile('@web/js/landing/uiProgressButton.js', [
         'position' => yii\web\View::POS_BEGIN]);
-    $this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
 ?>
 
 <div class="row">

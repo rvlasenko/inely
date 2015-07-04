@@ -45,7 +45,7 @@ class SiteController extends Controller
 
     /**
      * @return string
-     * Определение категории пользователя и вывод
+     * Определение категории пользователя
      * Также из модели дергаются методы и всё отправляется в index
      */
 
@@ -73,9 +73,7 @@ class SiteController extends Controller
             }
         }
 
-        return $this->renderAjax('contact', [
-            'model' => $model
-        ]);
+        return $this->renderAjax('contact', ['model' => $model]);
     }
 
     public function actionError()

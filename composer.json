@@ -26,7 +26,8 @@
         "bower-asset/flot": "~0.8",
         "FortAwesome/Font-Awesome": "*",
         "kartik-v/yii2-grid": "*",
-        "kartik-v/yii2-editable": "*"
+        "kartik-v/yii2-editable": "*",
+        "kartik-v/yii2-checkbox-x": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",

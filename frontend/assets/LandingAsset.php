@@ -38,7 +38,6 @@ class LandingAsset extends AssetBundle
         'js/landing/wow.min.js',
         'js/landing/retina.min.js',
         'js/landing/custom.js',
-        //'js/landing/bootstrap.min.js',
         'plugins/noty/jquery.noty.packaged.js',
     ];
 
@@ -47,6 +46,7 @@ class LandingAsset extends AssetBundle
     ];
 
     public $depends = [
-        'frontend\assets\BowerAsset'
+        'frontend\assets\BowerAsset',
+        'frontend\assets\FontAwesomeAsset'
     ];
 }

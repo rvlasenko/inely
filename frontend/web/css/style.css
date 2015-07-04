@@ -2346,6 +2346,10 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
     left: 50px;
 }
 
+.cbx-icon {
+    left: 2px;
+}
+
 .fixed-sidebar .sidebar {
     position: fixed;
     right: auto;

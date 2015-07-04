@@ -21,8 +21,6 @@ return [
 
         // Задачи
         'todo' => '/user/task/index',
-        //'todoQAdd' => '/user/todo/quickinsert',
-        //'todoDone' => '/user/todo/done',
 
         // Api
         ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/article', 'only' => ['index', 'view', 'options']],

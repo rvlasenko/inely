@@ -12,13 +12,13 @@ class FrontendAsset extends AssetBundle
         'css/style.css',
         'css/theme.css',
         'css/ui.css',
-        'css/icons/font-awesome/css/font-awesome.min.css',
         'plugins/animation-css/animate.min.css',
         'plugins/mcustom-scrollbar/mcustom_scrollbar.min.css',
         'plugins/slick/slick.css',
         'plugins/fullcalendar/fullcalendar.min.css',
         'plugins/icheck/skins/all.css',
         'plugins/bootstrap-editable/css/bootstrap-editable.css',
+        'plugins/bootstrap-checkbox/awesome-bootstrap-checkbox.css',
         'plugins/chartist-js-develop/dist/chartist.min.css',
     ];
 
@@ -30,7 +30,7 @@ class FrontendAsset extends AssetBundle
         'plugins/jquery-block-ui/jquery.blockUI.min.js',
         'plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js',
         'plugins/retina/retina.min.js',
-        'plugins/icheck/icheck.min.js',
+        //'plugins/icheck/icheck.min.js',
         'plugins/bootstrap-progressbar/bootstrap-progressbar.min.js',
         //'plugins/bootstrap-editable/js/bootstrap-editable.min.js',
         'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',

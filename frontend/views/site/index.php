@@ -1,7 +1,7 @@
 <?php
     use yii\helpers\Html;
-    use yii\widgets\ActiveForm;
-    use yii\widgets\Pjax;
+
+    $this->title = 'Ваша доска';
 ?>
 
 <script>

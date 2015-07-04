@@ -1411,6 +1411,17 @@ h4.alert-title {
         display: none;
     }
 }
+@media (max-width: 510px) {
+    .panel-heading span {
+        display: none;
+    }
+}
+@media (max-width: 570px) {
+    .panel-heading span {
+        font-size: 2em;
+        vertical-align: text-bottom;
+    }
+}
 
 /* Page Full Calendar */
 #calendar {

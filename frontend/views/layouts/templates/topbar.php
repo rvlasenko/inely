@@ -98,7 +98,7 @@
         <li class="dropdown" id="user-header">
             <a href="#">
                 <img src="images/avatars/user1.png" alt="user image">
-                <span class="username">Hi, <?= \Yii::$app->user->id ?></span>
+                <span class="username">Hi, <?= \Yii::$app->user->identity->username ?></span>
             </a>
         </li>
 

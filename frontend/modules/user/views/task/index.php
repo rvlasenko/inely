@@ -3,10 +3,12 @@
     use yii\helpers\Html;
     use kartik\grid\GridView;
     use kartik\editable\Editable;
+    use kartik\checkbox\CheckboxX;
 
     /* @var $this yii\web\View */
     /* @var $dataProvider yii\data\ActiveDataProvider */
 
+    $this->title = 'Ваши задачи';
 ?>
 
 <div class="main-content">
@@ -20,10 +22,36 @@
         <?php
             $gridColumns = [
             // the name column configuration
-                ['class' => 'yii\grid\SerialColumn'],
+                //['class' => 'yii\grid\SerialColumn'],
 
                 //'id',
                 //'name',
+                [
+                    'class' => '\kartik\grid\EditableColumn',
+                    'attribute' => 'is_done',
+                    'editableOptions' => [
+                        'asPopover' => false,
+                        'header' => 'вашу задачу',
+                        'inputType' => \kartik\editable\Editable::INPUT_CHECKBOX_X,
+                        'buttonsTemplate' => '{submit}',
+                        'inlineSettings' => [
+                            'options' => [
+                                'class' => ''
+                            ]
+                        ],
+                    ],
+                ],
+                /*[
+                    'class' => '\kartik\grid\CheckboxColumn',
+                    'rowHighlight' => true,
+                    'checkboxOptions' => function ($model, $key, $index, $column)
+                    {
+                        return [
+                            'value' => $model->is_done,
+                            'checked' => $model->is_done ? 1 : 0,
+                        ];
+                    }
+                ],*/
                 [
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'name',
@@ -35,11 +63,10 @@
                     ],
                     'hAlign' => 'bottom',
                     'vAlign' => 'middle',
-                    'width' => '700px',
+                    'width' => '700px'
                 ],
                 'category',
                 //'author',
-                'is_done',
                 'priority',
                 'time',
                 //'is_done_date',*/
@@ -52,8 +79,6 @@
                 'columns' => $gridColumns,
                 'responsive' => true,
                 'resizableColumns' => true,
-                'persistResize' => true,
-                'resizeStorageKey' => Yii::$app->user->id . '-' . date("m"),
                 'hover' => true,
                 'export' => false,
                 'pjax' => true,
