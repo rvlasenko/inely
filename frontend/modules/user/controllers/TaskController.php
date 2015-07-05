@@ -32,8 +32,13 @@ class TaskController extends DefaultController
      */
     public function actionIndex()
     {
+        $query = Task::find()
+            ->limit(10)
+            ->join('INNER JOIN', 'tasks_cat', 'tasks.category = tasks_cat.id')
+            ->where(['author' => \Yii::$app->user->id]);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Task::find(),
+            'query' => $query
         ]);
 
         return $this->render('index', [

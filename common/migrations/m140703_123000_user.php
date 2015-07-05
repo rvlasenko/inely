@@ -40,16 +40,6 @@ class m140703_123000_user extends Migration
         ]);
         $this->insert('{{%user}}', [
             'id' => 2,
-            'username' => 'manager',
-            'email' => 'manager@example.com',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('manager'),
-            'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'status' => \common\models\User::STATUS_ACTIVE,
-            'created_at' => time(),
-            'updated_at' => time()
-        ]);
-        $this->insert('{{%user}}', [
-            'id' => 3,
             'username' => 'user',
             'email' => 'user@example.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('user'),
@@ -75,9 +65,6 @@ class m140703_123000_user extends Migration
         ]);
         $this->insert('{{%user_profile}}', [
             'user_id' => 2,
-        ]);
-        $this->insert('{{%user_profile}}', [
-            'user_id' => 3,
         ]);
         if ($this->db->driverName === 'mysql') {
             $this->addForeignKey('fk_user', '{{%user_profile}}', 'user_id', '{{%user}}', 'id', 'cascade', 'cascade');

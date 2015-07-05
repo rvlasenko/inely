@@ -16,7 +16,7 @@ use Yii;
  * @property string $time
  * @property string $is_done_date
  *
- * @property TasksCat $tasksCat
+ * @property TasksCat $category0
  */
 class Task extends \yii\db\ActiveRecord
 {
@@ -49,21 +49,21 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'category' => 'Category',
-            'author' => 'Author',
-            'is_done' => 'Is Done',
-            'priority' => 'Priority',
-            'time' => 'Time',
-            'is_done_date' => 'Is Done Date',
+            'name' => 'Название',
+            'author' => 'Автор',
+            'is_done' => 'Статус',
+            'priority' => 'Важность',
+            'time' => 'Срок выполнения',
+            'is_done_date' => 'Дата выполнения',
+            'tasks_cat.name' => 'Категория',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTasksCat()
+    public function getTasks_cat()
     {
-        return $this->hasOne(TasksCat::className(), ['id' => 'id']);
+        return $this->hasOne(TaskCat::className(), ['id' => 'category']);
     }
 }

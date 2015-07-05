@@ -324,7 +324,7 @@ ul.list-unstyled {
 }
 
 .modal-content {
-    border-radius: 0px;
+    border-radius: 0;
     border: none;
 }
 
@@ -384,7 +384,6 @@ ul.list-unstyled {
     border: 1px solid #CFD2D6;
     box-shadow: none;
     outline: none;
-    outline: none !important;
 }
 
 .form-control[class*="bg-"]::-webkit-input-placeholder {
@@ -396,7 +395,7 @@ ul.list-unstyled {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }
 
 .form-control.input-sm {
@@ -749,6 +748,11 @@ code {
     background-color: #EEF4FF;
     white-space: nowrap;
     border-radius: 4px;
+}
+
+.clear-rating.clear-rating-active,
+.star-rating .caption {
+    display: none;
 }
 
 a,

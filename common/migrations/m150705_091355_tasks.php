@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m150702_184312_tasks extends Migration
+class m150705_091355_tasks extends Migration
 {
     public function up()
     {
@@ -15,7 +15,7 @@ class m150702_184312_tasks extends Migration
         $this->createTable('{{%tasks}}', [
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . '(255) NULL',
-            'category' => Schema::TYPE_INTEGER . '(1)',
+            'category' => Schema::TYPE_INTEGER . '(11)',
             'author' => Schema::TYPE_INTEGER . '(1)',
             'is_done' => Schema::TYPE_INTEGER . '(1)',
             'priority' => Schema::TYPE_STRING . '(12) NULL',
@@ -44,13 +44,13 @@ class m150702_184312_tasks extends Migration
         ]);
 
         if ($this->db->driverName === 'mysql') {
-            $this->addForeignKey('fk_cat', '{{%tasks_cat}}', 'id', '{{%tasks}}', 'id', 'cascade', 'cascade');
+            $this->addForeignKey('fk_cat', '{{%tasks}}', 'category', '{{%tasks_cat}}', 'id', 'cascade', 'cascade');
         }
     }
 
     public function down()
     {
-        echo "m150702_184312_tasks cannot be reverted.\n";
+        echo "m150705_091355_tasks cannot be reverted.\n";
 
         return false;
     }
