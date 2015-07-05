@@ -15,8 +15,6 @@ use Yii;
  * @property string $priority
  * @property string $time
  * @property string $is_done_date
- *
- * @property TasksCat $category0
  */
 class Task extends \yii\db\ActiveRecord
 {
@@ -37,7 +35,7 @@ class Task extends \yii\db\ActiveRecord
             [['category', 'author', 'is_done'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['priority'], 'string', 'max' => 12],
-            [['time'], 'string', 'max' => 15],
+            [['time'], 'string', 'max' => 25],
             [['is_done_date'], 'string', 'max' => 3]
         ];
     }

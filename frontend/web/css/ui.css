@@ -337,6 +337,10 @@ ul.list-unstyled {
 }
 
 .form-control {
+    border-radius: 0 !important;
+}
+
+/*.form-control {
     -webkit-box-shadow: none !important;
     background-color: #ECEDEE;
     border: 1px solid #ECEDEE;
@@ -406,7 +410,7 @@ input:-webkit-autofill {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-}
+}*/
 
 fieldset {
     border: 1px solid #E5E5E5;

@@ -28,7 +28,10 @@
         "kartik-v/yii2-grid": "*",
         "kartik-v/yii2-editable": "*",
         "kartik-v/yii2-checkbox-x": "*",
-        "kartik-v/yii2-widget-rating": "*"
+        "kartik-v/yii2-widget-rating": "*",
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "kartik-v/yii2-widget-colorinput": "*",
+        "kartik-v/yii2-widget-select2": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",

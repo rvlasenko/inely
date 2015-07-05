@@ -1426,6 +1426,10 @@ ul.weather-days > li {
     color: #ffffff;
 }
 
+.select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    border-left: none;
+}
+
 .widget-progress-bar .title {
     color: rgba(0, 0, 0, 0.6);
     float: left;

@@ -6,13 +6,15 @@ use Yii;
 use frontend\modules\user\models\Task;
 use yii\data\ActiveDataProvider;
 use frontend\modules\user\controllers\DefaultController;
+use yii\web\Controller;
+use frontend\modules\user\models\TaskSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * TaskController implements the CRUD actions for Task model.
  */
-class TaskController extends DefaultController
+class TaskController extends Controller
 {
     public function behaviors()
     {
@@ -32,17 +34,22 @@ class TaskController extends DefaultController
      */
     public function actionIndex()
     {
-        $query = Task::find()
+        /*$query = Task::find()
             ->limit(10)
             ->join('INNER JOIN', 'tasks_cat', 'tasks.category = tasks_cat.id')
             ->where(['author' => \Yii::$app->user->id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query
-        ]);
+        ]);*/
+
+        $searchModel = new TaskSearch();
+
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 

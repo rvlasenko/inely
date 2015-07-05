@@ -17,8 +17,8 @@ class FrontendAsset extends AssetBundle
         'plugins/slick/slick.css',
         'plugins/fullcalendar/fullcalendar.min.css',
         'plugins/icheck/skins/all.css',
-        'plugins/bootstrap-editable/css/bootstrap-editable.css',
-        'plugins/bootstrap-checkbox/awesome-bootstrap-checkbox.css',
+        //'plugins/bootstrap-editable/css/bootstrap-editable.css',
+        //'plugins/bootstrap-checkbox/awesome-bootstrap-checkbox.css',
         'plugins/chartist-js-develop/dist/chartist.min.css',
     ];
 
@@ -34,7 +34,7 @@ class FrontendAsset extends AssetBundle
         'plugins/bootstrap-progressbar/bootstrap-progressbar.min.js',
         //'plugins/bootstrap-editable/js/bootstrap-editable.min.js',
         'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
-        'plugins/multidatepicker/multidatespicker.min.js',
+        //'plugins/multidatepicker/multidatespicker.min.js',
         'plugins/jquery-translator/jqueryTranslator.min.js',
         'plugins/noty/jquery.noty.packaged.js',
         'plugins/countup/countUp.min.js',

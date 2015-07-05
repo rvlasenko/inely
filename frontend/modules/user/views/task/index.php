@@ -1,8 +1,11 @@
 <?php
 
     use yii\helpers\Html;
+    use yii\helpers\ArrayHelper;
     use kartik\grid\GridView;
     use kartik\editable\Editable;
+    use kartik\datetime\DateTimePicker;
+    use frontend\modules\user\models\Task;
 
     /* @var $this yii\web\View */
     /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -34,28 +37,94 @@
                         ],
                     ],
                 ],*/
-                /*[
+                /*
+                     * ArrayHelper::map(
+                        Task::find()
+                            ->limit(10)
+                            ->where(['author' => \Yii::$app->user->id])
+                            ->asArray()
+                            ->all(), 'id', 'name'
+                    ),
+                     */
+                [
                     'class' => 'kartik\grid\BooleanColumn',
                     'attribute' => 'is_done',
                     'vAlign' => 'middle',
-                    'filterType' => GridView::FILTER_CHECKBOX,
+                    //'filterType' => GridView::FILTER_SELECT2,
+                    /*'filter' => \kartik\select2\Select2::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'is_done',
+                    ]),*/
                     'value' => function($model) {
                         return ($model->is_done == null) ? false : true;
                     },
-                ],*/
+                ],
                 [
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'name',
-                    'hAlign' => 'bottom',
-                    'vAlign' => 'middle',
-                    'width' => '700px',
+                    'width' => '600px',
+                    //'filterType' => GridView::FILTER_SELECT2,
+                    /*'filter' => ArrayHelper::map(
+                        Task::find()
+                            ->orderBy('name')
+                            ->limit(10)
+                            ->where(['author' => \Yii::$app->user->id])
+                            ->asArray()
+                            ->all(), 'id', 'name'
+                    ),
+                    'filterWidgetOptions' => [
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ],
+                    'filterInputOptions' => [
+                        'placeholder' => 'Введите логин'
+                    ],*/
                     'editableOptions' => [
+                        'placement' => 'top',
                         'header' => 'вашу задачу',
                         'inputType' => Editable::INPUT_HTML5_INPUT,
                         'size' => 'md',
                     ],
                 ],
-                'tasks_cat.name',
+                [
+                    'class' => 'kartik\grid\EditableColumn',
+                    'attribute' => 'category',
+                    'pageSummary' => true,
+                    'editableOptions'=> function ($model, $key, $index, $widget) {
+                        return [
+                            'header' => 'цвет значка',
+                            'size' => 'md',
+                            'afterInput' => function ($form, $widget) use ($model, $index) {
+                                return $form->field($model, "category")->widget(\kartik\color\ColorInput::classname(), [
+                                    'showDefaultPalette' => false,
+                                    'options' => [
+                                        'id' => "color-{$index}"
+                                    ],
+                                    'pluginOptions' => [
+                                        'showPalette' => true,
+                                        'showPaletteOnly' => true,
+                                        'showSelectionPalette' => true,
+                                        'showAlpha' => false,
+                                        'allowEmpty' => false,
+                                        'preferredFormat' => 'name',
+                                        'palette' => [
+                                            [
+                                                "white", "black", "grey", "silver", "gold", "brown",
+                                            ],
+                                            [
+                                                "red", "orange", "yellow", "indigo", "maroon", "pink"
+                                            ],
+                                            [
+                                                "blue", "green", "violet", "cyan", "magenta", "purple",
+                                            ],
+                                        ]
+                                    ],
+                                ]);
+                            }
+                        ];
+                    }
+                ],
                 [
                     'class' => '\kartik\grid\EditableColumn',
                     'attribute' => 'priority',
@@ -66,9 +135,9 @@
                             'templateAfter' =>  Editable::INLINE_AFTER_2,
                             'options' => [
                                 'class' => ''
-                            ],
+                             ],
                         ],*/
-                        'model' => $model,
+                        'placement' => 'top',
                         'displayValueConfig'=>[
                             1 => 'One Star',
                             2 => 'Two Stars',
@@ -85,7 +154,30 @@
                         ],
                     ],
                 ],
-                'time',
+                [
+                    'class' => 'kartik\grid\EditableColumn',
+                    'attribute' => 'time',
+                    'editableOptions' => [
+                        'inputType' => \kartik\editable\Editable::INPUT_DATETIME,
+                        //'name' => 'time',
+                        'placement' => 'left',
+                        'header' => 'дату',
+                        'options' => [
+                            'language' => 'ru',
+                            'removeButton' => false,
+                            'convertFormat' => true,
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'todayHighlight' => true,
+                                'format' => 'dd-M hh:ii',
+                                //'pickerPosition' => 'bottom-right'
+                            ],
+                            'type' => DateTimePicker::TYPE_INPUT,
+                            'size' => 'md',
+                        ],
+                    ],
+                ],
+                //'time',
                 //'is_done_date',*/
             ];
         ?>
@@ -93,8 +185,10 @@
         <?=
             GridView::widget([
                 'dataProvider'=> $dataProvider,
+                'filterModel' => $searchModel,
                 'columns' => $gridColumns,
                 'responsive' => true,
+                'responsiveWrap' => true,
                 'resizableColumns' => true,
                 'hover' => true,
                 'export' => false,
