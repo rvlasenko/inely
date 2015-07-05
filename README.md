@@ -1,16 +1,16 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Exoticness/madeasy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/madeasy/?branch=master) [![Codacy Badge](https://img.shields.io/badge/codacy-B-brightgreen.svg)](https://www.codacy.com/app/roof1rst/list) [![Build Status](https://scrutinizer-ci.com/g/Exoticness/madeasy/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/madeasy/build-status/master) [![Requirements Status](https://requires.io/github/Exoticness/madeasy/requirements.svg?branch=master)](https://requires.io/github/Exoticness/madeasy/requirements/?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)]() [![License](https://img.shields.io/badge/licence-GPLv3-brightgreen.svg?style=flat)]()
 
-Здесь будет описание
+Если ты ещё не понял, здесь будет описание
 
 
 Особенности
 --------
 ### BACKEND
 - Админка AdminLTE 2
-- I18N + 2 трансляции: Английский, Русский
+- I18N + Английский, Русский
 - Авторизация, регистрация, профиль пользователя
 - Авторизация по протоколу OAuth2
-- Управление пользователями CRUD
+- Управление юзверями CRUD
 - Управление доступом, с предопределенными ролями: `guest`, `user` и `administrator` 
 - Полная поддержка модуля RESTful API
 - Веб-интерфейс логгирования событий
@@ -20,11 +20,9 @@
 - Поддержка dotenv
 
 ### FRONTEND
-- Адаптивный дизайн (ПК, планшеты, мобильные устройства)
-- Bootstrap 3.3 Framework
-- 8 цветовых схем
-- HTML5 / CSS3
-- Parallax
+- Адаптивный дизайн (ПК, мобильные устройства, прочие гаджеты)
+- Bootstrap 3.3
+- HTML5 / CSS 3
 - Quickview sidebar (заметки, настройки)
 - Фиксированный / плавающий sidebar
 - Разнообразные виджеты
@@ -38,7 +36,7 @@ http://domain.net
 Backend:
 http://backend.domain.net
 
-Демонстрационный аккаунт пользователя:
+Аккаунт пользователя:
 ```
 Login: user
 Password: user
@@ -95,16 +93,16 @@ php console/yii app/setup
 - backend.madeasy.local => /path/to/madeasy/backend/web
 
 ### Инициализация c Vagrant
-Если вы хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
+Если вы цените собственное время, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
 
 1. Установите [Vagrant](https://www.vagrantup.com/).
 2. Откройте терминал и перейдите в папку madeasy.
 3. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
 4. Инициализируйте окружение ```php console/yii app/setup```.
 
-На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.local на базе сервера Apache 2.4. Подключиться к базе можно через /adminer или MySQLWorkbench.
+На этом всё. После этих действий приложение будет доступно по адресу http://madeasy.local на базе сервера Apache 2.4. Подключиться к базе можно через //adminer или MySQLWorkbench.
 
-Обычно возникает необходимость проброса портов на MySQL. Если вы не смогли подключиться к базе, то зайдите через ```vagrant ssh``` выполните команду ```sudo nano /etc/mysql/my.cnf``` и закомментируйте строки:
+p.s. Если возникла необходимость проброса портов на MySQL и вы не смогли подключиться к базе, то зайдите через ```vagrant ssh``` выполните команду ```sudo nano /etc/mysql/my.cnf``` и закомментируйте строки:
 ```bash
 bind-address: 127.0.0.1
 skip-external-locking
