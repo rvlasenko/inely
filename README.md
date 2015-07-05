@@ -11,10 +11,8 @@
 - Авторизация, регистрация, профиль пользователя
 - Авторизация по протоколу OAuth2
 - Управление пользователями CRUD
-- Управление доступом, с предопределенными ролями: `guest`, `user`, `manager` и `administrator` 
-- Компоненты для управления содержимым, таким как: статьи, категории, статические страницы
+- Управление доступом, с предопределенными ролями: `guest`, `user` и `administrator` 
 - Полная поддержка модуля RESTful API
-- Библиотека для управления изображениями Glide
 - Веб-интерфейс логгирования событий
 - Графическое представление активности (Timeline)
 - Веб-контроллер кэширования
@@ -23,13 +21,13 @@
 
 ### FRONTEND
 - Адаптивный дизайн (ПК, планшеты, мобильные устройства)
-- Quickview sidebar (заметки, настройки)
-- Фиксированный / плавающий sidebar
-- Разнообразные виджеты
 - Bootstrap 3.3 Framework
 - 8 цветовых схем
 - HTML5 / CSS3
 - Parallax
+- Quickview sidebar (заметки, настройки)
+- Фиксированный / плавающий sidebar
+- Разнообразные виджеты
 - Динамические кнопки
 
 Рабочий сервер
@@ -85,7 +83,6 @@ composer update
 	```
 	FRONTEND_URL    = http://madeasy.local
 	BACKEND_URL     = http://backend.madeasy.local
-	STORAGE_URL     = http://storage.madeasy.local
 	```
 
 Запустите миграции, окружение и RBAC
@@ -96,7 +93,6 @@ php console/yii app/setup
 И в завершение сконфигурируйте виртуальные хосты:
 - madeasy.local => /path/to/madeasy/frontend/web
 - backend.madeasy.local => /path/to/madeasy/backend/web
-- storage.madeasy.local => /path/to/madeasy/storage/web
 
 ### Инициализация c Vagrant
 Если вы хотите осуществить быструю развёртку, можете использовать Vagrant вместо ручной конфигурации приложения на локальном компьютере.
