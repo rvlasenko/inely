@@ -1,9 +1,10 @@
 <?php
-namespace frontend\assets;
+
+namespace common\assets;
 
 use yii\web\AssetBundle;
 
-class FontAwesomeAsset extends AssetBundle
+class FontAwesome extends AssetBundle
 {
     public $sourcePath = '@vendor/fortawesome/font-awesome';
 

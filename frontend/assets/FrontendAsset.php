@@ -59,6 +59,6 @@ class FrontendAsset extends AssetBundle
 
     public $depends = [
         'frontend\assets\BowerAsset',
-        'frontend\assets\FontAwesomeAsset'
+        'common\assets\FontAwesome'
     ];
 }

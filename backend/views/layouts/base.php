@@ -24,13 +24,6 @@ $this->params['body-class'] = array_key_exists('body-class', $this->params) ?
         <?php $this->head() ?>
 
     </head>
-    <?php echo Html::beginTag('body', [
-        'class' => implode(' ', [
-            ArrayHelper::getValue($this->params, 'body-class'),
-            Yii::$app->keyStorage->get('backend.theme-skin', 'skin-blue'),
-            Yii::$app->keyStorage->get('backend.theme-layout', 'fixed')
-        ])
-    ])?>
     <?php $this->beginBody() ?>
     <?= $content ?>
     <?php $this->endBody() ?>

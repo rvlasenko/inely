@@ -11,18 +11,9 @@
         "yiisoft/yii2-swiftmailer": "~2.0",
         "yiisoft/yii2-authclient": "~2.0",
         "yiisoft/yii2-jui": "~2.0",
-        "asofter/yii2-imperavi-redactor": "dev-master@dev",
-        "mihaildev/yii2-elfinder": "~1.0",
-        "trntv/probe": "dev-master",
-        "trntv/yii2-file-kit": "~1.1.0",
-        "trntv/yii2-glide": "~1.0",
-        "trntv/cheatsheet": "~0.1@dev",
         "himiklab/yii2-recaptcha-widget" : "*",
-        "intervention/image": "~2.1",
         "vlucas/phpdotenv": "~1.0",
-        "league/glide": "~0.3",
         "bower-asset/admin-lte": "~2.0",
-        "bower-asset/html5shiv": "~3.0",
         "bower-asset/flot": "~0.8",
         "FortAwesome/Font-Awesome": "*",
         "kartik-v/yii2-grid": "*",
@@ -31,7 +22,8 @@
         "kartik-v/yii2-widget-rating": "*",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-colorinput": "*",
-        "kartik-v/yii2-widget-select2": "*"
+        "kartik-v/yii2-widget-select2": "*",
+        "kartik-v/yii2-widget-sidenav": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",

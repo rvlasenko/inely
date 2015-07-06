@@ -122,10 +122,6 @@ $config = [
             ]
         ],
 
-        'keyStorage' => [
-            'class' => 'common\components\keyStorage\KeyStorage'
-        ],
-
         'urlManagerBackend' => \yii\helpers\ArrayHelper::merge(
             [
                 'hostInfo' => Yii::getAlias('@backendUrl')

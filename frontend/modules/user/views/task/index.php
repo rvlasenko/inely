@@ -5,6 +5,7 @@
     use kartik\grid\GridView;
     use kartik\editable\Editable;
     use kartik\datetime\DateTimePicker;
+    use kartik\sidenav\SideNav;
     use frontend\modules\user\models\Task;
 
     /* @var $this yii\web\View */
@@ -14,6 +15,29 @@
 ?>
 
 <div class="main-content">
+
+<?=
+    SideNav::widget([
+        'type' => SideNav::TYPE_DEFAULT,
+        'heading' => 'Категории',
+        'items' => [
+            [
+                'url' => '/',
+                'label' => 'Всё подряд',
+                'icon' => 'home'
+            ],
+            [
+                'label' => 'Help',
+                'icon' => 'question-sign',
+                'items' => [
+                    ['label' => 'About', 'icon'=>'info-sign', 'url'=>'#'],
+                    ['label' => 'Contact', 'icon'=>'phone', 'url'=>'#'],
+                ],
+            ],
+        ],
+    ]);
+?>
+
 <div class="topbar">
     <?php $this->beginContent('@app/views/layouts/templates/topbar.php'); $this->endContent(); ?>
 </div>
@@ -50,6 +74,8 @@
                     'class' => 'kartik\grid\BooleanColumn',
                     'attribute' => 'is_done',
                     'vAlign' => 'middle',
+                    'width' => '100px',
+                    //'format'=>'raw',
                     //'filterType' => GridView::FILTER_SELECT2,
                     /*'filter' => \kartik\select2\Select2::widget([
                         'model' => $searchModel,
@@ -63,6 +89,8 @@
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'name',
                     'width' => '600px',
+                    //'header' => 'Логин',
+                    'vAlign'=>'middle',
                     //'filterType' => GridView::FILTER_SELECT2,
                     /*'filter' => ArrayHelper::map(
                         Task::find()
@@ -83,7 +111,7 @@
                     'editableOptions' => [
                         'placement' => 'top',
                         'header' => 'вашу задачу',
-                        'inputType' => Editable::INPUT_HTML5_INPUT,
+                        'inputType' => Editable::INPUT_TEXT,
                         'size' => 'md',
                     ],
                 ],

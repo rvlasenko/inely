@@ -1031,6 +1031,17 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
     position: relative;
 }
 
+.main-content .panel.panel-default {
+    float: left;
+    width: 18%;
+    position: relative;
+    /* top: 15%; */
+    /* margin: initial; */
+    margin-top: 2em;
+    /* left: 1em; */
+    margin-left: 1em;
+}
+
 .main-content .page-content h3 {
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
@@ -1185,7 +1196,7 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
 }
 
 .main-content .page-content.page-thin {
-    padding: 25px 25px 0 25px;
+    padding: 28px 18px 0 25px;
 }
 
 .main-content .page-content.page-thin .row {
@@ -1245,6 +1256,9 @@ body:not(.fixed-topbar) .main-content .page-content {
     ul.weather-days {
         width: 102% !important;
     }
+    .main-content .panel.panel-default {
+        display: none;
+    }
 }
 
 ul.weather-days {
@@ -1261,13 +1275,11 @@ ul.weather-days > li {
 }
 
 @media screen and (max-width: 991px) {
-
     .main-content .page-content {
         background: #F1F2F3;
         overflow: hidden;
         padding: 20px;
     }
-
 }
 
 @media (max-width: 500px) {
