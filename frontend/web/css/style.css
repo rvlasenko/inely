@@ -636,10 +636,10 @@ div.weather-top h2 {
     width: 38px;
     font-size: 21px;
     text-align: center;
-    /*padding-left: 13px;*/
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
+.sidebar-menu > li > a:hover,
+.sidebar-menu > li > a:focus {
     background-color: #22262c;
 }
 
@@ -727,6 +727,11 @@ div.weather-top h2 {
 
 .topbar .header-right .navbar-nav > li > a:focus {
     background: none !important;
+}
+
+.nav-pills > li > a:focus,
+.nav > li > a:hover {
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .topbar .header-right .header-menu > li > a > i {
@@ -1428,6 +1433,14 @@ ul.weather-days > li {
 .todo-list li.medium {
     border-left: 2px solid #FF9122;
     border-right: none;
+}
+
+.nav-stacked > li + li {
+    margin-top: 0;
+}
+
+.nav-pills > li > a {
+    border-radius: 0;
 }
 
 .widget-weather .weather .weather-location .weather-search-form #city-form::-webkit-input-placeholder {

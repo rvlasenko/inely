@@ -74,41 +74,41 @@
 		"estimated": {
 		},
 		"station_id":"27679",
-		"observation_time":"Last Updated on Июль 6, 3:00 PM MSK",
-		"observation_time_rfc822":"Mon, 06 Jul 2015 15:00:00 +0300",
-		"observation_epoch":"1436184000",
-		"local_time_rfc822":"Mon, 06 Jul 2015 15:48:06 +0300",
-		"local_epoch":"1436186886",
+		"observation_time":"Last Updated on Июль 6, 6:00 PM MSK",
+		"observation_time_rfc822":"Mon, 06 Jul 2015 18:00:00 +0300",
+		"observation_epoch":"1436194800",
+		"local_time_rfc822":"Mon, 06 Jul 2015 19:39:18 +0300",
+		"local_epoch":"1436200758",
 		"local_tz_short":"MSK",
 		"local_tz_long":"Europe/Moscow",
 		"local_tz_offset":"+0300",
-		"weather":"Облачно",
-		"temperature_string":"65 F (18 C)",
-		"temp_f":65,
-		"temp_c":18,
-		"relative_humidity":"30%",
-		"wind_string":"From the NW at 18 MPH",
-		"wind_dir":"NW",
-		"wind_degrees":320,
+		"weather":"Переменная Облачность",
+		"temperature_string":"61 F (16 C)",
+		"temp_f":61,
+		"temp_c":16,
+		"relative_humidity":"29%",
+		"wind_string":"From the North at 18 MPH",
+		"wind_dir":"North",
+		"wind_degrees":350,
 		"wind_mph":18,
 		"wind_gust_mph":0,
 		"wind_kph":29,
 		"wind_gust_kph":0,
-		"pressure_mb":"1009",
-		"pressure_in":"29.80",
+		"pressure_mb":"1010",
+		"pressure_in":"29.83",
 		"pressure_trend":"+",
-		"dewpoint_string":"41 F (5 C)",
-		"dewpoint_f":41,
-		"dewpoint_c":5,
+		"dewpoint_string":"37 F (3 C)",
+		"dewpoint_f":37,
+		"dewpoint_c":3,
 		"heat_index_string":"NA",
 		"heat_index_f":"NA",
 		"heat_index_c":"NA",
 		"windchill_string":"NA",
 		"windchill_f":"NA",
 		"windchill_c":"NA",
-		"feelslike_string":"65 F (18 C)",
-		"feelslike_f":"65",
-		"feelslike_c":"18",
+		"feelslike_string":"61 F (16 C)",
+		"feelslike_f":"61",
+		"feelslike_c":"16",
 		"visibility_mi":"31.0",
 		"visibility_km":"50.0",
 		"solarradiation":"--",
@@ -118,8 +118,8 @@
 		"precip_today_string":" in ( mm)",
 		"precip_today_in":"",
 		"precip_today_metric":"--",
-		"icon":"mostlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/mostlycloudy.gif",
+		"icon":"partlycloudy",
+		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
 		"forecast_url":"http://www.wunderground.com/global/stations/27679.html",
 		"history_url":"http://www.wunderground.com/history/airport/27679/2015/7/6/DailyHistory.html",
 		"ob_url":"http://www.wunderground.com/cgi-bin/findweather/getForecast?query=54.81666565,46.58333206",
@@ -128,7 +128,7 @@
 		,
 	"forecast":{
 		"txt_forecast": {
-		"date":"2:54 PM MSK",
+		"date":"7:09 PM MSK",
 		"forecastday": [
 		{
 		"period":0,
@@ -175,8 +175,8 @@
 		"icon":"chancetstorms",
 		"icon_url":"http://icons.wxug.com/i/c/k/chancetstorms.gif",
 		"title":"Среда",
-		"fcttext":"Грозы, развивающиеся днем. Повышение 72F. Ветер ЗСЗ от 10 до 20 миль/ч. Вероятность дождя 40%.",
-		"fcttext_metric":"Грозы, развивающиеся днем. Повышение 22C. Ветер ЗСЗ от 15 до 30 км/ч. Вероятность дождя 40%.",
+		"fcttext":"Местами грозы. Повышение 72F. Ветер ЗСЗ от 10 до 20 миль/ч. Вероятность дождя 40%.",
+		"fcttext_metric":"Местами грозы. Повышение 22C. Ветер ЗСЗ от 15 до 30 км/ч. Вероятность дождя 40%.",
 		"pop":"40"
 		}
 		,
@@ -195,7 +195,7 @@
 		"icon":"partlycloudy",
 		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
 		"title":"Четверг",
-		"fcttext":"Переменная облачность. Повышение 78F. Ветер З от 5 до 10 миль/ч.",
+		"fcttext":"Переменная облачность. Повышение 79F. Ветер З от 5 до 10 миль/ч.",
 		"fcttext_metric":"Переменная облачность. Повышение 26C. Ветер З от 10 до 15 км/ч.",
 		"pop":"10"
 		}
@@ -234,8 +234,8 @@
 },
 		"period":1,
 		"high": {
-		"fahrenheit":"67",
-		"celsius":"19"
+		"fahrenheit":"68",
+		"celsius":"20"
 		},
 		"low": {
 		"fahrenheit":"44",
@@ -277,12 +277,12 @@
 		"degrees": 0
 		},
 		"avewind": {
-		"mph": 7,
-		"kph": 12,
+		"mph": 8,
+		"kph": 13,
 		"dir": "переменчевый",
 		"degrees": 0
 		},
-		"avehumidity": 59,
+		"avehumidity": 60,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
@@ -321,7 +321,7 @@
 		"skyicon":"",
 		"pop":0,
 		"qpf_allday": {
-		"in": 0.09,
+		"in": 0.08,
 		"mm": 2
 		},
 		"qpf_day": {
@@ -329,7 +329,7 @@
 		"mm": 0
 		},
 		"qpf_night": {
-		"in": 0.09,
+		"in": 0.08,
 		"mm": 2
 		},
 		"snow_allday": {
@@ -456,7 +456,7 @@
 },
 		"period":4,
 		"high": {
-		"fahrenheit":"78",
+		"fahrenheit":"79",
 		"celsius":"26"
 		},
 		"low": {
@@ -496,13 +496,13 @@
 		"mph": 10,
 		"kph": 16,
 		"dir": "З",
-		"degrees": 269
+		"degrees": 268
 		},
 		"avewind": {
 		"mph": 6,
 		"kph": 10,
 		"dir": "З",
-		"degrees": 269
+		"degrees": 268
 		},
 		"avehumidity": 54,
 		"maxhumidity": 0,

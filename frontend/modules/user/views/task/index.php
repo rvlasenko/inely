@@ -16,22 +16,34 @@
 
 <div class="main-content">
 
+<script>
+    /*$(document).ready(function() {
+        $("a.kv-toggle < .glyphicon").on("mouseover", function() {
+            $(this).css("color", "red");
+        });
+    });*/
+</script>
+
 <?=
     SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
         'heading' => 'Категории',
+        'indItem' => false,
         'items' => [
             [
-                'url' => '/',
+                'url' => '/todo',
                 'label' => 'Всё подряд',
-                'icon' => 'home'
+                'icon' => 'tasks'
             ],
             [
                 'label' => 'Help',
-                'icon' => 'question-sign',
+                'icon' => 'folder-open',
                 'items' => [
-                    ['label' => 'About', 'icon'=>'info-sign', 'url'=>'#'],
-                    ['label' => 'Contact', 'icon'=>'phone', 'url'=>'#'],
+                    ['label' => 'Изменить', 'icon' => 'pencil', 'url' => '#'],
+                    ['label' => 'Удалить', 'icon' => 'remove', 'url' => '#'],
+                ],
+                'options' => [
+                    'style' => 'background: linear-gradient(90deg, blue 2%, white 3%)'
                 ],
             ],
         ],
@@ -239,7 +251,6 @@
                         'class' => 'btn btn-info btn-square']),
                     'footer' => false
                 ],
-
             ]);
         ?>
 

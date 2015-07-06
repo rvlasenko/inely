@@ -145,9 +145,6 @@ address {
     padding-left: 15px;
 }
 
-@media (min-width: 1600px) {
-}
-
 .btn {
     -webkit-font-smoothing: subpixel-antialiased;
     -webkit-transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
@@ -340,78 +337,6 @@ ul.list-unstyled {
     border-radius: 0 !important;
 }
 
-/*.form-control {
-    -webkit-box-shadow: none !important;
-    background-color: #ECEDEE;
-    border: 1px solid #ECEDEE;
-    box-shadow: none !important;
-    color: #555555;
-    display: inline-block;
-    font-size: 13px;
-    height: auto;
-    line-height: normal;
-    padding: 9px 12px 8px;
-    vertical-align: middle;
-    width: 100%;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out;
-    transition: all 0.2s ease-out;
-}
-
-.form-control::-webkit-input-placeholder {
-    color: #B5B5B5;
-}
-
-.form-control:-moz-placeholder {
-    color: #B5B5B5;
-}
-
-.form-control::-moz-placeholder {
-    color: #B5B5B5;
-}
-
-.form-control:-ms-input-placeholder {
-    color: #B5B5B5;
-}
-
-.form-control:focus {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    background-color: #ffffff !important;
-    background-color: #e9ebef !important;
-    border-color: #A0BDDA;
-    border: 1px solid #CFD2D6;
-    box-shadow: none;
-    outline: none;
-}
-
-.form-control[class*="bg-"]::-webkit-input-placeholder {
-    color: #EEEEEE;
-}
-
-.form-control[class*="bg-"]:-ms-input-placeholder {
-    color: #EEEEEE;
-}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset !important;
-}
-
-.form-control.input-sm {
-    font-size: 12px !important;
-    height: 30px !important;
-    line-height: 1.5;
-    padding: 5px 10px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-}*/
-
 fieldset {
     border: 1px solid #E5E5E5;
     margin-top: 20px;
@@ -426,7 +351,18 @@ legend {
     width: auto;
 }
 
-@media (max-width: 768px) {
+.label {
+    font-weight: 500;
+}
+.label-default {
+    background-color: #e0e6eb;
+    color: #121212;
+}
+.label-default[href]:hover {
+    background-color: #d0dae1;
+}
+.label-default[href]:focus {
+    background-color: #d0dae1;
 }
 
 /**** Font Property ****/
