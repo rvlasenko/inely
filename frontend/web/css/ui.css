@@ -695,6 +695,19 @@ code {
     display: none;
 }
 
+.kv-sidenav .active > a > span > .indicator {
+    color: #999999;
+}
+
+.datetimepicker .datetimepicker-hours span,
+.datetimepicker .datetimepicker-minutes span {
+    padding-left: 3px;
+}
+
+.table-condensed tbody tr td:nth-child(2) {
+    width: 1%;
+}
+
 a,
 a:focus,
 a:hover,

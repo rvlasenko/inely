@@ -5,6 +5,7 @@
     use kartik\grid\GridView;
     use kartik\editable\Editable;
     use kartik\datetime\DateTimePicker;
+    use kartik\rating\StarRating;
     use kartik\sidenav\SideNav;
     use frontend\modules\user\models\Task;
 
@@ -69,7 +70,7 @@
                     'class' => 'kartik\grid\BooleanColumn',
                     'attribute' => 'is_done',
                     'vAlign' => 'middle',
-                    'width' => '100px',
+                    'width' => '110px',
                     //'format'=>'raw',
                     //'filterType' => GridView::FILTER_SELECT2,
                     /*'filter' => \kartik\select2\Select2::widget([
@@ -110,7 +111,7 @@
                         'size' => 'md',
                     ],
                 ],
-                [
+                /*[
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'category',
                     'pageSummary' => true,
@@ -119,7 +120,7 @@
                             'header' => 'цвет значка',
                             'size' => 'md',
                             'afterInput' => function ($form, $widget) use ($model, $index) {
-                                return $form->field($model, "category")->widget(\kartik\color\ColorInput::classname(), [
+                                return $form->field($model->tasks_cat, "badge_color")->widget(\kartik\color\ColorInput::classname(), [
                                     'showDefaultPalette' => false,
                                     'options' => [
                                         'id' => "color-{$index}"
@@ -147,36 +148,7 @@
                             }
                         ];
                     }
-                ],
-                [
-                    'class' => '\kartik\grid\EditableColumn',
-                    'attribute' => 'priority',
-                    'editableOptions' => [
-                        /*'asPopover' => false,
-                        'inlineSettings' => [
-                            'templateBefore' => Editable::INLINE_BEFORE_2,
-                            'templateAfter' =>  Editable::INLINE_AFTER_2,
-                            'options' => [
-                                'class' => ''
-                             ],
-                        ],*/
-                        'placement' => 'top',
-                        'displayValueConfig'=>[
-                            1 => 'One Star',
-                            2 => 'Two Stars',
-                            3 => 'Three Stars',
-                            4 => 'Four Stars',
-                            5 => 'Five Stars',
-                        ],
-                        'attribute' => 'priority',
-                        'header' => 'рейтинг',
-                        'size' => 'sm',
-                        'inputType' => Editable::INPUT_RATING,
-                        'editableValueOptions' => [
-                            'class' => 'text-success'
-                        ],
-                    ],
-                ],
+                ],*/
                 [
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'time',
@@ -188,22 +160,63 @@
                         'options' => [
                             'language' => 'ru',
                             'removeButton' => false,
-                            'convertFormat' => true,
+                            //'convertFormat' => true,
+                            'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
+                            'size' => 'md',
+                            'value' => function($model) {
+                                return $model->time;
+                            },
                             'pluginOptions' => [
                                 'autoclose' => true,
                                 'todayHighlight' => true,
-                                'format' => 'dd-M hh:ii',
-                                //'pickerPosition' => 'bottom-right'
+                                'format' => 'dd.mm hh:ii',
                             ],
-                            'type' => DateTimePicker::TYPE_INPUT,
-                            'size' => 'md',
                         ],
                     ],
                 ],
-                //'time',
+                /*[
+                    'class' => '\kartik\grid\EditableColumn',
+                    'attribute' => 'priority',
+                    'editableOptions' => [
+                        'placement' => 'top',
+                        'displayValueConfig'=>[
+                            1 => 'Одна звезда',
+                            2 => 'Две звезды',
+                            3 => 'Три звезды',
+                            4 => 'Четыре звезды',
+                            5 => 'Пять звезд',
+                        ],
+                        'attribute' => 'priority',
+                        'header' => 'рейтинг',
+                        'size' => 'sm',
+                        'inputType' => Editable::INPUT_RATING,
+                        'editableValueOptions' => [
+                            'class' => 'text-success'
+                        ],
+                    ],
+                ],*/
+                [
+                    'attribute' => 'priority',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return StarRating::widget([
+                            'model' => $model,
+                            'name' => 'priority',
+                            'value' => $model->priority,
+                            'pluginOptions' => [
+                                'size' => 'xs',
+                                'stars' => 3,
+                                'min' => 0,
+                                'max' => 3
+                            ],
+                        ]);
+                    }
+                ]
                 //'is_done_date',*/
             ];
         ?>
+
+
 
         <?=
             GridView::widget([
