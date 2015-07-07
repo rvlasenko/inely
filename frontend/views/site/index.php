@@ -230,7 +230,7 @@
 
     <div class="col-lg-4 col-sm-6 portlets ui-sortable">
     <div class="panel-content p-t-0 p-b-0 widget-news">
-        <?php $this->beginContent('@app/views/templates/weather.php'); $this->endContent(); ?>
+        <?php $this->beginContent('@app/views/panels/weather.php'); $this->endContent(); ?>
     </div>
 </div>
     <div class="col-lg-4 col-sm-6 portlets ui-sortable">

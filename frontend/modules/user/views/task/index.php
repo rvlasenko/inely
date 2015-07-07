@@ -1,16 +1,13 @@
 <?php
 
     use yii\helpers\Html;
-    use yii\helpers\ArrayHelper;
+    use kartik\checkbox\CheckboxX;
     use kartik\grid\GridView;
     use kartik\editable\Editable;
     use kartik\datetime\DateTimePicker;
     use kartik\rating\StarRating;
     use kartik\sidenav\SideNav;
     use frontend\modules\user\models\Task;
-
-    /* @var $this yii\web\View */
-    /* @var $dataProvider yii\data\ActiveDataProvider */
 
     $this->title = 'Ваши задачи';
 ?>
@@ -43,67 +40,26 @@
 
         <?php
             $gridColumns = [
-                /*[
-                    'class' => '\kartik\grid\EditableColumn',
-                    'attribute' => 'is_done',
-                    'editableOptions' => [
-                        'header' => 'вашу задачу',
-                        'inputType' => \kartik\editable\Editable::INPUT_CHECKBOX,
-                        'buttonsTemplate' => '{submit}',
-                        'inlineSettings' => [
-                            'options' => [
-                                'class' => ''
-                            ],
-                        ],
-                    ],
-                ],*/
-                /*
-                     * ArrayHelper::map(
-                        Task::find()
-                            ->limit(10)
-                            ->where(['author' => \Yii::$app->user->id])
-                            ->asArray()
-                            ->all(), 'id', 'name'
-                    ),
-                     */
                 [
-                    'class' => 'kartik\grid\BooleanColumn',
                     'attribute' => 'is_done',
-                    'vAlign' => 'middle',
-                    'width' => '110px',
-                    //'format'=>'raw',
-                    //'filterType' => GridView::FILTER_SELECT2,
-                    /*'filter' => \kartik\select2\Select2::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'is_done',
-                    ]),*/
+                    'format' => 'raw',
                     'value' => function($model) {
-                        return ($model->is_done == null) ? false : true;
-                    },
+                        return CheckboxX::widget([
+                            'name' => 'checked',
+                            'value' => $model->is_done,
+                            'pluginOptions' => [
+                                'threeState' => false,
+                                'size' => 'md',
+                                'iconChecked' => '<i class="glyphicon glyphicon-ok"></i>',
+                                'iconUnchecked' => '<i class="glyphicon glyphicon-remove"></i>'
+                            ],
+                        ]);
+                    }
                 ],
                 [
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'name',
-                    'width' => '600px',
-                    //'header' => 'Логин',
-                    'vAlign'=>'middle',
-                    //'filterType' => GridView::FILTER_SELECT2,
-                    /*'filter' => ArrayHelper::map(
-                        Task::find()
-                            ->orderBy('name')
-                            ->limit(10)
-                            ->where(['author' => \Yii::$app->user->id])
-                            ->asArray()
-                            ->all(), 'id', 'name'
-                    ),
-                    'filterWidgetOptions' => [
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ],
-                    'filterInputOptions' => [
-                        'placeholder' => 'Введите логин'
-                    ],*/
+                    'width' => '550px',
                     'editableOptions' => [
                         'placement' => 'top',
                         'header' => 'вашу задачу',
@@ -150,6 +106,29 @@
                     }
                 ],*/
                 [
+                    'attribute' => 'time',
+                    'format' => 'raw',
+                    'value' => function ($model) {
+                        return DateTimePicker::widget([
+                            'model' => $model,
+                            'name' => 'datetime',
+                            'language' => 'ru',
+                            'removeButton' => false,
+                            'size' => 'sm',
+                            //'convertFormat' => true,
+                            'options' => [
+                                'placeholder' => 'Дата...'
+                            ],
+                            'pluginOptions' => [
+                                'autoclose' => true,
+                                'todayHighlight' => true,
+                                'format' => 'dd.mm hh:ii',
+                                'startDate' => '01-Mar-2015 12:00 AM',
+                            ]
+                        ]);
+                    }
+                ],
+                /*[
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'time',
                     'editableOptions' => [
@@ -173,27 +152,6 @@
                             ],
                         ],
                     ],
-                ],
-                /*[
-                    'class' => '\kartik\grid\EditableColumn',
-                    'attribute' => 'priority',
-                    'editableOptions' => [
-                        'placement' => 'top',
-                        'displayValueConfig'=>[
-                            1 => 'Одна звезда',
-                            2 => 'Две звезды',
-                            3 => 'Три звезды',
-                            4 => 'Четыре звезды',
-                            5 => 'Пять звезд',
-                        ],
-                        'attribute' => 'priority',
-                        'header' => 'рейтинг',
-                        'size' => 'sm',
-                        'inputType' => Editable::INPUT_RATING,
-                        'editableValueOptions' => [
-                            'class' => 'text-success'
-                        ],
-                    ],
                 ],*/
                 [
                     'attribute' => 'priority',
@@ -205,9 +163,9 @@
                             'value' => $model->priority,
                             'pluginOptions' => [
                                 'size' => 'xs',
-                                'stars' => 3,
+                                'stars' => 4,
                                 'min' => 0,
-                                'max' => 3
+                                'max' => 4
                             ],
                         ]);
                     }
@@ -225,13 +183,13 @@
                 'columns' => $gridColumns,
                 'responsive' => true,
                 'responsiveWrap' => true,
-                'resizableColumns' => true,
+                'resizableColumns' => false,
                 'hover' => true,
                 'export' => false,
                 'pjax' => true,
                 'rowOptions' => function ($model) {
                     return [
-                        'class' => $model->is_done ? GridView::TYPE_SUCCESS : GridView::TYPE_DANGER,
+                        'style' => $model->is_done ? 'opacity: .5' : true
                     ];
                 },
                 'pjaxSettings' => [

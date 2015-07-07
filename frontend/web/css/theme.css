@@ -1336,6 +1336,25 @@ h4.alert-title {
     width: 370px;
 }
 
+.success {
+    background-color: #85D27A;
+}
+
+.rating-xs {
+    font-size: 1.9em;
+}
+
+.cbx-icon .glyphicon-ok {
+    color: #5BC24C;
+    left: 2px;
+}
+
+.cbx-icon .glyphicon-remove {
+    color: #E9573F;
+    left: 3px;
+    top: 2px;
+}
+
 /****  404 and 500 Error Page  ****/
 .error-page {
     background: -moz-radial-gradient(center, ellipse cover, #dfe5e9 2%, #dfe5e9 2%, #b2c0ca 100%);

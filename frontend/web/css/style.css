@@ -741,6 +741,15 @@ div.weather-top h2 {
     background-color: rgba(255, 255, 255, 0);
 }
 
+.cbx-container {
+    padding-left: 12px;
+    padding-top: 3px;
+}
+
+.cbx-icon i.glyphicon-ok {
+    color: #5BC24C;
+}
+
 .topbar .header-right .header-menu > li > a > i {
     display: block;
     float: left;
@@ -2383,8 +2392,13 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
     left: 50px;
 }
 
-.cbx-icon {
-    left: 2px;
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+    vertical-align: middle;
 }
 
 .fixed-sidebar .sidebar {
