@@ -19,8 +19,7 @@ class m150705_091355_tasks extends Migration
             'author' => Schema::TYPE_INTEGER . '(1)',
             'is_done' => Schema::TYPE_INTEGER . '(1)',
             'priority' => Schema::TYPE_STRING . '(12) NULL',
-            'time' => Schema::TYPE_STRING . '(15) NULL',
-            'is_done_date' => Schema::TYPE_STRING . '(3) NULL'
+            'time' => Schema::TYPE_STRING . '(15) NULL'
         ], $tableOptions);
 
         $this->insert('{{%tasks}}', [

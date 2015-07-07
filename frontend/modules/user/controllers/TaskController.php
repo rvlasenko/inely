@@ -4,8 +4,7 @@ namespace frontend\modules\user\controllers;
 
 use Yii;
 use frontend\modules\user\models\Task;
-use yii\data\ActiveDataProvider;
-use frontend\modules\user\controllers\DefaultController;
+use yii\data\Pagination;
 use yii\web\Controller;
 use frontend\modules\user\models\TaskSearch;
 use yii\web\NotFoundHttpException;
@@ -25,6 +24,16 @@ class TaskController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            [
+                'class' => 'yii\filters\HttpCache',
+                'only' => [
+                    'index', 'view'
+                ],
+                'lastModified' => function($action, $params) {
+                    $q = new \yii\db\Query();
+                    return $q->from('tasks')->max('time');
+                },
+            ],
         ];
     }
 
@@ -34,15 +43,6 @@ class TaskController extends Controller
      */
     public function actionIndex()
     {
-        /*$query = Task::find()
-            ->limit(10)
-            ->join('INNER JOIN', 'tasks_cat', 'tasks.category = tasks_cat.id')
-            ->where(['author' => \Yii::$app->user->id]);
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query
-        ]);*/
-
         $searchModel = new TaskSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

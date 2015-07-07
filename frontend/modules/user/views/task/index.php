@@ -43,6 +43,7 @@
                 [
                     'attribute' => 'is_done',
                     'format' => 'raw',
+                    'filterType' => GridView::FILTER_CHECKBOX_X,
                     'value' => function($model) {
                         return CheckboxX::widget([
                             'name' => 'checked',
@@ -51,7 +52,6 @@
                                 'threeState' => false,
                                 'size' => 'md',
                                 'iconChecked' => '<i class="glyphicon glyphicon-ok"></i>',
-                                'iconUnchecked' => '<i class="glyphicon glyphicon-remove"></i>'
                             ],
                         ]);
                     }
@@ -156,6 +156,16 @@
                 [
                     'attribute' => 'priority',
                     'format' => 'raw',
+                    'filterType' => GridView::FILTER_STAR,
+                    'filterWidgetOptions' => [
+                        'pluginOptions' => [
+                            'size' => 'xs',
+                            'step' => 1,
+                            'stars' => 4,
+                            'min' => 0,
+                            'max' => 4
+                        ],
+                    ],
                     'value' => function ($model) {
                         return StarRating::widget([
                             'model' => $model,
@@ -163,13 +173,14 @@
                             'value' => $model->priority,
                             'pluginOptions' => [
                                 'size' => 'xs',
+                                'step' => 1,
                                 'stars' => 4,
                                 'min' => 0,
                                 'max' => 4
                             ],
                         ]);
                     }
-                ]
+                ],
                 //'is_done_date',*/
             ];
         ?>
