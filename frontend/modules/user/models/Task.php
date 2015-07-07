@@ -3,6 +3,7 @@
 namespace frontend\modules\user\models;
 
 use Yii;
+use frontend\modules\user\models\TaskCat;
 
 /**
  * This is the model class for table "tasks".
@@ -72,21 +73,18 @@ class Task extends \yii\db\ActiveRecord
     {
         $items = [];
 
-        $models = Task::find()
-            ->joinWith('tasks_cat')
-            ->where(['author' => \Yii::$app->user->id])
-            ->all();
+        $models = TaskCat::find()->all();
 
         foreach($models as $model) {
             $items[] = [
-                'label' => $model->tasks_cat->name,
+                'label' => $model->name,
                 'icon' => 'folder-open',
                 'items' => [
                     ['label' => 'Изменить', 'icon' => 'pencil', 'url' => '#'],
                     ['label' => 'Удалить', 'icon' => 'remove', 'url' => '#'],
                 ],
                 'options' => [
-                    'style' => 'background: linear-gradient(90deg, ' . $model->tasks_cat->badge_color . ' 4%, white 4%)'
+                    'style' => 'background: linear-gradient(90deg, ' . $model->badge_color . ' 4%, white 4%)'
                 ],
             ];
         }

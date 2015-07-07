@@ -734,6 +734,13 @@ div.weather-top h2 {
     background-color: rgba(255, 255, 255, 0);
 }
 
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    color: #319DB5;
+    background-color: rgba(255, 255, 255, 0);
+}
+
 .topbar .header-right .header-menu > li > a > i {
     display: block;
     float: left;
