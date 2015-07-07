@@ -29,24 +29,7 @@
         'type' => SideNav::TYPE_DEFAULT,
         'heading' => 'Категории',
         'indItem' => false,
-        'items' => [
-            [
-                'url' => '/todo',
-                'label' => 'Всё подряд',
-                'icon' => 'tasks'
-            ],
-            [
-                'label' => 'Help',
-                'icon' => 'folder-open',
-                'items' => [
-                    ['label' => 'Изменить', 'icon' => 'pencil', 'url' => '#'],
-                    ['label' => 'Удалить', 'icon' => 'remove', 'url' => '#'],
-                ],
-                'options' => [
-                    'style' => 'background: linear-gradient(90deg, blue 2%, white 3%)'
-                ],
-            ],
-        ],
+        'items' => Task::getItems()
     ]);
 ?>
 
@@ -150,13 +133,13 @@
                                         'preferredFormat' => 'name',
                                         'palette' => [
                                             [
-                                                "white", "black", "grey", "silver", "gold", "brown",
+                                                "#FFFFFF", "#001F3F", "#0074D9", "#7FDBFF", "#39CCCC", "#3D9970",
                                             ],
                                             [
-                                                "red", "orange", "yellow", "indigo", "maroon", "pink"
+                                                "#2ECC40", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#85144b"
                                             ],
                                             [
-                                                "blue", "green", "violet", "cyan", "magenta", "purple",
+                                                "#F012BE", "#B10DC9", "#111111", "#AAAAAA",
                                             ],
                                         ]
                                     ],

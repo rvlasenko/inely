@@ -1040,11 +1040,12 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
     float: left;
     width: 18%;
     position: relative;
-    /* top: 15%; */
-    /* margin: initial; */
     margin-top: 2em;
-    /* left: 1em; */
     margin-left: 1em;
+}
+
+.nav-stacked.kv-sidenav li a {
+    padding-left: 2em;
 }
 
 .main-content .page-content h3 {

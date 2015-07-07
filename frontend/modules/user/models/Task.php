@@ -64,4 +64,33 @@ class Task extends \yii\db\ActiveRecord
     {
         return $this->hasOne(TaskCat::className(), ['id' => 'category']);
     }
+
+    /**
+     *
+     */
+    public static function getItems()
+    {
+        $items = [];
+
+        $models = Task::find()
+            ->joinWith('tasks_cat')
+            ->where(['author' => \Yii::$app->user->id])
+            ->all();
+
+        foreach($models as $model) {
+            $items[] = [
+                'label' => $model->tasks_cat->name,
+                'icon' => 'folder-open',
+                'items' => [
+                    ['label' => 'Изменить', 'icon' => 'pencil', 'url' => '#'],
+                    ['label' => 'Удалить', 'icon' => 'remove', 'url' => '#'],
+                ],
+                'options' => [
+                    'style' => 'background: linear-gradient(90deg, ' . $model->tasks_cat->badge_color . ' 4%, white 4%)'
+                ],
+            ];
+        }
+
+        return $items;
+    }
 }
