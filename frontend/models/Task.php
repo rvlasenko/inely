@@ -1,9 +1,9 @@
 <?php
 
-namespace frontend\modules\user\models;
+namespace frontend\models;
 
 use Yii;
-use frontend\modules\user\models\TaskCat;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "tasks".
@@ -17,7 +17,7 @@ use frontend\modules\user\models\TaskCat;
  * @property string $time
  * @property string $is_done_date
  */
-class Task extends \yii\db\ActiveRecord
+class Task extends ActiveRecord
 {
     /**
      * @inheritdoc

@@ -23,7 +23,7 @@ class FrontendAsset extends AssetBundle
     ];
 
     public $js = [
-        'plugins/jquery/jquery-migrate-1.2.1.min.js',
+        //'plugins/jquery/jquery-migrate-1.2.1.min.js',
         'plugins/jquery-ui/jquery-ui-1.11.2.min.js',
         'plugins/gsap/main-gsap.min.js',
         'plugins/jquery-cookies/jquery.cookies.min.js',

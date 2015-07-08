@@ -1,7 +1,9 @@
 <?php
+
 namespace frontend\modules\user\models;
 
 use common\models\User;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use yii\base\Model;
 use Yii;
 
@@ -38,7 +40,7 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
-            [[], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(),
+            [[], ReCaptchaValidator::className(),
                 'secret' => getenv('RC_SECRET')
             ]
         ];

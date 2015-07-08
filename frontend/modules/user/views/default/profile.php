@@ -1,6 +1,5 @@
 <?php
 
-use trntv\filekit\widget\Upload;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 

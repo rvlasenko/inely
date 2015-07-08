@@ -1,12 +1,12 @@
 <?php
 
-namespace frontend\modules\user\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use frontend\modules\user\models\Task;
-use yii\data\Pagination;
+use frontend\models\Task;
+use yii\db\Query;
 use yii\web\Controller;
-use frontend\modules\user\models\TaskSearch;
+use frontend\search\TaskSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -29,8 +29,8 @@ class TaskController extends Controller
                 'only' => [
                     'index', 'view'
                 ],
-                'lastModified' => function($action, $params) {
-                    $q = new \yii\db\Query();
+                'lastModified' => function() {
+                    $q = new Query();
                     return $q->from('tasks')->max('time');
                 },
             ],

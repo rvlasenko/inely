@@ -12,13 +12,13 @@ use Yii;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Response;
+use yii\web\Controller;
 use yii\widgets\ActiveForm;
 
-class SignInController extends \yii\web\Controller
+class SignInController extends Controller
 {
 
     public function actions()

@@ -1,7 +1,7 @@
 <?php
+
 namespace frontend\modules\user\models;
 
-use cheatsheet\Time;
 use common\models\User;
 use Yii;
 use yii\base\Model;
@@ -61,7 +61,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? Time::SECONDS_IN_A_MONTH : 0)) {
+            if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 2592000 : 0)) {
                 return true;
             }
         }
