@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zein
- * Date: 8/1/14
- * Time: 10:34 AM
- */
 
 namespace common\components\behaviors;
 

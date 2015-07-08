@@ -1,4 +1,5 @@
 <?php
+
 namespace console\controllers;
 
 use common\models\User;

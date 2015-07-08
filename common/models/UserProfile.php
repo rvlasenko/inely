@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use trntv\filekit\behaviors\UploadBehavior;
 use Yii;
 
 /**
@@ -11,7 +10,6 @@ use Yii;
  * @property integer $user_id
  * @property integer $locale
  * @property string $firstname
- * @property string $middlename
  * @property string $lastname
  * @property string $picture
  * @property string $avatar
@@ -25,21 +23,6 @@ class UserProfile extends \yii\db\ActiveRecord
 {
     const GENDER_MALE = 2;
     const GENDER_FEMALE = 1;
-
-    public $picture;
-
-    public function behaviors()
-    {
-        return [
-            'picture' => [
-                'class' => UploadBehavior::className(),
-                'attribute' => 'picture',
-                'pathAttribute' => 'avatar_path',
-                'baseUrlAttribute' => 'avatar_base_url'
-            ]
-        ];
-    }
-
 
     /**
      * @inheritdoc

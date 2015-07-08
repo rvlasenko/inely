@@ -3,8 +3,8 @@ $config = [
     'name' => 'madeasy',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
-    'sourceLanguage' => 'en-US',
-    'language' => 'en-US',
+    'sourceLanguage' => 'ru-RU',
+    'language' => 'ru-RU',
     'bootstrap' => ['log'],
     'components' => [
 
@@ -109,19 +109,6 @@ $config = [
             ],
         ],
 
-        'fileStorage' => [
-            'class' => '\trntv\filekit\Storage',
-            'baseUrl' => '@storageUrl/source',
-            'filesystem' => [
-                'class' => 'common\components\filesystem\LocalFlysystemBuilder',
-                'path' => '@storage/web/source'
-            ],
-            'as log' => [
-                'class' => 'common\components\behaviors\FileStorageLogBehavior',
-                'component' => 'fileStorage'
-            ]
-        ],
-
         'urlManagerBackend' => \yii\helpers\ArrayHelper::merge(
             [
                 'hostInfo' => Yii::getAlias('@backendUrl')
@@ -133,12 +120,6 @@ $config = [
                 'hostInfo' => Yii::getAlias('@frontendUrl')
             ],
             require(Yii::getAlias('@frontend/config/_urlManager.php'))
-        ),
-        'urlManagerStorage' => \yii\helpers\ArrayHelper::merge(
-            [
-                'hostInfo' => Yii::getAlias('@storageUrl')
-            ],
-            require(Yii::getAlias('@storage/config/_urlManager.php'))
         )
     ],
     'params' => [

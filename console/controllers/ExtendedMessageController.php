@@ -1,7 +1,4 @@
 <?php
-/**
- * Eugine Terentev <eugine@terentev.net>
- */
 
 namespace console\controllers;
 
@@ -20,7 +17,6 @@ use yii\helpers\VarDumper;
 class ExtendedMessageController extends \yii\console\controllers\MessageController
 {
     /**
-     * @param $path
      * @param bool $newSourceLanguage
      * @param bool $configFile
      * @throws Exception

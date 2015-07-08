@@ -1,7 +1,6 @@
 <?php
 namespace common\models;
 
-use cheatsheet\Time;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -165,7 +164,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByPasswordResetToken($token)
     {
-        $expire = Time::SECONDS_IN_A_DAY;
+        $expire = 86400;
         $parts = explode('_', $token);
         $timestamp = (int)end($parts);
         if ($timestamp + $expire < time()) {

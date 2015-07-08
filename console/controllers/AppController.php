@@ -1,11 +1,11 @@
 <?php
+
 namespace console\controllers;
+
 use Yii;
 use yii\console\Controller;
 use yii\helpers\Console;
-/**
- * @author Eugene Terentev <eugene@terentev.net>
- */
+
 class AppController extends Controller
 {
     public $writablePaths = [
@@ -24,6 +24,7 @@ class AppController extends Controller
     public $generateKeysPaths = [
         '@base/.env'
     ];
+
     public function actionSetup()
     {
         $this->setWritable($this->writablePaths);
@@ -32,6 +33,7 @@ class AppController extends Controller
         \Yii::$app->runAction('migrate/up');
         \Yii::$app->runAction('rbac/init');
     }
+
     public function setWritable($paths)
     {
         foreach ($paths as $writable) {
@@ -40,6 +42,7 @@ class AppController extends Controller
             @chmod($writable, 0777);
         }
     }
+
     public function setExecutable($paths)
     {
         foreach ($paths as $executable) {
@@ -48,6 +51,7 @@ class AppController extends Controller
             @chmod($executable, 0755);
         }
     }
+
     public function setGeneratedKey($paths)
     {
         foreach ($paths as $file) {

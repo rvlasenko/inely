@@ -1,7 +1,4 @@
 <?php
-/**
- * Author: Eugine Terentev <eugine@terentev.net>
- */
 
 namespace common\components\action;
 

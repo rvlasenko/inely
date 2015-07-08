@@ -1,4 +1,5 @@
 <?php
+
 namespace common\rbac;
 
 use common\models\User;
