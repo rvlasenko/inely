@@ -55,7 +55,6 @@ class TaskSearch extends Task
         }
 
         $query->andFilterWhere([
-            'category' => $this->category,
             'is_done' => $this->is_done,
         ]);
 
