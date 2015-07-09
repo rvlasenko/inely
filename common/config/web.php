@@ -7,6 +7,7 @@ $config = [
             'appendTimestamp' => true
         ]
     ],
+
     'as locale' => [
         'class' => 'common\components\behaviors\LocaleBehavior'
     ]

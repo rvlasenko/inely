@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use frontend\models\TaskCat;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -268,6 +269,7 @@ class User extends ActiveRecord implements IdentityInterface
                 'created_at' => $this->created_at
             ]
         );
+        $category = new TaskCat();
         $profile = new UserProfile();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');

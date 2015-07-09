@@ -59,6 +59,10 @@ class TaskSearch extends Task
             'is_done' => $this->is_done,
         ]);
 
+        $query->andFilterWhere([
+            'author' => Yii::$app->user->id
+        ]);
+
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'priority', $this->priority])
             ->andFilterWhere(['like', 'time', $this->time]);

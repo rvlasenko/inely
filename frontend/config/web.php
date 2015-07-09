@@ -18,6 +18,40 @@ $config = [
         ]
     ],
 
+    /*'as globalAccess' => [
+        'class' => '\common\components\behaviors\GlobalAccessBehavior',
+        'rules' => [
+            [
+                'controllers' => ['task'],
+                'allow' => true,
+                'roles' => ['?'],
+                'actions' => ['todo']
+            ],
+            [
+                'controllers' => ['sign-in'],
+                'allow' => true,
+                'roles' => ['@'],
+                'actions' => ['logout']
+            ],
+            [
+                'controllers' => ['sign-in'],
+                'allow' => true,
+                'roles' => ['?'],
+                'actions' => ['login']
+            ],
+            [
+                'controllers' => ['site'],
+                'allow' => true,
+                'roles' => ['?', '@'],
+                'actions' => ['error']
+            ],
+            [
+                'allow' => true,
+                'roles' => ['manager'],
+            ]
+        ]
+    ],*/
+
     'components' => [
         'assetManager' => [
             'class' => 'yii\web\AssetManager',

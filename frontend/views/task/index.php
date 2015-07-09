@@ -40,7 +40,7 @@
         'type' => SideNav::TYPE_DEFAULT,
         'heading' => '
             <a href="#" data-toggle="modal" data-target="#modal-slideleft">
-                <i class="pull-right glyphicon glyphicon-cog"></i>
+                <i class="pull-right fa fa-cog"></i>
             </a>Категории',
         'encodeLabels' => false,
         'indItem' => false,
@@ -60,6 +60,7 @@
                 [
                     'attribute' => 'is_done',
                     'format' => 'raw',
+                    'width' => '65px',
                     'filterType' => GridView::FILTER_CHECKBOX_X,
                     'value' => function($model) {
                         return CheckboxX::widget([
@@ -76,12 +77,21 @@
                 [
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'name',
-                    'width' => '550px',
+                    'width' => '500px',
                     'editableOptions' => [
-                        'placement' => 'right',
-                        'header' => 'вашу задачу',
+                        'asPopover' => false,
+                        'buttonsTemplate' => '{submit}',
                         'inputType' => Editable::INPUT_TEXT,
-                        'size' => 'md',
+                        'inlineSettings' => [
+                            'closeButton' => '
+                                <button type="button"
+                                class="btn btn-sm btn-danger kv-editable-close"
+                                title="Применить"><i class="glyphicon glyphicon-remove"></i>
+                                </button>',
+                            'options' => [
+                                'class' => false
+                            ]
+                        ]
                     ],
                 ],
                 /*[

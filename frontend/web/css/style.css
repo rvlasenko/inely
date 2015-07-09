@@ -632,7 +632,7 @@ div.weather-top h2 {
 .sidebar-menu > li > a > i:nth-child(1) {
     float: left;
     top: 0;
-    line-height: 40px;
+    line-height: 36px;
     width: 38px;
     font-size: 21px;
     text-align: center;
@@ -729,21 +729,15 @@ div.weather-top h2 {
     background: none !important;
 }
 
-.nav-pills > li > a:focus,
-.nav > li > a:hover {
-    background-color: rgba(255, 255, 255, 0);
-}
-
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:focus,
-.nav-pills > li.active > a:hover {
-    color: #319DB5;
-    background-color: rgba(255, 255, 255, 0);
-}
-
 .cbx-container {
     padding-left: 12px;
     padding-top: 3px;
+}
+
+h3 .fa-cog {
+    font-size: 22px;
+    line-height: 16px;
+    margin-right: 3px;
 }
 
 .cbx-icon i.glyphicon-ok {
@@ -776,7 +770,7 @@ div.weather-top h2 {
 .topbar .header-right .header-menu .dropdown-menu {
     border-top-left-radius: 1px !important;
     border-top-right-radius: 1px !important;
-    left: auto;
+    left: -10px;
     margin: 0;
     max-width: 300px !important;
     min-width: 170px !important;
@@ -1593,7 +1587,6 @@ ul.weather-days > li {
 
 .widget-info .left {
     float: left;
-    padding-left: 10px;
     width: 60px;
 }
 
@@ -1616,7 +1609,6 @@ ul.weather-days > li {
 
 .widget-info .right {
     float: left;
-    padding-left: 10px;
 }
 
 .widget-info .right .number {
@@ -2421,6 +2413,21 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
     left: 0;
     bottom: 0;
     z-index: 202;
+}
+
+.kv-editable-form-inline .kv-editable-close {
+    margin-top: 1px;
+    margin-left: -3px;
+}
+
+@media (min-width: 868px) {
+
+    .kv-editable-form-inline .form-control {
+        display: inline-block;
+        width: 300px;
+        vertical-align: top;
+    }
+
 }
 
 @media screen and (min-width: 1024px) {

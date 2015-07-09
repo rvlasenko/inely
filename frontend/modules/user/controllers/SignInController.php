@@ -40,14 +40,22 @@ class SignInController extends Controller
                     [
                         'actions' => ['signup', 'confirm-email', 'login', 'request-password-reset', 'reset-password', 'oauth'],
                         'allow' => true,
-
+                        'roles' => ['?']
                     ],
                     [
                         'actions' => ['signup', 'login', 'request-password-reset', 'reset-password', 'oauth'],
                         'allow' => false,
                         'roles' => ['@'],
-                        'denyCallback' => function () {
-                            return Yii::$app->controller->redirect(['/user/default/profile']);
+                        'denyCallback' => function() {
+                            return Yii::$app->controller->redirect(['/site/index']);
+                        }
+                    ],
+                    [
+                        'actions' => ['todo'],
+                        'allow' => false,
+                        'roles' => ['?'],
+                        'denyCallback' => function() {
+                            return Yii::$app->controller->redirect(['/site/index']);
                         }
                     ],
                     [

@@ -1023,7 +1023,5 @@ h4.alert-title {
 
 .media:first-child {
     margin-top: 0;
-    position: absolute;
-    top: 1em;
-    left: -6em;
+    margin-left: -6em;
 }

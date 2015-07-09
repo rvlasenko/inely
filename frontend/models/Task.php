@@ -47,14 +47,11 @@ class Task extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'name' => 'Название',
             'author' => 'Автор',
             'is_done' => 'Статус',
             'priority' => 'Важность',
-            'time' => 'Срок выполнения',
-            'is_done_date' => 'Дата выполнения',
-            'tasks_cat.name' => 'Категория',
+            'time' => 'Срок выполнения'
         ];
     }
 
@@ -73,26 +70,21 @@ class Task extends ActiveRecord
     {
         $items = [];
 
-        $models = TaskCat::find()->all();
+        $models = TaskCat::find()
+            ->where(['user_id' => Yii::$app->user->id])
+            ->all();
 
         foreach($models as $model) {
             $count = Task::find()
                 ->where(['category' => $model->id])
+                //->andWhere(['author' => Yii::$app->user->id])
                 ->count();
 
             $items[] =
             [
-                'label' => "<span class='pull-right badge'
-                    style='background-color: $model->badge_color'>$count</span>
-                <span>$model->name</span>",
-                /*'icon' => 'folder-open',
-                'items' => [
-                    ['label' => 'Изменить', 'icon' => 'pencil', 'url' => '#'],
-                    ['label' => 'Удалить', 'icon' => 'remove', 'url' => '#'],
-                ],
-                'options' => [
-                    'style' => 'background: linear-gradient(90deg, ' . $model->badge_color . ' 4%, white 4%)'
-                ],*/
+                'label' =>
+                "<span class='pull-right badge' style='background-color: $model->badge_color'>$count</span>
+                 <span>$model->name</span>",
             ];
         }
 
