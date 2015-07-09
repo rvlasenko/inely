@@ -27,14 +27,6 @@ $config = [
                         'jquery.min.js'
                     ]
                 ],
-                'frontend\assets\BowerAsset' => [
-                    'css' => [
-                        'css/bootstrap.min.css',
-                    ],
-                    'js' => [
-                        'js/bootstrap.min.js',
-                    ]
-                ],
             ],
         ],
 

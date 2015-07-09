@@ -24,21 +24,24 @@
             $(this).parent().toggleClass('active');
             return false;
         });*/
-        $('.kv-toggle span').click(function() {
+        /*$('.kv-toggle span').click(function() {
             event.preventDefault(); // cancel the event
             $('.opened').toggle();
             $('.closed').toggle();
             $(this).children('a').toggle();
             $(this).parent('a').parent('li').toggleClass('active');
             return false;
-        });
+        });*/
     });
 </script>
 
 <?=
     SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
-        'heading' => 'Категории',
+        'heading' => '
+            <a href="#" data-toggle="modal" data-target="#modal-slideleft">
+                <i class="pull-right glyphicon glyphicon-cog"></i>
+            </a>Категории',
         'encodeLabels' => false,
         'indItem' => false,
         'items' => Task::getItems()

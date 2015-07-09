@@ -76,17 +76,23 @@ class Task extends ActiveRecord
         $models = TaskCat::find()->all();
 
         foreach($models as $model) {
+            $count = Task::find()
+                ->where(['category' => $model->id])
+                ->count();
+
             $items[] =
             [
-                'label' => "<span class='pull-left badge'>1</span><span>$model->name</span>",
-                //'icon' => 'folder-open',
+                'label' => "<span class='pull-right badge'
+                    style='background-color: $model->badge_color'>$count</span>
+                <span>$model->name</span>",
+                /*'icon' => 'folder-open',
                 'items' => [
                     ['label' => 'Изменить', 'icon' => 'pencil', 'url' => '#'],
                     ['label' => 'Удалить', 'icon' => 'remove', 'url' => '#'],
                 ],
                 'options' => [
                     'style' => 'background: linear-gradient(90deg, ' . $model->badge_color . ' 4%, white 4%)'
-                ],
+                ],*/
             ];
         }
 

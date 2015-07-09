@@ -253,8 +253,62 @@ i.bg-purple::before {
 }
 
 .badge {
-    border-radius: 3px;
-    font-weight: 300;
+    font-weight: 500;
+}
+
+.modal-slideleft .modal-dialog {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    max-width: 300px;
+    position: absolute;
+    right: auto;
+    top: 0;
+    width: 100%;
+}
+
+.modal-slideleft .modal-dialog .modal-content {
+    border: none;
+    height: 100%;
+}
+
+.modal-slideleft .modal-dialog .modal-body {
+    border-collapse: collapse;
+    display: table;
+    height: 100% !important;
+    padding-left: 0px;
+    padding-right: 0px;
+    table-layout: fixed;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.modal-slideleft .modal-dialog .modal-body .row {
+    display: table-row;
+}
+
+.modal-slideleft .modal-dialog .modal-body .row .col-md-12 {
+    display: table-cell;
+    float: none;
+    text-align: center;
+    top: -20%;
+    vertical-align: middle;
+}
+
+.modal.fade.modal-slideleft .modal-dialog {
+    -o-transform: translate3d(-25%, 0, 0);
+    -webkit-transform: translate3d(-25%, 0, 0);
+    transform: translate3d(-25%, 0, 0);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.fade.in.modal-slideleft .modal-dialog {
+    -o-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.3s ease-out;
 }
 
 .badge-success {

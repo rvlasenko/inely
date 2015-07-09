@@ -2372,7 +2372,7 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
 
 .badge {
     padding: 4px 8px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .nav-pills > li > a > .badge {

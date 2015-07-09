@@ -17,7 +17,6 @@
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
 
-
     <?php $this->registerCssFile('//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=cyrillic,latin',
         ['position' => \yii\web\View::POS_HEAD]) ?>
     <?php $this->registerCssFile('//fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic',
