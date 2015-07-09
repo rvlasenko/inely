@@ -24,7 +24,7 @@ class TaskController extends Controller
                     'delete' => ['post'],
                 ],
             ],
-            [
+            /*[
                 'class' => 'yii\filters\HttpCache',
                 'only' => [
                     'index', 'view'
@@ -33,7 +33,7 @@ class TaskController extends Controller
                     $q = new Query();
                     return $q->from('tasks')->max('time');
                 },
-            ],
+            ],*/
         ];
     }
 

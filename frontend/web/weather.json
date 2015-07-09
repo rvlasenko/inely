@@ -77,8 +77,8 @@
 		"observation_time":"Last Updated on Июль 9, 12:00 PM MSK",
 		"observation_time_rfc822":"Thu, 09 Jul 2015 12:00:00 +0300",
 		"observation_epoch":"1436432400",
-		"local_time_rfc822":"Thu, 09 Jul 2015 12:38:04 +0300",
-		"local_epoch":"1436434684",
+		"local_time_rfc822":"Thu, 09 Jul 2015 14:46:42 +0300",
+		"local_epoch":"1436442402",
 		"local_tz_short":"MSK",
 		"local_tz_long":"Europe/Moscow",
 		"local_tz_offset":"+0300",
@@ -128,15 +128,15 @@
 		,
 	"forecast":{
 		"txt_forecast": {
-		"date":"11:21 AM MSK",
+		"date":"1:32 PM MSK",
 		"forecastday": [
 		{
 		"period":0,
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
 		"title":"Четверг",
-		"fcttext":"Переменная облачность. Повышение 80F. Ветер ЮЗ от 5 до 10 миль/ч.",
-		"fcttext_metric":"Переменная облачность. Повышение 27C. Ветер ЮЗ от 10 до 15 км/ч.",
+		"fcttext":"Малооблачно. Повышение 79F. Ветер Ю от 5 до 10 миль/ч.",
+		"fcttext_metric":"Малооблачно. Повышение 26C. Ветер Ю от 10 до 15 км/ч.",
 		"pop":"0"
 		}
 		,
@@ -155,7 +155,7 @@
 		"icon":"chancetstorms",
 		"icon_url":"http://icons.wxug.com/i/c/k/chancetstorms.gif",
 		"title":"Пятница",
-		"fcttext":"Грозы, развивающиеся днем. Повышение 85F. Ветер ЗЮЗ от 10 до 15 миль/ч. Вероятность дождя 50%.",
+		"fcttext":"Грозы, развивающиеся днем. Повышение 84F. Ветер ЗЮЗ от 10 до 15 миль/ч. Вероятность дождя 50%.",
 		"fcttext_metric":"Грозы, развивающиеся днем. Повышение 29C. Ветер ЗЮЗ от 15 до 25 км/ч. Вероятность дождя 50%.",
 		"pop":"50"
 		}
@@ -176,7 +176,7 @@
 		"icon_url":"http://icons.wxug.com/i/c/k/chancetstorms.gif",
 		"title":"Суббота",
 		"fcttext":"Местами грозы. Повышение 74F. Ветер ЗСЗ от 5 до 10 миль/ч. Вероятность дождя 50%.",
-		"fcttext_metric":"Местами грозы. Повышение 24C. Ветер ЗСЗ от 10 до 15 км/ч. Вероятность дождя 50%.",
+		"fcttext_metric":"Местами грозы. Повышение 23C. Ветер ЗСЗ от 10 до 15 км/ч. Вероятность дождя 50%.",
 		"pop":"50"
 		}
 		,
@@ -185,8 +185,8 @@
 		"icon":"nt_chancetstorms",
 		"icon_url":"http://icons.wxug.com/i/c/k/nt_chancetstorms.gif",
 		"title":"В ночь на Воскресенье",
-		"fcttext":"Местами грозы. Понижение 55F. Ветер ЗЮЗ от 10 до 15 миль/ч. Вероятность дождя 40%.",
-		"fcttext_metric":"Местами грозы. Понижение 13C. Ветер ЗЮЗ от 15 до 25 км/ч. Вероятность дождя 40%.",
+		"fcttext":"Местами грозы. Понижение 54F. Ветер ЗЮЗ от 10 до 15 миль/ч. Вероятность дождя 40%.",
+		"fcttext_metric":"Местами грозы. Понижение 12C. Ветер ЗЮЗ от 15 до 25 км/ч. Вероятность дождя 40%.",
 		"pop":"40"
 		}
 		,
@@ -234,16 +234,16 @@
 },
 		"period":1,
 		"high": {
-		"fahrenheit":"80",
-		"celsius":"27"
+		"fahrenheit":"79",
+		"celsius":"26"
 		},
 		"low": {
 		"fahrenheit":"67",
 		"celsius":"19"
 		},
-		"conditions":"Небольшая Облачность",
-		"icon":"partlycloudy",
-		"icon_url":"http://icons.wxug.com/i/c/k/partlycloudy.gif",
+		"conditions":"Ясно",
+		"icon":"clear",
+		"icon_url":"http://icons.wxug.com/i/c/k/clear.gif",
 		"skyicon":"",
 		"pop":0,
 		"qpf_allday": {
@@ -273,16 +273,16 @@
 		"maxwind": {
 		"mph": 10,
 		"kph": 16,
-		"dir": "ЮЗ",
-		"degrees": 218
+		"dir": "Ю",
+		"degrees": 190
 		},
 		"avewind": {
 		"mph": 6,
 		"kph": 10,
-		"dir": "ЮЗ",
-		"degrees": 218
+		"dir": "Ю",
+		"degrees": 190
 		},
-		"avehumidity": 49,
+		"avehumidity": 48,
 		"maxhumidity": 0,
 		"minhumidity": 0
 		}
@@ -308,7 +308,7 @@
 },
 		"period":2,
 		"high": {
-		"fahrenheit":"85",
+		"fahrenheit":"84",
 		"celsius":"29"
 		},
 		"low": {
@@ -386,8 +386,8 @@
 		"celsius":"23"
 		},
 		"low": {
-		"fahrenheit":"55",
-		"celsius":"13"
+		"fahrenheit":"54",
+		"celsius":"12"
 		},
 		"conditions":"Вероятна гроза",
 		"icon":"chancetstorms",
@@ -395,12 +395,12 @@
 		"skyicon":"",
 		"pop":50,
 		"qpf_allday": {
-		"in": 0.36,
+		"in": 0.35,
 		"mm": 9
 		},
 		"qpf_day": {
-		"in": 0.26,
-		"mm": 7
+		"in": 0.25,
+		"mm": 6
 		},
 		"qpf_night": {
 		"in": 0.10,

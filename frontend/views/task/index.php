@@ -15,11 +15,24 @@
 <div class="main-content">
 
 <script>
-    /*$(document).ready(function() {
-        $("a.kv-toggle < .glyphicon").on("mouseover", function() {
-            $(this).css("color", "red");
+    $(document).ready(function() {
+        /*$('.kv-toggle').click(function (event) {
+            event.preventDefault(); // cancel the event
+            $(this).children('.opened').toggle();
+            $(this).children('.closed').toggle();
+            $(this).parent().children('ul').toggle();
+            $(this).parent().toggleClass('active');
+            return false;
+        });*/
+        $('.kv-toggle span').click(function() {
+            event.preventDefault(); // cancel the event
+            $('.opened').toggle();
+            $('.closed').toggle();
+            $(this).children('a').toggle();
+            $(this).parent('a').parent('li').toggleClass('active');
+            return false;
         });
-    });*/
+    });
 </script>
 
 <?=
@@ -61,7 +74,7 @@
                     'attribute' => 'name',
                     'width' => '550px',
                     'editableOptions' => [
-                        'placement' => 'top',
+                        'placement' => 'right',
                         'header' => 'вашу задачу',
                         'inputType' => Editable::INPUT_TEXT,
                         'size' => 'md',
