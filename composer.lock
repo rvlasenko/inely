@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "20f65fffe68731273d99dc85ee3df908",
+    "hash": "fc60287f103b13fb67450808b5fe7d6f",
     "packages": [
         {
             "name": "bower-asset/admin-lte",
-            "version": "v2.1.2",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "406de4e708e84ed0abbc08b09870828254a6b2ef"
+                "reference": "a6c2500da3cb4a333ca436f4f78cf09dd00ca9ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/406de4e708e84ed0abbc08b09870828254a6b2ef",
-                "reference": "406de4e708e84ed0abbc08b09870828254a6b2ef",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/a6c2500da3cb4a333ca436f4f78cf09dd00ca9ba",
+                "reference": "a6c2500da3cb4a333ca436f4f78cf09dd00ca9ba",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -721,16 +721,16 @@
         },
         {
             "name": "kartik-v/yii2-grid",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-grid.git",
-                "reference": "8d596b9e5458291786677618b7fe9d5b84de4aa5"
+                "reference": "9359dcc7f34451af035294bd4127c8ff5d1ffffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/8d596b9e5458291786677618b7fe9d5b84de4aa5",
-                "reference": "8d596b9e5458291786677618b7fe9d5b84de4aa5",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/9359dcc7f34451af035294bd4127c8ff5d1ffffc",
+                "reference": "9359dcc7f34451af035294bd4127c8ff5d1ffffc",
                 "shasum": ""
             },
             "require": {
@@ -761,7 +761,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-24 05:23:50"
+            "time": "2015-07-07 17:50:12"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -1102,6 +1102,56 @@
                 "yii2"
             ],
             "time": "2014-11-09 08:07:23"
+        },
+        {
+            "name": "mihaildev/yii2-elfinder",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MihailDev/yii2-elfinder.git",
+                "reference": "64b42572dec94e5c2d0d1630bce8292848a98f4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MihailDev/yii2-elfinder/zipball/64b42572dec94e5c2d0d1630bce8292848a98f4b",
+                "reference": "64b42572dec94e5c2d0d1630bce8292848a98f4b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "mihaildev\\elfinder\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Mihail",
+                    "email": "mihail.kucher@gmail.com",
+                    "homepage": "https://github.com/MihailDev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Yii2 ElFinder",
+            "homepage": "https://github.com/MihailDev/yii2-elfinder",
+            "keywords": [
+                "elfinder",
+                "filemanager",
+                "yii"
+            ],
+            "time": "2015-07-03 07:08:52"
         },
         {
             "name": "swiftmailer/swiftmailer",

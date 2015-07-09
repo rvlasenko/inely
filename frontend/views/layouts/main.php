@@ -17,8 +17,8 @@
     $flash = <<<FLASH
         $(document).ready(function() {
             setTimeout(function() {
-                generate('{$type['title']}', '{$type['img']}',
-                         '{$body}', '{$type['link']}', '{$type['linkDesc']}');
+                generate({$type['title']}, {$type['img']}, {$body},
+                    {$type['link']}, {$type['linkDesc']});
             }, 1500);
         });
 FLASH;

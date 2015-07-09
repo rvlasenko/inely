@@ -76,7 +76,8 @@ class Task extends ActiveRecord
         $models = TaskCat::find()->all();
 
         foreach($models as $model) {
-            $items[] = [
+            $items[] =
+            [
                 'label' => $model->name,
                 'icon' => 'folder-open',
                 'items' => [

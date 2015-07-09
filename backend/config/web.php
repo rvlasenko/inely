@@ -13,11 +13,15 @@ $config = [
                     'baseUrl' => '@storageUrl',
                     'basePath' => '@storage',
                     'path' => '/',
-                    'access' => ['read' => 'manager', 'write' => 'manager']
+                    'access' => [
+                        'read' => 'manager',
+                        'write' => 'manager'
+                    ]
                 ]
             ]
         ]
     ],
+
     'components' => [
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -33,12 +37,14 @@ $config = [
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
         ],
     ],
+
     'modules' => [
         'i18n' => [
             'class' => 'backend\modules\i18n\Module',
             'defaultRoute' => 'i18n-message/index'
         ]
     ],
+
     'as globalAccess' => [
         'class' => '\common\components\behaviors\GlobalAccessBehavior',
         'rules' => [

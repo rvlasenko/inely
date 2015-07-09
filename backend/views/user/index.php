@@ -26,12 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'username',
             'email:email',
-            [
-                'class' => \common\components\grid\EnumColumn::className(),
-                'attribute' => 'status',
-                'enum' => User::getStatuses(),
-                'filter' => User::getStatuses()
-            ],
             'created_at:datetime',
             'logged_at:datetime',
             // 'updated_at',

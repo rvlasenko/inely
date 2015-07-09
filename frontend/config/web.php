@@ -1,6 +1,5 @@
 <?php
 $config = [
-    //'layout' => 'main.php',
     'homeUrl' => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'site/index',
@@ -18,6 +17,7 @@ $config = [
             'class' => '\kartik\grid\Module'
         ]
     ],
+
     'components' => [
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
@@ -37,12 +37,14 @@ $config = [
                 ],
             ],
         ],
+
         'reCaptcha' => [
             'name' => 'reCaptcha',
             'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
             'siteKey' => getenv('RC_SITEKEY'),
             'secret' => getenv('RC_SECRET'),
         ],
+
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
@@ -64,12 +66,15 @@ $config = [
                 ],
             ]
         ],
+
         'errorHandler' => [
             'errorAction' => 'site/error'
         ],
+
         'request' => [
             'cookieValidationKey' => getenv('FRONTEND_COOKIE_VALIDATION_KEY')
         ],
+
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
@@ -80,7 +85,7 @@ $config = [
     ]
 ];
 
-if (YII_ENV_PROD) {
+if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         'generators' => [

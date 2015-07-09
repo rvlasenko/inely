@@ -37,6 +37,16 @@ body .user-panel > .info {
     border-radius: 7px;
 }
 
+.user-panel > .info {
+    padding: 15px 5px 5px 15px;
+    left: 10px;
+}
+
+.user-panel {
+    height: 4em;
+    padding: 0;
+}
+
 .input-icon > i {
     color: #ccc;
     display: block;

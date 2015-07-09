@@ -1,7 +1,6 @@
 <?php
 namespace backend\models;
 
-use cheatsheet\Time;
 use common\models\User;
 use Yii;
 use yii\base\Model;
@@ -69,7 +68,7 @@ class LoginForm extends Model
         if (!$this->validate()) {
             return false;
         }
-        $duration = $this->rememberMe ? Time::SECONDS_IN_A_MONTH : 0;
+        $duration = $this->rememberMe ? 84600 : 0;
         if (Yii::$app->user->login($this->getUser(), $duration)) {
             if (!Yii::$app->user->can('loginToBackend')) {
                 Yii::$app->user->logout();

@@ -56,10 +56,10 @@ class SetLocaleAction extends Action
      */
     public $callback;
 
-
     /**
      * @param $locale
-     * @return mixed|static
+     * @return mixed
+     * @throws InvalidParamException
      */
     public function run($locale)
     {

@@ -6,7 +6,7 @@ use Yii;
 use frontend\models\Task;
 use yii\db\Query;
 use yii\web\Controller;
-use frontend\search\TaskSearch;
+use frontend\models\search\TaskSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 

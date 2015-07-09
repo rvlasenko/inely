@@ -3,8 +3,8 @@ $config = [
     'name' => 'madeasy',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
-    'sourceLanguage' => 'ru-RU',
-    'language' => 'ru-RU',
+    'sourceLanguage' => 'en-US',
+    'language' => 'en-US',
     'bootstrap' => ['log'],
     'components' => [
 
@@ -24,14 +24,6 @@ $config = [
             'class' => 'yii\i18n\Formatter'
         ],
 
-        'glide' => [
-            'class' => 'trntv\glide\components\Glide',
-            'sourcePath' => '@storage/web/source',
-            'cachePath' => '@storage/cache',
-            'urlManager' => 'urlManagerStorage',
-            'maxImageSize' => getenv('GLIDE_MAX_IMAGE_SIZE'),
-            'signKey' => getenv('GLIDE_SIGN_KEY')
-        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'messageConfig' => [
@@ -135,22 +127,24 @@ $config = [
 if (YII_ENV_PROD) {
     $config['components']['cache'] = [
         'class' => 'yii\caching\FileCache',
-        'cachePath' => '@common/runtime/cache'
-    ];
-
-    $config['components']['log']['targets']['email'] = [
-        'class' => 'yii\log\EmailTarget',
-        'except' => ['yii\web\HttpException:*'],
-        'levels' => ['error', 'warning'],
-        'message' => ['from' => getenv('ROBOT_EMAIL'), 'to' => getenv('ADMIN_EMAIL')]
+        'cachePath' => '@common/runtime/cache',
+        'fileMode' => 777
     ];
 }
 
 if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
+
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module'
     ];
+
+    /*$config['components']['log']['targets']['email'] = [
+        'class' => 'yii\log\EmailTarget',
+        'except' => ['yii\web\HttpException:*'],
+        'levels' => ['error', 'warning'],
+        'message' => ['from' => getenv('ROBOT_EMAIL'), 'to' => getenv('ADMIN_EMAIL')]
+    ];*/
 }
 
 return $config;

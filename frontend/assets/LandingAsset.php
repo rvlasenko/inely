@@ -3,6 +3,7 @@
 namespace frontend\assets;
 
 use yii\web\AssetBundle;
+use yii\web\View;
 
 class LandingAsset extends AssetBundle
 {
@@ -42,11 +43,11 @@ class LandingAsset extends AssetBundle
     ];
 
     public $jsOptions = [
-        'position' => \yii\web\View::POS_END
+        'position' => View::POS_END
     ];
 
     public $depends = [
         'frontend\assets\BowerAsset',
-        'frontend\assets\FontAwesomeAsset'
+        'common\assets\FontAwesome'
     ];
 }

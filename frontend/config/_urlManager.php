@@ -20,7 +20,7 @@ return [
         '<_a:(confirm-email)>' => 'user/sign-in/<_a>',
 
         // Задачи
-        'todo' => '/user/task/index',
+        'todo' => '/task/index',
 
         // Api
         ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/article', 'only' => ['index', 'view', 'options']],

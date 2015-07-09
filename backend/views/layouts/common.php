@@ -1,14 +1,10 @@
 <?php
-/**
- * @var $this yii\web\View
- */
-use backend\widgets\Menu;
-use common\models\TimelineEvent;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
-
+    use common\components\widgets\Menu;
+    use common\models\TimelineEvent;
+    use yii\helpers\ArrayHelper;
+    use yii\helpers\Html;
+    use yii\helpers\Url;
+    use yii\widgets\Breadcrumbs;
 ?>
 <?php $this->beginContent('@backend/views/layouts/base.php'); ?>
     <div class="wrapper">
@@ -20,14 +16,6 @@ use yii\widgets\Breadcrumbs;
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only"><?= Yii::t('backend', 'Toggle navigation') ?></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li id="timeline-notifications" class="notifications-menu">
@@ -73,28 +61,15 @@ use yii\widgets\Breadcrumbs;
                             <span><?= Yii::$app->user->identity->username ?> <i class="caret"></i></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header light-blue">
-                                <img
-                                    src="<?= Yii::$app->user->identity->userProfile->getAvatar() ?: '/img/anonymous.jpg' ?>"
-                                    class="img-circle" alt="User Image"/>
-
-                                <p>
-                                    <?php Yii::$app->user->identity->username ?>
-                                    <small>
-                                        <?= Yii::t('backend', 'Member since {0, date, short}', Yii::$app->user->identity->created_at) ?>
-                                    </small>
-                            </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <?= Html::a(Yii::t('backend', 'Profile'), ['/sign-in/profile'], ['class' => 'btn btn-default btn-flat']) ?>
-                                </div>
-                                <div class="pull-left">
-                                    <?= Html::a(Yii::t('backend', 'Account'), ['/sign-in/account'], ['class' => 'btn btn-default btn-flat']) ?>
+                                    <?= Html::a(Yii::t('backend', 'Account'),
+                                        ['/sign-in/account'], ['class' => 'btn']) ?>
                                 </div>
                                 <div class="pull-right">
-                                    <?= Html::a(Yii::t('backend', 'Logout'), ['/sign-in/logout'], ['class' => 'btn btn-default btn-flat', 'data-method' => 'post']) ?>
+                                    <?= Html::a(Yii::t('backend', 'Logout'),
+                                        ['/sign-in/logout'], ['class' => 'btn', 'data-method' => 'post']) ?>
                                 </div>
                             </li>
                         </ul>
@@ -109,13 +84,12 @@ use yii\widgets\Breadcrumbs;
         <section class="sidebar">
             <!-- Sidebar user panel -->
             <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="<?= Yii::$app->user->identity->userProfile->getAvatar() ?: '/img/anonymous.jpg' ?>"
-                         class="img-circle"/>
-                </div>
                 <div class="pull-left info">
-                    <p><?= Yii::t('backend', 'Hello, {username}', ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?></p>
-                    <a href="<?php echo Url::to(['/sign-in/profile']) ?>">
+                    <p>
+                        <?= Yii::t('backend', 'Hello, {username}',
+                            ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?>
+                    </p>
+                    <a href="#">
                         <i class="fa fa-circle text-success"></i>
                         <?= Yii::$app->formatter->asDatetime(time()) ?>
                     </a>
@@ -137,16 +111,6 @@ use yii\widgets\Breadcrumbs;
                         'badgeBgClass' => 'label-success',
                     ],
                     [
-                        'label' => Yii::t('backend', 'Content'),
-                        'icon' => '<i class="fa fa-edit"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'items' => [
-                            ['label' => Yii::t('backend', 'Static pages'), 'url' => ['/page/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                            ['label' => Yii::t('backend', 'Articles'), 'url' => ['/article/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                            ['label' => Yii::t('backend', 'Article Categories'), 'url' => ['/article-category/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                        ]
-                    ],
-                    [
                         'label' => Yii::t('backend', 'Users'),
                         'icon' => '<i class="fa fa-users"></i>',
                         'url' => ['/user/index'],
@@ -157,17 +121,6 @@ use yii\widgets\Breadcrumbs;
                         'icon' => '<i class="fa fa-cogs"></i>',
                         'options' => ['class' => 'treeview'],
                         'items' => [
-                            [
-                                'label' => Yii::t('backend', 'i18n'),
-                                'icon' => '<i class="fa fa-flag"></i>',
-                                'options' => ['class' => 'treeview'],
-                                'items' => [
-                                    ['label' => Yii::t('backend', 'i18n Source Message'), 'url' => ['/i18n/i18n-source-message/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                                    ['label' => Yii::t('backend', 'i18n Message'), 'url' => ['/i18n/i18n-message/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                                ]
-                            ],
-                            ['label' => Yii::t('backend', 'Key-Value Storage'), 'url' => ['/key-storage/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
-                            ['label' => Yii::t('backend', 'File Storage'), 'url' => ['/file-storage/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
                             ['label' => Yii::t('backend', 'Cache'), 'url' => ['/cache/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
                             ['label' => Yii::t('backend', 'File Manager'), 'url' => ['/file-manager/index'], 'icon' => '<i class="fa fa-angle-double-right"></i>'],
                             [

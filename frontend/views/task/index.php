@@ -7,7 +7,7 @@
     use kartik\datetime\DateTimePicker;
     use kartik\rating\StarRating;
     use kartik\sidenav\SideNav;
-    use frontend\modules\user\models\Task;
+    use frontend\models\Task;
 
     $this->title = 'Ваши задачи';
 ?>

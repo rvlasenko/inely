@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
@@ -8,8 +9,7 @@ use yii\helpers\ArrayHelper;
 \backend\assets\BackendAsset::register($this);
 
 $this->params['body-class'] = array_key_exists('body-class', $this->params) ?
-    $this->params['body-class']
-    : null;
+    $this->params['body-class'] : null;
 ?>
 
 <?php $this->beginPage() ?>
