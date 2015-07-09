@@ -78,8 +78,8 @@ class Task extends ActiveRecord
         foreach($models as $model) {
             $items[] =
             [
-                'label' => $model->name,
-                'icon' => 'folder-open',
+                'label' => "<span class='pull-left badge'>1</span><span>$model->name</span>",
+                //'icon' => 'folder-open',
                 'items' => [
                     ['label' => 'Изменить', 'icon' => 'pencil', 'url' => '#'],
                     ['label' => 'Удалить', 'icon' => 'remove', 'url' => '#'],

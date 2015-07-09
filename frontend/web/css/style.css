@@ -2370,6 +2370,20 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
     width: 240px;
 }
 
+.badge {
+    padding: 4px 8px;
+    font-size: 15px;
+}
+
+.nav-pills > li > a > .badge {
+    margin-left: 0;
+    margin-top: 2px;
+}
+
+.kv-toggle span:last-child {
+    margin-left: 1em;
+}
+
 .sidebar-hover .topnav .logopanel2 h1 {
     font-family: 'Roboto', 'Open Sans', Helvetica, sans-serif;
     font-weight: 700;

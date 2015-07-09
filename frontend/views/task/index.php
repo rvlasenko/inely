@@ -39,6 +39,7 @@
     SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
         'heading' => 'Категории',
+        'encodeLabels' => false,
         'indItem' => false,
         'items' => Task::getItems()
     ]);
