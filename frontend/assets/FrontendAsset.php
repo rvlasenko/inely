@@ -16,9 +16,6 @@ class FrontendAsset extends AssetBundle
         'plugins/mcustom-scrollbar/mcustom_scrollbar.min.css',
         'plugins/slick/slick.css',
         'plugins/fullcalendar/fullcalendar.min.css',
-        //'plugins/icheck/skins/all.css',
-        //'plugins/bootstrap-editable/css/bootstrap-editable.css',
-        //'plugins/bootstrap-checkbox/awesome-bootstrap-checkbox.css',
         'plugins/chartist-js-develop/dist/chartist.min.css',
     ];
 
