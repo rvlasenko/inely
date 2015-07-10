@@ -19,11 +19,24 @@
     jQuery(function($) {
         $('a.edit').click(function() {
             if (!$('.modal-body .row').length) {
-                $.get('/task/cat', function (html) {
+                $.get('/cat', function(html) {
                     $('.modal-body').html(html);
-                    $('modal-slideleft').modal('show', { backdrop: 'static' });
+                    $('modal-slideleft').modal('show', {
+                        backdrop: 'static'
+                    });
                 });
             }
+        });
+        $('.kv-sidenav li a').click(function() {
+            var catId = $(this).children('span:last-child').attr('id');
+
+            $.ajax({
+                method: 'get',
+                url: '/sort',
+                data: { id: catId }
+            }).done(function(html) {
+                $('.main-content').html(html);
+            });
         });
     });
 </script>
@@ -236,19 +249,3 @@
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

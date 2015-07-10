@@ -2450,6 +2450,13 @@ div.task-cat-index .summary {
     margin-bottom: .5em;
 }
 
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 @media (min-width: 868px) {
 
     .kv-editable-form-inline .form-control {

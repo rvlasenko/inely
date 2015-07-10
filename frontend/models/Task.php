@@ -81,9 +81,9 @@ class Task extends ActiveRecord
 
             $items[] =
             [
-                'label' =>
-                "<span class='pull-right badge' style='background-color: $model->badgeColor'>$count</span>
-                 <span>$model->name</span>",
+                'label' => "<span class='pull-right badge'
+                    style='background-color: $model->badgeColor'>$count</span>
+                <span id='$model->id'>$model->name</span>",
             ];
         }
 

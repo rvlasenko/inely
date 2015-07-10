@@ -73,6 +73,22 @@ class TaskController extends Controller
     }
 
     /**
+     *
+     * @return string
+     */
+    public function actionSort()
+    {
+        $searchModel = new TaskSearch();
+
+        $dataProvider = $searchModel->searchByCat(Yii::$app->request->get('id'));
+
+        return $this->renderAjax('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+    }
+
+    /**
      * Creates a new Task model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed

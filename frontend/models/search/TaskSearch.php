@@ -64,8 +64,20 @@ class TaskSearch extends Task
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'priority', $this->priority])
             ->andFilterWhere(['like', 'time', $this->time]);
+
+        return $dataProvider;
+    }
+
+    public function searchByCat($id)
+    {
+        $query = Task::find();
+
+        $dataProvider = new ActiveDataProvider(['query' => $query]);
+
+        $query
+            ->andFilterWhere(['author' => Yii::$app->user->id])
+            ->andFilterWhere(['category' => $id]);
 
         return $dataProvider;
     }
