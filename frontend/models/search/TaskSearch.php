@@ -18,7 +18,7 @@ class TaskSearch extends Task
     public function rules()
     {
         return [
-            [['category', 'is_done'], 'integer'],
+            [['category', 'isDone'], 'integer'],
             [['name', 'priority', 'time'], 'safe'],
         ];
     }
@@ -56,7 +56,7 @@ class TaskSearch extends Task
         }
 
         $query->andFilterWhere([
-            'is_done' => $this->is_done,
+            'isDone' => $this->isDone,
         ]);
 
         $query->andFilterWhere([

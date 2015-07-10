@@ -10,6 +10,7 @@
     use frontend\models\Task;
 
     $this->title = 'Ваши задачи';
+    $date = new DateTime();
 ?>
 
 <div class="main-content">
@@ -58,14 +59,14 @@
         <?php
             $gridColumns = [
                 [
-                    'attribute' => 'is_done',
+                    'attribute' => 'isDone',
                     'format' => 'raw',
                     'width' => '65px',
                     'filterType' => GridView::FILTER_CHECKBOX_X,
                     'value' => function($model) {
                         return CheckboxX::widget([
                             'name' => 'checked',
-                            'value' => $model->is_done,
+                            'value' => $model->isDone,
                             'pluginOptions' => [
                                 'threeState' => false,
                                 'size' => 'md',
@@ -222,12 +223,15 @@
                 'responsive' => true,
                 'responsiveWrap' => true,
                 'resizableColumns' => false,
+                'filterRowOptions'=> [
+                    'class' => 'kartik-sheet-style'
+                ],
                 'hover' => true,
                 'export' => false,
                 'pjax' => true,
                 'rowOptions' => function ($model) {
                     return [
-                        'style' => $model->is_done ? 'opacity: .5' : true
+                        'style' => $model->isDone ? 'opacity: .5' : true
                     ];
                 },
                 'pjaxSettings' => [
@@ -237,11 +241,26 @@
                 'panel' => [
                     'heading' => '<i class="fa fa-inbox"></i> <span>Список задач</span>',
                     'type' => GridView::TYPE_PRIMARY,
-                    'before' => Html::a('<i class="glyphicon glyphicon-plus"></i> Create Country', ['create'], [
-                        'class' => 'btn btn-success btn-square']),
-                    'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Reset Grid', ['index'], [
-                        'class' => 'btn btn-info btn-square']),
+                    'before' => Html::a('<i class="glyphicon glyphicon-plus"></i> Новая задача', ['create'],
+                        ['class' => 'btn btn-success btn-square']),
+                    'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Сбросить таблицу', ['index'],
+                        ['class' => 'btn btn-info btn-square']),
                     'footer' => false
+                ],
+                'toolbar' => [
+                    '{toggleData}',
+                ],
+                'toggleDataOptions' => [
+                    'all' => [
+                        'icon' => 'resize-full',
+                        'label' => 'Все записи',
+                        'class' => 'btn btn-info btn-square',
+                    ],
+                    'page' => [
+                        'icon' => 'resize-small',
+                        'label' => 'Страница',
+                        'class' => 'btn btn-info btn-square',
+                    ],
                 ],
             ]);
         ?>
@@ -250,7 +269,7 @@
 <div class="footer">
     <div class="copyright">
         <p class="pull-left sm-pull-reset">
-            <span>Copyright <span class="copyright">&copy;</span>2015</span>
+            <span>Copyright <span class="copyright"> &copy; </span><?= $date->format('Y') ?></span>
             <span>rootkit</span>.
             <span>All rights reserved.</span>
         </p>

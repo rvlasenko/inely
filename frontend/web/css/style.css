@@ -27,7 +27,7 @@ input,
 select,
 textarea {
     color: #636e7b;
-    font-family: 'Open Sans', Helvetica, sans-serif !important;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 ol,
@@ -35,7 +35,6 @@ ul {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font: inherit;
     vertical-align: baseline;
 }
@@ -63,14 +62,14 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: 'Roboto', 'Open Sans', Helvetica, sans-serif;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
     font-weight: 100;
 }
 
 h1 {
     font-size: 45px;
     margin-top: 0;
-    font-family: 'Roboto', 'Open Sans', Helvetica, sans-serif;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
 }
 
 div,
@@ -84,8 +83,21 @@ h3 {
     font-size: 20px;
 }
 
+.error-main h3 {
+    font-size: 24px;
+    line-height: 1.3em;
+}
+
+.error-main >
+h1,
+h3,
+h4 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
 strong {
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
 }
 
@@ -126,7 +138,6 @@ a.scrollup {
     -moz-border-radius: 50% !important;
     -webkit-border-radius: 50% !important;
     border-radius: 50% !important;
-    border-radius: 16px;
 }
 
 a.scrollup i {
@@ -238,7 +249,7 @@ h2 small {
 }
 
 .panel-white {
-    background: #FFF none repeat scroll 0% 0%;
+    background: #FFF none repeat scroll 0 0;
 }
 
 .weather-top {
@@ -547,7 +558,6 @@ div.weather-top h2 {
     -webkit-transition: transform 0.3s linear;
     -moz-transition: transform 0.3s linear;
     -o-transition: transform 0.3s linear;
-    -ms-transition: transform 0.3s linear;
     transition: transform 0.3s linear;
 }
 
@@ -568,7 +578,6 @@ div.weather-top h2 {
     -webkit-transition: transform 0.3s linear;
     -moz-transition: transform 0.3s linear;
     -o-transition: transform 0.3s linear;
-    -ms-transition: transform 0.3s linear;
     transition: transform 0.3s linear;
 }
 
@@ -582,7 +591,6 @@ div.weather-top h2 {
     -webkit-transition: opacity 0.25s linear;
     -moz-transition: opacity 0.25s linear;
     -o-transition: opacity 0.25s linear;
-    -ms-transition: opacity 0.25s linear;
     transition: opacity 0.25s linear;
     width: 100%;
 }
@@ -632,7 +640,7 @@ div.weather-top h2 {
 .sidebar-menu > li > a > i:nth-child(1) {
     float: left;
     top: 0;
-    line-height: 36px;
+    line-height: 39px;
     width: 38px;
     font-size: 21px;
     text-align: center;
@@ -770,7 +778,7 @@ h3 .fa-cog {
 .topbar .header-right .header-menu .dropdown-menu {
     border-top-left-radius: 1px !important;
     border-top-right-radius: 1px !important;
-    left: -10px;
+    left: auto;
     margin: 0;
     max-width: 300px !important;
     min-width: 170px !important;
@@ -778,6 +786,12 @@ h3 .fa-cog {
     right: 15px;
     top: 53px;
     width: 290px;
+}
+
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .btn {
+    padding: 4px 10px;
 }
 
 .separator {
@@ -801,7 +815,7 @@ h3 .fa-cog {
 .topbar .header-right .header-menu .dropdown-menu .dropdown-header {
     background: #2b2e33;
     color: #666666;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     padding: 8px 15px;
 }
@@ -813,9 +827,8 @@ h3 .fa-cog {
 }
 
 .topbar .header-right .header-menu .dropdown-menu .dropdown-header p {
-    color: #E4E4E4 !important;
     color: #ffffff;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     margin: 0;
 }
@@ -871,7 +884,7 @@ h3 .fa-cog {
     background: #F8F8F8;
     border-top: 1px solid #E2E2E2;
     color: #121212;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     padding: 5px;
 }
@@ -1026,7 +1039,6 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
     right: 0;
     left: 240px;
     z-index: 801;
-    z-index: 300;
     -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
@@ -1085,7 +1097,6 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
 .main-content .page-content .panel {
     background: #ffffff;
     border-radius: 0;
-    border: 1px solid #E2E2E2;
     border: none;
     color: #5b5b5b;
     margin-bottom: 20px;
@@ -1138,7 +1149,6 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
-    -ms-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
 
@@ -1159,21 +1169,18 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
     color: #cccccc !important;
     cursor: pointer;
     margin-left: 11px;
-    margin-right: 0px;
+    margin-right: 0;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
-    -ms-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
 
 .main-content .page-content .panel .control-btn > a:hover {
     text-decoration: none;
-    text-decoration: none !important;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
-    -ms-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
 
@@ -1253,7 +1260,7 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
 }
 
 .main-content .page-content > .footer .copyright span.copyright {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
 }
 
 .panel .panel-toggle {
@@ -1272,8 +1279,13 @@ body:not(.fixed-topbar) .main-content .page-content {
     ul.weather-days {
         width: 102% !important;
     }
+
     .main-content .panel.panel-default {
         display: none;
+    }
+
+    .panel-heading span {
+        font-size: 2em;
     }
 }
 
@@ -1405,7 +1417,7 @@ ul.weather-days > li {
 
 .todo-list li .todo-tags {
     display: inline;
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
     left: auto;
     position: absolute;
     right: 9px;
@@ -1469,7 +1481,7 @@ ul.weather-days > li {
 .widget-progress-bar .title {
     color: rgba(0, 0, 0, 0.6);
     float: left;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     margin-bottom: 5px;
     margin-top: 0;
@@ -1480,11 +1492,9 @@ ul.weather-days > li {
 .widget-progress-bar .number {
     color: rgba(0, 0, 0, 0.5);
     float: right;
-    font-family: 'Open Sans';
-    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     margin-bottom: 5px;
-    margin-top: 0;
     margin-top: 2px;
     opacity: 1;
     text-transform: none;
@@ -1502,7 +1512,6 @@ ul.weather-days > li {
 
 .widget-news .message-item {
     border-bottom: 1px solid #ECEBEB !important;
-    border: none;
     display: block;
     margin: 0;
     padding: 10px 15px 0;
@@ -1528,9 +1537,7 @@ ul.weather-days > li {
 
 .jquery-clock .jquery-clock-sec {
     -webkit-background-size: contain;
-    background-image: url(../images/clock/sechand.png);
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url(../images/clock/sechand.png) no-repeat center;
     background-size: contain;
     height: 100%;
     left: 45%;
@@ -1542,9 +1549,7 @@ ul.weather-days > li {
 
 .jquery-clock .jquery-clock-min {
     -webkit-background-size: contain;
-    background-image: url(../images/clock/minhand.png);
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url(../images/clock/minhand.png) no-repeat center;
     background-size: contain;
     height: 100%;
     left: 45%;
@@ -1556,9 +1561,7 @@ ul.weather-days > li {
 
 .jquery-clock .jquery-clock-hour {
     -webkit-background-size: contain;
-    background-image: url(../images/clock/hourhand.png);
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url(../images/clock/hourhand.png) no-repeat center;
     background-size: contain;
     height: 100%;
     left: 45%;
@@ -1572,7 +1575,6 @@ ul.weather-days > li {
     -webkit-transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);
     -moz-transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);
     -o-transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);
-    -ms-transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);
     transition: all 1s cubic-bezier(0.01, 1.81, 0, 0.88);
 }
 
@@ -1612,7 +1614,7 @@ ul.weather-days > li {
 }
 
 .widget-info .right .number {
-    font-family: 'Roboto', 'Open Sans', Arial;
+    font-family: 'Roboto', 'Open Sans', sans-serif;
     font-weight: 500;
     font-size: 22px;
     margin-bottom: 2px;
@@ -1644,7 +1646,7 @@ ul.weather-days > li {
 }
 
 .builder h4 {
-    font-family: 'Roboto', 'Open Sans';
+    font-family: 'Roboto', 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -2261,7 +2263,7 @@ ul.dropdown-menu li p {
 .sidebar .sidebar-inner .sidebar-widgets a {
     color: #ffffff;
     display: block;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     letter-spacing: 0.4px;
     position: relative;
@@ -2443,7 +2445,6 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
         -webkit-transition: all 0s ease-out;
         -moz-transition: all 0s ease-out;
         -o-transition: all 0s ease-out;
-        -ms-transition: all 0s ease-out;
         transition: all 0s ease-out;
     }
 
@@ -2536,9 +2537,7 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
 
 body:not(.sidebar-top):not(.fixed-sidebar):not(.sidebar-light) .sidebar:before {
     background-color: inherit;
-    border-color: inherit;
-    border-style: inherit;
-    border-width: inherit;
+    border: inherit inherit inherit;
     bottom: 0;
     content: "";
     display: block;
@@ -2577,7 +2576,6 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
     -webkit-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     -moz-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     -o-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    -ms-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     width: 280px;
     z-index: 1000;
@@ -2610,7 +2608,6 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
     bottom: 0;
     color: #818181;
     height: auto;
-    left: 0;
     left: auto;
     overflow-x: hidden;
     position: absolute;
@@ -2621,7 +2618,6 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
     -webkit-transition: width 0.3s ease;
     -moz-transition: width 0.3s ease;
     -o-transition: width 0.3s ease;
-    -ms-transition: width 0.3s ease;
     transition: width 0.3s ease;
 }
 
@@ -2671,14 +2667,12 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
     -webkit-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     -moz-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     -o-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    -ms-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     width: 280px;
     z-index: 1000;
     -ms-transform: translate(0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    left: auto;
     right: 0;
 }
 
@@ -2720,7 +2714,6 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
 }
 
 #quickview-sidebar .quickview .tab-content #notes .list-notes .notes #notes-list .note-item {
-    border-bottom: 1px solid #EBEBEB;
     border: none;
     cursor: pointer;
     display: block;
@@ -2756,7 +2749,6 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
     -webkit-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     -moz-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     -o-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    -ms-transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     width: 280px;
     z-index: 1000;
@@ -2801,7 +2793,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
 #quickview-sidebar .quickview .tab-content #notes .detail-note #note-detail .note-write textarea {
     background-color: #fefaed !important;
     border: none;
-    font-family: 'Roboto', arial !important;
+    font-family: 'Roboto', sans-serif !important;
     font-weight: 100;
     font-size: 18px;
     height: 100%;
@@ -2851,7 +2843,7 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
 
 #quickview-sidebar .quickview-header {
     background-color: #292C35;
-    font-family: 'Roboto', arial;
+    font-family: 'Roboto', sans-serif;
     font-weight: 100;
     font-size: 12px;
     height: 50px;

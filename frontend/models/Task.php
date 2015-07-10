@@ -33,11 +33,10 @@ class Task extends ActiveRecord
     public function rules()
     {
         return [
-            [['category', 'author', 'is_done'], 'integer'],
+            [['category', 'author', 'isDone'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['priority'], 'string', 'max' => 12],
             [['time'], 'string', 'max' => 25],
-            [['is_done_date'], 'string', 'max' => 3]
         ];
     }
 
@@ -49,7 +48,7 @@ class Task extends ActiveRecord
         return [
             'name' => 'Название',
             'author' => 'Автор',
-            'is_done' => 'Статус',
+            'isDone' => 'Статус',
             'priority' => 'Важность',
             'time' => 'Срок выполнения'
         ];
@@ -71,7 +70,7 @@ class Task extends ActiveRecord
         $items = [];
 
         $models = TaskCat::find()
-            ->where(['user_id' => Yii::$app->user->id])
+            ->where(['userId' => Yii::$app->user->id])
             ->all();
 
         foreach($models as $model) {
@@ -83,7 +82,7 @@ class Task extends ActiveRecord
             $items[] =
             [
                 'label' =>
-                "<span class='pull-right badge' style='background-color: $model->badge_color'>$count</span>
+                "<span class='pull-right badge' style='background-color: $model->badgeColor'>$count</span>
                  <span>$model->name</span>",
             ];
         }

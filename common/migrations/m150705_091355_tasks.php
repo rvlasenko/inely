@@ -17,7 +17,7 @@ class m150705_091355_tasks extends Migration
             'name' => Schema::TYPE_STRING . '(255) NULL',
             'category' => Schema::TYPE_INTEGER . '(15)',
             'author' => Schema::TYPE_INTEGER . '(100)',
-            'is_done' => Schema::TYPE_INTEGER . '(1)',
+            'isDone' => Schema::TYPE_INTEGER . '(1)',
             'priority' => Schema::TYPE_INTEGER . '(5) NULL',
             'time' => Schema::TYPE_STRING . '(15) NULL'
         ], $tableOptions);
@@ -27,7 +27,7 @@ class m150705_091355_tasks extends Migration
             'name' => 'Заполнить резюме с новым проектом и отправить',
             'category' => 1,
             'author' => 1,
-            'is_done' => 0,
+            'isDone' => 0,
             'priority' => 3,
             'time' => ''
         ]);
@@ -37,7 +37,7 @@ class m150705_091355_tasks extends Migration
             'name' => 'Шарахнуть банхаммером по невменяемым юзерам',
             'category' => 1,
             'author' => 2,
-            'is_done' => 0,
+            'isDone' => 0,
             'priority' => 4,
             'time' => ''
         ]);
@@ -47,37 +47,37 @@ class m150705_091355_tasks extends Migration
             'name' => 'Покинь 2ch, заведи тян, стань альфой',
             'category' => 3,
             'author' => 3,
-            'is_done' => 1,
+            'isDone' => 1,
             'priority' => 2,
             'time' => ''
         ]);
 
         $this->createTable('{{%tasks_cat}}', [
             'id' => Schema::TYPE_PK,
-            'user_id' => Schema::TYPE_INTEGER . '(100) NULL',
+            'userId' => Schema::TYPE_INTEGER . '(100) NULL',
             'name' => Schema::TYPE_STRING . '(100)',
-            'badge_color' => Schema::TYPE_STRING . '(7) NULL'
+            'badgeColor' => Schema::TYPE_STRING . '(7) NULL'
         ], $tableOptions);
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 1,
             'name' => 'Работа',
-            'user_id' => 1,
-            'badge_color' => '#0074D9',
+            'userId' => 1,
+            'badgeColor' => '#0074D9',
         ]);
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 2,
             'name' => 'Семья',
-            'user_id' => 2,
-            'badge_color' => '#2ECC40',
+            'userId' => 2,
+            'badgeColor' => '#2ECC40',
         ]);
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 3,
-            'user_id' => 3,
+            'userId' => 3,
             'name' => 'Личное',
-            'badge_color' => '#7FDBFF',
+            'badgeColor' => '#7FDBFF',
         ]);
 
         if ($this->db->driverName === 'mysql') {

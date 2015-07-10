@@ -38,7 +38,7 @@
 }
 
 .m-t-0 {
-    margin-top: 0px !important;
+    margin-top: 0 !important;
 }
 
 .m-t-10 {
@@ -50,7 +50,7 @@
 }
 
 .m-b-0 {
-    margin-bottom: 0px !important;
+    margin-bottom: 0 !important;
 }
 
 .m-l-10 {
@@ -278,8 +278,8 @@ i.bg-purple::before {
     border-collapse: collapse;
     display: table;
     height: 100% !important;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
     table-layout: fixed;
     vertical-align: middle;
     width: 100%;
@@ -382,13 +382,6 @@ ul.list-unstyled {
 .modal-dialog {
     margin-top: 10%;
     z-index: 10000;
-}
-
-@media (min-width: 1600px) {
-}
-
-.form-control {
-    border-radius: 0 !important;
 }
 
 fieldset {
@@ -501,7 +494,6 @@ legend {
     -webkit-transition: all 0.15s ease-out;
     -moz-transition: all 0.15s ease-out;
     -o-transition: all 0.15s ease-out;
-    -ms-transition: all 0.15s ease-out;
     transition: all 0.15s ease-out;
 }
 
@@ -563,8 +555,15 @@ legend {
     -webkit-transition: left 0.15s ease-out;
     -moz-transition: left 0.15s ease-out;
     -o-transition: left 0.15s ease-out;
-    -ms-transition: left 0.15s ease-out;
     transition: left 0.15s ease-out;
+}
+
+.glyphicon-resize-full,
+.glyphicon-plus,
+.glyphicon-repeat,
+.glyphicon-resize-small {
+    left: -5px;
+    top: 2px;
 }
 
 .switch-handle:before {
@@ -698,9 +697,6 @@ legend {
     border: none;
 }
 
-@media screen and (max-width: 58em) {
-}
-
 ul.nav li {
     cursor: pointer;
 }
@@ -715,24 +711,6 @@ ul.nav li a {
 
 .div-table[class^="col-"]::last-child {
     padding-right: 15px !important;
-}
-
-@media (max-width: 1199px) {
-}
-
-@media (max-width: 991px) {
-}
-
-@media (max-width: 767px) {
-}
-
-@media screen and (max-width: 580px) {
-}
-
-@media (max-width: 400px) {
-}
-
-@media (max-device-width: 480px) {
 }
 
 code {
