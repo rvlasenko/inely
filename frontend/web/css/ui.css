@@ -216,7 +216,7 @@ i.bg-purple::before {
 }
 
 .btn-sm:first-child {
-    margin-left: 0;
+    margin-left: 3px;
 }
 
 .btn-default {

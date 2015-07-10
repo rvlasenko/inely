@@ -16,23 +16,15 @@
 <div class="main-content">
 
 <script>
-    $(document).ready(function() {
-        /*$('.kv-toggle').click(function (event) {
-            event.preventDefault(); // cancel the event
-            $(this).children('.opened').toggle();
-            $(this).children('.closed').toggle();
-            $(this).parent().children('ul').toggle();
-            $(this).parent().toggleClass('active');
-            return false;
-        });*/
-        /*$('.kv-toggle span').click(function() {
-            event.preventDefault(); // cancel the event
-            $('.opened').toggle();
-            $('.closed').toggle();
-            $(this).children('a').toggle();
-            $(this).parent('a').parent('li').toggleClass('active');
-            return false;
-        });*/
+    jQuery(function($) {
+        $('a.edit').click(function() {
+            if (!$('.modal-body .row').length) {
+                $.get('/task/cat', function (html) {
+                    $('.modal-body').html(html);
+                    $('modal-slideleft').modal('show', { backdrop: 'static' });
+                });
+            }
+        });
     });
 </script>
 
@@ -40,7 +32,7 @@
     SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
         'heading' => '
-            <a href="#" data-toggle="modal" data-target="#modal-slideleft">
+            <a href="#" class="edit" data-toggle="modal" data-target="#modal-slideleft">
                 <i class="pull-right fa fa-cog"></i>
             </a>Категории',
         'encodeLabels' => false,
@@ -90,53 +82,15 @@
                                 title="Применить"><i class="glyphicon glyphicon-remove"></i>
                                 </button>',
                             'options' => [
-                                'class' => false
+                                'class' => null
                             ]
                         ]
                     ],
                 ],
-                /*[
-                    'class' => 'kartik\grid\EditableColumn',
-                    'attribute' => 'category',
-                    'pageSummary' => true,
-                    'editableOptions'=> function ($model, $key, $index, $widget) {
-                        return [
-                            'header' => 'цвет значка',
-                            'size' => 'md',
-                            'afterInput' => function ($form, $widget) use ($model, $index) {
-                                return $form->field($model->tasks_cat, "badge_color")->widget(\kartik\color\ColorInput::classname(), [
-                                    'showDefaultPalette' => false,
-                                    'options' => [
-                                        'id' => "color-{$index}"
-                                    ],
-                                    'pluginOptions' => [
-                                        'showPalette' => true,
-                                        'showPaletteOnly' => true,
-                                        'showSelectionPalette' => true,
-                                        'showAlpha' => false,
-                                        'allowEmpty' => false,
-                                        'preferredFormat' => 'name',
-                                        'palette' => [
-                                            [
-                                                "#FFFFFF", "#001F3F", "#0074D9", "#7FDBFF", "#39CCCC", "#3D9970",
-                                            ],
-                                            [
-                                                "#2ECC40", "#01FF70", "#FFDC00", "#FF851B", "#FF4136", "#85144b"
-                                            ],
-                                            [
-                                                "#F012BE", "#B10DC9", "#111111", "#AAAAAA",
-                                            ],
-                                        ]
-                                    ],
-                                ]);
-                            }
-                        ];
-                    }
-                ],*/
                 [
                     'attribute' => 'time',
                     'format' => 'raw',
-                    'value' => function ($model) {
+                    'value' => function($model) {
                         return DateTimePicker::widget([
                             'model' => $model,
                             'name' => 'datetime',
@@ -209,11 +163,8 @@
                         ]);
                     }
                 ],
-                //'is_done_date',*/
             ];
         ?>
-
-
 
         <?=
             GridView::widget([

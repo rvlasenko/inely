@@ -20,7 +20,7 @@ body > section {
 
 body p strong {
     font-family: 'Roboto', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 input,
@@ -1687,11 +1687,11 @@ ul.weather-days > li {
 
 .builder .builder-toggle {
     cursor: pointer;
-    font-size: 16px;
+    font-size: 24px;
     height: 50px;
-    left: -48px;
-    line-height: 50px;
-    padding-top: 2px;
+    left: -43px;
+    line-height: 38px;
+    padding-top: 1px;
     position: absolute;
     text-align: center;
     top: 23%;
@@ -1710,11 +1710,11 @@ ul.weather-days > li {
     border-top-left-radius: 4px;
     box-shadow: -3px 2px 2px rgba(189, 189, 189, 0.28);
     content: '';
-    height: 50px;
-    left: -47px;
+    height: 40px;
+    left: -38px;
     position: absolute;
     top: 23%;
-    width: 48px;
+    width: 38px;
 }
 
 .builder .theme-color {
@@ -1735,10 +1735,9 @@ ul.weather-days > li {
 
 .builder .theme-color.active:after {
     color: #ffffff;
-    content: "\e125";
+    content: "\f058";
     display: inline-block;
-    font-family: "line-icons" !important;
-    font-size: 11px;
+    font: normal normal normal 10px/1 FontAwesome;
     left: 5px;
     position: absolute;
     text-align: center;
@@ -1747,10 +1746,9 @@ ul.weather-days > li {
 
 .builder .bg-color.active:after {
     color: #464646;
-    content: "\e125";
+    content: "\f058";
     display: inline-block;
-    font-family: "line-icons" !important;
-    font-size: 11px;
+    font: normal normal normal 10px/1 FontAwesome;
     left: 3px;
     position: absolute;
     text-align: center;
@@ -1809,9 +1807,9 @@ ul.weather-days > li {
 
 .builder .theme.active:after {
     color: #ffffff;
-    content: "\e125";
+    content: "\f058";
     display: inline-block;
-    font-family: "line-icons" !important;
+    font: normal normal normal 10px/1 FontAwesome;
     font-size: 11px;
     left: 9px;
     position: absolute;
@@ -2140,6 +2138,21 @@ ul.dropdown-menu li p {
     ul.weather-days {
         width: 102%;
     }
+
+    .kv-table-wrap thead {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .kv-table-wrap tr > td:first-child {
+        border-top: 3px double #ccc;
+        margin-top: 0;
+        font-size: 0;
+    }
+    .rating-xs {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -2147,6 +2160,7 @@ ul.dropdown-menu li p {
     ul.weather-days {
         width: 102%;
     }
+
 }
 
 @media screen and (max-width: 430px) {
@@ -2418,8 +2432,22 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
 }
 
 .kv-editable-form-inline .kv-editable-close {
-    margin-top: 1px;
+    margin-top: 2px;
     margin-left: -3px;
+}
+
+.kv-editable-form-inline .btn-sm {
+    margin: 4px 3px 0 0;
+}
+
+div.task-cat-index p {
+    text-align: center;
+    margin-top: 1em;
+}
+
+div.task-cat-index .summary {
+    text-align: center;
+    margin-bottom: .5em;
 }
 
 @media (min-width: 868px) {
@@ -2427,6 +2455,12 @@ body:not(.sidebar-fixed, .topbar-fixed) .sidebar .logopanel {
     .kv-editable-form-inline .form-control {
         display: inline-block;
         width: 300px;
+        vertical-align: top;
+    }
+
+    .editable-cat .kv-editable-form-inline .form-control {
+        display: inline-block;
+        width: 180px;
         vertical-align: top;
     }
 

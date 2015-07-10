@@ -56,13 +56,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="c-primary m-b-30">Are you sure you want to proceed?</h2>
-                            <button type="button" class="btn btn-primary btn-embossed btn-block" data-dismiss="modal">Yes, I'm sure</button>
-                            <button type="button" data-dismiss="modal" class="btn btn-white btn-block">Oops, I prefer not!</button>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
-<!-- BEGIN BUILDER -->
 <div class="builder hidden-sm hidden-xs" id="builder">
-    <a class="builder-toggle"><i class="icon-wrench"></i></a>
+    <a class="builder-toggle"><i class="fa fa-wrench"></i></a>
     <div class="inner">
         <div class="builder-container">
             <a href="#" class="btn btn-sm btn-default" id="reset-style">reset default style</a>
@@ -61,4 +60,3 @@
         </div>
     </div>
 </div>
-<!-- END BUILDER -->

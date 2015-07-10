@@ -55,7 +55,7 @@
                     <div class="ct-chart ct-major-fifth"></div>
                     <div class="separator"></div>
                     <p>
-                        <strong>4</strong>завершенные задачи
+                        <strong>4 </strong>завершенные задачи
                     </p>
                     <div class="separator"></div>
                     <p>Завершено за последние 7 дней:</p>

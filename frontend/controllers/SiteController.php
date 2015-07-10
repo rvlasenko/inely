@@ -2,7 +2,6 @@
 namespace frontend\controllers;
 
 use frontend\models\ContactForm;
-use frontend\modules\user\models\Tasks;
 use Yii;
 use yii\web\Controller;
 
@@ -51,17 +50,10 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        if (!Yii::$app->user->isGuest) {
-            //$model = new Tasks();
-            //$tasks = $model->getTasks();
-
-            return $this->render('index', [
-                //'tasks' => $tasks,
-            ]);
-        }
-        else {
+        if (!Yii::$app->user->isGuest)
+            return $this->render('index');
+        else
             return $this->render('landing');
-        }
     }
 
     public function actionContact()
@@ -79,6 +71,7 @@ class SiteController extends Controller
     public function actionError()
     {
         $exception = Yii::$app->errorHandler->exception;
+
         if ($exception !== null) {
             return $this->render('error', ['exception' => $exception]);
         }
