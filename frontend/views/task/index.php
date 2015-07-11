@@ -27,27 +27,17 @@
                 });
             }
         });
-        $('.kv-sidenav li a').click(function() {
-            var catId = $(this).children('span:last-child').attr('id');
-
-            $.ajax({
-                method: 'get',
-                url: '/sort',
-                data: { id: catId }
-            }).done(function(html) {
-                $('.main-content').html(html);
-            });
-        });
     });
 </script>
 
 <?=
     SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
-        'heading' => '
-            <a href="#" class="edit" data-toggle="modal" data-target="#modal-slideleft">
-                <i class="pull-right fa fa-cog"></i>
-            </a>Категории',
+        'heading' => Html::a('<i class="pull-right fa fa-cog"></i>Категории', ['#'], [
+            'data-toggle' => 'modal',
+            'data-target' => '#modal-slideleft',
+            'class' => 'edit'
+        ]),
         'encodeLabels' => false,
         'indItem' => false,
         'items' => Task::getItems()
@@ -75,7 +65,7 @@
                             'pluginOptions' => [
                                 'threeState' => false,
                                 'size' => 'md',
-                                'iconChecked' => '<i class="glyphicon glyphicon-ok"></i>',
+                                'iconChecked' => Html::tag('i', '', ['class' => 'glyphicon glyphicon-ok']),
                             ],
                         ]);
                     }
@@ -89,11 +79,12 @@
                         'buttonsTemplate' => '{submit}',
                         'inputType' => Editable::INPUT_TEXT,
                         'inlineSettings' => [
-                            'closeButton' => '
-                                <button type="button"
-                                class="btn btn-sm btn-danger kv-editable-close"
-                                title="Применить"><i class="glyphicon glyphicon-remove"></i>
-                                </button>',
+                            'closeButton' => Html::button(
+                                Html::tag('i', '', ['class' => 'glyphicon glyphicon-remove']), [
+                                    'class' => 'btn btn-sm btn-danger kv-editable-close',
+                                    'title' => 'Применить',
+                                    'type' => 'button'
+                                ]),
                             'options' => [
                                 'class' => null
                             ]
@@ -205,9 +196,9 @@
                 'panel' => [
                     'heading' => '<i class="fa fa-inbox"></i> <span>Список задач</span>',
                     'type' => GridView::TYPE_PRIMARY,
-                    'before' => Html::a('<i class="glyphicon glyphicon-plus"></i> Новая задача', ['create'],
+                    'before' => Html::a(Html::tag('i', '', ['class' => 'glyphicon glyphicon-plus']) . 'Новая задача', ['create'],
                         ['class' => 'btn btn-success btn-square']),
-                    'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i> Сбросить таблицу', ['index'],
+                    'after' => Html::a(Html::tag('i', '', ['class' => 'glyphicon glyphicon-repeat']) . 'Сбросить таблицу', ['index'],
                         ['class' => 'btn btn-info btn-square']),
                     'footer' => false
                 ],
@@ -230,22 +221,22 @@
         ?>
 
     </div>
-<div class="footer">
-    <div class="copyright">
-        <p class="pull-left sm-pull-reset">
-            <span>Copyright <span class="copyright"> &copy; </span><?= $date->format('Y') ?></span>
-            <span>rootkit</span>.
-            <span>All rights reserved.</span>
-        </p>
+    <div class="footer">
+        <div class="copyright">
+            <p class="pull-left sm-pull-reset">
+                <span>Copyright <span class="copyright"> &copy; </span><?= $date->format('Y') ?></span>
+                <span>rootkit</span>.
+                <span>All rights reserved.</span>
+            </p>
 
-        <p class="pull-right sm-pull-reset">
-            <span>
-                <a href="#" class="m-r-10">Support</a> |
-                <a href="#" class="m-l-10 m-r-10">Terms of use</a> |
-                <a href="#" class="m-l-10">Privacy Policy</a>
-            </span>
-        </p>
+            <p class="pull-right sm-pull-reset">
+                <span>
+                    <a href="#" class="m-r-10">Support</a> |
+                    <a href="#" class="m-l-10 m-r-10">Terms of use</a> |
+                    <a href="#" class="m-l-10">Privacy Policy</a>
+                </span>
+            </p>
+        </div>
     </div>
-</div>
 </div>
 </div>

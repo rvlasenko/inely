@@ -26,11 +26,12 @@
                 'buttonsTemplate' => '{submit}',
                 'inputType' => Editable::INPUT_TEXT,
                 'inlineSettings' => [
-                    'closeButton' => '
-                        <button type="button"
-                        class="btn btn-sm btn-danger kv-editable-close"
-                        title="Применить"><i class="glyphicon glyphicon-remove"></i>
-                        </button>',
+                    'closeButton' => Html::button(
+                        Html::tag('i', '', ['class' => 'glyphicon glyphicon-remove']), [
+                        'class' => 'btn btn-sm btn-danger kv-editable-close',
+                        'title' => 'Применить',
+                        'type' => 'button'
+                    ]),
                     'options' => [
                         'class' => 'editable-cat'
                     ]

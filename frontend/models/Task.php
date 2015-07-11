@@ -4,6 +4,8 @@ namespace frontend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "tasks".
@@ -63,11 +65,12 @@ class Task extends ActiveRecord
     }
 
     /**
-     *
+     * @return array
      */
     public static function getItems()
     {
         $items = [];
+        $head = [];
 
         $models = TaskCat::find()
             ->where(['userId' => Yii::$app->user->id])
@@ -76,17 +79,26 @@ class Task extends ActiveRecord
         foreach($models as $model) {
             $count = Task::find()
                 ->where(['category' => $model->id])
-                //->andWhere(['author' => Yii::$app->user->id])
                 ->count();
+
+            $head = [
+                [
+                    'label' => 'Все подряд',
+                    'url' => '/todo'
+                ],
+            ];
 
             $items[] =
             [
-                'label' => "<span class='pull-right badge'
-                    style='background-color: $model->badgeColor'>$count</span>
-                <span id='$model->id'>$model->name</span>",
+                'label' => Html::tag('span', $model->name .
+                    Html::tag('span', $count, [
+                        'class' => 'pull-right badge',
+                        'style' => "background-color: $model->badgeColor"
+                    ]), []),
+                'url' => "/sort?id={$model->id}"
             ];
         }
 
-        return $items;
+        return ArrayHelper::merge($head, $items);
     }
 }

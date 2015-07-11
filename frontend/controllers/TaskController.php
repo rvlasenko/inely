@@ -82,7 +82,7 @@ class TaskController extends Controller
 
         $dataProvider = $searchModel->searchByCat(Yii::$app->request->get('id'));
 
-        return $this->renderAjax('index', [
+        return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
         ]);
