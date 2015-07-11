@@ -15,7 +15,7 @@ class LandingAsset extends AssetBundle
         'css/landing/flexslider.css',
 
         // Animations
-        'css/landing/animate.min.css',
+        'plugins/animation-css/animate.min.css',
 
         // Custom stylesheets
         'css/landing/styles.css',
