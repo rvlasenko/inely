@@ -27,6 +27,14 @@
                 });
             }
         });
+        $('.kv-sidenav li a').click(function() {
+            $.pjax.reload({
+                url: $(this).attr('href'),
+                container: '#pjax-wrapper'
+            });
+
+            return false;
+        });
     });
 </script>
 
@@ -34,9 +42,11 @@
     SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
         'heading' => Html::a('<i class="pull-right fa fa-cog"></i>Категории', ['#'], [
-            'data-toggle' => 'modal',
-            'data-target' => '#modal-slideleft',
-            'class' => 'edit'
+            'class' => 'edit',
+            'data' => [
+                'toggle' => 'modal',
+                'target' => '#modal-slideleft'
+            ]
         ]),
         'encodeLabels' => false,
         'indItem' => false,
@@ -184,15 +194,19 @@
                 'hover' => true,
                 'export' => false,
                 'pjax' => true,
+                'pjaxSettings' => [
+                    'neverTimeout' => true,
+                    'loadingCssClass' => false,
+                    'options' => [
+                        'id' => 'pjax-wrapper',
+                        'enablePushState' => false,
+                    ]
+                ],
                 'rowOptions' => function ($model) {
                     return [
                         'style' => $model->isDone ? 'opacity: .5' : true
                     ];
                 },
-                'pjaxSettings' => [
-                    'neverTimeout' => true,
-                    'loadingCssClass' => false
-                ],
                 'panel' => [
                     'heading' => '<i class="fa fa-inbox"></i> <span>Список задач</span>',
                     'type' => GridView::TYPE_PRIMARY,

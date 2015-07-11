@@ -6,6 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "tasks".
@@ -90,12 +91,12 @@ class Task extends ActiveRecord
 
             $items[] =
             [
+                'url' => Url::toRoute(['/todo', 'id' => $model->id]),
                 'label' => Html::tag('span', $model->name .
                     Html::tag('span', $count, [
                         'class' => 'pull-right badge',
                         'style' => "background-color: $model->badgeColor"
                     ]), []),
-                'url' => "/sort?id={$model->id}"
             ];
         }
 

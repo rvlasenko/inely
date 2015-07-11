@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use frontend\models\Task;
 
 /**
- * TaskSearch represents the model behind the search form about `frontend\modules\user\models\Task`.
+ * TaskSearch represents the model behind the search form about `frontend\models\Task`.
  */
 class TaskSearch extends Task
 {
@@ -50,8 +50,6 @@ class TaskSearch extends Task
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 

@@ -47,6 +47,15 @@ class TaskController extends Controller
     {
         $searchModel = new TaskSearch();
 
+        if (Yii::$app->request->isPjax) {
+            $dataProvider = $searchModel->searchByCat(Yii::$app->request->get('id'));
+
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+            ]);
+        }
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -75,18 +84,20 @@ class TaskController extends Controller
     /**
      *
      * @return string
-     */
+
     public function actionSort()
     {
         $searchModel = new TaskSearch();
 
-        $dataProvider = $searchModel->searchByCat(Yii::$app->request->get('id'));
+        if (Yii::$app->request->isPjax) {
+            $dataProvider = $searchModel->searchByCat(Yii::$app->request->get('id'));
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-        ]);
-    }
+            return $this->render('index', [
+                'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+            ]);
+        }
+    } */
 
     /**
      * Creates a new Task model.
