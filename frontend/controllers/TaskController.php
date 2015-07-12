@@ -47,16 +47,16 @@ class TaskController extends Controller
     {
         $searchModel = new TaskSearch();
 
-        if (Yii::$app->request->isPjax) {
-            $dataProvider = $searchModel->searchByCat(Yii::$app->request->get('id'));
-
-            return $this->render('index', [
-                'dataProvider' => $dataProvider,
-                'searchModel' => $searchModel,
-            ]);
+        if (Yii::$app->request->get('id')) {
+            $dataProvider = $searchModel->search(
+                Yii::$app->request->queryParams,
+                Yii::$app->request->get('id')
+            );
+        } else {
+            $dataProvider = $searchModel->search(
+                Yii::$app->request->queryParams
+            );
         }
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

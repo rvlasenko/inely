@@ -36,46 +36,30 @@ class TaskSearch extends Task
      * Creates data provider instance with search query applied
      *
      * @param array $params
+     * @param integer $id
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-        $query = Task::find();
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-        ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            return $dataProvider;
-        }
-
-        $query->andFilterWhere([
-            'isDone' => $this->isDone,
-        ]);
-
-        $query->andFilterWhere([
-            'author' => Yii::$app->user->id
-        ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'time', $this->time]);
-
-        return $dataProvider;
-    }
-
-    public function searchByCat($id)
+    public function search($params, $id = null)
     {
         $query = Task::find();
 
         $dataProvider = new ActiveDataProvider(['query' => $query]);
 
-        $query
-            ->andFilterWhere(['author' => Yii::$app->user->id])
-            ->andFilterWhere(['category' => $id]);
+        $this->load($params);
+
+        if (!$this->validate())
+            return $dataProvider;
+
+        if ($id != null)
+            $query->andFilterWhere(['category' => $id]);
+
+        $query->andFilterWhere(['isDone' => $this->isDone]);
+
+        $query->andFilterWhere(['author' => Yii::$app->user->id]);
+
+        $query->andFilterWhere(['like', 'name', $this->name])
+              ->andFilterWhere(['like', 'time', $this->time]);
 
         return $dataProvider;
     }

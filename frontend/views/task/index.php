@@ -74,7 +74,7 @@
                             'pluginOptions' => [
                                 'threeState' => false,
                                 'size' => 'md',
-                                'iconChecked' => Html::tag('i', '', ['class' => 'glyphicon glyphicon-ok']),
+                                'iconChecked' => Html::tag('i', '', ['class' => 'glyphicon glyphicon-ok'])
                             ],
                         ]);
                     }
@@ -118,7 +118,7 @@
                                 'autoclose' => true,
                                 'todayHighlight' => true,
                                 'format' => 'dd.mm hh:ii',
-                                'startDate' => '01-Mar-2015 12:00 AM',
+                                'startDate' => '01-Mar-2015 12:00 AM'
                             ]
                         ]);
                     }
@@ -197,8 +197,7 @@
                     'neverTimeout' => true,
                     'loadingCssClass' => false,
                     'options' => [
-                        'id' => 'pjax-wrapper',
-                        'enablePushState' => false,
+                        'id' => 'pjax-wrapper'
                     ]
                 ],
                 'rowOptions' => function ($model) {
@@ -216,18 +215,18 @@
                     'footer' => false
                 ],
                 'toolbar' => [
-                    '{toggleData}',
+                    '{toggleData}'
                 ],
                 'toggleDataOptions' => [
                     'all' => [
                         'icon' => 'resize-full',
                         'label' => 'Все записи',
-                        'class' => 'btn btn-info btn-square',
+                        'class' => 'btn btn-info btn-square'
                     ],
                     'page' => [
                         'icon' => 'resize-small',
                         'label' => 'Страница',
-                        'class' => 'btn btn-info btn-square',
+                        'class' => 'btn btn-info btn-square'
                     ],
                 ],
             ]);

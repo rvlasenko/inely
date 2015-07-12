@@ -22,7 +22,6 @@ return [
         // Задачи
         'todo' => '/task/index',
         'cat' => '/task/cat',
-        'sort' => '/task/sort',
 
         // Api
         ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/article', 'only' => ['index', 'view', 'options']],
