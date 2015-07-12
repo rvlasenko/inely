@@ -84,18 +84,18 @@ class Task extends ActiveRecord
             $head = [
                 [
                     'label' => 'Все подряд',
-                    'url' => '/todo'
+                    'url' => Url::toRoute(['/todo'])
                 ],
             ];
 
             $items[] =
             [
-                'url' => Url::toRoute(['/todo', 'id' => $model->id]),
+                'url' => Url::toRoute(['/todo', 'TaskSearch[cat]' => $model->id]),
                 'label' => Html::tag('span', $model->name .
                     Html::tag('span', $count, [
                         'class' => 'pull-right badge',
                         'style' => "background-color: $model->badgeColor"
-                    ]), []),
+                    ]), [])
             ];
         }
 

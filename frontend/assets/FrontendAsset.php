@@ -3,6 +3,7 @@
 namespace frontend\assets;
 
 use yii\web\AssetBundle;
+use yii\web\View;
 
 class FrontendAsset extends AssetBundle
 {
@@ -48,7 +49,7 @@ class FrontendAsset extends AssetBundle
     ];
 
     public $jsOptions = [
-        'position' => \yii\web\View::POS_END
+        'position' => View::POS_END
     ];
 
     public $depends = [

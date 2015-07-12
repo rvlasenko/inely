@@ -3,6 +3,7 @@
 namespace frontend\assets;
 
 use yii\bootstrap\BootstrapAsset;
+use yii\web\View;
 
 class BowerAsset extends BootstrapAsset
 {
@@ -13,10 +14,12 @@ class BowerAsset extends BootstrapAsset
     ];
 
     public $jsOptions = [
-        'position' => \yii\web\View::POS_HEAD
+        'position' => View::POS_HEAD
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset'
+        'yii\web\JqueryAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+        //'yii\web\JqueryAsset',
     ];
 }

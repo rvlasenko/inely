@@ -206,12 +206,15 @@
                     ];
                 },
                 'panel' => [
-                    'heading' => '<i class="fa fa-inbox"></i> <span>Список задач</span>',
+                    'heading' => Html::tag('i', null, ['class' => 'fa fa-inbox']) .
+                        Html::tag('span', 'Список задач'),
                     'type' => GridView::TYPE_PRIMARY,
-                    'before' => Html::a(Html::tag('i', '', ['class' => 'glyphicon glyphicon-plus']) . 'Новая задача', ['create'],
-                        ['class' => 'btn btn-success btn-square']),
-                    'after' => Html::a(Html::tag('i', '', ['class' => 'glyphicon glyphicon-repeat']) . 'Сбросить таблицу', ['index'],
-                        ['class' => 'btn btn-info btn-square']),
+                    'before' => Html::a(
+                        Html::tag('i', '', ['class' => 'glyphicon glyphicon-plus']) . 'Новая задача', ['create'],
+                            ['class' => 'btn btn-success btn-square']),
+                    'after' => Html::a(
+                        Html::tag('i', '', ['class' => 'glyphicon glyphicon-repeat']) . 'Сбросить параметры', ['index'],
+                            ['class' => 'btn btn-info btn-square']),
                     'footer' => false
                 ],
                 'toolbar' => [
