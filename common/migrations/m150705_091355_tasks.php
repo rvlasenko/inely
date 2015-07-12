@@ -67,15 +67,15 @@ class m150705_091355_tasks extends Migration
         ]);
 
         $this->insert('{{%tasks_cat}}', [
-            'id' => 2,
+            'id' => 3,
             'name' => 'Семья',
-            'userId' => 2,
+            'userId' => 3,
             'badgeColor' => '#2ECC40',
         ]);
 
         $this->insert('{{%tasks_cat}}', [
-            'id' => 3,
-            'userId' => 3,
+            'id' => 2,
+            'userId' => 2,
             'name' => 'Личное',
             'badgeColor' => '#7FDBFF',
         ]);

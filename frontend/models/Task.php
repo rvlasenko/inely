@@ -50,7 +50,6 @@ class Task extends ActiveRecord
     {
         return [
             'name' => 'Название',
-            'author' => 'Автор',
             'isDone' => 'Статус',
             'priority' => 'Важность',
             'time' => 'Срок выполнения'

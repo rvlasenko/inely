@@ -52,7 +52,7 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $('document').ready(function() {
         function generate(title, img, desc, link, linkDesc) {
             noty({
                 text: '<div class="alert alert-dark media fade in bd-0" id="message-alert">' +
@@ -82,17 +82,11 @@
         $("#show").click(function () {
             if (!$('#contactform-name').val() || !$('#contactform-email').val() ||
                 !$('#contactform-subject').val() || !$('#contactform-body').val())
-                generate('Ошибка',
-                         'images/flat/caution.png',
-                         'Похоже, что Вы забыли заполнить необходимые поля!',
-                         '',
-                         '');
+                generate('Ошибка', 'images/flat/caution.png',
+                         'Похоже, что Вы забыли заполнить необходимые поля!', '', '');
             else
-                generate('Спасибо!',
-                    'images/flat/heart.png',
-                    'Благодарим за проявленную инициативу к проекту! Ваше мнение будет услышано.',
-                    '',
-                    '');
+                generate('Спасибо!', 'images/flat/heart.png',
+                        'Благодарим за проявленную инициативу! Ваше мнение будет услышано.', '', '');
         });
     });
 </script>

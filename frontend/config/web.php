@@ -55,13 +55,13 @@ $config = [
     'components' => [
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
-            'bundles' => [
+            /*'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'js' => [
                         'jquery.min.js'
                     ]
                 ],
-            ],
+            ],*/
         ],
 
         'reCaptcha' => [

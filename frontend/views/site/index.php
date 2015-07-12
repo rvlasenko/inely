@@ -5,7 +5,7 @@
 ?>
 
 <script>
-    $(document).ready(function() {
+    /*$(document).ready(function() {
         $("button.add-task").click(function () {
             setTimeout(function() {
                 alert($("span.todo-task").val());
@@ -16,7 +16,7 @@
                         name: $(parent).val(),
                         time: $(".due-date-span").val()
                     }
-                });*/
+                });
             }, 1000);
         });
 
@@ -39,14 +39,12 @@
         $('input.task-check').on('ifUnchecked', function(){
             //alert(0);
         });
-    });
+    });*/
 </script>
 
 <div class="main-content">
 <div class="topbar">
-
-    <?php $this->beginContent('@app/views/layouts/templates/topbar.php'); $this->endContent(); ?>
-
+    <?php include __DIR__ . '/../layouts/templates/topbar.php' ?>
 </div>
 
 <div class="page-content page-thin">
@@ -227,10 +225,9 @@
 
 </div>
 <div class="row">
-
     <div class="col-lg-4 col-sm-6 portlets ui-sortable">
     <div class="panel-content p-t-0 p-b-0 widget-news">
-        <?php $this->beginContent('@app/views/panels/weather.php'); $this->endContent(); ?>
+        <?php include __DIR__ . '/../panels/weather.php' ?>
     </div>
 </div>
     <div class="col-lg-4 col-sm-6 portlets ui-sortable">
@@ -372,21 +369,7 @@
 
 </div>
 <div class="footer">
-    <div class="copyright">
-        <p class="pull-left sm-pull-reset">
-            <span>Copyright <span class="copyright">©</span>2015</span>
-            <span>devv</span>.
-            <span>All rights reserved.</span>
-        </p>
-
-        <p class="pull-right sm-pull-reset">
-            <span>
-                <a href="#" class="m-r-10">Support</a> |
-                <a href="#" class="m-l-10 m-r-10">Terms of use</a> |
-                <a href="#" class="m-l-10">Privacy Policy</a>
-            </span>
-        </p>
-    </div>
+    <?php include __DIR__ . '/../layouts/templates/footer.php' ?>
 </div>
 </div>
 </div>

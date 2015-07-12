@@ -10,7 +10,6 @@
     use frontend\models\Task;
 
     $this->title = 'Ваши задачи';
-    $date = new DateTime();
 ?>
 
 <div class="main-content">
@@ -55,7 +54,7 @@
 ?>
 
 <div class="topbar">
-    <?php $this->beginContent('@app/views/layouts/templates/topbar.php'); $this->endContent(); ?>
+    <?php include __DIR__ . '/../layouts/templates/topbar.php' ?>
 </div>
 
 <div class="page-content page-thin">
@@ -233,24 +232,9 @@
                 ],
             ]);
         ?>
-
     </div>
-    <div class="footer">
-        <div class="copyright">
-            <p class="pull-left sm-pull-reset">
-                <span>Copyright <span class="copyright"> &copy; </span><?= $date->format('Y') ?></span>
-                <span>rootkit</span>.
-                <span>All rights reserved.</span>
-            </p>
-
-            <p class="pull-right sm-pull-reset">
-                <span>
-                    <a href="#" class="m-r-10">Support</a> |
-                    <a href="#" class="m-l-10 m-r-10">Terms of use</a> |
-                    <a href="#" class="m-l-10">Privacy Policy</a>
-                </span>
-            </p>
-        </div>
-    </div>
+<div class="footer">
+    <?php include __DIR__ . '/../layouts/templates/footer.php' ?>
+</div>
 </div>
 </div>
