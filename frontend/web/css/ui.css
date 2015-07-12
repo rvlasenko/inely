@@ -238,6 +238,21 @@ i.bg-purple::before {
     color: #fff;
 }
 
+.bg-blue:not(i) {
+    background-color: #4584D1 !important;
+    color: #fff !important;
+}
+
+i.bg-blue::before {
+    background-color: #4584D1 !important;
+    color: #fff !important;
+}
+
+.bg-blue.form-control:focus {
+    background-color: #4584D1 !important;
+    color: #fff !important;
+}
+
 .btn-dark:active {
     background: #1e2024;
     border-color: #1e2024;

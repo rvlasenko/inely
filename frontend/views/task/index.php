@@ -14,29 +14,6 @@
 
 <div class="main-content">
 
-<script>
-    jQuery(function($) {
-        $('a.edit').click(function() {
-            if (!$('.modal-body .row').length) {
-                $.get('/cat', function(html) {
-                    $('.modal-body').html(html);
-                    $('modal-slideleft').modal('show', {
-                        backdrop: 'static'
-                    });
-                });
-            }
-        });
-        $('.kv-sidenav li a').click(function() {
-            $.pjax.reload({
-                url: $(this).attr('href'),
-                container: '#pjax-wrapper'
-            });
-
-            return false;
-        });
-    });
-</script>
-
 <?=
     SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
@@ -209,13 +186,19 @@
                     'heading' => Html::tag('i', null, ['class' => 'fa fa-inbox']) .
                         Html::tag('span', 'Список задач'),
                     'type' => GridView::TYPE_PRIMARY,
-                    'before' => Html::a(
-                        Html::tag('i', '', ['class' => 'glyphicon glyphicon-plus']) . 'Новая задача', ['create'],
-                            ['class' => 'btn btn-success btn-square']),
-                    'after' => Html::a(
-                        Html::tag('i', '', ['class' => 'glyphicon glyphicon-repeat']) . 'Сбросить параметры', ['index'],
-                            ['class' => 'btn btn-info btn-square']),
-                    'footer' => false
+                    'footer' => false,
+                    'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>Новая задача', null,
+                            [
+                                'class' => 'btn btn-success btn-square',
+                                'data' => [
+                                    'toggle' => 'modal',
+                                    'target' => '#modal-add'
+                                ]
+                            ]),
+                    'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i>Сбросить параметры', ['index'],
+                            [
+                                'class' => 'btn btn-info btn-square'
+                            ])
                 ],
                 'toolbar' => [
                     '{toggleData}'

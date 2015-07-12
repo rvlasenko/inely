@@ -2,6 +2,238 @@
 var doc = document;
 
 /* ==========================================================*/
+/* MAIN PAGE                                                 */
+/* ========================================================= */
+
+/**
+ * just calling modal window
+ * @param url
+ * @param id
+ */
+function modal(url, id) {
+    if (!$(id + ' .modal-body .row').length) {
+        $.get(url, function(html) {
+            $(id + ' .modal-body').html(html);
+            $(id).modal('show', {
+                backdrop: 'static'
+            });
+        });
+    }
+}
+
+/**
+ * generate noty notification
+ * @param title
+ * @param img
+ * @param desc
+ * @param link
+ * @param linkDesc
+ */
+function generate(title, img, desc, link, linkDesc) {
+    noty({
+        text: '<div class="alert alert-dark media fade in bd-0" id="message-alert">' +
+        '<div class="media-left">' +
+        '<img src="' + img + '" ' +
+        'class="dis-block">' +
+        '</div><div class="media-body width-100p">' +
+        '<h4 class="alert-title f-14">' + title + '</h4>' +
+        '<p class="f-12 alert-message pull-left">' +
+        '' + desc + '</p>' +
+        '<p class="pull-right">' +
+        '<a href="' + link + '" class="f-12">' + linkDesc + '</a>' +
+        '</p></div></div>',
+        layout: 'topRight',
+        theme: 'made',
+        maxVisible: 10,
+        animation: {
+            open: 'animated bounceIn',
+            close: 'animated bounceOut',
+            easing: 'swing',
+            speed: 500
+        },
+        timeout: 8000
+    });
+}
+
+jQuery(function($) {
+    // modal call. desc of the function is above
+    $('a.edit').click(function() {
+        modal('/cat', '#modal-slideleft');
+    });
+
+    $('.kv-panel-before a').click(function() {
+        modal('/task/create', '#modal-add');
+    });
+
+    // pjax grid reloading on click by category
+    $('.kv-sidenav li a').click(function() {
+        $.pjax.reload({
+            url: $(this).attr('href'),
+            container: '#pjax-wrapper'
+        });
+
+        return false;
+    });
+});
+
+$('document').ready(function() {
+
+/**
+ * Performance chart
+ * @type {Morris.Line}
+ */
+var chart = new Chartist.Line('.ct-chart', {
+    labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+    series: [{
+        name: 'ОО',
+        data: [5, 7, 3, 4]
+    }]
+}, {
+    width: 290,
+    height: 150
+});
+
+new Chartist.Bar('.ct-bar-chart', {
+    labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+    series: [
+        [5, 4, 3, 7, 0, 0, 0]
+    ]
+}, {
+    seriesBarDistance: 30,
+    axisY: {
+        showGrid: false
+    },
+    reverseData: true,
+    horizontalBars: true,
+    width: 290,
+    height: 180
+});
+
+/**
+ * idk what is that
+ * @type {*|jQuery}
+ */
+var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
+
+/**
+ * tooltip on hover chartist point
+ */
+$(document).on('mouseenter', '.ct-point', function () {
+    var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
+        value = $(this).attr('ct:value');
+
+    $tooltip.text(seriesName + ': ' + value);
+    $tooltip.removeClass('tooltip-hidden');
+});
+
+$(document).on('mouseleave', '.ct-point', function () {
+    $tooltip.addClass('tooltip-hidden');
+});
+
+$(document).on('mousemove', '.ct-point', function (event) {
+    console.log(event);
+    $tooltip.css({
+        left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
+        top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
+    });
+});
+
+if ($('body').hasClass('sidebar-hover')) sidebarHover();
+
+/**
+ * clock event tooltip
+ */
+$('span.tooltip-item').click(function () {
+    generate('Предстоящее событие',
+        'images/ballicons 2/svg/watch.svg',
+        '15:43<br><br>Отправить письмо Бобу', '', '');
+});
+
+/**
+  * calendar form date picker
+  */
+$("#eventDate").datepicker({
+    numberOfMonths: 1,
+    prevText: '<i class="fa fa-chevron-left"></i>',
+    nextText: '<i class="fa fa-chevron-right"></i>',
+    showButtonPanel: false,
+    beforeShow: function (input, inst) {
+        var newclass = 'admin-form';
+        var themeClass = $(this).parents('.admin-form').attr('class');
+        var smartpikr = inst.dpDiv.parent();
+        if (!smartpikr.hasClass(themeClass)) {
+            inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
+        }
+    }
+
+});
+
+// Init FullCalendar external events
+$('#external-events .fc-event').each(function () {
+    // store data so the calendar knows to render an event upon drop
+    $(this).data('event', {
+        title: $.trim($(this).text()), // use the element's text as the event title
+        stick: true, // maintain when user navigates (see docs on the renderEvent method)
+        className: 'fc-event-' + $(this).attr('data-event') // add a contextual class name from data attr
+    });
+
+    // make the event draggable using jQuery UI
+    $(this).draggable({
+        zIndex: 999,
+        revert: true, // will cause the event to go back to its
+        revertDuration: 0 //  original position after the drag
+    });
+
+});
+
+var Calendar = $('#calendar');
+
+// Init FullCalendar Plugin
+Calendar.fullCalendar({
+    height: 450,
+    header: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+    editable: true,
+    viewRender: function (view) {
+        // Update mini calendar title
+        var titleContainer = $('.fc-title-clone');
+        if (!titleContainer.length) {
+            return;
+        }
+        titleContainer.html(view.title);
+    },
+    droppable: true, // this allows things to be dropped onto the calendar
+    drop: function () {
+        // is the "remove after drop" checkbox checked?
+        if (!$(this).hasClass('event-recurring')) {
+            $(this).remove();
+        }
+    },
+    eventRender: function (event, element) {
+        // create event tooltip using bootstrap tooltips
+        $(element).attr("data-original-title", event.title);
+        $(element).tooltip({
+            container: 'body',
+            delay: {
+                "show": 100,
+                "hide": 200
+            }
+        });
+        // create a tooltip auto close timer
+        $(element).on('show.bs.tooltip', function () {
+            var autoClose = setTimeout(function () {
+                $('.tooltip').fadeOut();
+            }, 3500);
+        });
+    }
+});
+
+});
+
+/* ==========================================================*/
 /* PLUGINS                                                   */
 /* ========================================================= */
 

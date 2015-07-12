@@ -67,7 +67,7 @@ h5 {
 }
 
 h1 {
-    font-size: 45px;
+    font-size: 30px;
     margin-top: 0;
     font-family: 'Roboto', 'Open Sans', sans-serif;
 }
@@ -1508,6 +1508,21 @@ ul.weather-days > li {
 .widget-news.panel-content {
     padding: 0 !important;
     height: 420px;
+}
+
+.loader {
+    font-size: 90px;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin: 0.8em auto;
+    position: relative;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load6 1.7s infinite ease;
+    animation: load6 1.7s infinite ease;
 }
 
 .widget-news .message-item {
