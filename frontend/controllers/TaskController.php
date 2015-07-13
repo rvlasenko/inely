@@ -7,7 +7,9 @@ use frontend\models\TaskCat;
 use frontend\models\search\TaskSearch;
 use Yii;
 use yii\db\Query;
+use yii\web\Response;
 use yii\web\Controller;
+use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -50,7 +52,7 @@ class TaskController extends Controller
         if (Yii::$app->request->get()) {
             $dataProvider = $searchModel->search(
                 Yii::$app->request->queryParams,
-                $_GET['TaskSearch']['cat'] ? $_GET['TaskSearch']['cat'] : null
+                $_GET['TaskSearch']['category'] ? $_GET['TaskSearch']['category'] : null
             );
         } else {
             $dataProvider = $searchModel->search(
@@ -90,13 +92,26 @@ class TaskController extends Controller
     {
         $model = new Task();
 
+        if (Yii::$app->request->isGet && $model->load($_POST)) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->setTask()) {
+            return $this->goBack();
+        } else {
+            return $this->renderAjax('create', [
+                'model' => $model
+            ]);
+        }
+        /*
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->renderAjax('create', [
-                'model' => $model,
+                'model' => $model
             ]);
-        }
+        }*/
     }
 
     /**

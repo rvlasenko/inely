@@ -36,9 +36,10 @@ class Task extends ActiveRecord
     public function rules()
     {
         return [
-            [['category', 'author', 'isDone'], 'integer'],
+            ['category', 'required', 'message' => 'Стоило бы указать категорию..'],
+            ['name', 'required', 'message' => 'А название куда-то исчезло..'],
             [['name'], 'string', 'max' => 255],
-            [['priority'], 'string', 'max' => 12],
+            [['priority'], 'integer', 'max' => 5],
             [['time'], 'string', 'max' => 25],
         ];
     }
@@ -50,6 +51,7 @@ class Task extends ActiveRecord
     {
         return [
             'name' => 'Название',
+            'category' => 'Категория',
             'isDone' => 'Статус',
             'priority' => 'Важность',
             'time' => 'Срок выполнения'
@@ -62,6 +64,17 @@ class Task extends ActiveRecord
     public function getTasks_cat()
     {
         return $this->hasOne(TaskCat::className(), ['id' => 'category']);
+    }
+
+    public function setTask()
+    {
+        if ($this->validate()) {
+            $model->author = Yii::$app->user->id;
+            if ($model->save()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -90,7 +103,7 @@ class Task extends ActiveRecord
 
             $items[] =
             [
-                'url' => Url::toRoute(['/todo', 'TaskSearch[cat]' => $model->id]),
+                'url' => Url::toRoute(['/todo', 'TaskSearch[category]' => $model->id]),
                 'label' => Html::tag('span', $model->name .
                     Html::tag('span', $count, [
                         'class' => 'pull-right badge',

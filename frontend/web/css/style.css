@@ -1510,6 +1510,12 @@ ul.weather-days > li {
     height: 420px;
 }
 
+.select2-container--krajee
+.select2-selection--single
+.select2-selection__arrow {
+    border-left: none !important;
+}
+
 .loader {
     font-size: 90px;
     overflow: hidden;

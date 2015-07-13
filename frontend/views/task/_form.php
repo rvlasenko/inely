@@ -1,37 +1,93 @@
 <?php
 
+    use frontend\models\TaskCat;
     use yii\helpers\Html;
     use yii\widgets\ActiveForm;
+    use yii\helpers\ArrayHelper;
+    use kartik\select2\Select2;
+    use kartik\rating\StarRating;
+    use kartik\datetime\DateTimePicker;
 
     /* @var $this yii\web\View */
     /* @var $model frontend\models\Task */
     /* @var $form yii\widgets\ActiveForm */
+
+    $data = ArrayHelper::map(TaskCat::find()
+        ->where(['userId' => Yii::$app->user->id])
+        ->all(), 'id', 'name');
+
+    /*$this->registerJs("
+    $('.form-group button').click(function() {
+        $.pjax.reload({
+            url: '/task/create',
+            container: '#task-wrap'
+        });
+        return false;
+    });
+    ");*/
 ?>
 
 <div class="task-form">
 
+    <?php \yii\widgets\Pjax::begin(['id' => 'task-wrap', 'enablePushState' => false]) ?>
     <?php $form = ActiveForm::begin([
-        'enableAjaxValidation' => true,
-        'enableClientValidation' => false
+        'id' => 'task-form',
+        'action' => '/task/create',
+        //'enableAjaxValidation' => true,
+        //'enableClientValidation' => false,
+        'options' => [
+            'data-pjax' => true
+        ]
     ]) ?>
 
     <?= $form->field($model, 'name', [
-        'options' => [
-            'class' => 'col-md-6',
-        ]
-    ])->textInput(['maxlength' => true, 'placeholder' => 'Представьтесь, пожалуйста']) ?>
+        'options' => ['class' => 'col-md-6']
+    ])->textInput(['maxlength' => true, 'placeholder' => 'Что вы хотите выполнить?']) ?>
 
     <?= $form->field($model, 'category', [
+        'options' => ['class' => 'col-md-6']
+    ])->widget(Select2::classname(), [
+        'data' => $data,
         'options' => [
-            'class' => 'col-md-6',
+            'placeholder' => 'Ваша категория'
+        ],
+        'pluginOptions' => [
+            'allowClear' => true
         ]
-    ])->textInput(['placeholder' => 'Представьтесь, пожалуйста']) ?>
+    ]) ?>
 
-    <?= $form->field($model, 'author')->textInput() ?>
+    <?= $form->field($model, 'time', [
+        'options' => ['class' => 'col-md-12']
+    ])->widget(DateTimePicker::className(), [
+        //'name' => 'datetime',
+        'language' => 'ru',
+        'removeButton' => false,
+        'size' => 'sm',
+        //'convertFormat' => true,
+        'options' => [
+            'placeholder' => 'Дата...'
+        ],
+        'pluginOptions' => [
+            'autoclose' => true,
+            'todayHighlight' => true,
+            'format' => 'dd.mm hh:ii',
+            'startDate' => '01-Mar-2015 12:00 AM'
+        ]
+    ]) ?>
 
-    <?= $form->field($model, 'priority')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'time')->textInput(['maxlength' => true]) ?>
+    <?php /*$form->field($model, 'priority', [
+        'options' => ['class' => 'col-md-6']
+    ])->widget(StarRating::className(), [
+        'model' => $model,
+        'name' => 'priority',
+        'pluginOptions' => [
+            'size' => 'sm',
+            'step' => 1,
+            'stars' => 4,
+            'min' => 0,
+            'max' => 4
+        ]
+    ]) */?>
 
     <div class="form-group">
         <?= Html::submitButton('Записать!', [
@@ -40,5 +96,6 @@
     </div>
 
     <?php ActiveForm::end(); ?>
+    <?php \yii\widgets\Pjax::end() ?>
 
 </div>

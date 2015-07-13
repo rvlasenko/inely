@@ -2,7 +2,8 @@
     use yii\widgets\ActiveForm;
 
     $this->registerJsFile('@web/js/landing/uiProgressButton.js', [
-        'position' => yii\web\View::POS_BEGIN]);
+        'position' => yii\web\View::POS_BEGIN
+    ]);
 ?>
 
 <div class="row">
