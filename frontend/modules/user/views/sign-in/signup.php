@@ -6,9 +6,9 @@
 
 <div class="row">
     <div class="download-container">
-        <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Fast reg') ?></h3>
+        <h3><?= Yii::t('frontend', 'Fast reg') ?></h3>
 
-        <div class="buttons fadeInRight animated">
+        <div class="buttons">
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=vkontakte',
                     'Vkontakte', 700, 500); return false" class="icon-button vk">
                 <i class="fa fa-vk"></i><span></span></a>
@@ -21,9 +21,9 @@
         </div>
     </div>
 
-    <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Reg') ?></h3>
+    <h3><?= Yii::t('frontend', 'Reg') ?></h3>
 
-    <div class="form-group fadeInLeft animated">
+    <div class="form-group">
         <a class="login-a" href="#"><?= Yii::t('frontend', 'Already sign up?') ?></a>
     </div>
 
@@ -34,7 +34,7 @@
             'id' => 'sign-form',
             'action' => '/sign-up',
             'options' => [
-                'class' => 'subscription-form form-inline fadeInRight animated',
+                'class' => 'subscription-form form-inline',
                 'data-pjax' => true
             ],
         ]) ?>

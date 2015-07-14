@@ -30,7 +30,7 @@
 
 <?= $content ?>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal zoomInDown animated" id="myModal" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">

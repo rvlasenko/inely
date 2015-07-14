@@ -11,7 +11,7 @@
         <?php $form = ActiveForm::begin([
             'id' => 'contact-form',
             'options' => [
-                'class' => 'contact-form form-inline fadeInRight animated',
+                'class' => 'contact-form form-inline flipInX animated',
             ],
             'enableAjaxValidation' => true,
             'enableClientValidation' => false,
@@ -42,9 +42,7 @@
         ])->textArea(['rows' => 6, 'placeholder' => 'Изложите свои мысли'])->label(false) ?>
 
         <div class="form-group">
-            <button class="bttn btn-2 btn-2a" id="show">
-                Отправить!
-            </button>
+            <button class="bttn btn-2 btn-2a" id="show">Отправить!</button>
         </div>
         <?php ActiveForm::end(); ?>
 

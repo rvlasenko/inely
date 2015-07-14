@@ -780,12 +780,12 @@ h3 .fa-cog {
     border-top-right-radius: 1px !important;
     left: auto;
     margin: 0;
-    max-width: 300px !important;
+    max-width: 330px !important;
     min-width: 170px !important;
     padding: 0;
     right: 15px;
     top: 53px;
-    width: 290px;
+    width: 330px;
 }
 
 .input-group-sm > .form-control,
@@ -1872,6 +1872,14 @@ ul.weather-days > li {
     border-radius: 2px;
 }
 
+.kv-table-wrap tbody tr td:last-child a span {
+    font-size: 1.5em;
+}
+
+.kv-table-wrap tbody tr td:last-child a span:hover {
+    color: #FF4136;
+}
+
 .fc button {
     display: inline-block !important;
     margin-bottom: 0 !important;
@@ -2893,7 +2901,8 @@ body:not(.fixed-sidebar):not(.fixed-topbar):not(.sidebar-top) .sidebar .logopane
     padding: 10px 15px;
 }
 
-#quickview-sidebar .quickview .tab-content #notes .detail-note .note-header .note-edit {
+#quickview-sidebar .quickview .tab-content #notes .detail-note .note-header .note-edit,
+.kv-table-wrap tbody tr td:last-child {
     text-align: center;
 }
 

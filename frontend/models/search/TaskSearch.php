@@ -52,7 +52,7 @@ class TaskSearch extends Task
             return $dataProvider;
 
         if ($catId != false)
-            $query->andFilterWhere(['category' => $id]);
+            $query->andFilterWhere(['category' => $catId]);
 
         $query->andFilterWhere(['isDone' => $this->isDone]);
 

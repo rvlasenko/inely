@@ -1316,6 +1316,12 @@ h4.alert-title {
     margin-bottom: 5px;
 }
 
+.alert.alert-dark .media-body p,
+.alert.alert-dark .media-body h4 {
+    padding-top: 7px;
+    padding-left: 7px;
+}
+
 .alert.alert-dark .media-body p {
     height: auto;
     line-height: 20px;

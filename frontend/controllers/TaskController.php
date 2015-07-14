@@ -8,6 +8,7 @@ use frontend\models\search\TaskSearch;
 use Yii;
 use yii\db\Query;
 use yii\web\Response;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
@@ -108,30 +109,21 @@ class TaskController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->setTask()) {
-            $request = Yii::$app->getRequest();
             Yii::$app->session->setFlash('alert', [
                 'options' => [
                     'title' => 'Вы великолепны!',
-                    'img' => 'images/ballicons 2/svg/fire extinguisher.svg',
+                    'img' => 'images/flat/compose.png',
                     'link' => '',
                     'linkDesc' => ''
                 ],
-                'body' => 'Ваша задача была успешно добавлена в категорию <strong>'
+                'body' => 'Задача была успешно добавлена в категорию <strong>&laquo;' . $model->tasks_cat->name . '&raquo;'
             ]);
-            Yii::$app->getUser()->setReturnUrl($request->getUrl());
+            $this->redirect(Url::toRoute(['/todo']));
         } else {
             return $this->renderAjax('create', [
                 'model' => $model
             ]);
         }
-        /*
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->renderAjax('create', [
-                'model' => $model
-            ]);
-        }*/
     }
 
     /**

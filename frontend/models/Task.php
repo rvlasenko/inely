@@ -66,6 +66,9 @@ class Task extends ActiveRecord
         return $this->hasOne(TaskCat::className(), ['id' => 'category']);
     }
 
+    /**
+     * @return bool
+     */
     public function setTask()
     {
         if ($this->validate()) {
@@ -74,8 +77,9 @@ class Task extends ActiveRecord
             $model->name = $this->name;
             $model->category = $this->category;
             $model->author = Yii::$app->user->id;
-            $model->save();
-            //    return true;
+
+            if ($model->save())
+                return true;
         }
         return false;
     }

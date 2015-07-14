@@ -8,9 +8,9 @@
 
 <div class="row">
     <div class="download-container">
-        <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Login as user') ?></h3>
+        <h3><?= Yii::t('frontend', 'Login as user') ?></h3>
 
-        <div class="buttons fadeInRight animated">
+        <div class="buttons">
             <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=vkontakte',
                     'Vkontakte', 700, 500); return false" class="icon-button vk">
                 <i class="fa fa-vk"></i><span></span>
@@ -26,9 +26,9 @@
         </div>
     </div>
 
-    <h3 class="fadeInLeft animated"><?= Yii::t('frontend', 'Login with account') ?></h3>
+    <h3><?= Yii::t('frontend', 'Login with account') ?></h3>
 
-    <div class="form-group fadeInLeft animated">
+    <div class="form-group">
         <a class="sign-a" href="#">
             <?= Yii::t('frontend', 'Need an account? Sign up.') ?></a>
     </div>
@@ -40,7 +40,7 @@
             'id' => 'login-form',
             'action' => 'login',
             'options' => [
-                'class' => 'subscription-form form-inline fadeInRight animated',
+                'class' => 'subscription-form form-inline',
                 'data-pjax' => true
             ],
         ]); ?>
@@ -61,13 +61,13 @@
         <?php ActiveForm::end(); ?>
         <?php \yii\widgets\Pjax::end() ?>
 
-        <div class="col-md-12 fadeInRight animated" style="margin: 1em 0">
+        <div class="col-md-12" style="margin: 1em 0">
             <?= Yii::t('frontend', 'If you forgot your password you can reset it <a class="reset-a" href="#">here</a>') ?>
         </div>
 
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button form="login-form" class="bounceIn animated">
+                <button form="login-form">
                     <span><?= Yii::t('frontend', 'Login') ?></span>
                 </button>
 
@@ -94,7 +94,7 @@
 
 <script>
     [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
-        new UIProgressButton( bttn, {
+        new UIProgressButton(bttn, {
             callback : function(instance) {
                 var progress = 0;
                 var success = 1;
@@ -113,11 +113,11 @@
 
     jQuery(function($) {
         $('.sign-a').click(function() {
-            showModal('sign-up');
+            showModal('/sign-up');
         });
 
         $('.reset-a').click(function() {
-            showModal('user/sign-in/request-password-reset');
+            showModal('/reset');
         });
     });
 </script>

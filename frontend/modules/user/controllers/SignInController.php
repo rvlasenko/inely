@@ -99,7 +99,7 @@ class SignInController extends Controller
                     Yii::$app->session->setFlash('alert', [
                         'options' => [
                             'title' => 'Регистрация',
-                            'img' => 'images/ballicons 2/svg/heart.svg',
+                            'img' => 'images/flat/heart.png',
                             'link' => 'http://google.com',
                             'linkDesc' => 'Пройти тур'
                         ],
@@ -127,7 +127,7 @@ class SignInController extends Controller
             Yii::$app->session->setFlash('alert', [
                 'options' => [
                     'title' => 'Подтверждение',
-                    'img' => 'images/ballicons 2/svg/letter.svg',
+                    'img' => 'images/flat/mail.png',
                     'link' => '',
                     'linkDesc' => ''
                 ],
@@ -137,7 +137,7 @@ class SignInController extends Controller
             Yii::$app->session->setFlash('alert', [
                 'options' => [
                     'title' => 'Подтверждение',
-                    'img' => 'images/ballicons 2/svg/fire extinguisher.svg',
+                    'img' => 'images/flat/flame.png',
                     'link' => '',
                     'linkDesc' => ''
                 ],
@@ -156,7 +156,7 @@ class SignInController extends Controller
                 Yii::$app->session->setFlash('alert', [
                     'options' => [
                         'title' => 'Восстановление пароля',
-                        'img' => 'images/ballicons 2/svg/letter.svg',
+                        'img' => 'images/flat/mail.png',
                         'link' => '',
                         'linkDesc' => ''
                     ],
@@ -166,7 +166,7 @@ class SignInController extends Controller
                 Yii::$app->session->setFlash('alert', [
                     'options' => [
                         'title' => 'Восстановление пароля',
-                        'img' => 'images/ballicons 2/svg/letter.svg',
+                        'img' => 'images/flat/mail.png',
                         'link' => '',
                         'linkDesc' => ''
                     ],
@@ -192,7 +192,7 @@ class SignInController extends Controller
             Yii::$app->session->setFlash('alert', [
                 'options' => [
                     'title' => 'Восстановление пароля',
-                    'img' => 'images/ballicons 2/svg/pencil.svg',
+                    'img' => 'images/flat/key.png',
                     'link' => '',
                     'linkDesc' => ''
                 ],
@@ -266,7 +266,7 @@ class SignInController extends Controller
                 Yii::$app->session->setFlash('alert', [
                     'options' => [
                         'title' => 'Регистрация',
-                        'img' => 'images/ballicons 2/svg/heart.svg',
+                        'img' => 'images/flat/heart.png',
                         'link' => 'http://google.com',
                         'linkDesc' => 'Пройти тур'
                     ],

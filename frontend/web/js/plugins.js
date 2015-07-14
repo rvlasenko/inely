@@ -89,7 +89,7 @@ var chart = new Chartist.Line('.ct-chart', {
         data: [5, 7, 3, 4]
     }]
 }, {
-    width: 290,
+    width: 330,
     height: 150
 });
 
@@ -105,7 +105,7 @@ new Chartist.Bar('.ct-bar-chart', {
     },
     reverseData: true,
     horizontalBars: true,
-    width: 290,
+    width: 330,
     height: 180
 });
 

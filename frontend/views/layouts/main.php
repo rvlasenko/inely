@@ -7,7 +7,7 @@
     if (!Yii::$app->user->isGuest)
         $this->beginContent('@frontend/views/layouts/_base.php');
     else
-        $this->beginContent('@frontend/views/layouts/_landing.php');
+        $this->beginContent('@frontend/views/layouts/_landing.php')
 ?>
 
 <?php if (Yii::$app->session->hasFlash('alert')): ?>
@@ -22,13 +22,13 @@
             }, 1500);
         });
 FLASH;
-    $this->registerJs($flash);
+    $this->registerJs($flash)
 ?>
 
-<?php endif; ?>
+<?php endif ?>
 
 <?= $content ?>
 
 <?php
-    $this->endContent();
+    $this->endContent()
 ?>

@@ -5,10 +5,10 @@
 ?>
 
 <div class="row">
-    <h4 class="fadeInLeft animated"><?= Yii::t('frontend',
+    <h4 class="bounceIn animated"><?= Yii::t('frontend',
             'Please enter your e-mail. It will receive a letter with instructions to reset your password.') ?></h4>
 
-    <div class="form-group fadeInLeft animated">
+    <div class="form-group bounceIn animated">
         <a class="forget-a" href="#"><?= Yii::t('frontend', 'Nope') ?></a>
     </div>
 
@@ -19,7 +19,7 @@
             'id' => 'reset-form',
             'action' => 'reset',
             'options' => [
-                'class' => 'subscription-form form-inline fadeInRight animated',
+                'class' => 'subscription-form form-inline bounceIn animated',
                 'data-pjax' => true
             ],
         ]); ?>
@@ -33,7 +33,7 @@
 
         <div class="col-md-12">
             <div id="progress-button" class="progress-button">
-                <button form="reset-form" class="fadeInRight animated">
+                <button form="reset-form" class="bounceIn animated">
                     <span><?= Yii::t('frontend', 'Send') ?></span>
                 </button>
 

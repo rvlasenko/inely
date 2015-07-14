@@ -1,6 +1,7 @@
 <?php
 
     use yii\helpers\Html;
+    use yii\grid\ActionColumn;
     use kartik\checkbox\CheckboxX;
     use kartik\grid\GridView;
     use kartik\editable\Editable;
@@ -59,7 +60,7 @@
                 [
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'name',
-                    'width' => '500px',
+                    //'width' => '450px',
                     'editableOptions' => [
                         'asPopover' => false,
                         'buttonsTemplate' => '{submit}',
@@ -80,6 +81,7 @@
                 [
                     'attribute' => 'time',
                     'format' => 'raw',
+                    'width' => '250px',
                     'value' => function($model) {
                         return DateTimePicker::widget([
                             'model' => $model,
@@ -128,6 +130,7 @@
                 [
                     'attribute' => 'priority',
                     'format' => 'raw',
+                    'width' => '130px',
                     'filterType' => GridView::FILTER_STAR,
                     'filterWidgetOptions' => [
                         'pluginOptions' => [
@@ -152,6 +155,14 @@
                             ],
                         ]);
                     }
+                ],
+                [
+                    'class' => ActionColumn::className(),
+                    'template' => '{delete}',
+                    'header' => 'Действия',
+                    'options' => [
+                        'style' => 'width: 90px'
+                    ]
                 ],
             ];
         ?>
