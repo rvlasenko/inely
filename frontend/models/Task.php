@@ -69,10 +69,13 @@ class Task extends ActiveRecord
     public function setTask()
     {
         if ($this->validate()) {
+            $model = new Task();
+
+            $model->name = $this->name;
+            $model->category = $this->category;
             $model->author = Yii::$app->user->id;
-            if ($model->save()) {
-                return true;
-            }
+            $model->save();
+            //    return true;
         }
         return false;
     }

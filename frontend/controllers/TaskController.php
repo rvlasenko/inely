@@ -108,7 +108,17 @@ class TaskController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->setTask()) {
-            return $this->goBack();
+            $request = Yii::$app->getRequest();
+            Yii::$app->session->setFlash('alert', [
+                'options' => [
+                    'title' => 'Вы великолепны!',
+                    'img' => 'images/ballicons 2/svg/fire extinguisher.svg',
+                    'link' => '',
+                    'linkDesc' => ''
+                ],
+                'body' => 'Ваша задача была успешно добавлена в категорию <strong>'
+            ]);
+            Yii::$app->getUser()->setReturnUrl($request->getUrl());
         } else {
             return $this->renderAjax('create', [
                 'model' => $model

@@ -1520,6 +1520,11 @@ ul.weather-days > li {
     display: none;
 }
 
+#task-wrap form div:last-child {
+    text-align: center;
+    padding-top: .3em;
+}
+
 .loader {
     font-size: 90px;
     overflow: hidden;

@@ -27,7 +27,7 @@
     ");*/
 ?>
 
-<div class="task-form">
+<div class="row">
 
     <?php Pjax::begin(['id' => 'task-wrap', 'enablePushState' => false]) ?>
     <?php $form = ActiveForm::begin([
@@ -42,7 +42,10 @@
 
     <?= $form->field($model, 'name', [
         'options' => ['class' => 'col-md-6']
-    ])->textInput(['maxlength' => true, 'placeholder' => 'Что вы хотите выполнить?']) ?>
+    ])->textInput([
+        'maxlength' => true,
+        'placeholder' => 'Что вы хотите выполнить?'
+    ]) ?>
 
     <?= $form->field($model, 'category', [
         'options' => ['class' => 'col-md-6']
@@ -89,7 +92,7 @@
         ]
     ]) */?>
 
-    <div class="form-group">
+    <div class="col-md-12">
         <?= Html::submitButton('Записать!', [
             'class' => 'btn btn-success btn-square'
         ]) ?>
