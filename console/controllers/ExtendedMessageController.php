@@ -207,10 +207,9 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
     }
 
     /**
-     * @param $config
      * @throws \Exception
      */
-    protected function readFromPoInput($config)
+    protected function readFromPoInput()
     {
         throw new \Exception("PO migration didn't implemented yet");
     }

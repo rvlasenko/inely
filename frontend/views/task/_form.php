@@ -2,10 +2,10 @@
 
     use frontend\models\TaskCat;
     use yii\helpers\Html;
+    use yii\widgets\Pjax;
     use yii\widgets\ActiveForm;
     use yii\helpers\ArrayHelper;
     use kartik\select2\Select2;
-    use kartik\rating\StarRating;
     use kartik\datetime\DateTimePicker;
 
     /* @var $this yii\web\View */
@@ -29,7 +29,7 @@
 
 <div class="task-form">
 
-    <?php \yii\widgets\Pjax::begin(['id' => 'task-wrap', 'enablePushState' => false]) ?>
+    <?php Pjax::begin(['id' => 'task-wrap', 'enablePushState' => false]) ?>
     <?php $form = ActiveForm::begin([
         'id' => 'task-form',
         'action' => '/task/create',
@@ -56,7 +56,7 @@
         ]
     ]) ?>
 
-    <?= $form->field($model, 'time', [
+    <?php /*$form->field($model, 'time', [
         'options' => ['class' => 'col-md-12']
     ])->widget(DateTimePicker::className(), [
         //'name' => 'datetime',
@@ -73,7 +73,7 @@
             'format' => 'dd.mm hh:ii',
             'startDate' => '01-Mar-2015 12:00 AM'
         ]
-    ]) ?>
+    ])*/ ?>
 
     <?php /*$form->field($model, 'priority', [
         'options' => ['class' => 'col-md-6']
@@ -96,6 +96,6 @@
     </div>
 
     <?php ActiveForm::end(); ?>
-    <?php \yii\widgets\Pjax::end() ?>
+    <?php Pjax::end() ?>
 
 </div>

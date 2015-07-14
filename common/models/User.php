@@ -33,7 +33,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 1;
 
     const ROLE_USER = 'user';
-    const ROLE_MANAGER = 'manager';
+    const ROLE_MANAGER = 'moderator';
     const ROLE_ADMINISTRATOR = 'administrator';
 
     const EVENT_AFTER_SIGNUP = 'afterSignup';
@@ -269,7 +269,6 @@ class User extends ActiveRecord implements IdentityInterface
                 'created_at' => $this->created_at
             ]
         );
-        $category = new TaskCat();
         $profile = new UserProfile();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
@@ -289,7 +288,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getPublicIdentity()
     {
-        if ($this->userProfile && $this->userProfile->getFullname()) {
+        if ($this->userProfile && $this->userProfile->getFullname() !== null) {
             return $this->userProfile->getFullname();
         }
         if ($this->username) {

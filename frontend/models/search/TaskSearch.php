@@ -36,11 +36,11 @@ class TaskSearch extends Task
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     * @param integer $id
+     * @param bool $catId
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $id = null)
+    public function search($params, $catId = false)
     {
         $query = Task::find();
 
@@ -51,7 +51,7 @@ class TaskSearch extends Task
         if (!$this->validate())
             return $dataProvider;
 
-        if ($id != null)
+        if ($catId != false)
             $query->andFilterWhere(['category' => $id]);
 
         $query->andFilterWhere(['isDone' => $this->isDone]);

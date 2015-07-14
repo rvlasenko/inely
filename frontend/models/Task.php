@@ -103,7 +103,7 @@ class Task extends ActiveRecord
 
             $items[] =
             [
-                'url' => Url::toRoute(['/todo', 'TaskSearch[category]' => $model->id]),
+                'url' => Url::toRoute(['/todo/sort', 'TaskSearch[category]' => $model->id]),
                 'label' => Html::tag('span', $model->name .
                     Html::tag('span', $count, [
                         'class' => 'pull-right badge',

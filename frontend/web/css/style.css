@@ -1516,6 +1516,10 @@ ul.weather-days > li {
     border-left: none !important;
 }
 
+.select2-selection__clear {
+    display: none;
+}
+
 .loader {
     font-size: 90px;
     overflow: hidden;

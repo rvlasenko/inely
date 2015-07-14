@@ -49,16 +49,26 @@ class TaskController extends Controller
     {
         $searchModel = new TaskSearch();
 
-        if (Yii::$app->request->get()) {
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionSort()
+    {
+        $searchModel = new TaskSearch();
+
+        if (Yii::$app->request->get())
             $dataProvider = $searchModel->search(
                 Yii::$app->request->queryParams,
-                $_GET['TaskSearch']['category'] ? $_GET['TaskSearch']['category'] : null
+                $_GET['TaskSearch'] ? $_GET['TaskSearch']['category'] : false
             );
-        } else {
-            $dataProvider = $searchModel->search(
-                Yii::$app->request->queryParams
-            );
-        }
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

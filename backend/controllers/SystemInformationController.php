@@ -21,10 +21,8 @@ class SystemInformationController extends Controller
                     switch ($key) {
                         case 'cpu_usage':
                             return $provider->getCpuUsage();
-                            break;
                         case 'memory_usage':
                             return ($provider->getTotalMem() - $provider->getFreeMem()) / $provider->getTotalMem();
-                            break;
                     }
                 }
             } else {
