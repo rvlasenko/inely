@@ -2,9 +2,11 @@
 <div id="quickview-sidebar">
     <div class="quickview-header">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#notes" data-toggle="tab">Notes</a>
+            <li class="active">
+                <a href="#notes" data-toggle="tab">Notes</a>
             </li>
-            <li><a href="#settings" data-toggle="tab" class="settings-tab">Settings</a>
+            <li>
+                <a href="#settings" data-toggle="tab" class="settings-tab">Settings</a>
             </li>
         </ul>
     </div>

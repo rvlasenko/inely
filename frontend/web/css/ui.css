@@ -463,139 +463,12 @@ legend {
 .c-primary {
     color: #319db5;
 }
-
-.switch {
-    background-color: #fff;
-    box-shadow: inset 0 -1px #ffffff, inset 0 1px 1px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    display: inline-block;
-    height: 20px;
-    margin-top: 5px;
-    padding: 3px;
-    position: relative;
-    vertical-align: top;
-    width: 56px;
-    -webkit-border-radius: 18px;
-    -moz-border-radius: 18px;
-    border-radius: 18px;
-}
-
-.switch-input {
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-}
-
-.switch-input:checked ~ .switch-label {
-    background: #319DB5;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
-}
-
-.switch-input:checked ~ .switch-handle {
-    box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.4);
-    left: 40px;
-}
-
-.switch-label {
-    background: #eceeef;
-    border-radius: inherit;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
-    display: block;
-    font-size: 10px;
-    height: inherit;
-    position: relative;
-    text-transform: uppercase;
-    -webkit-transition: all 0.15s ease-out;
-    -moz-transition: all 0.15s ease-out;
-    -o-transition: all 0.15s ease-out;
-    transition: all 0.15s ease-out;
-}
-
-.switch-label:before {
-    -moz-transition: inherit;
-    -o-transition: inherit;
-    -webkit-transition: inherit;
-    color: #aaaaaa;
-    content: attr(data-off);
-    line-height: 1;
-    margin-top: -0.5em;
-    position: absolute;
-    right: 7px;
-    text-shadow: 0 1px rgba(255, 255, 255, 0.5);
-    top: 50%;
-    transition: inherit;
-}
-
-.switch-label::after {
-    -moz-transition: inherit;
-    -o-transition: inherit;
-    -webkit-transition: inherit;
-    line-height: 1;
-    margin-top: -0.5em;
-    position: absolute;
-    top: 50%;
-    transition: inherit;
-}
-
-.switch-label:after {
-    color: #fff;
-    content: attr(data-on);
-    left: 11px;
-    opacity: 0;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
-}
-
-.switch-input:checked ~ .switch-label::before {
-    opacity: 0;
-}
-
-.switch-input:checked ~ .switch-label::after {
-    opacity: 1;
-}
-
-.switch-handle {
-    background: #fff;
-    background-image: -moz-linear-gradient(top, #ffffff 40%, #f0f0f0);
-    background-image: -o-linear-gradient(top, #ffffff 40%, #f0f0f0);
-    background-image: -webkit-linear-gradient(top, #ffffff 40%, #f0f0f0);
-    background-image: linear-gradient(to bottom, #ffffff 40%, #f0f0f0);
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-    height: 18px;
-    left: 4px;
-    position: absolute;
-    top: 4px;
-    width: 18px;
-    -webkit-transition: left 0.15s ease-out;
-    -moz-transition: left 0.15s ease-out;
-    -o-transition: left 0.15s ease-out;
-    transition: left 0.15s ease-out;
-}
-
 .glyphicon-resize-full,
 .glyphicon-plus,
 .glyphicon-repeat,
 .glyphicon-resize-small {
     left: -5px;
     top: 2px;
-}
-
-.switch-handle:before {
-    background: #f9f9f9;
-    background-image: -moz-linear-gradient(top, #eeeeee, #ffffff);
-    background-image: -o-linear-gradient(top, #eeeeee, #ffffff);
-    background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff);
-    background-image: linear-gradient(to bottom, #eeeeee, #ffffff);
-    border-radius: 6px;
-    box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
-    content: '';
-    height: 12px;
-    left: 50%;
-    margin: -6px 0 0 -6px;
-    position: absolute;
-    top: 50%;
-    width: 12px;
 }
 
 .nav-tabs > li > a::before {
@@ -747,12 +620,22 @@ code {
 }
 
 .datetimepicker .datetimepicker-hours span,
-.datetimepicker .datetimepicker-minutes span {
-    padding-left: 3px;
+.datetimepicker .datetimepicker-minutes span,
+.datetimepicker .datetimepicker-months span {
+    text-align: center;
 }
 
-.table-condensed tbody tr td:nth-child(2) {
-    width: 1%;
+.input-group-addon {
+    border: none;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.has-success .input-group-addon {
+    border-top: 1px solid #3c763d;
+    border-left: 1px solid #3c763d;
+    border-bottom: 1px solid #3c763d;
 }
 
 a,

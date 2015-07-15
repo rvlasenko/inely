@@ -60,7 +60,6 @@
                 [
                     'class' => 'kartik\grid\EditableColumn',
                     'attribute' => 'name',
-                    //'width' => '450px',
                     'editableOptions' => [
                         'asPopover' => false,
                         'buttonsTemplate' => '{submit}',
@@ -84,49 +83,27 @@
                     'width' => '250px',
                     'value' => function($model) {
                         return DateTimePicker::widget([
-                            'model' => $model,
                             'name' => 'datetime',
+                            'value' => $model->time,
                             'language' => 'ru',
                             'removeButton' => false,
-                            'size' => 'sm',
-                            //'convertFormat' => true,
+                            'pickerButton' => [
+                                'icon' => 'time'
+                            ],
                             'options' => [
-                                'placeholder' => 'Дата...'
+                                'placeholder' => 'Не забыть до..'
                             ],
                             'pluginOptions' => [
                                 'autoclose' => true,
+                                'todayBtn' => true,
                                 'todayHighlight' => true,
-                                'format' => 'dd.mm hh:ii',
-                                'startDate' => '01-Mar-2015 12:00 AM'
+                                'minuteStep' => 10,
+                                'format' => 'dd MM yyyy hh:ii',
+                                'weekStart' => 1
                             ]
                         ]);
                     }
                 ],
-                /*[
-                    'class' => 'kartik\grid\EditableColumn',
-                    'attribute' => 'time',
-                    'editableOptions' => [
-                        'inputType' => \kartik\editable\Editable::INPUT_DATETIME,
-                        //'name' => 'time',
-                        'placement' => 'left',
-                        'header' => 'дату',
-                        'options' => [
-                            'language' => 'ru',
-                            'removeButton' => false,
-                            //'convertFormat' => true,
-                            'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
-                            'size' => 'md',
-                            'value' => function($model) {
-                                return $model->time;
-                            },
-                            'pluginOptions' => [
-                                'autoclose' => true,
-                                'todayHighlight' => true,
-                                'format' => 'dd.mm hh:ii',
-                            ],
-                        ],
-                    ],
-                ],*/
                 [
                     'attribute' => 'priority',
                     'format' => 'raw',
@@ -152,7 +129,7 @@
                                 'stars' => 4,
                                 'min' => 0,
                                 'max' => 4
-                            ],
+                            ]
                         ]);
                     }
                 ],
@@ -175,9 +152,6 @@
                 'responsive' => true,
                 'responsiveWrap' => true,
                 'resizableColumns' => false,
-                'filterRowOptions'=> [
-                    'class' => 'kartik-sheet-style'
-                ],
                 'hover' => true,
                 'export' => false,
                 'pjax' => true,
@@ -200,7 +174,7 @@
                     'footer' => false,
                     'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>Новая задача', null,
                             [
-                                'class' => 'btn btn-success btn-square',
+                                'class' => 'btn btn-success btn-square add',
                                 'data' => [
                                     'toggle' => 'modal',
                                     'target' => '#modal-add'
@@ -224,8 +198,8 @@
                         'icon' => 'resize-small',
                         'label' => 'Страница',
                         'class' => 'btn btn-info btn-square'
-                    ],
-                ],
+                    ]
+                ]
             ]);
         ?>
     </div>

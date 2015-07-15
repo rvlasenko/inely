@@ -9,14 +9,13 @@ var doc = document;
  * just calling modal window
  * @param url
  * @param id
+ * @param show
  */
-function modal(url, id) {
+function modal(url, id, show) {
     if (!$(id + ' .modal-body .row').length) {
         $.get(url, function(html) {
             $(id + ' .modal-body').html(html);
-            $(id).modal('show', {
-                backdrop: 'static'
-            });
+            if (show) $(id).modal('show');
         });
     }
 }
@@ -55,28 +54,30 @@ function generate(title, img, desc, link, linkDesc) {
     });
 }
 
-jQuery(function($) {
-    // modal call. desc of the function is above
-    $('a.edit').click(function() {
-        modal('/cat', '#modal-slideleft');
-    });
+$('document').ready(function() {
 
-    $('.kv-panel-before a').click(function() {
+        // drop content in modal dialog when page end load
         modal('/task/create', '#modal-add');
-    });
+        modal('/cat', '#modal-slideleft');
 
-    // pjax grid reloading on click by category
-    $('.kv-sidenav li a').click(function() {
-        $.pjax.reload({
-            url: $(this).attr('href'),
-            container: '#pjax-wrapper'
+        // modal call
+        $('a.edit').click(function() {
+            modal('/cat', '#modal-slideleft', true);
         });
 
-        return false;
-    });
-});
+        $('.kv-panel-before a.add').click(function() {
+            modal('/task/create', '#modal-add', true);
+        });
 
-$('document').ready(function() {
+        // pjax grid reloading on click by category
+        $('.kv-sidenav li a').click(function() {
+            $.pjax.reload({
+                url: $(this).attr('href'),
+                container: '#pjax-wrapper'
+            });
+
+            return false;
+        });
 
 /**
  * Performance chart

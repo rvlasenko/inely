@@ -1,13 +1,16 @@
-<!-- BEGIN SIDEBAR -->
+<?php
+
+    use yii\helpers\Url;
+?>
 <div class="sidebar">
     <div class="logopanel">
         <h1>
-            <a href=""></a>
+            <a href="/"></a>
         </h1>
     </div>
     <div class="sidebar-inner">
         <div class="menu-title">Navigation</div>
-        <ul class="nav sub-nav sidebar-menu" style="">
+        <ul class="nav sub-nav sidebar-menu">
             <li>
                 <a href="/">
                     <i class="fa fa-tachometer"></i>Ваша доска</a>
@@ -17,11 +20,11 @@
                     <i class="fa fa-calendar"></i>Календарь</a>
             </li>
             <li>
-                <a href="todo">
+                <a href="<?= Url::to('/todo') ?>">
                     <i class="fa fa-tasks"></i>Задачник</a>
             </li>
         </ul>
-        <!-- SIDEBAR WIDGET FOLDERS -->
+
         <div class="sidebar-widgets">
             <p class="menu-title widget-title">Folders <span class="pull-right"><a href="#" class="new-folder"> <i
                             class="icon-plus"></i></a></span>
@@ -33,7 +36,8 @@
                 <li>
                     <a href="#"><i class="icon-picture"></i>My images</a>
                 </li>
-                <li><a href="#"><i class="icon-lock"></i>Secure data</a>
+                <li>
+                    <a href="#"><i class="icon-lock"></i>Secure data</a>
                 </li>
                 <li class="add-folder">
                     <input type="text" placeholder="Folder's name..." class="form-control input-sm">
@@ -42,4 +46,3 @@
         </div>
     </div>
 </div>
-<!-- END SIDEBAR -->

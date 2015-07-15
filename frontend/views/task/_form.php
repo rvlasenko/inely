@@ -59,24 +59,26 @@
         ]
     ]) ?>
 
-    <?php /*$form->field($model, 'time', [
+    <?= $form->field($model, 'time', [
         'options' => ['class' => 'col-md-12']
     ])->widget(DateTimePicker::className(), [
-        //'name' => 'datetime',
         'language' => 'ru',
-        'removeButton' => false,
-        'size' => 'sm',
-        //'convertFormat' => true,
+        'pickerButton' => [
+            'icon' => 'time'
+        ],
         'options' => [
-            'placeholder' => 'Дата...'
+            'placeholder' => 'Не забыть до..'
         ],
         'pluginOptions' => [
             'autoclose' => true,
+            'todayBtn' => true,
             'todayHighlight' => true,
-            'format' => 'dd.mm hh:ii',
-            'startDate' => '01-Mar-2015 12:00 AM'
+            'minuteStep' => 10,
+            'format' => 'dd MM yyyy hh:ii',
+            'weekStart' => 1,
+            'orientation' => 'bottom right'
         ]
-    ])*/ ?>
+    ]) ?>
 
     <?php /*$form->field($model, 'priority', [
         'options' => ['class' => 'col-md-6']

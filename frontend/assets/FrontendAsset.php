@@ -29,7 +29,7 @@ class FrontendAsset extends AssetBundle
         'plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js',
         'plugins/retina/retina.min.js',
         'plugins/bootstrap-progressbar/bootstrap-progressbar.min.js',
-        'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
+        //'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
         'plugins/jquery-translator/jqueryTranslator.min.js',
         'plugins/noty/jquery.noty.packaged.js',
         'plugins/countup/countUp.min.js',

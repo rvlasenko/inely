@@ -9,6 +9,7 @@ use Yii;
 use yii\db\Query;
 use yii\web\Response;
 use yii\helpers\Url;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
@@ -51,6 +52,21 @@ class TaskController extends Controller
         $searchModel = new TaskSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        // Check editable bootstrap ajax request
+        if (Yii::$app->request->post('hasEditable')) {
+            $taskId = Yii::$app->request->post('editableKey');
+            $model = Task::findOne($taskId);
+
+            $post = [];
+            $posted = current($_POST['Task']);
+            $post['Task'] = $posted;
+
+            if ($model->load($post))
+                $model->save();
+
+            return true;
+        }
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
