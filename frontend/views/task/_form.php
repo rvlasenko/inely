@@ -15,16 +15,6 @@
     $data = ArrayHelper::map(TaskCat::find()
         ->where(['userId' => Yii::$app->user->id])
         ->all(), 'id', 'name');
-
-    /*$this->registerJs("
-    $('.form-group button').click(function() {
-        $.pjax.reload({
-            url: '/task/create',
-            container: '#task-wrap'
-        });
-        return false;
-    });
-    ");*/
 ?>
 
 <div class="row">
@@ -79,20 +69,6 @@
             'orientation' => 'bottom right'
         ]
     ]) ?>
-
-    <?php /*$form->field($model, 'priority', [
-        'options' => ['class' => 'col-md-6']
-    ])->widget(StarRating::className(), [
-        'model' => $model,
-        'name' => 'priority',
-        'pluginOptions' => [
-            'size' => 'sm',
-            'step' => 1,
-            'stars' => 4,
-            'min' => 0,
-            'max' => 4
-        ]
-    ]) */?>
 
     <div class="col-md-12">
         <?= Html::submitButton('Записать!', [

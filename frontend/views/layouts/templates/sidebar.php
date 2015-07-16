@@ -1,6 +1,6 @@
 <?php
 
-    use yii\helpers\Url;
+use yii\helpers\Url;
 ?>
 <div class="sidebar">
     <div class="logopanel">

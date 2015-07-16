@@ -1,7 +1,7 @@
 <?php
-    use yii\widgets\ActiveForm;
+use yii\widgets\ActiveForm;
 
-    $this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
+$this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
 ?>
 
 <div class="row">

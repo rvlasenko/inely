@@ -47,8 +47,8 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="intro-section">
 
-                        <h1 class="intro">Начните осознавать свои возможности с madeasy.</h1>
-                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком madeasy.</h5>
+                        <h1 class="intro">Начните осознавать свои возможности с flatask.</h1>
+                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
                         <button class="butn butn-1 butn-1a log" data-toggle="modal" data-target="#myModal">Войти!</button>
 
                     </div>
@@ -292,7 +292,7 @@
 </section>
 
 <section class="screenshots grey-bg contain" id="screenshot-section">
-    <div class="section-header wow" data-wow-offset="10" data-wow-duration="1.5s">
+    <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
 
         <h2 class="dark-text">Краткий обзор</h2>
 
@@ -303,7 +303,7 @@
         <div class="colored-line"></div>
 
     </div>
-    <div id="screenshot-contain" class="wow" data-wow-delay="0.4s">
+    <div id="screenshot-contain" class="wow slideInRight" data-wow-delay="0.4s">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-10 col-md-offset-1">
@@ -342,7 +342,7 @@
     <div class="container">
 
         <div style="visibility: visible; animation-duration: 1.5s; animation-name: slideInLeft;"
-             class="contact-box wow" data-wow-offset="10" data-wow-duration="1.5s">
+             class="contact-box wow slideInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
 
             <a class="btn contact-button expand-form expanded">
                 <i class="icon-paper-plane"></i>
@@ -351,8 +351,9 @@
             <div style="display: block;" class="row expanded-contact-form"></div>
         </div>
 
+        <div id="myflashwrapper" style="display: none;"></div>
         <p class="copyright">
-            © 2015 hirootkit, All Rights Reserved
+            © 2015 Me, All Rights Reserved
         </p>
 
     </div>
