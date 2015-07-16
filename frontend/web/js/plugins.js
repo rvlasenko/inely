@@ -9,13 +9,14 @@ var doc = document;
  * just calling modal window
  * @param url
  * @param id
- * @param show
  */
 function modal(url, id, show) {
     if (!$(id + ' .modal-body .row').length) {
         $.get(url, function(html) {
             $(id + ' .modal-body').html(html);
-            if (show) $(id).modal('show');
+            if (show) $(id).modal('show', {
+                backdrop: 'static'
+            });
         });
     }
 }
@@ -54,183 +55,177 @@ function generate(title, img, desc, link, linkDesc) {
     });
 }
 
+jQuery(function($) {
+    // modal call. desc of the function is above
+    $('a.edit').click(function() {
+        modal('/cat', '#modal-slideleft', true);
+    });
+
+    // pjax grid reloading on click by category
+    $('.kv-sidenav li a').click(function() {
+        $.pjax.reload({
+            url: $(this).attr('href'),
+            container: '#pjax-wrapper'
+        });
+
+        return false;
+    });
+});
+
 $('document').ready(function() {
 
-        // drop content in modal dialog when page end load
-        modal('/task/create', '#modal-add');
-        modal('/cat', '#modal-slideleft');
-
-        // modal call
-        $('a.edit').click(function() {
-            modal('/cat', '#modal-slideleft', true);
-        });
-
-        $('.kv-panel-before a.add').click(function() {
-            modal('/task/create', '#modal-add', true);
-        });
-
-        // pjax grid reloading on click by category
-        $('.kv-sidenav li a').click(function() {
-            $.pjax.reload({
-                url: $(this).attr('href'),
-                container: '#pjax-wrapper'
-            });
-
-            return false;
-        });
-
-/**
- * Performance chart
- * @type {Morris.Line}
- */
-var chart = new Chartist.Line('.ct-chart', {
-    labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-    series: [{
-        name: 'ОО',
-        data: [5, 7, 3, 4]
-    }]
-}, {
-    width: 330,
-    height: 150
-});
-
-new Chartist.Bar('.ct-bar-chart', {
-    labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-    series: [
-        [5, 4, 3, 7, 0, 0, 0]
-    ]
-}, {
-    seriesBarDistance: 30,
-    axisY: {
-        showGrid: false
-    },
-    reverseData: true,
-    horizontalBars: true,
-    width: 330,
-    height: 180
-});
-
-/**
- * idk what is that
- * @type {*|jQuery}
- */
-var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
-
-/**
- * tooltip on hover chartist point
- */
-$(document).on('mouseenter', '.ct-point', function () {
-    var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
-        value = $(this).attr('ct:value');
-
-    $tooltip.text(seriesName + ': ' + value);
-    $tooltip.removeClass('tooltip-hidden');
-});
-
-$(document).on('mouseleave', '.ct-point', function () {
-    $tooltip.addClass('tooltip-hidden');
-});
-
-$(document).on('mousemove', '.ct-point', function (event) {
-    console.log(event);
-    $tooltip.css({
-        left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
-        top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
+    /**
+     * Performance chart
+     * @type {Morris.Line}
+     */
+    var chart = new Chartist.Line('.ct-chart', {
+        labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+        series: [{
+            name: 'ОО',
+            data: [5, 7, 3, 4]
+        }]
+    }, {
+        width: 330,
+        height: 150
     });
-});
 
-if ($('body').hasClass('sidebar-hover')) sidebarHover();
+    new Chartist.Bar('.ct-bar-chart', {
+        labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+        series: [
+            [5, 4, 3, 7, 0, 0, 0]
+        ]
+    }, {
+        seriesBarDistance: 30,
+        axisY: {
+            showGrid: false
+        },
+        reverseData: true,
+        horizontalBars: true,
+        width: 330,
+        height: 180
+    });
 
-/**
- * clock event tooltip
- */
-$('span.tooltip-item').click(function () {
-    generate('Предстоящее событие',
-        'images/ballicons 2/svg/watch.svg',
-        '15:43<br><br>Отправить письмо Бобу', '', '');
-});
+    /**
+     * idk what is that
+     * @type {*|jQuery}
+     */
+    var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
 
-/**
-  * calendar form date picker
-  */
-$("#eventDate").datepicker({
-    numberOfMonths: 1,
-    prevText: '<i class="fa fa-chevron-left"></i>',
-    nextText: '<i class="fa fa-chevron-right"></i>',
-    showButtonPanel: false,
-    beforeShow: function (input, inst) {
-        var newclass = 'admin-form';
-        var themeClass = $(this).parents('.admin-form').attr('class');
-        var smartpikr = inst.dpDiv.parent();
-        if (!smartpikr.hasClass(themeClass)) {
-            inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
+    /**
+     * tooltip on hover chartist point
+     */
+    $(document).on('mouseenter', '.ct-point', function () {
+        var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
+            value = $(this).attr('ct:value');
+
+        $tooltip.text(seriesName + ': ' + value);
+        $tooltip.removeClass('tooltip-hidden');
+    });
+
+    $(document).on('mouseleave', '.ct-point', function () {
+        $tooltip.addClass('tooltip-hidden');
+    });
+
+    $(document).on('mousemove', '.ct-point', function (event) {
+        console.log(event);
+        $tooltip.css({
+            left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
+            top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
+        });
+    });
+
+    if ($('body').hasClass('sidebar-hover')) sidebarHover();
+
+    /**
+     * clock event tooltip
+     */
+    $('span.tooltip-item').click(function () {
+        generate('Предстоящее событие',
+            'images/ballicons 2/svg/watch.svg',
+            '15:43<br><br>Отправить письмо Бобу', '', '');
+    });
+
+    /**
+     * calendar form date picker
+     */
+    $("#eventDate").datepicker({
+        numberOfMonths: 1,
+        prevText: '<i class="fa fa-chevron-left"></i>',
+        nextText: '<i class="fa fa-chevron-right"></i>',
+        showButtonPanel: false,
+        beforeShow: function (input, inst) {
+            var newclass = 'admin-form';
+            var themeClass = $(this).parents('.admin-form').attr('class');
+            var smartpikr = inst.dpDiv.parent();
+            if (!smartpikr.hasClass(themeClass)) {
+                inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
+            }
         }
-    }
 
-});
+    });
 
 // Init FullCalendar external events
-$('#external-events .fc-event').each(function () {
-    // store data so the calendar knows to render an event upon drop
-    $(this).data('event', {
-        title: $.trim($(this).text()), // use the element's text as the event title
-        stick: true, // maintain when user navigates (see docs on the renderEvent method)
-        className: 'fc-event-' + $(this).attr('data-event') // add a contextual class name from data attr
+    $('#external-events .fc-event').each(function () {
+        // store data so the calendar knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true, // maintain when user navigates (see docs on the renderEvent method)
+            className: 'fc-event-' + $(this).attr('data-event') // add a contextual class name from data attr
+        });
+
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true, // will cause the event to go back to its
+            revertDuration: 0 //  original position after the drag
+        });
+
     });
 
-    // make the event draggable using jQuery UI
-    $(this).draggable({
-        zIndex: 999,
-        revert: true, // will cause the event to go back to its
-        revertDuration: 0 //  original position after the drag
-    });
-
-});
-
-var Calendar = $('#calendar');
+    var Calendar = $('#calendar');
 
 // Init FullCalendar Plugin
-Calendar.fullCalendar({
-    height: 450,
-    header: {
-        left: 'prev,next',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-    },
-    editable: true,
-    viewRender: function (view) {
-        // Update mini calendar title
-        var titleContainer = $('.fc-title-clone');
-        if (!titleContainer.length) {
-            return;
-        }
-        titleContainer.html(view.title);
-    },
-    droppable: true, // this allows things to be dropped onto the calendar
-    drop: function () {
-        // is the "remove after drop" checkbox checked?
-        if (!$(this).hasClass('event-recurring')) {
-            $(this).remove();
-        }
-    },
-    eventRender: function (event, element) {
-        // create event tooltip using bootstrap tooltips
-        $(element).attr("data-original-title", event.title);
-        $(element).tooltip({
-            container: 'body',
-            delay: {
-                "show": 100,
-                "hide": 200
+    Calendar.fullCalendar({
+        height: 450,
+        header: {
+            left: 'prev,next',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        editable: true,
+        viewRender: function (view) {
+            // Update mini calendar title
+            var titleContainer = $('.fc-title-clone');
+            if (!titleContainer.length) {
+                return;
             }
-        });
-        // create a tooltip auto close timer
-        $(element).on('show.bs.tooltip', function () {
-            var autoClose = setTimeout(function () {
-                $('.tooltip').fadeOut();
-            }, 3500);
-        });
-    }
-});
+            titleContainer.html(view.title);
+        },
+        droppable: true, // this allows things to be dropped onto the calendar
+        drop: function () {
+            // is the "remove after drop" checkbox checked?
+            if (!$(this).hasClass('event-recurring')) {
+                $(this).remove();
+            }
+        },
+        eventRender: function (event, element) {
+            // create event tooltip using bootstrap tooltips
+            $(element).attr("data-original-title", event.title);
+            $(element).tooltip({
+                container: 'body',
+                delay: {
+                    "show": 100,
+                    "hide": 200
+                }
+            });
+            // create a tooltip auto close timer
+            $(element).on('show.bs.tooltip', function () {
+                var autoClose = setTimeout(function () {
+                    $('.tooltip').fadeOut();
+                }, 3500);
+            });
+        }
+    });
 
 });
 
@@ -267,18 +262,18 @@ if ($('.sortable').length && $.fn.sortable) {
         stop: function(event, ui) {
             var newIndex = ui.item.index();
 
-            var movingForward = newIndex > oldIndex;            
+            var movingForward = newIndex > oldIndex;
             var nextIndex = newIndex + (movingForward ? -1 : 1);
 
             var items = $('.sortable > div');
-            
+
             // Find the element to move
             var itemToMove = items.get(nextIndex);
             if (itemToMove) {
-                
+
                 // Find the element at the index where we want to move the itemToMove
                 var newLocation = $(items.get(oldIndex));
-                
+
                 // Decide if it goes before or after
                 if (movingForward) {
                     $(itemToMove).insertBefore(newLocation);
@@ -388,7 +383,7 @@ function editorSummernote(){
                     ['para', ['ul', 'paragraph']],
                     ['table', ['table']],
                     ['insert', ['link', 'picture']]
-                  ],
+                ],
                 toolbar: [
                     ["style", ["style"]],
                     ["style", ["bold", "italic", "underline", "clear"]],
@@ -405,7 +400,7 @@ function editorSummernote(){
 
 /****  Animated Panels  ****/
 function liveTile() {
-     
+
     if ($('.live-tile').length && $.fn.liveTile) {
         $('.live-tile').each(function () {
             $(this).liveTile("destroy", true); /* To get new size if resize event */

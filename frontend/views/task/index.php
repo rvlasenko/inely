@@ -11,6 +11,7 @@
     use frontend\models\Task;
 
     $this->title = 'Ваши задачи';
+    $this->registerJs("modal('/task/create', '#modal-add', false)");
 ?>
 
 <div class="main-content">
