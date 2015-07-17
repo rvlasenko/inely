@@ -17,8 +17,8 @@ function sendDateTime(ev) {
             id: id,
             time: dateTime.slice(0, -3)
         },
-        success: function() {
-            alert('Данные обновлены');
+        success: function(data) {
+            alert(data);
         }
     });
 }
@@ -107,20 +107,6 @@ jQuery(function($) {
 
         return false;
     });
-
-    $('.kv-grid-table tbody tr td a').click(function() {
-        if (confirm("Удалить эту задачу из списка?")) {
-            $.pjax.reload({
-                type: 'POST',
-                push: false,
-                history: false,
-                url: $(this).attr('href'),
-                container: '#pjax-wrapper'
-            });
-        }
-
-        return false;
-    });
 });
 
 $('document').ready(function() {
@@ -161,6 +147,20 @@ $('document').ready(function() {
      * @type {*|jQuery}
      */
     var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
+
+    $('table tbody tr td:last-child a').click(function() {
+        //if (confirm("Удалить эту задачу из списка?")) {
+            $.pjax.reload({
+                type: 'POST',
+                push: false,
+                history: false,
+                url: $(this).attr('href'),
+                container: '#pjax-wrapper'
+            });
+        //}
+
+        return false;
+    });
 
     /**
      * tooltip on hover chartist point

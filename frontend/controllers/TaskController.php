@@ -9,6 +9,7 @@ use Yii;
 use yii\db\Query;
 use yii\web\Response;
 use yii\helpers\Url;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
@@ -54,12 +55,11 @@ class TaskController extends Controller
 
         // Check editable bootstrap ajax request
         if (Yii::$app->request->post('hasEditable')) {
+            $post = [];
             $taskId = Yii::$app->request->post('editableKey');
             $model = Task::findOne($taskId);
 
-            $post = [];
-            $posted = current($_POST['Task']);
-            $post['Task'] = $posted;
+            $post['Task'] = current($_POST['Task']);
 
             if ($model->load($post))
                 $model->save();
@@ -78,18 +78,19 @@ class TaskController extends Controller
      */
     public function actionEdit()
     {
-        if (Yii::$app->request->post()) {
-            $taskId = Yii::$app->request->post('id');
+        if ($taskId = Yii::$app->request->post('id')) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
             $model = Task::findOne($taskId);
 
-            $dateTime = !$_POST['time'] ? false : $_POST['time'];
-            $rating = !$_POST['rate'] ? false : $_POST['rate'];
+            $dateTime = empty($_POST['time']) ? false : $_POST['time'];
+            $rating = empty($_POST['rate']) ? false : $_POST['rate'];
 
             !$dateTime ? null : $model->time = $dateTime;
             !$rating ? null : $model->priority = $rating;
 
-            $model->save();
-            return true;
+            if ($model->save())
+                return Json::encode('Данные обновлены');
         }
     }
 
@@ -106,14 +107,12 @@ class TaskController extends Controller
                 $_GET['TaskSearch'] ? $_GET['TaskSearch']['category'] : false
             );
 
-        // Check editable bootstrap ajax request
         if (Yii::$app->request->post('hasEditable')) {
+            $post = [];
             $taskId = Yii::$app->request->post('editableKey');
             $model = Task::findOne($taskId);
 
-            $post = [];
-            $posted = current($_POST['Task']);
-            $post['Task'] = $posted;
+            $post['Task'] = current($_POST['Task']);
 
             if ($model->load($post))
                 $model->save();
@@ -203,9 +202,20 @@ class TaskController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if (Yii::$app->getRequest()->isAjax) {
+            $this->findModel($id)->delete();
 
-        return $this->actionIndex();
+            $searchModel = new TaskSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->renderAjax('index', [
+                'dataProvider' => $dataProvider,
+                'searchModel' => $searchModel,
+            ]);
+        }
+//        return $this->redirect(['index']);
+
+//        return $this->actionIndex();
     }
 
     /**
