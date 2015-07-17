@@ -1,4 +1,3 @@
-<!-- BEGIN QUICKVIEW SIDEBAR -->
 <div id="quickview-sidebar">
     <div class="quickview-header">
         <ul class="nav nav-tabs">
@@ -134,7 +133,7 @@
                     <div class="title">ACCOUNT SETTINGS</div>
                     <div class="setting">
                         <span> Show Personal Statut</span>
-                        <label class="switch pull-right">
+                        <label class="switch-op pull-right">
                             <input type="checkbox" class="switch-input" checked>
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
@@ -143,7 +142,7 @@
                     </div>
                     <div class="setting">
                         <span> Show my Picture</span>
-                        <label class="switch pull-right">
+                        <label class="switch-op pull-right">
                             <input type="checkbox" class="switch-input" checked>
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
@@ -152,7 +151,7 @@
                     </div>
                     <div class="setting">
                         <span> Show my Location</span>
-                        <label class="switch pull-right">
+                        <label class="switch-op pull-right">
                             <input type="checkbox" class="switch-input">
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
@@ -162,7 +161,7 @@
                     <div class="title">CHAT</div>
                     <div class="setting">
                         <span> Show User Image</span>
-                        <label class="switch pull-right">
+                        <label class="switch-op pull-right">
                             <input type="checkbox" class="switch-input" checked>
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
@@ -170,7 +169,7 @@
                     </div>
                     <div class="setting">
                         <span> Show Fullname</span>
-                        <label class="switch pull-right">
+                        <label class="switch-op pull-right">
                             <input type="checkbox" class="switch-input" checked>
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
@@ -178,7 +177,7 @@
                     </div>
                     <div class="setting">
                         <span> Show Location</span>
-                        <label class="switch pull-right">
+                        <label class="switch-op pull-right">
                             <input type="checkbox" class="switch-input">
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
@@ -186,7 +185,7 @@
                     </div>
                     <div class="setting">
                         <span> Show Unread Count</span>
-                        <label class="switch pull-right">
+                        <label class="switch-op pull-right">
                             <input type="checkbox" class="switch-input" checked>
                             <span class="switch-label" data-on="On" data-off="Off"></span>
                             <span class="switch-handle"></span>
@@ -197,4 +196,3 @@
         </div>
     </div>
 </div>
-<!-- END QUICKVIEW SIDEBAR -->

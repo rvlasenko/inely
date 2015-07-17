@@ -1274,6 +1274,14 @@ body:not(.fixed-topbar) .main-content .page-content {
     margin-top: 0;
 }
 
+@media screen and (max-width: 788px) {
+
+    .panel-heading span {
+        font-size: 2em;
+    }
+
+}
+
 @media screen and (max-width: 767px) {
     ul.weather-days {
         width: 102% !important;
@@ -1283,9 +1291,6 @@ body:not(.fixed-topbar) .main-content .page-content {
         display: none;
     }
 
-    .panel-heading span {
-        font-size: 2em;
-    }
 }
 
 ul.weather-days {
@@ -1302,14 +1307,16 @@ ul.weather-days > li {
 }
 
 @media screen and (max-width: 991px) {
+
     .main-content .page-content {
-        background: #F1F2F3;
         overflow: hidden;
         padding: 20px;
     }
+
 }
 
 @media (max-width: 500px) {
+
     ul.weather-days {
         width: 102%;
     }
@@ -1317,6 +1324,7 @@ ul.weather-days > li {
     .main-content .page-content .panel .control-btn {
         display: none !important;
     }
+
 }
 
 .todo-list {
@@ -1338,6 +1346,11 @@ ul.weather-days > li {
 
 .todo-list li:hover {
     background: #F5F5F5;
+}
+
+.kv-editable-value {
+    margin-right: 5px;
+    white-space: nowrap;
 }
 
 .todo-list li:hover .todo-tags {
@@ -2145,15 +2158,24 @@ ul.dropdown-menu li p {
     .topbar .header-left .nav-icons {
         display: none;
     }
+
+    .sidebar-show.fixed-topbar .topbar {
+        left: 240px !important;
+        overflow: hidden;
+    }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 750px) {
     .sidebar-hover .topbar .header-right .header-menu #language-header {
         display: none;
     }
 
     .sidebar-hover .topnav .logopanel2 {
         width: 150px !important;
+    }
+
+    .news {
+        padding-top: 245px;
     }
 }
 
@@ -2192,8 +2214,17 @@ ul.dropdown-menu li p {
         margin-top: 0;
         font-size: 0;
     }
+
     .rating-xs {
         text-align: center;
+    }
+
+    .kv-table-wrap th, .kv-table-wrap td {
+        display: block;
+        width: 124% !important;
+        text-align: center;
+        font-size: 1.2em;
+        background-color: #F9F9F9;
     }
 }
 

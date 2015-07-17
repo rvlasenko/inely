@@ -21,7 +21,7 @@ class FrontendAsset extends AssetBundle
     ];
 
     public $js = [
-        //'plugins/jquery/jquery-migrate-1.2.1.min.js',
+        'plugins/jquery/jquery-migrate-1.2.1.min.js',
         'plugins/jquery-ui/jquery-ui-1.11.2.min.js',
         'plugins/gsap/main-gsap.min.js',
         'plugins/jquery-cookies/jquery.cookies.min.js',
@@ -29,7 +29,6 @@ class FrontendAsset extends AssetBundle
         'plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js',
         'plugins/retina/retina.min.js',
         'plugins/bootstrap-progressbar/bootstrap-progressbar.min.js',
-        //'plugins/bootstrap-context-menu/bootstrap-contextmenu.min.js',
         'plugins/jquery-translator/jqueryTranslator.min.js',
         'plugins/noty/jquery.noty.packaged.js',
         'plugins/countup/countUp.min.js',

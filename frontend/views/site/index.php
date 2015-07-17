@@ -4,44 +4,6 @@
     $this->title = 'Ваша доска';
 ?>
 
-<script>
-    /*$(document).ready(function() {
-        $("button.add-task").click(function () {
-            setTimeout(function() {
-                alert($("span.todo-task").val());
-                /*$.ajax({
-                    method: "POST",
-                    url: "todoQAdd",
-                    data: {
-                        name: $(parent).val(),
-                        time: $(".due-date-span").val()
-                    }
-                });
-            }, 1000);
-        });
-
-        $('input.task-check').on('ifChecked', function(){
-            var id = $("input.task-check").attr('id');
-
-            $.ajax({
-                type: 'get',
-                url: '/user/todo/done',
-                data: "id=" + id + "&val=1",  //{ id : id, val: 1 },
-                success: function(data) {
-                    alert(data);
-                },
-                error: function(data) {
-                    alert(data);
-                }
-            });
-        });
-
-        $('input.task-check').on('ifUnchecked', function(){
-            //alert(0);
-        });
-    });*/
-</script>
-
 <div class="main-content">
 <div class="topbar">
     <?php include __DIR__ . '/../layouts/templates/topbar.php' ?>
@@ -226,11 +188,11 @@
 </div>
 <div class="row">
     <div class="col-lg-4 col-sm-6 portlets ui-sortable">
-    <div class="panel-content p-t-0 p-b-0 widget-news">
-        <?php include __DIR__ . '/../panels/weather.php' ?>
+        <div class="panel-content p-t-0 p-b-0 widget-news">
+            <?php include __DIR__ . '/../panels/weather.php' ?>
+        </div>
     </div>
-</div>
-    <div class="col-lg-4 col-sm-6 portlets ui-sortable">
+    <div class="col-lg-4 col-sm-6 portlets news ui-sortable">
         <div class="panel m-t-0" style="position: relative; opacity: 1; z-index: 0;">
             <div class="panel-header panel-controls">
                 <h3>
@@ -366,7 +328,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <div class="footer">
     <?php include __DIR__ . '/../layouts/templates/footer.php' ?>

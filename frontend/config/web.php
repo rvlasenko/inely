@@ -74,6 +74,8 @@ $config = [
         ],
 
         'request' => [
+            'enableCookieValidation' => true,
+            'enableCsrfValidation' => true,
             'cookieValidationKey' => getenv('FRONTEND_COOKIE_VALIDATION_KEY')
         ],
 

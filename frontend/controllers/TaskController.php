@@ -9,7 +9,6 @@ use Yii;
 use yii\db\Query;
 use yii\web\Response;
 use yii\helpers\Url;
-use yii\helpers\Json;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
@@ -90,7 +89,11 @@ class TaskController extends Controller
             !$rating ? null : $model->priority = $rating;
 
             if ($model->save())
-                return Json::encode('Данные обновлены');
+                return [
+                    'title' => 'Вы великолепны!',
+                    'icon' => 'images/flat/compose.png',
+                    'desc' => 'Ваши данные успешно обновлены.'
+                ];
         }
     }
 
@@ -202,20 +205,9 @@ class TaskController extends Controller
      */
     public function actionDelete($id)
     {
-        if (Yii::$app->getRequest()->isAjax) {
-            $this->findModel($id)->delete();
+        $this->findModel($id)->delete();
 
-            $searchModel = new TaskSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-            return $this->renderAjax('index', [
-                'dataProvider' => $dataProvider,
-                'searchModel' => $searchModel,
-            ]);
-        }
-//        return $this->redirect(['index']);
-
-//        return $this->actionIndex();
+        return $this->actionIndex();
     }
 
     /**

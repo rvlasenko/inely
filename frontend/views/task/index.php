@@ -82,7 +82,7 @@
                 [
                     'attribute' => 'time',
                     'format' => 'raw',
-                    'width' => '250px',
+                    'width' => '280px',
                     'value' => function($model) {
                         $formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'UTC');
                         $formatter->setPattern('dd MMMM yyyy H:mm');
@@ -99,7 +99,8 @@
                                 'icon' => 'time'
                             ],
                             'options' => [
-                                'placeholder' => 'Не забыть до..'
+                                'placeholder' => 'Не забыть до..',
+                                'style' => 'min-width: 155px'
                             ],
                             'pluginOptions' => [
                                 'autoclose' => true,
@@ -107,7 +108,8 @@
                                 'todayHighlight' => true,
                                 'minuteStep' => 10,
                                 'format' => 'dd MMMM yyyy H:mm',
-                                'weekStart' => 1
+                                'weekStart' => 1,
+                                'startDate' => '2015-01-01',
                             ],
                             'pluginEvents' => [
                                 'changeDate' => "function(ev) {
@@ -155,15 +157,6 @@
                     'class' => ActionColumn::className(),
                     'template' => '{delete}',
                     'header' => 'Действия',
-                    'buttons' => [
-                        'delete' => function ($url, $model) {
-                            return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-                                'title' => 'Удалить',
-                                'data-confirm' => 'Удалить эту задачу из списка?',
-                                'data-pjax' => 'w0'
-                            ]);
-                        }
-                    ],
                     'options' => [
                         'style' => 'width: 90px'
                     ]

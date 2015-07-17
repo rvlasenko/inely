@@ -6,7 +6,7 @@
             <h4>Layout options</h4>
             <div class="layout-option">
                 <span> Fixed Sidebar</span>
-                <label class="switch pull-right">
+                <label class="switch-op pull-right">
                     <input data-layout="sidebar" id="switch-sidebar" type="checkbox" class="switch-input" checked>
                     <span class="switch-label" data-on="On" data-off="Off"></span>
                     <span class="switch-handle"></span>
@@ -14,16 +14,8 @@
             </div>
             <div class="layout-option">
                 <span> Sidebar on Hover</span>
-                <label class="switch pull-right">
+                <label class="switch-op pull-right">
                     <input data-layout="sidebar-hover" id="switch-sidebar-hover" type="checkbox" class="switch-input">
-                    <span class="switch-label" data-on="On" data-off="Off"></span>
-                    <span class="switch-handle"></span>
-                </label>
-            </div>
-            <div class="layout-option">
-                <span>Fixed Topbar</span>
-                <label class="switch pull-right">
-                    <input data-layout="topbar" id="switch-topbar" type="checkbox" class="switch-input" checked>
                     <span class="switch-label" data-on="On" data-off="Off"></span>
                     <span class="switch-handle"></span>
                 </label>

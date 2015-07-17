@@ -17,8 +17,8 @@ function sendDateTime(ev) {
             id: id,
             time: dateTime.slice(0, -3)
         },
-        success: function(data) {
-            alert(data);
+        success: function (data) {
+            generate(data.title, data.icon, data.desc, '', '');
         }
     });
 }
@@ -31,12 +31,12 @@ function sendDateTime(ev) {
  */
 function modal(url, id, show) {
     if (!$(id + ' .modal-body .row').length) {
-        $.get(url, function(html) {
+        $.get(url, function (html) {
             $(id + ' .modal-body').html(html);
             if (show) $(id).modal('show', {
                 backdrop: 'static'
             });
-        }).done(function() {
+        }).done(function () {
             $.pjax.reload({
                 url: '/todo',
                 container: '#pjax-wrapper'
@@ -45,6 +45,11 @@ function modal(url, id, show) {
     }
 }
 
+/**
+ * send ajax data (priority) to "edit" action
+ * @param ev
+ * @param val
+ */
 function sendRating(ev, val) {
     var id = $(ev.target).parent().parent().parent().parent().data('key');
 
@@ -56,8 +61,8 @@ function sendRating(ev, val) {
             id: id,
             rate: val
         },
-        success: function() {
-            alert('Данные обновлены');
+        success: function (data) {
+            generate(data.title, data.icon, data.desc, '', '');
         }
     });
 }
@@ -87,19 +92,18 @@ function generate(title, img, desc, link, linkDesc) {
         theme: 'made',
         maxVisible: 10,
         animation: {
-            open: 'animated bounceIn',
-            close: 'animated bounceOut',
+            open: 'animated bounceInRight',
+            close: 'animated hinge',
             easing: 'swing',
             speed: 500
         },
-        timeout: 8000
+        timeout: 7000
     });
 }
 
-jQuery(function($) {
-
+jQuery(function ($) {
     // pjax grid reloading on click by category
-    $('.kv-sidenav li a').click(function() {
+    $('.kv-sidenav li a').click(function () {
         $.pjax.reload({
             url: $(this).attr('href'),
             container: '#pjax-wrapper'
@@ -109,7 +113,15 @@ jQuery(function($) {
     });
 });
 
-$('document').ready(function() {
+$('document').ready(function () {
+
+    /**
+     * clock event tooltip
+     */
+    $('span.tooltip-item').click(function () {
+        generate('Предстоящее событие в 15:43', 'images/flat/clock.png',
+            '<br>Отправить письмо Бобу', '', '');
+    });
 
     /**
      * Performance chart
@@ -148,15 +160,15 @@ $('document').ready(function() {
      */
     var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
 
-    $('table tbody tr td:last-child a').click(function() {
+    $('table tbody tr td:last-child a').click(function () {
         //if (confirm("Удалить эту задачу из списка?")) {
-            $.pjax.reload({
-                type: 'POST',
-                push: false,
-                history: false,
-                url: $(this).attr('href'),
-                container: '#pjax-wrapper'
-            });
+        $.pjax.reload({
+            type: 'POST',
+            push: false,
+            history: false,
+            url: $(this).attr('href'),
+            container: '#pjax-wrapper'
+        });
         //}
 
         return false;
@@ -186,15 +198,6 @@ $('document').ready(function() {
     });
 
     if ($('body').hasClass('sidebar-hover')) sidebarHover();
-
-    /**
-     * clock event tooltip
-     */
-    $('span.tooltip-item').click(function () {
-        generate('Предстоящее событие',
-            'images/ballicons 2/svg/watch.svg',
-            '15:43<br><br>Отправить письмо Бобу', '', '');
-    });
 
     /**
      * calendar form date picker
@@ -285,17 +288,17 @@ $('document').ready(function() {
 /* ========================================================= */
 
 /**** Sortable Portlets ****/
-function sortablePortlets(){
+function sortablePortlets() {
     if ($('.portlets').length && $.fn.sortable) {
-        $( ".portlets" ).sortable({
+        $(".portlets").sortable({
             connectWith: ".portlets",
             handle: ".panel-header",
-            items:'div.panel',
+            items: 'div.panel',
             placeholder: "panel-placeholder",
             opacity: 0.5,
             dropOnEmpty: true,
             forcePlaceholderSize: true,
-            receive: function(event, ui) {
+            receive: function (event, ui) {
                 $("body").trigger("resize");
             }
         });
@@ -306,11 +309,11 @@ var oldIndex;
 if ($('.sortable').length && $.fn.sortable) {
     $(".sortable").sortable({
         handle: ".panel-header",
-        start: function(event, ui) {
+        start: function (event, ui) {
             oldIndex = ui.item.index();
             ui.placeholder.height(ui.item.height() - 20);
         },
-        stop: function(event, ui) {
+        stop: function (event, ui) {
             var newIndex = ui.item.index();
 
             var movingForward = newIndex > oldIndex;
@@ -349,84 +352,13 @@ function popover() {
     }
 }
 
-/* Manage Slider */
-function sliderIOS(){
-    if ($('.slide-ios').length && $.fn.slider) {
-        $('.slide-ios').each(function () {
-            $(this).sliderIOS();
-        });
-    }
-}
-
-/* Manage Range Slider */
-function rangeSlider(){
-    if ($('.range-slider').length && $.fn.ionRangeSlider) {
-        $('.range-slider').each(function () {
-            $(this).ionRangeSlider({
-                min: $(this).data('min') ? $(this).data('min') : 0,
-                max: $(this).data('max') ? $(this).data('max') : 5000,
-                hideMinMax: $(this).data('hideMinMax') ? $(this).data('hideMinMax') : false,
-                hideFromTo: $(this).data('hideFromTo') ? $(this).data('hideFromTo') : false,
-                to: $(this).data('to') ? $(this).data('to') : '',
-                step: $(this).data('step') ? $(this).data('step') : '',
-                type: $(this).data('type') ? $(this).data('type') : 'double',
-                prefix: $(this).data('prefix') ? $(this).data('prefix') : '',
-                postfix: $(this).data('postfix') ? $(this).data('postfix') : '',
-                maxPostfix: $(this).data('maxPostfix') ? $(this).data('maxPostfix') : '',
-                hasGrid: $(this).data('hasGrid') ? $(this).data('hasGrid') : false
-            });
-        });
-    }
-}
-
-function inputSelect(){
-
-    if($.fn.select2){
-        setTimeout(function () {
-            $('select').each(function(){
-                function format(state) {
-                    var state_id = state.id;
-                    if (!state_id)  return state.text; // optgroup
-                    var res = state_id.split("-");
-                    if(res[0] == 'image') {
-                        if(res[2]) return "<img class='flag' src='images/flags/" + res[1].toLowerCase() + "-" + res[2].toLowerCase() +".png' style='width:27px;padding-right:10px;margin-top: -3px;'/>" + state.text;
-                        else return "<img class='flag' src='images/flags/" + res[1].toLowerCase() + ".png' style='width:27px;padding-right:10px;margin-top: -3px;'/>" + state.text;
-                    }
-                    else {
-                        return state.text;
-                    }
-                }
-                $(this).select2({
-                    formatResult: format,
-                    formatSelection: format,
-                    placeholder: $(this).data('placeholder') ?  $(this).data('placeholder') : '',
-                    allowClear: $(this).data('allowclear') ? $(this).data('allowclear') : true,
-                    minimumInputLength: $(this).data('minimumInputLength') ? $(this).data('minimumInputLength') : -1,
-                    minimumResultsForSearch: $(this).data('search') ? 1 : -1,
-                    dropdownCssClass: $(this).data('style') ? 'form-white' : ''
-                });
-            });
-
-        }, 200);
-    }
-}
-
-function inputTags(){
-    $('.select-tags').each(function(){
-        $(this).tagsinput({
-            tagClass: 'label label-primary'
-        });
-    });
-
-}
-
 /****  Summernote Editor  ****/
-function editorSummernote(){
+function editorSummernote() {
     if ($('.summernote').length && $.fn.summernote) {
         $('.summernote').each(function () {
             $(this).summernote({
                 height: 300,
-                airMode : $(this).data('airmode') ? $(this).data('airmode') : false,
+                airMode: $(this).data('airmode') ? $(this).data('airmode') : false,
                 airPopover: [
                     ["style", ["style"]],
                     ['color', ['color']],
@@ -454,7 +386,8 @@ function liveTile() {
 
     if ($('.live-tile').length && $.fn.liveTile) {
         $('.live-tile').each(function () {
-            $(this).liveTile("destroy", true); /* To get new size if resize event */
+            $(this).liveTile("destroy", true);
+            /* To get new size if resize event */
             tile_height = $(this).data("height") ? $(this).data("height") : $(this).find('.panel-body').height() + 52;
             $(this).height(tile_height);
             $(this).liveTile({
@@ -469,19 +402,24 @@ function liveTile() {
     }
 }
 
-function animateNumber(){
-    $('.countup').each(function(){
-        from     = $(this).data("from") ? $(this).data("from") : 0;
-        to       = $(this).data("to") ? $(this).data("to") : 100;
+function animateNumber() {
+    $('.countup').each(function () {
+        from = $(this).data("from") ? $(this).data("from") : 0;
+        to = $(this).data("to") ? $(this).data("to") : 100;
         duration = $(this).data("duration") ? $(this).data("duration") : 2;
-        delay    = $(this).data("delay") ? $(this).data("delay") : 1000;
+        delay = $(this).data("delay") ? $(this).data("delay") : 1000;
         decimals = $(this).data("decimals") ? $(this).data("decimals") : 0;
-        var options = {useEasing : true, useGrouping : true,  separator : ',', prefix : $(this).data("prefix") ? $(this).data("  prefix") : '', suffix : $(this).data("suffix") ? $(this).data("suffix") : ''
+        var options = {
+            useEasing: true,
+            useGrouping: true,
+            separator: ',',
+            prefix: $(this).data("prefix") ? $(this).data("  prefix") : '',
+            suffix: $(this).data("suffix") ? $(this).data("suffix") : ''
         }
-        var numAnim = new countUp($(this).get(0),from, to, decimals, duration, options);
-        setTimeout(function(){
+        var numAnim = new countUp($(this).get(0), from, to, decimals, duration, options);
+        setTimeout(function () {
             numAnim.start();
-        },delay);
+        }, delay);
     });
 }
 
@@ -490,10 +428,6 @@ $(document).ready(function () {
 
     sortablePortlets();
     popover();
-    sliderIOS();
-    rangeSlider();
-    inputSelect();
-    inputTags();
     editorSummernote();
     liveTile();
     animateNumber();

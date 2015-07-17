@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <p class="weather-date"></p>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6">
                     <ul class="list-unstyled weather-info">
                         <li>Видимость
                             <span class="pull-right"><b><?= $visibility ?></b></span>
@@ -119,7 +119,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6">
                     <ul class="list-unstyled weather-info">
                         <li>Ветер
                             <span class="pull-right"><b><?= $wind ?></b></span>
