@@ -22,5 +22,8 @@ phpunit.phar
 # Vagrant
 /.vagrant
 
-#env
+# Environment
 .env
+
+# Weather
+/web/weather.json

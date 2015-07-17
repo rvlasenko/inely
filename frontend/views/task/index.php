@@ -12,6 +12,7 @@
 
     $this->title = 'Ваши задачи';
     $this->registerJs("modal('/task/create', '#modal-add', false)");
+    $this->registerJs("modal('/todo/cat', '#modal-slideleft', false)");
 ?>
 
 <div class="main-content">
@@ -83,11 +84,17 @@
                     'format' => 'raw',
                     'width' => '250px',
                     'value' => function($model) {
+                        $formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
+                        $formatter->setPattern('dd MMMM yyyy H:mm');
+                        $format = new DateTime();
+                        $dateTime = $formatter->format($format->setTimestamp((int)$model->time));
+
                         return DateTimePicker::widget([
                             'name' => 'datetime',
-                            'value' => $model->time,
+                            'value' => $dateTime,
                             'language' => 'ru',
                             'removeButton' => false,
+                            'convertFormat' => true,
                             'pickerButton' => [
                                 'icon' => 'time'
                             ],
@@ -99,8 +106,13 @@
                                 'todayBtn' => true,
                                 'todayHighlight' => true,
                                 'minuteStep' => 10,
-                                'format' => 'dd MM yyyy hh:ii',
+                                'format' => 'dd MMMM yyyy H:mm',
                                 'weekStart' => 1
+                            ],
+                            'pluginEvents' => [
+                                'changeDate' => "function(ev) {
+                                    sendDateTime(ev);
+                                }"
                             ]
                         ]);
                     }

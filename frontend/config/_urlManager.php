@@ -21,7 +21,9 @@ return [
 
         // Задачи
         'todo' => '/task/index',
-        'cat' => '/task/cat',
+        'edit' => '/task/edit',
+        'todo/edit' => '/task/edit',
+        'todo/cat' => '/task/cat',
         'todo/sort' => '/task/sort',
         'todo/delete' => '/task/delete',
 

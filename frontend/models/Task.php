@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use DateTime;
 
 /**
  * This is the model class for table "tasks".
@@ -23,7 +24,8 @@ use yii\helpers\Url;
 class Task extends ActiveRecord
 {
     /**
-     * @inheritdoc
+     * Table name
+     * @return string
      */
     public static function tableName()
     {
@@ -31,7 +33,8 @@ class Task extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Rules for table fields
+     * @return array
      */
     public function rules()
     {
@@ -45,7 +48,8 @@ class Task extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * Labels for fields
+     * @return array
      */
     public function attributeLabels()
     {
@@ -59,6 +63,7 @@ class Task extends ActiveRecord
     }
 
     /**
+     * Relation with the table "tasks_cat"
      * @return \yii\db\ActiveQuery
      */
     public function getTasks_cat()
@@ -67,6 +72,7 @@ class Task extends ActiveRecord
     }
 
     /**
+     * Method for save user task
      * @return bool
      */
     public function setTask()
@@ -74,8 +80,14 @@ class Task extends ActiveRecord
         if ($this->validate()) {
             $model = new Task();
 
+
             $model->name = $this->name;
             $model->category = $this->category;
+            $date = DateTime::createFromFormat('!dd mm yyyy H:mm', '22 07 2008 12:21');
+            ///$model->time = $date->format('U');
+            $model->time = strptime('22 07 2008 12:21', '%dd %mm %yyyy %H:%ii');
+            //$formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
+            //$model->time = $formatter->parse('22 07 2008');
             $model->author = Yii::$app->user->id;
 
             if ($model->save())
@@ -85,6 +97,7 @@ class Task extends ActiveRecord
     }
 
     /**
+     * Get NavBar items from multiple tables
      * @return array
      */
     public static function getItems()

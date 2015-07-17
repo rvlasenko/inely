@@ -8,7 +8,6 @@ body {
     color: #5B5B5B;
     font-family: 'Open Sans', sans-serif !important;
     line-height: 1.42857143;
-    -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
@@ -1713,6 +1712,11 @@ ul.weather-days > li {
 
 .builder .switch {
     margin-top: -4px;
+}
+
+.datetimepicker th.switch {
+    width: 145px;
+    text-transform: capitalize;
 }
 
 .builder .builder-toggle {

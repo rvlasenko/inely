@@ -9,7 +9,6 @@ use Yii;
 use yii\db\Query;
 use yii\web\Response;
 use yii\helpers\Url;
-use yii\helpers\Json;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
 use yii\data\ActiveDataProvider;
@@ -75,6 +74,23 @@ class TaskController extends Controller
     }
 
     /**
+     * @return bool
+     */
+    public function actionEdit()
+    {
+        if (Yii::$app->request->post()) {
+            $taskId = Yii::$app->request->post('id');
+            $dateTime = Yii::$app->request->post('time');
+            $model = Task::findOne($taskId);
+
+            if ($model->time = $dateTime)
+                $model->save();
+
+            return true;
+        }
+    }
+
+    /**
      * @return string
      */
     public function actionSort()
@@ -106,7 +122,7 @@ class TaskController extends Controller
         ]);
 
         return $this->renderAjax('cat/index', [
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 
@@ -171,7 +187,7 @@ class TaskController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->actionIndex();
     }
 
     /**

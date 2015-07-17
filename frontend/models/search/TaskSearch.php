@@ -12,9 +12,6 @@ use frontend\models\Task;
  */
 class TaskSearch extends Task
 {
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -23,9 +20,6 @@ class TaskSearch extends Task
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class

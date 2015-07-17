@@ -53,6 +53,7 @@
         'options' => ['class' => 'col-md-12']
     ])->widget(DateTimePicker::className(), [
         'language' => 'ru',
+        'convertFormat' => true,
         'pickerButton' => [
             'icon' => 'time'
         ],
@@ -64,7 +65,7 @@
             'todayBtn' => true,
             'todayHighlight' => true,
             'minuteStep' => 10,
-            'format' => 'dd MM yyyy hh:ii',
+            'format' => 'dd MMMM yyyy H:mm',
             'weekStart' => 1,
             'orientation' => 'bottom right'
         ]

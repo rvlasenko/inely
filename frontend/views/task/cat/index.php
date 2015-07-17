@@ -67,7 +67,10 @@
         'pjax' => true,
         'pjaxSettings' => [
             'neverTimeout' => true,
-            'loadingCssClass' => false
+            'loadingCssClass' => false,
+            'options' => [
+                'id' => 'cat-wrapper'
+            ]
         ],
     ]);
 ?>

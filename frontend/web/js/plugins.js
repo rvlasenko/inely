@@ -5,10 +5,29 @@ var doc = document;
 /* MAIN PAGE                                                 */
 /* ========================================================= */
 
+function sendDateTime(ev) {
+    var dateTime = ev.date.valueOf().toString();
+    var id = $(ev.target).parent().parent().data('key');
+
+    $.ajax({
+        url: 'edit',
+        dataType: 'json',
+        method: 'post',
+        data: {
+            id: id,
+            time: dateTime.slice(0, -3)
+        },
+        success: function() {
+            alert('Данные обновлены');
+        }
+    });
+}
+
 /**
  * just calling modal window
  * @param url
  * @param id
+ * @param show
  */
 function modal(url, id, show) {
     if (!$(id + ' .modal-body .row').length) {
@@ -16,6 +35,11 @@ function modal(url, id, show) {
             $(id + ' .modal-body').html(html);
             if (show) $(id).modal('show', {
                 backdrop: 'static'
+            });
+        }).done(function() {
+            $.pjax.reload({
+                url: '/todo',
+                container: '#pjax-wrapper'
             });
         });
     }
@@ -56,10 +80,6 @@ function generate(title, img, desc, link, linkDesc) {
 }
 
 jQuery(function($) {
-    // modal call. desc of the function is above
-    $('a.edit').click(function() {
-        modal('/cat', '#modal-slideleft', true);
-    });
 
     // pjax grid reloading on click by category
     $('.kv-sidenav li a').click(function() {
@@ -67,6 +87,20 @@ jQuery(function($) {
             url: $(this).attr('href'),
             container: '#pjax-wrapper'
         });
+
+        return false;
+    });
+
+    $('.kv-grid-table tbody tr td a').click(function() {
+        if (confirm("Удалить эту задачу из списка?")) {
+            $.pjax.reload({
+                type: 'POST',
+                push: false,
+                history: false,
+                url: $(this).attr('href'),
+                container: '#pjax-wrapper'
+            });
+        }
 
         return false;
     });
