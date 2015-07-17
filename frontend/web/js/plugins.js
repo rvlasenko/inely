@@ -45,6 +45,23 @@ function modal(url, id, show) {
     }
 }
 
+function sendRating(ev, val) {
+    var id = $(ev.target).parent().parent().parent().parent().data('key');
+
+    $.ajax({
+        url: 'edit',
+        dataType: 'json',
+        method: 'post',
+        data: {
+            id: id,
+            rate: val
+        },
+        success: function() {
+            alert('Данные обновлены');
+        }
+    });
+}
+
 /**
  * generate noty notification
  * @param title

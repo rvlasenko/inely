@@ -65,7 +65,7 @@
             'todayBtn' => true,
             'todayHighlight' => true,
             'minuteStep' => 10,
-            'format' => 'dd MMMM yyyy H:mm',
+            'format' => 'dd MM yyyy H:mm',
             'weekStart' => 1,
             'orientation' => 'bottom right'
         ]

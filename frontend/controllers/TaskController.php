@@ -80,12 +80,15 @@ class TaskController extends Controller
     {
         if (Yii::$app->request->post()) {
             $taskId = Yii::$app->request->post('id');
-            $dateTime = Yii::$app->request->post('time');
             $model = Task::findOne($taskId);
 
-            if ($model->time = $dateTime)
-                $model->save();
+            $dateTime = !$_POST['time'] ? false : $_POST['time'];
+            $rating = !$_POST['rate'] ? false : $_POST['rate'];
 
+            !$dateTime ? null : $model->time = $dateTime;
+            !$rating ? null : $model->priority = $rating;
+
+            $model->save();
             return true;
         }
     }
@@ -102,6 +105,21 @@ class TaskController extends Controller
                 Yii::$app->request->queryParams,
                 $_GET['TaskSearch'] ? $_GET['TaskSearch']['category'] : false
             );
+
+        // Check editable bootstrap ajax request
+        if (Yii::$app->request->post('hasEditable')) {
+            $taskId = Yii::$app->request->post('editableKey');
+            $model = Task::findOne($taskId);
+
+            $post = [];
+            $posted = current($_POST['Task']);
+            $post['Task'] = $posted;
+
+            if ($model->load($post))
+                $model->save();
+
+            return true;
+        }
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

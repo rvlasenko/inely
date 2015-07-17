@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use DateTime;
+use DateTimeZone;
 
 /**
  * This is the model class for table "tasks".
@@ -79,16 +80,10 @@ class Task extends ActiveRecord
     {
         if ($this->validate()) {
             $model = new Task();
-
-
             $model->name = $this->name;
             $model->category = $this->category;
-            $date = DateTime::createFromFormat('!dd mm yyyy H:mm', '22 07 2008 12:21');
-            ///$model->time = $date->format('U');
-            $model->time = strptime('22 07 2008 12:21', '%dd %mm %yyyy %H:%ii');
-            //$formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
-            //$model->time = $formatter->parse('22 07 2008');
             $model->author = Yii::$app->user->id;
+            $model->time = DateTime::createFromFormat('!d m Y H:i', $this->time, new DateTimeZone('UTC'))->format('U');
 
             if ($model->save())
                 return true;
@@ -114,7 +109,8 @@ class Task extends ActiveRecord
                 ->where(['category' => $model->id])
                 ->count();
 
-            $head = [
+            $head =
+            [
                 [
                     'label' => 'Все подряд',
                     'url' => Url::toRoute(['/todo'])

@@ -84,7 +84,7 @@
                     'format' => 'raw',
                     'width' => '250px',
                     'value' => function($model) {
-                        $formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
+                        $formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'UTC');
                         $formatter->setPattern('dd MMMM yyyy H:mm');
                         $format = new DateTime();
                         $dateTime = $formatter->format($format->setTimestamp((int)$model->time));
@@ -142,6 +142,11 @@
                                 'stars' => 4,
                                 'min' => 0,
                                 'max' => 4
+                            ],
+                            'pluginEvents' => [
+                                'rating.change' => "function(ev, val) {
+                                    sendRating(ev, val);
+                                }"
                             ]
                         ]);
                     }
