@@ -129,25 +129,6 @@ function handleTheme() {
     }
 }
 
-/* Background Color */
-function backgroundColor() {
-    $('.bg-color').on('click', function (e) {
-        e.preventDefault();
-        var bg_color = $(this).data('color');
-        var bg_name = $(this).attr('data-bg');
-        $('body').removeClass(function (index, css) {
-            return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
-        });
-        $('body').addClass('bg-' + bg_name);
-        $('.bg-color').removeClass('active');
-        $(this).addClass('active');
-        $.cookie('bg-color', bg_color);
-        $.cookie('bg-name', bg_name);
-        $.cookie('bg-color', bg_color, {path: '/'});
-        $.cookie('bg-name', bg_name, {path: '/'});
-    });
-}
-
 /* Manage Cookie */
 function handleCookie() {
     if ($.cookie('fluid-topbar')) handleTopbarFluid();
@@ -205,23 +186,6 @@ function handleCookie() {
         });
         $('body').addClass('color-default');
     }
-    // Background Color
-    var bg_color;
-    if ($.cookie('bg-color')) {
-        bg_color = $.cookie('bg-color');
-        $('.bg-color').each(function () {
-            if ($(this).data('color') == bg_color) $(this).addClass('active');
-        });
-    }
-    if ($.cookie('bg-name')) {
-        bg_color = $.cookie('bg-name');
-        $('body').addClass('bg-' + bg_color);
-    }
-    if (!$.cookie('bg-color')) {
-        $('.bg-color').each(function () {
-            if ($(this).data('color') == '#E9E9E9') $(this).addClass('active');
-        });
-    }
     // Sidebar Color
     if ($.cookie('theme')) {
         $('body').removeClass(function (index, css) {
@@ -262,7 +226,6 @@ $(document).ready(function () {
     handleTheme();
     handleCookie();
     mainColor();
-    backgroundColor();
     resetStyle();
 
     if ($('body').hasClass('sidebar-top')) {

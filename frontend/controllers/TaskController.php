@@ -90,9 +90,9 @@ class TaskController extends Controller
 
             if ($model->save())
                 return [
-                    'title' => 'Вы великолепны!',
-                    'icon' => 'images/flat/compose.png',
-                    'desc' => 'Ваши данные успешно обновлены.'
+                    'title' => 'Великолепно!',
+                    'desc' => 'Ваши данные успешно обновлены.',
+                    'icon' => '/images/flat/compose.png' //Yii::$app->controller->action->id != 'sort' ? '/images/flat/compose.png' :
                 ];
         }
     }
