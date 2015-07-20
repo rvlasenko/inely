@@ -19,6 +19,16 @@ $config = [
     ],
 
     'components' => [
+        'view' => [
+            'theme' => [
+                'baseUrl' => '@web/',
+                'pathMap' => [
+                    '@app/views' => [
+                        '@webroot/themes/make/views'
+                    ]
+                ],
+            ],
+        ],
         'assetManager' => [
             'class' => 'yii\web\AssetManager',
             'bundles' => [

@@ -24,6 +24,36 @@ $(window).load(function () {
 /* LAYOUTS API                                                */
 /* ========================================================= */
 
+/* Create Sidebar Fluid / Remove Sidebar Fixed */
+function handleSidebarFluid() {
+    $('#switch-sidebar').prop('checked', false);
+    if ($('body').hasClass('sidebar-hover')) {
+        removeSidebarHover();
+        $('#switch-sidebar-hover').prop('checked', false);
+    }
+    $('body').removeClass('fixed-sidebar');
+    handleboxedLayout();
+    destroySideScroll();
+    $.removeCookie('fixed-sidebar');
+    $.removeCookie('fixed-sidebar', {
+        path: '/'
+    });
+    $.cookie('fluid-sidebar', 1);
+    $.cookie('fluid-sidebar', 1);
+    $.cookie('fluid-sidebar', 1, {
+        path: '/'
+    });
+    $.cookie('fluid-sidebar', 1, {
+        path: '/'
+    });
+}
+
+/* Toggle Sidebar Fixed / Fluid */
+function toggleSidebar() {
+    if ($('body').hasClass('fixed-sidebar')) handleSidebarFluid();
+    else handleSidebarFixed();
+}
+
 /* Create Sidebar Fixed */
 function handleSidebarFixed() {
     // removeSidebarHover();
