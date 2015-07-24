@@ -8,6 +8,9 @@ require(__DIR__ . '/../../common/env.php');
 // Yii
 require(__DIR__ . '/../../vendor/yiisoft/yii2/Yii.php');
 
+// Bootstrap application
+require(__DIR__ . '/../../common/config/bootstrap.php');
+
 $config = \yii\helpers\ArrayHelper::merge(
     require(__DIR__ . '/../../common/config/base.php'),
     require(__DIR__ . '/../../common/config/main.php'),

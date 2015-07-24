@@ -47,9 +47,8 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
+            if (!$user || !$user->validatePassword($this->password))
                 $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
-            }
         }
     }
 
@@ -60,11 +59,10 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
-            if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 2592000 : 0)) {
+        if ($this->validate())
+            if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 2592000 : 0))
                 return true;
-            }
-        }
+
         return false;
     }
 

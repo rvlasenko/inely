@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\LoginForm;
 use Yii;
 
 /**
@@ -15,10 +16,27 @@ class SiteController extends \yii\web\Controller
     public function actions()
     {
         return [
+            /*[
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 60
+            ],*/
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ]
         ];
+    }
+
+    public function actionIndex()
+    {
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        } else {
+            return $this->render('../sign-in/login', [
+                'model' => $model
+            ]);
+        }
     }
 
     public function beforeAction($action)

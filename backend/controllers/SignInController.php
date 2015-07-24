@@ -19,7 +19,7 @@ class SignInController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post']
+                    'logout' => ['get']
                 ]
             ]
         ];
@@ -28,9 +28,8 @@ class SignInController extends Controller
     public function actionLogin()
     {
         $this->layout = 'base';
-        if (!Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->isGuest)
             return $this->goHome();
-        }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
@@ -53,7 +52,7 @@ class SignInController extends Controller
         $model = Yii::$app->user->identity->userProfile;
         if ($model->load($_POST) && $model->save()) {
             Yii::$app->session->setFlash('alert', [
-                'options' => ['class' => 'alert-success'],
+                'options' => [ 'class' => 'alert-success' ],
                 'body' => Yii::t('backend', 'Your account has been successfully saved', [], $model->locale)
             ]);
             return $this->refresh();

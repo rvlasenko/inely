@@ -84,9 +84,9 @@ class UserForm extends Model
 
     public function getModel()
     {
-        if (!$this->model) {
+        if (!$this->model)
             $this->model = new User();
-        }
+
         return $this->model;
     }
 
@@ -103,19 +103,19 @@ class UserForm extends Model
             $model->username = $this->username;
             $model->email = $this->email;
             $model->status = $this->status;
-            if ($this->password) {
+            if ($this->password)
                 $model->setPassword($this->password);
-            }
-            if ($model->save() && $isNewRecord) {
+
+            if ($model->save() && $isNewRecord)
                 $model->afterSignup();
-            }
+
             $auth = Yii::$app->authManager;
             $auth->revokeAll($model->getId());
 
             if (!empty($this->roles) && is_array($this->roles)) {
-                foreach ($this->roles as $role) {
+                foreach ($this->roles as $role)
                     $auth->assign($auth->getRole($role), $model->getId());
-                }
+
             }
 
             return !$model->hasErrors();

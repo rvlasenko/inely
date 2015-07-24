@@ -25,10 +25,6 @@ return [
         'todo/edit' => '/task/edit',
         'todo/cat' => '/task/cat',
         'todo/sort' => '/task/sort',
-        'todo/delete' => '/task/delete',
-
-        // Api
-        ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/article', 'only' => ['index', 'view', 'options']],
-        ['class' => 'yii\rest\UrlRule', 'controller' => 'api/v1/user', 'only' => ['index', 'view', 'options']]
+        'todo/delete' => '/task/delete'
     ]
 ];

@@ -14,8 +14,6 @@
         "himiklab/yii2-recaptcha-widget" : "*",
         "vlucas/phpdotenv": "~1.0",
         "mihaildev/yii2-elfinder": "*",
-        "bower-asset/admin-lte": "~2.0",
-        "bower-asset/flot": "~0.8",
         "FortAwesome/Font-Awesome": "*",
         "kartik-v/yii2-grid": "*",
         "kartik-v/yii2-editable": "*",

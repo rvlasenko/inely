@@ -1,7 +1,6 @@
 <?php
 namespace common\models;
 
-use frontend\models\TaskCat;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -56,9 +55,7 @@ class User extends ActiveRecord implements IdentityInterface
             TimestampBehavior::className(),
             'auth_key' => [
                 'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key'
-                ],
+                'attributes' => [ ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key' ],
                 'value' => Yii::$app->getSecurity()->generateRandomString()
             ]
         ];
@@ -71,11 +68,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return ArrayHelper::merge(
             parent::scenarios(),
-            [
-                'oauth_create' => [
-                    'oauth_client', 'oauth_client_user_id', 'email', 'username', '!status'
-                ]
-            ]
+            ['oauth_create' => [ 'oauth_client', 'oauth_client_user_id', 'email', 'username', '!status' ]]
         );
     }
 
@@ -112,7 +105,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getUserProfile()
     {
-        return $this->hasOne(UserProfile::className(), ['user_id' => 'id']);
+        return $this->hasOne(UserProfile::className(), [ 'user_id' => 'id' ]);
     }
 
     /**
@@ -128,7 +121,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return static::findOne(['auth_key' => $token, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne([ 'auth_key' => $token, 'status' => self::STATUS_ACTIVE ]);
     }
 
     /**
@@ -139,7 +132,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne([ 'username' => $username, 'status' => self::STATUS_ACTIVE ]);
     }
 
     /**
@@ -288,12 +281,12 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getPublicIdentity()
     {
-        if ($this->userProfile && $this->userProfile->getFullname() !== null) {
+        if ($this->userProfile && $this->userProfile->getFullname() !== null)
             return $this->userProfile->getFullname();
-        }
-        if ($this->username) {
+
+        if ($this->username)
             return $this->username;
-        }
+
         return $this->email;
     }
 

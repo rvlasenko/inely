@@ -3,6 +3,17 @@ $config = [
     'homeUrl' => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute' => 'site/index',
+
+    'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ],
+        'i18n' => [
+            'class' => 'backend\modules\i18n\Module',
+            'defaultRoute' => 'i18n-message/index'
+        ]
+    ],
+
     'controllerMap' => [
         'file-manager-elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
@@ -23,12 +34,36 @@ $config = [
     ],
 
     'components' => [
+
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => [
+                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
+                    ]
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [
+                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css',
+                    ]
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => [
+                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js',
+                    ]
+                ]
+            ],
+        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
         'request' => [
             'cookieValidationKey' => getenv('BACKEND_COOKIE_VALIDATION_KEY')
         ],
+
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
@@ -36,56 +71,8 @@ $config = [
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
         ],
-    ],
-
-    'modules' => [
-        'i18n' => [
-            'class' => 'backend\modules\i18n\Module',
-            'defaultRoute' => 'i18n-message/index'
-        ]
-    ],
-
-    'as globalAccess' => [
-        'class' => '\common\components\behaviors\GlobalAccessBehavior',
-        'rules' => [
-            [
-                'controllers' => ['sign-in'],
-                'allow' => true,
-                'roles' => ['?'],
-                'actions' => ['login']
-            ],
-            [
-                'controllers' => ['sign-in'],
-                'allow' => true,
-                'roles' => ['@'],
-                'actions' => ['logout']
-            ],
-            [
-                'controllers' => ['site'],
-                'allow' => true,
-                'roles' => ['?', '@'],
-                'actions' => ['error']
-            ],
-            [
-                'controllers' => ['debug/default'],
-                'allow' => true,
-                'roles' => ['?'],
-            ],
-            [
-                'controllers' => ['user'],
-                'allow' => true,
-                'roles' => ['administrator'],
-            ],
-            [
-                'controllers' => ['user'],
-                'allow' => false,
-            ],
-            [
-                'allow' => true,
-                'roles' => ['manager'],
-            ]
-        ]
     ]
+
 ];
 
 if (YII_ENV_DEV) {
