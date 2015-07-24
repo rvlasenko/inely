@@ -2,13 +2,14 @@
 
 namespace backend\controllers;
 
-use backend\models\LoginForm;
 use Yii;
+use yii\helpers\Url;
+use yii\web\Controller;
 
 /**
  * Site controller
  */
-class SiteController extends \yii\web\Controller
+class SiteController extends Controller
 {
     /**
      * @inheritdoc
@@ -33,19 +34,15 @@ class SiteController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('../sign-in/login', [
-                'model' => $model
-            ]);
-        }
+        return $this->render('index');
     }
 
     public function beforeAction($action)
     {
         $this->layout = Yii::$app->user->isGuest ? 'base' : 'common';
-        return parent::beforeAction($action);
+        parent::beforeAction($action);
+
+        if (Yii::$app->getUser()->isGuest && Yii::$app->getRequest()->url !== Url::to(\Yii::$app->getUser()->loginUrl))
+            Yii::$app->getResponse()->redirect(\Yii::$app->getUser()->loginUrl);
     }
 }

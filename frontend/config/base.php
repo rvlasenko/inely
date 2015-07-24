@@ -8,13 +8,15 @@ return [
         'urlManagerBackend' => [
             'class' => 'yii\web\urlManager',
             'showScriptName' => false,
-            'baseUrl' => 'http://backend.madeasy.local',
+            'enablePrettyUrl' => true,
+            'baseUrl' => '//backend.madeasy.local',
         ],
 
         'urlManagerFrontend' => [
             'class' => 'yii\web\urlManager',
             'showScriptName' => false,
-            'baseUrl' => 'http://madeasy.local',
+            'enablePrettyUrl' => true,
+            'baseUrl' => '//madeasy.local',
         ]
     ]
 ];

@@ -5,7 +5,7 @@ return [
     'showScriptName' => false,
     'rules' => [
         // Базовые правила
-        //'' => '/site/index',
+        '' => '/site/index',
         'contact' => '/site/contact',
 
         // Регистрация

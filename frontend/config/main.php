@@ -75,7 +75,7 @@ $config = [
         ],
 
         'session' => [
-            'cookieParams' => ['madeasy' => '.madeasy.local'],
+            'cookieParams' => ['domain' => '.madeasy.local'],
         ],
 
         'request' => [
@@ -90,11 +90,11 @@ $config = [
             'loginUrl' => '/user/sign-in/login',
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior',
-            'identityCookie' => [
+            /*'identityCookie' => [
                 'name' => '_identity',
                 'httpOnly' => true,
                 'domain' => '.madeasy.local',
-            ]
+            ]*/
         ]
     ]
 ];

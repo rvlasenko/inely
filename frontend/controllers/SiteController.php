@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use frontend\models\ContactForm;
 use Yii;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 /**
@@ -21,27 +22,9 @@ class SiteController extends Controller
         ];
     }
 
-    public function beforeAction($action)
-    {
-        if (parent::beforeAction($action)) {
-            if ($action->id == 'error')
-                $this->layout = '_error';
-            return true;
-        } else
-            return false;
-    }
-
-    /**
-     * @return string
-     * Определение категории пользователя
-     * Также из модели дергаются методы и всё отправляется в index
-     */
-
     public function actionIndex()
     {
-        return Yii::$app->user->isGuest ?
-            $this->redirect(Yii::$app->urlManagerFrontend->createUrl('')) :
-            $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
+        return $this->render('index');
     }
 
     public function actionContact()
@@ -61,5 +44,19 @@ class SiteController extends Controller
 
         if ($exception !== null)
             return $this->render('error', ['exception' => $exception]);
+    }
+
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            if ($action->id == 'error')
+                $this->layout = '_error';
+            return true;
+        } else {
+            if (Yii::$app->getUser()->isGuest && Yii::$app->getRequest()->url !== Url::to(\Yii::$app->getUser()->loginUrl))
+                $this->redirect(Yii::$app->urlManagerFrontend->createUrl(''));
+            else
+                $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
+        }
     }
 }
