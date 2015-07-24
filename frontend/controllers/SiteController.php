@@ -50,10 +50,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        if (!Yii::$app->user->isGuest)
-            return $this->render('index');
-        else
-            return $this->render('landing');
+        return $this->render('index');
     }
 
     public function actionContact()

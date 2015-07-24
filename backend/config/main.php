@@ -2,7 +2,7 @@
 $config = [
     'homeUrl' => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute' => 'timeline-event/index',
+    'defaultRoute' => 'site/index',
     'controllerMap' => [
         'file-manager-elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',

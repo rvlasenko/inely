@@ -1,336 +1,374 @@
-<?php
-    use yii\helpers\Html;
-
-    $this->title = 'Ваша доска';
-?>
-
-<div class="main-content">
-<div class="topbar">
-    <?php include __DIR__ . '/../layouts/templates/topbar.php' ?>
+<div class="preloader">
+    <div class="status">&nbsp;</div>
 </div>
 
-<div class="page-content page-thin">
-<div class="row">
+<header class="header" data-stellar-background-ratio="0.5" id="home">
 
-    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-content widget-info">
-                <div class="row">
-                    <div class="left">
-                        <i class="fa fa-twitter bg-green"></i>
-                    </div>
-                    <div class="right">
-                        <p class="number countup" data-from="0" data-to="52000">52,000</p>
-                        <p class="text">New robots</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-content widget-info">
-                <div class="row">
-                    <div class="left">
-                        <i class="fa fa-bug bg-blue"></i>
-                    </div>
-                    <div class="right">
-                        <p class="number countup" data-from="0" data-to="575" data-suffix="k">575k</p>
-                        <p class="text">Bugs Intruded</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-content widget-info">
-                <div class="row">
-                    <div class="left">
-                        <i class="fa fa-fire-extinguisher bg-red"></i>
-                    </div>
-                    <div class="right">
-                        <p class="number countup" data-from="0" data-to="463" data-suffix="k">463k</p>
-                        <p class="text">Extinguishers</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-xlg-3 col-lg-3 col-md-3 col-sm-3 col-xs-6">
-        <div class="panel">
-            <div class="panel-content widget-info">
-                <div class="row">
-                    <div class="left">
-                        <i class="fa fa-fire-extinguisher bg-purple"></i>
-                    </div>
-                    <div class="right">
-                        <p class="number countup" data-from="0" data-to="1210">1210</p>
-                        <p class="text">Extinguishers</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="color-overlay full-screen">
 
-</div>
-<div class="row">
+        <div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation">
+            <div class="container">
+                <div class="navbar-header">
 
-    <div class="col-xlg-6 col-lg-5">
-        <div class="panel widget-map">
-            <div id="calendar"></div>
-        </div>
-    </div>
-    <div class="col-xlg-4 col-sm-6 col-lg-4 todo-pan">
-        <div class="panel">
-            <div class="panel-header">
-                <h3>
-                    <i class="icon-list"></i>
-                    <strong>Todo</strong> List
-                </h3>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#kane-navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="#"><img src="images/logo-black.png" alt=""></a>
+
+                </div>
+
+                <div class="navbar-collapse collapse" id="kane-navigation">
+                    <ul class="nav navbar-nav navbar-right main-navigation">
+                        <li><a href="#home">Вход</a></li>
+                        <li><a href="#features">Особенности</a></li>
+                        <li><a href="#services">Почему мы?</a></li>
+                        <li><a href="#brief2">Описание</a></li>
+                        <li><a href="#screenshot-section">Скриншоты</a></li>
+                        <li><a href="#contact">Контакт</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="panel-content p-t-0 p-b-0 widget-news">
-                <div class="withScroll" data-height="400">
-                    <div class="panel-content">
-                        <ul class="todo-list">
-                            <?php /*foreach ($tasks as $task): ?>
-                                <li class="<?= Html::encode($task['priority']) ?>
-                                    <?= Html::encode($task['is_done']) ? 'done' : null ?>">
-                                <span class="span-check">
-                                    <input id="<?= Html::encode($task['id']) ?>" class="task-check" type="checkbox" data-checkbox="icheckbox_square-blue"
-                                           <?= Html::encode($task['is_done']) ? 'checked' : null ?>>
-                                </span>
-                                <span class="todo-task">
-                                    <?= Html::encode($task['name']) ?>
-                                </span>
-                                    <div class="todo-date clearfix">
-                                        <div class="completed-date"></div>
-                                        <div class="due-date">Выполнить до
-                                        <span class="due-date-span">
-                                            <?= Html::encode($task['time']) ?>
-                                        </span>
-                                        </div>
-                                    </div>
-                                    <span class="todo-options pull-right">
-                                        <a href="#" class="todo-delete">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </span>
-                                    <div class="todo-tags pull-right">
-                                        <div class="label label-success">
-                                            <?= Html::encode($task['tasks_cat']['name']) ?>
-                                        </div>
-                                    </div>
-                                </li>
-                            <?php endforeach */?>
-                        </ul>
-                        <div class="clearfix m-t-10">
-                            <div class="pull-right">
-                                <button type="button" class="btn btn-sm btn-dark add-task">Добавить задачу</button>
-                            </div>
-                        </div>
+        </div>
+
+        <div class="container">
+            <div class="only-logo">
+                <div class="navbar">
+                    <div class="navbar-header">
+                        <img src="images/logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="intro-section">
+
+                        <h1 class="intro">Начните осознавать свои возможности с flatask.</h1>
+                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
+                        <button class="butn butn-1 butn-1a log" data-toggle="modal" data-target="#myModal">Войти!</button>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xlg-2 col-sm-6 col-lg-3 hidden-xs">
+</header>
+
+<section class="features" id="features">
+    <div class="container">
+        <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+
+            <h2 class="dark-text">Удивительные особенности</h2>
+
+            <div class="colored-line"></div>
+            <div class="section-description">
+                Потрясающие функции, которые позволят Вам добиться успеха
+            </div>
+            <div class="colored-line"></div>
+        </div>
+
         <div class="row">
-            <div class="col-md-12">
-                <ul class="jquery-clock medium" data-jquery-clock="">
-                    <li class="jquery-clock-sec"></li>
-                    <li class="jquery-clock-noty">
-                        <div class="tooltipp tooltip-west">
-                            <span class="tooltip-item"></span>
-                        </div>
-                    </li>
-                    <li class="jquery-clock-min"></li>
-                    <li class="jquery-clock-hour"></li>
-                </ul>
+
+            <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10"
+                 data-wow-duration="1.5s">
+
+                <div class="feature">
+                    <div class="icon-container">
+                        <img src="/images/flat/speedometer.png">
+                    </div>
+
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Полностью ваша</h4>
+
+                        <p>
+                            Ваша персональная доска доступна на любом устройстве.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="icon-container">
+                        <img src="/images/flat/check.png">
+                    </div>
+
+
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Задачи</h4>
+
+                        <p>
+                            Разбейте проект на несколько задач, чтобы быть всегда на шаг впереди.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="icon-container">
+                        <img src="/images/flat/booklet.png">
+                    </div>
+
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Заметки</h4>
+
+                        <p>
+                            Добавляйте примечания, чтобы быть уверенным, что не забудете важное.
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="widget-progress-bar">
-                    <div class="clearfix">
-                        <div class="title">Profil Complete</div>
-                        <div class="number">82%</div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="phone-image wow bounceIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+                    <img src="images/single-nexus-5.png" alt="">
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 features-right wow fadeInRight animated" data-wow-offset="10"
+                 data-wow-duration="1.5s">
+
+                <div class="feature">
+                    <div class="icon-container">
+                        <img src="/images/flat/power.png">
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-primary stat1" data-transitiongoal="82"></div>
+
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Оффлайн доступ</h4>
+
+                        <p>
+                            В любом месте, в любое время планировщик будет с Вами.
+                        </p>
                     </div>
-                    <div class="clearfix">
-                        <div class="title">Answer Emails</div>
-                        <div class="number">43%</div>
+
+                </div>
+
+                <div class="feature">
+                    <div class="icon-container">
+                        <img src="/images/flat/trophy.png">
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-primary stat2" data-transitiongoal="43"></div>
+
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Достижения</h4>
+                        <p>
+                            Разбавьте свои намерения каплей азарта и мотивации.
+                        </p>
                     </div>
-                    <div class="clearfix">
-                        <div class="title">Server availability</div>
-                        <div class="number">93%</div>
+                </div>
+
+                <div class="feature">
+                    <div class="icon-container">
+                        <img src="/images/flat/trends.png">
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-primary stat3" data-transitiongoal="93"></div>
-                    </div>
-                    <div class="clearfix">
-                        <div class="title">CPU Usage</div>
-                        <div class="number">76%</div>
-                    </div>
-                    <div class="progress m-b-0">
-                        <div class="progress-bar progress-bar-primary stat4" data-transitiongoal="76"></div>
+
+                    <div class="fetaure-details">
+                        <h4 class="main-color">Визуализируйте</h4>
+
+                        <p>
+                            Анализируйте Вашу производительность в графиках.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="services grey-bg" id="services">
+    <div class="container">
+
+        <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+            <h2 class="dark-text">It's Awesome</h2>
+
+            <div class="colored-line"></div>
+            <div class="section-description">
+                List your app features and all the details Lorem ipsum dolor kadr
+            </div>
+            <div class="colored-line"></div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                <div class="service-icon">
+                    <i class="icon_cloud-upload_alt"></i>
+                </div>
+
+                <h3>Your Data in Cloud</h3>
+
+                <p>
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
+                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
+                    multiply all spirit for isn't, him land every you'll heaven bearing.
+                </p>
+            </div>
+
+
+            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+
+                <div class="service-icon">
+                    <i class="icon_gift_alt"></i>
+                </div>
+
+                <h3>Monthly Rewards</h3>
+
+                <p>
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
+                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
+                    multiply all spirit for isn't, him land every you'll heaven bearing.
+                </p>
+
+            </div>
+
+            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                <div class="service-icon">
+                    <i class="icon_chat_alt"></i>
+                </div>
+
+                <h3>24/7 Support</h3>
+
+                <p>
+                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
+                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
+                    multiply all spirit for isn't, him land every you'll heaven bearing.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="app-brief" id="brief2">
+
+    <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
+
+        <h2 class="dark-text">Удивительные особенности</h2>
+
+        <div class="colored-line"></div>
+        <div class="section-description">
+            Потрясающие функции, которые позволят Вам добиться успеха
+        </div>
+        <div class="colored-line"></div>
+
     </div>
 
-</div>
-<div class="row">
-    <div class="col-lg-4 col-sm-6 portlets ui-sortable">
-        <div class="panel-content p-t-0 p-b-0 widget-news">
-            <?php include __DIR__ . '/../panels/weather.php' ?>
-        </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 portlets news ui-sortable">
-        <div class="panel m-t-0" style="position: relative; opacity: 1; z-index: 0;">
-            <div class="panel-header panel-controls">
-                <h3>
-                    <i class="icon-basket"></i>
-                    <strong>News</strong> for you
-                </h3>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.<br><br>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                    anim id est laborum.
+                </p>
+
+                <div class="form-group">
+                    <button class="bttn btn-2 btn-2a">
+                        Узнать больше...
+                    </button>
+                </div>
+
             </div>
-            <div class="panel-content widget-news">
-                <div class="withScroll" data-height="400">
-                    <a href="#" class="message-item media">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="pull-left p-r-10">
-                                    <i class="icon-lock-open pull-left"></i>
-                                </div>
-                                <div>
-                                    <small class="pull-right">28 Feb</small>
-                                    <h4 class="c-dark">Reset your account password</h4>
-                                    <p class="f-14 c-gray">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="message-item media">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="pull-left p-r-10">
-                                    <i class="icon-cloud-upload pull-left"></i>
-                                </div>
-                                <div>
-                                    <small class="pull-right">27 Feb</small>
-                                    <h4 class="c-dark">Check Dropbox</h4>
-                                    <p class="f-14 c-gray">Hello Steve, I have added new files in your Dropbox in order to show you how to...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="message-item media">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="pull-left p-r-10">
-                                    <i class="icon-docs pull-left"></i>
-                                </div>
-                                <div>
-                                    <small class="pull-right">27 Feb</small>
-                                    <h4 class="c-dark">New document added</h4>
-                                    <p class="f-14 c-gray">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="message-item media">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="pull-left p-r-10">
-                                    <i class="icon-present pull-left"></i>
-                                </div>
-                                <div>
-                                    <small class="pull-right">26 Feb</small>
-                                    <h4 class="c-dark">You receive a gift</h4>
-                                    <p class="f-14 c-gray">Hello Steve, I have added new files in your Dropbox in order to show you how to...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="message-item media">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="pull-left p-r-10">
-                                    <i class="icon-call-in pull-left"></i>
-                                </div>
-                                <div>
-                                    <small class="pull-right">25 Feb</small>
-                                    <h4 class="c-dark">Call Alfred for business</h4>
-                                    <p class="f-14 c-gray">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="message-item media">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="pull-left p-r-10">
-                                    <i class="icon-calendar pull-left"></i>
-                                </div>
-                                <div>
-                                    <small class="pull-right">25 Feb</small>
-                                    <h4 class="c-dark">Appointment at 8pm today</h4>
-                                    <p class="f-14 c-gray">Hello Steve, I have added new files in your Dropbox in order to show you how to...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="message-item media">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="pull-left p-r-10">
-                                    <i class="icon-rocket pull-left"></i>
-                                </div>
-                                <div>
-                                    <small class="pull-right">24 Feb</small>
-                                    <h4 class="c-dark">Trip to Mars begin</h4>
-                                    <p class="f-14 c-gray">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+
+            <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
+                <div class="phone-image">
+                    <img src="images/device.png" alt="">
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-sm-6 portlets">
-        <div class="panel m-t-0">
-            <div class="panel-header panel-controls">
-                <h3>
-                    <i class="icon-basket"></i>
-                    <strong>Something</strong> is...
-                </h3>
-            </div>
-            <div class="panel-content p-t-0 p-b-0">
-                <div id="bar-chart"></div>
-            </div>
+</section>
+
+<section class="screenshots grey-bg contain" id="screenshot-section">
+    <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+        <h2 class="dark-text">Краткий обзор</h2>
+
+        <div class="colored-line"></div>
+        <div class="section-description">
+            Посмотрите на своё будущее рабочее пространство и узнайте, на что оно способно.
         </div>
-        <div class="panel m-t-0">
-            <div class="panel-header panel-controls">
-                <h3>
-                    <i class="icon-basket"></i>
-                    <strong>Sales</strong>Volume Stats
-                </h3>
-            </div>
-            <div class="panel-content p-t-0 p-b-0">
-                <div id="bar-chart"></div>
+        <div class="colored-line"></div>
+
+    </div>
+    <div id="screenshot-contain" class="wow slideInRight" data-wow-delay="0.4s">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="screenshot-slider">
+                        <div class="screenshot-wrapper">
+                            <div class="flexslider text-center">
+                                <ul class="slides">
+                                    <li>
+                                        <a href="#"><img src="images/img1.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img2.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img3.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img4.png" alt="" /></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><img src="images/img5.png" alt="" /></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <img src="images/browser.png" class="img-responsive" alt="" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="footer">
-    <?php include __DIR__ . '/../layouts/templates/footer.php' ?>
-</div>
-</div>
-</div>
+</section>
+
+<footer id="contact">
+
+    <div class="container">
+
+        <div style="visibility: visible; animation-duration: 1.5s; animation-name: slideInLeft;"
+             class="contact-box wow slideInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
+
+            <a class="btn contact-button expand-form expanded">
+                <i class="icon-paper-plane"></i>
+            </a>
+
+            <div style="display: block;" class="row expanded-contact-form"></div>
+        </div>
+
+        <div id="myflashwrapper" style="display: none;"></div>
+        <p class="copyright">
+            © 2015 Me, All Rights Reserved
+        </p>
+
+    </div>
+
+</footer>
+
+<script>
+    jQuery(function($) {
+        $('button.log').click(function() {
+            if (!$('.modal-body .row').length)
+                showModal('login');
+        });
+
+        $.get('contact', function(html) {
+            $('div.contact-box.wow div.expanded-contact-form').html(html);
+        });
+    });
+</script>

@@ -1,10 +1,12 @@
+
+
 <?php
-    use yii\helpers\Html;
+use yii\helpers\Html;
 
-    /* @var $this \yii\web\View */
-    /* @var $content string */
+/* @var $this \yii\web\View */
+/* @var $content string */
 
-    frontend\assets\FrontendAsset::register($this);
+frontend\assets\FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -41,7 +43,7 @@
 
     <?php include __DIR__ . '/../layouts/templates/builder.php' ?>
 </section>
-    <?php include __DIR__ . '/../layouts/templates/quickSidebar.php' ?>
+<?php include __DIR__ . '/../layouts/templates/quickSidebar.php' ?>
 
 <div class="loader-overlay">
     <div class="spinner">

@@ -1,34 +1,46 @@
 <?php
-    use yii\helpers\ArrayHelper;
+    use frontend\assets\LandingAsset;
+    use yii\helpers\Html;
 
-    /* @var $this \yii\web\View */
-    /* @var $content string */
+    /* @var $this yii\web\View */
+    /* @var $form yii\widgets\ActiveForm */
+    /* @var $model \frontend\models\ContactForm */
 
-    if (!Yii::$app->user->isGuest)
-        $this->beginContent('@frontend/views/layouts/_base.php');
-    else
-        $this->beginContent('@frontend/views/layouts/_landing.php')
+    LandingAsset::register($this);
+    $this->title = Yii::t('frontend', 'madeasy');
 ?>
 
-<?php if (Yii::$app->session->hasFlash('alert')): ?>
-<?php
-    $body = ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body');
-    $type = ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options');
-    $flash = <<<FLASH
-        $(document).ready(function() {
-            setTimeout(function() {
-                generate('{$type['title']}', '{$type['img']}', '{$body}',
-                    '{$type['link']}', '{$type['linkDesc']}');
-            }, 1500);
-        });
-FLASH;
-    $this->registerJs($flash)
-?>
+<?php $this->beginPage() ?>
+    <!DOCTYPE html>
+    <html lang="<?= Yii::$app->language ?>">
+    <head>
+        <meta charset="<?= Yii::$app->charset ?>"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<?php endif ?>
+        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->head() ?>
+        <?= Html::csrfMetaTags() ?>
+        <?php $this->registerAssetBundle('frontend\assets\BowerAsset') ?>
 
-<?= $content ?>
+        <link rel="icon" href="images/favicon.ico">
+    </head>
+    <body class="with-preloader">
 
-<?php
-    $this->endContent()
-?>
+    <?php $this->beginBody() ?>
+
+    <?= $content ?>
+
+    <div class="modal zoomInDown animated" id="myModal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php $this->endBody() ?>
+    </body>
+    </html>
+<?php $this->endPage() ?>
