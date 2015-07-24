@@ -5,7 +5,7 @@ GLOBAL STYLES
 -----------------------------------------*/
 
 header {
-    background: url("../../images/landing.jpg") no-repeat center top fixed;
+    background: url("../images/landing.jpg") no-repeat center top fixed;
     -webkit-background-size: cover;
     background-size: cover;
 }
@@ -158,7 +158,7 @@ li {
     position: absolute;
     left: 50%;
     top: 50%;
-    background: url(../../images/loader.gif) no-repeat center;
+    background: url(../images/loader.gif) no-repeat center;
     -webkit-background-size: cover;
     background-size: cover;
     margin: -20px 0 0 -20px;

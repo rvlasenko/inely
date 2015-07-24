@@ -26,8 +26,8 @@ html[xmlns] .slides{display:block;}
 .flex-caption{position:absolute;width:60%;top:10%;left:5%;z-index:99;color:#fff;}
 .flex-direction-nav{*height:0;}
 .flex-direction-nav a{width:60px;height:60px;padding:0;margin:-50px 0 0 0;display:block;position:absolute;top:50%;z-index:10;cursor:pointer;text-indent:-9999px;opacity:1;-webkit-transition:all .3s ease;-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;-ms-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;border:3px solid;}
-.flex-direction-nav .flex-next{background:#222222 url(../../images/bg_direction_nav_next.png) no-repeat 25px center;right:-100px;opacity:0.8;border-radius:50%;border:none;}
-.flex-direction-nav .flex-prev{background:#222222 url(../../images/bg_direction_nav_prev.png) no-repeat 21px center;left:-100px;opacity:0.8;border-radius:50%;border:none;}
+.flex-direction-nav .flex-next{background:#222222 url(../images/bg_direction_nav_next.png) no-repeat 25px center;right:-100px;opacity:0.8;border-radius:50%;border:none;}
+.flex-direction-nav .flex-prev{background:#222222 url(../images/bg_direction_nav_prev.png) no-repeat 21px center;left:-100px;opacity:0.8;border-radius:50%;border:none;}
 .flex-direction-nav .flex-next:hover, .flex-direction-nav .flex-prev:hover{opacity:1;}
 .flex-direction-nav .flex-disabled{opacity:.3!important;filter:alpha(opacity=30);cursor:default;}
 .flex-control-nav{position:absolute;bottom:-80px;text-align:left;z-index:99;text-align:center;width:100%;}

@@ -5,7 +5,7 @@ return [
     'showScriptName' => false,
     'rules' => [
         // Базовые правила
-        '' => '/site/index',
+        //'' => '/site/index',
         'contact' => '/site/contact',
 
         // Регистрация
@@ -14,17 +14,7 @@ return [
         'login' => '/user/sign-in/login',
 
         // Пользователь
-        'account' => '/user/default/index',
-        'profile' => '/user/default/profile',
         'logout' => '/user/sign-in/logout',
-        '<_a:(confirm-email)>' => 'user/sign-in/<_a>',
-
-        // Задачи
-        'todo' => '/task/index',
-        'edit' => '/task/edit',
-        'todo/edit' => '/task/edit',
-        'todo/cat' => '/task/cat',
-        'todo/sort' => '/task/sort',
-        'todo/delete' => '/task/delete'
+        '<_a:(confirm-email)>' => 'user/sign-in/<_a>'
     ]
 ];

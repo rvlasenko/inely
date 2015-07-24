@@ -12,33 +12,32 @@ class FrontendAsset extends AssetBundle
     public $css = [
 
         // Carousel
-        'css/landing/flexslider.css',
+        'css/flexslider.css',
 
         // Animations
         'plugins/animation-css/animate.min.css',
 
         // Custom stylesheets
-        'css/landing/styles.css',
+        'css/styles.css',
 
         // Colors
-        'css/landing/colors/blue.css',
+        'css/colors/blue.css',
 
         // Responsive fixes
-        'css/landing/responsive.css',
+        'css/responsive.css',
 
         // Web font
-        'css/icons/simple-line-icons/css/simple-line-icons.css',
         '//fonts.googleapis.com/css?family=Roboto:300,100,500&subset=latin,cyrillic-ext',
     ];
 
     public $js = [
-        'js/landing/smoothscroll.js',
-        'js/landing/jquery.plugins.js',
-        'js/landing/owl.carousel.min.js',
-        'js/landing/simple-expand.min.js',
-        'js/landing/wow.min.js',
-        'js/landing/retina.min.js',
-        'js/landing/custom.js',
+        'js/smoothscroll.js',
+        'js/jquery.plugins.js',
+        'js/owl.carousel.min.js',
+        'js/simple-expand.min.js',
+        'js/wow.min.js',
+        'js/retina.min.js',
+        'js/custom.js',
         'plugins/noty/jquery.noty.packaged.js',
     ];
 
@@ -47,7 +46,7 @@ class FrontendAsset extends AssetBundle
     ];
 
     public $depends = [
-        'frontend\assets\BowerAsset',
+        'common\assets\BowerAsset',
         'common\assets\FontAwesome'
     ];
 }

@@ -71,17 +71,16 @@ class SignInController extends Controller
     public function actionLogin()
     {
         $model = new LoginForm();
+
         if (Yii::$app->request->isGet && $model->load($_POST)) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->renderAjax('login', [
-                'model' => $model
-            ]);
-        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+            return $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
+        else
+            return $this->render('login', ['model' => $model]);
     }
 
     public function actionLogout()
@@ -93,6 +92,7 @@ class SignInController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
@@ -110,9 +110,7 @@ class SignInController extends Controller
             }
         }
 
-        return $this->renderAjax('signup', [
-            'model' => $model
-        ]);
+        return $this->renderAjax('signup', ['model' => $model]);
     }
 
     public function actionConfirmEmail($token)
@@ -175,9 +173,7 @@ class SignInController extends Controller
             }
         }
 
-        return $this->renderAjax('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
+        return $this->renderAjax('requestPasswordResetToken', ['model' => $model]);
     }
 
     public function actionResetPassword($token)
@@ -201,9 +197,7 @@ class SignInController extends Controller
             return $this->goHome();
         }
 
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
+        return $this->render('resetPassword', ['model' => $model]);
     }
 
     /**
@@ -274,10 +268,9 @@ class SignInController extends Controller
                 ]);
             }
         }
-        if (Yii::$app->user->login($user, 3600 * 24 * 30)) {
+        if (Yii::$app->user->login($user, 3600 * 24 * 30))
             return true;
-        } else {
+        else
             throw new Exception('OAuth error');
-        }
     }
 }

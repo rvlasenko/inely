@@ -74,6 +74,10 @@ $config = [
             'errorAction' => 'site/error'
         ],
 
+        'session' => [
+            'cookieParams' => ['madeasy' => '.madeasy.local'],
+        ],
+
         'request' => [
             'enableCookieValidation' => true,
             'enableCsrfValidation' => true,
@@ -83,9 +87,14 @@ $config = [
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-            'loginUrl' => ['/user/sign-in/login'],
+            'loginUrl' => '/user/sign-in/login',
             'enableAutoLogin' => true,
-            'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
+            'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior',
+            'identityCookie' => [
+                'name' => '_identity',
+                'httpOnly' => true,
+                'domain' => '.madeasy.local',
+            ]
         ]
     ]
 ];

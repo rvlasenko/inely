@@ -1,12 +1,12 @@
 <?php
-    use frontend\assets\LandingAsset;
+    use frontend\assets\FrontendAsset;
     use yii\helpers\Html;
 
     /* @var $this yii\web\View */
     /* @var $form yii\widgets\ActiveForm */
     /* @var $model \frontend\models\ContactForm */
 
-    LandingAsset::register($this);
+    FrontendAsset::register($this);
     $this->title = Yii::t('frontend', 'madeasy');
 ?>
 
@@ -20,7 +20,7 @@
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
         <?= Html::csrfMetaTags() ?>
-        <?php $this->registerAssetBundle('frontend\assets\BowerAsset') ?>
+        <?php $this->registerAssetBundle('common\assets\BowerAsset') ?>
 
         <link rel="icon" href="images/favicon.ico">
     </head>
