@@ -49,7 +49,7 @@
 
                         <h1 class="intro">Начните осознавать свои возможности с flatask.</h1>
                         <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
-                        <button class="butn butn-1 butn-1a log" data-toggle="modal" data-target="#myModal">Войти!</button>
+                        <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="butn butn-1 butn-1a log">Войти!</a>
 
                     </div>
                 </div>
@@ -367,8 +367,8 @@
                 showModal('login');
         });
 
-        $.get('contact', function(html) {
+        /*$.get('contact', function(html) {
             $('div.contact-box.wow div.expanded-contact-form').html(html);
-        });
+        });*/
     });
 </script>

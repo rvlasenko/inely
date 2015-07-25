@@ -9,10 +9,6 @@ class BowerAsset extends BootstrapAsset
 {
     public $sourcePath = '@bower/bootstrap/dist';
 
-    public $js = [
-        //'js/bootstrap.min.js'
-    ];
-
     public $jsOptions = [
         'position' => View::POS_HEAD
     ];

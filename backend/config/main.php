@@ -8,6 +8,9 @@ $config = [
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ],
+        'user' => [
+            'class' => 'backend\modules\main\Module'
+        ],
         'i18n' => [
             'class' => 'backend\modules\i18n\Module',
             'defaultRoute' => 'i18n-message/index'
@@ -45,15 +48,15 @@ $config = [
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [
-                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css',
+                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css'
                     ]
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
                     'js' => [
-                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js',
+                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js'
                     ]
                 ]
-            ],
+            ]
         ],
 
         'errorHandler' => [
@@ -67,7 +70,7 @@ $config = [
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-            'loginUrl' => ['sign-in/login'],
+            'loginUrl' => '/user/sign-in/login',
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
         ],

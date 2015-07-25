@@ -1,17 +1,11 @@
 <?php
 $config = [
     'homeUrl' => Yii::getAlias('@frontendUrl'),
-    'controllerNamespace' => 'frontend\controllers',
+    'controllerNamespace' => 'frontend\controllers', // Autoloading
     'defaultRoute' => 'site/index',
     'modules' => [
-        'user' => [
-            'class' => 'frontend\modules\user\Module'
-        ],
-        'api' => [
-            'class' => 'frontend\modules\api\Module',
-            'modules' => [
-                'v1' => 'frontend\modules\api\v1\Module'
-            ]
+        'main' => [
+            'class' => 'frontend\modules\main\Module'
         ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
@@ -75,7 +69,7 @@ $config = [
         ],
 
         'session' => [
-            'cookieParams' => ['domain' => '.madeasy.local'],
+            'cookieParams' => ['madeasy' => '.madeasy.local'],
         ],
 
         'request' => [
@@ -87,14 +81,9 @@ $config = [
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-            'loginUrl' => '/user/sign-in/login',
+            'loginUrl' => '/site/login',
             'enableAutoLogin' => true,
-            'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior',
-            /*'identityCookie' => [
-                'name' => '_identity',
-                'httpOnly' => true,
-                'domain' => '.madeasy.local',
-            ]*/
+            'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
         ]
     ]
 ];
