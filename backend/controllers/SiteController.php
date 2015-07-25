@@ -3,7 +3,6 @@
 namespace backend\controllers;
 
 use Yii;
-use yii\helpers\Url;
 use yii\web\Controller;
 
 /**
@@ -17,11 +16,11 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            /*[
+            [
                 'class' => 'yii\filters\PageCache',
                 'only' => ['index'],
-                'duration' => 60
-            ],*/
+                'duration' => 84600
+            ],
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
@@ -40,9 +39,6 @@ class SiteController extends Controller
     public function beforeAction($action)
     {
         $this->layout = Yii::$app->user->isGuest ? 'base' : 'common';
-        parent::beforeAction($action);
-
-        if (Yii::$app->getUser()->isGuest && Yii::$app->getRequest()->url !== Url::to(\Yii::$app->getUser()->loginUrl))
-            Yii::$app->getResponse()->redirect(\Yii::$app->getUser()->loginUrl);
+        return parent::beforeAction($action);
     }
 }

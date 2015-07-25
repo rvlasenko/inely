@@ -1,4 +1,18 @@
 <?php
+
+namespace common\components\widgets;
+
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\bootstrap\Widget;
+
+/**
+ * Class Menu
+ * @package backend\components\widget
+ */
+//class Weather extends Widget
+
     define('CITY', "Alatyr'");
     define('KEY', "0313908bbc748d05");
     define('URL', "http://api.wunderground.com/api/" . KEY .

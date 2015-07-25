@@ -17,7 +17,7 @@ $config = [
         ],
 
         'cache' => [
-            'class' => 'yii\caching\DummyCache',
+            'class' => 'yii\caching\DummyCache'
         ],
 
         'formatter' => [
@@ -36,7 +36,7 @@ $config = [
                 'port' => '587',
                 'username' => getenv('ROBOT_EMAIL'),
                 'password' => getenv('PASSWD'),
-                'encryption' => 'tls',
+                'encryption' => 'tls'
             ]
         ],
 
@@ -53,7 +53,7 @@ $config = [
             'schemaCacheDuration' => 3600,
 
             // Name of the cache component used to store schema information
-            'schemaCache' => 'cache',
+            'schemaCache' => 'cache'
         ],
 
         'log' => [
@@ -70,14 +70,14 @@ $config = [
                     'logVars' => [],
                     'logTable' => '{{%system_log}}'
                 ]
-            ],
+            ]
         ],
 
         'i18n' => [
             'translations' => [
                 'app' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@common/messages',
+                    'basePath' => '@common/messages'
                 ],
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
@@ -85,7 +85,7 @@ $config = [
                     'fileMap' => [
                         'common' => 'common.php',
                         'backend' => 'backend.php',
-                        'frontend' => 'frontend.php',
+                        'frontend' => 'frontend.php'
                     ]
                 ],
                 /* Uncomment this code to use DbMessageSource
@@ -114,6 +114,7 @@ $config = [
             require(Yii::getAlias('@frontend/config/_urlManager.php'))
         )
     ],
+
     'params' => [
         'adminEmail' => getenv('ADMIN_EMAIL'),
         'robotEmail' => getenv('ROBOT_EMAIL'),

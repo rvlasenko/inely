@@ -42,7 +42,7 @@ class SignInController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-        return $this->goHome();
+        return $this->redirect(Yii::$app->urlManagerFrontend->createUrl(''));
     }
 
     public function actionProfile()

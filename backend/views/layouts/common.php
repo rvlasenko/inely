@@ -37,13 +37,13 @@
 <![endif]-->
 
 <section>
-    <?php include __DIR__ . '/../layouts/templates/sidebar.php' ?>
+    <?= $this->render('//common/sidebar.php') ?>
 
     <?= $content ?>
 
-    <?php include __DIR__ . '/../layouts/templates/builder.php' ?>
+    <?= $this->render('//common/builder.php') ?>
 </section>
-<?php include __DIR__ . '/../layouts/templates/quickSidebar.php' ?>
+<?= $this->render('//common/quickSidebar.php') ?>
 
 <div class="loader-overlay">
     <div class="spinner">

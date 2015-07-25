@@ -1,12 +1,13 @@
 <?php
     use yii\helpers\Html;
+    use common\components\widgets\Weather;
 
     $this->title = 'Ваша доска';
 ?>
 
 <div class="main-content">
 <div class="topbar">
-    <?= $this->render('//layouts/templates/topbar.php') ?>
+    <?= $this->render('//common/topbar.php') ?>
 </div>
 
 <div class="page-content page-thin">
@@ -189,7 +190,7 @@
 <div class="row">
     <div class="col-lg-4 col-sm-6 portlets ui-sortable">
         <div class="panel-content p-t-0 p-b-0 widget-news">
-            <?php include __DIR__ . '/../panels/weather.php' ?>
+            <?php // Weather::widget ?>
         </div>
     </div>
     <div class="col-lg-4 col-sm-6 portlets news ui-sortable">
@@ -330,7 +331,7 @@
     </div>
 </div>
 <div class="footer">
-    <?php include __DIR__ . '/../layouts/templates/footer.php' ?>
+    <?= $this->render('//common/footer.php') ?>
 </div>
 </div>
 </div>

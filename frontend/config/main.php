@@ -1,48 +1,21 @@
 <?php
 $config = [
     'homeUrl' => Yii::getAlias('@frontendUrl'),
-    'controllerNamespace' => 'frontend\controllers', // Autoloading
+    'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'site/index',
-    'modules' => [
+    /*'modules' => [
         'user' => [
             'class' => 'frontend\modules\user\Module'
         ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ]
-    ],
+    ],*/
 
     'components' => [
 
-        'assetManager' => [
-            'class' => 'yii\web\AssetManager',
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'js' => [
-                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
-                    ]
-                ],
-                'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [
-                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css'
-                    ]
-                ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => [
-                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js'
-                    ]
-                ]
-            ]
-        ],
-
         'errorHandler' => [
             'errorAction' => 'site/error'
-        ],
-
-        'session' => [
-            'cookieParams' => [
-                'domain' => '.madeasy.local'
-            ]
         ],
 
         'request' => [
@@ -51,13 +24,13 @@ $config = [
             'cookieValidationKey' => getenv('FRONTEND_COOKIE_VALIDATION_KEY')
         ],
 
-        'user' => [
+        /*'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
             'loginUrl' => '\user\sign-in\login',
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
-        ]
+        ]*/
     ]
 ];
 
