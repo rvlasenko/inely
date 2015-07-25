@@ -1,12 +1,12 @@
 <?php
-use yii\helpers\Html;
+    use yii\helpers\Html;
 
-$this->title = 'Ваша доска';
+    $this->title = 'Ваша доска';
 ?>
 
 <div class="main-content">
 <div class="topbar">
-    <?php include __DIR__ . '/../layouts/templates/topbar.php' ?>
+    <?= $this->render('//layouts/templates/topbar.php') ?>
 </div>
 
 <div class="page-content page-thin">

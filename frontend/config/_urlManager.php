@@ -11,10 +11,6 @@ return [
         // Регистрация
         'sign-up' => '/user/sign-in/signup',
         'reset' => '/user/sign-in/request-password-reset',
-        'login' => '/user/sign-in/login',
-
-        // Пользователь
-        'logout' => '/user/sign-in/logout',
-        '<_a:(confirm-email)>' => 'user/sign-in/<_a>'
+        'login' => '/user/sign-in/login'
     ]
 ];

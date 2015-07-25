@@ -8,9 +8,6 @@ $config = [
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ],
-        'user' => [
-            'class' => 'backend\modules\main\Module'
-        ],
         'i18n' => [
             'class' => 'backend\modules\i18n\Module',
             'defaultRoute' => 'i18n-message/index'
@@ -59,6 +56,35 @@ $config = [
             ]
         ],
 
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => getenv('RC_SITEKEY'),
+            'secret' => getenv('RC_SECRET'),
+        ],
+
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => getenv('GOOGLE_CLIENT_ID'),
+                    'clientSecret' => getenv('GOOGLE_CLIENT_SECRET'),
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => getenv('FB_CLIENT_ID'),
+                    'clientSecret' => getenv('FB_CLIENT_SECRET'),
+                ],
+                'vkontakte' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => getenv('VK_CLIENT_ID'),
+                    'clientSecret' => getenv('VK_CLIENT_SECRET'),
+                    'scope' => 'email',
+                ],
+            ]
+        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -70,7 +96,7 @@ $config = [
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-            'loginUrl' => '/user/sign-in/login',
+            'loginUrl' => '/sign-in/login',
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
         ],

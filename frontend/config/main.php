@@ -4,8 +4,8 @@ $config = [
     'controllerNamespace' => 'frontend\controllers', // Autoloading
     'defaultRoute' => 'site/index',
     'modules' => [
-        'main' => [
-            'class' => 'frontend\modules\main\Module'
+        'user' => [
+            'class' => 'frontend\modules\user\Module'
         ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
@@ -24,43 +24,14 @@ $config = [
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
                     'css' => [
-                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css',
+                        YII_ENV_DEV ? 'css/bootstrap.css' :'css/bootstrap.min.css'
                     ]
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
                     'js' => [
-                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js',
+                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js'
                     ]
                 ]
-            ],
-        ],
-
-        'reCaptcha' => [
-            'name' => 'reCaptcha',
-            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
-            'siteKey' => getenv('RC_SITEKEY'),
-            'secret' => getenv('RC_SECRET'),
-        ],
-
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOAuth',
-                    'clientId' => getenv('GOOGLE_CLIENT_ID'),
-                    'clientSecret' => getenv('GOOGLE_CLIENT_SECRET'),
-                ],
-                'facebook' => [
-                    'class' => 'yii\authclient\clients\Facebook',
-                    'clientId' => getenv('FB_CLIENT_ID'),
-                    'clientSecret' => getenv('FB_CLIENT_SECRET'),
-                ],
-                'vkontakte' => [
-                    'class' => 'yii\authclient\clients\VKontakte',
-                    'clientId' => getenv('VK_CLIENT_ID'),
-                    'clientSecret' => getenv('VK_CLIENT_SECRET'),
-                    'scope' => 'email',
-                ],
             ]
         ],
 
@@ -69,7 +40,9 @@ $config = [
         ],
 
         'session' => [
-            'cookieParams' => ['madeasy' => '.madeasy.local'],
+            'cookieParams' => [
+                'domain' => '.madeasy.local'
+            ]
         ],
 
         'request' => [
@@ -81,7 +54,7 @@ $config = [
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-            'loginUrl' => '/site/login',
+            'loginUrl' => '\user\sign-in\login',
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
         ]

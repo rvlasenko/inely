@@ -53,7 +53,7 @@ class SiteController extends Controller
                 $this->layout = '_error';
             return true;
         } else {
-            if (Yii::$app->getUser()->isGuest && Yii::$app->getRequest()->url !== Url::to(\Yii::$app->getUser()->loginUrl))
+            if (Yii::$app->getUser()->isGuest && Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl))
                 $this->redirect(Yii::$app->urlManagerFrontend->createUrl(''));
             else
                 $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
