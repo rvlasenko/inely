@@ -1,374 +1,232 @@
-<div class="preloader">
-    <div class="status">&nbsp;</div>
+<div class="content-wrap">
+
+<div class="container clearfix">
+    <div id="section-intro" class="row clearfix">
+
+        <div class="col-lg-5">
+            <div class="heading-block topmargin">
+                <h1>Welcome to Canvas.<br>MultiPurpose Template.</h1>
+            </div>
+            <p class="lead">Create a website that you are gonna be proud of. Be it Business, Portfolio, Agency, Photography, eCommerce &amp; much more.</p>
+        </div>
+
+        <div class="col-lg-7">
+
+            <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
+                <img src="images/services/main-fbrowser.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+                <img src="images/services/main-fmobile.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
-<header class="header" data-stellar-background-ratio="0.5" id="home">
+<div class="section">
+    <div id="section-services" class="container clear-bottommargin clearfix">
 
-    <div class="color-overlay full-screen">
+        <div class="row topmargin-sm clearfix">
 
-        <div class="navbar navbar-inverse bs-docs-nav navbar-fixed-top sticky-navigation">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#kane-navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <a class="navbar-brand" href="#"><img src="images/logo-black.png" alt=""></a>
-
+            <div class="col-md-4 col-sm-4 bottommargin">
+                <i class="i-plain color i-large icon-line2-screen-desktop inline-block" style="margin-bottom: 15px;"></i>
+                <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
+                    <span class="before-heading">Scalable on Devices.</span>
+                    <h4>Responsive &amp; Retina</h4>
                 </div>
-
-                <div class="navbar-collapse collapse" id="kane-navigation">
-                    <ul class="nav navbar-nav navbar-right main-navigation">
-                        <li><a href="#home">Вход</a></li>
-                        <li><a href="#features">Особенности</a></li>
-                        <li><a href="#services">Почему мы?</a></li>
-                        <li><a href="#brief2">Описание</a></li>
-                        <li><a href="#screenshot-section">Скриншоты</a></li>
-                        <li><a href="#contact">Контакт</a></li>
-                    </ul>
-                </div>
+                <p>Employment respond committed meaningful fight against oppression social challenges rural legal aid governance. Meaningful work, implementation, process cooperation, campaign inspire.</p>
             </div>
+
+            <div class="col-md-4 col-sm-4 bottommargin">
+                <i class="i-plain color i-large icon-line2-energy inline-block" style="margin-bottom: 15px;"></i>
+                <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
+                    <span class="before-heading">Smartly Coded &amp; Maintained.</span>
+                    <h4>Powerful Performance</h4>
+                </div>
+                <p>Medecins du Monde Jane Addams reduce child mortality challenges Ford Foundation. Diversification shifting landscape advocate pathway to a better life rights international. Assessment.</p>
+            </div>
+
+            <div class="col-md-4 col-sm-4 bottommargin">
+                <i class="i-plain color i-large icon-line2-equalizer inline-block" style="margin-bottom: 15px;"></i>
+                <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
+                    <span class="before-heading">Flexible &amp; Customizable.</span>
+                    <h4>Truly Multi-Purpose</h4>
+                </div>
+                <p>Democracy inspire breakthroughs, Rosa Parks; inspiration raise awareness natural resources. Governance impact; transformative donation philanthropy, respect reproductive.</p>
+            </div>
+
         </div>
 
-        <div class="container">
-            <div class="only-logo">
-                <div class="navbar">
-                    <div class="navbar-header">
-                        <img src="images/logo.png" alt="">
-                    </div>
-                </div>
+    </div>
+</div>
+
+<div class="container clearfix">
+
+    <div id="section-features" class="heading-block title-center page-section">
+        <h2>Features Overview</h2>
+        <span>Some of the Features that are gonna blow your mind off</span>
+    </div>
+
+    <div class="col_one_third">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn">
+                <a href="#"><img src="images/icons/features/responsive.png" alt="Responsive Layout"></a>
             </div>
-
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="intro-section">
-
-                        <h1 class="intro">Начните осознавать свои возможности с flatask.</h1>
-                        <h5>Простейший способ управиться с делами вместе с веб-планировщиком flatask.</h5>
-                        <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="butn butn-1 butn-1a log">Войти!</a>
-
-                    </div>
-                </div>
-            </div>
+            <h3>Responsive Layout</h3>
+            <p>Powerful Layout with Responsive functionality that can be adapted to any screen size. Resize browser to view.</p>
         </div>
     </div>
-</header>
 
-<section class="features" id="features">
-    <div class="container">
-        <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-
-            <h2 class="dark-text">Удивительные особенности</h2>
-
-            <div class="colored-line"></div>
-            <div class="section-description">
-                Потрясающие функции, которые позволят Вам добиться успеха
+    <div class="col_one_third">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="200">
+                <a href="#"><img src="images/icons/features/retina.png" alt="Retina Graphics"></a>
             </div>
-            <div class="colored-line"></div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-4 col-sm-4 features-left wow fadeInLeft animated" data-wow-offset="10"
-                 data-wow-duration="1.5s">
-
-                <div class="feature">
-                    <div class="icon-container">
-                        <img src="/images/flat/speedometer.png">
-                    </div>
-
-                    <div class="fetaure-details">
-                        <h4 class="main-color">Полностью ваша</h4>
-
-                        <p>
-                            Ваша персональная доска доступна на любом устройстве.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="feature">
-                    <div class="icon-container">
-                        <img src="/images/flat/check.png">
-                    </div>
-
-
-                    <div class="fetaure-details">
-                        <h4 class="main-color">Задачи</h4>
-
-                        <p>
-                            Разбейте проект на несколько задач, чтобы быть всегда на шаг впереди.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="feature">
-                    <div class="icon-container">
-                        <img src="/images/flat/booklet.png">
-                    </div>
-
-                    <div class="fetaure-details">
-                        <h4 class="main-color">Заметки</h4>
-
-                        <p>
-                            Добавляйте примечания, чтобы быть уверенным, что не забудете важное.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4">
-                <div class="phone-image wow bounceIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-                    <img src="images/single-nexus-5.png" alt="">
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4 features-right wow fadeInRight animated" data-wow-offset="10"
-                 data-wow-duration="1.5s">
-
-                <div class="feature">
-                    <div class="icon-container">
-                        <img src="/images/flat/power.png">
-                    </div>
-
-                    <div class="fetaure-details">
-                        <h4 class="main-color">Оффлайн доступ</h4>
-
-                        <p>
-                            В любом месте, в любое время планировщик будет с Вами.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="feature">
-                    <div class="icon-container">
-                        <img src="/images/flat/trophy.png">
-                    </div>
-
-                    <div class="fetaure-details">
-                        <h4 class="main-color">Достижения</h4>
-                        <p>
-                            Разбавьте свои намерения каплей азарта и мотивации.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="feature">
-                    <div class="icon-container">
-                        <img src="/images/flat/trends.png">
-                    </div>
-
-                    <div class="fetaure-details">
-                        <h4 class="main-color">Визуализируйте</h4>
-
-                        <p>
-                            Анализируйте Вашу производительность в графиках.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <h3>Retina Graphics</h3>
+            <p>Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons, Fonts &amp; all others graphics are optimized.</p>
         </div>
     </div>
-</section>
 
-<section class="services grey-bg" id="services">
-    <div class="container">
-
-        <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-            <h2 class="dark-text">It's Awesome</h2>
-
-            <div class="colored-line"></div>
-            <div class="section-description">
-                List your app features and all the details Lorem ipsum dolor kadr
+    <div class="col_one_third col_last">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="400">
+                <a href="#"><img src="images/icons/features/performance.png" alt="Powerful Performance"></a>
             </div>
-            <div class="colored-line"></div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-                <div class="service-icon">
-                    <i class="icon_cloud-upload_alt"></i>
-                </div>
-
-                <h3>Your Data in Cloud</h3>
-
-                <p>
-                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
-                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
-                    multiply all spirit for isn't, him land every you'll heaven bearing.
-                </p>
-            </div>
-
-
-            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-
-                <div class="service-icon">
-                    <i class="icon_gift_alt"></i>
-                </div>
-
-                <h3>Monthly Rewards</h3>
-
-                <p>
-                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
-                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
-                    multiply all spirit for isn't, him land every you'll heaven bearing.
-                </p>
-
-            </div>
-
-            <div class="col-md-4 single-service wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-                <div class="service-icon">
-                    <i class="icon_chat_alt"></i>
-                </div>
-
-                <h3>24/7 Support</h3>
-
-                <p>
-                    Fruitful Fruit hath, fruitful said him created bring set, behold darkness Shall lights deep fish
-                    seasons itself given likeness upon bring fill their their whose. Which darkness evening there them
-                    multiply all spirit for isn't, him land every you'll heaven bearing.
-                </p>
-
-            </div>
+            <h3>Powerful Performance</h3>
+            <p>Canvas includes tons of optimized code that are completely customizable and deliver unmatched fast performance.</p>
         </div>
     </div>
-</section>
 
-<section class="app-brief" id="brief2">
+    <div class="clear"></div>
 
-    <div class="section-header wow fadeIn animated" data-wow-offset="120" data-wow-duration="1.5s">
-
-        <h2 class="dark-text">Удивительные особенности</h2>
-
-        <div class="colored-line"></div>
-        <div class="section-description">
-            Потрясающие функции, которые позволят Вам добиться успеха
+    <div class="col_one_third">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="600">
+                <a href="#"><img src="images/icons/features/speedometer.png" alt="Completely yours"></a>
+            </div>
+            <h3>Completely yours</h3>
+            <p>You have complete easy control on each &amp; every element that provides endless customization possibilities.</p>
         </div>
-        <div class="colored-line"></div>
+    </div>
+
+    <div class="col_one_third">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="800">
+                <a href="#"><img src="images/icons/features/trends.png" alt="Visualize opportunities"></a>
+            </div>
+            <h3>Visualize opportunities</h3>
+            <p>Analyze own productivity thanks to adaptive schedules. It was never so simple!</p>
+        </div>
+    </div>
+
+    <div class="col_one_third col_last">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="1000">
+                <a href="#"><img src="images/icons/features/gamecontroller.png" alt="Fascinating achievements"></a>
+            </div>
+            <h3>Fascinating achievements</h3>
+            <p>Earn achievements, increasing the level, earning more coins and hit in various stages of game.</p>
+        </div>
+    </div>
+
+    <!-- <div class="clear"></div>
+
+    <div class="col_one_third">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="1200">
+                <a href="#"><img src="images/icons/features/map.png" alt="Responsive Layout"></a>
+            </div>
+            <h3>Responsive Layout</h3>
+            <p>Powerful Layout with Responsive functionality that can be adapted to any screen size. Resize browser to view.</p>
+        </div>
+    </div>
+
+    <div class="col_one_third">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="1400">
+                <a href="#"><img src="images/icons/features/seo.png" alt="Retina Graphics"></a>
+            </div>
+            <h3>Retina Graphics</h3>
+            <p>Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons, Fonts &amp; all others graphics are optimized.</p>
+        </div>
+    </div>
+
+    <div class="col_one_third col_last">
+        <div class="feature-box fbox-plain">
+            <div class="fbox-icon" data-animate="bounceIn" data-delay="1600">
+                <a href="#"><img src="images/icons/features/support.png" alt="Powerful Performance"></a>
+            </div>
+            <h3>Powerful Performance</h3>
+            <p>Canvas includes tons of optimized code that are completely customizable and deliver unmatched fast performance.</p>
+        </div>
+    </div>
+
+    <div class="clear"></div> -->
+
+</div>
+
+<div class="section parallax dark bottommargin-lg" style="background-image: url('images/services/home-testi-bg.jpg'); padding: 100px 0;" data-stellar-background-ratio="0.3">
+
+    <div class="container clearfix">
+
+        <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn">
+            <i class="i-plain i-large divcenter nobottommargin icon-time"></i>
+            <div class="counter counter-lined"><span data-from="60" data-to="1200" data-refresh-interval="30" data-speed="2700"></span>+</div>
+            <h5>Hours of Coding</h5>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn" data-delay="200">
+            <i class="i-plain i-large divcenter nobottommargin icon-code"></i>
+            <div class="counter counter-lined"><span data-from="100" data-to="846" data-refresh-interval="50" data-speed="2000"></span>K+</div>
+            <h5>Lines of Code</h5>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn" data-delay="400">
+            <i class="i-plain i-xlarge divcenter nobottommargin icon-cup"></i>
+            <div class="counter counter-lined"><span data-from="100" data-to="923" data-refresh-interval="50" data-speed="3500" data-comma="true"></span></div>
+            <h5>Cups of Tea</h5>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center col_last" data-animate="bounceIn" data-delay="600">
+            <i class="i-plain i-xlarge divcenter nobottommargin icon-line2-graph"></i>
+            <div class="counter counter-lined"><span data-from="25" data-to="414" data-refresh-interval="30" data-speed="2700" data-comma="true"></span></div>
+            <h5>Commits in Git</h5>
+        </div>
 
     </div>
 
-    <div class="container">
+</div>
 
-        <div class="row">
+<div class="container divcenter clearfix">
 
-            <div class="col-md-6 left-align wow fadeInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.<br><br>
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.
-                </p>
-
-                <div class="form-group">
-                    <button class="bttn btn-2 btn-2a">
-                        Узнать больше...
-                    </button>
-                </div>
-
-            </div>
-
-            <div class="col-md-6 wow fadeInRight animated" data-wow-offset="10" data-wow-duration="1.5s">
-                <div class="phone-image">
-                    <img src="images/device.png" alt="">
-                </div>
-            </div>
-        </div>
+    <div id="section-retina" class="heading-block center">
+        <h2>Canvas: We know you want it!</h2>
+        <span>Built with passion &amp; intuitiveness in mind. Canvas is a masterclass piece of work presented to you.</span>
     </div>
-</section>
 
-<section class="screenshots grey-bg contain" id="screenshot-section">
-    <div class="section-header wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-        <h2 class="dark-text">Краткий обзор</h2>
-
-        <div class="colored-line"></div>
-        <div class="section-description">
-            Посмотрите на своё будущее рабочее пространство и узнайте, на что оно способно.
-        </div>
-        <div class="colored-line"></div>
-
+    <div style="position: relative;" data-height-lg="624" data-height-md="518" data-height-sm="397" data-height-xs="242" data-height-xxs="154">
+        <img src="images/services/fbrowser.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+        <img src="images/services/fmobile.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">
+        <img src="images/services/fbrowser2.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeIn" data-delay="1200" alt="iPad">
     </div>
-    <div id="screenshot-contain" class="wow slideInRight" data-wow-delay="0.4s">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="screenshot-slider">
-                        <div class="screenshot-wrapper">
-                            <div class="flexslider text-center">
-                                <ul class="slides">
-                                    <li>
-                                        <a href="#"><img src="images/img1.png" alt="" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="images/img2.png" alt="" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="images/img3.png" alt="" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="images/img4.png" alt="" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="images/img5.png" alt="" /></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <img src="images/browser.png" class="img-responsive" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+</div>
 
-<footer id="contact">
+<div class="section notopmargin footer-stick">
 
-    <div class="container">
+    <div class="container clearfix">
 
-        <div style="visibility: visible; animation-duration: 1.5s; animation-name: slideInLeft;"
-             class="contact-box wow slideInLeft animated" data-wow-offset="10" data-wow-duration="1.5s">
-
-            <a class="btn contact-button expand-form expanded">
-                <i class="icon-paper-plane"></i>
-            </a>
-
-            <div style="display: block;" class="row expanded-contact-form"></div>
+        <div id="section-buy" class="heading-block title-center nobottomborder page-section">
+            <h2>Enough? Start Building!</h2>
+            <span>Now that you have read all the Tid-Bits, so start with a plan</span>
         </div>
 
-        <div id="myflashwrapper" style="display: none;"></div>
-        <p class="copyright">
-            © 2015 Me, All Rights Reserved
-        </p>
+        <div class="center">
+
+            <a href="#" data-animate="tada" class="button button-desc button-3d button-rounded button-green center">Create a Canvas Account<span>Free Forever, Instant Activation</span></a>
+
+        </div>
 
     </div>
 
-</footer>
+</div>
 
-<script>
-    jQuery(function($) {
-        $('button.log').click(function() {
-            if (!$('.modal-body .row').length)
-                showModal('login');
-        });
-
-        /*$.get('contact', function(html) {
-            $('div.contact-box.wow div.expanded-contact-form').html(html);
-        });*/
-    });
-</script>
+</div>

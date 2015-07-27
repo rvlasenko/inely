@@ -1,11 +1,11 @@
 <?php
 
-namespace frontend\models\search;
+namespace backend\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Task;
+use backend\models\Task;
 
 /**
  * TaskSearch represents the model behind the search form about `frontend\models\Task`.

@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
-use frontend\models\Task;
-use frontend\models\TaskCat;
-use frontend\models\search\TaskSearch;
+use backend\models\Task;
+use backend\models\TaskCat;
+use backend\models\search\TaskSearch;
 use Yii;
 use yii\db\Query;
 use yii\web\Response;
@@ -92,7 +92,7 @@ class TaskController extends Controller
                 return [
                     'title' => 'Великолепно!',
                     'desc' => 'Ваши данные успешно обновлены.',
-                    'icon' => '/images/flat/compose.png' //Yii::$app->controller->action->id != 'sort' ? '/images/flat/compose.png' :
+                    'icon' => '/images/flat/compose.png'
                 ];
         }
     }
@@ -224,5 +224,16 @@ class TaskController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    /**
+     * @param \yii\base\Action $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        $this->layout = Yii::$app->user->isGuest ? 'base' : 'common';
+        return parent::beforeAction($action);
     }
 }

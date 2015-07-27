@@ -14,8 +14,6 @@ class BowerAsset extends BootstrapAsset
     ];
 
     public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\bootstrap\BootstrapPluginAsset',
-        //'yii\web\JqueryAsset',
+        'yii\web\JqueryAsset'
     ];
 }

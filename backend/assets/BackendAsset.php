@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @copyright Copyright (c) 2015 Exotic
+ * @license For the full copyright and license information, please view the LICENSE.md in root
+ */
+
 namespace backend\assets;
 
 use yii\web\AssetBundle;

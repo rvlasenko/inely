@@ -8,7 +8,7 @@
     use kartik\datetime\DateTimePicker;
     use kartik\rating\StarRating;
     use kartik\sidenav\SideNav;
-    use frontend\models\Task;
+    use backend\models\Task;
 
     $this->title = 'Ваши задачи';
     $this->registerJs("modal('/task/create', '#modal-add', false)");
@@ -34,7 +34,7 @@
 ?>
 
 <div class="topbar">
-    <?php include __DIR__ . '/../layouts/templates/topbar.php' ?>
+    <?= $this->render('//common/topbar.php') ?>
 </div>
 
 <div class="page-content page-thin">
@@ -224,7 +224,7 @@
         ?>
     </div>
 <div class="footer">
-    <?php include __DIR__ . '/../layouts/templates/footer.php' ?>
+    <?= $this->render('//common/footer.php') ?>
 </div>
 </div>
 </div>

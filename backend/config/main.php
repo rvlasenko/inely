@@ -43,7 +43,7 @@ $config = [
             'name' => 'reCaptcha',
             'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
             'siteKey' => getenv('RC_SITEKEY'),
-            'secret' => getenv('RC_SECRET'),
+            'secret' => getenv('RC_SECRET')
         ],
 
         'authClientCollection' => [
@@ -63,8 +63,8 @@ $config = [
                     'class' => 'yii\authclient\clients\VKontakte',
                     'clientId' => getenv('VK_CLIENT_ID'),
                     'clientSecret' => getenv('VK_CLIENT_SECRET'),
-                    'scope' => 'email',
-                ],
+                    'scope' => 'email'
+                ]
             ]
         ],
 
@@ -82,7 +82,7 @@ $config = [
             'loginUrl' => '/sign-in/login',
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
-        ],
+        ]
     ]
 
 ];
@@ -94,9 +94,9 @@ if (YII_ENV_DEV) {
             'crud' => [
                 'class' => 'yii\gii\generators\crud\Generator',
                 'templates' => [
-                    'yii2-starter-kit' => Yii::getAlias('@backend/views/_gii/templates')
+                    'madeasy' => Yii::getAlias('@backend/views/_gii/templates')
                 ],
-                'template' => 'yii2-starter-kit',
+                'template' => 'madeasy',
                 'messageCategory' => 'backend'
             ]
         ]

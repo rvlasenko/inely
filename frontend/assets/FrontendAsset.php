@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @copyright Copyright (c) 2015 Exotic
+ * @license For the full copyright and license information, please view the LICENSE.md in root
+ */
+
 namespace frontend\assets;
 
 use yii\web\AssetBundle;
@@ -10,43 +15,27 @@ class FrontendAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-
-        // Carousel
-        'css/flexslider.css',
-
-        // Animations
-        'plugins/animation-css/animate.min.css',
-
-        // Custom stylesheets
-        'css/styles.css',
-
-        // Colors
-        'css/colors/blue.css',
-
-        // Responsive fixes
+        'css/style.css', /* Stylesheets */
+        'css/dark.css',
+        'css/font-icons.css',
+        'css/animate.css',
+        'css/magnific-popup.css',
         'css/responsive.css',
-
-        // Web font
-        '//fonts.googleapis.com/css?family=Roboto:300,100,500&subset=latin,cyrillic-ext',
+        'include/rs-plugin/css/settings.css' /* SLIDER REVOLUTION 4.x CSS SETTINGS */
     ];
 
     public $js = [
-        'js/smoothscroll.js',
-        'js/jquery.plugins.js',
-        'js/owl.carousel.min.js',
-        'js/simple-expand.min.js',
-        'js/wow.min.js',
-        'js/retina.min.js',
-        'js/custom.js',
-        'plugins/noty/jquery.noty.packaged.js',
+        'js/plugins.js', /* External JavaScripts */
+        'include/rs-plugin/js/jquery.themepunch.tools.min.js', /* SLIDER REVOLUTION 4.x SCRIPTS */
+        'include/rs-plugin/js/jquery.themepunch.revolution.min.js'
     ];
 
     public $jsOptions = [
-        'position' => View::POS_END
+        'position' => View::POS_HEAD
     ];
 
     public $depends = [
         'common\assets\BowerAsset',
-        'common\assets\FontAwesome'
+        //'common\assets\FontAwesome'
     ];
 }

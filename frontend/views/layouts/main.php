@@ -1,46 +1,105 @@
 <?php
+
+    /**
+     * @var $this yii\web\View
+     */
+
     use frontend\assets\FrontendAsset;
     use yii\helpers\Html;
 
-    /* @var $this yii\web\View */
-    /* @var $form yii\widgets\ActiveForm */
-    /* @var $model \frontend\models\ContactForm */
-
     FrontendAsset::register($this);
-    $this->title = Yii::t('frontend', 'madeasy');
+    $this->title = 'madeasy';
+    $this->registerAssetBundle('yii\jui\JuiAsset', $this::POS_END);
+    $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
+    $this->registerJsFile('js/functions.js')
 ?>
 
 <?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html dir="ltr" lang="<?= Yii::$app->language ?>">
+<head>
 
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-        <?= Html::csrfMetaTags() ?>
-        <?php $this->registerAssetBundle('common\assets\BowerAsset') ?>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="<?= Yii::$app->charset ?>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="icon" href="images/favicon.ico">
-    </head>
-    <body class="with-preloader">
+    <!--[if lt IE 9]>
+        <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
 
-    <?php $this->beginBody() ?>
+    <!-- Document Title
+    ============================================= -->
+    <title><?= Html::encode($this->title) ?></title>
 
-    <?= $content ?>
+    <?php $this->head() ?>
+    <?= Html::csrfMetaTags() ?>
 
-    <div class="modal zoomInDown animated" id="myModal" tabindex="-1" role="dialog" aria-hidden="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="loader"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <link rel="icon" href="images/favicon.ico">
 
-    <?php $this->endBody() ?>
-    </body>
-    </html>
+    <style>
+
+        .revo-slider-emphasis-text {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            font-family: 'Raleway Cyr', sans-serif;
+            padding: 15px 20px;
+            border-top: 2px solid #FFF;
+            border-bottom: 2px solid #FFF;
+        }
+
+        .revo-slider-desc-text {
+            font-size: 20px;
+            font-family: 'Raleway Cyr', sans-serif;
+            width: 650px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .revo-slider-caps-text {
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            font-family: 'Raleway Cyr', sans-serif;
+        }
+
+    </style>
+
+</head>
+
+<?php $this->beginBody() ?>
+
+<body class="stretched">
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+
+<!-- Header
+============================================= -->
+<?= $this->render('//common/header.php') ?>
+
+<?= $this->render('//common/revoSlider.php') ?>
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+<?= $content ?>
+
+</section><!-- #content end -->
+
+<!-- Footer
+============================================= -->
+<?= $this->render('//common/footer.php') ?>
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<?php $this->endBody() ?>
+</body>
+</html>
 <?php $this->endPage() ?>
