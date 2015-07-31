@@ -143,6 +143,11 @@
         <div class="container clearfix">
 
             <div class="col_half">
+                <div class="copyrights-menu copyright-links clearfix">
+                    <?php foreach (Yii::$app->params['availableLocales'] as $key => $language): ?>
+                    <?= \yii\helpers\Html::a($language, ['/site/set', 'locale' => $key]) ?>
+                    <?php endforeach ?>
+                </div>
                 Copyrights &copy; 2014 All Rights Reserved by Canvas Inc.
             </div>
 

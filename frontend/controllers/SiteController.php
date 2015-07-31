@@ -11,6 +11,19 @@ use yii\web\Controller;
  */
 class SiteController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'set' => [
+                'class' => 'common\components\action\SetLocaleAction',
+                'locales' => array_keys(Yii::$app->params['availableLocales']),
+                'callback' => function() {
+                    Yii::$app->response->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+                }
+            ]
+        ];
+    }
+
     public function behaviors()
     {
         return [

@@ -6,11 +6,14 @@ $config = [
 
     'modules' => [
         'gridview' =>  [
-            'class' => '\kartik\grid\Module'
+            'class' => 'kartik\grid\Module'
         ],
         'i18n' => [
             'class' => 'backend\modules\i18n\Module',
             'defaultRoute' => 'i18n-message/index'
+        ],
+        'user' => [
+            'class' => 'backend\modules\user\Module'
         ]
     ],
 
@@ -79,7 +82,7 @@ $config = [
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-            'loginUrl' => '/sign-in/login',
+            'loginUrl' => '/login',
             'enableAutoLogin' => true,
             'as afterLogin' => 'common\components\behaviors\LoginTimestampBehavior'
         ]

@@ -3,21 +3,24 @@
 namespace common\components\behaviors;
 
 use yii\base\Behavior;
-use yii\web\Application;
 use Yii;
+use yii\web\Application;
 
 /**
  * Class LocaleBehavior
- * @package common\components\behaviors
+ * @package common\behaviors
  */
 class LocaleBehavior extends Behavior
 {
-
     /**
      * @var string
      */
     public $cookieName = '_locale';
 
+    /**
+     * @var bool
+     */
+    public $enablePreferredLanguage = true;
     /**
      * @return array
      */
@@ -33,6 +36,22 @@ class LocaleBehavior extends Behavior
      */
     public function beforeRequest()
     {
-        Yii::$app->language = 'ru-RU';
+        if (
+            Yii::$app->getRequest()->getCookies()->has($this->cookieName)
+            && !Yii::$app->session->hasFlash('forceUpdateLocale')
+        ) {
+            $userLocale = Yii::$app->getRequest()->getCookies()->getValue($this->cookieName);
+        } else {
+            $userLocale = Yii::$app->language;
+        }
+        Yii::$app->language = $userLocale;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getAvailableLocales()
+    {
+        return array_keys(Yii::$app->params['availableLocales']);
     }
 }

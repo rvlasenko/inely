@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\modules\user\models;
+namespace backend\modules\user\models;
 
+use common\models\User;
 use yii\base\InvalidParamException;
 use yii\base\Model;
-use common\models\User;
 use Yii;
 
 /**

@@ -6,7 +6,6 @@ $config = [
     'defaultRoute' => 'site/index',
 
     'components' => [
-
         'errorHandler' => [
             'errorAction' => 'site/error'
         ],

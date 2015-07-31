@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\user\models;
+namespace backend\modules\user\models;
 
 use common\models\User;
 use Yii;
@@ -25,6 +25,7 @@ class LoginForm extends Model
         return [
             // username and password are both required
             [['identity', 'password'], 'required'],
+
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];

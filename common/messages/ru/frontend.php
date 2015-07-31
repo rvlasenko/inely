@@ -17,5 +17,97 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    ''
+
+    /**
+     * Header
+     */
+    'Home' => 'Начало',
+    'Intro' => 'Введение',
+    'Services' => 'Службы',
+    'Features' => 'Особенности',
+    'Go Now' => 'Начните сейчас!',
+
+    /**
+     * Title
+     */
+    'Your personal scheduler.' => 'Ваш личный планировщик.',
+
+    /**
+     * Revolution Slider
+     */
+    'The Best Open Source Web Schedule' => 'Лучший веб-планировщик с открытым кодом',
+    'Welcome to madeasy' => 'Добро пожаловать в madeasy',
+    'Achieve more everyday in your life. Start realizing the opportunities.' => 'Каждый день достигайте большего в Вашей жизни. Начните осозновать свои возможности.',
+    'Read More' => 'Узнайте больше',
+    'Access from everywhere.' => 'Доступ откуда угодно',
+    'With powerful layout, your tasks are always there: on mobile devices, browsers, and more.' => 'C помощью адаптивности, ваши задачи всегда под рукой: в мобильном устройстве, браузере, и не только.',
+    'Browse' => 'Исследуйте',
+
+    /**
+     * Intro Section
+     */
+    'Welcome to Madeasy.<br>Your scheduler.' => 'Встречайте Madeasy.<br>Ваш планировщик.',
+    'Manage your personal goals, and your team’s projects in one place. Madeasy designed to adapt to all needs.' => 'Отслеживайте личные задачи, планируйте рабочие проекты, и всё остальное в одном месте. Madeasy подходит для любой цели.',
+    'images/services/main-fbrowser.png' => 'images/services/ru/main-fbrowser.png',
+
+    /**
+     * Services Section
+     */
+    'Scalable on Devices.' => 'Масштабируемость',
+    'Employment.' => '',
+
+    'Smartly Coded &amp; Maintained.' => '',
+    '' => '',
+
+    'Flexible &amp; Customizable.' => '',
+    '' => '',
+
+    /**
+     * Features Section
+     */
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+
+    /**
+     * Code Section
+     */
+    'images/services/home-testi-bg.jpg' => 'images/services/ru/home-testi-bg.jpg',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+
+    /**
+     * Retina Section
+     */
+    'images/services/fbrowser2.png' => 'images/services/ru/fbrowser2.png',
+
+    /**
+     * Go Now Section
+     */
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+
+    /**
+     * Footer
+     */
+    '' => '',
+    '' => '',
+
+    /**
+     * Other
+     */
+    '230' => '130'
 ];

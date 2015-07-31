@@ -18,12 +18,12 @@
             <nav id="primary-menu">
 
                 <ul class="one-page-menu">
-                    <li class="current"><a href="#" data-href="#header"><div>Home</div></a></li>
-                    <li><a href="#" data-href="#section-intro"><div>Intro</div></a></li>
-                    <li><a href="#" data-href="#section-services"><div>Services</div></a></li>
-                    <li><a href="#" data-href="#section-features"><div>Features</div></a></li>
+                    <li class="current"><a href="#" data-href="#header"><div><?= Yii::t('frontend', 'Home') ?></div></a></li>
+                    <li><a href="#" data-href="#section-intro"><div><?= Yii::t('frontend', 'Intro') ?></div></a></li>
+                    <li><a href="#" data-href="#section-services"><div><?= Yii::t('frontend', 'Services') ?></div></a></li>
+                    <li><a href="#" data-href="#section-features"><div><?= Yii::t('frontend', 'Features') ?></div></a></li>
                     <li><a href="#" data-href="#section-retina"><div>Retina</div></a></li>
-                    <li><a href="#" data-href="#section-buy"><div>Buy Now</div></a></li>
+                    <li><a href="#" data-href="#section-go"><div><?= Yii::t('frontend', 'Go Now') ?></div></a></li>
                 </ul>
 
             </nav><!-- #primary-menu end -->

@@ -40,6 +40,7 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
             [[], ReCaptchaValidator::className(),
                 'secret' => getenv('RC_SECRET')
             ]

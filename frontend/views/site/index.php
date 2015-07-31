@@ -5,15 +5,15 @@
 
         <div class="col-lg-5">
             <div class="heading-block topmargin">
-                <h1>Welcome to Canvas.<br>MultiPurpose Template.</h1>
+                <h2><?= Yii::t('frontend', 'Welcome to Madeasy.<br>Your scheduler.') ?></h2>
             </div>
-            <p class="lead">Create a website that you are gonna be proud of. Be it Business, Portfolio, Agency, Photography, eCommerce &amp; much more.</p>
+            <p class="lead"><?= Yii::t('frontend', 'Manage your personal goals, and your team’s projects in one place. Madeasy designed to adapt to all needs.') ?></p>
         </div>
 
         <div class="col-lg-7">
 
             <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
-                <img src="images/services/main-fbrowser.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+                <img src="<?= Yii::t('frontend', 'images/services/main-fbrowser.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
                 <img src="images/services/main-fmobile.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">
             </div>
 
@@ -30,28 +30,26 @@
             <div class="col-md-4 col-sm-4 bottommargin">
                 <i class="i-plain color i-large icon-line2-screen-desktop inline-block" style="margin-bottom: 15px;"></i>
                 <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
-                    <span class="before-heading">Scalable on Devices.</span>
-                    <h4>Responsive &amp; Retina</h4>
+                    <h4><?= Yii::t('frontend', 'Scalable on Devices.') ?></h4>
                 </div>
-                <p>Employment respond committed meaningful fight against oppression social challenges rural legal aid governance. Meaningful work, implementation, process cooperation, campaign inspire.</p>
+                <p><?= Yii::t('frontend', 'Employment.') ?></p>
             </div>
 
             <div class="col-md-4 col-sm-4 bottommargin">
                 <i class="i-plain color i-large icon-line2-energy inline-block" style="margin-bottom: 15px;"></i>
                 <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
-                    <span class="before-heading">Smartly Coded &amp; Maintained.</span>
-                    <h4>Powerful Performance</h4>
+                    <span class="before-heading"></span>
+                    <h4><?= Yii::t('frontend', 'Smartly Coded &amp; Maintained.') ?></h4>
                 </div>
-                <p>Medecins du Monde Jane Addams reduce child mortality challenges Ford Foundation. Diversification shifting landscape advocate pathway to a better life rights international. Assessment.</p>
+                <p><?= Yii::t('frontend', 'Employment.') ?></p>
             </div>
 
             <div class="col-md-4 col-sm-4 bottommargin">
                 <i class="i-plain color i-large icon-line2-equalizer inline-block" style="margin-bottom: 15px;"></i>
                 <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
-                    <span class="before-heading">Flexible &amp; Customizable.</span>
-                    <h4>Truly Multi-Purpose</h4>
+                    <h4><?= Yii::t('frontend', 'Flexible &amp; Customizable.') ?></h4>
                 </div>
-                <p>Democracy inspire breakthroughs, Rosa Parks; inspiration raise awareness natural resources. Governance impact; transformative donation philanthropy, respect reproductive.</p>
+                <p><?= Yii::t('frontend', 'Employment.') ?></p>
             </div>
 
         </div>
@@ -164,7 +162,7 @@
 
 </div>
 
-<div class="section parallax dark bottommargin-lg" style="background-image: url('images/services/home-testi-bg.jpg'); padding: 100px 0;" data-stellar-background-ratio="0.3">
+<div class="section parallax dark bottommargin-lg" style="background-image: url('<?= Yii::t('frontend', 'images/services/home-testi-bg.jpg') ?>'); padding: 100px 0;" data-stellar-background-ratio="0.3">
 
     <div class="container clearfix">
 
@@ -182,7 +180,7 @@
 
         <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn" data-delay="400">
             <i class="i-plain i-xlarge divcenter nobottommargin icon-cup"></i>
-            <div class="counter counter-lined"><span data-from="100" data-to="923" data-refresh-interval="50" data-speed="3500" data-comma="true"></span></div>
+            <div class="counter counter-lined"><span data-from="100" data-to="523" data-refresh-interval="50" data-speed="3500" data-comma="true"></span></div>
             <h5>Cups of Tea</h5>
         </div>
 
@@ -204,29 +202,16 @@
     </div>
 
     <div style="position: relative;" data-height-lg="624" data-height-md="518" data-height-sm="397" data-height-xs="242" data-height-xxs="154">
-        <img src="images/services/fbrowser.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+        <img src="<?= Yii::t('frontend', 'images/services/fbrowser.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
         <img src="images/services/fmobile.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">
-        <img src="images/services/fbrowser2.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeIn" data-delay="1200" alt="iPad">
+        <img src="<?= Yii::t('frontend', 'images/services/fbrowser2.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeIn" data-delay="1200" alt="iPad">
     </div>
 </div>
 
-<div class="section notopmargin footer-stick">
-
-    <div class="container clearfix">
-
-        <div id="section-buy" class="heading-block title-center nobottomborder page-section">
-            <h2>Enough? Start Building!</h2>
-            <span>Now that you have read all the Tid-Bits, so start with a plan</span>
-        </div>
-
-        <div class="center">
-
-            <a href="#" data-animate="tada" class="button button-desc button-3d button-rounded button-green center">Create a Canvas Account<span>Free Forever, Instant Activation</span></a>
-
-        </div>
-
+<a class="button button-full center tright footer-stick">
+    <div id="section-go" class="container clearfix">
+        Need us to Design a Logo for You? <strong>Get a Quote</strong> <i class="icon-caret-right" style="top:4px;"></i>
     </div>
-
-</div>
+</a>
 
 </div>

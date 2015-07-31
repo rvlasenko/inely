@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\user;
+namespace backend\modules\user;
 
 class Module extends \yii\base\Module
 {

@@ -1402,6 +1402,39 @@ body:not(.device-touch) .button {
 
 .button.button-rounded { border-radius: 3px; }
 
+/* Buttons - Promo 100% Width
+-----------------------------------------------------------------*/
+
+.button.button-full {
+    display: block !important;
+    white-space: normal;
+    margin: 0;
+    height: auto;
+    line-height: 1.6;
+    padding: 30px 0;
+    font-size: 30px;
+    font-weight: 300;
+    text-transform: none;
+    border-radius: 0;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+.button.button-full.button-light { border-bottom: 1px solid rgba(0,0,0,0.15); }
+
+.button.button-full strong {
+    font-weight: 600;
+    border-bottom: 2px solid #EEE;
+}
+
+body:not(.device-touch) .button.button-full strong {
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+}
+
+.button.button-full.button-light strong { border-bottom-color: #333; }
+
+.button.button-full.button-light:hover strong { border-bottom-color: #EEE; }
 
 /* Buttons - Border
 -----------------------------------------------------------------*/
@@ -2348,6 +2381,69 @@ body:not(.device-touch) .social-icon i {
 .si-colored.si-pinterest { background-color: #C8232C !important; }
 .si-fivehundredpx:hover,
 .si-colored.si-fivehundredpx { background-color: #111 !important; }
+
+/* Feature Box - Center & Large Icons
+-----------------------------------------------------------------*/
+
+.feature-box.fbox-center.fbox-large .fbox-icon {
+    width: 128px;
+    height: 128px;
+}
+
+.feature-box.fbox-center.fbox-large .fbox-icon i {
+    font-size: 70px;
+    line-height: 128px;
+}
+
+.feature-box.fbox-center.fbox-large.fbox-outline .fbox-icon i { line-height: 118px; }
+
+.feature-box.fbox-center.fbox-light .fbox-icon i { line-height: 94px; }
+
+.feature-box.fbox-center.fbox-light.fbox-outline .fbox-icon i { line-height: 86px; }
+
+.feature-box.fbox-center.fbox-light.fbox-outline.fbox-large .fbox-icon i { line-height: 114px; }
+
+.feature-box.fbox-center.fbox-border .fbox-icon i { line-height: 94px !important; }
+
+.feature-box.fbox-center.fbox-large.fbox-border .fbox-icon i { line-height: 126px !important; }
+
+.feature-box.fbox-center.fbox-plain .fbox-icon i { font-size: 84px; }
+
+.feature-box.fbox-center.fbox-plain .fbox-icon img { height: 96px; }
+
+.feature-box.fbox-center.fbox-large.fbox-plain .fbox-icon i { font-size: 112px; }
+
+.feature-box.fbox-center.fbox-large.fbox-plain .fbox-icon img { height: 128px; }
+
+/* Feature Box - Center
+-----------------------------------------------------------------*/
+
+.feature-box.fbox-center {
+    padding: 0;
+    text-align: center;
+}
+
+.feature-box.fbox-center.fbox-small { padding-left: 0 !important; }
+
+.feature-box.fbox-center .fbox-icon {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 30px;
+}
+
+.feature-box.fbox-center .fbox-icon i {
+    font-size: 42px;
+    line-height: 96px;
+}
+
+.feature-box.fbox-center.fbox-outline .fbox-icon i { line-height: 88px; }
+
+.feature-box.fbox-center p {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
 
 /* ----------------------------------------------------------------
 	Counter

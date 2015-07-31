@@ -4,7 +4,7 @@ $config = [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en-US',
-    'language' => 'en-US',
+    'language' => 'ru-RU',
     'bootstrap' => ['log'],
     'components' => [
 
@@ -75,30 +75,19 @@ $config = [
 
         'i18n' => [
             'translations' => [
-                'app' => [
+                'app'=>[
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@common/messages'
+                    'basePath' => '@common/messages',
                 ],
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@common/messages',
                     'fileMap' => [
-                        'common' => 'common.php',
                         'backend' => 'backend.php',
                         'frontend' => 'frontend.php'
                     ]
-                ],
-                /* Uncomment this code to use DbMessageSource
-                 '*'=> [
-                    'class' => 'yii\i18n\DbMessageSource',
-                    'sourceMessageTable'=>'{{%i18n_source_message}}',
-                    'messageTable'=>'{{%i18n_message}}',
-                    'enableCaching' => YII_ENV_DEV,
-                    'cachingDuration' => 3600
-                ],
-                */
-
-            ],
+                ]
+            ]
         ],
 
         'urlManagerBackend' => \yii\helpers\ArrayHelper::merge(
@@ -119,8 +108,8 @@ $config = [
         'adminEmail' => getenv('ADMIN_EMAIL'),
         'robotEmail' => getenv('ROBOT_EMAIL'),
         'availableLocales' => [
-            'en-US' => 'English (US)',
-            'ru-RU' => 'Русский (РФ)'
+            'en-US' => 'English',
+            'ru-RU' => 'Русский'
         ],
     ],
 ];

@@ -11,7 +11,7 @@
             <!-- SLIDE  -->
             <li class="dark" data-transition="fade" data-slotamount="1" data-masterspeed="500" data-thumb="images/slider/rev/ken-1-thumb.jpg" data-delay="10000" data-saveperformance="off" data-title="Responsive Design">
                 <!-- MAIN IMAGE -->
-                <img src="images/slider/rev/ken-1.jpg"  alt="kenburns1"  data-bgposition="left center" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-bgfit="130" data-bgfitend="100" data-bgpositionend="right center">
+                <img src="images/slider/rev/ken-1.jpg" alt="kenburns1" data-bgposition="left center" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-bgfit="130" data-bgfitend="100" data-bgpositionend="right center">
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 2 -->
@@ -27,21 +27,21 @@
                      data-elementdelay="0.01"
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
-                     data-endeasing="Power4.easeIn" style="z-index: 3;">The Best Multipurpose HTML5 Template</div>
+                     data-endeasing="Power4.easeIn" style="z-index: 3;"><?= Yii::t('frontend', 'The Best Open Source Web Schedule') ?></div>
 
                 <div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text nopadding noborder"
-                     data-x="116"
+                     data-x="<?= Yii::t('frontend', '230') ?>"
                      data-y="260"
                      data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                      data-speed="800"
-                     data-start="1200"
+                     data-start="1000"
                      data-easing="easeOutQuad"
                      data-splitin="none"
                      data-splitout="none"
                      data-elementdelay="0.01"
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
-                     data-endeasing="Power4.easeIn" style="z-index: 3;">Welcome to the World of Canvas</div>
+                     data-endeasing="Power4.easeIn" style="z-index: 3"><?= Yii::t('frontend', 'Welcome to madeasy') ?></div>
 
                 <div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text"
                      data-x="195"
@@ -55,11 +55,11 @@
                      data-elementdelay="0.01"
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
-                     data-endeasing="Power4.easeIn" style="z-index: 3; width: 750px; max-width: 750px; white-space: normal;">Create a website that you are gonna be proud of. Be it Business, Portfolio, Agency, Photography, e-Commerce &amp; much more..</div>
+                     data-endeasing="Power4.easeIn" style="z-index: 3; width: 750px; max-width: 750px; white-space: normal;"><?= Yii::t('frontend', 'Achieve more everyday in your life. Start realizing the opportunities.') ?></div>
 
                 <div class="tp-caption customin ltl tp-resizeme"
-                     data-x="496"
-                     data-y="478"
+                     data-x="470"
+                     data-y="460"
                      data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                      data-speed="800"
                      data-start="1550"
@@ -69,7 +69,7 @@
                      data-elementdelay="0.01"
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
-                     data-endeasing="Power4.easeIn" style="z-index: 3;"><a href="#" class="button button-border button-white button-light button-large button-rounded tright nomargin"><span>Start Tour</span> <i class="icon-angle-right"></i></a></div>
+                     data-endeasing="Power4.easeIn" style="z-index: 3;"><a href="#" class="button button-border button-white button-light button-large button-rounded tright nomargin"><span><?= Yii::t('frontend', 'Read More') ?></span> <i class="icon-angle-right"></i></a></div>
 
             </li>
             <li class="dark" data-transition="slideup" data-slotamount="1" data-masterspeed="1500" data-thumb="images/slider/rev/main/s3-thumb.jpg" data-delay="10000"  data-saveperformance="off"  data-title="Responsive &amp; Retina">
@@ -78,7 +78,7 @@
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 2 -->
-                <div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text uppercase"
+                <div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text"
                      data-x="203"
                      data-y="235"
                      data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
@@ -90,7 +90,7 @@
                      data-elementdelay="0.01"
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
-                     data-endeasing="Power4.easeIn" style="z-index: 3">Mobile Ready Design</div>
+                     data-endeasing="Power4.easeIn" style="z-index: 3"><?= Yii::t('frontend', 'Access from everywhere.') ?></div>
 
                 <div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text"
                      data-x="245"
@@ -104,7 +104,7 @@
                      data-elementdelay="0.01"
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
-                     data-endeasing="Power4.easeIn" style="z-index: 3; max-width: 650px; white-space: normal">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Powerful Layout with Responsive functionality that can be adapted to any screen size.</div>
+                     data-endeasing="Power4.easeIn" style="z-index: 3; max-width: 650px; white-space: normal"><?= Yii::t('frontend', 'With powerful layout, your tasks are always there: on mobile devices, browsers, and more.') ?></div>
 
                 <div class="tp-caption customin ltl tp-resizeme"
                      data-x="495"
@@ -118,7 +118,7 @@
                      data-elementdelay="0.01"
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
-                     data-endeasing="Power4.easeIn" style="z-index: 3;"><a href="#" class="button button-border button-white button-light button-large button-rounded tright nomargin"><span>Read More</span><i class="icon-angle-right"></i></a></div>
+                     data-endeasing="Power4.easeIn" style="z-index: 3;"><a href="#" class="button button-border button-white button-light button-large button-rounded tright nomargin"><span><?= Yii::t('frontend', 'Browse') ?></span><i class="icon-angle-right"></i></a></div>
 
             </li>
         </ul>

@@ -11,7 +11,7 @@ class AccountForm extends Model
 {
     public $username;
     public $password;
-    public $password_confirm;
+    public $passwordConfirm;
 
     /**
      * @inheritdoc
@@ -29,8 +29,10 @@ class AccountForm extends Model
                 }
             ],
             ['username', 'string', 'min' => 1, 'max' => 255],
+
             ['password', 'string'],
-            [['password_confirm'], 'compare', 'compareAttribute' => 'password']
+
+            [['passwordConfirm'], 'compare', 'compareAttribute' => 'password']
         ];
     }
 
@@ -42,7 +44,7 @@ class AccountForm extends Model
         return [
             'username' => Yii::t('backend', 'Username'),
             'password' => Yii::t('backend', 'Password'),
-            'password_confirm' => Yii::t('backend', 'Password Confirm')
+            'passwordConfirm' => Yii::t('backend', 'Password Confirm')
         ];
     }
 }

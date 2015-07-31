@@ -1,13 +1,13 @@
 <?php
 
-namespace frontend\modules\user\controllers;
+namespace backend\modules\user\controllers;
 
 use common\models\User;
-use frontend\modules\user\models\ConfirmEmailForm;
-use frontend\modules\user\models\LoginForm;
-use frontend\modules\user\models\PasswordResetRequestForm;
-use frontend\modules\user\models\ResetPasswordForm;
-use frontend\modules\user\models\SignupForm;
+use backend\modules\user\models\ConfirmEmailForm;
+use backend\modules\user\models\LoginForm;
+use backend\modules\user\models\PasswordResetRequestForm;
+use backend\modules\user\models\ResetPasswordForm;
+use backend\modules\user\models\SignupForm;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
@@ -47,7 +47,7 @@ class SignInController extends Controller
                         'allow' => false,
                         'roles' => ['@'],
                         'denyCallback' => function() {
-                            return Yii::$app->controller->redirect(['/site/index']);
+                            return Yii::$app->controller->redirect(['site/index']);
                         }
                     ],
                     [
@@ -55,7 +55,7 @@ class SignInController extends Controller
                         'allow' => false,
                         'roles' => ['?'],
                         'denyCallback' => function() {
-                            return Yii::$app->controller->redirect(['/site/index']);
+                            return Yii::$app->controller->redirect(['site/index']);
                         }
                     ],
                     [
@@ -70,6 +70,7 @@ class SignInController extends Controller
 
     public function actionLogin()
     {
+        $this->layout = 'base';
         $model = new LoginForm();
 
         if (Yii::$app->request->isGet && $model->load($_POST)) {

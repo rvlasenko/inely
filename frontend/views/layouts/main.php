@@ -8,7 +8,7 @@
     use yii\helpers\Html;
 
     FrontendAsset::register($this);
-    $this->title = 'madeasy';
+    $this->title = Yii::t('frontend', 'Your personal scheduler.') . ' Madeasy';
     $this->registerAssetBundle('yii\jui\JuiAsset', $this::POS_END);
     $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
     $this->registerJsFile('js/functions.js')

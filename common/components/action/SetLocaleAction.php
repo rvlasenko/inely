@@ -9,7 +9,7 @@ use yii\web\Cookie;
 
 /**
  * Class SetLocaleAction
- * @package common\components\action
+ * @package common\components\actions
  *
  * Example:
  *
@@ -17,7 +17,7 @@ use yii\web\Cookie;
  *   {
  *       return [
  *           'set-locale'=>[
- *               'class'=>'common\components\actions\SetLocaleAction',
+ *               'class'=>'common\actions\SetLocaleAction',
  *               'locales'=>[
  *                   'en-US', 'ru-RU', 'ua-UA'
  *               ],
@@ -29,6 +29,7 @@ use yii\web\Cookie;
  *       ];
  *   }
  */
+
 class SetLocaleAction extends Action
 {
     /**
@@ -56,30 +57,26 @@ class SetLocaleAction extends Action
      */
     public $callback;
 
+
     /**
      * @param $locale
-     * @return mixed
-     * @throws InvalidParamException
+     * @return mixed|static
      */
     public function run($locale)
     {
-        if (!is_array($this->locales) || !in_array($locale, $this->locales))
+        if (!is_array($this->locales) || !in_array($locale, $this->locales, true))
             throw new InvalidParamException('Unacceptable locale');
 
         $cookie = new Cookie([
             'name' => $this->localeCookieName,
             'value' => $locale,
             'expire' => $this->cookieExpire ?: time() + 60 * 60 * 24 * 365,
-            'domain' => $this->cookieDomain ?: ''
+            'domain' => $this->cookieDomain ?: '',
         ]);
 
         Yii::$app->getResponse()->getCookies()->add($cookie);
-        if ($this->callback && $this->callback instanceof \Closure) {
-            return call_user_func_array($this->callback, [
-                $this,
-                $locale
-            ]);
-        }
-        return Yii::$app->response->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+
+        if ($this->callback && $this->callback instanceof \Closure)
+            return call_user_func_array($this->callback, [$this, $locale]);
     }
 }
