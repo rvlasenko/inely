@@ -6,11 +6,10 @@
 Особенности
 --------
 - I18N, OAuth2, CRUD, RESTful API, Timeline activity, dotenv.
-
-- Responsive & Retina Ready
 - Parallax Scrolling
 - Revolution Slider
 - Bootstrap 3.3
+- Responsive & Retina Ready
 
 Рабочий сервер
 ----
