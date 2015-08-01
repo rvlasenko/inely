@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\user\models;
+namespace backend\modules\user\models;
 
 use common\models\User;
 use himiklab\yii2\recaptcha\ReCaptchaValidator;

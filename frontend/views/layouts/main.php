@@ -1,7 +1,10 @@
 <?php
 
     /**
+     * Main layout
+     * @author rootkit
      * @var $this yii\web\View
+     * @var $content string
      */
 
     use frontend\assets\FrontendAsset;
@@ -11,7 +14,7 @@
     $this->title = Yii::t('frontend', 'Your personal scheduler.') . ' Madeasy';
     $this->registerAssetBundle('yii\jui\JuiAsset', $this::POS_END);
     $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
-    $this->registerJsFile('js/functions.js')
+    $this->registerJsFile('js/functions.js', ['position' => $this::POS_END]);
 ?>
 
 <?php $this->beginPage() ?>

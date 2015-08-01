@@ -1,8 +1,13 @@
 <?php
-    use yii\helpers\Html;
 
-    /* @var $this \yii\web\View */
-    /* @var $content string */
+    /**
+     * Layout for errors
+     * @author rootkit
+     * @var $this yii\web\View
+     * @var $content string
+     */
+
+    use yii\helpers\Html;
 
     frontend\assets\FrontendAsset::register($this);
 ?>

@@ -8,10 +8,10 @@ return [
         'contact' => '/site/contact',
 
         // Регистрация
-        'sign-up' => '/sign-in/signup',
-        'reset' => '/sign-in/request-password-reset',
-        'login' => '/sign-in/login',
-        'logout' => '/sign-in/logout',
+        'sign-up' => '/user/sign-in/signup',
+        'reset' => '/user/sign-in/request-password-reset',
+        'login' => '/user/sign-in/login',
+        'logout' => '/user/sign-in/logout',
 
         // Задачи
         'todo' => '/task/index',
