@@ -44,24 +44,23 @@ composer update
 ```php console/yii app/setup```
 
 Настройте параметры в `.env` файле
-	- Укажите ваше текущее окружение
 	
-	```
+
+	- Укажите ваше текущее окружение
 	YII_DEBUG   = true
 	YII_ENV     = dev
-	```
+	
 	- Конфигурацию базы данных
-	```
+	
 	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=madeasy
 	DB_USERNAME      = user
 	DB_PASSWORD      = password
-	```
 	
 	- URL-адреса для отдельных доменов
-	```
+
 	FRONTEND_URL    = http://madeasy.local
 	BACKEND_URL     = http://backend.madeasy.local
-	```
+
 
 Запустите миграции, окружение и RBAC
 ```php console/yii app/setup```
