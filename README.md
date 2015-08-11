@@ -47,6 +47,7 @@ composer update
 	
 
 	- Укажите ваше текущее окружение
+	
 	YII_DEBUG   = true
 	YII_ENV     = dev
 	
