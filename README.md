@@ -34,14 +34,16 @@ composer global require "fxp/composer-asset-plugin"
 
 Далее клонируйте этот репозиторий и обновите зависимости:
 ```
-cd /path/to/madeasy
+cd /path/to/inely
 composer update
 ```
 
 ### Инициализация
 
 Инициализируйте приложение, запустив команду из директории с проектом
-```php console/yii app/setup```
+```
+php console/yii app/setup
+```
 
 Настройте параметры в `.env` файле
 	
@@ -53,22 +55,24 @@ composer update
 	
 	- Конфигурацию базы данных
 	
-	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=madeasy
+	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=inely
 	DB_USERNAME      = user
 	DB_PASSWORD      = password
 	
 	- URL-адреса для отдельных доменов
 
-	FRONTEND_URL    = http://madeasy.local
-	BACKEND_URL     = http://backend.madeasy.local
+	FRONTEND_URL    = http://inely.local
+	BACKEND_URL     = http://backend.inely.local
 
 
 Запустите миграции, окружение и RBAC
-```php console/yii app/setup```
+```
+php console/yii app/setup
+```
 
 И в завершение сконфигурируйте виртуальные хосты:
-- madeasy.local => /path/to/madeasy/frontend/web
-- backend.madeasy.local => /path/to/madeasy/backend/web
+- inely.local => /path/to/inely/frontend/web
+- backend.inely.local => /path/to/inely/backend/web
 
 ### Инициализация c Vagrant
 Если вам дорого потраченное время, можете использовать Vagrant вместо ручной конфигурации приложения.
