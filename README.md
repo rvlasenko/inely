@@ -19,19 +19,13 @@ http://domain.net
 Backend:
 http://backend.domain.net
 
-Аккаунт пользователя:
-```
-Login: user
-Password: user
-```
-
 Установка и развёртывание
 ------------
 
 Минимальные требования подразумевают, что веб-сервер поддерживает PHP 5.4
 
 ### Перед началом
-При отсутствии [Composer](http://getcomposer.org/), необходимо поставить его, следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+При отсутствии [Composer](http://getcomposer.org/), необходимо установить его, следуя инструкциям на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
 После завершения добавьте плагин:
 ```bash
@@ -40,31 +34,36 @@ composer global require "fxp/composer-asset-plugin"
 
 Далее клонируйте этот репозиторий и обновите зависимости:
 ```
-cd /path/to/madeasy
+cd /path/to/inely
 composer update
 ```
 
 ### Инициализация
 
+Инициализируйте приложение, запустив команду из директории с проектом
+```
+php console/yii app/setup
+```
+
 Настройте параметры в `.env` файле
-	- Укажите режим отладки и ваше текущее окружение
 	
-	```
+
+	- Укажите ваше текущее окружение
+	
 	YII_DEBUG   = true
 	YII_ENV     = dev
-	```
-	- Укажите конфигурацию базы данных
-	```
-	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=madeasy
+	
+	- Конфигурацию базы данных
+	
+	DB_DSN           = mysql:host=127.0.0.1;port=3306;dbname=inely
 	DB_USERNAME      = user
 	DB_PASSWORD      = password
-	```
 	
-	- Укажите URL-адреса для отдельных доменов
-	```
-	FRONTEND_URL    = http://madeasy.local
-	BACKEND_URL     = http://backend.madeasy.local
-	```
+	- URL-адреса для отдельных доменов
+
+	FRONTEND_URL    = http://inely.local
+	BACKEND_URL     = http://backend.inely.local
+
 
 Запустите миграции, окружение и RBAC
 ```
@@ -72,8 +71,8 @@ php console/yii app/setup
 ```
 
 И в завершение сконфигурируйте виртуальные хосты:
-- madeasy.local => /path/to/madeasy/frontend/web
-- backend.madeasy.local => /path/to/madeasy/backend/web
+- inely.local => /path/to/inely/frontend/web
+- backend.inely.local => /path/to/inely/backend/web
 
 ### Инициализация c Vagrant
 Если вам дорого потраченное время, можете использовать Vagrant вместо ручной конфигурации приложения.
@@ -83,7 +82,7 @@ php console/yii app/setup
 3. Поднимите виртуальную машину ```vagrant up``` и сделайте перерыв. :coffee:
 4. Инициализируйте окружение ```php console/yii app/setup```.
 
-На этом всё. После этих действий приложение будет доступно по адресу //madeasy.local на базе сервера Apache 2.4. Подключиться к базе можно через /adminer или MySQLWorkbench.
+На этом всё. После этих действий приложение будет доступно по адресу madeasy.local на базе сервера Apache 2.4. Управление БД происходит через /adminer или MySQLWorkbench.
 
 p.s. Если возникла необходимость проброса портов к MySQL через Vagrant и вы не смогли подключиться к базе, то зайдите через ```vagrant ssh``` выполните команду ```sudo nano /etc/mysql/my.cnf``` и закомментируйте строки:
 ```bash
