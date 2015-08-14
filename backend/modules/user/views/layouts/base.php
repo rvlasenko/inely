@@ -1,10 +1,11 @@
 <?php
 
     /**
-     * Base layout for user auth
+     * Base layout
+     *
      * @author rootkit
-     * @var $this yii\web\View
-     * @var $content string
+     * @var    $this yii\web\View
+     * @var    $content string
      */
 
     use yii\helpers\Html;

@@ -1,8 +1,7 @@
 <?php
 
 /**
- * @copyright Copyright (c) 2015 Exotic
- * @license For the full copyright and license information, please view the LICENSE.md in root
+ * @author Copyright (c) 2015 rootkit
  */
 
 namespace backend\assets;
@@ -58,7 +57,7 @@ class BackendAsset extends AssetBundle
     ];
 
     public $depends = [
-        'common\assets\BowerAsset',
+        'common\assets\BootstrapAsset',
         'common\assets\FontAwesome',
         'yii\jui\JuiAsset'
     ];

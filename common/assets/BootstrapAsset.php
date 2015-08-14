@@ -2,10 +2,9 @@
 
 namespace common\assets;
 
-use yii\bootstrap\BootstrapAsset;
 use yii\web\View;
 
-class BowerAsset extends BootstrapAsset
+class BootstrapAsset extends \yii\bootstrap\BootstrapAsset
 {
     public $sourcePath = '@bower/bootstrap/dist';
 

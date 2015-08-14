@@ -9,14 +9,14 @@
     <div class="tp-banner" >
         <ul>
             <!-- SLIDE  -->
-            <li class="dark" data-transition="fade" data-slotamount="1" data-masterspeed="500" data-thumb="images/slider/rev/ken-1-thumb.jpg" data-delay="10000" data-saveperformance="off" data-title="Responsive Design">
+            <li class="dark" data-transition="fade" data-slotamount="1" data-masterspeed="500" data-thumb="images/slider/rev/ken-3-thumb.jpg" data-delay="10000" data-saveperformance="off" data-title="<?= Yii::t('frontend', 'Welcome!') ?>">
                 <!-- MAIN IMAGE -->
                 <img src="images/slider/rev/ken-1.jpg" alt="kenburns1" data-bgposition="left center" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-bgfit="130" data-bgfitend="100" data-bgpositionend="right center">
                 <!-- LAYERS -->
 
                 <!-- LAYER NR. 2 -->
                 <div class="tp-caption customin ltl tp-resizeme revo-slider-caps-text uppercase"
-                     data-x="350"
+                     data-x="<?= Yii::t('frontend', '360') ?>"
                      data-y="235"
                      data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                      data-speed="800"
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="tp-caption customin ltl tp-resizeme revo-slider-emphasis-text nopadding noborder"
-                     data-x="<?= Yii::t('frontend', '230') ?>"
+                     data-x="<?= Yii::t('frontend', '300') ?>"
                      data-y="260"
                      data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                      data-speed="800"
@@ -44,7 +44,7 @@
                      data-endelementdelay="0.1"
                      data-endspeed="1000"
                      data-endeasing="Power4.easeIn" style="z-index: 3">
-                    <?= Yii::t('frontend', 'Welcome to madeasy') ?>
+                    <?= Yii::t('frontend', 'Welcome to Inely') ?>
                 </div>
 
                 <div class="tp-caption customin ltl tp-resizeme revo-slider-desc-text"
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="tp-caption customin ltl tp-resizeme"
-                     data-x="470"
+                     data-x="<?= Yii::t('frontend', '490') ?>"
                      data-y="460"
                      data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                      data-speed="800"
@@ -82,7 +82,7 @@
                 </div>
 
             </li>
-            <li class="dark" data-transition="slideup" data-slotamount="1" data-masterspeed="1500" data-thumb="images/slider/rev/main/s3-thumb.jpg" data-delay="10000"  data-saveperformance="off"  data-title="Responsive &amp; Retina">
+            <li class="dark" data-transition="slideup" data-slotamount="1" data-masterspeed="1500" data-thumb="images/slider/rev/ken-2-thumb.jpg" data-delay="10000" data-saveperformance="off" data-title="<?= Yii::t('frontend', 'Responsive &amp; Retina') ?>">
                 <!-- MAIN IMAGE -->
                 <img src="images/slider/rev/ken-2.jpg" alt="kenburns6" data-bgposition="left top" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-bgfit="130" data-bgfitend="100" data-bgpositionend="right bottom">
                 <!-- LAYERS -->
@@ -121,7 +121,7 @@
                 </div>
 
                 <div class="tp-caption customin ltl tp-resizeme"
-                     data-x="495"
+                     data-x="500"
                      data-y="503"
                      data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                      data-speed="800"
@@ -223,18 +223,17 @@
 
         apiRevoSlider.bind("revolution.slide.onchange", function (e, data) {
             if ($(window).width() > 992) {
+                if (!$('body').hasClass('dark')) {
+                    $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
+                    $('#header-wrap').removeClass('not-dark');
+                } else {
+                    $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
+                    $('#header.transparent-header:not(.sticky-header,.semi-transparent)').find('#header-wrap').addClass('not-dark');
+                }
                 if ($('#slider ul > li').eq(data.slideIndex - 1).hasClass('dark')) {
                     $('#header.transparent-header:not(.sticky-header,.semi-transparent)').addClass('dark');
                     $('#header.transparent-header.sticky-header,#header.transparent-header.semi-transparent.sticky-header').removeClass('dark');
                     $('#header-wrap').removeClass('not-dark');
-                } else {
-                    if ($('body').hasClass('dark')) {
-                        $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
-                        $('#header.transparent-header:not(.sticky-header,.semi-transparent)').find('#header-wrap').addClass('not-dark');
-                    } else {
-                        $('#header.transparent-header:not(.semi-transparent)').removeClass('dark');
-                        $('#header-wrap').removeClass('not-dark');
-                    }
                 }
                 SEMICOLON.header.darkLogo();
             }

@@ -11,10 +11,11 @@
     use yii\helpers\Html;
 
     FrontendAsset::register($this);
-    $this->title = Yii::t('frontend', 'Your personal scheduler.') . ' Madeasy';
+    $this->title = Yii::t('frontend', 'Your personal scheduler.') . ' Inely.';
     $this->registerAssetBundle('yii\jui\JuiAsset', $this::POS_END);
     $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
     $this->registerJsFile('js/functions.js', ['position' => $this::POS_END]);
+    $this->registerJsFile('js/plugins.js', ['position' => $this::POS_END]);
 ?>
 
 <?php $this->beginPage() ?>
@@ -37,36 +38,7 @@
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
 
-    <link rel="icon" href="images/favicon.ico">
-
-    <style>
-
-        .revo-slider-emphasis-text {
-            font-size: 64px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            font-family: 'Raleway Cyr', sans-serif;
-            padding: 15px 20px;
-            border-top: 2px solid #FFF;
-            border-bottom: 2px solid #FFF;
-        }
-
-        .revo-slider-desc-text {
-            font-size: 20px;
-            font-family: 'Raleway Cyr', sans-serif;
-            width: 650px;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .revo-slider-caps-text {
-            font-size: 16px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            font-family: 'Raleway Cyr', sans-serif;
-        }
-
-    </style>
+    <link rel="icon" href="/favicon.png">
 
 </head>
 

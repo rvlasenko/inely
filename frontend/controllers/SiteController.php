@@ -1,9 +1,9 @@
 <?php
+
 namespace frontend\controllers;
 
 use frontend\models\ContactForm;
 use Yii;
-use yii\helpers\Url;
 use yii\web\Controller;
 
 /**
@@ -65,11 +65,6 @@ class SiteController extends Controller
             if ($action->id == 'error')
                 $this->layout = '_error';
             return true;
-        } else {
-            if (Yii::$app->getUser()->isGuest && Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl))
-                $this->redirect(Yii::$app->urlManagerFrontend->createUrl(''));
-            else
-                $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
         }
     }
 }

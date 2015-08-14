@@ -2,7 +2,6 @@
 
 	Description: The Multi-Purpose Template
 	Author: SemiColonWeb
-	Author URI: http://themeforest.net/user/semicolonweb
 	Version: 2.5
 
 -----------------------------------------------------------------------------------*/
@@ -10,6 +9,31 @@
 @import "//webfonts.ru/import/ralewayc.css";
 @import "//webfonts.ru/import/lato.css";
 @import "//webfonts.ru/import/creteround.css";
+
+.revo-slider-emphasis-text {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-family: 'Raleway Cyr', sans-serif;
+    padding: 15px 20px;
+    border-top: 2px solid #FFF;
+    border-bottom: 2px solid #FFF;
+}
+
+.revo-slider-desc-text {
+    font-size: 20px;
+    font-family: 'Raleway Cyr', sans-serif;
+    width: 650px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.revo-slider-caps-text {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    font-family: 'Raleway Cyr', sans-serif;
+}
 
 dl, dt, dd, ol, ul, li {
 	margin: 0;
@@ -105,9 +129,6 @@ h5 { font-size: 14px; }
 h6 { font-size: 12px; }
 
 h4 { font-weight: 600; }
-
-h5,
-h6 { font-weight: bold; }
 
 h1 > span:not(.nocolor),
 h2 > span:not(.nocolor),
@@ -351,7 +372,6 @@ span.middot {
 /* ----------------------------------------------------------------
 	Sections
 -----------------------------------------------------------------*/
-
 
 .section {
 	position: relative;
@@ -2417,6 +2437,40 @@ body:not(.device-touch) .social-icon i {
 
 /* Feature Box - Center
 -----------------------------------------------------------------*/
+
+.fbrowser {
+    position: relative;
+    margin-bottom: -60px;
+}
+
+.fbrowser img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.desc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url('/images/ipad-section.png') bottom right no-repeat;
+}
+
+.rev {
+    position: relative;
+}
+
+.rev img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#section-go i {
+    top: 4px;
+}
 
 .feature-box.fbox-center {
     padding: 0;

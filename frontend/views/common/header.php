@@ -1,4 +1,4 @@
-<header id="header" class="transparent-header full-header" data-sticky-class="not-dark">
+<header id="header" class="transparent-header full-header dark" data-sticky-class="not-dark">
 
     <div id="header-wrap">
 

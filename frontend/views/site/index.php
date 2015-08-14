@@ -5,15 +5,15 @@
 
         <div class="col-lg-5">
             <div class="heading-block topmargin">
-                <h2><?= Yii::t('frontend', 'Welcome to Madeasy.<br>Your scheduler.') ?></h2>
+                <h2><?= Yii::t('frontend', 'Welcome to Inely.<br>Your scheduler.') ?></h2>
             </div>
-            <p class="lead"><?= Yii::t('frontend', 'Manage your personal goals, and your team’s projects in one place. Madeasy designed to adapt to all needs.') ?></p>
+            <p class="lead"><?= Yii::t('frontend', 'Manage your personal goals, and your team’s projects in one place. Inely designed to adapt to all needs.') ?></p>
         </div>
 
         <div class="col-lg-7">
-            <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
-                <img src="<?= Yii::t('frontend', 'images/services/main-fbrowser.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
-                <img src="images/services/main-fmobile.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">
+            <div class="ohidden fbrowser" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
+                <img src="<?= Yii::t('frontend', 'images/services/main-fbrowser.png') ?>" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+                <img src="images/services/main-fmobile.png" data-animate="fadeInUp" data-delay="400" alt="iPad">
             </div>
         </div>
 
@@ -22,7 +22,7 @@
 
 <div class="section" style="padding-bottom: 150px;">
 
-    <div class="hidden-sm hidden-xs" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: transparent url('/images/ipad-section.png') bottom right no-repeat;"></div>
+    <div class="hidden-sm hidden-xs desc"></div>
 
     <div id="section-desc" class="container clearfix" style="z-index: 1;">
 
@@ -78,7 +78,7 @@
                 <a href="#"><img src="images/icons/features/performance.png" alt="Powerful Performance"></a>
             </div>
             <h3><?= Yii::t('frontend', 'Powerful Performance') ?></h3>
-            <p><?= Yii::t('frontend', 'Madeasy includes tons of optimized code that are completely customizable and deliver unmatched fast performance.') ?></p>
+            <p><?= Yii::t('frontend', 'Inely includes tons of optimized code that are completely customizable and deliver unmatched optimization.') ?></p>
         </div>
     </div>
 
@@ -116,31 +116,39 @@
 
 </div>
 
-<div class="section parallax dark bottommargin-lg" style="background-image: url('<?= Yii::t('frontend', 'images/services/home-testi-bg.jpg') ?>'); padding: 100px 0;" data-stellar-background-ratio="0.3">
+<div class="section parallax dark bottommargin-lg" style="background-image: url('<?= Yii::t('frontend', 'images/services/home-testi-bg.jpg') ?>')" data-stellar-background-ratio="0.3">
 
     <div class="container clearfix">
 
         <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn">
             <i class="i-plain i-large divcenter nobottommargin icon-time"></i>
-            <div class="counter counter-lined"><span data-from="60" data-to="1200" data-refresh-interval="30" data-speed="2700"></span>+</div>
+            <div class="counter counter-lined">
+                <span data-from="60" data-to="1200" data-refresh-interval="30" data-speed="2700"></span>+
+            </div>
             <h4><?= Yii::t('frontend', 'Hours of Coding') ?></h4>
         </div>
 
         <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn" data-delay="200">
             <i class="i-plain i-large divcenter nobottommargin icon-code"></i>
-            <div class="counter counter-lined"><span data-from="100" data-to="846" data-refresh-interval="50" data-speed="2000"></span>K+</div>
+            <div class="counter counter-lined">
+                <span data-from="100" data-to="846" data-refresh-interval="50" data-speed="2000"></span>K+
+            </div>
             <h4><?= Yii::t('frontend', 'Lines of Code') ?></h4>
         </div>
 
         <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn" data-delay="400">
             <i class="i-plain i-large divcenter nobottommargin icon-cup"></i>
-            <div class="counter counter-lined"><span data-from="150" data-to="523" data-refresh-interval="50" data-speed="3500" data-comma="true"></span></div>
+            <div class="counter counter-lined">
+                <span data-from="150" data-to="523" data-refresh-interval="50" data-speed="3500" data-comma="true"></span>
+            </div>
             <h4><?= Yii::t('frontend', 'Cups of Tea') ?></h4>
         </div>
 
         <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center col_last" data-animate="bounceIn" data-delay="600">
             <i class="i-plain i-large divcenter nobottommargin icon-line2-graph"></i>
-            <div class="counter counter-lined"><span data-from="25" data-to="414" data-refresh-interval="30" data-speed="2700" data-comma="true"></span></div>
+            <div class="counter counter-lined">
+                <span data-from="25" data-to="414" data-refresh-interval="30" data-speed="2700" data-comma="true"></span>
+            </div>
             <h4><?= Yii::t('frontend', 'Commits in Git') ?></h4>
         </div>
 
@@ -155,16 +163,16 @@
         <span><?= Yii::t('frontend', 'Created with special passion &amp; and intuitivism. You shouldn\'t study it long.') ?></span>
     </div>
 
-    <div style="position: relative;" data-height-lg="624" data-height-md="518" data-height-sm="397" data-height-xs="242" data-height-xxs="154">
-        <img src="<?= Yii::t('frontend', 'images/services/fbrowser.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
-        <img src="images/services/fmobile.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="400" alt="iPad">
-        <img src="<?= Yii::t('frontend', 'images/services/fbrowser2.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeIn" data-delay="1200" alt="iPad">
+    <div class="rev" data-height-lg="624" data-height-md="518" data-height-sm="397" data-height-xs="242" data-height-xxs="154">
+        <img src="<?= Yii::t('frontend', 'images/services/fbrowser.png') ?>" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+        <img src="images/services/fmobile.png" data-animate="fadeInUp" data-delay="400" alt="iPad">
+        <img src="<?= Yii::t('frontend', 'images/services/fbrowser2.png') ?>" data-animate="fadeIn" data-delay="1200" alt="iPad">
     </div>
 </div>
 
 <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-full center tright footer-stick">
     <div id="section-go" class="container clearfix">
-        <?= Yii::t('frontend', 'Now that you have read all the Tid-Bits, <strong>Let\'s Go!</strong>') ?> <i class="icon-caret-right" style="top:4px;"></i>
+        <?= Yii::t('frontend', 'Now that you have read all the Tid-Bits, <strong>Let\'s Go!</strong>') ?> <i class="icon-caret-right"></i>
     </div>
 </a>
 

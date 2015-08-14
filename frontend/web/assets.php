@@ -16,7 +16,6 @@ return [
     // Список комплектов ресурсов для сжатия:
     'bundles' => [
         '\frontend\assets\FrontendAsset',
-        //'\frontend\assets\LandingAsset',
     ],
     // Комплект ресурса после сжатия:
     'targets' => [

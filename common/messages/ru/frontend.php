@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Message translations.
  *
@@ -18,6 +19,7 @@
  *
  * NOTE: this file must be saved in UTF-8 encoding.
  */
+
 return [
 
     /**
@@ -39,18 +41,20 @@ return [
      * Revolution Slider
      */
     'The Best Open Source Web Schedule' => 'Лучший веб-планировщик с открытым кодом',
-    'Welcome to madeasy' => 'Добро пожаловать в madeasy',
+    'Welcome to Inely' => 'Добро пожаловать в Inely',
+    'Responsive &amp; Retina' => 'Адаптивность',
+    'Welcome!' => 'Добро пожаловать!',
     'Achieve more everyday in your life. Start realizing the opportunities.' => 'Каждый день достигайте большего в Вашей жизни. Начните осозновать свои возможности.',
     'Read More' => 'Узнайте больше',
     'Access from everywhere.' => 'Доступ откуда угодно',
-    'With powerful layout, your tasks are always there: on mobile devices, browsers, and more.' => 'C помощью адаптивности, ваши задачи всегда под рукой: в мобильном устройстве, браузере, и не только.',
-    'Browse' => 'Исследуйте',
+    'With powerful layout, your tasks are always there: on mobile devices, browsers, and more.' => 'Благодаря адаптивности, ваши задачи всегда под рукой: в мобильном устройстве, браузере, и не только.',
+    'Browse' => 'Обзор',
 
     /**
      * Intro Section
      */
-    'Welcome to Madeasy.<br>Your scheduler.' => 'Встречайте Madeasy.<br>Ваш планировщик.',
-    'Manage your personal goals, and your team’s projects in one place. Madeasy designed to adapt to all needs.' => 'Отслеживайте личные задачи, планируйте рабочие проекты, и всё остальное в одном месте. Madeasy подходит для любой цели.',
+    'Welcome to Inely.<br>Your scheduler.' => 'Встречайте Inely.<br>Ваш планировщик.',
+    'Manage your personal goals, and your team’s projects in one place. Inely designed to adapt to all needs.' => 'Отслеживайте личные задачи, планируйте рабочие проекты, и всё остальное в одном месте. Inely подходит для любой цели.',
     'images/services/main-fbrowser.png' => 'images/services/ru/main-fbrowser.png',
 
     /**
@@ -71,7 +75,7 @@ return [
     'Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons &amp; all others graphics are optimized.' => 'Превосходный вид на мониторах с высоким разрешением. Retina иконки &amp; прочая графика оптимизирована.',
 
     'Powerful Performance' => 'Производительность',
-    'Madeasy includes tons of optimized code that are completely customizable and deliver unmatched fast performance.' => 'Madeasy включает в себя тонны оптимизированного кода, с непревзойденной производительностью.',
+    'Inely includes tons of optimized code that are completely customizable and deliver unmatched optimization.' => 'Inely включает в себя тонны оптимизированного кода, с непревзойденной оптимизацией.',
 
     'Personalization' => 'Персонализация',
     'You have complete easy control on each &amp; every element that provides endless customization possibilities.' => 'Вы полностью контролируете каждый элемент на Вашей доске, что обеспечивает огромные возможности.',
@@ -94,19 +98,19 @@ return [
     /**
      * Retina Section
      */
-    'We know you want it!' => 'Мы знаем, что Вам это необходимо!',
-    'Created with special passion &amp; and intuitivism. You shouldn\'t study it long.' => 'Созданный с особой страстью &amp; и интуитивностью. Вам не придётся долго его изучать.',
+    'We know you want it!' => 'Мы знаем, что Вам нужно',
+    'Created with special passion &amp; and intuitivism. You shouldn\'t study it long.' => 'Создан быть интуитивно понятным. Вам не придётся долго его изучать.',
     'images/services/fbrowser2.png' => 'images/services/ru/fbrowser2.png',
 
     /**
      * Go Now Section
      */
-    'Now that you have read all the Tid-Bits, <strong>Let\'s Go!</strong>' => 'Теперь, когда вы узнали о всех лакомых кусочках, <strong>вперёд!</strong>',
+    'Now that you have read all the Tid-Bits, <strong>Let\'s Go!</strong>' => 'Теперь, когда вы узнали о всех лакомых кусочках, <strong>начнём!</strong>',
 
     /**
      * Footer
      */
-    'I believe in <strong>Simple</strong> &amp; <strong>Creative</strong> Design. My mission - to provide the way to properly manage your time. What I do? I give humanity my project, like a gift.' => 'Я верю в <strong>простой</strong> &amp; <strong>креативный</strong> дизайн. Моя миссия - предоставить способ правильно управлять Вашим временем. Что я для этого делаю? Дарю человечеству этот проект, словно подарок.',
+    'My mission - to provide the way to properly manage your time.<br>Crafted with love by rootkit.' => 'Моя миссия - предоставить способ правильно управлять Вашим временем. <br>Созданный с любовью от rootkit.',
     'Coins earned' => 'Заработано монет',
     'Tasks performed' => 'Выполнено задач',
     'Client Testimonials' => 'Отзывы пользователей',
@@ -120,5 +124,7 @@ return [
     /**
      * The shift to the left for the header on slider
      */
-    '230' => '130'
+    '300' => '200',
+    '360' => '330',
+    '490' => '465'
 ];

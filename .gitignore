@@ -1,29 +1,26 @@
-# composer
+# Composer
 /vendor
 composer.phar
 
-# IDE
+# IDE settings
 .idea
 nbproject
 .buildpath
 .project
 .settings
 
-# windows thumbnail cache
+# Windows thumbnail cache
 Thumbs.db
 
 # Mac DS_Store Files
 .DS_Store
 
-# phpunit
+# PHPUnit
 phpunit.phar
 /phpunit.xml
 
-# Vagrant
+# Vagrant machine folder
 /.vagrant
 
 # Environment
 .env
-
-# Weather
-/web/weather.json

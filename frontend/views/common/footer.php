@@ -12,7 +12,7 @@
 
                     <img src="images/footer-widget-logo.png" alt="" class="alignleft" style="margin-top: 8px; padding-right: 18px; border-right: 1px solid #4A4A4A;">
 
-                    <p><?= Yii::t('frontend', 'I believe in <strong>Simple</strong> &amp; <strong>Creative</strong> Design. My mission - to provide the way to properly manage your time. What I do? I give humanity my project, like a gift.') ?></p>
+                    <p><?= Yii::t('frontend', 'My mission - to provide the way to properly manage your time.<br>Crafted with love by rootkit.') ?>
 
                     <div class="line" style="margin: 30px 0;"></div>
 
@@ -21,12 +21,12 @@
 
                             <div class="hidden-xs hidden-sm"><div class="clear" style="padding-top: 10px;"></div></div>
 
-                            <div class="col-md-6 bottommargin-sm center">
+                            <div class="col-md-6 col-xs-6 bottommargin-sm center">
                                 <div class="counter counter-small" style="color: #35BBAA;"><span data-from="50" data-to="1506" data-refresh-interval="80" data-speed="3000" data-comma="true"></span></div>
                                 <h5 class="nobottommargin"><?= Yii::t('frontend', 'Coins earned') ?></h5>
                             </div>
 
-                            <div class="col-md-6 bottommargin-sm center col_last">
+                            <div class="col-md-6 col-xs-6 bottommargin-sm center col_last">
                                 <div class="counter counter-small" style="color: #2CAACA;"><span data-from="10" data-to="184" data-refresh-interval="50" data-speed="2000" data-comma="true"></span></div>
                                 <h5 class="nobottommargin"><?= Yii::t('frontend', 'Tasks performed') ?></h5>
                             </div>
@@ -94,7 +94,7 @@
 
                     <script type="text/javascript">
 
-                        $("#quick-contact-form").validate({
+                        /*$("#quick-contact-form").validate({
                             submitHandler: function(form) {
                                 $(form).animate({ opacity: 0.4 });
                                 $(form).find('.form-process').fadeIn();
@@ -109,7 +109,7 @@
                                     }
                                 });
                             }
-                        });
+                        });*/
 
                     </script>
 
