@@ -24,10 +24,9 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['identity', 'password'], 'required'],
-
+            [ [ 'identity', 'password' ], 'required' ],
             // password is validated by validatePassword()
-            ['password', 'validatePassword'],
+            [ 'password', 'validatePassword' ],
         ];
     }
 
@@ -48,8 +47,9 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password))
+            if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+            }
         }
     }
 
@@ -60,9 +60,11 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate())
-            if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 2592000 : 0))
+        if ($this->validate()) {
+            if (Yii::$app->user->login($this->getUser(), $this->rememberMe ? 2592000 : 0)) {
                 return true;
+            }
+        }
 
         return false;
     }
@@ -75,9 +77,11 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::find()->where(['or',
-                ['username' => $this->identity],
-                ['email' => $this->identity]])->one();
+            $this->_user = User::find()->where([
+                'or',
+                [ 'username' => $this->identity ],
+                [ 'email' => $this->identity ]
+            ])->one();
         }
 
         return $this->_user;

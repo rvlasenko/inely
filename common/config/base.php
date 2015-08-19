@@ -5,7 +5,7 @@ $config = [
     'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en-US',
     'language' => 'ru-RU',
-    'bootstrap' => ['log'],
+    'bootstrap' => [ 'log' ],
     'components' => [
 
         'authManager' => [
@@ -15,15 +15,8 @@ $config = [
             'assignmentTable' => '{{%rbac_auth_assignment}}',
             'ruleTable' => '{{%rbac_auth_rule}}'
         ],
-
-        'cache' => [
-            'class' => 'yii\caching\DummyCache'
-        ],
-
-        'formatter' => [
-            'class' => 'yii\i18n\Formatter'
-        ],
-
+        'cache' => [ 'class' => 'yii\caching\DummyCache' ],
+        'formatter' => [ 'class' => 'yii\i18n\Formatter' ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'messageConfig' => [
@@ -39,7 +32,6 @@ $config = [
                 'encryption' => 'tls'
             ]
         ],
-
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => getenv('DB_DSN'),
@@ -48,34 +40,31 @@ $config = [
             'tablePrefix' => getenv('DB_TABLE_PREFIX'),
             'charset' => 'utf8',
             'enableSchemaCache' => true,
-
             // Duration of schema cache.
             'schemaCacheDuration' => 3600,
-
             // Name of the cache component used to store schema information
             'schemaCache' => 'cache'
         ],
-
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 'db' => [
                     'class' => 'yii\log\DbTarget',
-                    'levels' => ['error', 'warning'],
-                    'except' => ['yii\web\HttpException:*', 'yii\i18n\I18N\*'],
+                    'levels' => [ 'error', 'warning' ],
+                    'except' => [ 'yii\web\HttpException:*', 'yii\i18n\I18N\*' ],
                     'prefix' => function () {
                         $url = !Yii::$app->request->isConsoleRequest ? Yii::$app->request->getUrl() : null;
+
                         return sprintf('[%s][%s]', Yii::$app->id, $url);
                     },
-                    'logVars' => [],
+                    'logVars' => [ ],
                     'logTable' => '{{%system_log}}'
                 ]
             ]
         ],
-
         'i18n' => [
             'translations' => [
-                'app'=>[
+                'app' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@common/messages',
                 ],
@@ -89,21 +78,11 @@ $config = [
                 ]
             ]
         ],
-
-        'urlManagerBackend' => \yii\helpers\ArrayHelper::merge(
-            [
-                'hostInfo' => Yii::getAlias('@backendUrl')
-            ],
-            require(Yii::getAlias('@backend/config/_urlManager.php'))
-        ),
-        'urlManagerFrontend' => \yii\helpers\ArrayHelper::merge(
-            [
-                'hostInfo' => Yii::getAlias('@frontendUrl')
-            ],
-            require(Yii::getAlias('@frontend/config/_urlManager.php'))
-        )
+        'urlManagerBackend' => \yii\helpers\ArrayHelper::merge([ 'hostInfo' => Yii::getAlias('@backendUrl') ],
+            require(Yii::getAlias('@backend/config/_urlManager.php'))),
+        'urlManagerFrontend' => \yii\helpers\ArrayHelper::merge([ 'hostInfo' => Yii::getAlias('@frontendUrl') ],
+            require(Yii::getAlias('@frontend/config/_urlManager.php')))
     ],
-
     'params' => [
         'adminEmail' => getenv('ADMIN_EMAIL'),
         'robotEmail' => getenv('ROBOT_EMAIL'),
@@ -115,7 +94,7 @@ $config = [
 ];
 
 if (YII_ENV_PROD) {
-    $config['components']['cache'] = [
+    $config[ 'components' ][ 'cache' ] = [
         'class' => 'yii\caching\FileCache',
         'cachePath' => '@common/runtime/cache',
         'fileMode' => 777
@@ -123,18 +102,9 @@ if (YII_ENV_PROD) {
 }
 
 if (YII_ENV_DEV) {
-    $config['bootstrap'][] = 'gii';
+    $config[ 'bootstrap' ][ ] = 'gii';
 
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module'
-    ];
-
-    /*$config['components']['log']['targets']['email'] = [
-        'class' => 'yii\log\EmailTarget',
-        'except' => ['yii\web\HttpException:*'],
-        'levels' => ['error', 'warning'],
-        'message' => ['from' => getenv('ROBOT_EMAIL'), 'to' => getenv('ADMIN_EMAIL')]
-    ];*/
+    $config[ 'modules' ][ 'gii' ] = [ 'class' => 'yii\gii\Module' ];
 }
 
 return $config;

@@ -26,7 +26,7 @@ class TaskController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['post'],
+                    'delete' => [ 'post' ],
                 ],
             ],
             /*[
@@ -43,7 +43,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Lists all Task models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -54,21 +54,22 @@ class TaskController extends Controller
 
         // Check editable bootstrap ajax request
         if (Yii::$app->request->post('hasEditable')) {
-            $post = [];
+            $post   = [ ];
             $taskId = Yii::$app->request->post('editableKey');
-            $model = Task::findOne($taskId);
+            $model  = Task::findOne($taskId);
 
-            $post['Task'] = current($_POST['Task']);
+            $post[ 'Task' ] = current($_POST[ 'Task' ]);
 
-            if ($model->load($post))
+            if ($model->load($post)) {
                 $model->save();
+            }
 
             return true;
         }
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
+            'searchModel' => $searchModel
         ]);
     }
 
@@ -82,18 +83,19 @@ class TaskController extends Controller
 
             $model = Task::findOne($taskId);
 
-            $dateTime = empty($_POST['time']) ? false : $_POST['time'];
-            $rating = empty($_POST['rate']) ? false : $_POST['rate'];
+            $dateTime = empty($_POST[ 'time' ]) ? false : $_POST[ 'time' ];
+            $rating   = empty($_POST[ 'rate' ]) ? false : $_POST[ 'rate' ];
 
             !$dateTime ? null : $model->time = $dateTime;
             !$rating ? null : $model->priority = $rating;
 
-            if ($model->save())
+            if ($model->save()) {
                 return [
                     'title' => 'Великолепно!',
                     'desc' => 'Ваши данные успешно обновлены.',
                     'icon' => '/images/flat/compose.png'
                 ];
+            }
         }
     }
 
@@ -104,21 +106,20 @@ class TaskController extends Controller
     {
         $searchModel = new TaskSearch();
 
-        if (Yii::$app->request->get())
-            $dataProvider = $searchModel->search(
-                Yii::$app->request->queryParams,
-                $_GET['TaskSearch'] ? $_GET['TaskSearch']['category'] : false
-            );
+        if (Yii::$app->request->get()) {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $_GET[ 'TaskSearch' ] ? $_GET[ 'TaskSearch' ][ 'category' ] : false);
+        }
 
         if (Yii::$app->request->post('hasEditable')) {
-            $post = [];
+            $post   = [ ];
             $taskId = Yii::$app->request->post('editableKey');
-            $model = Task::findOne($taskId);
+            $model  = Task::findOne($taskId);
 
-            $post['Task'] = current($_POST['Task']);
+            $post[ 'Task' ] = current($_POST[ 'Task' ]);
 
-            if ($model->load($post))
+            if ($model->load($post)) {
                 $model->save();
+            }
 
             return true;
         }
@@ -136,8 +137,7 @@ class TaskController extends Controller
     public function actionCat()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => TaskCat::find()
-                ->where(['userId' => Yii::$app->user->id]),
+            'query' => TaskCat::find()->where([ 'userId' => Yii::$app->user->id ]),
             'sort' => false
         ]);
 
@@ -157,6 +157,7 @@ class TaskController extends Controller
 
         if (Yii::$app->request->isGet && $model->load($_POST)) {
             Yii::$app->response->format = Response::FORMAT_JSON;
+
             return ActiveForm::validate($model);
         }
 
@@ -170,8 +171,9 @@ class TaskController extends Controller
                 ],
                 'body' => 'Задача была успешно добавлена в категорию <strong>&laquo;' . $model->tasks_cat->name . '&raquo;'
             ]);
-            $this->redirect(Url::toRoute(['/todo']));
-        } else {
+            $this->redirect(Url::toRoute([ '/todo' ]));
+        }
+        else {
             return $this->renderAjax('create', [
                 'model' => $model
             ]);
@@ -181,7 +183,9 @@ class TaskController extends Controller
     /**
      * Updates an existing Task model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionUpdate($id)
@@ -189,8 +193,9 @@ class TaskController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            return $this->redirect([ 'view', 'id' => $model->id ]);
+        }
+        else {
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -200,7 +205,9 @@ class TaskController extends Controller
     /**
      * Deletes an existing Task model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
+     *
      * @return mixed
      */
     public function actionDelete($id)
@@ -213,7 +220,9 @@ class TaskController extends Controller
     /**
      * Finds the Task model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param integer $id
+     *
      * @return Task the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -221,19 +230,9 @@ class TaskController extends Controller
     {
         if (($model = Task::findOne($id)) !== null) {
             return $model;
-        } else {
+        }
+        else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-
-    /**
-     * @param \yii\base\Action $action
-     * @return bool
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action)
-    {
-        $this->layout = Yii::$app->user->isGuest ? 'base' : 'common';
-        return parent::beforeAction($action);
     }
 }

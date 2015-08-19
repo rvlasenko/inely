@@ -1,90 +1,49 @@
-<?php
-    use yii\widgets\ActiveForm;
-?>
+<?php use yii\widgets\ActiveForm; use \yii\helpers\Html; use yii\widgets\Pjax; ?>
 
-<div class="row">
+<?php $this->registerJs('$(document).on("pjax:success", function() { $(":input", "#quick-contact-form").not(":submit").val(""); $(".quick-contact-widget").css("opacity", "1") })') ?>
 
-    <h2 class="dark-text">Оставьте пожелание</h2>
+<div class="widget quick-contact-widget clearfix">
 
-    <div class="col-md-8 col-md-offset-2">
+    <h4><?= Yii::t('frontend', 'Send Message') ?></h4>
 
-        <?php $form = ActiveForm::begin([
-            'id' => 'contact-form',
-            'options' => [
-                'class' => 'contact-form form-inline flipInX animated',
-            ],
-            'enableAjaxValidation' => true,
-            'enableClientValidation' => false,
-        ]); ?>
+    <?php Pjax::begin([ 'enablePushState' => false ]) ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'quick-contact-form',
+        'options' => [ 'class' => 'quick-contact-form nobottommargin', 'data-pjax' => true ],
+        'enableClientValidation' => true
+    ]) ?>
 
-        <?= $form->field($model, 'name', [
-            'options' => [
-                'class' => 'col-md-6',
-            ],
-        ])->textInput(['placeholder' => 'Представьтесь, пожалуйста'])->label(false) ?>
+        <div class="form-process"></div>
 
-        <?= $form->field($model, 'email', [
-            'options' => [
-                'class' => 'col-md-6',
-            ],
-        ])->textInput(['placeholder' => 'Ваш e-mail'])->label(false) ?>
+        <div class="input-group divcenter">
+            <span class="input-group-addon"><i class="icon-user"></i></span>
 
-        <?= $form->field($model, 'subject', [
-            'options' => [
-                'class' => 'col-md-12',
-            ],
-        ])->textInput(['placeholder' => 'Тема Вашего обращения'])->label(false) ?>
+            <?= $form->field($model, 'name', [ 'template' => '{input}' ])->textInput([
+                'class' => 'required form-control input-block-level',
+                'placeholder' => Yii::t('frontend', 'Full Name')
+            ])->label(false) ?>
 
-        <?= $form->field($model, 'body', [
-            'options' => [
-                'class' => 'col-md-12',
-            ],
-        ])->textArea(['rows' => 6, 'placeholder' => 'Изложите свои мысли'])->label(false) ?>
-
-        <div class="form-group">
-            <button class="bttn btn-2 btn-2a" id="show">Отправить!</button>
         </div>
-        <?php ActiveForm::end(); ?>
+        <div class="input-group divcenter">
+            <span class="input-group-addon"><i class="icon-email2"></i></span>
 
-    </div>
+            <?= $form->field($model, 'email', [ 'template' => '{input}' ])->textInput([
+                'class' => 'required form-control email input-block-level',
+                'placeholder' => Yii::t('frontend', 'Email Address')
+            ])->label(false) ?>
+
+        </div>
+
+        <?= $form->field($model, 'body', [ 'template' => '{input}' ])->textArea([
+            'class' => 'required form-control input-block-level short-textarea',
+            'placeholder' => Yii::t('frontend', 'Message'),
+            'rows' => 4,
+            'cols' => 30
+        ])->label(false) ?>
+
+        <?= Html::submitButton(Yii::t('frontend', 'Send Letter'), [ 'class' => 'btn btn-danger nomargin' ]) ?>
+
+    <?php ActiveForm::end() ?>
+    <?php Pjax::end() ?>
+
 </div>
-
-<script>
-    $('document').ready(function() {
-        function generate(title, img, desc, link, linkDesc) {
-            noty({
-                text: '<div class="alert alert-dark media fade in bd-0" id="message-alert">' +
-                '<div class="media-left">' +
-                '<img src="' + img + '" ' +
-                'class="dis-block">' +
-                '</div><div class="media-body width-100p">' +
-                '<h4 class="alert-title f-14">' + title + '</h4>' +
-                '<p class="f-12 alert-message pull-left">' +
-                '' + desc + '</p>' +
-                '<p class="pull-right">' +
-                '<a href="' + link + '" class="f-12">' + linkDesc + '</a>' +
-                '</p></div></div>',
-                layout: 'topRight',
-                theme: 'made',
-                maxVisible: 10,
-                animation: {
-                    open: 'animated bounceIn',
-                    close: 'animated bounceOut',
-                    easing: 'swing',
-                    speed: 500
-                },
-                timeout: 4000
-            });
-        }
-
-        $("#show").click(function () {
-            if (!$('#contactform-name').val() || !$('#contactform-email').val() ||
-                !$('#contactform-subject').val() || !$('#contactform-body').val())
-                generate('Ошибка', 'images/flat/caution.png',
-                         'Похоже, что Вы забыли заполнить необходимые поля!', '', '');
-            else
-                generate('Спасибо!', 'images/flat/heart.png',
-                        'Благодарим за проявленную инициативу! Ваше мнение будет услышано.', '', '');
-        });
-    });
-</script>

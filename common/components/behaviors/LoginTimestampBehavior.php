@@ -12,7 +12,6 @@ class LoginTimestampBehavior extends Behavior
      */
     public $attribute = 'logged_at';
 
-
     /**
      * @inheritdoc
      */

@@ -110,7 +110,7 @@ return [
     /**
      * Footer
      */
-    'My mission - to provide the way to properly manage your time.<br>Crafted with love by rootkit.' => 'Моя миссия - предоставить способ правильно управлять Вашим временем. <br>Созданный с любовью от rootkit.',
+    'Crafted with love by rootkit.' => 'Созданный с любовью от rootkit.',
     'Coins earned' => 'Заработано монет',
     'Tasks performed' => 'Выполнено задач',
     'Client Testimonials' => 'Отзывы пользователей',
@@ -122,9 +122,15 @@ return [
     'Send Letter' => 'Отправить письмо',
 
     /**
+     * Errors
+     */
+    'Ooopps.! The Page you were looking for, couldn\'t be found.' => 'Упс! К сожалению, страница, которую вы запросили, не существует.',
+    'Try to search in other <a href="/">place</a>.' => 'Попробуйте поискать её <a href="/">в другом месте.</a>',
+    'Something went wrong. We apologize.' => 'Что-то пошло не так. Приносим свои извинения.',
+
+    /**
      * The shift to the left for the header on slider
      */
     '300' => '200',
-    '360' => '330',
     '490' => '465'
 ];

@@ -1,15 +1,10 @@
 <?php
 
-    /**
-     * Base layout
-     *
-     * @author rootkit
-     * @var    $this yii\web\View
-     * @var    $content string
-     */
-
     use yii\helpers\Html;
     use yii\helpers\ArrayHelper;
+
+    /* @var $this \yii\web\View */
+    /* @var $content string */
 
     backend\assets\BackendAsset::register($this);
 ?>
@@ -18,7 +13,6 @@
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-
     <meta charset="<?= Yii::$app->charset ?>">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
@@ -27,13 +21,9 @@
     <?php $this->head() ?>
 
 </head>
-
 <?php $this->beginBody() ?>
-<body>
-
 <?= $content ?>
-
 <?php $this->endBody() ?>
-</body>
+<?php echo Html::endTag('body') ?>
 </html>
 <?php $this->endPage() ?>

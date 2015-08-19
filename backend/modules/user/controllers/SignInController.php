@@ -26,7 +26,7 @@ class SignInController extends Controller
         return [
             'oauth' => [
                 'class' => 'yii\authclient\AuthAction',
-                'successCallback' => [$this, 'successOAuthCallback']
+                'successCallback' => [ $this, 'successOAuthCallback' ]
             ]
         ];
     }
@@ -38,30 +38,37 @@ class SignInController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['signup', 'confirm-email', 'login', 'request-password-reset', 'reset-password', 'oauth'],
+                        'actions' => [
+                            'signup',
+                            'confirm-email',
+                            'login',
+                            'request-password-reset',
+                            'reset-password',
+                            'oauth'
+                        ],
                         'allow' => true,
-                        'roles' => ['?']
+                        'roles' => [ '?' ]
                     ],
                     [
-                        'actions' => ['signup', 'login', 'request-password-reset', 'reset-password', 'oauth'],
+                        'actions' => [ 'signup', 'login', 'request-password-reset', 'reset-password', 'oauth' ],
                         'allow' => false,
-                        'roles' => ['@'],
-                        'denyCallback' => function() {
-                            return Yii::$app->controller->redirect(['site/index']);
+                        'roles' => [ '@' ],
+                        'denyCallback' => function () {
+                            return Yii::$app->controller->redirect([ 'site/index' ]);
                         }
                     ],
                     [
-                        'actions' => ['todo'],
+                        'actions' => [ 'todo' ],
                         'allow' => false,
-                        'roles' => ['?'],
-                        'denyCallback' => function() {
-                            return Yii::$app->controller->redirect(['site/index']);
+                        'roles' => [ '?' ],
+                        'denyCallback' => function () {
+                            return Yii::$app->controller->redirect([ 'site/index' ]);
                         }
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => [ 'logout' ],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => [ '@' ],
                     ]
                 ]
             ]
@@ -70,23 +77,26 @@ class SignInController extends Controller
 
     public function actionLogin()
     {
-        $this->layout = 'base';
         $model = new LoginForm();
 
         if (Yii::$app->request->isGet && $model->load($_POST)) {
             Yii::$app->response->format = Response::FORMAT_JSON;
+
             return ActiveForm::validate($model);
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->login())
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
-        else
-            return $this->render('login', ['model' => $model]);
+        }
+        else {
+            return $this->render('login', [ 'model' => $model ]);
+        }
     }
 
     public function actionLogout()
     {
         Yii::$app->user->logout();
+
         return $this->goHome();
     }
 
@@ -106,12 +116,13 @@ class SignInController extends Controller
                         ],
                         'body' => 'Вы успешно прошли регистрацию! Рекомендуем вам пройти знакомство с планировщиком.'
                     ]);
+
                     return $this->goHome();
                 }
             }
         }
 
-        return $this->renderAjax('signup', ['model' => $model]);
+        return $this->renderAjax('signup', [ 'model' => $model ]);
     }
 
     public function actionConfirmEmail($token)
@@ -132,7 +143,8 @@ class SignInController extends Controller
                 ],
                 'body' => 'Спасибо! Ваш Email успешно подтверждён.'
             ]);
-        } else {
+        }
+        else {
             Yii::$app->session->setFlash('alert', [
                 'options' => [
                     'title' => 'Подтверждение',
@@ -161,7 +173,8 @@ class SignInController extends Controller
                     ],
                     'body' => Yii::t('frontend', 'Check your email for further instructions.'),
                 ]);
-            } else {
+            }
+            else {
                 Yii::$app->session->setFlash('alert', [
                     'options' => [
                         'title' => 'Восстановление пароля',
@@ -174,7 +187,7 @@ class SignInController extends Controller
             }
         }
 
-        return $this->renderAjax('requestPasswordResetToken', ['model' => $model]);
+        return $this->renderAjax('requestPasswordResetToken', [ 'model' => $model ]);
     }
 
     public function actionResetPassword($token)
@@ -195,14 +208,16 @@ class SignInController extends Controller
                 ],
                 'body' => Yii::t('frontend', 'New password was saved.'),
             ]);
+
             return $this->goHome();
         }
 
-        return $this->render('resetPassword', ['model' => $model]);
+        return $this->render('resetPassword', [ 'model' => $model ]);
     }
 
     /**
      * @param $client \yii\authclient\BaseClient
+     *
      * @return bool
      * @throws Exception
      */
@@ -215,48 +230,48 @@ class SignInController extends Controller
             'oauth_client_user_id' => ArrayHelper::getValue($attributes, 'id')
         ])->one();
         if (!$user) {
-            $user = new User();
+            $user           = new User();
             $user->scenario = 'oauth_create';
 
             switch ($client->getName()) {
                 case 'vkontakte':
-                    $obj = $client->getAccessToken();
-                    $attributes['email'] = $obj->getParam('email');
-                    $attributes['username'] = implode(' ', [
-                        $attributes['first_name'],
-                        $attributes['last_name']
+                    $obj                      = $client->getAccessToken();
+                    $attributes[ 'email' ]    = $obj->getParam('email');
+                    $attributes[ 'username' ] = implode(' ', [
+                        $attributes[ 'first_name' ],
+                        $attributes[ 'last_name' ]
                     ]);
                     break;
                 case 'facebook':
-                    $attributes['username'] = implode(' ', [
-                        $attributes['first_name'],
-                        $attributes['last_name']
+                    $attributes[ 'username' ] = implode(' ', [
+                        $attributes[ 'first_name' ],
+                        $attributes[ 'last_name' ]
                     ]);
                     break;
                 case 'google':
-                    $attributes['username'] = $attributes['displayName'];
-                    $attributes['first_name'] = $attributes['name']['givenName'];
-                    $attributes['last_name'] = $attributes['name']['familyName'];
-                    $attributes['email'] = $attributes['emails'][0]['value'];
+                    $attributes[ 'username' ]   = $attributes[ 'displayName' ];
+                    $attributes[ 'first_name' ] = $attributes[ 'name' ][ 'givenName' ];
+                    $attributes[ 'last_name' ]  = $attributes[ 'name' ][ 'familyName' ];
+                    $attributes[ 'email' ]      = $attributes[ 'emails' ][ 0 ][ 'value' ];
                     break;
             }
 
-            $user->username = $attributes['username'];
-            $user->email = $attributes['email'];
+            $user->username = $attributes[ 'username' ];
+            $user->email    = $attributes[ 'email' ];
 
-            $user->oauth_client = $client->getName();
+            $user->oauth_client         = $client->getName();
             $user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
-            $password = Yii::$app->security->generateRandomString(8);
+            $password                   = Yii::$app->security->generateRandomString(8);
             $user->setPassword($password);
             if ($user->save()) {
-                Yii::$app->mailer->compose('confirmEmail', ['user' => $user, 'password' => $password])
-                    ->setTo($user->email)
-                    ->setSubject('Подтверждение аккаунта для ' . Yii::$app->name)
-                    ->send();
+                Yii::$app->mailer->compose('confirmEmail', [ 'user' => $user, 'password' => $password ])
+                                 ->setTo($user->email)
+                                 ->setSubject('Подтверждение аккаунта для ' . Yii::$app->name)
+                                 ->send();
 
                 $user->afterSignup([
-                    'firstname' => $attributes['first_name'],
-                    'lastname' => $attributes['last_name']
+                    'firstname' => $attributes[ 'first_name' ],
+                    'lastname' => $attributes[ 'last_name' ]
                 ]);
                 Yii::$app->session->setFlash('alert', [
                     'options' => [
@@ -269,9 +284,11 @@ class SignInController extends Controller
                 ]);
             }
         }
-        if (Yii::$app->user->login($user, 3600 * 24 * 30))
+        if (Yii::$app->user->login($user, 3600 * 24 * 30)) {
             return true;
-        else
+        }
+        else {
             throw new Exception('OAuth error');
+        }
     }
 }

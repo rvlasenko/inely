@@ -4,12 +4,10 @@ $config = [
     'homeUrl' => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute' => 'site/index',
-
     'components' => [
         'errorHandler' => [
             'errorAction' => 'site/error'
         ],
-
         'request' => [
             'enableCookieValidation' => true,
             'enableCsrfValidation' => true,

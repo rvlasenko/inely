@@ -22,26 +22,29 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
-            ['username', 'unique',
+            [ 'username', 'filter', 'filter' => 'trim' ],
+            [ 'username', 'required' ],
+            [
+                'username',
+                'unique',
                 'targetClass' => '\common\models\User',
                 'message' => Yii::t('frontend', 'This username has already been taken.')
             ],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'unique',
+            [ 'username', 'string', 'min' => 2, 'max' => 255 ],
+            [ 'email', 'filter', 'filter' => 'trim' ],
+            [ 'email', 'required' ],
+            [ 'email', 'email' ],
+            [
+                'email',
+                'unique',
                 'targetClass' => '\common\models\User',
                 'message' => Yii::t('frontend', 'This email address has already been taken.')
             ],
-
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
-
-            [[], ReCaptchaValidator::className(),
+            [ 'password', 'required' ],
+            [ 'password', 'string', 'min' => 6 ],
+            [
+                [ ],
+                ReCaptchaValidator::className(),
                 'secret' => getenv('RC_SECRET')
             ]
         ];
@@ -64,20 +67,21 @@ class SignupForm extends Model
     public function signup()
     {
         if ($this->validate()) {
-            $user = new User();
+            $user           = new User();
             $user->username = $this->username;
-            $user->email = $this->email;
+            $user->email    = $this->email;
             $user->setPassword($this->password);
             $user->generateEmailConfirmToken();
 
             if ($user->save()) {
-                Yii::$app->mailer->compose('confirmEmail', ['user' => $user])
-                    ->setTo($this->email)
-                    ->setSubject('Email confirmation for ' . Yii::$app->name)
-                    ->send();
+                Yii::$app->mailer->compose('confirmEmail', [ 'user' => $user ])
+                                 ->setTo($this->email)
+                                 ->setSubject('Email confirmation for ' . Yii::$app->name)
+                                 ->send();
             }
 
             $user->afterSignup();
+
             return $user;
         }
 

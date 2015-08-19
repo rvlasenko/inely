@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+use yii\base\ErrorException;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -17,17 +18,13 @@ class ContactForm extends Model
     public $verifyCode;
 
     /**
+     * Name, email and body are required
      * @return array the validation rules.
      */
     public function rules()
     {
         return [
-            // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
-            // email has to be a valid email address
-            ['email', 'email'],
-            // verifyCode needs to be entered correctly
-            //['verifyCode', 'captcha']
+            [ [ 'name', 'email', 'body' ], 'required' ],
         ];
     }
 
@@ -39,7 +36,6 @@ class ContactForm extends Model
         return [
             'name' => Yii::t('frontend', 'Name'),
             'email' => Yii::t('frontend', 'Email'),
-            'subject' => Yii::t('frontend', 'Subject'),
             'body' => Yii::t('frontend', 'Body'),
             'verifyCode' => Yii::t('frontend', 'Verification Code')
         ];
@@ -47,21 +43,26 @@ class ContactForm extends Model
 
     /**
      * Sends an email to the specified email address using the information collected by this model.
+     *
      * @param  string $email the target email address
+     *
      * @return boolean whether the model passes validation
      */
     public function contact($email)
     {
         if ($this->validate()) {
-            return Yii::$app->mailer->compose()
-                ->setTo($email)
-                ->setFrom(getenv('ROBOT_EMAIL'))
-                ->setReplyTo([$this->email => $this->name])
-                ->setSubject($this->subject)
-                ->setTextBody($this->body)
-                ->send();
-
-        } else {
+            try {
+                return Yii::$app->mailer->compose()
+                                        ->setTo($email)
+                                        ->setFrom(getenv('ROBOT_EMAIL'))
+                                        ->setReplyTo([ $this->email => $this->name ])
+                                        ->setTextBody($this->body)
+                                        ->send();
+            } catch (ErrorException $e) {
+                Yii::warning(Yii::t('frontend', 'Something went wrong. We apologize.'));
+            }
+        }
+        else {
             return false;
         }
     }

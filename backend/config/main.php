@@ -3,9 +3,8 @@ $config = [
     'homeUrl' => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute' => 'site/index',
-
     'modules' => [
-        'gridview' =>  [
+        'gridview' => [
             'class' => 'kartik\grid\Module'
         ],
         'i18n' => [
@@ -16,16 +15,14 @@ $config = [
             'class' => 'backend\modules\user\Module'
         ]
     ],
-
     'as AccessBehavior' => [
         'class' => 'common\components\behaviors\AccessBehavior'
     ],
-
     'controllerMap' => [
         'file-manager-elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
-            'access' => ['manager'],
-            'disabledCommands' => ['netmount'],
+            'access' => [ 'manager' ],
+            'disabledCommands' => [ 'netmount' ],
             'roots' => [
                 [
                     'baseUrl' => '@storageUrl',
@@ -39,7 +36,6 @@ $config = [
             ]
         ]
     ],
-
     'components' => [
 
         'reCaptcha' => [
@@ -48,7 +44,6 @@ $config = [
             'siteKey' => getenv('RC_SITEKEY'),
             'secret' => getenv('RC_SECRET')
         ],
-
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
@@ -70,15 +65,12 @@ $config = [
                 ]
             ]
         ],
-
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-
         'request' => [
             'cookieValidationKey' => getenv('BACKEND_COOKIE_VALIDATION_KEY')
         ],
-
         'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
@@ -91,7 +83,7 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-    $config['modules']['gii'] = [
+    $config[ 'modules' ][ 'gii' ] = [
         'class' => 'yii\gii\Module',
         'generators' => [
             'crud' => [

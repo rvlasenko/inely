@@ -1,21 +1,24 @@
 <?php
 
-    /**
-     * Main layout
-     * @author rootkit
-     * @var $this yii\web\View
-     * @var $content string
-     */
+/**
+ * Main layout
+ * @author rootkit
+ * @var $this    yii\web\View
+ * @var $content string
+ */
 
-    use frontend\assets\FrontendAsset;
-    use yii\helpers\Html;
+use frontend\assets\FrontendAsset;
+use yii\helpers\Html;
 
-    FrontendAsset::register($this);
-    $this->title = Yii::t('frontend', 'Your personal scheduler.') . ' Inely.';
-    $this->registerAssetBundle('yii\jui\JuiAsset', $this::POS_END);
-    $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
-    $this->registerJsFile('js/functions.js', ['position' => $this::POS_END]);
-    $this->registerJsFile('js/plugins.js', ['position' => $this::POS_END]);
+FrontendAsset::register($this);
+
+$this->title = Yii::t('frontend', 'Your personal scheduler.') . ' Inely.';
+
+$this->registerAssetBundle('common\assets\JuiAsset', $this::POS_END);
+$this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
+
+$this->registerJsFile('js/functions.js', [ 'position' => $this::POS_END ]);
+$this->registerJsFile('js/plugins.js', [ 'position' => $this::POS_END ]);
 ?>
 
 <?php $this->beginPage() ?>
@@ -23,23 +26,22 @@
 <html dir="ltr" lang="<?= Yii::$app->language ?>">
 <head>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta charset="<?= Yii::$app->charset ?>"/>
+    <meta http-equiv="content-type" content="text/html" />
+    <meta charset="<?= Yii::$app->charset ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--[if lt IE 9]>
-        <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
 
     <!-- Document Title
     ============================================= -->
     <title><?= Html::encode($this->title) ?></title>
 
-    <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
+    <link rel="icon" href="favicon.png">
 
-    <link rel="icon" href="/favicon.png">
-
+    <?php $this->head() ?>
 </head>
 
 <?php $this->beginBody() ?>
@@ -50,25 +52,27 @@
 ============================================= -->
 <div id="wrapper" class="clearfix">
 
-<!-- Header
-============================================= -->
-<?= $this->render('//common/header.php') ?>
+    <!-- Header
+    ============================================= -->
+    <?= $this->render('//common/header.php') ?>
 
-<?= $this->render('//common/revoSlider.php') ?>
+    <?= $this->render('//common/revoSlider.php') ?>
 
-<!-- Content
-============================================= -->
-<section id="content">
+    <!-- Content
+    ============================================= -->
+    <section id="content">
 
-<?= $content ?>
+        <?= $content ?>
 
-</section><!-- #content end -->
+    </section>
+    <!-- #content end -->
 
-<!-- Footer
-============================================= -->
-<?= $this->render('//common/footer.php') ?>
+    <!-- Footer
+    ============================================= -->
+    <?= $this->render('//common/footer.php') ?>
 
-</div><!-- #wrapper end -->
+</div>
+<!-- #wrapper end -->
 
 <!-- Go To Top
 ============================================= -->

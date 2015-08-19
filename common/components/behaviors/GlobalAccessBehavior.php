@@ -16,7 +16,7 @@ class GlobalAccessBehavior extends Behavior
     /**
      * @var array @see \yii\filters\AccessControl::rules
      */
-    public $rules = [];
+    public $rules = [ ];
 
     /**
      * @var string
@@ -43,9 +43,7 @@ class GlobalAccessBehavior extends Behavior
      */
     public function events()
     {
-        return [
-            Controller::EVENT_BEFORE_ACTION => 'beforeAction'
-        ];
+        return [ Controller::EVENT_BEFORE_ACTION => 'beforeAction' ];
     }
 
     public function beforeAction()

@@ -1,20 +1,20 @@
 <?php
 
-    use yii\helpers\Html;
-    use kartik\grid\GridView;
-    use kartik\editable\Editable;
-    use kartik\color\ColorInput;
+use yii\helpers\Html;
+use kartik\grid\GridView;
+use kartik\editable\Editable;
+use kartik\color\ColorInput;
 
-    /* @var $this yii\web\View */
-    /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 ?>
 <div class="task-cat-index">
 
-<p>
-    <?= Html::a('Create Task Cat', ['create'], ['class' => 'btn btn-success']) ?>
-</p>
+    <p>
+        <?= Html::a('Create Task Cat', [ 'create' ], [ 'class' => 'btn btn-success' ]) ?>
+    </p>
 
-<?php
+    <?php
     $gridColumns = [
         [
             'class' => 'kartik\grid\EditableColumn',
@@ -26,38 +26,33 @@
                 'buttonsTemplate' => '{submit}',
                 'inputType' => Editable::INPUT_TEXT,
                 'inlineSettings' => [
-                    'closeButton' => Html::button(
-                        Html::tag('i', '', ['class' => 'glyphicon glyphicon-remove']), [
+                    'closeButton' => Html::button(Html::tag('i', '', [ 'class' => 'glyphicon glyphicon-remove' ]), [
                         'class' => 'btn btn-sm btn-danger kv-editable-close',
                         'title' => 'Применить',
                         'type' => 'button'
                     ]),
-                    'options' => [
-                        'class' => 'editable-cat'
-                    ]
+                    'options' => [ 'class' => 'editable-cat' ]
                 ]
-            ],
+            ]
         ],
         [
             'attribute' => 'badgeColor',
             'format' => 'raw',
-            'value' => function($model) {
+            'value' => function ($model) {
                 return ColorInput::widget([
                     'model' => $model,
                     'name' => 'color',
                     'value' => $model->badgeColor,
-                    'options' => [
-                        'placeholder' => 'Ваш цвет..'
-                    ]
+                    'options' => [ 'placeholder' => 'Ваш цвет..' ]
                 ]);
             }
-        ],
+        ]
     ];
-?>
+    ?>
 
-<?=
+    <?=
     GridView::widget([
-        'dataProvider'=> $dataProvider,
+        'dataProvider' => $dataProvider,
         'columns' => $gridColumns,
         'responsive' => true,
         'responsiveWrap' => true,
@@ -68,11 +63,9 @@
         'pjaxSettings' => [
             'neverTimeout' => true,
             'loadingCssClass' => false,
-            'options' => [
-                'id' => 'cat-wrapper'
-            ]
-        ],
+            'options' => [ 'id' => 'cat-wrapper' ]
+        ]
     ]);
-?>
+    ?>
 
 </div>

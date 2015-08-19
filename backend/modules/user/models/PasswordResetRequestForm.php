@@ -19,12 +19,14 @@ class PasswordResetRequestForm extends Model
     public function rules()
     {
         return [
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'exist',
+            [ 'email', 'filter', 'filter' => 'trim' ],
+            [ 'email', 'required' ],
+            [ 'email', 'email' ],
+            [
+                'email',
+                'exist',
                 'targetClass' => '\common\models\User',
-                'filter' => ['status' => User::STATUS_ACTIVE],
+                'filter' => [ 'status' => User::STATUS_ACTIVE ],
                 'message' => Yii::t('frontend', 'There is no user with such email.')
             ],
         ];
@@ -46,11 +48,11 @@ class PasswordResetRequestForm extends Model
         if ($user) {
             $user->generatePasswordResetToken();
             if ($user->save()) {
-                return Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
-                    ->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name])
-                    ->setTo($this->email)
-                    ->setSubject(Yii::t('frontend', 'Password reset for {name}', ['name' => Yii::$app->name]))
-                    ->send();
+                return Yii::$app->mailer->compose('passwordResetToken', [ 'user' => $user ])
+                                        ->setFrom([ Yii::$app->params[ 'adminEmail' ] => Yii::$app->name ])
+                                        ->setTo($this->email)
+                                        ->setSubject(Yii::t('frontend', 'Password reset for {name}', [ 'name' => Yii::$app->name ]))
+                                        ->send();
             }
         }
 

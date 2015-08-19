@@ -19,15 +19,15 @@ class TimelineEventController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new TimelineEventSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel        = new TimelineEventSearch();
+        $dataProvider       = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->sort = [
-            'defaultOrder' => ['created_at' => SORT_DESC]
+            'defaultOrder' => [ 'created_at' => SORT_DESC ]
         ];
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 }

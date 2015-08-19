@@ -9,19 +9,19 @@ use Yii;
  *
  * @property integer $user_id
  * @property integer $locale
- * @property string $firstname
- * @property string $lastname
- * @property string $picture
- * @property string $avatar
- * @property string $avatar_path
- * @property string $avatar_base_url
+ * @property string  $firstname
+ * @property string  $lastname
+ * @property string  $picture
+ * @property string  $avatar
+ * @property string  $avatar_path
+ * @property string  $avatar_base_url
  * @property integer $gender
  *
- * @property User $user
+ * @property User    $user
  */
 class UserProfile extends \yii\db\ActiveRecord
 {
-    const GENDER_MALE = 2;
+    const GENDER_MALE   = 2;
     const GENDER_FEMALE = 1;
 
     /**
@@ -38,13 +38,13 @@ class UserProfile extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'required'],
-            [['user_id', 'gender'], 'integer'],
-            [['gender'], 'in', 'range' => [self::GENDER_FEMALE, self::GENDER_MALE]],
-            [['firstname', 'lastname', 'avatar_path', 'avatar_base_url'], 'string', 'max' => 255],
-            ['locale', 'default', 'value' => Yii::$app->language],
-            ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])],
-            ['picture', 'safe']
+            [ [ 'user_id' ], 'required' ],
+            [ [ 'user_id', 'gender' ], 'integer' ],
+            [ [ 'gender' ], 'in', 'range' => [ self::GENDER_FEMALE, self::GENDER_MALE ] ],
+            [ [ 'firstname', 'lastname', 'avatar_path', 'avatar_base_url' ], 'string', 'max' => 255 ],
+            [ 'locale', 'default', 'value' => Yii::$app->language ],
+            [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ],
+            [ 'picture', 'safe' ]
         ];
     }
 
@@ -74,21 +74,20 @@ class UserProfile extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), [ 'id' => 'user_id' ]);
     }
 
     public function getFullName()
     {
         if ($this->firstname || $this->lastname) {
-            return implode(' ', [$this->firstname, $this->lastname]);
+            return implode(' ', [ $this->firstname, $this->lastname ]);
         }
+
         return null;
     }
 
     public function getAvatar()
     {
-        return $this->avatar_path
-            ? Yii::getAlias($this->avatar_base_url . '/' . $this->avatar_path)
-            : false;
+        return $this->avatar_path ? Yii::getAlias($this->avatar_base_url . '/' . $this->avatar_path) : false;
     }
 }

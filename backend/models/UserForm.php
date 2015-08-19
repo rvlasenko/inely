@@ -25,33 +25,42 @@ class UserForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'filter' => function ($query) {
-                if (!$this->getModel()->isNewRecord) {
-                    $query->andWhere(['not', ['id' => $this->getModel()->id]]);
+            [ 'username', 'filter', 'filter' => 'trim' ],
+            [ 'username', 'required' ],
+            [
+                'username',
+                'unique',
+                'targetClass' => '\common\models\User',
+                'filter' => function ($query) {
+                    if (!$this->getModel()->isNewRecord) {
+                        $query->andWhere([ 'not', [ 'id' => $this->getModel()->id ] ]);
+                    }
                 }
-            }],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'filter' => function ($query) {
-                if (!$this->getModel()->isNewRecord) {
-                    $query->andWhere(['not', ['id' => $this->getModel()->id]]);
+            ],
+            [ 'username', 'string', 'min' => 2, 'max' => 255 ],
+            [ 'email', 'filter', 'filter' => 'trim' ],
+            [ 'email', 'required' ],
+            [ 'email', 'email' ],
+            [
+                'email',
+                'unique',
+                'targetClass' => '\common\models\User',
+                'filter' => function ($query) {
+                    if (!$this->getModel()->isNewRecord) {
+                        $query->andWhere([ 'not', [ 'id' => $this->getModel()->id ] ]);
+                    }
                 }
-            }],
-
-            ['password', 'required', 'on' => 'create'],
-            ['password', 'string', 'min' => 6],
-
-            [['status'], 'boolean'],
-            [['roles'], 'each',
-                'rule' => ['in', 'range' => ArrayHelper::getColumn(
-                    Yii::$app->authManager->getRoles(),
-                    'name'
-                )]
+            ],
+            [ 'password', 'required', 'on' => 'create' ],
+            [ 'password', 'string', 'min' => 6 ],
+            [ [ 'status' ], 'boolean' ],
+            [
+                [ 'roles' ],
+                'each',
+                'rule' => [
+                    'in',
+                    'range' => ArrayHelper::getColumn(Yii::$app->authManager->getRoles(), 'name')
+                ]
             ],
         ];
     }
@@ -72,20 +81,19 @@ class UserForm extends Model
     public function setModel($model)
     {
         $this->username = $model->username;
-        $this->email = $model->email;
-        $this->status = $model->status;
-        $this->model = $model;
-        $this->roles = ArrayHelper::getColumn(
-            Yii::$app->authManager->getRolesByUser($model->getId()),
-            'name'
-        );
+        $this->email    = $model->email;
+        $this->status   = $model->status;
+        $this->model    = $model;
+        $this->roles    = ArrayHelper::getColumn(Yii::$app->authManager->getRolesByUser($model->getId()), 'name');
+
         return $this->model;
     }
 
     public function getModel()
     {
-        if (!$this->model)
+        if (!$this->model) {
             $this->model = new User();
+        }
 
         return $this->model;
     }
@@ -98,28 +106,32 @@ class UserForm extends Model
     public function save()
     {
         if ($this->validate()) {
-            $model = $this->getModel();
-            $isNewRecord = $model->getIsNewRecord();
+            $model           = $this->getModel();
+            $isNewRecord     = $model->getIsNewRecord();
             $model->username = $this->username;
-            $model->email = $this->email;
-            $model->status = $this->status;
-            if ($this->password)
+            $model->email    = $this->email;
+            $model->status   = $this->status;
+            if ($this->password) {
                 $model->setPassword($this->password);
+            }
 
-            if ($model->save() && $isNewRecord)
+            if ($model->save() && $isNewRecord) {
                 $model->afterSignup();
+            }
 
             $auth = Yii::$app->authManager;
             $auth->revokeAll($model->getId());
 
             if (!empty($this->roles) && is_array($this->roles)) {
-                foreach ($this->roles as $role)
+                foreach ($this->roles as $role) {
                     $auth->assign($auth->getRole($role), $model->getId());
+                }
 
             }
 
             return !$model->hasErrors();
         }
+
         return null;
     }
 }

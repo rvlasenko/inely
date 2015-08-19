@@ -18,7 +18,7 @@ class SiteController extends Controller
         return [
             [
                 'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
+                'only' => [ 'index' ],
                 'duration' => 84600
             ],
             'error' => [
@@ -34,11 +34,5 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
-    }
-
-    public function beforeAction($action)
-    {
-        $this->layout = Yii::$app->user->isGuest ? 'base' : 'common';
-        return parent::beforeAction($action);
     }
 }

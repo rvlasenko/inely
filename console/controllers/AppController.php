@@ -8,7 +8,7 @@ use yii\helpers\Console;
 
 class AppController extends Controller
 {
-    public $writablePaths = [
+    public $writablePaths     = [
         '@frontend/runtime',
         '@frontend/web/assets',
         '@backend/runtime',
@@ -16,7 +16,7 @@ class AppController extends Controller
         '@storage/cache',
         '@storage/web/source'
     ];
-    public $executablePaths = [
+    public $executablePaths   = [
         '@backend/yii',
         '@frontend/yii',
         '@console/yii',
@@ -60,7 +60,8 @@ class AppController extends Controller
             $content = file_get_contents($file);
             $content = preg_replace_callback('/<generated_key>/', function () {
                 $length = 32;
-                $bytes = openssl_random_pseudo_bytes(32, $cryptoStrong);
+                $bytes  = openssl_random_pseudo_bytes(32, $cryptoStrong);
+
                 return strtr(substr(base64_encode($bytes), 0, $length), '+/', '_-');
             }, $content);
             file_put_contents($file, $content);

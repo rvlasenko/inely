@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "tasks_cat".
  *
  * @property integer $id
- * @property string $name
- * @property string $badgeColor
+ * @property string  $name
+ * @property string  $badgeColor
  * @property integer $userId
  */
 class TaskCat extends \yii\db\ActiveRecord
@@ -28,9 +28,9 @@ class TaskCat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userId'], 'integer'],
-            [['name'], 'string', 'max' => 255],
-            [['badgeColor'], 'string', 'max' => 7]
+            [ [ 'userId' ], 'integer' ],
+            [ [ 'name' ], 'string', 'max' => 255 ],
+            [ [ 'badgeColor' ], 'string', 'max' => 7 ]
         ];
     }
 
@@ -48,6 +48,6 @@ class TaskCat extends \yii\db\ActiveRecord
 
     public function getTask()
     {
-        return $this->hasOne(Task::className(), ['category' => 'id']);
+        return $this->hasOne(Task::className(), [ 'category' => 'id' ]);
     }
 }

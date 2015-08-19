@@ -21,10 +21,11 @@ class ConfirmEmailForm extends Model
      * Creates a form model given a token.
      *
      * @param  string $token
-     * @param  array $config
+     * @param  array  $config
+     *
      * @throws \yii\base\InvalidParamException if token is empty or not valid
      */
-    public function __construct($token, $config = [])
+    public function __construct($token, $config = [ ])
     {
         if (empty($token) || !is_string($token)) {
             throw new InvalidParamException('Отсутствует код подтверждения.');
@@ -45,6 +46,7 @@ class ConfirmEmailForm extends Model
     {
         $user = $this->_user;
         $user->removeEmailConfirmToken();
+
         return $user->save();
     }
 }

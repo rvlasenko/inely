@@ -16,8 +16,8 @@ class SiteController extends Controller
         return [
             'set' => [
                 'class' => 'common\components\action\SetLocaleAction',
-                'locales' => array_keys(Yii::$app->params['availableLocales']),
-                'callback' => function() {
+                'locales' => array_keys(Yii::$app->params[ 'availableLocales' ]),
+                'callback' => function () {
                     Yii::$app->response->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
                 }
             ]
@@ -29,8 +29,14 @@ class SiteController extends Controller
         return [
             [
                 'class' => 'yii\filters\PageCache',
-                'only' => ['index'],
-                'duration' => 86400
+                'only' => [ 'index' ],
+                'duration' => 86400,
+                'variations' => [ Yii::$app->language ]
+            ],
+            [
+                'class' => 'yii\filters\HttpCache',
+                'only' => [ 'index' ],
+                'cacheControlHeader' => 'public, max-age=4200'
             ]
         ];
     }
@@ -43,27 +49,32 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
+
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->contact(getenv('ROBOT_EMAIL')))
-                return $this->redirect(\Yii::$app->request->getReferrer());
+            if ($model->contact(getenv('ROBOT_EMAIL'))) {
+                return $this->renderAjax('contact', [ 'model' => $model ]);
+            }
         }
 
-        return $this->renderAjax('contact', ['model' => $model]);
+        return $this->renderAjax('contact', [ 'model' => $model ]);
     }
 
     public function actionError()
     {
         $exception = Yii::$app->errorHandler->exception;
 
-        if ($exception !== null)
-            return $this->render('error', ['exception' => $exception]);
+        if ($exception !== null) {
+            return $this->render('error', [ 'exception' => $exception ]);
+        }
     }
 
     public function beforeAction($action)
     {
         if (parent::beforeAction($action)) {
-            if ($action->id == 'error')
+            if ($action->id == 'error') {
                 $this->layout = '_error';
+            }
+
             return true;
         }
     }

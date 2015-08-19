@@ -14,13 +14,13 @@ use DateTimeZone;
  * This is the model class for table "tasks".
  *
  * @property integer $id
- * @property string $name
+ * @property string  $name
  * @property integer $category
  * @property integer $author
  * @property integer $is_done
- * @property string $priority
- * @property string $time
- * @property string $is_done_date
+ * @property string  $priority
+ * @property string  $time
+ * @property string  $is_done_date
  */
 class Task extends ActiveRecord
 {
@@ -40,11 +40,11 @@ class Task extends ActiveRecord
     public function rules()
     {
         return [
-            ['category', 'required', 'message' => 'Стоило бы указать категорию..'],
-            ['name', 'required', 'message' => 'А название куда-то исчезло..'],
-            [['name'], 'string', 'max' => 255],
-            [['priority'], 'integer', 'max' => 5],
-            [['time'], 'string', 'max' => 25],
+            [ 'category', 'required', 'message' => 'Стоило бы указать категорию' ],
+            [ 'name', 'required', 'message' => 'Название куда-то исчезло..' ],
+            [ [ 'name' ], 'string', 'max' => 255 ],
+            [ [ 'priority' ], 'integer', 'max' => 5 ],
+            [ [ 'time' ], 'string', 'max' => 25 ],
         ];
     }
 
@@ -69,7 +69,7 @@ class Task extends ActiveRecord
      */
     public function getTasks_cat()
     {
-        return $this->hasOne(TaskCat::className(), ['id' => 'category']);
+        return $this->hasOne(TaskCat::className(), [ 'id' => 'category' ]);
     }
 
     /**
@@ -79,15 +79,17 @@ class Task extends ActiveRecord
     public function setTask()
     {
         if ($this->validate()) {
-            $model = new Task();
-            $model->name = $this->name;
+            $model           = new Task();
+            $model->name     = $this->name;
             $model->category = $this->category;
-            $model->author = Yii::$app->user->id;
-            $model->time = DateTime::createFromFormat('!d m Y H:i', $this->time, new DateTimeZone('UTC'))->format('U');
+            $model->author   = Yii::$app->user->id;
+            $model->time     = DateTime::createFromFormat('!d m Y H:i', $this->time, new DateTimeZone('UTC'))->format('U');
 
-            if ($model->save())
+            if ($model->save()) {
                 return true;
+            }
         }
+
         return false;
     }
 
@@ -97,34 +99,27 @@ class Task extends ActiveRecord
      */
     public static function getItems()
     {
-        $items = [];
-        $head = [];
+        $items = [ ];
+        $head  = [ ];
 
-        $models = TaskCat::find()
-            ->where(['userId' => Yii::$app->user->id])
-            ->all();
+        $models = TaskCat::find()->where([ 'userId' => Yii::$app->user->id ])->all();
 
-        foreach($models as $model) {
-            $count = Task::find()
-                ->where(['category' => $model->id])
-                ->count();
+        foreach ($models as $model) {
+            $count = Task::find()->where([ 'category' => $model->id ])->count();
 
-            $head =
-            [
+            $head = [
                 [
                     'label' => 'Все подряд',
-                    'url' => Url::toRoute(['/todo'])
+                    'url' => Url::toRoute([ '/todo' ])
                 ],
             ];
 
-            $items[] =
-            [
-                'url' => Url::toRoute(['/todo/sort', 'TaskSearch[category]' => $model->id]),
-                'label' => Html::tag('span', $model->name .
-                    Html::tag('span', $count, [
+            $items[ ] = [
+                'url' => Url::toRoute([ '/todo/sort', 'TaskSearch[category]' => $model->id ]),
+                'label' => Html::tag('span', $model->name . Html::tag('span', $count, [
                         'class' => 'pull-right badge',
                         'style' => "background-color: $model->badgeColor"
-                    ]), [])
+                    ]), [ ])
             ];
         }
 
