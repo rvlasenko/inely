@@ -1,118 +1,123 @@
-<?php
-use yii\widgets\ActiveForm;
+<?php use yii\widgets\Pjax; use yii\widgets\ActiveForm; use yii\helpers\Html; ?>
+<?php $this->registerJs('$("a.login").click(function() { $.get("login", function(data) { $("#content").html(data) }) })') ?>
 
-$this->registerCssFile('@web/css/icons/font-awesome/css/font-awesome.min.css');
-?>
+<section id="content">
 
-<div class="row">
-    <div class="download-container">
-        <h3><?= Yii::t('frontend', 'Fast reg') ?></h3>
+    <div class="admin-form theme-info">
 
-        <div class="buttons">
-            <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=vkontakte',
-                    'Vkontakte', 700, 500); return false" class="icon-button vk">
-                <i class="fa fa-vk"></i><span></span></a>
-            <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=facebook',
-                    'Facebook', 700, 485); return false" class="icon-button facebook">
-                <i class="fa fa-facebook"></i><span></span></a>
-            <a href="" onclick="popUpWindow('user/sign-in/oauth?authclient=google',
-                    'Google Plus', 440, 500); return false" class="icon-button google-plus">
-                <i class="fa fa-google-plus"></i><span></span></a>
+        <div class="row mb15 table-layout">
+
+            <div class="col-xs-6 va-m pln">
+                <a href="/" title="<?= Yii::t('backend', 'Return to Dashboard') ?>">
+                    <img src="//admindesigns.com/demos/admin/theme/assets/img/logos/logo_white.png" title="Inely Logo" class="img-responsive w250">
+                </a>
+            </div>
+
+            <div class="col-xs-6 text-right va-b pr5">
+                <div class="login-links">
+                    <a href="#" class="login" title="<?= Yii::t('backend', 'Sign In') ?>"><?= Yii::t('backend', 'Sign In') ?></a>
+                    <span class="text-white"> | </span>
+                    <a href="#" class="active signup" title="<?= Yii::t('backend', 'Sign Up') ?>"><?= Yii::t('backend', 'Sign Up') ?></a>
+                </div>
+
+            </div>
+
         </div>
-    </div>
 
-    <h3><?= Yii::t('frontend', 'Reg') ?></h3>
+        <div class="panel panel-info mt10 br-n">
 
-    <div class="form-group">
-        <a class="login-a" href="#"><?= Yii::t('frontend', 'Already sign up?') ?></a>
-    </div>
+            <div class="panel-heading heading-border bg-white">
 
-    <div class="col-lg-5" style="width: 100%">
+                <div class="section row mn">
+                    <div class="col-sm-4">
+                        <a href="user/sign-in/oauth?authclient=facebook" class="button btn-social facebook span-left mr5 btn-block">
+                            <span><i class="fa fa-facebook"></i></span>Facebook</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="user/sign-in/oauth?authclient=vkontakte" class="button btn-social vkontakte span-left mr5 btn-block">
+                            <span><i class="fa fa-vk"></i></span>Vkontakte</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="user/sign-in/oauth?authclient=google" class="button btn-social googleplus span-left btn-block">
+                            <span><i class="fa fa-google-plus"></i></span>Google+</a>
+                    </div>
+                </div>
+            </div>
 
-        <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
-        <?php $form = ActiveForm::begin([
-            'id' => 'sign-form',
-            'action' => '/sign-up',
-            'options' => [
-                'class' => 'subscription-form form-inline',
-                'data-pjax' => true
-            ],
-        ]) ?>
+            <?php Pjax::begin([ 'enablePushState' => false ]) ?>
+            <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
+                <div class="panel-body p25 bg-light">
+                    <div class="section-divider col-md-12 mt10 mb40">
+                        <span><?= Yii::t('backend', 'A few words about you') ?></span>
+                    </div>
 
-        <?= $form->field($model, 'username', [
-            'options' => [
-                'class' => 'col-md-12',
-            ],
-        ])->textInput(['placeholder' => 'Ваше имя'])->label(false) ?>
+                    <div class="section col-md-6">
+                        <label for="email" class="field prepend-icon">
 
-        <?= $form->field($model, 'email', [
-            'options' => [
-                'class' => 'col-md-6',
-            ],
-        ])->textInput(['placeholder' => 'Email'])->label(false) ?>
+                            <?= $form->field($model, 'email', [ 'template' => '{input}{error}' ])->textInput([
+                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Email address')
+                            ])->label(false) ?>
 
-        <?= $form->field($model, 'password', [
-            'options' => [
-                'class' => 'col-md-6',
-            ],
-        ])->passwordInput(['placeholder' => 'Пароль'])->label(false) ?>
+                        </label>
+                    </div>
+                    <!-- end section -->
 
-        <?= \himiklab\yii2\recaptcha\ReCaptcha::widget([
-            'name' => 'reCaptcha',
-            'siteKey' => getenv('RC_SITEKEY'),
-            'widgetOptions' => ['class' => 'col-md-12']
-        ]) ?>
+                    <div class="section col-md-6">
+                        <div class="smart-widget sm-right">
+                            <label for="username" class="field prepend-icon">
 
-        <?php ActiveForm::end(); ?>
-        <?php \yii\widgets\Pjax::end() ?>
+                                <?= $form->field($model, 'username', [ 'template' => '{input}{error}' ])->textInput([
+                                    'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Choose your username')
+                                ])->label(false) ?>
 
-        <div class="col-md-12">
-            <div id="progress-button" class="progress-button">
-                <button form="sign-form" class="bounceIn animated">
-                    <span><?= Yii::t('frontend', 'Ok!') ?></span>
-                </button>
+                            </label>
+                        </div>
+                        <!-- end .smart-widget section -->
+                    </div>
+                    <!-- end section -->
 
-                <svg class="progress-circle" width="70" height="70">
-                    <path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803
-                    -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197
-                    -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/>
-                </svg>
+                    <div class="section col-md-6">
+                        <label for="password" class="field prepend-icon">
 
-                <svg class="checkmark" width="70" height="70">
-                    <path d="m31.5,46.5l15.3,-23.2"/>
-                    <path d="m31.5,46.5l-8.5,-7.1"/>
-                </svg>
+                            <?= $form->field($model, 'password', [ 'template' => '{input}' ])->passwordInput([
+                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Create a password')
+                            ])->label(false) ?>
 
-                <svg class="cross" width="70" height="70">
-                    <path d="m35,35l-9.3,-9.3"/>
-                    <path d="m35,35l9.3,9.3"/>
-                    <path d="m35,35l-9.3,9.3"/>
-                    <path d="m35,35l9.3,-9.3"/>
-                </svg>
+                        </label>
+                    </div>
+                    <!-- end section -->
 
+                    <div class="section col-md-6">
+                        <label for="confirmPassword" class="field prepend-icon">
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="Retype your password">
+                            <label for="confirmPassword" class="field-icon">
+                                <i class="fa fa-lock"></i>
+                            </label>
+                        </label>
+                    </div>
+                    <!-- end section -->
+
+                </div>
+                <!-- end .form-body section -->
+                <div class="panel-footer clearfix">
+                    <?= Html::submitButton(Yii::t('backend', 'Finish sign up'), [ 'class' => 'button btn-primary pull-right' ]) ?>
+                </div>
+                <!-- end .form-footer section -->
+            <?php ActiveForm::end() ?>
+            <?php Pjax::end() ?>
+            <div class="col-xs-12 va-b mt10 pr5">
+                <div class="login-links">
+                    <?php
+                        $items = Yii::$app->params[ 'availableLocales' ]; $i = 0; $numItems = count($items);
+
+                        foreach ($items as $key => $language) {
+                            echo Html::a($language, [ '/site/set', 'locale' => $key ]);
+                            if (++$i !== $numItems) echo '<span class="text-white"> | </span>';
+                        }
+                    ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
-        new UIProgressButton( bttn, {
-            callback : function(instance) {
-                var progress = 0;
-                var success = 1;
-                var error = -1;
-
-                var interval = setInterval(function() {
-                    icon(pos, instance, progress, success, error, interval);
-                }, 300);
-            }
-        } );
-    } );
-
-    jQuery(function($) {
-        $('.login-a').click(function() {
-            showModal('login');
-        });
-    });
-</script>
+</section>

@@ -1,5 +1,6 @@
 <?php
 
+use common\models\User;
 use yii\db\Migration;
 use yii\db\Schema;
 
@@ -13,19 +14,19 @@ class m140703_123000_user extends Migration
         }
 
         $this->createTable('{{%user}}', [
-            'id' => Schema::TYPE_PK,
-            'username' => Schema::TYPE_STRING . '(32) NULL',
-            'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
-            'password_hash' => Schema::TYPE_STRING . ' NOT NULL',
-            'password_reset_token' => Schema::TYPE_STRING,
-            'email_confirm_token' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',
-            'oauth_client' => Schema::TYPE_STRING,
-            'oauth_client_user_id' => Schema::TYPE_STRING,
-            'email' => Schema::TYPE_STRING . ' NULL DEFAULT NULL',
-            'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT ' . \common\models\User::STATUS_ACTIVE,
-            'created_at' => Schema::TYPE_INTEGER,
-            'updated_at' => Schema::TYPE_INTEGER,
-            'logged_at' => Schema::TYPE_INTEGER
+            'id' => $this->primaryKey(),
+            'username' => $this->string(32),
+            'auth_key' => $this->string(32)->notNull(),
+            'password_hash' => $this->string()->notNull(),
+            'password_reset_token' => $this->string(),
+            'email_confirm_token' => $this->string(32)->notNull(),
+            'oauth_client' => $this->string(),
+            'oauth_client_user_id' => $this->string(),
+            'email' => $this->string()->notNull(),
+            'status' => $this->smallInteger()->notNull()->defaultValue(User::STATUS_ACTIVE),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
+            'logged_at' => $this->integer()
         ], $tableOptions);
 
         $this->insert('{{%user}}', [
@@ -34,28 +35,27 @@ class m140703_123000_user extends Migration
             'email' => 'webmaster@example.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('webmaster'),
             'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'status' => \common\models\User::STATUS_ACTIVE,
+            'status' => User::STATUS_ACTIVE,
             'created_at' => time(),
             'updated_at' => time()
         ]);
+
         $this->insert('{{%user}}', [
             'id' => 2,
             'username' => 'user',
             'email' => 'user@example.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('user'),
             'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'status' => \common\models\User::STATUS_ACTIVE,
+            'status' => User::STATUS_ACTIVE,
             'created_at' => time(),
             'updated_at' => time()
         ]);
 
         $this->createTable('{{%user_profile}}', [
-            'user_id' => Schema::TYPE_PK,
-            'firstname' => Schema::TYPE_STRING . '(255) ',
-            'lastname' => Schema::TYPE_STRING . '(255) ',
-            'avatar_path' => Schema::TYPE_STRING . '(255) ',
-            'avatar_base_url' => Schema::TYPE_STRING . '(255) ',
-            'gender' => Schema::TYPE_INTEGER . '(1)'
+            'user_id' => $this->primaryKey(),
+            'firstname' => $this->string(),
+            'lastname' => $this->string(),
+            'locale' => $this->string(32)->notNull(),
         ], $tableOptions);
 
         $this->insert('{{%user_profile}}', [
@@ -63,9 +63,11 @@ class m140703_123000_user extends Migration
             'firstname' => 'John',
             'lastname' => 'Doe'
         ]);
+
         $this->insert('{{%user_profile}}', [
             'user_id' => 2,
         ]);
+
         if ($this->db->driverName === 'mysql') {
             $this->addForeignKey('fk_user', '{{%user_profile}}', 'user_id', '{{%user}}', 'id', 'cascade', 'cascade');
         }

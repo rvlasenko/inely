@@ -1,14 +1,13 @@
 <?php
 
+use frontend\assets\FrontendAsset;
+use yii\helpers\Html;
+
 /**
- * Main layout
  * @author rootkit
  * @var $this    yii\web\View
  * @var $content string
  */
-
-use frontend\assets\FrontendAsset;
-use yii\helpers\Html;
 
 FrontendAsset::register($this);
 
@@ -28,14 +27,12 @@ $this->registerJsFile('js/plugins.js', [ 'position' => $this::POS_END ]);
 
     <meta http-equiv="content-type" content="text/html" />
     <meta charset="<?= Yii::$app->charset ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!--[if lt IE 9]>
     <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
 
-    <!-- Document Title
-    ============================================= -->
     <title><?= Html::encode($this->title) ?></title>
 
     <?= Html::csrfMetaTags() ?>

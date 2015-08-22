@@ -12,53 +12,52 @@ use yii\web\View;
 class BackendAsset extends AssetBundle
 {
     public $basePath = '/';
-    public $baseUrl = '@backendUrl';
+    public $baseUrl  = '@backendUrl';
 
     public $css = [
-        'css/style.css',
-        'css/theme.css',
-        'css/ui.css',
-        'plugins/animation-css/animate.min.css',
-        'plugins/mcustom-scrollbar/mcustom_scrollbar.min.css',
-        //'plugins/slick/slick.css',
-        'plugins/fullcalendar/fullcalendar.min.css',
-        'plugins/chartist-js-develop/dist/chartist.min.css',
+        // Font CSS (Via CDN)
+        'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700',
+        'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
+        'fonts/glyphicons-pro/glyphicons-pro.css',
+
+        // Full Calendar Plugin CSS
+        'vendor/plugins/fullcalendar/fullcalendar.min.css',
+
+        // Theme CSS
+        'css/skin/theme.css',
+        'css/animate.css',
+
+        // Admin Panels CSS
+        'tools/panels/adminpanels.css'
     ];
 
     public $js = [
-        //'plugins/jquery/jquery-migrate-1.2.1.min.js',
-        //'plugins/jquery-ui/jquery-ui-1.11.2.min.js',
-        'plugins/gsap/main-gsap.min.js',
-        'plugins/jquery-cookies/jquery.cookies.min.js',
-        //'plugins/jquery-block-ui/jquery.blockUI.min.js',
-        'plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js',
-        'plugins/retina/retina.min.js',
-        'plugins/bootstrap-progressbar/bootstrap-progressbar.min.js',
-        //'plugins/jquery-translator/jqueryTranslator.min.js',
-        'plugins/noty/jquery.noty.packaged.js',
-        'plugins/countup/countUp.min.js',
-        'plugins/fullcalendar/lib/moment.min.js',
-        'plugins/fullcalendar/lang/ru.js',
-        'plugins/fullcalendar/fullcalendar.min.js',
-        'plugins/chartist-js-develop/dist/chartist.min.js',
-        //'js/widgets/todo_list.js',
-        'js/builder.js',
-        //'js/sidebar_hover.js',
-        'js/application.js',
-        'js/plugins.js',
-        'js/widgets/notes.js',
-        //'js/widgets/widget_weather.js',
-        'js/pages/dashboard.js',
-        //'js/pages/translation.js',
+        // Chart Plugins
+        'vendor/plugins/highcharts/highcharts.js',
+        'vendor/plugins/highcharts/themes/sand-signika.js',
+
+        // FullCalendar Plugin + moment Dependency
+        'vendor/plugins/fullcalendar/lib/moment.min.js',
+        'vendor/plugins/fullcalendar/fullcalendar.min.js',
+
+        // Notification
+        'vendor/plugins/noty/packaged/jquery.noty.packaged.min.js',
+
+        // Theme Javascript
+        'js/utility.js',
+        'js/main.js',
+        'js/demo.js',
+
+        // Admin Panels
+        'tools/panels/adminpanels.js'
     ];
 
-    public $jsOptions = [
-        'position' => View::POS_END
-    ];
+    public $jsOptions = [ 'position' => View::POS_END ];
 
     public $depends = [
-        'common\assets\BootstrapAsset',
+        'yii\web\JqueryAsset',
+        'common\assets\JuiAsset',
         'common\assets\FontAwesome',
-        'yii\jui\JuiAsset'
+        'backend\assets\BootstrapJsAsset'
     ];
 }

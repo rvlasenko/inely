@@ -35,7 +35,6 @@
     "kartik-v/yii2-widget-colorinput": "*",
     "kartik-v/yii2-widget-select2": "*",
     "kartik-v/yii2-widget-sidenav": "*",
-    "himiklab/yii2-recaptcha-widget": "*",
     "vlucas/phpdotenv": "~1.0",
     "FortAwesome/Font-Awesome": "*",
     "rev-slider/rev-slider": "dev-master"

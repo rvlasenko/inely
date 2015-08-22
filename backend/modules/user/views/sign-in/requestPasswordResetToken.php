@@ -1,83 +1,36 @@
-<?php
-    use yii\widgets\ActiveForm;
+<?php use yii\widgets\Pjax; use yii\widgets\ActiveForm; use yii\helpers\Html; ?>
 
-    $this->registerJsFile('@web/js/landing/uiProgressButton.js', ['position' => yii\web\View::POS_BEGIN]);
-?>
-
-<div class="row">
-    <h4 class="bounceIn animated"><?= Yii::t('frontend',
-            'Please enter your e-mail. It will receive a letter with instructions to reset your password.') ?></h4>
-
-    <div class="form-group bounceIn animated">
-        <a class="forget-a" href="#"><?= Yii::t('frontend', 'Nope') ?></a>
+<div class="panel">
+    <div class="panel-heading">
+        <span class="panel-title"><i class="fa fa-rocket"></i><?= Yii::t('backend', 'Password recovery') ?></span>
     </div>
+    <!-- end .panel-heading section -->
 
-    <div class="col-lg-5" style="width: 100%">
-
-        <?php \yii\widgets\Pjax::begin(['enablePushState' => false]) ?>
-        <?php $form = ActiveForm::begin([
-            'id' => 'reset-form',
-            'action' => 'reset',
-            'options' => [
-                'class' => 'subscription-form form-inline bounceIn animated',
-                'data-pjax' => true
-            ],
-        ]); ?>
-        <?= $form->field($model, 'email', [
-            'options' => [
-                'class' => 'col-md-12',
-            ],
-        ])->textInput(['placeholder' => 'Email'])->label(false) ?>
-        <?php ActiveForm::end(); ?>
-        <?php \yii\widgets\Pjax::end() ?>
-
-        <div class="col-md-12">
-            <div id="progress-button" class="progress-button">
-                <button form="reset-form" class="bounceIn animated">
-                    <span><?= Yii::t('frontend', 'Send') ?></span>
-                </button>
-
-                <svg class="progress-circle" width="70" height="70">
-                    <path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803
-                    -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197
-                    -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/>
-                </svg>
-
-                <svg class="checkmark" width="70" height="70">
-                    <path d="m31.5,46.5l15.3,-23.2"/>
-                    <path d="m31.5,46.5l-8.5,-7.1"/>
-                </svg>
-
-                <svg class="cross" width="70" height="70">
-                    <path d="m35,35l-9.3,-9.3"/>
-                    <path d="m35,35l9.3,9.3"/>
-                    <path d="m35,35l-9.3,9.3"/>
-                    <path d="m35,35l9.3,-9.3"/>
-                </svg>
-
+    <?php Pjax::begin([ 'enablePushState' => false ]) ?>
+    <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
+        <div class="panel-body p25">
+            <div class="section row">
+                <div class="col-md-12 mb20">
+                    <span><?= Yii::t('backend', 'Please enter your e-mail. It will receive a letter with instructions to reset your password.') ?></span>
+                </div>
+                <div class="col-md-12">
+                    <label for="firstname" class="field prepend-icon">
+                        <?= $form->field($model, 'email', [ 'template' => '{input}{error}' ])->textInput([
+                            'class' => 'gui-input', 'placeholder' => 'Email'
+                        ])->label(false) ?>
+                    </label>
+                </div>
+                <!-- end section -->
             </div>
+            <!-- end section row section -->
         </div>
-    </div>
+        <!-- end .form-body section -->
+
+        <div class="panel-footer">
+            <?= Html::submitButton(Yii::t('backend', 'Send'), [ 'class' => 'button btn-primary' ]) ?>
+        </div>
+        <!-- end .form-footer section -->
+    <?php ActiveForm::end() ?>
+    <?php Pjax::end() ?>
 </div>
-
-<script>
-    [].slice.call(document.querySelectorAll('.progress-button')).forEach(function(bttn, pos) {
-        new UIProgressButton( bttn, {
-            callback : function(instance) {
-                var progress = 0;
-                var success = 1;
-                var error = -1;
-
-                var interval = setInterval(function() {
-                    icon(pos, instance, progress, success, error, interval);
-                }, 1000);
-            }
-        } );
-    } );
-
-    jQuery(function($) {
-        $('.forget-a').click(function() {
-            showModal('login');
-        });
-    });
-</script>
+<!-- end: .panel -->

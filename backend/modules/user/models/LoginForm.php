@@ -18,14 +18,14 @@ class LoginForm extends Model
     private $_user = false;
 
     /**
+     * Username and password are both required
+     * Password is validated by validatePassword()
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            // username and password are both required
             [ [ 'identity', 'password' ], 'required' ],
-            // password is validated by validatePassword()
             [ 'password', 'validatePassword' ],
         ];
     }
@@ -48,10 +48,11 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError('password', Yii::t('frontend', 'Incorrect username or password.'));
+                $this->addError('password', Yii::t('backend', 'Incorrect username or password.'));
             }
         }
     }
+
 
     /**
      * Logs in a user using the provided username and password.
@@ -77,8 +78,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::find()->where([
-                'or',
+            $this->_user = User::find()->where([ 'or',
                 [ 'username' => $this->identity ],
                 [ 'email' => $this->identity ]
             ])->one();

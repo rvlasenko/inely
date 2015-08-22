@@ -13,14 +13,14 @@ class m150705_091355_tasks extends Migration
         }
 
         $this->createTable('{{%tasks}}', [
-            'id' => Schema::TYPE_PK,
-            'name' => Schema::TYPE_STRING . '(255) NULL',
-            'category' => Schema::TYPE_INTEGER . '(15)',
-            'author' => Schema::TYPE_INTEGER . '(100)',
-            'isDone' => Schema::TYPE_INTEGER . '(1)',
-            'priority' => Schema::TYPE_INTEGER . '(5) NULL',
-            'time' => Schema::TYPE_STRING . '(15) NULL',
-            'isDoneDate' => Schema::TYPE_STRING . '(15) NULL'
+            'id' => $this->primaryKey(),
+            'name' => $this->string()->notNull(),
+            'category' => $this->integer(15),
+            'author' => $this->integer(50)->notNull(),
+            'isDone' => $this->integer(1),
+            'priority' => $this->integer(5),
+            'time' => $this->string(15),
+            'isDoneDate' => $this->string(15),
         ], $tableOptions);
 
         $this->insert('{{%tasks}}', [
@@ -45,7 +45,7 @@ class m150705_091355_tasks extends Migration
 
         $this->insert('{{%tasks}}', [
             'id' => 3,
-            'name' => 'Покинь 2ch, заведи тян, стань альфой',
+            'name' => 'Покинь борды, стань альфой',
             'category' => 3,
             'author' => 3,
             'isDone' => 1,
@@ -54,10 +54,10 @@ class m150705_091355_tasks extends Migration
         ]);
 
         $this->createTable('{{%tasks_cat}}', [
-            'id' => Schema::TYPE_PK,
-            'userId' => Schema::TYPE_INTEGER . '(100) NULL',
-            'name' => Schema::TYPE_STRING . '(100)',
-            'badgeColor' => Schema::TYPE_STRING . '(7) NULL'
+            'id' => $this->primaryKey(),
+            'userId' => $this->integer(100),
+            'name' => $this->string(100),
+            'badgeColor' => $this->string(7)
         ], $tableOptions);
 
         $this->insert('{{%tasks_cat}}', [

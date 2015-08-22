@@ -1,4 +1,4 @@
-<?php use yii\widgets\ActiveForm; use \yii\helpers\Html; use yii\widgets\Pjax; ?>
+<?php use yii\widgets\ActiveForm; use yii\helpers\Html; use yii\widgets\Pjax; ?>
 
 <?php $this->registerJs('$(document).on("pjax:success", function() { $(":input", "#quick-contact-form").not(":submit").val(""); $(".quick-contact-widget").css("opacity", "1") })') ?>
 

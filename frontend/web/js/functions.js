@@ -827,7 +827,7 @@ var SEMICOLON = SEMICOLON || {};
                 $('#primary-menu.sub-title > ul > li').hover(function () {
                     $(this).prev().css({ backgroundImage: 'none' });
                 }, function () {
-                    $(this).prev().css({ backgroundImage: 'url("images/icons/menu-divider.png")' });
+                    $(this).prev().css({ backgroundImage: 'url("images/icon/menu-divider.png")' });
                 });
 
                 $('#primary-menu.sub-title').children('ul').children('.current').prev().css({ backgroundImage: 'none' });

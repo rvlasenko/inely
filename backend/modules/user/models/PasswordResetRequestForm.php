@@ -27,7 +27,7 @@ class PasswordResetRequestForm extends Model
                 'exist',
                 'targetClass' => '\common\models\User',
                 'filter' => [ 'status' => User::STATUS_ACTIVE ],
-                'message' => Yii::t('frontend', 'There is no user with such email.')
+                'message' => Yii::t('backend', 'There is no user with such email')
             ],
         ];
     }

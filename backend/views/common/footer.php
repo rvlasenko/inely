@@ -1,17 +1,13 @@
-<?php $date = new DateTime() ?>
-
-<div class="copyright">
-    <p class="pull-left sm-pull-reset">
-        <span>Copyright <span class="copyright"> &copy; </span><?= $date->format('Y') ?></span>
-        <span>rootkit</span>.
-        <span>All rights reserved.</span>
-    </p>
-
-    <p class="pull-right sm-pull-reset">
-        <span>
-            <a href="#" class="m-r-10">Support</a> |
-            <a href="#" class="m-l-10 m-r-10">Terms of use</a> |
-            <a href="#" class="m-l-10">Privacy Policy</a>
-        </span>
-    </p>
-</div>
+<footer id="content-footer">
+    <div class="row">
+        <div class="col-md-6">
+            <span class="footer-legal fs14">© 2015 rootkit</span>
+        </div>
+        <div class="col-md-6 text-right">
+            <span class="footer-meta">10GB of <b>250GB</b> Free</span>
+            <a href="#content" class="footer-return-top">
+                <span class="fa fa-arrow-up"></span>
+            </a>
+        </div>
+    </div>
+</footer>

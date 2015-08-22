@@ -11,6 +11,7 @@ use yii\web\Response;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
+use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -23,13 +24,26 @@ class TaskController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => [ 'todo',  ],
+                        'allow' => false,
+                        'roles' => [ '?' ],
+                        'denyCallback' => function () {
+                            return Yii::$app->controller->redirect([ 'login' ]);
+                        }
+                    ]
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => [ 'post' ],
                 ],
             ],
-            /*[
+            [
                 'class' => 'yii\filters\HttpCache',
                 'only' => [
                     'index', 'view'
@@ -38,7 +52,7 @@ class TaskController extends Controller
                     $q = new Query();
                     return $q->from('tasks')->max('time');
                 },
-            ],*/
+            ],
         ];
     }
 

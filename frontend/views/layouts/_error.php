@@ -1,7 +1,6 @@
 <?php
 
 /**
- * Error layout
  * @author rootkit
  * @var $this    yii\web\View
  * @var $content string

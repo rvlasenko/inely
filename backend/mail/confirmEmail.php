@@ -5,7 +5,7 @@
     /* @var $user common\models\User */
     /* @var $password */
 
-    $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['confirm-email', 'token' => $user->email_confirm_token,]);
+    $confirmLink = Yii::$app->urlManager->createAbsoluteUrl([ 'confirm-email', 'token' => $user->email_confirm_token ]);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -272,7 +272,7 @@
                                                 st-content="fulltext-content">
                                                 Вы зарегистрировались на madeasy со следующими данными:<br>
                                                 Логин: <?= Html::encode($user->username) ?><br>
-                                                Пароль: <?= Html::encode($password) ?><br>
+                                                <?php if (!empty($password)) echo "Пароль: $password<br>" ?>
                                                 Пожалуйста, сохраните Ваши данные и не сообщайте их третьим лицам.<br><br>
                                                 <a href="<?= Html::encode($confirmLink) ?>"
                                                    style="text-decoration: none; color: #0a8cce">Активируйте мою запись!
