@@ -2763,6 +2763,7 @@ body:not(.device-touch) .social-icon i {
 
 .rev {
     position: relative;
+    margin-left: 8%;
 }
 
 .rev img {

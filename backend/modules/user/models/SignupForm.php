@@ -3,7 +3,6 @@
 namespace backend\modules\user\models;
 
 use common\models\User;
-use himiklab\yii2\recaptcha\ReCaptchaValidator;
 use yii\base\Model;
 use Yii;
 
@@ -15,6 +14,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $passwordConfirm;
 
     /**
      * @inheritdoc
@@ -25,23 +25,23 @@ class SignupForm extends Model
             [ 'username', 'filter', 'filter' => 'trim' ],
             [ 'username', 'required' ],
             [ 'username', 'string', 'min' => 2, 'max' => 255 ],
-            [
-                'username',
-                'unique',
+            [ 'username', 'unique',
                 'targetClass' => '\common\models\User',
-                'message' => Yii::t('backend', 'This username has already been taken.')
+                'message' => Yii::t('backend', 'This username has already been taken')
             ],
-            [
-                'email',
-                'unique',
+            [ 'email', 'unique',
                 'targetClass' => '\common\models\User',
-                'message' => Yii::t('backend', 'This email address has already been taken.')
+                'message' => Yii::t('backend', 'This email address has already been taken')
             ],
             [ 'email', 'filter', 'filter' => 'trim' ],
             [ 'email', 'required' ],
             [ 'email', 'email' ],
+
             [ 'password', 'required' ],
-            [ 'password', 'string', 'min' => 6 ]
+            [ 'password', 'string', 'min' => 6 ],
+
+            [ [ 'passwordConfirm' ], 'required', 'on' => [ 'reset' ] ],
+            [ [ 'passwordConfirm' ], 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('backend', 'Passwords do not match') ]
         ];
     }
 
@@ -56,14 +56,13 @@ class SignupForm extends Model
             $user           = new User();
             $user->username = $this->username;
             $user->email    = $this->email;
+
             $user->setPassword($this->password);
             $user->generateEmailConfirmToken();
 
             if ($user->save()) {
-                Yii::$app->mailer->compose('confirmEmail', [ 'user' => $user ])
-                                 ->setTo($this->email)
-                                 ->setSubject('Email confirmation for ' . Yii::$app->name)
-                                 ->send();
+                User::sendEmail($user, 'confirmEmail', $this->email,
+                    Yii::t('mail', 'Welcome to Inely - User account activation'));
             }
 
             $user->afterSignup();

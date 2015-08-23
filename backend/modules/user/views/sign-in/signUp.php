@@ -89,10 +89,11 @@
 
                     <div class="section col-md-6">
                         <label for="confirmPassword" class="field prepend-icon">
-                            <input type="password" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="Retype your password">
-                            <label for="confirmPassword" class="field-icon">
-                                <i class="fa fa-lock"></i>
-                            </label>
+
+                            <?= $form->field($model, 'passwordConfirm', [ 'template' => '{input}{error}' ])->passwordInput([
+                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Retype your password')
+                            ])->label(false) ?>
+
                         </label>
                     </div>
                     <!-- end section -->

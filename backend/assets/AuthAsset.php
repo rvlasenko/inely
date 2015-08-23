@@ -15,6 +15,7 @@ class AuthAsset extends AssetBundle
     public $baseUrl  = '@backendUrl';
 
     public $css = [
+
         // Font CSS (Via CDN)
         'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic',
 
@@ -31,6 +32,7 @@ class AuthAsset extends AssetBundle
     ];
 
     public $js = [
+
         // Canvas BG
         'vendor/plugins/canvas/canvas.js',
 

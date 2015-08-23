@@ -118,7 +118,7 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
                 <img src="images/avatars/4.jpg" alt="avatar" class="mw30 br64 mr15">
-                <span>John.Smith</span>
+                <span><?= Yii::$app->user->identity->username ?></span>
                 <span class="caret caret-tp hidden-xs"></span>
             </a>
             <ul class="dropdown-menu dropdown-persist pn user bg-white" role="menu">
@@ -135,8 +135,7 @@
                 </li>
                 <li class="br-t of-h">
                     <?= Html::a('<span class="fa fa-power-off pr5"></span>Logout', [ '/logout' ], [
-                        'class' => 'fw600 p12 animated animated-short fadeInDown',
-                        'data-method' => 'post'
+                        'class' => 'fw600 p12 animated animated-short fadeInDown', 'data-method' => 'post'
                     ]) ?>
                 </li>
             </ul>

@@ -42,27 +42,18 @@ class PasswordResetRequestForm extends Model
         /* @var $user User */
         $user = User::findOne([
             'status' => User::STATUS_ACTIVE,
-            'email' => $this->email,
+            'email' => $this->email
         ]);
 
         if ($user) {
             $user->generatePasswordResetToken();
             if ($user->save()) {
-                return Yii::$app->mailer->compose('passwordResetToken', [ 'user' => $user ])
-                                        ->setFrom([ Yii::$app->params[ 'adminEmail' ] => Yii::$app->name ])
-                                        ->setTo($this->email)
-                                        ->setSubject(Yii::t('frontend', 'Password reset for {name}', [ 'name' => Yii::$app->name ]))
-                                        ->send();
+                $this->addError('email', Yii::t('backend', 'Check your email for further instructions'));
+                return User::sendEmail($user, 'passwordResetToken', $this->email,
+                    Yii::t('mail', 'Inely password reset'));
             }
         }
 
         return false;
-    }
-
-    public function attributeLabels()
-    {
-        return [
-            'email' => Yii::t('frontend', 'E-mail')
-        ];
     }
 }

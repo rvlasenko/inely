@@ -122,58 +122,14 @@
 
     </div>
 
-    <div class="section parallax dark bottommargin-lg" style="background-image: url('<?= Yii::t('frontend', 'images/services/home-testi-bg.jpg') ?>')" data-stellar-background-ratio="0.3">
-
-        <div class="container clearfix">
-
-            <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn">
-                <i class="i-plain i-large divcenter nobottommargin icon-time"></i>
-
-                <div class="counter counter-lined">
-                    <span data-from="60" data-to="1200" data-refresh-interval="30" data-speed="2700"></span>+
-                </div>
-                <h4><?= Yii::t('frontend', 'Hours of Coding') ?></h4>
-            </div>
-
-            <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn" data-delay="200">
-                <i class="i-plain i-large divcenter nobottommargin icon-code"></i>
-
-                <div class="counter counter-lined">
-                    <span data-from="100" data-to="846" data-refresh-interval="50" data-speed="2000"></span>K+
-                </div>
-                <h4><?= Yii::t('frontend', 'Lines of Code') ?></h4>
-            </div>
-
-            <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center" data-animate="bounceIn" data-delay="400">
-                <i class="i-plain i-large divcenter nobottommargin icon-cup"></i>
-
-                <div class="counter counter-lined">
-                    <span data-from="150" data-to="523" data-refresh-interval="50" data-speed="3500" data-comma="true"></span>
-                </div>
-                <h4><?= Yii::t('frontend', 'Cups of Tea') ?></h4>
-            </div>
-
-            <div class="col-md-3 col-sm-3 col-xs-6 nobottommargin center col_last" data-animate="bounceIn" data-delay="600">
-                <i class="i-plain i-large divcenter nobottommargin icon-line2-graph"></i>
-
-                <div class="counter counter-lined">
-                    <span data-from="25" data-to="414" data-refresh-interval="30" data-speed="2700" data-comma="true"></span>
-                </div>
-                <h4><?= Yii::t('frontend', 'Commits in Git') ?></h4>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="container divcenter clearfix">
+    <div class="section nobottommargin clearfix">
 
         <div id="section-review" class="heading-block center">
             <h2><?= Yii::t('frontend', 'We know you want it!') ?></h2>
             <span><?= Yii::t('frontend', 'Created with special passion &amp; and intuitivism. You shouldn\'t study it long.') ?></span>
         </div>
 
-        <div class="rev" data-height-lg="624" data-height-md="518" data-height-sm="397" data-height-xs="242" data-height-xxs="154">
+        <div class="rev" data-height-lg="563" data-height-md="518" data-height-sm="397" data-height-xs="242" data-height-xxs="154">
             <img src="<?= Yii::t('frontend', 'images/services/fbrowser.png') ?>" data-animate="fadeInUp" data-delay="100" alt="Chrome">
             <img src="images/services/fmobile.png" data-animate="fadeInUp" data-delay="400" alt="iPad">
             <img src="<?= Yii::t('frontend', 'images/services/fbrowser2.png') ?>" data-animate="fadeIn" data-delay="1200" alt="iPad">

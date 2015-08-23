@@ -1,4 +1,5 @@
 <?php
+
 $config = [
     'homeUrl' => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
@@ -18,12 +19,12 @@ $config = [
                 'google' => [
                     'class' => 'yii\authclient\clients\GoogleOAuth',
                     'clientId' => getenv('GOOGLE_CLIENT_ID'),
-                    'clientSecret' => getenv('GOOGLE_CLIENT_SECRET'),
+                    'clientSecret' => getenv('GOOGLE_CLIENT_SECRET')
                 ],
                 'facebook' => [
                     'class' => 'yii\authclient\clients\Facebook',
                     'clientId' => getenv('FB_CLIENT_ID'),
-                    'clientSecret' => getenv('FB_CLIENT_SECRET'),
+                    'clientSecret' => getenv('FB_CLIENT_SECRET')
                 ],
                 'vkontakte' => [
                     'class' => 'yii\authclient\clients\VKontakte',

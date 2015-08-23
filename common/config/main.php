@@ -1,6 +1,10 @@
 <?php
 
 $config = [
+    'as locale' => [
+        'class' => 'common\components\behaviors\LocaleBehavior',
+        'enablePreferredLanguage' => true
+    ],
     'components' => [
         'urlManagerBackend' => [
             'class' => 'yii\web\urlManager',
@@ -37,9 +41,6 @@ $config = [
         'session' => [
             'cookieParams' => [ 'domain' => '.madeasy.local' ]
         ]
-    ],
-    'as locale' => [
-        'class' => 'common\components\behaviors\LocaleBehavior'
     ]
 ];
 

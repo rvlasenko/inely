@@ -29,27 +29,21 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE  = 1;
+    const STATUS_UNCONFIRMED = 2;
 
     const ROLE_USER          = 'user';
-    const ROLE_MANAGER       = 'moderator';
     const ROLE_ADMINISTRATOR = 'administrator';
 
     const EVENT_AFTER_SIGNUP = 'afterSignup';
     const EVENT_AFTER_LOGIN  = 'afterLogin';
 
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return '{{%user}}';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function behaviors()
     {
         return [
@@ -62,50 +56,35 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     public function scenarios()
     {
         return ArrayHelper::merge(parent::scenarios(), [
-                'oauth_create' => [
-                    'oauth_client',
-                    'oauth_client_user_id',
-                    'email',
-                    'username',
-                    '!status'
-                ]
-            ]);
+            'oauth_create' => [
+                'oauth_client',
+                'oauth_client_user_id',
+                'email',
+                'username',
+                '!status'
+            ]
+        ]);
     }
 
     /**
-     * @inheritdoc
+     * Unique username and Email
+     * Default status is Active
+     * Status can be Active and Deleted
      */
     public function rules()
     {
         return [
             [ [ 'username', 'email' ], 'unique' ],
             [ 'status', 'default', 'value' => self::STATUS_ACTIVE ],
-            [ 'status', 'in', 'range' => [ self::STATUS_ACTIVE, self::STATUS_DELETED ] ],
+            [ 'status', 'in', 'range' => [ self::STATUS_ACTIVE, self::STATUS_INACTIVE ] ],
         ];
     }
 
     /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'username' => Yii::t('common', 'Username'),
-            'email' => Yii::t('common', 'E-mail'),
-            'status' => Yii::t('common', 'Status'),
-            'created_at' => Yii::t('common', 'Created at'),
-            'updated_at' => Yii::t('common', 'Updated at'),
-            'logged_at' => Yii::t('common', 'Last login'),
-        ];
-    }
-
-    /**
+     * Get user profile by id
      * @return \yii\db\ActiveQuery
      */
     public function getUserProfile()
@@ -113,17 +92,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasOne(UserProfile::className(), [ 'user_id' => 'id' ]);
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function findIdentity($id)
     {
         return static::findOne($id);
     }
 
-    /**
-     * @inheritdoc
-     */
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return static::findOne([ 'auth_key' => $token, 'status' => self::STATUS_ACTIVE ]);
@@ -170,7 +143,6 @@ class User extends ActiveRecord implements IdentityInterface
         $parts     = explode('_', $token);
         $timestamp = (int)end($parts);
         if ($timestamp + $expire < time()) {
-            // token expired
             return null;
         }
 
@@ -180,25 +152,16 @@ class User extends ActiveRecord implements IdentityInterface
         ]);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getId()
     {
         return $this->getPrimaryKey();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getAuthKey()
     {
         return $this->auth_key;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
@@ -252,11 +215,32 @@ class User extends ActiveRecord implements IdentityInterface
     public static function getStatuses($status = false)
     {
         $statuses = [
-            self::STATUS_ACTIVE => Yii::t('common', 'Active'),
-            self::STATUS_DELETED => Yii::t('common', 'Deleted'),
+            self::STATUS_ACTIVE => Yii::t('backend', 'Active'),
+            self::STATUS_INACTIVE => Yii::t('backend', 'Deleted'),
         ];
 
         return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
+    }
+
+    /**
+     * Send email confirmation to user
+     *
+     * @param $user
+     * @param $layout
+     * @param $email
+     * @param $subject
+     *
+     * @return bool
+     */
+    public static function sendEmail($user, $layout, $email, $subject)
+    {
+        $mailer  = Yii::$app->mailer;
+        $message = $mailer->compose($layout, [ 'user' => $user ])->setTo($email)->setSubject($subject);
+        $message->setFrom([ Yii::$app->params[ 'adminEmail' ] => Yii::$app->name ]);
+
+        $result = $message->send();
+
+        return $result;
     }
 
     /**
@@ -266,30 +250,24 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function afterSignup(array $profileData = [ ])
     {
-        TimelineEvent::log('user', 'signup', [
-                'publicIdentity' => $this->getPublicIdentity(),
-                'userId' => $this->getId(),
-                'created_at' => $this->created_at
-            ]);
+//        TimelineEvent::log('user', 'signup', [
+//            'publicIdentity' => $this->getPublicIdentity(),
+//            'userId' => $this->getId(),
+//            'created_at' => $this->created_at
+//        ]);
+
         $profile         = new UserProfile();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
-        if ($profile->firstname) {
-            $profile->firstname = $profileData[ 'firstname' ];
-        }
-        if ($profile->lastname) {
-            $profile->lastname = $profileData[ 'lastname' ];
-        }
+
         $this->link('userProfile', $profile);
         $this->trigger(self::EVENT_AFTER_SIGNUP);
+
         // Default role
         $auth = Yii::$app->authManager;
         $auth->assign($auth->getRole(User::ROLE_USER), $this->getId());
     }
 
-    /**
-     * @return string
-     */
     public function getPublicIdentity()
     {
         if ($this->userProfile && $this->userProfile->getFullname() !== null) {
@@ -312,7 +290,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::findOne([
             'email_confirm_token' => $email_confirm_token,
-            //'status' => self::STATUS_ACTIVE,
+            'status' => self::STATUS_ACTIVE,
         ]);
     }
 

@@ -43,23 +43,7 @@ class UserProfile extends \yii\db\ActiveRecord
             [ [ 'gender' ], 'in', 'range' => [ self::GENDER_FEMALE, self::GENDER_MALE ] ],
             [ [ 'firstname', 'lastname', 'avatar_path', 'avatar_base_url' ], 'string', 'max' => 255 ],
             [ 'locale', 'default', 'value' => Yii::$app->language ],
-            [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ],
-            [ 'picture', 'safe' ]
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'user_id' => Yii::t('common', 'User ID'),
-            'firstname' => Yii::t('common', 'Firstname'),
-            'middlename' => Yii::t('common', 'Middlename'),
-            'lastname' => Yii::t('common', 'Lastname'),
-            'picture' => Yii::t('common', 'Picture'),
-            'gender' => Yii::t('common', 'Gender'),
+            [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ]
         ];
     }
 

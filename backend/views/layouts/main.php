@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 /**
  * @author rootkit
@@ -52,7 +53,18 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
         <?= $this->render('//common/topbar') ?>
 
         <!-- Begin: Content -->
-        <?= $content ?>
+        <section id="content" class="animated fadeIn">
+            <?php if (Yii::$app->session->hasFlash('alert')): ?>
+
+            <div class="alert alert-primary alert-dismissable mb30">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h3 class="mt5"><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'title') ?></h3>
+                <p><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body') ?></p>
+            </div>
+
+            <?php endif ?>
+            <?= $content ?>
+        </section>
         <!-- End: Content -->
 
         <?= $this->render('//common/footer') ?>

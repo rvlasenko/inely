@@ -57,5 +57,7 @@ class SetLocaleAction extends Action
         if ($this->callback && $this->callback instanceof \Closure) {
             return call_user_func_array($this->callback, [ $this, $locale ]);
         }
+
+        return Yii::$app->response->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
 }

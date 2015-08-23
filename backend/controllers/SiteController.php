@@ -6,15 +6,11 @@ use Yii;
 use yii\web\Controller;
 use yii\helpers\Url;
 
-/**
- * Deny request from guests
- * Site controller
- */
 class SiteController extends Controller
 {
 
     /**
-     * @inheritdoc
+     * Enable page caching with duration 84600 seconds
      */
     public function actions()
     {
@@ -35,9 +31,14 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Redirect all users to the login page if not logged in
+     *
+     * @return string
+     */
     public function actionIndex()
     {
-        if (Yii::$app->getUser()->isGuest && Yii::$app->getRequest()->url !== Url::to(Yii::$app->getUser()->loginUrl)) {
+        if (Yii::$app->getUser()->isGuest) {
             Yii::$app->getResponse()->redirect(Yii::$app->getUser()->loginUrl);
         } else {
             return $this->render('index');

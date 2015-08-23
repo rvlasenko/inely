@@ -16,7 +16,7 @@
 
                     <!-- LAYER NR. 2 -->
                     <div class="tp-caption customin ltl tp-resizeme revo-slider-caps-text"
-                         data-x="360"
+                         data-x="<?= Yii::t('frontend', '380') ?>"
                          data-y="235"
                          data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
                          data-speed="800"

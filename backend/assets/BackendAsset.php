@@ -15,6 +15,7 @@ class BackendAsset extends AssetBundle
     public $baseUrl  = '@backendUrl';
 
     public $css = [
+
         // Font CSS (Via CDN)
         'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700',
         'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
@@ -32,6 +33,7 @@ class BackendAsset extends AssetBundle
     ];
 
     public $js = [
+
         // Chart Plugins
         'vendor/plugins/highcharts/highcharts.js',
         'vendor/plugins/highcharts/themes/sand-signika.js',

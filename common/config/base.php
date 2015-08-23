@@ -7,7 +7,6 @@ $config = [
     'language' => 'ru-RU',
     'bootstrap' => [ 'log' ],
     'components' => [
-
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'itemTable' => '{{%rbac_auth_item}}',
@@ -73,7 +72,8 @@ $config = [
                     'basePath' => '@common/messages',
                     'fileMap' => [
                         'backend' => 'backend.php',
-                        'frontend' => 'frontend.php'
+                        'frontend' => 'frontend.php',
+                        'mail' => 'mail.php'
                     ]
                 ]
             ]

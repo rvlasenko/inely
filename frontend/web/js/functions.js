@@ -1240,18 +1240,6 @@ var SEMICOLON = SEMICOLON || {};
 
         },
 
-        parallax: function () {
-            if (!SEMICOLON.isMobile.any()) {
-                $.stellar({
-                    horizontalScrolling: false,
-                    verticalOffset     : 150
-                });
-            } else {
-                $parallaxEl.addClass('mobile-parallax');
-                $parallaxPageTitleEl.addClass('mobile-parallax');
-            }
-        },
-
         animations: function () {
             var $dataAnimateEl = $('[data-animate]');
             if ($dataAnimateEl.length > 0) {
@@ -1713,7 +1701,6 @@ var SEMICOLON = SEMICOLON || {};
             SEMICOLON.initialize.testimonialsGrid();
             SEMICOLON.initialize.verticalMiddle();
             SEMICOLON.initialize.stickFooterOnSmall();
-            SEMICOLON.widget.parallax();
             SEMICOLON.widget.loadFlexSlider();
             SEMICOLON.widget.masonryThumbs();
             SEMICOLON.header.responsiveMenuClass();

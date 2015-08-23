@@ -14,10 +14,12 @@
                     <span><?= Yii::t('backend', 'Please enter your e-mail. It will receive a letter with instructions to reset your password.') ?></span>
                 </div>
                 <div class="col-md-12">
+
                     <label for="firstname" class="field prepend-icon">
-                        <?= $form->field($model, 'email', [ 'template' => '{input}{error}' ])->textInput([
+                        <?= $form->field($model, 'email', [ 'template' => '{input}<span class="text-center">{error}</span>' ])->textInput([
                             'class' => 'gui-input', 'placeholder' => 'Email'
                         ])->label(false) ?>
+
                     </label>
                 </div>
                 <!-- end section -->

@@ -17,21 +17,14 @@ class RbacController extends Controller
         $user = $auth->createRole(User::ROLE_USER);
         $auth->add($user);
 
-        $manager = $auth->createRole(User::ROLE_MANAGER);
-        $auth->add($manager);
-        $auth->addChild($manager, $user);
-
         $loginToBackend = $auth->createPermission('loginToBackend');
         $auth->add($loginToBackend);
-        $auth->addChild($manager, $loginToBackend);
 
         $admin = $auth->createRole(User::ROLE_ADMINISTRATOR);
         $auth->add($admin);
-        $auth->addChild($admin, $manager);
 
         $auth->assign($admin, 1);
-        $auth->assign($manager, 2);
-        $auth->assign($user, 3);
+        $auth->assign($user, 2);
 
         Console::output('Success! RBAC roles has been added.');
     }

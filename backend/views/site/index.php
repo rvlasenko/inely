@@ -1,336 +1,332 @@
-<section id="content" class="animated fadeIn">
+<!-- Admin-panels -->
+<div class="admin-panels fade-onload sb-l-o-full">
 
-    <!-- Admin-panels -->
-    <div class="admin-panels fade-onload sb-l-o-full">
+    <!-- full width widgets -->
+    <div class="row">
 
-        <!-- full width widgets -->
-        <div class="row">
+        <!-- Three panes -->
+        <div class="col-md-12 admin-grid">
+            <div class="panel sort-disable" id="p0">
+                <div class="panel-heading">
+                    <span class="panel-title">Data Panel Widget</span>
+                </div>
+                <div class="panel-body mnw700 of-a">
+                    <div class="row">
 
-            <!-- Three panes -->
-            <div class="col-md-12 admin-grid">
-                <div class="panel sort-disable" id="p0">
-                    <div class="panel-heading">
-                        <span class="panel-title">Data Panel Widget</span>
-                    </div>
-                    <div class="panel-body mnw700 of-a">
-                        <div class="row">
-
-                            <!-- Chart Column -->
-                            <div class="col-md-5 pln mvn15">
-                                <h5 class="ml5 mbn mt20 ph10 pb5 br-b fw700">Visitors
-                                    <small class="pull-right fw600">13,253
-                                        <span class="text-primary">(8,251 unique)</span></small>
-                                </h5>
-                                <div class="ct-chart" style="width: 100%; height: 255px; margin: 0 auto"></div>
-                            </div>
-
-                            <!-- Multi Text Column -->
-                            <div class="col-md-4">
-                                <h5 class="mt5 mbn ph10 pb5 br-b fw700">Top Referrals
-                                    <small class="pull-right fw700 text-primary">View Report</small>
-                                </h5>
-                                <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
-                                    <thead>
-                                    <tr class="hidden">
-                                        <th>Source</th>
-                                        <th>Count</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                            <span>www.google.com</span>
-                                        </td>
-                                        <td>1,926</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                            <span>www.yahoo.com</span>
-                                        </td>
-                                        <td>1,254</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                            <span>www.themeforest.com</span>
-                                        </td>
-                                        <td>783</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <h5 class="mt15 mbn ph10 pb5 br-b fw700">Top Search Terms
-                                    <small class="pull-right fw700 text-primary">View Report</small>
-                                </h5>
-                                <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
-                                    <thead>
-                                    <tr class="hidden">
-                                        <th>Source</th>
-                                        <th>Count</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                            <span>admin theme</span>
-                                        </td>
-                                        <td>988</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                            <span>admin dashboard</span>
-                                        </td>
-                                        <td>612</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                            <span>admin template</span>
-                                        </td>
-                                        <td>256</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <!-- Icon Column -->
-                            <div class="col-md-3">
-                                <h5 class="mt5 ph10 pb5 br-b fw700">Content Viewed
-                                    <small class="pull-right fw700 text-primary">Refresh</small>
-                                </h5>
-                                <table class="table mbn">
-                                    <thead>
-                                    <tr class="hidden">
-                                        <th class="mw30">#</th>
-                                        <th>First Name</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="fs17 text-center w30">
-                                            <span class="fa fa-desktop text-warning"></span>
-                                        </td>
-                                        <td class="va-m fw600 text-muted">Television</td>
-                                        <td class="fs14 fw700 text-muted text-right">
-                                            <i class="fa fa-caret-up text-info pr10"></i>$855,913
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fs17 text-center">
-                                            <span class="fa fa-microphone text-primary"></span>
-                                        </td>
-                                        <td class="va-m fw600 text-muted">Radio</td>
-                                        <td class="fs14 fw700 text-muted text-right">
-                                            <i class="fa fa-caret-down text-danger pr10"></i>$349,712
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fs17 text-center">
-                                            <span class="fa fa-newspaper-o text-info"></span>
-                                        </td>
-                                        <td class="va-m fw600 text-muted">Newspaper</td>
-                                        <td class="fs14 fw700 text-muted text-right">
-                                            <i class="fa fa-caret-up text-info pr10"></i>$1,259,742
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fs17 text-center">
-                                            <span class="fa fa-facebook text-alert"></span>
-                                        </td>
-                                        <td class="va-m fw600 text-muted">Social Media</td>
-                                        <td class="fs14 fw700 text-muted text-right">
-                                            <i class="fa fa-caret-up text-info pr10"></i>$3,512,672
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="fs17 text-center">
-                                            <span class="fa fa-bank text-alert"></span>
-                                        </td>
-                                        <td class="va-m fw600 text-muted">Investments</td>
-                                        <td class="fs14 fw700 text-muted text-right">
-                                            <i class="fa fa-caret-up text-info pr10"></i>$3,512,672
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
+                        <!-- Chart Column -->
+                        <div class="col-md-5 pln mvn15">
+                            <h5 class="ml5 mbn mt20 ph10 pb5 br-b fw700">Visitors
+                                <small class="pull-right fw600">13,253
+                                    <span class="text-primary">(8,251 unique)</span></small>
+                            </h5>
+                            <div class="ct-chart" style="width: 100%; height: 255px; margin: 0 auto"></div>
                         </div>
+
+                        <!-- Multi Text Column -->
+                        <div class="col-md-4">
+                            <h5 class="mt5 mbn ph10 pb5 br-b fw700">Top Referrals
+                                <small class="pull-right fw700 text-primary">View Report</small>
+                            </h5>
+                            <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
+                                <thead>
+                                <tr class="hidden">
+                                    <th>Source</th>
+                                    <th>Count</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i>
+                                        <span>www.google.com</span>
+                                    </td>
+                                    <td>1,926</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i>
+                                        <span>www.yahoo.com</span>
+                                    </td>
+                                    <td>1,254</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i>
+                                        <span>www.themeforest.com</span>
+                                    </td>
+                                    <td>783</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h5 class="mt15 mbn ph10 pb5 br-b fw700">Top Search Terms
+                                <small class="pull-right fw700 text-primary">View Report</small>
+                            </h5>
+                            <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
+                                <thead>
+                                <tr class="hidden">
+                                    <th>Source</th>
+                                    <th>Count</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i>
+                                        <span>admin theme</span>
+                                    </td>
+                                    <td>988</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i>
+                                        <span>admin dashboard</span>
+                                    </td>
+                                    <td>612</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i>
+                                        <span>admin template</span>
+                                    </td>
+                                    <td>256</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Icon Column -->
+                        <div class="col-md-3">
+                            <h5 class="mt5 ph10 pb5 br-b fw700">Content Viewed
+                                <small class="pull-right fw700 text-primary">Refresh</small>
+                            </h5>
+                            <table class="table mbn">
+                                <thead>
+                                <tr class="hidden">
+                                    <th class="mw30">#</th>
+                                    <th>First Name</th>
+                                    <th>Revenue</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="fs17 text-center w30">
+                                        <span class="fa fa-desktop text-warning"></span>
+                                    </td>
+                                    <td class="va-m fw600 text-muted">Television</td>
+                                    <td class="fs14 fw700 text-muted text-right">
+                                        <i class="fa fa-caret-up text-info pr10"></i>$855,913
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fs17 text-center">
+                                        <span class="fa fa-microphone text-primary"></span>
+                                    </td>
+                                    <td class="va-m fw600 text-muted">Radio</td>
+                                    <td class="fs14 fw700 text-muted text-right">
+                                        <i class="fa fa-caret-down text-danger pr10"></i>$349,712
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fs17 text-center">
+                                        <span class="fa fa-newspaper-o text-info"></span>
+                                    </td>
+                                    <td class="va-m fw600 text-muted">Newspaper</td>
+                                    <td class="fs14 fw700 text-muted text-right">
+                                        <i class="fa fa-caret-up text-info pr10"></i>$1,259,742
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fs17 text-center">
+                                        <span class="fa fa-facebook text-alert"></span>
+                                    </td>
+                                    <td class="va-m fw600 text-muted">Social Media</td>
+                                    <td class="fs14 fw700 text-muted text-right">
+                                        <i class="fa fa-caret-up text-info pr10"></i>$3,512,672
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fs17 text-center">
+                                        <span class="fa fa-bank text-alert"></span>
+                                    </td>
+                                    <td class="va-m fw600 text-muted">Investments</td>
+                                    <td class="fs14 fw700 text-muted text-right">
+                                        <i class="fa fa-caret-up text-info pr10"></i>$3,512,672
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <!-- end: .col-md-12.admin-grid -->
+        </div>
+        <!-- end: .col-md-12.admin-grid -->
 
-            <div class="col-md-6">
+        <div class="col-md-6">
 
-                <!-- Calendar Widget -->
-                <div class="panel panel-widget calendar-widget" id="43">
-                    <div class="panel-heading">
-                        <span class="panel-icon"><i class="fa fa-pencil"></i></span>
-                        <span class="panel-title"> Calendar Widget</span>
-                    </div>
-                    <div class="panel-body">
-                        <div id="calendar-widget" class="fc fc-ltr fc-unthemed"></div>
-                    </div>
-                </div>
-
-                <!-- Weather -->
-                <div class="panel" id="p11">
-                    <div class="panel-heading">
-                        <span class="panel-title">Pie Chart</span>
-                    </div>
-                    <div class="panel-menu pn bg-white">
-                        <ul class="nav nav-justified text-center fw600 chart-legend">
-                            <li><a href="#" class="legend-item" data-chart-id="0">Yahoo</a></li>
-                            <li class="br-l"><a href="#" class="legend-item" data-chart-id="1">CNN</a></li>
-                            <li class="br-l"><a href="#" class="legend-item" data-chart-id="2">Yahoo</a></li>
-                            <li class="br-l"><a href="#" class="legend-item" data-chart-id="3">CNN</a></li>
-                        </ul>
-                    </div>
-                    <div class="panel-body pnb">
-                        <div id="high-pie" style="width: 100%; height: 200px; margin: 0 auto"></div>
-                    </div>
-                    <div class="panel-footer p15">
-                        <p class="text-muted text-center mbn">A percent measure of tickets with
-                            <b class="text-info">first</b> reply time</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <!-- Task Widget -->
-                <div class="panel panel-widget task-widget ui-sortable" id="41">
-                    <div class="panel-heading cursor">
-                    <span class="panel-icon"><i class="fa fa-cog"></i></span>
-                        <span class="panel-title"> Task-List Widget</span>
-                    </div>
-                    <div class="panel-body pn">
-
-                        <ul class="task-list task-current">
-                            <li class="task-label">Current Tasks</li>
-                            <li class="task-item info ui-sortable-handle">
-                                <div class="task-handle">
-                                    <div class="checkbox-custom">
-                                        <input type="checkbox" id="task3">
-                                        <label for="task3"></label>
-                                    </div>
-                                </div>
-                                <div class="task-desc">Finish building prototype for Sony</div>
-                                <div class="task-menu"></div>
-                            </li>
-                            <li class="task-item warning ui-sortable-handle">
-                                <div class="task-handle">
-                                    <div class="checkbox-custom">
-                                        <input type="checkbox" id="task4">
-                                        <label for="task4"></label>
-                                    </div>
-                                </div>
-                                <div class="task-desc">Order new building supplies for Microsoft</div>
-                                <div class="task-menu"></div>
-                            </li>
-                            <li class="task-item system ui-sortable-handle">
-                                <div class="task-handle">
-                                    <div class="checkbox-custom">
-                                        <input type="checkbox" id="task5">
-                                        <label for="task5"></label>
-                                    </div>
-                                </div>
-                                <div class="task-desc">Add new servers to design board</div>
-                                <div class="task-menu"></div>
-                            </li>
-                        </ul>
-
-                        <ul class="task-list task-completed">
-                            <li class="task-label">Completed Tasks</li>
-                            <li class="task-item danger item-checked ui-sortable-handle">
-                                <div class="task-handle">
-                                    <div class="checkbox-custom">
-                                        <input type="checkbox" checked="" id="task7">
-                                        <label for="task7"></label>
-                                    </div>
-                                </div>
-                                <div class="task-desc">Finish building prototype for Sony</div>
-                                <div class="task-menu"></div>
-                            </li>
-                            <li class="task-item system item-checked ui-sortable-handle">
-                                <div class="task-handle">
-                                    <div class="checkbox-custom">
-                                        <input type="checkbox" checked="" id="task8">
-                                        <label for="task8"></label>
-                                    </div>
-                                </div>
-                                <div class="task-desc">Order new building supplies for Microsoft</div>
-                                <div class="task-menu"></div>
-                            </li>
-                            <li class="task-item info item-checked ui-sortable-handle">
-                                <div class="task-handle">
-                                    <div class="checkbox-custom">
-                                        <input type="checkbox" checked="" id="task10">
-                                        <label for="task10"></label>
-                                    </div>
-                                </div>
-                                <div class="task-desc">Order new building supplies for Microsoft</div>
-                                <div class="task-menu"></div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <!-- Tag Group -->
-                <div class="panel" id="p29">
-                    <div class="panel-heading cursor ui-sortable-handle">
-                    <span class="panel-icon"><i class="fa fa-tag"></i></span>
-                        <span class="panel-title">Tag Group</span>
-                    </div>
-                    <div class="panel-body pn">
-                        <ul class="list-group mbn">
-                            <li class="list-group-item">
-                                <span class="badge badge-success">9</span>
-                                Movies
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge badge-info">11</span>
-                                TV Shows
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge badge-warning">18</span>
-                                Celebs &amp; Gossip
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge badge-danger">22</span>
-                                Video Games
-                            </li>
-                            <li class="list-group-item">
-                                <span class="badge badge-alert">9</span>
-                                Sports &amp; Events
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Text List -->
-                <div class="panel tagcloud-widget">
-                    <div class="panel-heading taghead">
+            <!-- Calendar Widget -->
+            <div class="panel panel-widget calendar-widget" id="43">
+                <div class="panel-heading">
                     <span class="panel-icon"><i class="fa fa-pencil"></i></span>
-                        <span class="panel-title">Tag Cloud</span>
-                    </div>
-                    <div class="panel-body tag">
-                        <ul id="tagcloud">
-                            <li data-weight="21"><a href="#">HTML5</a></li>
-                            <li data-weight="22"><a href="#">Sharepoint</a></li>
-                            <li data-weight="24"><a href="#">Silverlight</a></li>
-                            <li data-weight="23"><a href="#">CSS3</a></li>
-                            <li data-weight="26"><a href="#">ASP.NET</a></li>
-                        </ul>
-                    </div>
+                    <span class="panel-title"> Calendar Widget</span>
                 </div>
+                <div class="panel-body">
+                    <div id="calendar-widget" class="fc fc-ltr fc-unthemed"></div>
+                </div>
+            </div>
 
+            <!-- Weather -->
+            <div class="panel" id="p11">
+                <div class="panel-heading">
+                    <span class="panel-title">Pie Chart</span>
+                </div>
+                <div class="panel-menu pn bg-white">
+                    <ul class="nav nav-justified text-center fw600 chart-legend">
+                        <li><a href="#" class="legend-item" data-chart-id="0">Yahoo</a></li>
+                        <li class="br-l"><a href="#" class="legend-item" data-chart-id="1">CNN</a></li>
+                        <li class="br-l"><a href="#" class="legend-item" data-chart-id="2">Yahoo</a></li>
+                        <li class="br-l"><a href="#" class="legend-item" data-chart-id="3">CNN</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body pnb">
+                    <div id="high-pie" style="width: 100%; height: 200px; margin: 0 auto"></div>
+                </div>
+                <div class="panel-footer p15">
+                    <p class="text-muted text-center mbn">A percent measure of tickets with
+                        <b class="text-info">first</b> reply time</p>
+                </div>
             </div>
 
         </div>
-        <!-- end: .row -->
+
+        <div class="col-md-6">
+
+            <!-- Task Widget -->
+            <div class="panel panel-widget task-widget ui-sortable" id="41">
+                <div class="panel-heading cursor">
+                <span class="panel-icon"><i class="fa fa-cog"></i></span>
+                    <span class="panel-title"> Task-List Widget</span>
+                </div>
+                <div class="panel-body pn">
+
+                    <ul class="task-list task-current">
+                        <li class="task-label">Current Tasks</li>
+                        <li class="task-item info ui-sortable-handle">
+                            <div class="task-handle">
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" id="task3">
+                                    <label for="task3"></label>
+                                </div>
+                            </div>
+                            <div class="task-desc">Finish building prototype for Sony</div>
+                            <div class="task-menu"></div>
+                        </li>
+                        <li class="task-item warning ui-sortable-handle">
+                            <div class="task-handle">
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" id="task4">
+                                    <label for="task4"></label>
+                                </div>
+                            </div>
+                            <div class="task-desc">Order new building supplies for Microsoft</div>
+                            <div class="task-menu"></div>
+                        </li>
+                        <li class="task-item system ui-sortable-handle">
+                            <div class="task-handle">
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" id="task5">
+                                    <label for="task5"></label>
+                                </div>
+                            </div>
+                            <div class="task-desc">Add new servers to design board</div>
+                            <div class="task-menu"></div>
+                        </li>
+                    </ul>
+
+                    <ul class="task-list task-completed">
+                        <li class="task-label">Completed Tasks</li>
+                        <li class="task-item danger item-checked ui-sortable-handle">
+                            <div class="task-handle">
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" checked="" id="task7">
+                                    <label for="task7"></label>
+                                </div>
+                            </div>
+                            <div class="task-desc">Finish building prototype for Sony</div>
+                            <div class="task-menu"></div>
+                        </li>
+                        <li class="task-item system item-checked ui-sortable-handle">
+                            <div class="task-handle">
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" checked="" id="task8">
+                                    <label for="task8"></label>
+                                </div>
+                            </div>
+                            <div class="task-desc">Order new building supplies for Microsoft</div>
+                            <div class="task-menu"></div>
+                        </li>
+                        <li class="task-item info item-checked ui-sortable-handle">
+                            <div class="task-handle">
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" checked="" id="task10">
+                                    <label for="task10"></label>
+                                </div>
+                            </div>
+                            <div class="task-desc">Order new building supplies for Microsoft</div>
+                            <div class="task-menu"></div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Tag Group -->
+            <div class="panel" id="p29">
+                <div class="panel-heading cursor ui-sortable-handle">
+                <span class="panel-icon"><i class="fa fa-tag"></i></span>
+                    <span class="panel-title">Tag Group</span>
+                </div>
+                <div class="panel-body pn">
+                    <ul class="list-group mbn">
+                        <li class="list-group-item">
+                            <span class="badge badge-success">9</span>
+                            Movies
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge badge-info">11</span>
+                            TV Shows
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge badge-warning">18</span>
+                            Celebs &amp; Gossip
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge badge-danger">22</span>
+                            Video Games
+                        </li>
+                        <li class="list-group-item">
+                            <span class="badge badge-alert">9</span>
+                            Sports &amp; Events
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Text List -->
+            <div class="panel tagcloud-widget">
+                <div class="panel-heading taghead">
+                <span class="panel-icon"><i class="fa fa-pencil"></i></span>
+                    <span class="panel-title">Tag Cloud</span>
+                </div>
+                <div class="panel-body tag">
+                    <ul id="tagcloud">
+                        <li data-weight="21"><a href="#">HTML5</a></li>
+                        <li data-weight="22"><a href="#">Sharepoint</a></li>
+                        <li data-weight="24"><a href="#">Silverlight</a></li>
+                        <li data-weight="23"><a href="#">CSS3</a></li>
+                        <li data-weight="26"><a href="#">ASP.NET</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
 
     </div>
+    <!-- end: .row -->
 
-</section>
+</div>

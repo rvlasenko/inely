@@ -32,6 +32,15 @@ class SignInController extends Controller
         ];
     }
 
+    /**
+     * Logout accept only post method
+     *
+     * Guests have access to signup, login, etc
+     *
+     * But are not authorized users not have access to this methods
+     *
+     * @return array
+     */
     public function behaviors()
     {
         return [
@@ -56,7 +65,7 @@ class SignInController extends Controller
                         }
                     ],
                     [
-                        'actions' => [ 'logout' ],
+                        'actions' => [ 'logout', 'confirm-email' ],
                         'allow' => true,
                         'roles' => [ '@' ]
                     ]
@@ -65,6 +74,11 @@ class SignInController extends Controller
         ];
     }
 
+    /**
+     * Layout from /user/views/layouts
+     *
+     * @return array|string|Response
+     */
     public function actionLogin()
     {
         $this->layout = 'base';
@@ -78,9 +92,8 @@ class SignInController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
-        }
-        else {
+            return $this->goHome();
+        } else {
             if (Yii::$app->request->isAjax) {
                 return $this->renderAjax('login', [ 'model' => $model ]);
             } else {
@@ -95,6 +108,12 @@ class SignInController extends Controller
 
         return $this->goHome();
     }
+
+    /**
+     * If not ajax request, then redirect to login page
+     *
+     * @return string|Response
+     */
 
     public function actionSignup()
     {
@@ -127,29 +146,24 @@ class SignInController extends Controller
 
         if ($model->confirmEmail()) {
             Yii::$app->session->setFlash('alert', [
-                'options' => [
-                    'title' => 'Подтверждение',
-                    'img' => 'images/flat/mail.png',
-                    'link' => '',
-                    'linkDesc' => ''
-                ],
-                'body' => 'Спасибо! Ваш Email успешно подтверждён.'
+                'title' => Yii::t('backend', 'Email confirmation'),
+                'body' => Yii::t('backend', 'Thanks! Account e-mail address confirmed successfully')
             ]);
         } else {
             Yii::$app->session->setFlash('alert', [
-                'options' => [
-                    'title' => 'Подтверждение',
-                    'img' => 'images/flat/flame.png',
-                    'link' => '',
-                    'linkDesc' => ''
-                ],
-                'body' => 'Ошибка подтверждения Email.'
+                'title' => Yii::t('backend', 'Email confirmation'),
+                'body' => Yii::t('backend', 'Sorry, an error occurred with confirmation')
             ]);
         }
 
         return $this->goHome();
     }
 
+    /**
+     * If not ajax request, then redirect to login page
+     *
+     * @return string|Response
+     */
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
@@ -157,37 +171,28 @@ class SignInController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('alert', [
-                    'options' => [
-                        'title' => 'Восстановление пароля',
-                        'img' => 'images/flat/mail.png',
-                        'link' => '',
-                        'linkDesc' => ''
-                    ],
-                    'body' => Yii::t('frontend', 'Check your email for further instructions.'),
+                    'title' => 'Восстановление пароля',
+                    'body' => Yii::t('backend', 'Check your email for further instructions'),
                 ]);
             } else {
                 Yii::$app->session->setFlash('alert', [
-                    'options' => [
-                        'title' => 'Восстановление пароля',
-                        'img' => 'images/flat/mail.png',
-                        'link' => '',
-                        'linkDesc' => ''
-                    ],
-                    'body' => Yii::t('frontend', 'Sorry, we are unable to reset password for email provided.'),
+                    'title' => 'Восстановление пароля',
+                    'body' => Yii::t('backend', 'Sorry, we are unable to reset password for email provided'),
                 ]);
             }
         }
 
-        /*if (Yii::$app->request->isAjax) {
+        if (Yii::$app->request->isAjax) {
             return $this->renderAjax('requestPasswordResetToken', [ 'model' => $model ]);
         } else {
             return $this->redirect(Yii::$app->getUser()->loginUrl);
-        }*/
-        return $this->renderAjax('requestPasswordResetToken', [ 'model' => $model ]);
+        }
     }
 
     public function actionResetPassword($token)
     {
+        $this->layout = 'base';
+
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidParamException $e) {
@@ -196,23 +201,95 @@ class SignInController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->session->setFlash('alert', [
-                'options' => [
-                    'title' => 'Восстановление пароля',
-                    'img' => 'images/flat/key.png',
-                    'link' => '',
-                    'linkDesc' => ''
-                ],
-                'body' => Yii::t('frontend', 'New password was saved.'),
+                'title' => Yii::t('backend', 'Password recover'),
+                'body' => Yii::t('backend', 'New password was saved'),
             ]);
 
-            return $this->goHome();
+            return $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
         }
 
         return $this->render('resetPassword', [ 'model' => $model ]);
     }
 
     /**
+     * Set info for facebook registration
+     *
+     * @param array $attributes
+     * @param object $user
+     * @return array [$user, $profile]
+     */
+    protected function setInfoFacebook($attributes, $user)
+    {
+        /**
+         * Set email/username if they are set
+         * Email may be missing if user signed up using a phone number
+         */
+        if (!empty($attributes[ 'email' ])) {
+            $user->email = $attributes[ 'email' ];
+        }
+
+        if (!empty($attributes[ 'username' ])) {
+            $user->username = $attributes[ 'username' ];
+        }
+
+        // use facebook name as username as fallback
+        if (!empty($attributes[ 'email' ]) && empty($attributes[ 'username' ])) {
+            $user->username = str_replace(" ", "_", $attributes[ 'first_name' ]);
+        }
+
+        return $user;
+    }
+
+    /**
+     * Set info for google registration
+     *
+     * @param $attributes
+     * @param $user
+     *
+     * @return mixed
+     */
+    protected function setInfoGoogle($attributes, $user)
+    {
+        $user->email = $attributes[ 'emails' ][ 0 ][ 'value' ];
+
+        return $user;
+    }
+
+    /**
+     * Set info for vk registration
+     *
+     * @param $attributes
+     * @param $user
+     *
+     * @return mixed
+     */
+    protected function setInfoVkontakte($attributes, $user)
+    {
+        foreach ($_SESSION as $k => $v) {
+            if (is_object($v) && get_class($v) == 'yii\authclient\OAuthToken') {
+                $user->email = $v->getParam('email');
+            }
+        }
+
+        /**
+         * Set email/username if they are set
+         * Use vk_id name as username as fallback
+         */
+
+        if (isset($attributes[ 'screen_name' ])) {
+            $user->username = $attributes[ 'screen_name' ];
+        } else {
+            $user->username = 'vk_' . $attributes[ 'id' ];
+        }
+
+        return $user;
+    }
+
+    /**
      * @param $client \yii\authclient\BaseClient
+     *
+     * First we need combine some attributes and get the email
+     * And now just send them to DB, send the letter, and redirect to home
      *
      * @return bool
      * @throws Exception
@@ -231,51 +308,27 @@ class SignInController extends Controller
 
             switch ($client->getName()) {
                 case 'vkontakte':
-                    $obj                      = $client->getAccessToken();
-                    $attributes[ 'email' ]    = $obj->getParam('email');
-                    $attributes[ 'username' ] = $attributes[ 'first_name' ];
-                    break;
+                    $this->setInfoVkontakte($attributes, $user); break;
                 case 'facebook':
-                    $attributes[ 'username' ] = $attributes[ 'first_name' ];
-                    break;
+                    $this->setInfoFacebook($attributes, $user); break;
                 case 'google':
-                    $attributes[ 'username' ]   = $attributes[ 'displayName' ];
-                    $attributes[ 'first_name' ] = $attributes[ 'name' ][ 'givenName' ];
-                    $attributes[ 'last_name' ]  = $attributes[ 'name' ][ 'familyName' ];
-                    $attributes[ 'email' ]      = $attributes[ 'emails' ][ 0 ][ 'value' ];
-                    break;
+                    $this->setInfoGoogle($attributes, $user); break;
             }
-
-            $user->username = $attributes[ 'username' ];
-            $user->email    = $attributes[ 'email' ];
 
             $user->oauth_client         = $client->getName();
             $user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
             $password                   = Yii::$app->security->generateRandomString(8);
             $user->setPassword($password);
-            if ($user->save()) {
-                Yii::$app->mailer->compose('confirmEmail', [ 'user' => $user, 'password' => $password ])
-                                 ->setTo($user->email)
-                                 ->setSubject('Подтверждение аккаунта для ' . Yii::$app->name)
-                                 ->send();
 
+            if ($user->save()) {
                 $user->afterSignup([
                     'firstname' => $attributes[ 'first_name' ],
                     'lastname' => $attributes[ 'last_name' ]
                 ]);
-                Yii::$app->session->setFlash('alert', [
-                    'options' => [
-                        'title' => 'Регистрация',
-                        'img' => 'images/flat/heart.png',
-                        'link' => 'http://google.com',
-                        'linkDesc' => 'Пройти тур'
-                    ],
-                    'body' => 'Вы успешно прошли регистрацию! Рекомендуем вам пройти знакомство с нашим планировщиком.'
-                ]);
             }
         }
         if (Yii::$app->user->login($user, 3600 * 24 * 30)) {
-            return $this->redirect('index');
+            return $this->goHome();
         } else {
             throw new Exception('OAuth error');
         }

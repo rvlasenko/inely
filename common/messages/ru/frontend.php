@@ -132,5 +132,6 @@ return [
      * The shift to the left for the header on slider
      */
     '300' => '200',
-    '490' => '465'
+    '490' => '465',
+    '380' => '360'
 ];

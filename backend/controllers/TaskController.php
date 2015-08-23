@@ -21,6 +21,14 @@ use yii\filters\VerbFilter;
  */
 class TaskController extends Controller
 {
+
+    /**
+     * Guests will not need tasks
+     *
+     * Delete allow only post method
+     *
+     * Enable html caching (index, view)
+     */
     public function behaviors()
     {
         return [
@@ -28,7 +36,7 @@ class TaskController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => [ 'todo',  ],
+                        'actions' => [ 'todo' ],
                         'allow' => false,
                         'roles' => [ '?' ],
                         'denyCallback' => function () {
@@ -57,6 +65,7 @@ class TaskController extends Controller
     }
 
     /**
+     * Check editable bootstrap ajax request
      *
      * @return mixed
      */
@@ -66,7 +75,6 @@ class TaskController extends Controller
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        // Check editable bootstrap ajax request
         if (Yii::$app->request->post('hasEditable')) {
             $post   = [ ];
             $taskId = Yii::$app->request->post('editableKey');
@@ -88,7 +96,9 @@ class TaskController extends Controller
     }
 
     /**
-     * @return bool
+     * Search record by ID and check is empty
+     *
+     * @return json
      */
     public function actionEdit()
     {
@@ -113,9 +123,6 @@ class TaskController extends Controller
         }
     }
 
-    /**
-     * @return string
-     */
     public function actionSort()
     {
         $searchModel = new TaskSearch();

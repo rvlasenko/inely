@@ -13,6 +13,7 @@ use Yii;
 class ResetPasswordForm extends Model
 {
     public $password;
+    public $passwordConfirm;
 
     /**
      * @var \common\models\User
@@ -47,6 +48,9 @@ class ResetPasswordForm extends Model
         return [
             [ 'password', 'required' ],
             [ 'password', 'string', 'min' => 6 ],
+
+            [ [ 'passwordConfirm' ], 'required', 'on' => [ 'reset' ] ],
+            [ [ 'passwordConfirm' ], 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('backend', 'Passwords do not match') ]
         ];
     }
 
@@ -62,12 +66,5 @@ class ResetPasswordForm extends Model
         $user->removePasswordResetToken();
 
         return $user->save();
-    }
-
-    public function attributeLabels()
-    {
-        return [
-            'password' => Yii::t('frontend', 'Password')
-        ];
     }
 }
