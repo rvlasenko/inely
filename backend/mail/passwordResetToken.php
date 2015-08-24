@@ -110,42 +110,6 @@
 </head>
 <body>
 
-
-<p></p>
-
-<p>
-    <!-- start of header -->
-</p>
-<table width="100%" bgcolor="#f6f4f5" cellpadding="0" cellspacing="0" border="0" st-sortable="header">
-    <tbody>
-    <tr>
-        <td>
-            <table width="580" bgcolor="#0db9ea" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
-                <tbody>
-                <tr>
-                    <td>
-                        <!-- logo -->
-                        <table width="280" cellpadding="0" cellspacing="0" border="0" align="left" class="devicewidth">
-                            <tbody>
-                            <tr>
-                                <td valign="middle" width="270" style="padding: 10px 0 10px 20px;" class="logo">
-                                    <a href="#"><img src="img/logo.png" width="100" alt="logo" border="0" style="display:block; border:none; outline:none; text-decoration:none;" st-image="edit" class="logo"></a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <!-- End of logo -->
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<!-- end of header -->
-<p></p>
-
 <p>
     <!-- image + text -->
 </p>

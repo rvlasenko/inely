@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 FrontendAsset::register($this);
 
-$this->title = Yii::t('frontend', 'Oops');
+$this->title = '!!!';
 
 $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
 

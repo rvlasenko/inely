@@ -49,11 +49,6 @@
             <?php Pjax::begin([ 'enablePushState' => false ]) ?>
             <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
                 <div class="panel-body bg-light p30">
-                    <div class="col-md-12 text-center mb10">
-
-                        <?= $form->field($model, 'password', [ 'template' => '{error}' ])->hiddenInput()->label(false) ?>
-
-                    </div>
                     <div class="row">
                         <div class="col-sm-7 pr30">
 
@@ -75,7 +70,7 @@
                                 </label>
                                 <label for="password" class="field prepend-icon">
 
-                                    <?= $form->field($model, 'password', [ 'template' => '{input}' ])->passwordInput([
+                                    <?= $form->field($model, 'password', [ 'template' => '{input}{error}' ])->passwordInput([
                                         'class' => 'gui-input'
                                     ])->label(false) ?>
 

@@ -35,20 +35,17 @@ return [
     /**
      * Title
      */
-    'Your personal scheduler.' => 'Ваш личный планировщик.',
+    'Inely. Your personal assistant.' => 'Inely. Ваш личный помощник.',
 
     /**
      * Revolution Slider
      */
-    'The Best Open Source Web Schedule' => 'Лучший веб-планировщик с открытым кодом',
-    'Welcome to Inely' => 'Добро пожаловать в Inely',
-    'Responsive &amp; Retina' => 'Адаптивность',
+    'Welcome to Inely' => 'Добро пожаловать',
     'Welcome!' => 'Добро пожаловать!',
-    'Achieve more everyday in your life. Start realizing the opportunities.' => 'Каждый день достигайте большего в Вашей жизни. Начните осозновать свои возможности.',
-    'Read More' => 'Узнайте больше',
-    'Access from everywhere.' => 'Доступ откуда угодно',
-    'With powerful layout, your tasks are always there: on mobile devices, browsers, and more.' => 'Благодаря адаптивности, ваши задачи всегда под рукой: в мобильном устройстве, браузере, и не только.',
-    'Browse' => 'Обзор',
+    'He is here to help!' => 'Он уже готов помочь!',
+    'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where My Personal Assistant can come in.' =>
+        'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть аболютно всё. И  здесь на помощь приходит Inely.',
+
 
     /**
      * Intro Section
@@ -131,7 +128,8 @@ return [
     /**
      * The shift to the left for the header on slider
      */
-    '300' => '200',
-    '490' => '465',
+    '130' => '125',
+    '485' => '468',
+    '460' => '438',
     '380' => '360'
 ];

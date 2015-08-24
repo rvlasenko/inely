@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 FrontendAsset::register($this);
 
-$this->title = Yii::t('frontend', 'Your personal scheduler.') . ' Inely.';
+$this->title = Yii::t('frontend', 'Welcome to Inely');
 
 $this->registerAssetBundle('common\assets\JuiAsset', $this::POS_END);
 $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
