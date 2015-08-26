@@ -69,7 +69,7 @@
 
                         <!-- Tag Column -->
                         <div class="col-md-3">
-                            <h5 class="mt5 ph10 pb5 br-b fw700">Tags Cloud</h5>
+                            <h5 class="mt5 ph10 mbn pb5 br-b fw700">Tags Cloud</h5>
                             <ul class="list-group mbn">
                                 <li class="list-group-item">
                                     <span class="badge badge-success">9</span>

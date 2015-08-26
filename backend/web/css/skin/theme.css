@@ -1,71 +1,3 @@
-/*===============================================
-  CKEditor
-================================================= */
-.admin-skin.cke_chrome {
-    font-family:   'Open Sans', Helvetica, Arial, sans-serif;
-    border:        none;
-    box-shadow:    none;
-    padding:       0;
-    margin:        0;
-    border-radius: 2px;
-    background:    #fafafa;
-    border-color:  #e7e7e7;
-}
-
-.admin-skin .cke_top {
-    background: #fafafa;
-    border:     1px solid #e7e7e7;
-    padding:    8px 10px 4px;
-}
-
-.admin-skin .cke_toolgroup,
-.admin-skin .cke_combo_button {
-    margin-right:  10px;
-    box-shadow:    none;
-    background:    #fff;
-    border-radius: 1px;
-    border-color:  #ddd;
-}
-
-.admin-skin .cke_contents {
-    border-radius: 0;
-    border-color:  #e7e7e7;
-}
-
-.admin-skin .cke_top + .cke_contents,
-.admin-skin .cke_contents + .cke_bottom {
-    border-top: 0;
-}
-
-.admin-skin .cke_bottom {
-    background: none;
-    padding:    6px 4px;
-    border:     1px solid #e7e7e7;
-}
-
-.admin-skin .cke_resizer {
-    margin-top:         6px;
-    margin-right:       4px;
-    border-right-color: #999;
-}
-
-.cke_editable_inline.cke_show_borders:focus {
-    outline-width:  2px;
-    outline-style:  dashed;
-    outline-offset: 6px;
-    outline-color:  #f6bb42;
-    background:     #f2f2f2;
-}
-
-.cke-hide-bottom .cke_bottom {
-    display: none;
-}
-
-.cke_toolbar_break {
-    clear:   none !important;
-    display: block !important;
-}
-
 /* ==================================================
   Countdown
  ==================================================== */
@@ -824,117 +756,6 @@ previous button's border...
 /* animate out */
 .my-mfp-slide-bottom.mfp-removing.mfp-bg {
     opacity: 0;
-}
-
-/*===============================================
-  Nano Scroller
-================================================= */
-/** initial setup **/
-.nano {
-    position: relative;
-    width:    100%;
-    height:   100%;
-    overflow: hidden;
-}
-
-.nano > .nano-content {
-    position:   absolute;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    right:      0;
-    left:       0;
-    top:        0;
-    bottom:     0;
-}
-
-.nano.has-scrollbar > .nano-content {
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-#sidebar_left.nano > .nano-content {
-    margin-top: 60px;
-}
-
-.nano.affix > .nano-content:focus {
-    outline: thin dotted;
-}
-
-.nano.affix > .nano-content::-webkit-scrollbar {
-    display: none;
-}
-
-.affix.has-scrollbar > .nano-content::-webkit-scrollbar {
-    display: block;
-}
-
-.nano.affix > .nano-pane {
-    background:            rgba(0, 0, 0, 0.18);
-    position:              absolute;
-    width:                 5px;
-    right:                 0;
-    top:                   0;
-    bottom:                0;
-    visibility:            hidden \9;
-    /* Target only IE7 and IE8 with this hack */
-    opacity:               .01;
-    -webkit-transition:    .2s;
-    -moz-transition:       .2s;
-    -o-transition:         .2s;
-    transition:            .2s;
-    -moz-border-radius:    0px;
-    -webkit-border-radius: 0px;
-    border-radius:         0px;
-}
-
-.nano.affix > .nano-pane > .nano-slider {
-    background:            #999;
-    position:              relative;
-    margin:                0;
-    -moz-border-radius:    0px;
-    -webkit-border-radius: 0px;
-    border-radius:         0px;
-}
-
-.nano.affix:hover > .nano-pane,
-.nano-pane.active,
-.nano-pane.flashed {
-    visibility: visible \9;
-    /* Target only IE7 and IE8 with this hack */
-    opacity:    0.99;
-}
-
-/* Nano colors/contextuals - default color grey */
-.nano.affix.nano-primary > .nano-pane > .nano-slider {
-    background: #4a89dc;
-}
-
-.nano.affix.nano-success > .nano-pane > .nano-slider {
-    background: #70ca63;
-}
-
-.nano.affix.nano-info > .nano-pane > .nano-slider {
-    background: #3bafda;
-}
-
-.nano.affix.nano-warning > .nano-pane > .nano-slider {
-    background: #f6bb42;
-}
-
-.nano.affix.nano-danger > .nano-pane > .nano-slider {
-    background: #e9573f;
-}
-
-.nano.affix.nano-alert > .nano-pane > .nano-slider {
-    background: #967adc;
-}
-
-.nano.affix.nano-system > .nano-pane > .nano-slider {
-    background: #37bc9b;
-}
-
-.nano.affix.nano-dark > .nano-pane > .nano-slider {
-    background: #3b3f4f;
 }
 
 /*===============================================
@@ -6227,7 +6048,7 @@ fieldset[disabled] .btn-link:focus {
 
 .btn-block {
     display: block;
-    width:   11.3%;
+    width: 100%;
 }
 
 .btn-block + .btn-block {
@@ -8983,7 +8804,7 @@ a.thumbnail.active {
 
 .progress {
     overflow:         hidden;
-    height:           14px;
+    height:           18px;
     margin-bottom:    19px;
     background-color: #1F2020;
     border-radius:    1px;
@@ -8995,8 +8816,7 @@ a.thumbnail.active {
     width:              0%;
     height:             100%;
     font-size:          10px;
-    font-weight:        600;
-    line-height:        14px;
+    line-height:        16px;
     color:              #fff;
     text-align:         center;
     background-color:   #999;
@@ -9101,7 +8921,7 @@ a.thumbnail.active {
 }
 
 .progress {
-    height:        14px;
+    height:        18px;
     border-radius: 2px;
 }
 
@@ -15231,7 +15051,7 @@ table.tc-med-1 tbody td:first-child,
 table.tc-med-2 tbody td:nth-child(2),
 table.tc-med-3 tbody td:nth-child(3),
 table.tc-med-last tbody td:last-child {
-    font-weight: 600;
+    font-weight: 400;
     color:       #999;
 }
 
@@ -15545,7 +15365,7 @@ body.sidebar-collapsed #sidebar:before {
     }
 
     body.boxed-layout .navbar {
-        width:  75%;
+        width:  70%;
         margin: 0 auto;
     }
 
@@ -15556,7 +15376,7 @@ body.sidebar-collapsed #sidebar:before {
 
     body.boxed-layout #main {
         overflow: hidden;
-        width:    75%;
+        width:    70%;
         margin:   0 auto;
     }
 
@@ -15665,7 +15485,7 @@ body.boxed-layout .navbar {
 }
 
 body.boxed-layout .navbar .navbar-right {
-    width: 295px;
+    width: 275px;
 }
 
 /*===============================================
@@ -15700,7 +15520,7 @@ body.boxed-layout #toggle_sidemenu_r {
     background-color:   #383838;
     -webkit-transition: margin 0.2s ease;
     transition:         margin 0.2s ease;
-    width:              75%;
+    width:              70%;
     margin:             0 auto !important;
 }
 
@@ -15715,7 +15535,7 @@ body.boxed-layout #toggle_sidemenu_r {
     background-size: 150px 202px;
     width: 150px;
     height: 222px;
-    top: -5em;
+    top: -6em;
     left: -1em;
 }
 
@@ -15730,15 +15550,15 @@ body.boxed-layout #toggle_sidemenu_r {
     content: "";
     position: absolute;
     background-repeat: no-repeat;
-    bottom: 4px;
-    left: 4px;
+    bottom: -1.6em;
+    right: -3.5em;
 }
 
-.user-level.second:after {
-    background-image: url('/images/levels/tick.png');
-    background-size: 40px 40px;
-    width: 40px;
-    height: 40px;
+.user-level.first:after {
+    background-image: url('/images/levels/first.png');
+    background-size: 71px 46px;
+    width: 101px;
+    height: 66px;
 }
 
 #content-footer b {
@@ -15962,6 +15782,9 @@ body.boxed-layout.dashboard-page #console-search-btn {
     body.boxed-layout.dashboard-page #console-btns .row > div {
         width: 25%;
         float: left;
+    }
+    #content {
+        padding: 25px 35px 50px !important;
     }
 }
 
@@ -16235,12 +16058,6 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
 
 #content {
     padding: 25px 20px 50px 21px;
-}
-
-@media (max-width: 900px) {
-    #content {
-        padding: 25px 20px 50px 21px;
-    }
 }
 
 /* Adds top padding to md columns as a spacer

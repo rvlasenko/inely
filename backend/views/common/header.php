@@ -54,9 +54,9 @@
                 <span class="fw600"> EN </span>
             </a>
             <ul class="dropdown-menu animated animated-shorter zoomIn" role="menu">
-                <li><a href="#" class="animated animated-short fadeIn fw600">
+                <li><a href="#" class="animated animated-short fadeIn">
                         <span class="flag-xs flag-ru mr10"></span> Russian </a></li>
-                <li><a href="#" class="animated animated-short fadeIn fw600">
+                <li><a href="#" class="animated animated-short fadeIn">
                         <span class="flag-xs flag-en mr10"></span> English </a></li>
             </ul>
         </li>
@@ -69,25 +69,24 @@
             </a>
             <ul class="dropdown-menu dropdown-persist pn user bg-white" role="menu">
                 <li class="of-h">
-                    <?= Html::a('<span class="fa fa-user pr5"></span> My Profile
-                        <span class="pull-right lh20 h-20 label label-warning label-sm">2</span>', [ '' ], [
-                        'class' => 'fw600 p12 animated animated-short fadeInDown'
+                    <?= Html::a('<span class="fa fa-user fs15 pr5"></span> My Profile', [ '' ], [
+                        'class' => 'p12 animated animated-short fadeInDown'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-gear pr5"></span> Account Settings', [ '' ], [
-                        'class' => 'fw600 p12 animated animated-short fadeInDown'
+                    <?= Html::a('<span class="fa fa-gear fs15 pr5"></span> Account Settings', [ '' ], [
+                        'class' => 'p12 animated animated-short fadeInDown'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-trash-o pr5"></span> Clear Storage', [ '/' ], [
-                        'class' => 'fw600 p12 animated animated-short fadeInDown',
+                    <?= Html::a('<span class="fa fa-trash-o fs15 pr5"></span> Clear Storage', [ '/' ], [
+                        'class' => 'p12 animated animated-short fadeInDown',
                         'id' => 'clearLocalStorage'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-power-off pr5"></span>Logout', [ '/logout' ], [
-                        'class' => 'fw600 p12 animated animated-short fadeInDown', 'data-method' => 'post'
+                    <?= Html::a('<span class="fa fa-power-off fs15 pr5"></span>Logout', [ '/logout' ], [
+                        'class' => 'p12 animated animated-short fadeInDown', 'data-method' => 'post'
                     ]) ?>
                 </li>
             </ul>
