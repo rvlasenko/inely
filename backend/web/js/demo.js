@@ -86,29 +86,6 @@ var Demo = function () {
                 });
 
             })();
-
-            // Header Skin Switcher
-            $('#toolbox-header-skin input').on('click', function () {
-                var This = $(this);
-                var Val = This.val();
-                var ID = This.attr('id');
-
-                // Swap Header Skin
-                Header.removeClass(headerSkins).addClass(Val);
-                Branding.removeClass(headerSkins).addClass(Val + ' dark');
-
-                // Save new Skin to Settings Key
-                settingsObj[ 'headerSkin' ] = Val;
-                localStorage.setItem(themeKey, JSON.stringify(settingsObj));
-            });
-
-            // Clear local storage button and confirm dialog
-            $("#clearLocalStorage").on('click', function () {
-
-                localStorage.clear();
-                location.reload();
-
-            });
         }
 
     };
@@ -206,7 +183,6 @@ var Demo = function () {
 
     return {
         init: function () {
-            runDemoTopbar();
             runDemoSettings();
             runDemoCache();
             runFullscreenDemo();

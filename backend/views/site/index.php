@@ -15,140 +15,83 @@
 
                         <!-- Chart Column -->
                         <div class="col-md-5 pln mvn15">
-                            <h5 class="ml5 mbn mt20 ph10 pb5 br-b fw700">Visitors
-                                <small class="pull-right fw600">13,253
-                                    <span class="text-primary">(8,251 unique)</span></small>
-                            </h5>
+                            <h5 class="ml5 mbn mt20 ph10 pb5 br-b fw700">Your activity in the last 7 days</h5>
                             <div class="ct-chart" style="width: 100%; height: 255px; margin: 0 auto"></div>
                         </div>
 
                         <!-- Multi Text Column -->
                         <div class="col-md-4">
-                            <h5 class="mt5 mbn ph10 pb5 br-b fw700">Top Referrals
-                                <small class="pull-right fw700 text-primary">View Report</small>
+                            <h5 class="mt5 mbn ph10 pb5 br-b fw700">Your Status
+                                <small class="pull-right fw700 text-primary">Good</small>
                             </h5>
                             <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
-                                <thead>
-                                <tr class="hidden">
-                                    <th>Source</th>
-                                    <th>Count</th>
-                                </tr>
-                                </thead>
                                 <tbody>
                                 <tr>
                                     <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>www.google.com</span>
+                                        <span>Coins earned</span>
                                     </td>
                                     <td>1,926</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>www.yahoo.com</span>
+                                        <span>Experience Points</span>
                                     </td>
                                     <td>1,254</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>www.themeforest.com</span>
+                                        <span>Tasks completed</span>
                                     </td>
                                     <td>783</td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <h5 class="mt15 mbn ph10 pb5 br-b fw700">Top Search Terms
-                                <small class="pull-right fw700 text-primary">View Report</small>
+                            <h5 class="mt15 mbn ph10 pb5 br-b fw700">Inely Status
+                                <small class="pull-right fw700 text-primary">Good</small>
                             </h5>
                             <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
-                                <thead>
-                                <tr class="hidden">
-                                    <th>Source</th>
-                                    <th>Count</th>
-                                </tr>
-                                </thead>
                                 <tbody>
                                 <tr>
                                     <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>admin theme</span>
+                                        <span>Hapiness</span>
                                     </td>
-                                    <td>988</td>
+                                    <td>50%</td>
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>admin dashboard</span>
+                                        <span>Time with you</span>
                                     </td>
-                                    <td>612</td>
-                                </tr>
-                                <tr>
-                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>admin template</span>
-                                    </td>
-                                    <td>256</td>
+                                    <td>1 hour</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <!-- Icon Column -->
+                        <!-- Tag Column -->
                         <div class="col-md-3">
-                            <h5 class="mt5 ph10 pb5 br-b fw700">Content Viewed
-                                <small class="pull-right fw700 text-primary">Refresh</small>
-                            </h5>
-                            <table class="table mbn">
-                                <thead>
-                                <tr class="hidden">
-                                    <th class="mw30">#</th>
-                                    <th>First Name</th>
-                                    <th>Revenue</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="fs17 text-center w30">
-                                        <span class="fa fa-desktop text-warning"></span>
-                                    </td>
-                                    <td class="va-m fw600 text-muted">Television</td>
-                                    <td class="fs14 fw700 text-muted text-right">
-                                        <i class="fa fa-caret-up text-info pr10"></i>$855,913
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fs17 text-center">
-                                        <span class="fa fa-microphone text-primary"></span>
-                                    </td>
-                                    <td class="va-m fw600 text-muted">Radio</td>
-                                    <td class="fs14 fw700 text-muted text-right">
-                                        <i class="fa fa-caret-down text-danger pr10"></i>$349,712
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fs17 text-center">
-                                        <span class="fa fa-newspaper-o text-info"></span>
-                                    </td>
-                                    <td class="va-m fw600 text-muted">Newspaper</td>
-                                    <td class="fs14 fw700 text-muted text-right">
-                                        <i class="fa fa-caret-up text-info pr10"></i>$1,259,742
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fs17 text-center">
-                                        <span class="fa fa-facebook text-alert"></span>
-                                    </td>
-                                    <td class="va-m fw600 text-muted">Social Media</td>
-                                    <td class="fs14 fw700 text-muted text-right">
-                                        <i class="fa fa-caret-up text-info pr10"></i>$3,512,672
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="fs17 text-center">
-                                        <span class="fa fa-bank text-alert"></span>
-                                    </td>
-                                    <td class="va-m fw600 text-muted">Investments</td>
-                                    <td class="fs14 fw700 text-muted text-right">
-                                        <i class="fa fa-caret-up text-info pr10"></i>$3,512,672
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <h5 class="mt5 ph10 pb5 br-b fw700">Tags Cloud</h5>
+                            <ul class="list-group mbn">
+                                <li class="list-group-item">
+                                    <span class="badge badge-success">9</span>
+                                    Movies
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge badge-info">11</span>
+                                    TV Shows
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge badge-warning">18</span>
+                                    Celebs &amp; Gossip
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge badge-danger">22</span>
+                                    Video Games
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge badge-alert">9</span>
+                                    Sports &amp; Events
+                                </li>
+                            </ul>
                         </div>
 
                     </div>
@@ -275,52 +218,14 @@
 
             </div>
 
-            <!-- Tag Group -->
-            <div class="panel" id="p29">
-                <div class="panel-heading cursor ui-sortable-handle">
-                <span class="panel-icon"><i class="fa fa-tag"></i></span>
-                    <span class="panel-title">Tag Group</span>
+            <!-- Note editor -->
+            <div class="panel panel-widget compose-widget">
+                <div class="panel-heading">
+                    <span class="panel-icon"><i class="fa fa-pencil"></i></span>
+                    <span class="panel-title">Note editor</span>
                 </div>
-                <div class="panel-body pn">
-                    <ul class="list-group mbn">
-                        <li class="list-group-item">
-                            <span class="badge badge-success">9</span>
-                            Movies
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge badge-info">11</span>
-                            TV Shows
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge badge-warning">18</span>
-                            Celebs &amp; Gossip
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge badge-danger">22</span>
-                            Video Games
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge badge-alert">9</span>
-                            Sports &amp; Events
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Text List -->
-            <div class="panel tagcloud-widget">
-                <div class="panel-heading taghead">
-                <span class="panel-icon"><i class="fa fa-pencil"></i></span>
-                    <span class="panel-title">Tag Cloud</span>
-                </div>
-                <div class="panel-body tag">
-                    <ul id="tagcloud">
-                        <li data-weight="21"><a href="#">HTML5</a></li>
-                        <li data-weight="22"><a href="#">Sharepoint</a></li>
-                        <li data-weight="24"><a href="#">Silverlight</a></li>
-                        <li data-weight="23"><a href="#">CSS3</a></li>
-                        <li data-weight="26"><a href="#">ASP.NET</a></li>
-                    </ul>
+                <div class="panel-body">
+                    <div class="summernote">This is the <b>Summernote</b> Editor...</div>
                 </div>
             </div>
 

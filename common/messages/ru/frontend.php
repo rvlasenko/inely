@@ -29,8 +29,7 @@ return [
     'Intro' => 'Введение',
     'Description' => 'Описание',
     'Features' => 'Особенности',
-    'Review' => 'Обзор',
-    'Go Now' => 'Начните сейчас!',
+    'Responsive' => 'Адаптивность',
 
     /**
      * Title
@@ -44,15 +43,15 @@ return [
     'Welcome!' => 'Добро пожаловать!',
     'He is here to help!' => 'Он уже готов помочь!',
     'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where My Personal Assistant can come in.' =>
-        'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть аболютно всё. И  здесь на помощь приходит Inely.',
+        'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть аболютно всё. И здесь на помощь приходит Inely.',
 
 
     /**
      * Intro Section
      */
-    'Welcome to Inely.<br>Your scheduler.' => 'Встречайте Inely.<br>Ваш планировщик.',
-    'Manage your personal goals, and your team’s projects in one place. Inely designed to adapt to all needs.' => 'Отслеживайте личные задачи, планируйте рабочие проекты, и всё остальное в одном месте. Inely подходит для любой цели.',
-    'images/services/main-fbrowser.png' => 'images/services/ru/main-fbrowser.png',
+    'Welcome! This is <span>Inely</span>' => 'Добро пожаловать! Это Inely',
+    'Try Now' => 'Попробуйте сейчас!',
+    'Manage your personal goals, your projects, etc. in one place. Our task-manager designed to adapt to all needs. Inely will not give you get bored.' => 'Отслеживайте личные задачи, планируйте проекты, и всё остальное в одном месте. Наш task-manager подходит для любой цели. Inely не даст Вам заскучать.',
 
     /**
      * Review Section
@@ -69,7 +68,7 @@ return [
     'Powerful Layout with Responsive functionality that can be adapted to any screen size. Resize browser to view.' => 'Мощная разметка с отзывчивой функциональностью может быть адаптирована к любому размеру экрана.',
 
     'Retina Graphics' => 'Retina графика',
-    'Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons &amp; all others graphics are optimized.' => 'Превосходный вид на мониторах с высоким разрешением. Retina иконки &amp; прочая графика оптимизирована.',
+    'Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons &amp; all others graphics are optimized.' => 'Превосходный вид на мониторах с высоким разрешением. Retina иконки &amp; прочая оптимизированная графика.',
 
     'Powerful Performance' => 'Производительность',
     'Inely includes tons of optimized code that are completely customizable and deliver unmatched optimization.' => 'Inely включает в себя тонны оптимизированного кода, с непревзойденной оптимизацией.',
@@ -95,14 +94,15 @@ return [
     /**
      * Retina Section
      */
-    'We know you want it!' => 'Мы знаем, что Вам нужно',
-    'Created with special passion &amp; and intuitivism. You shouldn\'t study it long.' => 'Создан быть интуитивно понятным. Вам не придётся долго его изучать.',
-    'images/services/fbrowser2.png' => 'images/services/ru/fbrowser2.png',
+    'Access everywhere' => 'Получайте доступ откуда угодно',
+    'With responsive design, your tasks are always there: on mobile devices, browsers, and more.' => 'C помощью адаптивного дизайна, ваш помощник всегда под рукой: в мобильном устройстве, браузере и не только',
+    'images/services/chrome.png' => 'images/services/ru/chrome.png',
+    'images/services/ipad3.png' => 'images/services/ru/ipad3.png',
 
     /**
      * Go Now Section
      */
-    'Now that you have read all the Tid-Bits, <strong>Let\'s Go!</strong>' => 'Теперь, когда вы узнали о всех лакомых кусочках, <strong>начнём!</strong>',
+    'Now that you have read all the Tid-Bits, <strong>Let\'s get acquainted?</strong>' => 'Теперь, когда вы узнали о всех лакомых кусочках, <strong>будем знакомы?</strong>',
 
     /**
      * Footer

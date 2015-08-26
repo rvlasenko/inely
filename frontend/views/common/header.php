@@ -9,8 +9,8 @@
             <!-- Logo
             ============================================= -->
             <div id="logo">
-                <a href="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Canvas Logo"></a>
-                <a href="/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Canvas Logo"></a>
+                <a href="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Logo"></a>
+                <a href="/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Logo"></a>
             </div>
             <!-- #logo end -->
 
@@ -23,8 +23,7 @@
                     <li><a href="#" data-href="#section-intro"><div><?= Yii::t('frontend', 'Intro') ?></div></a></li>
                     <li><a href="#" data-href="#section-desc"><div><?= Yii::t('frontend', 'Description') ?></div></a></li>
                     <li><a href="#" data-href="#section-features"><div><?= Yii::t('frontend', 'Features') ?></div></a></li>
-                    <li><a href="#" data-href="#section-review"><div><?= Yii::t('frontend', 'Review') ?></div></a></li>
-                    <li><a href="#" data-href="#section-go"><div><?= Yii::t('frontend', 'Go Now') ?></div></a></li>
+                    <li><a href="#" data-href="#section-responsive"><div><?= Yii::t('frontend', 'Responsive') ?></div></a></li>
                 </ul>
 
             </nav><!-- #primary-menu end -->

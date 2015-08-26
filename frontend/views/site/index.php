@@ -1,26 +1,19 @@
 <div class="content-wrap">
 
     <div class="container clearfix">
-        <div id="section-intro" class="row clearfix">
 
-            <div class="col-lg-5">
-                <div class="heading-block topmargin">
-                    <h2><?= Yii::t('frontend', 'Welcome to Inely.<br>Your scheduler.') ?></h2>
-                </div>
-                <p class="lead"><?= Yii::t('frontend', 'Manage your personal goals, and your team’s projects in one place. Inely designed to adapt to all needs.') ?></p>
-            </div>
-
-            <div class="col-lg-7">
-                <div class="ohidden fbrowser" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
-                    <img src="<?= Yii::t('frontend', 'images/services/main-fbrowser.png') ?>" data-animate="fadeInUp" data-delay="100" alt="Chrome">
-                    <img src="images/services/main-fmobile.png" data-animate="fadeInUp" data-delay="400" alt="iPad">
-                </div>
-            </div>
-
+        <div id="section-intro" class="divcenter center clearfix" style="max-width: 900px;">
+            <img class="bottommargin" src="images/logo-side.png" alt="">
+            <h1><?= Yii::t('frontend', 'Welcome! This is <span class="tright">Inely</span>') ?></h1>
+            <h2><?= Yii::t('frontend', 'Manage your personal goals, your projects, etc. in one place. Our task-manager designed to adapt to all needs. Inely will not give you get bored.') ?></h2>
+            <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-3d button-large"><?= Yii::t('frontend', 'Try Now') ?></a>
         </div>
+
+        <div class="line"></div>
+
     </div>
 
-    <div class="section" style="padding-bottom: 150px;">
+    <div class="section notopmargin" style="padding-bottom: 150px;">
 
         <div class="hidden-sm hidden-xs desc"></div>
 
@@ -122,23 +115,27 @@
 
     </div>
 
-    <div class="section nobottommargin clearfix">
+    <div class="section nobottommargin nobottomborder" data-stellar-background-ratio="0.3">
 
-        <div id="section-review" class="heading-block center">
-            <h2><?= Yii::t('frontend', 'We know you want it!') ?></h2>
-            <span><?= Yii::t('frontend', 'Created with special passion &amp; and intuitivism. You shouldn\'t study it long.') ?></span>
+        <div id="section-responsive" class="container clearfix">
+
+            <div class="heading-block center">
+                <h2><?= Yii::t('frontend', 'Access everywhere') ?></h2>
+                <span><?= Yii::t('frontend', 'With responsive design, your tasks are always there: on mobile devices, browsers, and more.') ?></span>
+            </div>
+
+            <div style="position: relative; margin-bottom: -60px; height: 415px;" data-height-lg="415" data-height-md="342" data-height-sm="262" data-height-xs="160" data-height-xxs="102">
+                <img src="<?= Yii::t('frontend', 'images/services/chrome.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" alt="Chrome" class="fadeInUp animated">
+                <img src="<?= Yii::t('frontend', 'images/services/ipad3.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="300" alt="iPad" class="fadeInUp animated">
+            </div>
+
         </div>
 
-        <div class="rev" data-height-lg="563" data-height-md="518" data-height-sm="397" data-height-xs="242" data-height-xxs="154">
-            <img src="<?= Yii::t('frontend', 'images/services/fbrowser.png') ?>" data-animate="fadeInUp" data-delay="100" alt="Chrome">
-            <img src="images/services/fmobile.png" data-animate="fadeInUp" data-delay="400" alt="iPad">
-            <img src="<?= Yii::t('frontend', 'images/services/fbrowser2.png') ?>" data-animate="fadeIn" data-delay="1200" alt="iPad">
-        </div>
     </div>
 
     <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-full center tright footer-stick">
-        <div id="section-go" class="container clearfix">
-            <?= Yii::t('frontend', 'Now that you have read all the Tid-Bits, <strong>Let\'s Go!</strong>') ?>
+        <div class="container clearfix">
+            <?= Yii::t('frontend', 'Now that you have read all the Tid-Bits, <strong>Let\'s get acquainted?</strong>') ?>
             <i class="icon-caret-right"></i>
         </div>
     </a>

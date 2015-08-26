@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
  * @var $content string
  */
 
-backend\assets\BackendAsset::register($this);
+backend\assets\DashboardAsset::register($this);
 
 $this->title = Yii::t('backend', 'Your dashboard');
 
@@ -42,10 +42,10 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 
 <body class="dashboard-page boxed-layout sb-l-c">
 
+<?= $this->render('//common/header') ?>
+
 <!-- Start: Main -->
 <div id="main">
-
-    <?= $this->render('//common/header') ?>
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
@@ -95,7 +95,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
                 plotBorderWidth: 0
             },
             xAxis  : {
-                categories: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+                categories: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'  ]
             },
             yAxis  : {
                 labels: { enabled: false },
@@ -105,11 +105,11 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
             series : [
                 {
                     name: 'All visits',
-                    data: [ 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4 ]
+                    data: [ 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6 ]
                 },
                 {
                     name: 'London',
-                    data: [ 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8 ]
+                    data: [ 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0 ]
                 }
             ]
         });
@@ -133,7 +133,21 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
             $('.fade').removeClass('out');
         }, 1000);
 
-        $("#tagcloud").tx3TagCloud({ multiplier: 2 });
+        // Init Summernote Plugin
+        $('.summernote').summernote({
+            height  : 255, //set editable area's height
+            focus   : false, //set focus editable area after Initialize summernote
+            oninit  : function () {},
+            onChange: function (contents, $editable) {},
+            toolbar : [
+                [ 'style', [ 'style' ] ],
+                [ 'font', [ 'bold', 'italic', 'underline' ] ],
+                [ 'color', [ 'color' ] ],
+                [ 'para', [ 'ul', 'ol', 'paragraph' ] ],
+                [ 'insert', [ 'link', 'picture', 'hr' ] ],
+                [ 'view', [ 'codeview' ] ]
+            ]
+        });
 
         // Init Admin Panels on widgets inside the ".admin-panels" container
         $('.admin-panels').adminpanel({

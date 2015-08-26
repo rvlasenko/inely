@@ -9,7 +9,7 @@ namespace backend\assets;
 use yii\web\AssetBundle;
 use yii\web\View;
 
-class BackendAsset extends AssetBundle
+class DashboardAsset extends AssetBundle
 {
     public $basePath = '/';
     public $baseUrl  = '@backendUrl';
@@ -23,6 +23,9 @@ class BackendAsset extends AssetBundle
 
         // Full Calendar Plugin CSS
         'vendor/plugins/fullcalendar/fullcalendar.min.css',
+
+        // Summernote
+        'vendor/plugins/summernote/summernote.css',
 
         // Theme CSS
         'css/skin/theme.css',
@@ -45,13 +48,16 @@ class BackendAsset extends AssetBundle
         // Notification
         'vendor/plugins/noty/packaged/jquery.noty.packaged.min.js',
 
+        // Admin Panels
+        'tools/panels/adminpanels.js',
+
+        // Summernote
+        'vendor/plugins/summernote/summernote.min.js',
+
         // Theme Javascript
         'js/utility.js',
         'js/main.js',
-        'js/demo.js',
-
-        // Admin Panels
-        'tools/panels/adminpanels.js'
+        'js/demo.js'
     ];
 
     public $jsOptions = [ 'position' => View::POS_END ];

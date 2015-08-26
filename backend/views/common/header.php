@@ -1,68 +1,14 @@
 <?php use yii\helpers\Html; ?>
 
 <header class="navbar bg-light">
-    <div class="navbar-branding">
-        <span id="toggle_sidemenu_l" class="glyphicons glyphicons-show_lines"></span>
-    </div>
-    <ul class="nav navbar-nav navbar-left">
-        <li class="hidden-xs">
-            <a class="request-fullscreen toggle-active" href="#">
-                <span class="glyphicons glyphicons-imac fs18"></span>
-            </a>
-        </li>
+    <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
+        <li class="active"><a href="/">Dashboard</a></li>
+        <li class=""><a href="/calendar">Calendar</a></li>
+        <li class=""><a href="/todo">Tasks</a></li>
+        <li class=""><a href="/support">Support</a></li>
     </ul>
+
     <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a class="dropdown-toggle pl10 pr10" data-toggle="dropdown" href="#" aria-expanded="true">
-                <span class="glyphicons glyphicons-spray fs18"></span>
-            </a>
-            <ul class="dropdown-menu col dropdown-hover dropdown-persist pn pb5 bg-white animated animated-shorter zoomIn" role="menu">
-                <li class="bg-light p8">
-                    <span class="fw600 pl5 lh30">Header color</span>
-                    <span class="label label-warning label-sm pull-right lh20 h-20 mt5 mr5"><a href="#" id="clearLocalStorage">Clear LocalStorage</a></span>
-                </li>
-
-                <div id="skin-toolbox" class="toolbox-open p10">
-                    <form id="toolbox-header-skin">
-                        <div class="skin-toolbox-swatches">
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 checkbox-disabled fill mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin8" checked="" value="bg-light">
-                                <label for="headerSkin8">Light</label>
-                            </div>
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 fill checkbox-primary mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin1" value="bg-primary">
-                                <label for="headerSkin1">Primary</label>
-                            </div>
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 fill checkbox-info mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin3" value="bg-info">
-                                <label for="headerSkin3">Info</label>
-                            </div>
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 fill checkbox-warning mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin4" value="bg-warning">
-                                <label for="headerSkin4">Warning</label>
-                            </div>
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 fill checkbox-alert mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin6" value="bg-alert">
-                                <label for="headerSkin6">Alert</label>
-                            </div>
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 fill checkbox-system mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin7" value="bg-system">
-                                <label for="headerSkin7">System</label>
-                            </div>
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 fill checkbox-success mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin2" value="bg-success">
-                                <label for="headerSkin2">Success</label>
-                            </div>
-                            <div class="checkbox-custom animated animated-short fadeIn col-sm-6 fill mb5">
-                                <input type="radio" name="headerSkin" id="headerSkin9" value="bg-dark">
-                                <label for="headerSkin9">Dark</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </ul>
-        </li>
         <li class="dropdown dropdown-item-slide">
             <a class="dropdown-toggle pl10 pr10" data-toggle="dropdown" href="#">
                 <span class="glyphicons glyphicons-bell fs18"></span>
@@ -131,6 +77,12 @@
                 <li class="br-t of-h">
                     <?= Html::a('<span class="fa fa-gear pr5"></span> Account Settings', [ '' ], [
                         'class' => 'fw600 p12 animated animated-short fadeInDown'
+                    ]) ?>
+                </li>
+                <li class="br-t of-h">
+                    <?= Html::a('<span class="fa fa-trash-o pr5"></span> Clear Storage', [ '/' ], [
+                        'class' => 'fw600 p12 animated animated-short fadeInDown',
+                        'id' => 'clearLocalStorage'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">

@@ -56,6 +56,12 @@ var Core = function (options) {
     var currentItems = taskWidget.find('ul.task-current');
     var completedItems = taskWidget.find('ul.task-completed');
 
+    // Clear local storage
+    $("#clearLocalStorage").on('click', function () {
+        localStorage.clear();
+        location.reload();
+    });
+
     // Init jQuery Sortable on Task Widget
     taskWidget.sortable({
         items      : taskItems, // only init sortable on list items (not labels)
