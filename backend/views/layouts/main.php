@@ -50,8 +50,6 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
 
-        <?= $this->render('//common/topbar') ?>
-
         <!-- Begin: Content -->
         <section id="content" class="animated fadeIn">
             <?php if (Yii::$app->session->hasFlash('alert')): ?>
@@ -77,7 +75,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 
 <!-- Page Javascript -->
 <script type="text/javascript">
-    jQuery(document).ready(function () {
+    $(document).ready(function () {
         "use strict";
 
         // Init Theme Core
@@ -85,6 +83,12 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 
         // Init Demo JS
         Demo.init();
+
+        $('.skillbar').each(function () {
+            jQuery(this).find('.skillbar-bar').animate({
+                width: jQuery(this).attr('data-percent')
+            }, 2500);
+        });
 
         // Chart for user activity and perfomance
         $('.ct-chart').highcharts({
@@ -122,8 +126,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
             minimum     : 0.15,
             trickleRate : .07,
             trickleSpeed: 360,
-            showSpinner : false,
-            barColor    : 'npr-info',
+            barColor    : 'firebrick',
             barPos      : 'npr-top'
         });
 
@@ -131,7 +134,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
         setTimeout(function () {
             NProgress.done();
             $('.fade').removeClass('out');
-        }, 1000);
+        }, 1500);
 
         // Init Summernote Plugin
         $('.summernote').summernote({

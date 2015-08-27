@@ -48,18 +48,6 @@
                 </li>
             </ul>
         </li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <span class="flag-xs flag-en"></span>
-                <span class="fw600"> EN </span>
-            </a>
-            <ul class="dropdown-menu animated animated-shorter zoomIn" role="menu">
-                <li><a href="#" class="animated animated-short fadeIn">
-                        <span class="flag-xs flag-ru mr10"></span> Russian </a></li>
-                <li><a href="#" class="animated animated-short fadeIn">
-                        <span class="flag-xs flag-en mr10"></span> English </a></li>
-            </ul>
-        </li>
         <li class="ph10 pv20 hidden-xs"><i class="fa fa-circle text-tp fs8"></i></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
@@ -67,7 +55,7 @@
                 <span><?= Yii::$app->user->identity->username ?></span>
                 <span class="caret caret-tp hidden-xs"></span>
             </a>
-            <ul class="dropdown-menu dropdown-persist pn user bg-white" role="menu">
+            <ul class="dropdown-menu dropdown-persist pn user bg-white animated animated-shorter zoomIn" role="menu">
                 <li class="of-h">
                     <?= Html::a('<span class="fa fa-user fs15 pr5"></span> My Profile', [ '' ], [
                         'class' => 'p12 animated animated-short fadeInDown'
