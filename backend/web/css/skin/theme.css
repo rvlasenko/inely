@@ -1730,7 +1730,6 @@ body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-size:   13px;
     font-weight: 400;
-    line-height: 1.5;
     color:       #666;
 }
 
@@ -3568,6 +3567,10 @@ ul.tx3-tag-cloud li a:hover {
 
     .col-md-4 {
         width: 33.33333333333333%;
+    }
+
+    .col-md-3-5 {
+        width: 27%;
     }
 
     .col-md-3 {
@@ -12352,9 +12355,6 @@ ol.timeline-list li.timeline-item .timeline-date {
     body.boxed-layout #main {
         width: 85% !important;
     }
-    body.boxed-layout .navbar .navbar-right {
-        width: 224px;
-    }
 }
 
 /*==================================================
@@ -14170,8 +14170,8 @@ ol.timeline-list li.timeline-item .timeline-date {
     margin-bottom: 5px !important;
 }
 
-.mr7e {
-    margin-right: 7em !important;
+.mr4e {
+    margin-right: 4em !important;
 }
 
 .mb10 {
@@ -15376,11 +15376,6 @@ body.sidebar-collapsed #sidebar:before {
         box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
 
-    body.boxed-layout .navbar-nav.navbar-right,
-    body.boxed-layout .navbar-nav.navbar-right:last-child {
-        margin-right: 0;
-    }
-
     body.boxed-layout #main {
         overflow: hidden;
         width:    70%;
@@ -15664,12 +15659,14 @@ body.boxed-layout #toggle_sidemenu_r {
     transition:         margin 0.2s ease;
     width:              70%;
     margin:             0 auto !important;
+    z-index: 999;
 }
 
 .user-mascot:after {
     content: "";
     position: absolute;
     background-repeat: no-repeat;
+    z-index: 999;
 }
 
 .user-mascot.horo:after {
@@ -15683,10 +15680,9 @@ body.boxed-layout #toggle_sidemenu_r {
 
 .user-level {
     width: 48px;
-    position:     fixed;
-    bottom:       6px;
-    margin-left: -4.5em;
-    right: 9.4em;
+    position: absolute;
+    bottom: 0;
+    right: -5em;
 }
 
 #content-footer b {
@@ -15913,9 +15909,6 @@ body.boxed-layout.dashboard-page #console-search-btn {
     }
     #content {
         padding: 25px 35px 50px !important;
-    }
-    body.boxed-layout .navbar .navbar-right {
-        width: 224px;
     }
 }
 
@@ -16169,6 +16162,22 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
     }
 }
 
+body:not(.device-touch) .rounded-skill {
+    -webkit-transition: opacity .4s ease;
+    -o-transition: opacity .4s ease;
+    transition: opacity .4s ease;
+}
+
+.rounded-skill + h5 { margin-bottom: 0; }
+
+.easyPieChart {
+    display: inline-block;
+    color: #fff;
+    position: absolute;
+    top: 6px;
+    right: 1.3em;
+}
+
 /* ==============================================
    III. RESPONSIVE STYLES
     A. Header
@@ -16203,6 +16212,9 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
     #content .col-md-6 + .col-md-2,
     #content .col-md-6 + .col-md-4 {
         padding-top: 10px;
+    }
+    .user-level {
+        top: -3px;
     }
 }
 
@@ -16776,10 +16788,6 @@ li.dropdown-border-hover:hover,
 }
 
 @media (max-width: 1100px) {
-    .navbar .navbar-right:last-child {
-        margin-right: 5px;
-    }
-
     .navbar .navbar-right > li:last-child > a > img {
         margin-right: 5px !important;
     }
@@ -16926,7 +16934,7 @@ li.dropdown-border-hover:hover,
     margin-bottom:15px;
     width:100%;
     background:#232323;
-    box-shadow: 0px 0px 10px 0px rgb(66, 66, 66);
+    box-shadow: 0px 0px 10px 0px rgb(45, 45, 45);
     height:15px;
     border-radius:3px;
     -moz-border-radius:3px;

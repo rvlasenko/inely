@@ -362,7 +362,40 @@ var Core = function (options) {
             rescale();
         }
 
-    }
+    };
+
+    var runroundedSkill = function(){
+        var $roundedSkillEl = $('.rounded-skill');
+        if( $roundedSkillEl.length > 0 ){
+            $roundedSkillEl.each(function(){
+                var element = $(this);
+
+                var roundSkillSize = element.attr('data-size');
+                var roundSkillAnimate = element.attr('data-animate');
+                var roundSkillWidth = element.attr('data-width');
+                var roundSkillColor = element.attr('data-color');
+                var roundSkillTrackColor = element.attr('data-trackcolor');
+
+                if( !roundSkillSize ) { roundSkillSize = 110; }
+                if( !roundSkillAnimate ) { roundSkillAnimate = 2500; }
+                if( !roundSkillWidth ) { roundSkillWidth = 3; }
+                if( !roundSkillColor ) { roundSkillColor = '#0093BF'; }
+                if( !roundSkillTrackColor ) { roundSkillTrackColor = 'rgba(0,0,0,0.04)'; }
+
+                var properties = {roundSkillSize:roundSkillSize, roundSkillAnimate:roundSkillAnimate, roundSkillWidth:roundSkillWidth, roundSkillColor:roundSkillColor, roundSkillTrackColor:roundSkillTrackColor};
+
+                element.easyPieChart({
+                    size: Number(properties.roundSkillSize),
+                    animate: Number(properties.roundSkillAnimate),
+                    scaleColor: false,
+                    trackColor: properties.roundSkillTrackColor,
+                    lineWidth: Number(properties.roundSkillWidth),
+                    lineCap: 'square',
+                    barColor: properties.roundSkillColor
+                });
+            });
+        }
+    };
 
     // Form related Functions
     var runFormElements = function () {
@@ -432,8 +465,8 @@ var Core = function (options) {
 
             // Call Core Functions
             runHelpers();
+            runroundedSkill();
             runAnimations();
-            //runSideMenu(options);
             runTrays();
             runFormElements();
             runHeader();
