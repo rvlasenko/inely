@@ -2818,7 +2818,7 @@ pre code {
 
 .task-widget ul.task-list .checkbox-custom input[type=checkbox]:checked + label:after,
 .task-widget ul.task-list .checkbox-custom input[type=radio]:checked + label:after {
-    top:       4px;
+    top:       5px;
     left:      2px;
     font-size: 11px;
 }
@@ -15564,7 +15564,7 @@ body.boxed-layout #toggle_sidemenu_r {
     border-right-color: #fff; }
 
 .hint--top:before {
-    margin-bottom: -12px; }
+    margin-bottom: -11px; }
 .hint--top:after {
     margin-left: -18px; }
 .hint--top:before, .hint--top:after {
@@ -18038,7 +18038,7 @@ body.external-page #main:before {
 }
 
 body.external-page #canvas-wrapper {
-
+    position: fixed;
     top:      0;
     left:     0;
     right:    0;

@@ -9,7 +9,7 @@
         <div class="row mb15 table-layout">
 
             <div class="col-xs-6 va-m pln">
-                <a href="/" title="<?= Yii::t('backend', 'Return to Dashboard') ?>">
+                <a href="/">
                     <img src="//admindesigns.com/demos/admin/theme/assets/img/logos/logo_white.png" title="Inely Logo" class="img-responsive w250">
                 </a>
             </div>

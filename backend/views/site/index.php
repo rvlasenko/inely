@@ -15,8 +15,8 @@
 
                         <!-- Chart Column -->
                         <div class="col-md-5 pln mvn15">
-                            <h5 class="ml5 mbn mt20 ph10 pb5 br-b fw700">Your activity in the last 7 days</h5>
-                            <div class="ct-chart" style="width: 100%; height: 255px; margin: 0 auto"></div>
+                            <h5 class="ml5 mbn mt20 ph10 pb5 br-b fw700">Your activity from last 7 days</h5>
+                            <div class="ct-chart" style="width: 100%; height: 255px; margin: 0 auto;"></div>
                         </div>
 
                         <!-- Multi Text Column -->
