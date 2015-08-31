@@ -36,7 +36,7 @@ return [
     'Finish sign up' => 'Завершить регистрацию',
     'Remember Me' => 'Запомнить меня',
     'Password recovery' => 'Восстановление пароля',
-    'Incorrect username or password.' => 'Указан неправильное имя или пароль',
+    'Incorrect username or password.' => 'Неправильное имя пользователя или пароль',
     'Submit' => 'Отправить',
     'This will be your new password' => 'Это будет вашим новым паролем',
     'Please enter a new password for your account' => 'Пожалуйста, введите новый пароль для вашего аккаунта',
@@ -60,7 +60,7 @@ return [
     'Thanks! Account e-mail address confirmed successfully' => 'Спасибо! Ваш e-mail успешно подтверждён',
     'Yes' => 'Да',
     'No' => 'Нет',
-    'forgot?' => 'забыли?',
+    'you forgot?' => 'вы забыли?',
     'Send' => 'Отправить',
 
     /**

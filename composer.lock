@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a85055eba8f4bcdbcb279dd7febef8c8",
+    "hash": "b4767de8624b4a656507fb3f52b8a318",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -911,12 +911,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "8792234070aaa759a71879fff4e53c315742b8e4"
+                "reference": "8899c9062e9111583bdbfe070f60e4075fd45a44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/8792234070aaa759a71879fff4e53c315742b8e4",
-                "reference": "8792234070aaa759a71879fff4e53c315742b8e4",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/8899c9062e9111583bdbfe070f60e4075fd45a44",
+                "reference": "8899c9062e9111583bdbfe070f60e4075fd45a44",
                 "shasum": ""
             },
             "require": {
@@ -951,7 +951,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-08-19 19:03:22"
+            "time": "2015-08-30 13:38:14"
         },
         {
             "name": "kartik-v/yii2-widget-sidenav",
@@ -1069,12 +1069,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "caf94ee2473ba6503e411ce3bcbd33b080f1d903"
+                "reference": "a16e5a75aa8c3b97f224f42dbbad5b379ce14659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/caf94ee2473ba6503e411ce3bcbd33b080f1d903",
-                "reference": "caf94ee2473ba6503e411ce3bcbd33b080f1d903",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/a16e5a75aa8c3b97f224f42dbbad5b379ce14659",
+                "reference": "a16e5a75aa8c3b97f224f42dbbad5b379ce14659",
                 "shasum": ""
             },
             "require": {
@@ -1114,7 +1114,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2015-07-15 23:24:06"
+            "time": "2015-08-30 17:08:54"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -1168,12 +1168,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "47c7b9bb4066ebedc6114410dcd6ceff6e273e9c"
+                "reference": "140505acd532961ba94c67ccde583454103a943d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/47c7b9bb4066ebedc6114410dcd6ceff6e273e9c",
-                "reference": "47c7b9bb4066ebedc6114410dcd6ceff6e273e9c",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/140505acd532961ba94c67ccde583454103a943d",
+                "reference": "140505acd532961ba94c67ccde583454103a943d",
                 "shasum": ""
             },
             "require": {
@@ -1248,7 +1248,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-08-27 14:57:10"
+            "time": "2015-08-28 13:36:29"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -1256,12 +1256,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-authclient.git",
-                "reference": "7b817c78198378d14e53a7f960e8a3b61b689b86"
+                "reference": "e8c639af26be6ce38b0bbf5113882345fe25de3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/7b817c78198378d14e53a7f960e8a3b61b689b86",
-                "reference": "7b817c78198378d14e53a7f960e8a3b61b689b86",
+                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/e8c639af26be6ce38b0bbf5113882345fe25de3d",
+                "reference": "e8c639af26be6ce38b0bbf5113882345fe25de3d",
                 "shasum": ""
             },
             "require": {
@@ -1296,7 +1296,7 @@
                 "oauth",
                 "yii2"
             ],
-            "time": "2015-08-26 12:58:58"
+            "time": "2015-08-31 07:56:21"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1530,22 +1530,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "668f5d890530fe82888fbf9f877808d5c091c88f"
+                "reference": "0d9d3be70fbb73b54a489937456aadedfa8f76e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/0c12ecb7520158de93dd954b1458d2b10d500dbf",
-                "reference": "668f5d890530fe82888fbf9f877808d5c091c88f",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/0d9d3be70fbb73b54a489937456aadedfa8f76e5",
+                "reference": "0d9d3be70fbb73b54a489937456aadedfa8f76e5",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "facebook/webdriver": "~0.4|~0.5",
-                "guzzlehttp/guzzle": ">=4.0|<7.0",
+                "facebook/webdriver": ">=1.0.1",
+                "guzzlehttp/guzzle": ">=4.1.4 <7.0",
                 "guzzlehttp/psr7": "~1.0",
                 "php": ">=5.4.0",
-                "phpunit/phpunit": "~4.7.0",
+                "phpunit/phpunit": "~4.8.0",
                 "symfony/browser-kit": "~2.4",
                 "symfony/console": "~2.4",
                 "symfony/css-selector": "~2.4",
@@ -1602,7 +1602,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2015-08-28 21:55:48"
+            "time": "2015-08-30 19:03:56"
         },
         {
             "name": "doctrine/instantiator",
@@ -2309,12 +2309,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357"
+                "reference": "e813a37dd85b574987393412c34bcdd3eebc1c9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2246830f4a1a551c67933e4171bf2126dc29d357",
-                "reference": "2246830f4a1a551c67933e4171bf2126dc29d357",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e813a37dd85b574987393412c34bcdd3eebc1c9d",
+                "reference": "e813a37dd85b574987393412c34bcdd3eebc1c9d",
                 "shasum": ""
             },
             "require": {
@@ -2373,7 +2373,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-24 04:09:38"
+            "time": "2015-08-31 17:22:49"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

@@ -17,7 +17,7 @@
             <section id="grid" class="grid clearfix">
                 <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
                     <figure>
-                        <img src="http://tympanus.net/Tutorials/ShapeHoverEffectSVG/img/1.png" />
+                        <img src="images/mascots/robo/present/500mm.png" />
                         <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
                         <figcaption>
                             <h2><?= Yii::t('backend', 'Robo') ?></h2>
@@ -28,7 +28,7 @@
                 </a>
                 <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
                     <figure>
-                        <img src="http://tympanus.net/Tutorials/ShapeHoverEffectSVG/img/3.png" />
+                        <img src="images/mascots/eva/present/500mm.png" style="width: auto;" />
                         <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
                         <figcaption>
                             <h2><?= Yii::t('backend', 'Eve') ?></h2>
@@ -39,7 +39,7 @@
                 </a>
                 <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
                     <figure>
-                        <img src="http://tympanus.net/Tutorials/ShapeHoverEffectSVG/img/5.png" />
+                        <img src="http://tympanus.net/Tutorials/ShapeHoverEffectSVG/img/3.png" />
                         <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
                         <figcaption>
                             <h2><?= Yii::t('backend', 'Coming Soon...') ?></h2>

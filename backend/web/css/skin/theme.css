@@ -15733,14 +15733,11 @@ div.next-button-container {
 
 .intro-icon {
     display: table;
-    width: 150px;
-    height: 150px;
-    position: relative;
+    width: 200px;
+    height: 224px;
     overflow: hidden;
     float: left;
     margin-right: 45px;
-    border-radius: 150px;
-    background: #E6E3E3;
 }
 
 .icon-mascot:before {
@@ -15765,11 +15762,10 @@ div.next-button-container {
 .icon-def-mascot:before {
     content: '';
     position: absolute;
-    background: url('https://www.khanacademy.org/images/avatars/svg/piceratops-seed.svg') no-repeat;
-    background-size: 150px 151px;
-    width: 150px;
-    height: 151px;
-    bottom: 0.5em;
+    background: url('../../images/mascots/robo/Wave.png') no-repeat;
+    background-size: 200px 224px;
+    width: 200px;
+    height: 224px;
 }
 
 @media (min-width: 1140px) {
