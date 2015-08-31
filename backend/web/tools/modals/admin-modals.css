@@ -723,11 +723,10 @@ perspective effects (not including the modals and the overlay).
 /* ====== Container options ====== */
 /* unstyled popup */
 .popup-basic {
-  position: relative;
-  background: #FFF;
-  width: auto;
-  max-width: 450px;
-  margin: 40px auto;
+    position: relative;
+    width: auto;
+    max-width: 1000px;
+    margin: 40px auto;
 }
 
 /* popup sizes */
@@ -1003,7 +1002,7 @@ perspective effects (not including the modals and the overlay).
 }
 .mfp-flipInY .mfp-with-anim {
   opacity: 0;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.55s ease-in-out;
   transform-style: preserve-3d;
   transform: rotateY(-60deg);
 }
@@ -1016,7 +1015,7 @@ perspective effects (not including the modals and the overlay).
   transform: rotateY(0deg);
 }
 .mfp-flipInY.mfp-ready.mfp-bg {
-  opacity: 0.8;
+  opacity: 0.88;
 }
 .mfp-flipInY.mfp-removing .mfp-with-anim {
   transform: rotateY(60deg);

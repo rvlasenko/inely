@@ -6,6 +6,7 @@ return [
     'showScriptName' => false,
     'rules' => [
         'contact' => '/site/contact',
+        'welcome' => '/char/index',
 
         'signup' => '/user/sign-in/signup',
         'reset' => '/user/sign-in/request-password-reset',
@@ -15,10 +16,5 @@ return [
         'logout' => '/user/sign-in/logout',
 
         'todo' => '/task/index',
-        'edit' => '/task/edit',
-        'todo/edit' => '/task/edit',
-        'todo/cat' => '/task/cat',
-        'todo/sort' => '/task/sort',
-        'todo/delete' => '/task/delete'
     ]
 ];

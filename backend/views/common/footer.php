@@ -4,7 +4,9 @@
 
 <footer id="content-footer">
     <div class="row">
-        <div class="col-md-1 user-mascot horo ml20"></div>
+        <div class="col-md-1 ml20">
+            <img src="images/mascots/holoo.png" class="user-mascot horo">
+        </div>
         <div class="col-md-3-5 mr4e pt15 pull-right">
             <div class="rounded-skill nobottommargin" data-color="#DD4B39" data-size="50" data-percent="25">
 <!--                <img class="user-level" src="" title="" />-->

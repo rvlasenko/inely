@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user_profile".
@@ -11,37 +12,29 @@ use Yii;
  * @property integer $locale
  * @property string  $firstname
  * @property string  $lastname
+ * @property string  $mascot_path
  * @property string  $picture
- * @property string  $avatar
- * @property string  $avatar_path
- * @property string  $avatar_base_url
  * @property integer $gender
  *
  * @property User    $user
  */
-class UserProfile extends \yii\db\ActiveRecord
+class UserProfile extends ActiveRecord
 {
     const GENDER_MALE   = 2;
     const GENDER_FEMALE = 1;
 
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return '{{%user_profile}}';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
             [ [ 'user_id' ], 'required' ],
             [ [ 'user_id', 'gender' ], 'integer' ],
             [ [ 'gender' ], 'in', 'range' => [ self::GENDER_FEMALE, self::GENDER_MALE ] ],
-            [ [ 'firstname', 'lastname', 'avatar_path', 'avatar_base_url' ], 'string', 'max' => 255 ],
+            [ [ 'firstname', 'lastname', 'mascot_path', 'mascot_name' ], 'string', 'max' => 255 ],
             [ 'locale', 'default', 'value' => Yii::$app->language ],
             [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ]
         ];
@@ -53,9 +46,6 @@ class UserProfile extends \yii\db\ActiveRecord
         Yii::$app->session->setFlash('forceUpdateLocale');
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getUser()
     {
         return $this->hasOne(User::className(), [ 'id' => 'user_id' ]);
@@ -70,8 +60,8 @@ class UserProfile extends \yii\db\ActiveRecord
         return null;
     }
 
-    public function getAvatar()
+    public function getMascot()
     {
-        return $this->avatar_path ? Yii::getAlias($this->avatar_base_url . '/' . $this->avatar_path) : false;
+        return $this->mascot_path;
     }
 }

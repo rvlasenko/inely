@@ -11,7 +11,7 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown dropdown-item-slide">
             <a class="dropdown-toggle pl10 pr10" data-toggle="dropdown" href="#">
-                <span class="glyphicons glyphicons-bell fs18"></span>
+                <span class="fa fa fa-bell fs21"></span>
             </a>
             <ul class="dropdown-menu noty dropdown-hover dropdown-persist pn bg-white animated animated-shorter zoomIn" role="menu">
                 <li class="bg-light p8">

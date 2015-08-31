@@ -2,12 +2,13 @@
 
 namespace backend\modules\user\controllers;
 
-use common\models\User;
 use backend\modules\user\models\ConfirmEmailForm;
 use backend\modules\user\models\LoginForm;
 use backend\modules\user\models\PasswordResetRequestForm;
 use backend\modules\user\models\ResetPasswordForm;
 use backend\modules\user\models\SignupForm;
+use backend\modules\user\models\WelcomeForm;
+use common\models\User;
 use Yii;
 use yii\base\Exception;
 use yii\base\InvalidParamException;
@@ -15,8 +16,8 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
-use yii\web\Response;
 use yii\web\Controller;
+use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 class SignInController extends Controller

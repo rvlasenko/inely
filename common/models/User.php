@@ -78,8 +78,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [ [ 'username', 'email' ], 'unique' ],
-            [ 'status', 'default', 'value' => self::STATUS_ACTIVE ],
-            [ 'status', 'in', 'range' => [ self::STATUS_ACTIVE, self::STATUS_INACTIVE ] ],
+            [ 'status', 'default', 'value' => self::STATUS_UNCONFIRMED ],
+            [ 'status', 'in', 'range' => array_keys(self::getStatuses()) ],
         ];
     }
 
@@ -205,21 +205,23 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
+    public function getStatusName()
+    {
+        return ArrayHelper::getValue(self::getStatuses(), $this->status);
+    }
+
     /**
      * Returns user statuses list
      *
-     * @param mixed $status
-     *
      * @return array|mixed
      */
-    public static function getStatuses($status = false)
+    public static function getStatuses()
     {
-        $statuses = [
-            self::STATUS_ACTIVE => Yii::t('backend', 'Active'),
-            self::STATUS_INACTIVE => Yii::t('backend', 'Deleted'),
+        return [
+            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_UNCONFIRMED => 'Unconfirmed',
+            self::STATUS_INACTIVE => 'Deleted'
         ];
-
-        return $status !== false ? ArrayHelper::getValue($statuses, $status) : $statuses;
     }
 
     /**
@@ -250,18 +252,13 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function afterSignup(array $profileData = [ ])
     {
-//        TimelineEvent::log('user', 'signup', [
-//            'publicIdentity' => $this->getPublicIdentity(),
-//            'userId' => $this->getId(),
-//            'created_at' => $this->created_at
-//        ]);
+        $this->trigger(self::EVENT_AFTER_SIGNUP);
 
         $profile         = new UserProfile();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
 
         $this->link('userProfile', $profile);
-        $this->trigger(self::EVENT_AFTER_SIGNUP);
 
         // Default role
         $auth = Yii::$app->authManager;

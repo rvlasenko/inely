@@ -2,15 +2,16 @@
 
 namespace backend\controllers;
 
+use common\models\User;
+use common\models\UserProfile;
 use Yii;
 use yii\web\Controller;
-use yii\helpers\Url;
 
 class SiteController extends Controller
 {
 
     /**
-     * Enable page caching with duration 84600 seconds
+     * Активизация кэширования страниц продолжительностью один день, установка локали
      */
     public function actions()
     {
@@ -32,8 +33,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Redirect all users to the login page if not logged in
-     *
+     * Перенаправление всех пользователей на форму входа, если их статус авторизации неопределён
      * @return string
      */
     public function actionIndex()
@@ -41,7 +41,27 @@ class SiteController extends Controller
         if (Yii::$app->getUser()->isGuest) {
             Yii::$app->getResponse()->redirect(Yii::$app->getUser()->loginUrl);
         } else {
-            return $this->render('index');
+            if (Yii::$app->user->identity->status == User::STATUS_UNCONFIRMED) {
+                $this->redirect('/welcome');
+            } else {
+                return $this->render('index');
+            }
+        }
+    }
+
+    /**
+     * Finds the Page model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Page the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = UserProfile::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
 }

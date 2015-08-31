@@ -6,6 +6,7 @@ $config = [
         'enablePreferredLanguage' => true
     ],
     'components' => [
+        'session' => [ 'cookieParams' => [ 'domain' => '.madeasy.local' ] ],
         'urlManagerBackend' => [
             'class' => 'yii\web\urlManager',
             'showScriptName' => false,
@@ -37,9 +38,6 @@ $config = [
                     ]
                 ]
             ]
-        ],
-        'session' => [
-            'cookieParams' => [ 'domain' => '.madeasy.local' ]
         ]
     ]
 ];

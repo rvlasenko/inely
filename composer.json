@@ -16,7 +16,8 @@
   "authors": [
     {
       "name": "Roman Vlasenko",
-      "email": "admiralexo@gmail.com"
+      "email": "admiralexo@gmail.com",
+      "role": "Creator"
     }
   ],
   "require": {
@@ -36,6 +37,7 @@
     "kartik-v/yii2-widget-select2": "*",
     "kartik-v/yii2-widget-sidenav": "*",
     "vlucas/phpdotenv": "~1.0",
+    "perminder-klair/yii2-dropzone": "dev-master",
     "FortAwesome/Font-Awesome": "*",
     "rev-slider/rev-slider": "dev-master"
   },

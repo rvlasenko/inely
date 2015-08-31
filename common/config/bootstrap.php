@@ -11,4 +11,3 @@ Yii::setAlias('@tests', realpath(__DIR__ . '/../../tests'));
 // Url Aliases
 Yii::setAlias('@frontendUrl', getenv('FRONTEND_URL'));
 Yii::setAlias('@backendUrl', getenv('BACKEND_URL'));
-Yii::setAlias('@storageUrl', getenv('STORAGE_URL'));

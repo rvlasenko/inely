@@ -10,6 +10,12 @@ var Core = function (options) {
     // Variables
     var Body = $('body');
 
+    // Clear local storage
+    $("#clearLocalStorage").on('click', function () {
+        localStorage.clear();
+        location.reload();
+    });
+
     // jQuery Helper Functions
     var runHelpers = function () {
 
@@ -47,103 +53,6 @@ var Core = function (options) {
         }, 500);
 
     }
-
-    // Init plugins for ".task-widget"
-    // plugins: Custom Functions + jQuery Sortable
-    //
-    var taskWidget = $('div.task-widget');
-    var taskItems = taskWidget.find('li.task-item');
-    var currentItems = taskWidget.find('ul.task-current');
-    var completedItems = taskWidget.find('ul.task-completed');
-
-    // Clear local storage
-    $("#clearLocalStorage").on('click', function () {
-        localStorage.clear();
-        location.reload();
-    });
-
-    // Init jQuery Sortable on Task Widget
-    taskWidget.sortable({
-        items      : taskItems, // only init sortable on list items (not labels)
-        axis       : 'y',
-        connectWith: ".task-list",
-        update     : function (event, ui) {
-            var Item = ui.item;
-            var ParentList = Item.parent();
-
-            // If item is already checked move it to "current items list"
-            if (ParentList.hasClass('task-current')) {
-                Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
-            }
-            if (ParentList.hasClass('task-completed')) {
-                Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
-            }
-
-        }
-    });
-
-    // Custom Functions to handle/assign list filter behavior
-    taskItems.on('click', function (e) {
-        e.preventDefault();
-        var This = $(this);
-
-        if ($(e.target).hasClass('fa-remove')) {
-            This.remove();
-            return;
-        }
-
-        // If item is already checked move it to "current items list"
-        if (This.hasClass('item-checked')) {
-            This.removeClass('item-checked').appendTo(currentItems).find('input[type="checkbox"]').prop('checked', false);
-        }
-        // Otherwise move it to the "completed items list"
-        else {
-            This.addClass('item-checked').appendTo(completedItems).find('input[type="checkbox"]').prop('checked', true);
-        }
-
-    });
-
-    // Init plugins for ".calendar-widget" FullCalendar
-    $('#calendar-widget').fullCalendar({
-        contentHeight: 397,
-        editable     : true,
-        firstDay     : 1,
-        events       : [
-            {
-                title    : 'Sony Meeting',
-                start    : '2015-08-1',
-                end      : '2015-08-3',
-                className: 'fc-event-success'
-            }, {
-                title    : 'Conference',
-                start    : '2015-08-13',
-                end      : '2015-08-15',
-                className: 'fc-event-primary'
-            }, {
-                title    : 'Lunch Testing',
-                start    : '2015-08-23',
-                end      : '2015-08-25',
-                className: 'fc-event-danger'
-            }
-        ],
-        eventRender  : function (event, element) {
-            // create event tooltip using bootstrap tooltips
-            $(element).attr("data-original-title", event.title);
-            $(element).tooltip({
-                container: 'body',
-                delay    : {
-                    "show": 100,
-                    "hide": 200
-                }
-            });
-            // create a tooltip auto close timer
-            $(element).on('show.bs.tooltip', function () {
-                var autoClose = setTimeout(function () {
-                    $('.tooltip').fadeOut();
-                }, 3500);
-            });
-        }
-    });
 
     // Delayed Animations
     var runAnimations = function () {
@@ -273,59 +182,6 @@ var Core = function (options) {
             }, 250);
         });
     }
-
-    // SideMenu Functions
-    //var runSideMenu = function (options) {
-    //
-    //    // If Nano scrollbar exist and sidebar is fixed init plugin
-    //    if ($('.nano.affix').length) {
-    //        $(".nano").nanoScroller({
-    //            preventPageScrolling: true
-    //        });
-    //    }
-    //
-    //    // Check window size on load
-    //    // Adds or removes "mobile-view" class based on window size
-    //    var sbOnLoadCheck = function () {
-    //        // If window is < 1080px wide collapse both sidebars and add ".mobile-view" class
-    //        if ($(window).width() < 1080) {
-    //            Body.removeClass('sb-r-o').addClass('mobile-view sb-l-c');
-    //        }
-    //    };
-    //
-    //    // Check window size on resize
-    //    // Adds or removes "mobile-view" class based on window size
-    //    var sbOnResize = function () {
-    //        // If window is < 1080px wide collapse both sidebars and add ".mobile-view" class
-    //        if ($(window).width() < 1080 && !Body.hasClass('mobile-view')) {
-    //            Body.removeClass('sb-r-o').addClass('mobile-view sb-l-c');
-    //        } else if ($(window).width() > 1080) {
-    //            Body.removeClass('mobile-view');
-    //        } else {
-    //            return;
-    //        }
-    //    };
-    //
-    //    // Most CSS menu animations are set to 300ms. After this time
-    //    // we trigger a single global window resize to help catch any 3rd
-    //    // party plugins which need the event to resize their given elements
-    //    var triggerResize = function () {
-    //        setTimeout(function () {
-    //            $(window).trigger('resize');
-    //        }, 300)
-    //    };
-    //
-    //    // Functions Calls
-    //    sbOnLoadCheck();
-    //
-    //    // Attach debounced resize handler
-    //    var rescale = function () {
-    //        sbOnResize();
-    //    }
-    //    var lazyLayout = _.debounce(rescale, 300);
-    //    $(window).resize(lazyLayout);
-    //
-    //}
 
     // Tray related Functions
     var runTrays = function () {

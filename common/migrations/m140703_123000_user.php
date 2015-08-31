@@ -55,17 +55,24 @@ class m140703_123000_user extends Migration
             'user_id' => $this->primaryKey(),
             'firstname' => $this->string(),
             'lastname' => $this->string(),
-            'locale' => $this->string(32)->notNull(),
+            'gender' => $this->string(10),
+            'mascot_name' => $this->string(),
+            'mascot_url' => $this->string(),
+            'locale' => $this->string(12)->notNull(),
         ], $tableOptions);
 
         $this->insert('{{%user_profile}}', [
             'user_id' => 1,
             'firstname' => 'John',
-            'lastname' => 'Doe'
+            'lastname' => 'Doe',
+            'mascot_name' => 'Holo',
+            'mascot_url' => 'images/mascots/holoo.png'
         ]);
 
         $this->insert('{{%user_profile}}', [
             'user_id' => 2,
+            'firstname' => 'Bill',
+            'lastname' => 'Eod',
         ]);
 
         if ($this->db->driverName === 'mysql') {

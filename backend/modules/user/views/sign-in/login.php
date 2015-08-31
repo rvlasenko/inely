@@ -79,19 +79,19 @@
                             <!-- end section -->
 
                         </div>
-                        <div class="col-sm-5 br-grey pl30">
-                            <h3 class="mb25"><?= Yii::t('backend', 'You\'ll love Inely') ?></h3>
+                        <div class="col-sm-5 br-grey pl20">
+                            <h3 class="mb25"><?= Yii::t('backend', 'You\'ll love your Inely') ?></h3>
 
                             <p class="mb15">
-                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'Manage tasks from anywhere') ?>
+                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'A new look at the task scheduling') ?>
                             </p>
 
                             <p class="mb15">
-                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'Achievements do not let you get bored') ?>
+                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'Gamification don\'t let you get bored') ?>
                             </p>
 
                             <p class="mb15">
-                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'Watch your performance') ?>
+                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', '...and Your new best friend already waiting for you!') ?>
                             </p>
 
                         </div>
@@ -103,7 +103,7 @@
 
                     <label class="switch ib switch-primary pull-left input-align mt10">
                         <input type="checkbox" name="LoginForm[rememberMe]" id="remember" checked="">
-                        <label for="remember" data-on="<?= Yii::t('backend', 'YES') ?>" data-off="<?= Yii::t('backend', 'NO') ?>"></label>
+                        <label for="remember" data-on="<?= Yii::t('backend', 'Yes') ?>" data-off="<?= Yii::t('backend', 'No') ?>"></label>
                         <span><?= Yii::t('backend', 'Remember Me') ?></span>
                     </label>
                 </div>

@@ -81,9 +81,6 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
         // Init Theme Core
         Core.init({ sbm: "sb-l-c" });
 
-        // Init Demo JS
-        Demo.init();
-
         $('.skillbar').each(function () {
             jQuery(this).find('.skillbar-bar').animate({
                 width: jQuery(this).attr('data-percent')
@@ -112,10 +109,101 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
                     data: [ 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6 ]
                 },
                 {
-                    name: 'London',
-                    data: [ 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0 ]
+                    name: 'XP earned',
+                    data: [ 4, 6, 5, 9, 11, 14, 1 ]
                 }
             ]
+        });
+
+        // Init plugins for ".task-widget"
+        // plugins: Custom Functions + jQuery Sortable
+        //
+        var taskWidget = $('div.task-widget');
+        var taskItems = taskWidget.find('li.task-item');
+        var currentItems = taskWidget.find('ul.task-current');
+        var completedItems = taskWidget.find('ul.task-completed');
+
+        // Init jQuery Sortable on Task Widget
+        taskWidget.sortable({
+            items      : taskItems, // only init sortable on list items (not labels)
+            axis       : 'y',
+            connectWith: ".task-list",
+            update     : function (event, ui) {
+                var Item = ui.item;
+                var ParentList = Item.parent();
+
+                // If item is already checked move it to "current items list"
+                if (ParentList.hasClass('task-current')) {
+                    Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+                }
+                if (ParentList.hasClass('task-completed')) {
+                    Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+                }
+
+            }
+        });
+
+        // Custom Functions to handle/assign list filter behavior
+        taskItems.on('click', function (e) {
+            e.preventDefault();
+            var This = $(this);
+
+            if ($(e.target).hasClass('fa-remove')) {
+                This.remove();
+                return;
+            }
+
+            // If item is already checked move it to "current items list"
+            if (This.hasClass('item-checked')) {
+                This.removeClass('item-checked').appendTo(currentItems).find('input[type="checkbox"]').prop('checked', false);
+            }
+            // Otherwise move it to the "completed items list"
+            else {
+                This.addClass('item-checked').appendTo(completedItems).find('input[type="checkbox"]').prop('checked', true);
+            }
+
+        });
+
+        // Init plugins for ".calendar-widget" FullCalendar
+        $('#calendar-widget').fullCalendar({
+            contentHeight: 397,
+            editable     : true,
+            firstDay     : 1,
+            events       : [
+                {
+                    title    : 'Sony Meeting',
+                    start    : '2015-08-1',
+                    end      : '2015-08-3',
+                    className: 'fc-event-success'
+                }, {
+                    title    : 'Conference',
+                    start    : '2015-08-13',
+                    end      : '2015-08-15',
+                    className: 'fc-event-primary'
+                }, {
+                    title    : 'Lunch Testing',
+                    start    : '2015-08-23',
+                    end      : '2015-08-25',
+                    className: 'fc-event-danger'
+                }
+            ],
+            eventRender  : function (event, element) {
+                // create event tooltip using bootstrap tooltips
+                $(element).attr("data-original-title", event.title);
+                $(element).tooltip({
+                    container: 'body',
+                    delay    : {
+                        "show": 100,
+                        "hide": 200
+                    }
+                });
+                // create a tooltip auto close timer
+                $(element).on('show.bs.tooltip', function () {
+                    var autoClose = setTimeout(function () {
+                        $('.tooltip').fadeOut();
+                    }, 3500);
+                });
+            }
         });
 
         // Remove first line
@@ -126,6 +214,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
             minimum     : 0.15,
             trickleRate : .07,
             trickleSpeed: 360,
+            showSpinner : false,
             barColor    : 'firebrick',
             barPos      : 'npr-top'
         });
@@ -147,7 +236,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
                 [ 'font', [ 'bold', 'italic', 'underline' ] ],
                 [ 'color', [ 'color' ] ],
                 [ 'para', [ 'ul', 'ol', 'paragraph' ] ],
-                [ 'insert', [ 'link', 'picture', 'hr' ] ],
+                [ 'insert', [ 'hr' ] ],
                 [ 'view', [ 'codeview' ] ]
             ]
         });

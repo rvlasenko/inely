@@ -43,7 +43,7 @@ return [
     'Welcome!' => 'Добро пожаловать!',
     'He is here to help!' => 'Он уже готов помочь!',
     'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where My Personal Assistant can come in.' =>
-        'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть аболютно всё. И здесь на помощь приходит Inely.',
+        'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть абсолютно всё. И здесь на помощь приходит Inely.',
 
 
     /**

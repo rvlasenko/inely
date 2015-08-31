@@ -17,8 +17,7 @@ class DashboardAsset extends AssetBundle
     public $css = [
 
         // Font CSS (Via CDN)
-        'http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,cyrillic',
-        'fonts/glyphicons-pro/glyphicons-pro.css',
+        'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic',
 
         // Full Calendar Plugin CSS
         'vendor/plugins/fullcalendar/fullcalendar.min.css',
@@ -55,8 +54,7 @@ class DashboardAsset extends AssetBundle
 
         // Theme Javascript
         'js/utility.js',
-        'js/main.js',
-        'js/demo.js'
+        'js/main.js'
     ];
 
     public $jsOptions = [ 'position' => View::POS_END ];
