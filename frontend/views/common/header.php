@@ -9,8 +9,8 @@
             <!-- Logo
             ============================================= -->
             <div id="logo">
-                <a href="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Logo"></a>
-                <a href="/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Logo"></a>
+                <a href="/" class="standard-logo" data-dark-logo="images/logo-dark2.png"><img src="images/logo.png" alt="Logo"></a>
+                <a href="/" class="retina-logo" data-dark-logo="images/logo.png"><img src="images/logo.png" alt="Logo"></a>
             </div>
             <!-- #logo end -->
 
