@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ *
+ */
+
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
@@ -10,10 +18,10 @@ use yii\helpers\ArrayHelper;
  */
 
 backend\assets\DashboardAsset::register($this);
-
 $this->title = Yii::t('backend', 'Your dashboard');
-
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
+$onKeyEvent = Yii::$app->controller->action->id == 'second' ? 'onkeydown="keyDown(event)" onkeyup="keyUp(event)"' : false;
+$tableLayout = Yii::$app->controller->action->id == 'second' ? 'table-layout' : false;
 ?>
 
 <?php $this->beginPage() ?>
@@ -23,7 +31,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 
     <meta http-equiv="content-type" content="text/html" />
     <meta charset="<?= Yii::$app->charset ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -40,9 +48,9 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 
 <?php $this->beginBody() ?>
 
-<body class="dashboard-page boxed-layout sb-l-c">
+<body class="dashboard-page boxed-layout sb-l-c" <?= $onKeyEvent ?>>
 
-<?= $this->render('//common/header') ?>
+<?= $this->render('header') ?>
 
 <!-- Start: Main -->
 <div id="main">
@@ -51,7 +59,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
     <section id="content_wrapper">
 
         <!-- Begin: Content -->
-        <section id="content" class="animated fadeIn">
+        <section id="content" class="animated fadeIn <?= $tableLayout ?>">
             <?php if (Yii::$app->session->hasFlash('alert')): ?>
 
             <div class="alert alert-primary alert-dismissable mb30">
@@ -65,7 +73,7 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
         </section>
         <!-- End: Content -->
 
-        <?= $this->render('//common/footer') ?>
+        <?= $this->render('footer') ?>
     </section>
     <!-- End: Content-Wrapper -->
 </div>
@@ -172,18 +180,18 @@ $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
             events       : [
                 {
                     title    : 'Sony Meeting',
-                    start    : '2015-08-1',
-                    end      : '2015-08-3',
+                    start    : '2015-09-1',
+                    end      : '2015-09-3',
                     className: 'fc-event-success'
                 }, {
                     title    : 'Conference',
-                    start    : '2015-08-13',
-                    end      : '2015-08-15',
+                    start    : '2015-09-13',
+                    end      : '2015-09-15',
                     className: 'fc-event-primary'
                 }, {
                     title    : 'Lunch Testing',
-                    start    : '2015-08-23',
-                    end      : '2015-08-25',
+                    start    : '2015-09-23',
+                    end      : '2015-09-25',
                     className: 'fc-event-danger'
                 }
             ],

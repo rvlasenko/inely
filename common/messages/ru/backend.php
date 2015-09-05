@@ -48,7 +48,8 @@ return [
     'Gamification don\'t let you get bored' => 'Игрофикация не даст вам заскучать',
     'A new look at the task scheduling' => 'Новый взгляд на планирование задач',
     'Manage tasks from anywhere' => 'Управляйте задачами откуда угодно',
-    'Please enter your e-mail. It will receive a letter with instructions to reset your password.' => 'Пожалуйста, укажите Ваш e-mail. На него придет письмо с инструкциями по восстановлению пароля.',
+    'Please enter your e-mail. It will receive a letter with instructions to reset your password.'
+        => 'Пожалуйста, укажите Ваш e-mail. На него придет письмо с инструкциями по восстановлению пароля.',
     'Email confirmation' => 'Подтверждение электронного адреса',
     'Check your email for further instructions' => 'Проверьте вашу почту',
     'New password was saved' => 'Новый пароль был сохранен',
@@ -68,13 +69,18 @@ return [
      */
     'Finish' => 'Завершить',
     'Coming Soon...' => 'Скоро...',
-    'To make friends!' => 'Подружиться!',
+    'Befriend!' => 'Дружить!',
+    'Are you sure?' => 'Вы уверены?',
     'Your character has been uploaded!' => 'Ваш персонаж был загружен!',
     'No more files!' => 'Возможна загрузка только одного файла!',
     'Try something interesting!' => 'Попробуй кое-что интересное!',
     'In addition to the default characters you can download own. What could be better?' => 'Помимо проработанных персонажей ты можешь загрузить и собственного. Что может быть лучше?',
     'Unfortunately, in this version some features might become unstable. <a href="#" id="start">Changed My Mind</a>' => 'К сожалению, в этой версии некоторые функции могут работать нестабильно. <a href="#" id="start">Я передумал.</a>',
     'Hi! Nice to see you here.' => 'Привет! Очень приятно видеть тебя здесь.',
+    'Robo was designed to be a friendly robot. He likes to achieve goals, play games, and helping people.'
+        => 'Robo был разработан чтобы быть дружелюбным помощником. Он любит достигать своих целей, играть в игры и помогать людям.',
+    'EVE is one of several robots who are sent to Earth. She has a scanner she likes to fly and likes draw. After meeting you, she making a top priority to protect you.'
+        => 'Eve - один из нескольких роботов посланных на Землю. Оснащена сканером, умеет летать и любит рисовать. После встречи с тобой, она делает своим главным приоритетом защищать тебя.',
     'My name is Robo. I\'m glad that you decided to visit Inely, and I would be happy to help you get started. I hope you will enjoy it!' => 'Меня зовут Robo. Я рад, что ты решил посетить Inely и я с удовольствием помогу тебе здесь освоиться.',
     'Please, choose someone who you like and we will continue. Be a little bit responsible :) <a href="#" id="own">Maybe you want own character?</a>' => 'Выбери того, кто тебе по душе и мы продолжим. Будь немножко ответственным :) <a href="#" id="own">Или ты хочешь своего персонажа?</a>',
     'Holo the wise wolf in human form with cute ears and tail. She is very charming and... wise.' => 'Холо мудрый волк в человеческом обличии с хвостом и ушками. Очень очаровательная и... мудрая.',

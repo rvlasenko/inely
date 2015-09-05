@@ -15,41 +15,40 @@ class m150705_091355_tasks extends Migration
         $this->createTable('{{%tasks}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'category' => $this->integer(15),
+            'list' => $this->integer(15),
             'author' => $this->integer(50)->notNull(),
             'isDone' => $this->integer(1),
-            'priority' => $this->integer(5),
-            'time' => $this->string(15),
-            'isDoneDate' => $this->string(15),
+            'isFave' => $this->integer(1),
+            'time' => $this->string(15)
         ], $tableOptions);
 
         $this->insert('{{%tasks}}', [
             'id' => 1,
             'name' => 'Заполнить резюме с новым проектом и отправить',
-            'category' => 1,
+            'list' => 1,
             'author' => 1,
             'isDone' => 0,
-            'priority' => 3,
+            'isFave' => 1,
             'time' => ''
         ]);
 
         $this->insert('{{%tasks}}', [
             'id' => 2,
             'name' => 'Шарахнуть банхаммером по невменяемым юзерам',
-            'category' => 1,
+            'list' => 1,
             'author' => 2,
             'isDone' => 0,
-            'priority' => 4,
+            'isFave' => 0,
             'time' => ''
         ]);
 
         $this->insert('{{%tasks}}', [
             'id' => 3,
             'name' => 'Покинь борды, стань альфой',
-            'category' => 3,
+            'list' => 3,
             'author' => 3,
             'isDone' => 1,
-            'priority' => 2,
+            'isFave' => 2,
             'time' => ''
         ]);
 
@@ -62,15 +61,15 @@ class m150705_091355_tasks extends Migration
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 1,
-            'name' => 'Работа',
             'userId' => 1,
+            'name' => 'Работа',
             'badgeColor' => '#0074D9',
         ]);
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 3,
-            'name' => 'Семья',
             'userId' => 3,
+            'name' => 'Семья',
             'badgeColor' => '#2ECC40',
         ]);
 
@@ -82,7 +81,7 @@ class m150705_091355_tasks extends Migration
         ]);
 
         if ($this->db->driverName === 'mysql') {
-            $this->addForeignKey('fk_cat', '{{%tasks}}', 'category', '{{%tasks_cat}}', 'id', 'cascade', 'cascade');
+            $this->addForeignKey('fk_cat', '{{%tasks}}', 'list', '{{%tasks_cat}}', 'id', 'cascade', 'cascade');
         }
     }
 

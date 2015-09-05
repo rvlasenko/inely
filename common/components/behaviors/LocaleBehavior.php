@@ -27,9 +27,7 @@ class LocaleBehavior extends Behavior
      */
     public function events()
     {
-        return [
-            Application::EVENT_BEFORE_REQUEST => 'beforeRequest'
-        ];
+        return [ Application::EVENT_BEFORE_REQUEST => 'beforeRequest' ];
     }
 
     /**
@@ -37,20 +35,17 @@ class LocaleBehavior extends Behavior
      */
     public function beforeRequest()
     {
-        if (Yii::$app->getRequest()->getCookies()
-                     ->has($this->cookieName) && !Yii::$app->session->hasFlash('forceUpdateLocale')
-        ) {
+        if (Yii::$app->getRequest()->getCookies()->has($this->cookieName) && !Yii::$app->session->hasFlash('forceUpdateLocale')) {
             $userLocale = Yii::$app->getRequest()->getCookies()->getValue($this->cookieName);
-        }
-        else {
+        } else {
             $userLocale = Yii::$app->language;
             if (!Yii::$app->user->isGuest && Yii::$app->user->identity->userProfile->locale) {
                 $userLocale = Yii::$app->user->getIdentity()->userProfile->locale;
-            }
-            elseif ($this->enablePreferredLanguage) {
+            } elseif ($this->enablePreferredLanguage) {
                 $userLocale = Yii::$app->request->getPreferredLanguage($this->getAvailableLocales());
             }
         }
+
         Yii::$app->language = $userLocale;
     }
 

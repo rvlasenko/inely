@@ -54,6 +54,7 @@ var Core = function (options) {
 
     }
 
+
     // Delayed Animations
     var runAnimations = function () {
 

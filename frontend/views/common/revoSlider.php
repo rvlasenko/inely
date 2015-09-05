@@ -1,10 +1,5 @@
 <section id="slider" class="slider-parallax revoslider-wrap clearfix">
 
-    <!--
-    #################################
-        - THEMEPUNCH BANNER -
-    #################################
-    -->
     <div class="tp-banner-container">
         <div class="tp-banner">
             <ul>

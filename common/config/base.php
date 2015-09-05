@@ -72,8 +72,8 @@ $config = [
         'availableLocales' => [
             'en-US' => 'English',
             'ru-RU' => 'Русский'
-        ],
-    ],
+        ]
+    ]
 ];
 
 if (YII_ENV_PROD) {

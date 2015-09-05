@@ -56,8 +56,9 @@ class m140703_123000_user extends Migration
             'firstname' => $this->string(),
             'lastname' => $this->string(),
             'gender' => $this->string(10),
-            'mascot_name' => $this->string(),
-            'mascot_url' => $this->string(),
+            'user_char_name' => $this->string(),
+            'user_char_path' => $this->string(),
+            'def_char_name' => $this->string(),
             'locale' => $this->string(12)->notNull(),
         ], $tableOptions);
 

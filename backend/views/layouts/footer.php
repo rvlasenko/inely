@@ -1,6 +1,16 @@
-<?php $this->registerJs('$(".user-mascot").addClass("horo")') ?>
-<?php $this->registerJs('$(".user-level").attr("src", "images/levels/first-48.png")') ?>
-<?php $this->registerJs('$(".user-level").attr("title", "Уровень 1")') ?>
+<?php
+
+//print_r(Yii::$app->params['userChar']);
+//$char = isset($this->params['user']['charClass']['default']) ?
+//    $this->params['user']['charClass']['default'] :
+//    $this->params['user']['charClass']['own'];
+//
+//echo $char;
+
+$this->registerJs('$(".user-mascot").addClass("horo")');
+$this->registerJs('$(".user-level").attr("src", "images/levels/first-48.png")');
+$this->registerJs('$(".user-level").attr("title", "Уровень 1")');
+?>
 
 <footer id="content-footer">
     <div class="row">

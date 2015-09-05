@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\HttpException;
 use yii\db\ActiveRecord;
 
 /**
@@ -12,7 +13,9 @@ use yii\db\ActiveRecord;
  * @property integer $locale
  * @property string  $firstname
  * @property string  $lastname
- * @property string  $mascot_path
+ * @property string  $user_char_path
+ * @property string  $user_char_name
+ * @property string  $def_char_name
  * @property string  $picture
  * @property integer $gender
  *
@@ -34,7 +37,7 @@ class UserProfile extends ActiveRecord
             [ [ 'user_id' ], 'required' ],
             [ [ 'user_id', 'gender' ], 'integer' ],
             [ [ 'gender' ], 'in', 'range' => [ self::GENDER_FEMALE, self::GENDER_MALE ] ],
-            [ [ 'firstname', 'lastname', 'mascot_path', 'mascot_name' ], 'string', 'max' => 255 ],
+            [ [ 'firstname', 'lastname', 'def_char_name', 'user_char_name', 'user_char_name' ], 'string', 'max' => 255 ],
             [ 'locale', 'default', 'value' => Yii::$app->language ],
             [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ]
         ];
@@ -60,8 +63,16 @@ class UserProfile extends ActiveRecord
         return null;
     }
 
-    public function getMascot()
+    public function getChar()
     {
-        return $this->mascot_path;
+        $user = UserProfile::findOne([ Yii::$app->user->id ]);
+
+        if ($user->user_char_path !== null || $user->user_char_name !== null) {
+            return [ 'own' => $user->user_char_path ];
+        } elseif ($user->def_char_name !== null) {
+            return [ 'default' => $user->def_char_name ];
+        } else {
+            throw new HttpException(500, 'Unable to detect user character');
+        }
     }
 }

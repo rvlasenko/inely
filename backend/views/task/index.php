@@ -17,8 +17,7 @@ $this->registerJs("modal('/todo/cat', '#modal-slideleft', false)");
 
 <div class="main-content">
 
-    <?=
-    SideNav::widget([
+    <?= SideNav::widget([
         'type' => SideNav::TYPE_DEFAULT,
         'heading' => Html::a('<i class="pull-right fa fa-cog"></i>Категории', [ '#' ], [
             'class' => 'edit',
@@ -30,14 +29,8 @@ $this->registerJs("modal('/todo/cat', '#modal-slideleft', false)");
         'encodeLabels' => false,
         'indItem' => false,
         'items' => Task::getItems()
-    ]);
-    ?>
+    ]) ?>
 
-    <div class="topbar">
-        <?= $this->render('//common/topbar.php') ?>
-    </div>
-
-    <div class="page-content page-thin">
         <div class="task-index">
 
             <?php
@@ -207,8 +200,4 @@ $this->registerJs("modal('/todo/cat', '#modal-slideleft', false)");
             ]);
             ?>
         </div>
-        <div class="footer">
-            <?= $this->render('//common/footer.php') ?>
-        </div>
     </div>
-</div>

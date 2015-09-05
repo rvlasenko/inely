@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <!-- Admin-panels -->
 <div class="admin-panels fade-onload sb-l-o-full">
 
@@ -29,25 +34,13 @@
                             <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
                                 <tbody>
                                 <tr>
-                                    <td>
-                                        <i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>Coins earned</span>
-                                    </td>
-                                    <td>1,926</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Coins earned</span></td><td>1,926</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>Experience Points</span>
-                                    </td>
-                                    <td>1,254</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Experience Points</span></td><td>1,254</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>Tasks completed</span>
-                                    </td>
-                                    <td>783</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Tasks completed</span></td><td>783</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -57,18 +50,10 @@
                             <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
                                 <tbody>
                                 <tr>
-                                    <td>
-                                        <i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>Happiness</span>
-                                    </td>
-                                    <td>50%</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Happiness</span></td><td>50%</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <i class="fa fa-circle text-warning fs8 pr15"></i>
-                                        <span>Time with you</span>
-                                    </td>
-                                    <td>1 hour</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Time with you</span></td><td>1 hour</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -78,26 +63,19 @@
                         <div class="col-md-3">
                             <h5 class="mt5 ph10 mbn pb5 br-b fw700">Tags Cloud</h5>
                             <ul class="list-group mbn">
-                                <li class="list-group-item">
-                                    <span class="badge badge-success">9</span>
-                                    Movies
-                                </li>
-                                <li class="list-group-item">
-                                    <span class="badge badge-info">11</span>
-                                    TV Shows
-                                </li>
-                                <li class="list-group-item">
-                                    <span class="badge badge-warning">18</span>
-                                    Celebs &amp; Gossip
-                                </li>
-                                <li class="list-group-item">
-                                    <span class="badge badge-danger">22</span>
-                                    Video Games
-                                </li>
-                                <li class="list-group-item">
-                                    <span class="badge badge-alert">9</span>
-                                    Sports &amp; Events
-                                </li>
+
+                                <li class="list-group-item"><span class="badge badge-dark">9</span>Movies</li>
+                                <li class="list-group-item"><span class="badge badge-dark">11</span>TV Shows</li>
+                                <li class="list-group-item"><span class="badge badge-dark">22</span>Video Games</li>
+
+                            </ul>
+                            <h5 class="mt5 ph10 mbn pb5 br-b fw700">Groups Cloud</h5>
+                            <ul class="list-group mbn">
+
+                                <li class="list-group-item"><span class="badge badge-info">9</span>Movies</li>
+                                <li class="list-group-item"><span class="badge badge-info">11</span>TV Shows</li>
+                                <li class="list-group-item"><span class="badge badge-info">22</span>Video Games</li>
+
                             </ul>
                         </div>
 
@@ -122,9 +100,7 @@
 
             <!-- Weather -->
             <div class="panel" id="p11">
-                <div class="panel-heading">
-                    <span class="panel-title">Pie Chart</span>
-                </div>
+                <div class="panel-heading"><span class="panel-title">Pie Chart</span></div>
                 <div class="panel-menu pn bg-white">
                     <ul class="nav nav-justified text-center fw600 chart-legend">
                         <li><a href="#" class="legend-item" data-chart-id="0">Yahoo</a></li>
@@ -137,8 +113,7 @@
                     <div id="high-pie" style="width: 100%; height: 200px; margin: 0 auto;"></div>
                 </div>
                 <div class="panel-footer p15">
-                    <p class="text-muted text-center mbn">A percent measure of tickets with
-                        <b class="text-info">first</b> reply time</p>
+                    <p class="text-muted text-center mbn">A percent measure of tickets with <b class="text-info">first</b> reply time</p>
                 </div>
             </div>
 
@@ -150,13 +125,13 @@
             <div class="panel panel-widget task-widget ui-sortable" id="41">
                 <div class="panel-heading cursor">
                 <span class="panel-icon"><i class="fa fa-cog"></i></span>
-                    <span class="panel-title"> Task-List Widget</span>
+                    <span class="panel-title">Task-List Widget</span>
                 </div>
                 <div class="panel-body pn">
 
                     <ul class="task-list task-current">
                         <li class="task-label">Current Tasks</li>
-                        <li class="task-item info ui-sortable-handle">
+                        <li class="task-item low ui-sortable-handle">
                             <div class="task-handle">
                                 <div class="checkbox-custom">
                                     <input type="checkbox" id="task3">
@@ -166,7 +141,7 @@
                             <div class="task-desc">Finish building prototype for Sony</div>
                             <div class="task-menu"></div>
                         </li>
-                        <li class="task-item warning ui-sortable-handle">
+                        <li class="task-item high ui-sortable-handle">
                             <div class="task-handle">
                                 <div class="checkbox-custom">
                                     <input type="checkbox" id="task4">
@@ -176,7 +151,7 @@
                             <div class="task-desc">Order new building supplies for Microsoft</div>
                             <div class="task-menu"></div>
                         </li>
-                        <li class="task-item system ui-sortable-handle">
+                        <li class="task-item low ui-sortable-handle">
                             <div class="task-handle">
                                 <div class="checkbox-custom">
                                     <input type="checkbox" id="task5">
@@ -190,7 +165,7 @@
 
                     <ul class="task-list task-completed">
                         <li class="task-label">Completed Tasks</li>
-                        <li class="task-item danger item-checked ui-sortable-handle">
+                        <li class="task-item medium item-checked ui-sortable-handle">
                             <div class="task-handle">
                                 <div class="checkbox-custom">
                                     <input type="checkbox" checked="" id="task7">
@@ -200,7 +175,7 @@
                             <div class="task-desc">Finish building prototype for Sony</div>
                             <div class="task-menu"></div>
                         </li>
-                        <li class="task-item system item-checked ui-sortable-handle">
+                        <li class="task-item low item-checked ui-sortable-handle">
                             <div class="task-handle">
                                 <div class="checkbox-custom">
                                     <input type="checkbox" checked="" id="task8">
@@ -210,7 +185,7 @@
                             <div class="task-desc">Order new building supplies for Microsoft</div>
                             <div class="task-menu"></div>
                         </li>
-                        <li class="task-item info item-checked ui-sortable-handle">
+                        <li class="task-item high item-checked ui-sortable-handle">
                             <div class="task-handle">
                                 <div class="checkbox-custom">
                                     <input type="checkbox" checked="" id="task10">
@@ -231,9 +206,7 @@
                     <span class="panel-icon"><i class="fa fa-pencil"></i></span>
                     <span class="panel-title">Note editor</span>
                 </div>
-                <div class="panel-body">
-                    <div class="summernote">Coming <b>Soon...</b></div>
-                </div>
+                <div class="panel-body"><div class="summernote">Coming <b>Soon...</b></div></div>
             </div>
 
         </div>

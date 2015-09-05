@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ *
+ */
+
 use yii\helpers\Html;
 
 /**
@@ -42,7 +50,7 @@ $this->registerJs('$("#fin").click(function () { myDropzone.processQueue() })');
 
 <body class="dashboard-page boxed-layout sb-l-c">
 
-<?= $this->render('//common/header') ?>
+<?= $this->render('header') ?>
 
 <!-- Start: Main -->
 <div id="main">
@@ -77,15 +85,11 @@ $this->registerJs('$("#fin").click(function () { myDropzone.processQueue() })');
 
         $(".panel-tabs li:first-child").removeClass("active");
 
-        $("#own").click(function () {
-            $(".char-f").slideUp();
-            $(".char-t").fadeIn(1000);
-        });
+        // Upload page
+        $("#own").click(function () { $(".char-f").fadeOut(); $(".char-t").fadeIn(1000) });
 
-        $("#start").click(function () {
-            $(".char-t").slideUp();
-            $(".char-f").fadeIn(1000);
-        });
+        // Welcome page
+        $("#start").click(function () { $(".char-t").fadeOut(); $(".char-f").fadeIn(1000) });
 
         (function () {
 

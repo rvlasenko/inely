@@ -75,9 +75,6 @@ $this->registerAssetBundle('backend\assets\BootstrapJsAsset', $this::POS_END);
         // Init Theme Core
         Core.init();
 
-        // Init Demo JS
-        Demo.init();
-
         // Init CanvasBG and pass target starting location
         CanvasBG.init({
             Loc: {

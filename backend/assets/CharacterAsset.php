@@ -17,7 +17,7 @@ class CharacterAsset extends AssetBundle
     public $css = [
 
         // Font CSS (Via CDN)
-        'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic',
+        'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic',
 
         // Snap SVG
         'vendor/plugins/svg/component.css',

@@ -3,9 +3,10 @@
 <header class="navbar bg-light">
     <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
         <li class="active"><a href="/">Dashboard</a></li>
-        <li class=""><a href="/calendar">Calendar</a></li>
-        <li class=""><a href="/todo">Tasks</a></li>
-        <li class=""><a href="/support">Support</a></li>
+        <li><a href="/calendar">Calendar</a></li>
+        <li><a href="/todo">Tasks</a></li>
+        <li><a href="/todo2">Tasks2</a></li>
+        <li><a href="/support">Support</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
@@ -20,13 +21,10 @@
                 </li>
                 <li class="p10 br-t item-1">
                     <div class="media">
-                        <a class="media-left" href="#">
-                            <img src="images/avatars/4.jpg" class="mw40" alt="holder-img"> </a>
+                        <a class="media-left" href="#"><img src="images/avatars/4.jpg" class="mw40" alt="holder-img"> </a>
 
                         <div class="media-body va-m">
-                            <h5 class="media-heading mv5">Article
-                                <small class="text-muted">- 08/16/22</small>
-                            </h5>
+                            <h5 class="media-heading mv5">Article<small class="text-muted">- 08/16/22</small></h5>
                             Last Updated 36 days ago by
                             <a class="text-system" href="#"> Max </a>
                         </div>
@@ -34,13 +32,10 @@
                 </li>
                 <li class="p10 br-t item-2">
                     <div class="media">
-                        <a class="media-left" href="#">
-                            <img src="images/avatars/4.jpg" class="mw40" alt="holder-img"> </a>
+                        <a class="media-left" href="#"><img src="images/avatars/4.jpg" class="mw40" alt="holder-img"> </a>
 
                         <div class="media-body va-m">
-                            <h5 class="media-heading mv5">Article
-                                <small class="text-muted">- 08/16/22</small>
-                            </h5>
+                            <h5 class="media-heading mv5">Article<small class="text-muted">- 08/16/22</small></h5>
                             Last Updated 36 days ago by
                             <a class="text-system" href="#"> Max </a>
                         </div>

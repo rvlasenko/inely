@@ -49,7 +49,7 @@ return [
     /**
      * Intro Section
      */
-    'Welcome! This is <span>Inely</span>' => 'Добро пожаловать! Это Inely',
+    'Welcome! This is <span class="tright">Inely</span>' => 'Добро пожаловать! Это <span class="tright">Inely</span>',
     'Try Now' => 'Попробуйте сейчас!',
     'Manage your personal goals, your projects, etc. in one place. Our task-manager designed to adapt to all needs. Inely will not give you get bored.' => 'Отслеживайте личные задачи, планируйте проекты, и всё остальное в одном месте. Наш task-manager подходит для любой цели. Inely не даст Вам заскучать.',
 
@@ -107,7 +107,8 @@ return [
     /**
      * Footer
      */
-    'Crafted with love by rootkit.' => 'Созданный с любовью от rootkit.',
+    'Crafted with <img src="http://shirta.com/media/catalog/product/cache/2/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pixel-heart-broken-d75686826.png" style="width: 1.7em;"> by rootkit.'
+        => 'Создан с <img src="http://shirta.com/media/catalog/product/cache/2/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pixel-heart-broken-d75686826.png" style="width: 1.7em;"> от rootkit.',
     'Coins earned' => 'Заработано монет',
     'Tasks performed' => 'Выполнено задач',
     'Client Testimonials' => 'Отзывы пользователей',

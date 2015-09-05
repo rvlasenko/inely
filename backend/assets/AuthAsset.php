@@ -45,8 +45,7 @@ class AuthAsset extends AssetBundle
 
         // Theme Javascript
         'js/utility.js',
-        'js/main.js',
-        'js/demo.js'
+        'js/main.js'
     ];
 
     public $jsOptions = [ 'position' => View::POS_END ];

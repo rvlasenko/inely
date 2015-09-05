@@ -2754,7 +2754,7 @@ body:not(.device-touch) .social-icon i {
 .desc {
     position:   absolute;
     top:        0;
-    left:       0;
+    left:       10em;
     width:      100%;
     height:     100%;
     background: transparent url('/images/ipad-section.png') bottom right no-repeat;

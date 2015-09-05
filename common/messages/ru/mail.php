@@ -17,7 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-
     'Hi, {username}!' => 'Привет, {username}!',
     'Welcome to Inely - User account activation' => 'Добро пожаловать в Inely - Активация аккаунта',
     'Your user account with the e-mail address {email} has been created.' => 'Твоя учетная запись с адресом {email} была успешно создана.',
@@ -28,5 +27,4 @@ return [
     'If you don\'t want to change your password or didn\'t request this, just ignore and delete this message.' => 'Если вы не хотите менять свой пароль или не запрашивали его изменение, просто игнорируйте или удалите это письмо.',
     'Reset password' => 'Сбросить пароль',
     'Inely password reset' => 'Сброс пароля для Inely'
-
 ];

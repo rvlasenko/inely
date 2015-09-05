@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Setup application environment
- */
-
 Dotenv::load(__DIR__ . '/..');
 
 defined('YII_DEBUG') or define('YII_DEBUG', getenv('YII_DEBUG') === 'true');

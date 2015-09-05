@@ -4,14 +4,14 @@ namespace backend\controllers;
 
 use backend\models\Task;
 use backend\models\TaskCat;
+use common\models\UserProfile;
 use backend\models\search\TaskSearch;
 use Yii;
-use yii\db\Query;
+use yii\filters\AccessControl;
 use yii\web\Response;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\widgets\ActiveForm;
-use yii\filters\AccessControl;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -22,13 +22,6 @@ use yii\filters\VerbFilter;
 class TaskController extends Controller
 {
 
-    /**
-     * Guests will not need tasks
-     *
-     * Delete allow only post method
-     *
-     * Enable html caching (index, view)
-     */
     public function behaviors()
     {
         return [
@@ -36,32 +29,29 @@ class TaskController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => [ 'todo' ],
+                        'allow' => true,
+                        'roles' => [ '@' ]
+                    ],
+                    [
+                        'actions' => [ 'second' ],
                         'allow' => false,
                         'roles' => [ '?' ],
                         'denyCallback' => function () {
-                            return Yii::$app->controller->redirect([ 'login' ]);
+                            return $this->redirect([ '/login' ]);
                         }
                     ]
                 ]
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => [ 'post' ],
-                ],
-            ],
-            [
-                'class' => 'yii\filters\HttpCache',
-                'only' => [
-                    'index', 'view'
-                ],
-                'lastModified' => function() {
-                    $q = new Query();
-                    return $q->from('tasks')->max('time');
-                },
-            ],
+                'actions' => [ 'delete' => [ 'post' ] ]
+            ]
         ];
+    }
+
+    public function actionSecond()
+    {
+        return $this->render('second');
     }
 
     /**
@@ -74,6 +64,7 @@ class TaskController extends Controller
         $searchModel = new TaskSearch();
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        Yii::$app->params['userChar'] = (new UserProfile)->getChar();
 
         if (Yii::$app->request->post('hasEditable')) {
             $post   = [ ];
@@ -82,9 +73,7 @@ class TaskController extends Controller
 
             $post[ 'Task' ] = current($_POST[ 'Task' ]);
 
-            if ($model->load($post)) {
-                $model->save();
-            }
+            if ($model->load($post)) $model->save();
 
             return true;
         }

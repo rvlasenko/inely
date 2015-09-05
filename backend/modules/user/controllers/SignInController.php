@@ -62,7 +62,7 @@ class SignInController extends Controller
                         'allow' => false,
                         'roles' => [ '@' ],
                         'denyCallback' => function() {
-                            return Yii::$app->controller->redirect([ '/' ]);
+                            return $this->redirect([ '/' ]);
                         }
                     ],
                     [

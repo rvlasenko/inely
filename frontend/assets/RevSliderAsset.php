@@ -2,7 +2,6 @@
 
 /**
  * @author  Copyright (c) 2015 rootkit
- * @license for slider - extended
  */
 
 namespace frontend\assets;

@@ -9,9 +9,9 @@ use yii\web\Controller;
 
 class SiteController extends Controller
 {
-
     /**
-     * Активизация кэширования страниц продолжительностью один день, установка локали
+     * Activation page caching for a period of one day
+     * Set locale from SetLocaleAction class
      */
     public function actions()
     {
@@ -33,7 +33,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Перенаправление всех пользователей на форму входа, если их статус авторизации неопределён
+     * When the user is detected as guest, he's directed to the login page
      * @return string
      */
     public function actionIndex()
@@ -44,6 +44,9 @@ class SiteController extends Controller
             if (Yii::$app->user->identity->status == User::STATUS_UNCONFIRMED) {
                 $this->redirect('/welcome');
             } else {
+                // Define user character and set like a global var
+                Yii::$app->params['userChar'] = (new UserProfile)->getChar();
+
                 return $this->render('index');
             }
         }
@@ -52,7 +55,9 @@ class SiteController extends Controller
     /**
      * Finds the Page model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param integer $id
+     *
      * @return Page the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

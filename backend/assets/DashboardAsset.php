@@ -46,8 +46,9 @@ class DashboardAsset extends AssetBundle
         // Notification
         'vendor/plugins/noty/packaged/jquery.noty.packaged.min.js',
 
-        // Admin Panels
+        // Admin Panels & Dock
         'tools/panels/adminpanels.js',
+        'tools/dock/dockmodal.js',
 
         // Summernote
         'vendor/plugins/summernote/summernote.min.js',

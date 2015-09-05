@@ -3,7 +3,6 @@
     <div class="container clearfix">
 
         <div id="section-intro" class="divcenter center clearfix" style="max-width: 900px;">
-            <img class="bottommargin" src="images/logo-side.png" alt="">
             <h1><?= Yii::t('frontend', 'Welcome! This is <span class="tright">Inely</span>') ?></h1>
             <h2><?= Yii::t('frontend', 'Manage your personal goals, your projects, etc. in one place. Our task-manager designed to adapt to all needs. Inely will not give you get bored.') ?></h2>
             <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-3d button-large"><?= Yii::t('frontend', 'Try Now') ?></a>
@@ -29,8 +28,6 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maiores pariatur voluptatem placeat laborum iste accusamus nam unde, iure id.</p>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet cumque, perferendis accusamus porro illo exercitationem molestias, inventore obcaecati ut omnis voluptatibus ratione odio amet magnam quidem tempore necessitatibus quaerat, voluptates excepturi voluptatem, veritatis qui temporibus.</p>
-
-                <a href="#" class="button button-border button-rounded button-large button-dark noleftmargin">Start Trial</a>
 
             </div>
 

@@ -6,9 +6,6 @@ use frontend\models\ContactForm;
 use Yii;
 use yii\web\Controller;
 
-/**
- * Основной контроллер
- */
 class SiteController extends Controller
 {
     public function actions()

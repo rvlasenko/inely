@@ -1,4 +1,4 @@
-# Этот .htaccess поможет сделать ваш сайт быстрей.
+    # Этот .htaccess поможет сделать ваш сайт быстрей.
 # Пользуйтесь на здоровье себе и вашему сайту.
 
 Options All -Indexes -Includes +FollowSymLinks
@@ -101,9 +101,6 @@ ServerSignature Off
 	</FilesMatch>
 	<FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
 		Header unset Cache-Control
-	</FilesMatch>
-	<FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
-		Header set Access-Control-Allow-Origin "*"
 	</FilesMatch>
 	<FilesMatch "\.(js|css|gif|png|jpe?g|pdf|xml|oga|ogg|m4a|ogv|mp4|m4v|webm|svg|svgz|eot|ttf|otf|woff|ico|webp|appcache|manifest|htc|crx|oex|xpi|safariextz|vcf)$">
 		Header unset X-UA-Compatible

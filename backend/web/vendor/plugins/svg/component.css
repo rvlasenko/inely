@@ -43,7 +43,7 @@
 }
 
 .grid figcaption h2 {
-    margin: 0 0 20px 0;
+    margin: 0 0 5px 0;
     color: #3498db;
     letter-spacing: 1px;
     font-weight: 300;
@@ -52,7 +52,6 @@
 }
 
 .grid figcaption p {
-    padding: 0 20px;
     color: #aaa;
     font-weight: 300;
     -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
