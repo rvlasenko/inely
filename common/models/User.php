@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\models\Task;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -259,6 +260,14 @@ class User extends ActiveRecord implements IdentityInterface
         $profile->load($profileData, '');
 
         $this->link('userProfile', $profile);
+
+        // Add default task
+        $model = new Task();
+        $model->author = $profileData[ 'id' ];
+        $model->name = Yii::t('backend', 'Try Inely');
+        $model->priority = 'medium';
+        $model->list = 2;
+        $model->save();
 
         // Default role
         $auth = Yii::$app->authManager;

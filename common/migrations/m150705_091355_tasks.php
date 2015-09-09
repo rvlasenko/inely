@@ -19,7 +19,9 @@ class m150705_091355_tasks extends Migration
             'author' => $this->integer(50)->notNull(),
             'isDone' => $this->integer(1),
             'isFave' => $this->integer(1),
-            'time' => $this->string(15)
+            'due' => $this->string(10),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
         ], $tableOptions);
 
         $this->insert('{{%tasks}}', [
@@ -29,7 +31,9 @@ class m150705_091355_tasks extends Migration
             'author' => 1,
             'isDone' => 0,
             'isFave' => 1,
-            'time' => ''
+            'due' => null,
+            'created_at' => time(),
+            'updated_at' => time()
         ]);
 
         $this->insert('{{%tasks}}', [
@@ -39,7 +43,9 @@ class m150705_091355_tasks extends Migration
             'author' => 2,
             'isDone' => 0,
             'isFave' => 0,
-            'time' => ''
+            'due' => null,
+            'created_at' => time(),
+            'updated_at' => time()
         ]);
 
         $this->insert('{{%tasks}}', [
@@ -47,36 +53,38 @@ class m150705_091355_tasks extends Migration
             'name' => 'Покинь борды, стань альфой',
             'list' => 3,
             'author' => 3,
-            'isDone' => 1,
+            'isDone' => 0,
             'isFave' => 2,
-            'time' => ''
+            'due' => null,
+            'created_at' => time(),
+            'updated_at' => time()
         ]);
 
         $this->createTable('{{%tasks_cat}}', [
             'id' => $this->primaryKey(),
             'userId' => $this->integer(100),
-            'name' => $this->string(100),
+            'listName' => $this->string(100),
             'badgeColor' => $this->string(7)
         ], $tableOptions);
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 1,
             'userId' => 1,
-            'name' => 'Работа',
+            'listName' => 'Работа',
             'badgeColor' => '#0074D9',
         ]);
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 3,
             'userId' => 3,
-            'name' => 'Семья',
+            'listName' => 'Семья',
             'badgeColor' => '#2ECC40',
         ]);
 
         $this->insert('{{%tasks_cat}}', [
             'id' => 2,
             'userId' => 2,
-            'name' => 'Личное',
+            'listName' => 'Личное',
             'badgeColor' => '#7FDBFF',
         ]);
 

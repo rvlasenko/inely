@@ -1,203 +1,158 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\ActionColumn;
-use kartik\checkbox\CheckboxX;
-use kartik\grid\GridView;
-use kartik\editable\Editable;
-use kartik\datetime\DateTimePicker;
-use kartik\rating\StarRating;
-use kartik\sidenav\SideNav;
-use backend\models\Task;
+use common\components\widgets\TaskWidget;
 
-$this->title = 'Ваши задачи';
-$this->registerJs("modal('/task/create', '#modal-add', false)");
-$this->registerJs("modal('/todo/cat', '#modal-slideleft', false)");
+$this->registerCssFile('tools/dock/dockmodal.css');
+$this->registerCssFile('tools/forms/admin-forms.css');
+$this->registerJsFile('js/cbpFWTabs.js');
+$this->registerJs('
+(function() {
+    [].slice.call(document.querySelectorAll(".tabs")).forEach(function(el) {
+        new CBPFWTabs(el);
+    });
+})();');
+
 ?>
 
-<div class="main-content">
+<!-- begin: .tray-left -->
+<aside class="tray tray-left va-t tray250">
+    <!-- Quick Compose Button -->
+    <button id="quick-compose" type="button" class="btn btn-danger light btn-block fw600 hint--bottom hint--bounce" data-hint="Alt+Q">Quick Task</button>
 
-    <?= SideNav::widget([
-        'type' => SideNav::TYPE_DEFAULT,
-        'heading' => Html::a('<i class="pull-right fa fa-cog"></i>Категории', [ '#' ], [
-            'class' => 'edit',
-            'data' => [
-                'toggle' => 'modal',
-                'target' => '#modal-slideleft'
-            ]
-        ]),
-        'encodeLabels' => false,
-        'indItem' => false,
-        'items' => Task::getItems()
-    ]) ?>
+    <!-- Menu -->
+    <div class="list-group list-group-links"><div class="list-group-header"></div></div>
 
-        <div class="task-index">
+    <div class="list-group list-group-links" id="sideInfo">
+        <div class="list-group-header">Home<span class="pull-right">(3 tasks)</span></div>
+        <a href="#" class="list-group-item pt15 prn">Due today<span class="badge badge-info fs11">0</span></a>
+        <a href="#" class="list-group-item prn">Due tommorrow<span class="badge badge-info fs11">0</span></a>
 
-            <?php
-            $gridColumns = [
-                [
-                    'attribute' => 'isDone',
-                    'format' => 'raw',
-                    'width' => '65px',
-                    'filterType' => GridView::FILTER_CHECKBOX_X,
-                    'value' => function ($model) {
-                        return CheckboxX::widget([
-                            'name' => 'checked',
-                            'value' => $model->isDone,
-                            'pluginOptions' => [
-                                'threeState' => false,
-                                'size' => 'md',
-                                'iconChecked' => Html::tag('i', '', [ 'class' => 'glyphicon glyphicon-ok' ])
-                            ],
-                        ]);
-                    }
-                ],
-                [
-                    'class' => 'kartik\grid\EditableColumn',
-                    'attribute' => 'name',
-                    'editableOptions' => [
-                        'asPopover' => false,
-                        'buttonsTemplate' => '{submit}',
-                        'inputType' => Editable::INPUT_TEXT,
-                        'inlineSettings' => [
-                            'closeButton' => Html::button(Html::tag('i', '', [ 'class' => 'glyphicon glyphicon-remove' ]), [
-                                'class' => 'btn btn-sm btn-danger kv-editable-close',
-                                'title' => 'Применить',
-                                'type' => 'button'
-                            ]),
-                            'options' => [ 'class' => null ]
-                        ]
-                    ],
-                ],
-                [
-                    'attribute' => 'time',
-                    'format' => 'raw',
-                    'width' => '280px',
-                    'value' => function ($model) {
-                        $formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'UTC');
-                        $formatter->setPattern('dd MMMM yyyy H:mm');
-                        $format   = new DateTime();
-                        $dateTime = $formatter->format($format->setTimestamp((int)$model->time));
-
-                        return DateTimePicker::widget([
-                            'name' => 'datetime',
-                            'value' => $dateTime,
-                            'language' => 'ru',
-                            'removeButton' => false,
-                            'convertFormat' => true,
-                            'pickerButton' => [ 'icon' => 'time' ],
-                            'options' => [
-                                'placeholder' => 'Не забыть до..',
-                                'style' => 'min-width: 155px'
-                            ],
-                            'pluginOptions' => [
-                                'autoclose' => true,
-                                'todayBtn' => true,
-                                'todayHighlight' => true,
-                                'minuteStep' => 10,
-                                'format' => 'dd MMMM yyyy H:mm',
-                                'weekStart' => 1,
-                                'startDate' => '2015-01-01',
-                            ],
-                            'pluginEvents' => [
-                                'changeDate' => "function(ev) {
-                                    sendDateTime(ev);
-                                }"
-                            ]
-                        ]);
-                    }
-                ],
-                [
-                    'attribute' => 'priority',
-                    'format' => 'raw',
-                    'width' => '130px',
-                    'filterType' => GridView::FILTER_STAR,
-                    'filterWidgetOptions' => [
-                        'pluginOptions' => [
-                            'size' => 'xs',
-                            'step' => 1,
-                            'stars' => 4,
-                            'min' => 0,
-                            'max' => 4
-                        ],
-                    ],
-                    'value' => function ($model) {
-                        return StarRating::widget([
-                            'model' => $model,
-                            'name' => 'priority',
-                            'value' => $model->priority,
-                            'pluginOptions' => [
-                                'size' => 'xs',
-                                'step' => 1,
-                                'stars' => 4,
-                                'min' => 0,
-                                'max' => 4
-                            ],
-                            'pluginEvents' => [
-                                'rating.change' => "function(ev, val) {
-                                    sendRating(ev, val);
-                                }"
-                            ]
-                        ]);
-                    }
-                ],
-                [
-                    'class' => ActionColumn::className(),
-                    'template' => '{delete}',
-                    'header' => 'Действия',
-                    'options' => [ 'style' => 'width: 90px' ]
-                ]
-            ];
-            ?>
-
-            <?=
-            GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => $gridColumns,
-                'responsive' => true,
-                'responsiveWrap' => true,
-                'resizableColumns' => false,
-                'hover' => true,
-                'export' => false,
-                'pjax' => true,
-                'pjaxSettings' => [
-                    'neverTimeout' => true,
-                    'loadingCssClass' => false,
-                    'options' => [ 'id' => 'pjax-wrapper' ]
-                ],
-                'rowOptions' => function ($model) {
-                    return [ 'style' => $model->isDone ? 'opacity: .5' : true ];
-                },
-                'panel' => [
-                    'heading' => Html::tag('i', null, [ 'class' => 'fa fa-inbox' ]) . Html::tag('span', 'Список задач'),
-                    'type' => GridView::TYPE_PRIMARY,
-                    'footer' => false,
-                    'before' => Html::a('<i class="glyphicon glyphicon-plus"></i>Новая задача', null, [
-                            'class' => 'btn btn-success btn-square add',
-                            'data' => [
-                                'toggle' => 'modal',
-                                'target' => '#modal-add'
-                            ]
-                        ]),
-                    'after' => Html::a('<i class="glyphicon glyphicon-repeat"></i>Сбросить параметры', [ 'index' ], [
-                            'class' => 'btn btn-info btn-square'
-                        ])
-                ],
-                'toolbar' => [ '{toggleData}' ],
-                'toggleDataOptions' => [
-                    'all' => [
-                        'icon' => 'resize-full',
-                        'label' => 'Все записи',
-                        'class' => 'btn btn-info btn-square'
-                    ],
-                    'page' => [
-                        'icon' => 'resize-small',
-                        'label' => 'Страница',
-                        'class' => 'btn btn-info btn-square'
-                    ]
-                ]
-            ]);
-            ?>
-        </div>
+        <a href="#" class="list-group-item pt15 prn">Completed<span class="badge badge-success fs11">0</span></a>
     </div>
+</aside>
+<!-- end: .tray-left -->
+
+<section class="list-tabs">
+    <div class="tabs tabs-style-bar">
+        <nav>
+            <ul>
+                <?= TaskWidget::widget([ 'model' => $model, 'layout' => 'navTabs' ]) ?>
+            </ul>
+        </nav>
+        <div class="content-wrap">
+            <!-- message toolbar header -->
+            <div class="panel-menu br-n">
+                <div class="row">
+                    <div class="hidden-sm col-md-3"></div>
+                    <div class="col-xs-6 col-md-6 pull-right text-right">
+                        <button type="button" class="btn btn-danger light visible-xs-inline-block mr10">Compose</button>
+                        <div class="btn-group mr10">
+                            <button type="button" class="btn btn-default light hidden-xs"><i class="fa fa-folder"></i><i class="fa fa-plus text-success"></i></button>
+                            <button type="button" class="btn btn-default light hidden-xs"><i class="fa fa-folder"></i><i class="fa fa-times text-danger"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 pull-left text-left">
+                        <div class="btn-group mr10">
+                            <button class="btn btn-sm btn-success mr10 mt5 br3"><i class="fa mr5 fa-check"></i>Complete</button>
+                            <button class="btn btn-sm btn-system mt5 mr10 br3"><i class="fa mr5 fa-clock-o"></i>Postpone</button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm mt5 mr10 br3 btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">More Actions...
+                                    <span class="caret ml5"></span>
+                                </button>
+                                <ul class="dropdown-menu animated animated-shorter zoomIn" role="menu">
+                                    <li><a href="#"><i class="fa mr5 fa-clone"></i>Duplicate Task</a></li>
+                                    <li><a href="#"><i class="fa mr5 pr3 fa-trash"></i>Delete Task</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="fa mr5 pr3 text-danger fa-circle"></i>Set Priority High</a></li>
+                                    <li><a href="#"><i class="fa mr5 pr3 text-warning fa-circle"></i>Set Priority Medium</a></li>
+                                    <li><a href="#"><i class="fa mr5 pr3 text-success fa-circle"></i>Set Priority Low</a></li>
+                                    <li><a href="#"><i class="fa mr5 pr3 fa-circle-o"></i>Set No Priority</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section id="section-bar">
+                <!-- begin: .tray-center -->
+                <div class="tray tray-center h1200 pn va-t bg-light">
+                    <div class="panel">
+                        <!-- message listings table -->
+                        <table id="message-table" class="table tc-checkbox-1 admin-form theme-warning br-t">
+                            <tbody id="secAll"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end: .tray-center -->
+            </section>
+            <?= TaskWidget::widget([ 'model' => $model, 'layout' => 'sectionsOwn' ]) ?>
+        </div><!-- /content -->
+    </div><!-- /tabs -->
+</section>
+
+<?= $this->render('create') ?>
+
+<div class="quick-list-form">
+    <form>
+        <input type="text" class="form-control" id="inputName" placeholder="Name of your list" autofocus>
+    </form>
+</div>
+
+<?php
+$main = <<<SCRIPT
+
+    // Open compose task by clicking on Alt+Q
+    function keyDown(e) {
+        if (e.keyCode == 18) alt = true;
+        else if (e.keyCode == 81 && alt) $('#quick-compose').click();
+    }
+
+    // User holds the alt key
+    function keyUp(e) {
+        if (e.keyCode == 17) ctrl = alt;
+    }
+
+    $('ul.panel-tabs li:nth-child(2n+1)').addClass('active');
+    $('ul.panel-tabs li:first-child').removeClass('active');
+    $('.list-tabs').css('padding-top', '3px').css('display', 'block');
+
+    $('#secAll').load('/task/list');
+
+    $(document).on('click', '.message', function() {
+        var taskCheck = $(this).find('input[type=checkbox]');
+
+        $(this).toggleClass('highlight');
+        taskCheck.prop('checked', taskCheck.is(':checked') ? false : true);
+    });
+
+    $('.user-list').click(function () {
+        var thisId = $(this);
+        var tableBody = $('tbody').filter(function () {
+            return $(this).data("key") == thisId.attr('id');
+        });
+
+        $.ajax({
+            type   : "POST",
+            async  : true,
+            dataType: 'html',
+            url    : "/task/list",
+            data   : { list: $(this).attr('id') },
+            success: function (data) {
+                tableBody.html(data);
+            }
+        });
+    });
+
+    $(document).ajaxStart(function () {
+        NProgress.start();
+        setTimeout(function () {
+            NProgress.done();
+            $('.fade').removeClass('out');
+        }, 400);
+    });
+
+SCRIPT;
+
+$this->registerJs($main, $this::POS_END);
+?>

@@ -44,8 +44,8 @@ return [
     'This email address has already been taken' => 'Данный e-mail уже кем-то занят!',
     'There is no user with such email' => 'Пользователь с таким email не зарегистрирован',
     'You\'ll love your Inely' => 'Вам понравится Inely',
-    '...and Your new best friend already waiting for you!' => '...и Ваш новый друг уже ждёт Вас!',
-    'Gamification don\'t let you get bored' => 'Игрофикация не даст вам заскучать',
+    'And your new friend!' => 'И конечно же ваш новый друг!',
+    'Notifications, Lists, Stats...' => 'Уведомления, списки, статистика...',
     'A new look at the task scheduling' => 'Новый взгляд на планирование задач',
     'Manage tasks from anywhere' => 'Управляйте задачами откуда угодно',
     'Please enter your e-mail. It will receive a letter with instructions to reset your password.'
@@ -86,4 +86,11 @@ return [
     'Holo the wise wolf in human form with cute ears and tail. She is very charming and... wise.' => 'Холо мудрый волк в человеческом обличии с хвостом и ушками. Очень очаровательная и... мудрая.',
     'For the best view we recommend PNG format!' => 'Для наилучшего вида рекомендуется png формат!',
     'Enter the name of your character' => 'Как зовут Вашего персонажа?',
+
+    /**
+     * Tasks
+     */
+    'You have no incomplete tasks in this list. Woohoo!' => 'Все задачи в списке выполнены. Поздравляем!',
+    'Try Inely' => 'Попробовать Inely',
+    'until ' => 'до '
 ];

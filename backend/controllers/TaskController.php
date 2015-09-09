@@ -4,24 +4,21 @@ namespace backend\controllers;
 
 use backend\models\Task;
 use backend\models\TaskCat;
-use common\models\UserProfile;
-use backend\models\search\TaskSearch;
+use DateTime;
+use IntlDateFormatter;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
-use yii\web\Response;
-use yii\helpers\Url;
-use yii\web\Controller;
-use yii\widgets\ActiveForm;
-use yii\data\ActiveDataProvider;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * TaskController implements the CRUD actions for Task model.
  */
 class TaskController extends Controller
 {
-
     public function behaviors()
     {
         return [
@@ -33,7 +30,7 @@ class TaskController extends Controller
                         'roles' => [ '@' ]
                     ],
                     [
-                        'actions' => [ 'second' ],
+                        'actions' => [ 'index', 'list' ],
                         'allow' => false,
                         'roles' => [ '?' ],
                         'denyCallback' => function () {
@@ -42,6 +39,24 @@ class TaskController extends Controller
                     ]
                 ]
             ],
+//            [
+//                'class' => 'yii\filters\HttpCache',
+//                'only' => [ 'index', 'list' ],
+//                'lastModified' => function () {
+//                    $q = new Query();
+//                    return $q->from('tasks')->max('updated_at');
+//                },
+//            ],
+//            'pageCache' => [
+//                'class' => 'yii\filters\PageCache',
+//                'only' => [ 'index', 'list' ],
+//                'duration' => 180,
+//                'variations' => [ Yii::$app->language ],
+//                'dependency' => [
+//                    'class' => 'yii\caching\DbDependency',
+//                    'sql' => 'SELECT MAX(updated_at) FROM tasks'
+//                ]
+//            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [ 'delete' => [ 'post' ] ]
@@ -49,144 +64,134 @@ class TaskController extends Controller
         ];
     }
 
-    public function actionSecond()
-    {
-        return $this->render('second');
-    }
-
     /**
-     * Check editable bootstrap ajax request
-     *
+     * Get a task instance, with public attributes
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TaskSearch();
+        $model = TaskCat::find()
+            ->where([ 'userId' => null ])
+            ->orWhere([ 'userId' => Yii::$app->user->id ])
+            ->asArray()->all();
 
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        Yii::$app->params['userChar'] = (new UserProfile)->getChar();
+//                if (Yii::$app->request->post('hasEditable')) {
+//            $post   = [ ];
+//            $taskId = Yii::$app->request->post('editableKey');
+//            $model  = Task::findOne($taskId);
+//
+//            $post[ 'Task' ] = current($_POST[ 'Task' ]);
+//
+//            if ($model->load($post)) $model->save();
+//
+//            return true;
+//        }
 
-        if (Yii::$app->request->post('hasEditable')) {
-            $post   = [ ];
-            $taskId = Yii::$app->request->post('editableKey');
-            $model  = Task::findOne($taskId);
+        return $this->render('index', [ 'model' => $model ]);
+    }
 
-            $post[ 'Task' ] = current($_POST[ 'Task' ]);
+    public function actionSide()
+    {
+        $condition = Yii::$app->request->isPost
+            // If user added the task, then data comes from POST, and we return AJAX html
+            ? [ 'author' => Yii::$app->user->id ]
+            // If user clicked on a category, then FK comes from GET
+            : [ 'author' => Yii::$app->user->id, 'list' =>  Yii::$app->request->get('list') ];
 
-            if ($model->load($post)) $model->save();
+        $tasks = Task::find()->where($condition)->joinWith('tasks_cat')->asArray()->all();
 
-            return true;
-        }
+        $items = <<<SIDE
+        <div class="list-group list-group-links">
+            <div class="list-group-header">Home<span class="pull-right">(3 tasks)</span></div>
+            <a href="#" class="list-group-item pt15 prn">Due today<span class="badge badge-info fs11">0</span></a>
+            <a href="#" class="list-group-item prn">Due tommorrow<span class="badge badge-info fs11">0</span></a>
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel
-        ]);
+            <a href="#" class="list-group-item pt15 prn">Completed<span class="badge badge-success fs11">0</span></a>
+        </div>
+SIDE;
     }
 
     /**
-     * Search record by ID and check is empty
-     *
-     * @return json
+     * @return string|\yii\web\Response
      */
-    public function actionEdit()
+    public function actionList()
     {
-        if ($taskId = Yii::$app->request->post('id')) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
+        $items = '';
+        $condition = Yii::$app->request->isGet
+            // If user added the task, then data comes from POST, and we return AJAX html
+            ? [ 'author' => Yii::$app->user->id ]
+            // If user clicked on a category, then FK comes from GET
+            : [ 'author' => Yii::$app->user->id, 'list' =>  Yii::$app->request->post('list') ];
 
-            $model = Task::findOne($taskId);
+        $tasks = Task::find()->where($condition)->joinWith('tasks_cat')->asArray()->all();
 
-            $dateTime = empty($_POST[ 'time' ]) ? false : $_POST[ 'time' ];
-            $rating   = empty($_POST[ 'rate' ]) ? false : $_POST[ 'rate' ];
+        // If request is not ajax or get, user won't see this page
+        if (count($tasks) && Yii::$app->request->isAjax || Yii::$app->request->isPost) {
+            // Converting timestamp to language date format
+            $formatter = new IntlDateFormatter(Yii::$app->language, IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'UTC');
+            $formatter->setPattern('dd MMMM');
+            $format = new DateTime();
 
-            !$dateTime ? null : $model->time = $dateTime;
-            !$rating ? null : $model->priority = $rating;
+            foreach ($tasks as $task):
+                $checkboxId = rand(1, 100);
 
-            if ($model->save()) {
-                return [
-                    'title' => 'Великолепно!',
-                    'desc' => 'Ваши данные успешно обновлены.',
-                    'icon' => '/images/flat/compose.png'
-                ];
-            }
+                // Some useful variables
+                $isDone   = $task[ 'isDone' ] ? 'done' : 'undone';
+                $taskName = Html::tag('span', $task[ 'name' ]);
+                $taskTag  = isset($task[ 'tagName' ])
+                    ? Html::tag('span', '#' . $task[ 'tasks_cat' ][ 'tagName' ], [ 'class' => 'badge badge-info mr10 fs11' ])
+                    : false;
+
+                $dateTime = $task[ 'isDone' ]
+                    ? false
+                    : Yii::t('backend', 'until ') . $formatter->format($format->setTimestamp((int)$task[ 'due' ]));
+
+                $items .= <<<TASK
+                <tr class="message $isDone pr {$task['priority']}">
+                    <td class="text-center w90">
+                        <label class="option block mn">
+                            <input type="checkbox" class="checkbox" id="checkbox$checkboxId" data-task-id="{$task['id']}" />
+                            <label for="checkbox$checkboxId"></label>
+                        </label>
+                    </td>
+                    <td class="fw600">
+                        $taskTag $taskName
+                    </td>
+                    <td class="text-right">$dateTime</td>
+                </tr>
+TASK;
+            endforeach;
+        } else {
+            if (Yii::$app->request->isGet) return $this->goHome();
+
+            $youHaveNoTasks = Yii::t('backend', 'You have no incomplete tasks in this list. Woohoo!');
+
+            $items = "<tr class='message'><td>$youHaveNoTasks</td></tr>";
         }
-    }
 
-    public function actionSort()
-    {
-        $searchModel = new TaskSearch();
-
-        if (Yii::$app->request->get()) {
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $_GET[ 'TaskSearch' ] ? $_GET[ 'TaskSearch' ][ 'category' ] : false);
-        }
-
-        if (Yii::$app->request->post('hasEditable')) {
-            $post   = [ ];
-            $taskId = Yii::$app->request->post('editableKey');
-            $model  = Task::findOne($taskId);
-
-            $post[ 'Task' ] = current($_POST[ 'Task' ]);
-
-            if ($model->load($post)) {
-                $model->save();
-            }
-
-            return true;
-        }
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel,
-        ]);
-    }
-
-    /**
-     * Displays a single TaskCat model.
-     * @return mixed
-     */
-    public function actionCat()
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => TaskCat::find()->where([ 'userId' => Yii::$app->user->id ]),
-            'sort' => false
-        ]);
-
-        return $this->renderAjax('cat/index', [
-            'dataProvider' => $dataProvider
-        ]);
+        return $items;
     }
 
     /**
-     * Creates a new Task model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Creates a new task.
+     * @return bool|string
+     * @throws HttpException
      */
     public function actionCreate()
     {
         $model = new Task();
 
-        if (Yii::$app->request->isGet && $model->load($_POST)) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->renderAjax('create');
+        } else {
+            // If request is not pjax, user won't see this page
+            if (Yii::$app->request->isAjax) {
+                return $this->renderAjax('create');
+            } else {
+                $this->goHome();
+            }
 
-            return ActiveForm::validate($model);
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->setTask()) {
-            Yii::$app->session->setFlash('alert', [
-                'options' => [
-                    'title' => 'Вы великолепны!',
-                    'img' => 'images/flat/compose.png',
-                    'link' => '',
-                    'linkDesc' => ''
-                ],
-                'body' => 'Задача была успешно добавлена в категорию <strong>&laquo;' . $model->tasks_cat->name . '&raquo;'
-            ]);
-            $this->redirect(Url::toRoute([ '/todo' ]));
-        }
-        else {
-            return $this->renderAjax('create', [
-                'model' => $model
-            ]);
+            throw new HttpException(500, 'Unable to save user data');
         }
     }
 
@@ -203,12 +208,9 @@ class TaskController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect([ 'view', 'id' => $model->id ]);
-        }
-        else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+            return true;
+        } else {
+            return $this->goHome();
         }
     }
 
@@ -240,8 +242,7 @@ class TaskController extends Controller
     {
         if (($model = Task::findOne($id)) !== null) {
             return $model;
-        }
-        else {
+        } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }

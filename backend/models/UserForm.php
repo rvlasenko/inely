@@ -54,27 +54,10 @@ class UserForm extends Model
             [ 'password', 'required', 'on' => 'create' ],
             [ 'password', 'string', 'min' => 6 ],
             [ [ 'status' ], 'boolean' ],
-            [
-                [ 'roles' ],
-                'each',
-                'rule' => [
-                    'in',
+            [ [ 'roles' ], 'each', 'rule' => [ 'in',
                     'range' => ArrayHelper::getColumn(Yii::$app->authManager->getRoles(), 'name')
                 ]
             ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'username' => Yii::t('backend', 'Username'),
-            'email' => Yii::t('backend', 'Email'),
-            'password' => Yii::t('backend', 'Password'),
-            'roles' => Yii::t('backend', 'Roles')
         ];
     }
 

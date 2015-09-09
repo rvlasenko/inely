@@ -1,27 +1,24 @@
 <?php
 
-/*
+/**
  * This file is part of the Inely project.
  *
  * (c) Inely <http://github.com/inely>
  *
+ * @author rootkit
  *
+ * @var $this    yii\web\View
+ * @var $content string
  */
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
-/**
- * @author rootkit
- * @var $this    yii\web\View
- * @var $content string
- */
-
 backend\assets\DashboardAsset::register($this);
 $this->title = Yii::t('backend', 'Your dashboard');
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
-$onKeyEvent = Yii::$app->controller->action->id == 'second' ? 'onkeydown="keyDown(event)" onkeyup="keyUp(event)"' : false;
-$tableLayout = Yii::$app->controller->action->id == 'second' ? 'table-layout' : false;
+$onKeyEvent = Yii::$app->controller->route == 'task/index' ? 'onkeydown="keyDown(event)" onkeyup="keyUp(event)"' : false;
+$tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : false;
 ?>
 
 <?php $this->beginPage() ?>
@@ -228,10 +225,10 @@ $tableLayout = Yii::$app->controller->action->id == 'second' ? 'table-layout' : 
         });
 
         NProgress.start();
-        setTimeout(function () {
+        setTimeout(function() {
             NProgress.done();
             $('.fade').removeClass('out');
-        }, 1500);
+        }, 1000);
 
         // Init Summernote Plugin
         $('.summernote').summernote({

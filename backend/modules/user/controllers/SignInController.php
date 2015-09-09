@@ -324,7 +324,8 @@ class SignInController extends Controller
             if ($user->save()) {
                 $user->afterSignup([
                     'firstname' => $attributes[ 'first_name' ],
-                    'lastname' => $attributes[ 'last_name' ]
+                    'lastname' => $attributes[ 'last_name' ],
+                    'id' => $user->id
                 ]);
             }
         }

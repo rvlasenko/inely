@@ -5,7 +5,6 @@
         <li class="active"><a href="/">Dashboard</a></li>
         <li><a href="/calendar">Calendar</a></li>
         <li><a href="/todo">Tasks</a></li>
-        <li><a href="/todo2">Tasks2</a></li>
         <li><a href="/support">Support</a></li>
     </ul>
 

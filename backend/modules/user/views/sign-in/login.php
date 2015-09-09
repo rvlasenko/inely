@@ -87,11 +87,11 @@
                             </p>
 
                             <p class="mb15">
-                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'Gamification don\'t let you get bored') ?>
+                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'Notifications, Lists, Stats...') ?>
                             </p>
 
                             <p class="mb15">
-                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', '...and Your new best friend already waiting for you!') ?>
+                                <span class="fa fa-check text-success pr5"></span><?= Yii::t('backend', 'And your new friend!') ?>
                             </p>
 
                         </div>

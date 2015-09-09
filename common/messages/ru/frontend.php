@@ -102,7 +102,7 @@ return [
     /**
      * Go Now Section
      */
-    'Now that you have read all the Tid-Bits, <strong>Let\'s get acquainted?</strong>' => 'Теперь, когда вы узнали о всех лакомых кусочках, <strong>будем знакомы?</strong>',
+    'Now that you have read all the Tid-Bits, <strong>Let\'s go!</strong>' => 'Теперь, когда вы узнали о всех лакомых кусочках, <strong>вперёд!</strong>',
 
     /**
      * Footer

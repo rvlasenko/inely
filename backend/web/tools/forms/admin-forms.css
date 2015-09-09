@@ -241,17 +241,20 @@
 .admin-form .gui-textarea,
 .admin-form .select > select,
 .admin-form .select-multiple select {
-    position:       relative;
-    vertical-align: top;
-    border:         1px solid #ddd;
-    display:        -moz-inline-stack;
-    display:        inline-block;
-    *display:       inline;
-    color:          #626262;
-    outline:        none;
-    height:         42px;
-    width:          100%;
-    *zoom:          1;
+    position:           relative;
+    vertical-align:     top;
+    border:             1px solid #ddd;
+    display:            -moz-inline-stack;
+    display:            inline-block;
+    *display:           inline;
+    color:              #626262;
+    outline:            none;
+    height:             42px;
+    width:              100%;
+    *zoom:              1;
+    box-shadow:         0 0 10px 4px rgba(221, 221, 221, 0.2);
+    -moz-box-shadow:    0 0 10px 4px rgba(221, 221, 221, 0.2);
+    -webkit-box-shadow: 0 0 10px 4px rgba(221, 221, 221, 0.2);
 }
 
 .admin-form .select option {
@@ -482,7 +485,7 @@
     margin-right: 5px;
     background:   #fff;
     display:      inline-block;
-    border:       3px solid #ddd;
+    border:       2px solid #ddd;
     height:       21px;
     width:        21px;
     top:          4px;
@@ -499,24 +502,68 @@
     display: block;
 }
 
-.admin-form .checkbox:before {
-    position:          absolute;
-    top:               4px;
-    left:              3px;
-    width:             6px;
-    height:            3px;
-    border:            solid #888;
-    border-width:      0 0 3px 3px;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform:    rotate(-45deg);
-    -ms-transform:     rotate(-45deg);
-    -o-transform:      rotate(-45deg);
-    transform:         rotate(-45deg);
+.checkbox {
+    vertical-align: top;
+    margin:         0 3px 0 0;
+    width:          17px;
+    height:         17px;
+}
+
+.checkbox + label {
+    cursor: pointer;
+}
+
+.checkbox:not(checked) {
+    position: absolute;
+    opacity:  0;
+}
+
+.checkbox:not(checked) + label {
+    position: absolute;
+    bottom:   7px;
+    right:    58px;
+}
+
+.checkbox:not(checked) + label:before {
+    content:       '';
+    position:      absolute;
+    top:           -4px;
+    left:          0;
+    width:         50px;
+    height:        26px;
+    border-radius: 13px;
+    background:    #cdd1da;
+    box-shadow:    inset 0 2px 3px rgba(0, 0, 0, .2);
+}
+
+.checkbox:not(checked) + label:after {
+    content:       '';
+    position:      absolute;
+    top:           -2px;
+    left:          2px;
+    width:         22px;
+    height:        22px;
+    border-radius: 10px;
+    background:    #fff;
+    box-shadow:    0 2px 5px rgba(0, 0, 0, .3);
+    transition:    all .2s;
+}
+
+.checkbox:checked + label:before {
+    background: #9fd468;
+}
+
+.checkbox:checked + label:after {
+    left: 26px;
+}
+
+.checkbox:focus + label:before {
+    box-shadow: 0 0 0 3px rgba(255, 255, 0, .5);
 }
 
 .admin-form input:checked + .checkbox,
 .admin-form input:checked + .radio {
-    border: 3px solid #888;
+    border: 2px solid #888;
 }
 
 .admin-form .radio {
@@ -592,6 +639,8 @@
     -moz-transition:    0.3s ease-out;
     -o-transition:      0.3s ease-out;
     transition:         0.3s ease-out;
+    -webkit-box-shadow: 0 1px 5px rgba(90, 90, 90, 0.35);
+    box-shadow:         0 1px 5px rgba(90, 90, 90, 0.35);
 }
 
 .admin-form .switch > label + span {
@@ -1564,9 +1613,11 @@
 }
 
 .admin-form .btn-social {
-    position:      relative;
-    font-weight:   600;
-    margin-bottom: 5px;
+    position:           relative;
+    font-weight:        600;
+    margin-bottom:      5px;
+    -webkit-box-shadow: 0 1px 6px rgba(90, 90, 90, 0.35);
+    box-shadow:         0 1px 6px rgba(90, 90, 90, 0.35);
 }
 
 .admin-form .btn-social i {
@@ -1589,7 +1640,7 @@
 }
 
 .admin-form .vkontakte span {
-    background-color: #3C536E;
+    background-color: #3c536e;
 }
 
 .admin-form .facebook span {

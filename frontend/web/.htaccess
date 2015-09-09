@@ -1,5 +1,4 @@
-    # Этот .htaccess поможет сделать ваш сайт быстрей.
-# Пользуйтесь на здоровье себе и вашему сайту.
+# Этот .htaccess поможет сделать ваш сайт быстрей.
 
 Options All -Indexes -Includes +FollowSymLinks
 

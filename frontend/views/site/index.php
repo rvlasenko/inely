@@ -132,7 +132,7 @@
 
     <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-full center tright footer-stick">
         <div class="container clearfix">
-            <?= Yii::t('frontend', 'Now that you have read all the Tid-Bits, <strong>Let\'s get acquainted?</strong>') ?>
+            <?= Yii::t('frontend', 'Now that you have read all the Tid-Bits, <strong>Let\'s go!</strong>') ?>
             <i class="icon-caret-right"></i>
         </div>
     </a>

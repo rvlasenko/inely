@@ -12,14 +12,6 @@ use backend\models\Task;
  */
 class TaskSearch extends Task
 {
-    public function rules()
-    {
-        return [
-            [['category', 'isDone'], 'integer'],
-            [['name', 'priority', 'time'], 'safe'],
-        ];
-    }
-
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -42,18 +34,10 @@ class TaskSearch extends Task
 
         $this->load($params);
 
-        if (!$this->validate())
-            return $dataProvider;
-
-        if ($catId != false)
-            $query->andFilterWhere(['category' => $catId]);
-
-        $query->andFilterWhere(['isDone' => $this->isDone]);
+        if ($catId !== false)
+            $query->andFilterWhere(['list' => $catId]);
 
         $query->andFilterWhere(['author' => Yii::$app->user->id]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-              ->andFilterWhere(['like', 'time', $this->time]);
 
         return $dataProvider;
     }

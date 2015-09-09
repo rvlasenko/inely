@@ -10,7 +10,6 @@
             ============================================= -->
             <div id="logo">
                 <a href="/" class="standard-logo" data-dark-logo="images/logo-dark2.png"><img src="images/logo.png" alt="Logo"></a>
-                <a href="/" class="retina-logo" data-dark-logo="images/logo.png"><img src="images/logo.png" alt="Logo"></a>
             </div>
             <!-- #logo end -->
 

@@ -10,7 +10,6 @@ return [
          */
         'contact' => '/site/contact',
         'todo' => '/task/index',
-        'todo2' => '/task/second',
         'schedule' => '/calendar/index',
         'welcome' => '/char/index',
 
