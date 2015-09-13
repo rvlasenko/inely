@@ -25,11 +25,11 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
     public function actionReplaceSourceLanguage($configFile, $newSourceLanguage = false)
     {
         $config = [
-            'translator' => 'Yii::t',
-            'overwrite' => false,
+            'translator'   => 'Yii::t',
+            'overwrite'    => false,
             'removeUnused' => false,
-            'sort' => false,
-            'format' => 'php',
+            'sort'         => false,
+            'format'       => 'php',
         ];
 
         $configFile = Yii::getAlias($configFile);
@@ -60,13 +60,11 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                     if ($newSourceLanguage !== false) {
                         $message = eval("return {$message};");
                         $result  = str_replace($message, Yii::t($category, $message, [ ], $newSourceLanguage), $matches[ 0 ]);
-                    }
-                    else {
+                    } else {
                         if (strpos($matches[ 0 ], ')') != strlen($matches[ 0 ]) - 1) {
                             $unremoved[ $fileName ][ ] = $message;
                             $result                    = $matches[ 0 ];
-                        }
-                        else {
+                        } else {
                             $result = $message;
                         }
                     }
@@ -76,8 +74,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                 }, $subject, -1, $n);
                 if (@file_put_contents($fileName, $replacedSubject) !== false) {
                     Console::output("File: {$fileName}; Translator: {$currentTranslator}; Affected: {$n}");
-                }
-                else {
+                } else {
                     Console::error("File: {$fileName}; Translator: {$currentTranslator}; Affected: {$n}");
                 };
             }
@@ -106,11 +103,11 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
         }
 
         $inputConfig = array_merge([
-            'translator' => 'Yii::t',
-            'overwrite' => false,
+            'translator'   => 'Yii::t',
+            'overwrite'    => false,
             'removeUnused' => false,
-            'sort' => false,
-            'format' => 'php',
+            'sort'         => false,
+            'format'       => 'php',
         ], require($inputConfigFile));
 
         switch ($inputConfig[ 'format' ]) {
@@ -134,11 +131,11 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
             }
 
             $outputConfig = array_merge([
-                'translator' => 'Yii::t',
-                'overwrite' => false,
+                'translator'   => 'Yii::t',
+                'overwrite'    => false,
                 'removeUnused' => false,
-                'sort' => false,
-                'format' => 'php',
+                'sort'         => false,
+                'format'       => 'php',
             ], require($outputConfigFile));
 
             switch ($outputConfig[ 'format' ]) {
@@ -198,7 +195,10 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
         Console::output('Reading messages from database');
         $sourceMessages = $q->select([ '*' ])->from($sourceMessageTable)->all();
         foreach ($config[ 'languages' ] as $language) {
-            $translations = $q->select([ '*' ])->from($messageTable)->where([ 'language' => $language ])->indexBy('id')
+            $translations = $q->select([ '*' ])
+                              ->from($messageTable)
+                              ->where([ 'language' => $language ])
+                              ->indexBy('id')
                               ->all();
             foreach ($sourceMessages as $row) {
                 $translation                                                      = ArrayHelper::getValue($translations, $row[ 'id' ]);
@@ -250,16 +250,17 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                     Console::updateProgress(++$i, $messagesCount);
                     $lastId = array_search($m, ArrayHelper::getValue($insertedSourceMessages, $category, [ ]));
                     if ($lastId === false) {
-                        $db->createCommand()->insert($sourceMessageTable, [ 'category' => $category, 'message' => $m ])
+                        $db->createCommand()
+                           ->insert($sourceMessageTable, [ 'category' => $category, 'message' => $m ])
                            ->execute();
                         $lastId                                         = $db->getLastInsertID($db->driverName == 'pgsql' ? 'i18n_source_message_id_seq' : null);
                         $insertedSourceMessages[ $category ][ $lastId ] = $m;
                     }
                     $db->createCommand()->insert($messageTable, [
-                            'id' => $lastId,
-                            'language' => $language,
-                            'translation' => $translation
-                        ])->execute();
+                        'id'          => $lastId,
+                        'language'    => $language,
+                        'translation' => $translation
+                    ])->execute();
                 }
                 Console::endProgress();
             }

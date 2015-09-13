@@ -34,9 +34,9 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('frontend', 'Name'),
-            'email' => Yii::t('frontend', 'Email'),
-            'body' => Yii::t('frontend', 'Body'),
+            'name'       => Yii::t('frontend', 'Name'),
+            'email'      => Yii::t('frontend', 'Email'),
+            'body'       => Yii::t('frontend', 'Body'),
             'verifyCode' => Yii::t('frontend', 'Verification Code')
         ];
     }
@@ -52,18 +52,16 @@ class ContactForm extends Model
     {
         if ($this->validate()) {
             try {
-                return Yii::$app->mailer
-                    ->compose()
-                    ->setTo($email)
-                    ->setFrom(getenv('ROBOT_EMAIL'))
-                    ->setReplyTo([ $this->email => $this->name ])
-                    ->setTextBody($this->body)
-                    ->send();
+                return Yii::$app->mailer->compose()
+                                        ->setTo($email)
+                                        ->setFrom(getenv('ROBOT_EMAIL'))
+                                        ->setReplyTo([ $this->email => $this->name ])
+                                        ->setTextBody($this->body)
+                                        ->send();
             } catch (ErrorException $e) {
                 Yii::warning(Yii::t('frontend', 'Something went wrong. We apologize.'));
             }
-        }
-        else {
+        } else {
             return false;
         }
     }

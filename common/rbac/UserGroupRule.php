@@ -22,8 +22,7 @@ class UserGroupRule extends Rule
 
             if ($item->name === 'administrator') {
                 return $role == User::ROLE_ADMINISTRATOR;
-            }
-            elseif ($item->name === 'user') {
+            } elseif ($item->name === 'user') {
                 return $role == User::ROLE_ADMINISTRATOR || $role == User::ROLE_USER;
             }
 

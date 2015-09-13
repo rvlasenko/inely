@@ -11,8 +11,7 @@ $.fn.doOnce = function (func) {
 
 $.extend($.infinitescroll.prototype, {
     _setup_portfolioinfiniteitemsloader      : function infscr_setup_portfolioinfiniteitemsloader() {
-        var opts = this.options,
-            instance = this;
+        var opts = this.options, instance = this;
         // Bind nextSelector link to retrieve
         $(opts.nextSelector).click(function (e) {
             if (e.which == 1 && !e.metaKey && !e.shiftKey) {
@@ -22,22 +21,15 @@ $.extend($.infinitescroll.prototype, {
         });
         // Define loadingStart to never hide pager
         instance.options.loading.start = function (opts) {
-            opts.loading.msg
-                .appendTo(opts.loading.selector)
-                .show(opts.loading.speed, function () {
+            opts.loading.msg.appendTo(opts.loading.selector).show(opts.loading.speed, function () {
                     instance.beginAjax(opts);
                 });
         }
     },
     _showdonemsg_portfolioinfiniteitemsloader: function infscr_showdonemsg_portfolioinfiniteitemsloader() {
-        var opts = this.options,
-            instance = this;
+        var opts = this.options, instance = this;
         //Do all the usual stuff
-        opts.loading.msg
-            .find('img')
-            .hide()
-            .parent()
-            .find('div').html(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000, function () {
+        opts.loading.msg.find('img').hide().parent().find('div').html(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000, function () {
                 $(this).parent().fadeOut('normal');
             });
         //And also hide the navSelector
@@ -52,16 +44,14 @@ $.extend($.infinitescroll.prototype, {
     var vendors = [ 'ms', 'moz', 'webkit', 'o' ];
     for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
         window.requestAnimationFrame = window[ vendors[ x ] + 'RequestAnimationFrame' ];
-        window.cancelAnimationFrame = window[ vendors[ x ] + 'CancelAnimationFrame' ]
-        || window[ vendors[ x ] + 'CancelRequestAnimationFrame' ];
+        window.cancelAnimationFrame = window[ vendors[ x ] + 'CancelAnimationFrame' ] || window[ vendors[ x ] + 'CancelRequestAnimationFrame' ];
     }
 
     if (!window.requestAnimationFrame)
         window.requestAnimationFrame = function (callback, element) {
             var currTime = new Date().getTime();
             var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function () { callback(currTime + timeToCall); },
-                timeToCall);
+            var id = window.setTimeout(function () { callback(currTime + timeToCall); }, timeToCall);
             lastTime = currTime + timeToCall;
             return id;
         };
@@ -98,7 +88,7 @@ function debounce(func, wait, immediate) {
 
 var requesting = false;
 
-$.get("site/contact", function(data) { $(".contact").html(data) });
+$.get("site/contact", function (data) { $(".contact").html(data) });
 
 var killRequesting = debounce(function () {
     requesting = false;
@@ -200,7 +190,11 @@ var SEMICOLON = SEMICOLON || {};
 
             $(selector).each(function () {
                 var image = $(this);
-                image.css({ visibility: 'hidden', opacity: 0, display: 'block' });
+                image.css({
+                    visibility: 'hidden',
+                    opacity   : 0,
+                    display   : 'block'
+                });
                 image.wrap('<span class="preloader" />');
                 image.one("load", function (evt) {
                     $(this).delay(params.delay).css({ visibility: 'visible' }).animate({ opacity: 1 }, params.transition, params.easing, function () {
@@ -215,9 +209,7 @@ var SEMICOLON = SEMICOLON || {};
         verticalMiddle: function () {
             if ($verticalMiddleEl.length > 0) {
                 $verticalMiddleEl.each(function () {
-                    var element = $(this),
-                        verticalMiddleH = element.outerHeight(),
-                        headerHeight = $header.outerHeight();
+                    var element = $(this), verticalMiddleH = element.outerHeight(), headerHeight = $header.outerHeight();
 
                     if (element.parents('#slider').length > 0 && !element.hasClass('ignore-header')) {
                         if ($header.hasClass('transparent-header') && ( $body.hasClass('device-lg') || $body.hasClass('device-md') )) {
@@ -231,17 +223,26 @@ var SEMICOLON = SEMICOLON || {};
                     if ($body.hasClass('device-xs') || $body.hasClass('device-xxs')) {
                         if (element.parents('.full-screen').length && !element.parents('.force-full-screen').length) {
                             element.css({
-                                position: 'relative', top: '0', width: 'auto', marginTop: '0', padding: '60px 0'
+                                position : 'relative',
+                                top      : '0',
+                                width    : 'auto',
+                                marginTop: '0',
+                                padding  : '60px 0'
                             }).addClass('clearfix');
                         } else {
                             element.css({
-                                position : 'absolute', top: '50%', width: '100%',
+                                position : 'absolute',
+                                top      : '50%',
+                                width    : '100%',
                                 marginTop: -(verticalMiddleH / 2) + 'px'
                             });
                         }
                     } else {
                         element.css({
-                            position: 'absolute', top: '50%', width: '100%', marginTop: -(verticalMiddleH / 2) + 'px'
+                            position : 'absolute',
+                            top      : '50%',
+                            width    : '100%',
+                            marginTop: -(verticalMiddleH / 2) + 'px'
                         });
                     }
                 });
@@ -280,14 +281,12 @@ var SEMICOLON = SEMICOLON || {};
         fullScreen: function () {
             if ($fullScreenEl.length > 0) {
                 $fullScreenEl.each(function () {
-                    var element = $(this),
-                        scrHeight = $window.height();
+                    var element = $(this), scrHeight = $window.height();
                     if (element.attr('id') == 'slider') {
                         var sliderHeightOff = $slider.offset().top;
                         scrHeight = scrHeight - sliderHeightOff;
                         if (element.hasClass('slider-parallax')) {
-                            var transformVal = element.css('transform'),
-                                transformX = transformVal.match(/-?[\d\.]+/g);
+                            var transformVal = element.css('transform'), transformX = transformVal.match(/-?[\d\.]+/g);
                             if (!transformX) {
                                 var transformXvalue = 0;
                             } else {
@@ -379,19 +378,7 @@ var SEMICOLON = SEMICOLON || {};
 
         pageTransition: function () {
             if (!$body.hasClass('no-transition')) {
-                var animationIn = $body.attr('data-animation-in'),
-                    animationOut = $body.attr('data-animation-out'),
-                    durationIn = $body.attr('data-speed-in'),
-                    durationOut = $body.attr('data-speed-out'),
-                    loaderStyle = $body.attr('data-loader'),
-                    loaderColor = $body.attr('data-loader-color'),
-                    loaderStyleHtml = '<div class="css3-spinner-bounce1"></div><div class="css3-spinner-bounce2"></div><div class="css3-spinner-bounce3"></div>',
-                    loaderBgStyle = '',
-                    loaderBorderStyle = '',
-                    loaderBgClass = '',
-                    loaderBorderClass = '',
-                    loaderBgClass2 = '',
-                    loaderBorderClass2 = '';
+                var animationIn = $body.attr('data-animation-in'), animationOut = $body.attr('data-animation-out'), durationIn = $body.attr('data-speed-in'), durationOut = $body.attr('data-speed-out'), loaderStyle = $body.attr('data-loader'), loaderColor = $body.attr('data-loader-color'), loaderStyleHtml = '<div class="css3-spinner-bounce1"></div><div class="css3-spinner-bounce2"></div><div class="css3-spinner-bounce3"></div>', loaderBgStyle = '', loaderBorderStyle = '', loaderBgClass = '', loaderBorderClass = '', loaderBgClass2 = '', loaderBorderClass2 = '';
 
                 if (!animationIn) {
                     animationIn = 'fadeIn';
@@ -458,9 +445,7 @@ var SEMICOLON = SEMICOLON || {};
                     loadingClass        : 'css3-spinner',
                     loadingHtml         : loaderStyleHtml,
                     unSupportCss        : [
-                        'animation-duration',
-                        '-webkit-animation-duration',
-                        '-o-animation-duration'
+                        'animation-duration', '-webkit-animation-duration', '-o-animation-duration'
                     ],
                     overlay             : false,
                     overlayClass        : 'animsition-overlay-slide',
@@ -505,10 +490,7 @@ var SEMICOLON = SEMICOLON || {};
             var column = 4;
 
             if (element.hasClass('portfolio-full')) {
-                if (element.hasClass('portfolio-3')) column = 3;
-                else if (element.hasClass('portfolio-5')) column = 5;
-                else if (element.hasClass('portfolio-6')) column = 6;
-                else column = 4;
+                if (element.hasClass('portfolio-3')) column = 3; else if (element.hasClass('portfolio-5')) column = 5; else if (element.hasClass('portfolio-6')) column = 6; else column = 4;
 
                 if ($body.hasClass('device-sm') && ( column == 4 || column == 5 || column == 6 )) {
                     column = 3;
@@ -519,17 +501,9 @@ var SEMICOLON = SEMICOLON || {};
                 }
             } else if (element.hasClass('masonry-thumbs')) {
 
-                var lgCol = element.attr('data-lg-col'),
-                    mdCol = element.attr('data-md-col'),
-                    smCol = element.attr('data-sm-col'),
-                    xsCol = element.attr('data-xs-col'),
-                    xxsCol = element.attr('data-xxs-col');
+                var lgCol = element.attr('data-lg-col'), mdCol = element.attr('data-md-col'), smCol = element.attr('data-sm-col'), xsCol = element.attr('data-xs-col'), xxsCol = element.attr('data-xxs-col');
 
-                if (element.hasClass('col-2')) column = 2;
-                else if (element.hasClass('col-3')) column = 3;
-                else if (element.hasClass('col-5')) column = 5;
-                else if (element.hasClass('col-6')) column = 6;
-                else column = 4;
+                if (element.hasClass('col-2')) column = 2; else if (element.hasClass('col-3')) column = 3; else if (element.hasClass('col-5')) column = 5; else if (element.hasClass('col-6')) column = 6; else column = 4;
 
                 if ($body.hasClass('device-lg')) {
                     if (lgCol) {
@@ -581,9 +555,7 @@ var SEMICOLON = SEMICOLON || {};
                     $(this).css({ "width": elementSize + "px" });
                 });
             } else if (element.hasClass('masonry-thumbs')) {
-                var columns = SEMICOLON.initialize.defineColumns(element),
-                    containerWidth = element.innerWidth(),
-                    windowWidth = $window.width();
+                var columns = SEMICOLON.initialize.defineColumns(element), containerWidth = element.innerWidth(), windowWidth = $window.width();
                 if (containerWidth == windowWidth) {
                     containerWidth = windowWidth * 1.004;
                     element.css({ 'width': containerWidth + 'px' });
@@ -603,8 +575,7 @@ var SEMICOLON = SEMICOLON || {};
                 var bigImageNumbers = element.attr('data-big');
                 if (bigImageNumbers) {
                     bigImageNumbers = bigImageNumbers.split(",");
-                    var bigImageNumber = '',
-                        bigi = '';
+                    var bigImageNumber = '', bigi = '';
                     for (bigi = 0; bigi < bigImageNumbers.length; bigi++) {
                         bigImageNumber = Number(bigImageNumbers[ bigi ]) - 1;
                         element.find('a:eq(' + bigImageNumber + ')').css({ width: firstElementWidth * 2 + 'px' });
@@ -619,25 +590,17 @@ var SEMICOLON = SEMICOLON || {};
             var $aspectResizerEl = $('.aspect-resizer');
             if ($aspectResizerEl.length > 0) {
                 $aspectResizerEl.each(function () {
-                    var element = $(this),
-                        elementW = element.inlineStyle('width'),
-                        elementH = element.inlineStyle('height'),
-                        elementPW = element.parent().innerWidth();
+                    var element = $(this), elementW = element.inlineStyle('width'), elementH = element.inlineStyle('height'), elementPW = element.parent().innerWidth();
                 });
             }
         },
 
         dataStyles: function () {
-            var $dataStyleXxs = $('[data-style-xxs]'),
-                $dataStyleXs = $('[data-style-xs]'),
-                $dataStyleSm = $('[data-style-sm]'),
-                $dataStyleMd = $('[data-style-md]'),
-                $dataStyleLg = $('[data-style-lg]');
+            var $dataStyleXxs = $('[data-style-xxs]'), $dataStyleXs = $('[data-style-xs]'), $dataStyleSm = $('[data-style-sm]'), $dataStyleMd = $('[data-style-md]'), $dataStyleLg = $('[data-style-lg]');
 
             if ($dataStyleXxs.length > 0) {
                 $dataStyleXxs.each(function () {
-                    var element = $(this),
-                        elementStyle = element.attr('data-style-xxs');
+                    var element = $(this), elementStyle = element.attr('data-style-xxs');
 
                     if ($body.hasClass('device-xxs')) {
                         if (elementStyle != '') {
@@ -649,8 +612,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataStyleXs.length > 0) {
                 $dataStyleXs.each(function () {
-                    var element = $(this),
-                        elementStyle = element.attr('data-style-xs');
+                    var element = $(this), elementStyle = element.attr('data-style-xs');
 
                     if ($body.hasClass('device-xs')) {
                         if (elementStyle != '') {
@@ -662,8 +624,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataStyleSm.length > 0) {
                 $dataStyleSm.each(function () {
-                    var element = $(this),
-                        elementStyle = element.attr('data-style-sm');
+                    var element = $(this), elementStyle = element.attr('data-style-sm');
 
                     if ($body.hasClass('device-sm')) {
                         if (elementStyle != '') {
@@ -675,8 +636,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataStyleMd.length > 0) {
                 $dataStyleMd.each(function () {
-                    var element = $(this),
-                        elementStyle = element.attr('data-style-md');
+                    var element = $(this), elementStyle = element.attr('data-style-md');
 
                     if ($body.hasClass('device-md')) {
                         if (elementStyle != '') {
@@ -688,8 +648,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataStyleLg.length > 0) {
                 $dataStyleLg.each(function () {
-                    var element = $(this),
-                        elementStyle = element.attr('data-style-lg');
+                    var element = $(this), elementStyle = element.attr('data-style-lg');
 
                     if ($body.hasClass('device-lg')) {
                         if (elementStyle != '') {
@@ -701,16 +660,11 @@ var SEMICOLON = SEMICOLON || {};
         },
 
         dataResponsiveHeights: function () {
-            var $dataHeightXxs = $('[data-height-xxs]'),
-                $dataHeightXs = $('[data-height-xs]'),
-                $dataHeightSm = $('[data-height-sm]'),
-                $dataHeightMd = $('[data-height-md]'),
-                $dataHeightLg = $('[data-height-lg]');
+            var $dataHeightXxs = $('[data-height-xxs]'), $dataHeightXs = $('[data-height-xs]'), $dataHeightSm = $('[data-height-sm]'), $dataHeightMd = $('[data-height-md]'), $dataHeightLg = $('[data-height-lg]');
 
             if ($dataHeightXxs.length > 0) {
                 $dataHeightXxs.each(function () {
-                    var element = $(this),
-                        elementHeight = element.attr('data-height-xxs');
+                    var element = $(this), elementHeight = element.attr('data-height-xxs');
 
                     if ($body.hasClass('device-xxs')) {
                         if (elementHeight != '') {
@@ -722,8 +676,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataHeightXs.length > 0) {
                 $dataHeightXs.each(function () {
-                    var element = $(this),
-                        elementHeight = element.attr('data-height-xs');
+                    var element = $(this), elementHeight = element.attr('data-height-xs');
 
                     if ($body.hasClass('device-xs')) {
                         if (elementHeight != '') {
@@ -735,8 +688,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataHeightSm.length > 0) {
                 $dataHeightSm.each(function () {
-                    var element = $(this),
-                        elementHeight = element.attr('data-height-sm');
+                    var element = $(this), elementHeight = element.attr('data-height-sm');
 
                     if ($body.hasClass('device-sm')) {
                         if (elementHeight != '') {
@@ -748,8 +700,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataHeightMd.length > 0) {
                 $dataHeightMd.each(function () {
-                    var element = $(this),
-                        elementHeight = element.attr('data-height-md');
+                    var element = $(this), elementHeight = element.attr('data-height-md');
 
                     if ($body.hasClass('device-md')) {
                         if (elementHeight != '') {
@@ -761,8 +712,7 @@ var SEMICOLON = SEMICOLON || {};
 
             if ($dataHeightLg.length > 0) {
                 $dataHeightLg.each(function () {
-                    var element = $(this),
-                        elementHeight = element.attr('data-height-lg');
+                    var element = $(this), elementHeight = element.attr('data-height-lg');
 
                     if ($body.hasClass('device-lg')) {
                         if (elementHeight != '') {
@@ -774,8 +724,7 @@ var SEMICOLON = SEMICOLON || {};
         },
 
         stickFooterOnSmall: function () {
-            var windowH = $window.height(),
-                wrapperH = $wrapper.height();
+            var windowH = $window.height(), wrapperH = $wrapper.height();
 
             if ($footer.length > 0 && $wrapper.has('#footer')) {
                 if (windowH > wrapperH) {
@@ -875,10 +824,7 @@ var SEMICOLON = SEMICOLON || {};
 
         overlayMenu: function () {
             if ($body.hasClass('overlay-menu')) {
-                var overlayMenuItem = $('#primary-menu').children('ul').children('li'),
-                    overlayMenuItemHeight = overlayMenuItem.outerHeight(),
-                    overlayMenuItemTHeight = overlayMenuItem.length * overlayMenuItemHeight,
-                    firstItemOffset = ( $window.height() - overlayMenuItemTHeight ) / 2;
+                var overlayMenuItem = $('#primary-menu').children('ul').children('li'), overlayMenuItemHeight = overlayMenuItem.outerHeight(), overlayMenuItemTHeight = overlayMenuItem.length * overlayMenuItemHeight, firstItemOffset = ( $window.height() - overlayMenuItemTHeight ) / 2;
 
                 $('#primary-menu').children('ul').children('li:first-child').css({ 'margin-top': firstItemOffset + 'px' });
             }
@@ -939,9 +885,7 @@ var SEMICOLON = SEMICOLON || {};
 
         onePageScroll: function () {
             if ($onePageMenuEl.length > 0) {
-                var onePageSpeed = $onePageMenuEl.attr('data-speed'),
-                    onePageOffset = $onePageMenuEl.attr('data-offset'),
-                    onePageEasing = $onePageMenuEl.attr('data-easing');
+                var onePageSpeed = $onePageMenuEl.attr('data-speed'), onePageOffset = $onePageMenuEl.attr('data-offset'), onePageEasing = $onePageMenuEl.attr('data-easing');
 
                 if (!onePageSpeed) {
                     onePageSpeed = 1000;
@@ -951,11 +895,7 @@ var SEMICOLON = SEMICOLON || {};
                 }
 
                 $onePageMenuEl.find('a[data-href]').click(function () {
-                    var element = $(this),
-                        divScrollToAnchor = element.attr('data-href'),
-                        divScrollSpeed = element.attr('data-speed'),
-                        divScrollOffset = element.attr('data-offset'),
-                        divScrollEasing = element.attr('data-easing');
+                    var element = $(this), divScrollToAnchor = element.attr('data-href'), divScrollSpeed = element.attr('data-speed'), divScrollOffset = element.attr('data-offset'), divScrollEasing = element.attr('data-easing');
 
                     if ($(divScrollToAnchor).length > 0) {
 
@@ -1128,11 +1068,13 @@ var SEMICOLON = SEMICOLON || {};
         sliderParallax: function () {
             if ($sliderParallaxEl.length > 0) {
                 if (( $body.hasClass('device-lg') || $body.hasClass('device-md') ) && !SEMICOLON.isMobile.any()) {
-                    var parallaxOffsetTop = SEMICOLON.slider.sliderParallaxOffset(),
-                        parallaxElHeight = $sliderParallaxEl.outerHeight();
+                    var parallaxOffsetTop = SEMICOLON.slider.sliderParallaxOffset(), parallaxElHeight = $sliderParallaxEl.outerHeight();
 
                     if (( parallaxElHeight + parallaxOffsetTop + 50 ) > $window.scrollTop()) {
-                        $sliderParallaxEl.find('.slider-inner').css({ 'display': 'block', 'visibility': 'visible' });
+                        $sliderParallaxEl.find('.slider-inner').css({
+                            'display'   : 'block',
+                            'visibility': 'visible'
+                        });
                         if ($window.scrollTop() > parallaxOffsetTop) {
                             var tranformAmount = (($window.scrollTop() - parallaxOffsetTop) / 1.5 ).toFixed(2);
                             var tranformAmount2 = (($window.scrollTop() - parallaxOffsetTop) / 7 ).toFixed(2);
@@ -1142,7 +1084,10 @@ var SEMICOLON = SEMICOLON || {};
                             $('.slider-parallax,.slider-parallax .slider-caption,.ei-title').transition({ y: 0 }, 0);
                         }
                     } else {
-                        $sliderParallaxEl.find('.slider-inner').css({ 'display': 'none', 'visibility': 'hidden' });
+                        $sliderParallaxEl.find('.slider-inner').css({
+                            'display'   : 'none',
+                            'visibility': 'hidden'
+                        });
                     }
                     if (requesting) {
                         requestAnimationFrame(function () {
@@ -1245,9 +1190,7 @@ var SEMICOLON = SEMICOLON || {};
             if ($dataAnimateEl.length > 0) {
                 if ($body.hasClass('device-lg') || $body.hasClass('device-md') || $body.hasClass('device-sm')) {
                     $dataAnimateEl.each(function () {
-                        var element = $(this),
-                            animationDelay = element.attr('data-delay'),
-                            animationDelayTime = 0;
+                        var element = $(this), animationDelay = element.attr('data-delay'), animationDelayTime = 0;
 
                         if (animationDelay) {
                             animationDelayTime = Number(animationDelay) + 500;
@@ -1262,7 +1205,10 @@ var SEMICOLON = SEMICOLON || {};
                                 setTimeout(function () {
                                     element.removeClass('not-animated').addClass(elementAnimation + ' animated');
                                 }, animationDelayTime);
-                            }, { accX: 0, accY: -120 }, 'easeInCubic');
+                            }, {
+                                accX: 0,
+                                accY: -120
+                            }, 'easeInCubic');
                         }
                     });
                 }
@@ -1273,20 +1219,7 @@ var SEMICOLON = SEMICOLON || {};
             var $flexSliderEl = $('.fslider:not(.customjs)').find('.flexslider');
             if ($flexSliderEl.length > 0) {
                 $flexSliderEl.each(function () {
-                    var $flexsSlider = $(this),
-                        flexsAnimation = $flexsSlider.parent('.fslider').attr('data-animation'),
-                        flexsEasing = $flexsSlider.parent('.fslider').attr('data-easing'),
-                        flexsDirection = $flexsSlider.parent('.fslider').attr('data-direction'),
-                        flexsSlideshow = $flexsSlider.parent('.fslider').attr('data-slideshow'),
-                        flexsPause = $flexsSlider.parent('.fslider').attr('data-pause'),
-                        flexsSpeed = $flexsSlider.parent('.fslider').attr('data-speed'),
-                        flexsVideo = $flexsSlider.parent('.fslider').attr('data-video'),
-                        flexsPagi = $flexsSlider.parent('.fslider').attr('data-pagi'),
-                        flexsArrows = $flexsSlider.parent('.fslider').attr('data-arrows'),
-                        flexsThumbs = $flexsSlider.parent('.fslider').attr('data-thumbs'),
-                        flexsHover = $flexsSlider.parent('.fslider').attr('data-hover'),
-                        flexsSheight = true,
-                        flexsUseCSS = false;
+                    var $flexsSlider = $(this), flexsAnimation = $flexsSlider.parent('.fslider').attr('data-animation'), flexsEasing = $flexsSlider.parent('.fslider').attr('data-easing'), flexsDirection = $flexsSlider.parent('.fslider').attr('data-direction'), flexsSlideshow = $flexsSlider.parent('.fslider').attr('data-slideshow'), flexsPause = $flexsSlider.parent('.fslider').attr('data-pause'), flexsSpeed = $flexsSlider.parent('.fslider').attr('data-speed'), flexsVideo = $flexsSlider.parent('.fslider').attr('data-video'), flexsPagi = $flexsSlider.parent('.fslider').attr('data-pagi'), flexsArrows = $flexsSlider.parent('.fslider').attr('data-arrows'), flexsThumbs = $flexsSlider.parent('.fslider').attr('data-thumbs'), flexsHover = $flexsSlider.parent('.fslider').attr('data-hover'), flexsSheight = true, flexsUseCSS = false;
 
                     if (!flexsAnimation) {
                         flexsAnimation = 'slide';
@@ -1366,8 +1299,7 @@ var SEMICOLON = SEMICOLON || {};
             var $toggle = $('.toggle');
             if ($toggle.length > 0) {
                 $toggle.each(function () {
-                    var element = $(this),
-                        elementState = element.attr('data-state');
+                    var element = $(this), elementState = element.attr('data-state');
 
                     if (elementState != 'open') {
                         element.find('.togglec').hide();
@@ -1387,9 +1319,7 @@ var SEMICOLON = SEMICOLON || {};
             var $accordionEl = $('.accordion');
             if ($accordionEl.length > 0) {
                 $accordionEl.each(function () {
-                    var element = $(this),
-                        elementState = element.attr('data-state'),
-                        accordionActive = element.attr('data-active');
+                    var element = $(this), elementState = element.attr('data-state'), accordionActive = element.attr('data-active');
 
                     if (!accordionActive) {
                         accordionActive = 0;
@@ -1428,7 +1358,10 @@ var SEMICOLON = SEMICOLON || {};
                     if ($body.hasClass('device-lg') || $body.hasClass('device-md')) {
                         element.appear(function () {
                             SEMICOLON.widget.runCounter(element, counterElementComma);
-                        }, { accX: 0, accY: -120 }, 'easeInCubic');
+                        }, {
+                            accX: 0,
+                            accY: -120
+                        }, 'easeInCubic');
                     } else {
                         SEMICOLON.widget.runCounter(element, counterElementComma);
                     }
@@ -1467,11 +1400,7 @@ var SEMICOLON = SEMICOLON || {};
 
         notifications: function (element) {
             toastr.clear();
-            var notifyElement = $(element),
-                notifyPosition = notifyElement.attr('data-notify-position'),
-                notifyType = notifyElement.attr('data-notify-type'),
-                notifyMsg = notifyElement.attr('data-notify-msg'),
-                notifyCloseButton = notifyElement.attr('data-notify-close');
+            var notifyElement = $(element), notifyPosition = notifyElement.attr('data-notify-position'), notifyType = notifyElement.attr('data-notify-type'), notifyMsg = notifyElement.attr('data-notify-msg'), notifyCloseButton = notifyElement.attr('data-notify-close');
 
             if (!notifyPosition) {
                 notifyPosition = 'toast-top-right';
@@ -1507,10 +1436,7 @@ var SEMICOLON = SEMICOLON || {};
         textRotater: function () {
             if ($textRotaterEl.length > 0) {
                 $textRotaterEl.each(function () {
-                    var element = $(this),
-                        trRotate = $(this).attr('data-rotate'),
-                        trSpeed = $(this).attr('data-speed'),
-                        trSeparator = $(this).attr('data-separator');
+                    var element = $(this), trRotate = $(this).attr('data-rotate'), trSpeed = $(this).attr('data-speed'), trSeparator = $(this).attr('data-separator');
 
                     if (!trRotate) {
                         trRotate = "fade";
@@ -1535,11 +1461,7 @@ var SEMICOLON = SEMICOLON || {};
 
         linkScroll: function () {
             $("a[data-scrollto]").click(function () {
-                var element = $(this),
-                    divScrollToAnchor = element.attr('data-scrollto'),
-                    divScrollSpeed = element.attr('data-speed'),
-                    divScrollOffset = element.attr('data-offset'),
-                    divScrollEasing = element.attr('data-easing');
+                var element = $(this), divScrollToAnchor = element.attr('data-scrollto'), divScrollSpeed = element.attr('data-speed'), divScrollOffset = element.attr('data-offset'), divScrollEasing = element.attr('data-easing');
 
                 if (!divScrollSpeed) {
                     divScrollSpeed = 750;
@@ -1708,43 +1630,7 @@ var SEMICOLON = SEMICOLON || {};
 
     };
 
-    var $window = $(window),
-        $body = $('body'),
-        $wrapper = $('#wrapper'),
-        $header = $('#header'),
-        $headerWrap = $('#header-wrap'),
-        $footer = $('#footer'),
-        oldHeaderClasses = $header.attr('class'),
-        oldHeaderWrapClasses = $headerWrap.attr('class'),
-        stickyMenuClasses = $header.attr('data-sticky-class'),
-        responsiveMenuClasses = $header.attr('data-responsive-class'),
-        defaultLogo = $('#logo').find('.standard-logo'),
-        defaultLogoWidth = defaultLogo.find('img').outerWidth(),
-        retinaLogo = $('#logo').find('.retina-logo'),
-        defaultLogoImg = defaultLogo.find('img').attr('src'),
-        retinaLogoImg = retinaLogo.find('img').attr('src'),
-        defaultDarkLogo = defaultLogo.attr('data-dark-logo'),
-        retinaDarkLogo = retinaLogo.attr('data-dark-logo'),
-        $pagemenu = $('#page-menu'),
-        $onePageMenuEl = $('.one-page-menu'),
-        onePageGlobalOffset = 0,
-        $portfolio = $('#portfolio'),
-        $slider = $('#slider'),
-        $sliderParallaxEl = $('.slider-parallax'),
-        $pageTitle = $('#page-title'),
-        prevPostPortId = '',
-        $verticalMiddleEl = $('.vertical-middle'),
-        $siStickyEl = $('.si-sticky'),
-        $dotsMenuEl = $('.dots-menu'),
-        $goToTopEl = $('#gotoTop'),
-        $fullScreenEl = $('.full-screen'),
-        $commonHeightEl = $('.common-height'),
-        $testimonialsGridEl = $('.testimonials-grid'),
-        $pageSectionEl = $('.page-section'),
-        $owlCarouselEl = $('.owl-carousel'),
-        $parallaxEl = $('.parallax'),
-        $parallaxPageTitleEl = $('.page-title-parallax'),
-        $textRotaterEl = $('.text-rotater');
+    var $window = $(window), $body = $('body'), $wrapper = $('#wrapper'), $header = $('#header'), $headerWrap = $('#header-wrap'), $footer = $('#footer'), oldHeaderClasses = $header.attr('class'), oldHeaderWrapClasses = $headerWrap.attr('class'), stickyMenuClasses = $header.attr('data-sticky-class'), responsiveMenuClasses = $header.attr('data-responsive-class'), defaultLogo = $('#logo').find('.standard-logo'), defaultLogoWidth = defaultLogo.find('img').outerWidth(), retinaLogo = $('#logo').find('.retina-logo'), defaultLogoImg = defaultLogo.find('img').attr('src'), retinaLogoImg = retinaLogo.find('img').attr('src'), defaultDarkLogo = defaultLogo.attr('data-dark-logo'), retinaDarkLogo = retinaLogo.attr('data-dark-logo'), $pagemenu = $('#page-menu'), $onePageMenuEl = $('.one-page-menu'), onePageGlobalOffset = 0, $portfolio = $('#portfolio'), $slider = $('#slider'), $sliderParallaxEl = $('.slider-parallax'), $pageTitle = $('#page-title'), prevPostPortId = '', $verticalMiddleEl = $('.vertical-middle'), $siStickyEl = $('.si-sticky'), $dotsMenuEl = $('.dots-menu'), $goToTopEl = $('#gotoTop'), $fullScreenEl = $('.full-screen'), $commonHeightEl = $('.common-height'), $testimonialsGridEl = $('.testimonials-grid'), $pageSectionEl = $('.page-section'), $owlCarouselEl = $('.owl-carousel'), $parallaxEl = $('.parallax'), $parallaxPageTitleEl = $('.page-title-parallax'), $textRotaterEl = $('.text-rotater');
 
     $(document).ready(SEMICOLON.documentOnReady.init);
     $window.load(SEMICOLON.documentOnLoad.init);

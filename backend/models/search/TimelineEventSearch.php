@@ -18,7 +18,7 @@ class TimelineEventSearch extends TimelineEvent
     public function rules()
     {
         return [
-            [['application', 'category', 'event', 'created_at'], 'safe'],
+            [ [ 'application', 'category', 'event', 'created_at' ], 'safe' ],
         ];
     }
 
@@ -51,13 +51,13 @@ class TimelineEventSearch extends TimelineEvent
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id'         => $this->id,
             'created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['like', 'application', $this->application]);
-        $query->andFilterWhere(['like', 'category', $this->category]);
-        $query->andFilterWhere(['like', 'event', $this->event]);
+        $query->andFilterWhere([ 'like', 'application', $this->application ]);
+        $query->andFilterWhere([ 'like', 'category', $this->category ]);
+        $query->andFilterWhere([ 'like', 'event', $this->event ]);
 
         return $dataProvider;
     }

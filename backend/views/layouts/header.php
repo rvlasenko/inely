@@ -1,4 +1,19 @@
-<?php use yii\helpers\Html; ?>
+<?php
+
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ *
+ * @var $this    yii\web\View
+ * @var $content string
+ */
+
+use yii\helpers\Html;
+
+?>
 
 <header class="navbar bg-light">
     <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
@@ -20,10 +35,13 @@
                 </li>
                 <li class="p10 br-t item-1">
                     <div class="media">
-                        <a class="media-left" href="#"><img src="images/avatars/4.jpg" class="mw40" alt="holder-img"> </a>
+                        <a class="media-left" href="#"><img src="images/avatars/4.jpg" class="mw40" alt="holder-img">
+                        </a>
 
                         <div class="media-body va-m">
-                            <h5 class="media-heading mv5">Article<small class="text-muted">- 08/16/22</small></h5>
+                            <h5 class="media-heading mv5">Article
+                                <small class="text-muted">- 08/16/22</small>
+                            </h5>
                             Last Updated 36 days ago by
                             <a class="text-system" href="#"> Max </a>
                         </div>
@@ -31,10 +49,13 @@
                 </li>
                 <li class="p10 br-t item-2">
                     <div class="media">
-                        <a class="media-left" href="#"><img src="images/avatars/4.jpg" class="mw40" alt="holder-img"> </a>
+                        <a class="media-left" href="#"><img src="images/avatars/4.jpg" class="mw40" alt="holder-img">
+                        </a>
 
                         <div class="media-body va-m">
-                            <h5 class="media-heading mv5">Article<small class="text-muted">- 08/16/22</small></h5>
+                            <h5 class="media-heading mv5">Article
+                                <small class="text-muted">- 08/16/22</small>
+                            </h5>
                             Last Updated 36 days ago by
                             <a class="text-system" href="#"> Max </a>
                         </div>
@@ -63,12 +84,13 @@
                 <li class="br-t of-h">
                     <?= Html::a('<span class="fa fa-trash-o fs15 pr5"></span> Clear Storage', [ '/' ], [
                         'class' => 'p12 animated animated-short fadeInDown',
-                        'id' => 'clearLocalStorage'
+                        'id'    => 'clearLocalStorage'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
                     <?= Html::a('<span class="fa fa-power-off fs15 pr5"></span>Logout', [ '/logout' ], [
-                        'class' => 'p12 animated animated-short fadeInDown', 'data-method' => 'post'
+                        'class'       => 'p12 animated animated-short fadeInDown',
+                        'data-method' => 'post'
                     ]) ?>
                 </li>
             </ul>

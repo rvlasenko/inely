@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ */
+
+\backend\assets\DashboardAsset::register($this);
 
 ?>
 
@@ -34,13 +43,18 @@
                             <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
                                 <tbody>
                                 <tr>
-                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Coins earned</span></td><td>1,926</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Coins earned</span></td>
+                                    <td>1,926</td>
                                 </tr>
                                 <tr>
-                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Experience Points</span></td><td>1,254</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Experience Points</span>
+                                    </td>
+                                    <td>1,254</td>
                                 </tr>
                                 <tr>
-                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Tasks completed</span></td><td>783</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Tasks completed</span>
+                                    </td>
+                                    <td>783</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -50,10 +64,13 @@
                             <table class="table mbn tc-med-1 tc-bold-last tc-fs13-last">
                                 <tbody>
                                 <tr>
-                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Happiness</span></td><td>50%</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Happiness</span></td>
+                                    <td>50%</td>
                                 </tr>
                                 <tr>
-                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Time with you</span></td><td>1 hour</td>
+                                    <td><i class="fa fa-circle text-warning fs8 pr15"></i><span>Time with you</span>
+                                    </td>
+                                    <td>1 hour</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -113,7 +130,8 @@
                     <div id="high-pie" style="width: 100%; height: 200px; margin: 0 auto;"></div>
                 </div>
                 <div class="panel-footer p15">
-                    <p class="text-muted text-center mbn">A percent measure of tickets with <b class="text-info">first</b> reply time</p>
+                    <p class="text-muted text-center mbn">A percent measure of tickets with
+                        <b class="text-info">first</b> reply time</p>
                 </div>
             </div>
 
@@ -124,7 +142,7 @@
             <!-- Task Widget -->
             <div class="panel panel-widget task-widget ui-sortable" id="41">
                 <div class="panel-heading cursor">
-                <span class="panel-icon"><i class="fa fa-cog"></i></span>
+                    <span class="panel-icon"><i class="fa fa-cog"></i></span>
                     <span class="panel-title">Task-List Widget</span>
                 </div>
                 <div class="panel-body pn">
@@ -206,7 +224,9 @@
                     <span class="panel-icon"><i class="fa fa-pencil"></i></span>
                     <span class="panel-title">Note editor</span>
                 </div>
-                <div class="panel-body"><div class="summernote">Coming <b>Soon...</b></div></div>
+                <div class="panel-body">
+                    <div class="summernote">Coming <b>Soon...</b></div>
+                </div>
             </div>
 
         </div>

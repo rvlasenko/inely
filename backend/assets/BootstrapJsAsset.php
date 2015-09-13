@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ */
+
 namespace backend\assets;
 
 use yii\web\AssetBundle;

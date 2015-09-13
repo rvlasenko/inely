@@ -55,7 +55,8 @@
                          data-endspeed="1000"
                          data-endeasing="Power4.easeIn" style="z-index: 3;">
                         <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-border button-white button-light button-large button-rounded tright nomargin">
-                            <span><?= Yii::t('frontend', 'He is here to help!') ?></span> <i class="icon-angle-right"></i>
+                            <span><?= Yii::t('frontend', 'He is here to help!') ?></span>
+                            <i class="icon-angle-right"></i>
                         </a>
                     </div>
 

@@ -1,7 +1,7 @@
 'use strict';
 /*! main.js - v0.1.1
  * http://admindesigns.com/
- * Copyright (c) 2013 Admin Designs;*/
+ */
 
 /* Core theme functions required for
  * most of the themes vital functionality */
@@ -9,6 +9,8 @@ var Core = function (options) {
 
     // Variables
     var Body = $('body');
+    var listName = 'Inbox';
+    var ajaxCont = $('#taskWrap');
 
     // Clear local storage
     $("#clearLocalStorage").on('click', function () {
@@ -16,15 +18,130 @@ var Core = function (options) {
         location.reload();
     });
 
+    // Configure Progress Loader
+    NProgress.configure({
+        minimum: 0.15, trickleRate: .07, trickleSpeed: 360, showSpinner: false, barColor: 'firebrick', barPos: 'npr-top'
+    });
+
+    NProgress.start();
+    setTimeout(function () {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+
+    function taskCallback() {
+        if ($('#task-name').val().length > 0) {
+            $('#form-compose').submit();
+            setTimeout(function () {
+                $('.quick-compose-form').dockmodal("close");
+            }, 300);
+            $.ajax({
+                url: "/task/inbox"
+            }).done(function (data) {
+                ajaxCont.html(data);
+            });
+        }
+    }
+
+    var runTaskPage = function () {
+
+        $(document).ajaxSuccess(function () {
+            $('.task-head').html(listName);
+        });
+
+        $(document).ajaxStart(function () {
+            NProgress.start();
+            setTimeout(function () {
+                NProgress.done();
+                $('.fade').removeClass('out');
+            }, 400);
+        });
+
+        $('.list-tabs').css('display', 'block');
+
+        $(document).on('click', 'input[type=checkbox]', function () {
+            $(this).parent().parent().parent().toggleClass('highlight');
+        });
+
+        $(document).on('click', '.message.undone', function (event) {
+            if ($(event.target).is('span')) {
+                alert('I only fire when A not clicked!');
+            } else {
+                var taskCheck = $(this).find('input[type=checkbox]');
+
+                $(this).toggleClass('highlight');
+                taskCheck.prop('checked', taskCheck.is(':checked') ? false : true);
+            }
+        });
+
+        $('.user-proj').click(function () {
+            var divKey = $(this).parent().data('key');
+            listName = $(this).text();
+
+            $.ajax({
+                type: "POST", url: "/task/project", context: ajaxCont, data: { list: divKey }
+            }).done(function (data) {
+                $(this).html(data);
+            });
+
+            return false;
+        });
+
+        $('#inbox').click(function () {
+            $.ajax({
+                url: "/task/inbox", context: ajaxCont
+            }).done(function (data) {
+                $(this).html(data);
+            });
+
+            listName = $(this).text().trim().slice(0, -1);
+            return false;
+        });
+    };
+
+    var runDockModal = function () {
+
+        $('#form-compose').on('keypress', function (e) {
+            if (e.keyCode == 13) { taskCallback(); }
+        });
+
+        // On button click display quick compose message form
+        $('#quick-compose').on('click', function () {
+            $('.quick-compose-form').dockmodal({
+                minimizedWidth: 260,
+                width         : 390,
+                height        : 340,
+                title         : 'Compose Message',
+                initialState  : 'docked',
+                buttons       : [
+                    {
+                        html: 'Add', buttonClass: 'btn btn-primary btn-sm', click: function () { taskCallback(); }
+                    }
+                ]
+            });
+        });
+
+        $('#quick-list').on('click', function () {
+            $('.quick-list-form').dockmodal({
+                height: 200, title: 'Compose Message', initialState: 'docked', buttons: [
+                    {
+                        html: 'Add', buttonClass: 'btn btn-primary btn-sm', click: function (e, dialog) {
+                        dialog.dockmodal('close');
+
+                        setTimeout(function () { msgCallback(); }, 500);
+                    }
+                    }
+                ]
+            });
+        });
+    };
+
     // jQuery Helper Functions
     var runHelpers = function () {
 
         // Disable selection
         $.fn.disableSelection = function () {
-            return this
-                .attr('unselectable', 'on')
-                .css('user-select', 'none')
-                .on('selectstart', false);
+            return this.attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
         };
 
         // Test for IE, Add body class if version 9
@@ -37,8 +154,7 @@ var Core = function (options) {
                     $('body').addClass('no-js ie' + ieVersion);
                 }
                 return ieVersion;
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -52,8 +168,7 @@ var Core = function (options) {
             $('#content').removeClass('animated fadeIn');
         }, 500);
 
-    }
-
+    };
 
     // Delayed Animations
     var runAnimations = function () {
@@ -69,7 +184,7 @@ var Core = function (options) {
         // if only delay is provided fadeIn will be set as default
         // eg. data-animate='["500","fadeIn"]'
         $('.animated-delay[data-animate]').each(function () {
-            var This = $(this)
+            var This = $(this);
             var delayTime = This.data('animate');
             var delayAnimation = 'fadeIn';
 
@@ -82,10 +197,9 @@ var Core = function (options) {
 
             var delayAnimate = setTimeout(function () {
 
-                This.removeClass('animated-delay').addClass('animated ' + delayAnimation)
-                    .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        This.removeClass('animated ' + delayAnimation);
-                    });
+                This.removeClass('animated-delay').addClass('animated ' + delayAnimation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    This.removeClass('animated ' + delayAnimation);
+                });
 
             }, delayTime);
         });
@@ -106,17 +220,13 @@ var Core = function (options) {
             }
 
             var waypoint = new Waypoint({
-                element: This,
-                handler: function (direction) {
-                    console.log(offsetVal)
+                element  : This, handler: function (direction) {
                     if (This.hasClass('animated-waypoint')) {
-                        This.removeClass('animated-waypoint').addClass('animated ' + Animation)
-                            .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                                This.removeClass('animated ' + Animation);
-                            });
+                        This.removeClass('animated-waypoint').addClass('animated ' + Animation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                            This.removeClass('animated ' + Animation);
+                        });
                     }
-                },
-                offset : offsetVal
+                }, offset: offsetVal
             });
         });
 
@@ -125,32 +235,17 @@ var Core = function (options) {
     // Header Functions
     var runHeader = function () {
 
+        var dropDown = $('.dropdown-item-slide');
         // custom animation for header content dropdown
-        if ($('.dropdown-item-slide').length) {
-            $('.dropdown-item-slide').on('shown.bs.dropdown', function () {
+        if (dropDown.length) {
+            dropDown.on('shown.bs.dropdown', function () {
                 var This = $(this);
                 setTimeout(function () {
                     This.addClass('slide-open');
                 }, 20);
             });
-            $('.dropdown-item-slide').on('hidden.bs.dropdown', function () {
+            dropDown.on('hidden.bs.dropdown', function () {
                 $(this).removeClass('slide-open');
-            });
-        }
-
-        // Init jQuery Multi-Select for navbar user dropdown
-        if ($("#user-status").length) {
-            $('#user-status').multiselect({
-                buttonClass: 'btn btn-default btn-sm',
-                buttonWidth: 100,
-                dropRight  : false
-            });
-        }
-        if ($("#user-role").length) {
-            $('#user-role').multiselect({
-                buttonClass: 'btn btn-default btn-sm',
-                buttonWidth: 100,
-                dropRight  : true
             });
         }
 
@@ -174,15 +269,7 @@ var Core = function (options) {
             }, 380);
 
         });
-
-        // If modal is clicked close menu
-        $('body').on('click', '.metro-modal', function () {
-            metroBG.fadeOut('fast');
-            setTimeout(function () {
-                menu.slideToggle(150).toggleClass('topbar-menu-open');
-            }, 250);
-        });
-    }
+    };
 
     // Tray related Functions
     var runTrays = function () {
@@ -198,17 +285,15 @@ var Core = function (options) {
             });
 
         }
-        ;
 
         // Debounced resize handler
         var rescale = function () {
             if ($(window).width() < 1000) {
                 Body.addClass('tray-rescale');
-            }
-            else {
+            } else {
                 Body.removeClass('tray-rescale tray-rescale-left tray-rescale-right');
             }
-        }
+        };
         var lazyLayout = _.debounce(rescale, 300);
 
         if (!Body.hasClass('disable-tray-rescale')) {
@@ -221,10 +306,10 @@ var Core = function (options) {
 
     };
 
-    var runroundedSkill = function(){
+    var runRoundedSkill = function () {
         var $roundedSkillEl = $('.rounded-skill');
-        if( $roundedSkillEl.length > 0 ){
-            $roundedSkillEl.each(function(){
+        if ($roundedSkillEl.length > 0) {
+            $roundedSkillEl.each(function () {
                 var element = $(this);
 
                 var roundSkillSize = element.attr('data-size');
@@ -233,22 +318,28 @@ var Core = function (options) {
                 var roundSkillColor = element.attr('data-color');
                 var roundSkillTrackColor = element.attr('data-trackcolor');
 
-                if( !roundSkillSize ) { roundSkillSize = 110; }
-                if( !roundSkillAnimate ) { roundSkillAnimate = 2500; }
-                if( !roundSkillWidth ) { roundSkillWidth = 3; }
-                if( !roundSkillColor ) { roundSkillColor = '#0093BF'; }
-                if( !roundSkillTrackColor ) { roundSkillTrackColor = 'rgba(0,0,0,0.04)'; }
+                if (!roundSkillSize) { roundSkillSize = 110; }
+                if (!roundSkillAnimate) { roundSkillAnimate = 2500; }
+                if (!roundSkillWidth) { roundSkillWidth = 3; }
+                if (!roundSkillColor) { roundSkillColor = '#0093BF'; }
+                if (!roundSkillTrackColor) { roundSkillTrackColor = 'rgba(0,0,0,0.04)'; }
 
-                var properties = {roundSkillSize:roundSkillSize, roundSkillAnimate:roundSkillAnimate, roundSkillWidth:roundSkillWidth, roundSkillColor:roundSkillColor, roundSkillTrackColor:roundSkillTrackColor};
+                var properties = {
+                    roundSkillSize      : roundSkillSize,
+                    roundSkillAnimate   : roundSkillAnimate,
+                    roundSkillWidth     : roundSkillWidth,
+                    roundSkillColor     : roundSkillColor,
+                    roundSkillTrackColor: roundSkillTrackColor
+                };
 
                 element.easyPieChart({
-                    size: Number(properties.roundSkillSize),
-                    animate: Number(properties.roundSkillAnimate),
+                    size      : Number(properties.roundSkillSize),
+                    animate   : Number(properties.roundSkillAnimate),
                     scaleColor: false,
                     trackColor: properties.roundSkillTrackColor,
-                    lineWidth: Number(properties.roundSkillWidth),
-                    lineCap: 'square',
-                    barColor: properties.roundSkillColor
+                    lineWidth : Number(properties.roundSkillWidth),
+                    lineCap   : 'square',
+                    barColor  : properties.roundSkillColor
                 });
             });
         }
@@ -256,12 +347,6 @@ var Core = function (options) {
 
     // Form related Functions
     var runFormElements = function () {
-
-        // Init Jquery Sortable, if present
-        if ($(".sortable").length) {
-            $(".sortable").sortable();
-            $(".sortable").disableSelection();
-        }
 
         var Tooltips = $("[data-toggle=tooltip]");
 
@@ -304,7 +389,8 @@ var Core = function (options) {
                 $(this).addClass('active').siblings().removeClass('active');
             });
         }
-    }
+    };
+
     return {
         init: function (options) {
 
@@ -322,12 +408,13 @@ var Core = function (options) {
 
             // Call Core Functions
             runHelpers();
-            runroundedSkill();
+            runTaskPage();
+            runDockModal();
+            runRoundedSkill();
             runAnimations();
             runTrays();
             runFormElements();
             runHeader();
         }
-
     }
 }();

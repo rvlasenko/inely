@@ -12,7 +12,6 @@ use yii\web\IdentityInterface;
 
 /**
  * User model
- *
  * @property integer                    $id
  * @property string                     $username
  * @property string                     $password_hash
@@ -30,8 +29,8 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE  = 1;
+    const STATUS_INACTIVE    = 0;
+    const STATUS_ACTIVE      = 1;
     const STATUS_UNCONFIRMED = 2;
 
     const ROLE_USER          = 'user';
@@ -50,9 +49,9 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             TimestampBehavior::className(),
             'auth_key' => [
-                'class' => AttributeBehavior::className(),
+                'class'      => AttributeBehavior::className(),
                 'attributes' => [ ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key' ],
-                'value' => Yii::$app->getSecurity()->generateRandomString()
+                'value'      => Yii::$app->getSecurity()->generateRandomString()
             ]
         ];
     }
@@ -149,7 +148,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         return static::findOne([
             'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE
+            'status'               => self::STATUS_ACTIVE
         ]);
     }
 
@@ -213,15 +212,14 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Returns user statuses list
-     *
      * @return array|mixed
      */
     public static function getStatuses()
     {
         return [
-            self::STATUS_ACTIVE => 'Active',
+            self::STATUS_ACTIVE      => 'Active',
             self::STATUS_UNCONFIRMED => 'Unconfirmed',
-            self::STATUS_INACTIVE => 'Deleted'
+            self::STATUS_INACTIVE    => 'Deleted'
         ];
     }
 
@@ -262,11 +260,11 @@ class User extends ActiveRecord implements IdentityInterface
         $this->link('userProfile', $profile);
 
         // Add default task
-        $model = new Task();
-        $model->author = $profileData[ 'id' ];
-        $model->name = Yii::t('backend', 'Try Inely');
+        $model           = new Task();
+        $model->author   = $profileData[ 'id' ];
+        $model->name     = Yii::t('backend', 'Try Inely');
         $model->priority = 'medium';
-        $model->list = 2;
+        $model->list     = 2;
         $model->save();
 
         // Default role
@@ -296,7 +294,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::findOne([
             'email_confirm_token' => $email_confirm_token,
-            'status' => self::STATUS_ACTIVE,
+            'status'              => self::STATUS_ACTIVE,
         ]);
     }
 

@@ -46,8 +46,8 @@ class SetLocaleAction extends Action
         }
 
         $cookie = new Cookie([
-            'name' => $this->localeCookieName,
-            'value' => $locale,
+            'name'   => $this->localeCookieName,
+            'value'  => $locale,
             'expire' => $this->cookieExpire ?: time() + 60 * 60 * 24 * 365,
             'domain' => $this->cookieDomain ?: '',
         ]);

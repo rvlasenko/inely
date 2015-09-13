@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ */
+
 namespace backend\controllers;
 
 use common\models\User;
@@ -17,15 +25,15 @@ class SiteController extends Controller
     {
         return [
             [
-                'class' => 'yii\filters\PageCache',
-                'only' => [ 'index' ],
+                'class'    => 'yii\filters\PageCache',
+                'only'     => [ 'index' ],
                 'duration' => 84600
             ],
             'error' => [ 'class' => 'yii\web\ErrorAction' ],
-            'set' => [
-                'class' => 'common\components\action\SetLocaleAction',
-                'locales' => array_keys(Yii::$app->params[ 'availableLocales' ]),
-                'callback' => function() {
+            'set'   => [
+                'class'    => 'common\components\action\SetLocaleAction',
+                'locales'  => array_keys(Yii::$app->params[ 'availableLocales' ]),
+                'callback' => function () {
                     Yii::$app->response->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
                 }
             ]
@@ -45,7 +53,7 @@ class SiteController extends Controller
                 $this->redirect('/welcome');
             } else {
                 // Define user character and set like a global var
-                Yii::$app->params['userChar'] = (new UserProfile)->getChar();
+                Yii::$app->params[ 'userChar' ] = (new UserProfile)->getChar();
 
                 return $this->render('index');
             }

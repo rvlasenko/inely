@@ -1,4 +1,10 @@
-<?php use yii\widgets\Pjax; use yii\widgets\ActiveForm; use yii\helpers\Html; ?>
+<?php
+
+use yii\widgets\Pjax;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
+?>
 <?php $this->registerJs('$("a.login").click(function() { $.get("login", function(data) { $("#content").html(data) }) })') ?>
 
 <section id="content">
@@ -46,76 +52,73 @@
 
             <?php Pjax::begin([ 'enablePushState' => false ]) ?>
             <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
-                <div class="panel-body p25 bg-light">
-                    <div class="section-divider col-md-12 mt10 mb40">
-                        <span><?= Yii::t('backend', 'A few words about you') ?></span>
-                    </div>
-
-                    <div class="section col-md-6">
-                        <label for="email" class="field prepend-icon">
-
-                            <?= $form->field($model, 'email', [ 'template' => '{input}{error}' ])->textInput([
-                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Email address')
-                            ])->label(false) ?>
-
-                        </label>
-                    </div>
-                    <!-- end section -->
-
-                    <div class="section col-md-6">
-                        <div class="smart-widget sm-right">
-                            <label for="username" class="field prepend-icon">
-
-                                <?= $form->field($model, 'username', [ 'template' => '{input}{error}' ])->textInput([
-                                    'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Choose your username')
-                                ])->label(false) ?>
-
-                            </label>
-                        </div>
-                        <!-- end .smart-widget section -->
-                    </div>
-                    <!-- end section -->
-
-                    <div class="section col-md-6">
-                        <label for="password" class="field prepend-icon">
-
-                            <?= $form->field($model, 'password', [ 'template' => '{input}' ])->passwordInput([
-                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Create a password')
-                            ])->label(false) ?>
-
-                        </label>
-                    </div>
-                    <!-- end section -->
-
-                    <div class="section col-md-6">
-                        <label for="confirmPassword" class="field prepend-icon">
-
-                            <?= $form->field($model, 'passwordConfirm', [ 'template' => '{input}{error}' ])->passwordInput([
-                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Retype your password')
-                            ])->label(false) ?>
-
-                        </label>
-                    </div>
-                    <!-- end section -->
-
+            <div class="panel-body p25 bg-light">
+                <div class="section-divider col-md-12 mt10 mb40">
+                    <span><?= Yii::t('backend', 'A few words about you') ?></span>
                 </div>
-                <!-- end .form-body section -->
-                <div class="panel-footer clearfix">
-                    <?= Html::submitButton(Yii::t('backend', 'Finish sign up'), [ 'class' => 'button btn-primary pull-right' ]) ?>
+
+                <div class="section col-md-6">
+                    <label for="email" class="field prepend-icon">
+
+                        <?= $form->field($model, 'email', [ 'template' => '{input}{error}' ])->textInput([
+                            'class'       => 'gui-input',
+                            'placeholder' => Yii::t('backend', 'Email address')
+                        ])->label(false) ?>
+
+                    </label>
                 </div>
-                <!-- end .form-footer section -->
+                <!-- end section -->
+
+                <div class="section col-md-6">
+                    <div class="smart-widget sm-right">
+                        <label for="username" class="field prepend-icon">
+
+                            <?= $form->field($model, 'username', [ 'template' => '{input}{error}' ])->textInput([
+                                'class'       => 'gui-input',
+                                'placeholder' => Yii::t('backend', 'Choose your username')
+                            ])->label(false) ?>
+
+                        </label>
+                    </div>
+                    <!-- end .smart-widget section -->
+                </div>
+                <!-- end section -->
+
+                <div class="section col-md-6">
+                    <label for="password" class="field prepend-icon">
+
+                        <?= $form->field($model, 'password', [ 'template' => '{input}' ])->passwordInput([
+                            'class'       => 'gui-input',
+                            'placeholder' => Yii::t('backend', 'Create a password')
+                        ])->label(false) ?>
+
+                    </label>
+                </div>
+                <!-- end section -->
+
+                <div class="section col-md-6">
+                    <label for="confirmPassword" class="field prepend-icon">
+
+                        <?= $form->field($model, 'passwordConfirm', [ 'template' => '{input}{error}' ])->passwordInput([
+                            'class'       => 'gui-input',
+                            'placeholder' => Yii::t('backend', 'Retype your password')
+                        ])->label(false) ?>
+
+                    </label>
+                </div>
+                <!-- end section -->
+
+            </div>
+            <!-- end .form-body section -->
+            <div class="panel-footer clearfix">
+                <?= Html::submitButton(Yii::t('backend', 'Finish sign up'), [ 'class' => 'button btn-primary pull-right' ]) ?>
+            </div>
+            <!-- end .form-footer section -->
             <?php ActiveForm::end() ?>
             <?php Pjax::end() ?>
             <div class="col-xs-12 va-b mt10 pr5">
                 <div class="login-links">
-                    <?php
-                        $items = Yii::$app->params[ 'availableLocales' ]; $i = 0; $numItems = count($items);
-
-                        foreach ($items as $key => $language) {
-                            echo Html::a($language, [ '/site/set', 'locale' => $key ]);
-                            if (++$i !== $numItems) echo '<span class="text-white"> | </span>';
-                        }
-                    ?>
+                    <?= $this->render('_locale') ?>
                 </div>
             </div>
         </div>

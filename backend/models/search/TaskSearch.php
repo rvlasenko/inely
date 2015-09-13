@@ -22,7 +22,7 @@ class TaskSearch extends Task
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     * @param bool $catId
+     * @param bool  $catId
      *
      * @return ActiveDataProvider
      */
@@ -30,14 +30,15 @@ class TaskSearch extends Task
     {
         $query = Task::find();
 
-        $dataProvider = new ActiveDataProvider(['query' => $query]);
+        $dataProvider = new ActiveDataProvider([ 'query' => $query ]);
 
         $this->load($params);
 
-        if ($catId !== false)
-            $query->andFilterWhere(['list' => $catId]);
+        if ($catId !== false) {
+            $query->andFilterWhere([ 'list' => $catId ]);
+        }
 
-        $query->andFilterWhere(['author' => Yii::$app->user->id]);
+        $query->andFilterWhere([ 'author' => Yii::$app->user->id ]);
 
         return $dataProvider;
     }

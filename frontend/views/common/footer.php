@@ -12,7 +12,9 @@
 
                     <img src="images/footer-widget-logo.png" alt="" class="alignleft" style="margin-top: 8px; padding-right: 18px; border-right: 1px solid #4A4A4A;">
 
-                    <p><div class="author"><?= Yii::t('frontend', 'Crafted with <img src="http://shirta.com/media/catalog/product/cache/2/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pixel-heart-broken-d75686826.png" style="width: 1.7em;"> by rootkit.') ?></div>
+                    <p>
+
+                    <div class="author"><?= Yii::t('frontend', 'Crafted with <img src="http://shirta.com/media/catalog/product/cache/2/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pixel-heart-broken-d75686826.png" style="width: 1.7em;"> by rootkit.') ?></div>
 
                     <div class="line" style="margin: 30px 0;"></div>
 

@@ -35,7 +35,9 @@ class LocaleBehavior extends Behavior
      */
     public function beforeRequest()
     {
-        if (Yii::$app->getRequest()->getCookies()->has($this->cookieName) && !Yii::$app->session->hasFlash('forceUpdateLocale')) {
+        if (Yii::$app->getRequest()
+                     ->getCookies()
+                     ->has($this->cookieName) && !Yii::$app->session->hasFlash('forceUpdateLocale')) {
             $userLocale = Yii::$app->getRequest()->getCookies()->getValue($this->cookieName);
         } else {
             $userLocale = Yii::$app->language;

@@ -31,7 +31,7 @@ class UserForm extends Model
                 'username',
                 'unique',
                 'targetClass' => '\common\models\User',
-                'filter' => function ($query) {
+                'filter'      => function ($query) {
                     if (!$this->getModel()->isNewRecord) {
                         $query->andWhere([ 'not', [ 'id' => $this->getModel()->id ] ]);
                     }
@@ -45,7 +45,7 @@ class UserForm extends Model
                 'email',
                 'unique',
                 'targetClass' => '\common\models\User',
-                'filter' => function ($query) {
+                'filter'      => function ($query) {
                     if (!$this->getModel()->isNewRecord) {
                         $query->andWhere([ 'not', [ 'id' => $this->getModel()->id ] ]);
                     }
@@ -54,7 +54,11 @@ class UserForm extends Model
             [ 'password', 'required', 'on' => 'create' ],
             [ 'password', 'string', 'min' => 6 ],
             [ [ 'status' ], 'boolean' ],
-            [ [ 'roles' ], 'each', 'rule' => [ 'in',
+            [
+                [ 'roles' ],
+                'each',
+                'rule' => [
+                    'in',
                     'range' => ArrayHelper::getColumn(Yii::$app->authManager->getRoles(), 'name')
                 ]
             ],

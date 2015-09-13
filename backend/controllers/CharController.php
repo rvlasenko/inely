@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ */
+
 namespace backend\controllers;
 
 use common\models\User;
@@ -26,9 +34,9 @@ class CharController extends Controller
                         'roles' => [ '@' ]
                     ],
                     [
-                        'actions' => [ 'index' ],
-                        'allow' => false,
-                        'roles' => [ '?' ],
+                        'actions'      => [ 'index' ],
+                        'allow'        => false,
+                        'roles'        => [ '?' ],
                         'denyCallback' => function () {
                             return $this->redirect([ '/login' ]);
                         }
@@ -42,8 +50,8 @@ class CharController extends Controller
     {
         return [
             [
-                'class' => 'yii\filters\PageCache',
-                'only' => [ 'index', 'char' ],
+                'class'    => 'yii\filters\PageCache',
+                'only'     => [ 'index', 'char' ],
                 'duration' => 84600
             ],
             'error' => [ 'class' => 'yii\web\ErrorAction' ]
@@ -64,7 +72,7 @@ class CharController extends Controller
         } else {
             return $this->render('index', [
                 'model' => $model,
-                'i18n' => Yii::t('backend', 'Are you sure?')
+                'i18n'  => Yii::t('backend', 'Are you sure?')
             ]);
         }
     }
@@ -124,8 +132,7 @@ class CharController extends Controller
                     throw new HttpException(500, 'Unable to save user data');
                 }
             }
-        }
-        else {
+        } else {
             return $this->goHome();
         }
     }

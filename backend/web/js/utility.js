@@ -1,56 +1,56 @@
 /*!
  * Minified Utility Resources
  * Theme Core resources.
-*/
+ */
 
 ;
 (function ($) {
     var defaults = {
-        width: 400,
-        height: "65%",
-        minimizedWidth: 200,
-        gutter: 10,
+        width            : 400,
+        height           : "65%",
+        minimizedWidth   : 200,
+        gutter           : 10,
         poppedOutDistance: "6%",
-        title: function() {
+        title            : function () {
             return "";
         },
-        dialogClass: "",
-        buttons: [], /* id, html, buttonClass, click */
-        animationSpeed: 400,
-        opacity: 1,
-        initialState: 'modal', /* "modal", "docked", "minimized" */
+        dialogClass      : "",
+        buttons          : [], /* id, html, buttonClass, click */
+        animationSpeed   : 400,
+        opacity          : 1,
+        initialState     : 'modal', /* "modal", "docked", "minimized" */
 
-        showClose: true,
-        showPopout: true,
+        showClose   : true,
+        showPopout  : true,
         showMinimize: true,
 
-        create: undefined,
-        open: undefined,
-        beforeClose: undefined,
-        close: undefined,
+        create        : undefined,
+        open          : undefined,
+        beforeClose   : undefined,
+        close         : undefined,
         beforeMinimize: undefined,
-        minimize: undefined,
-        beforeRestore: undefined,
-        restore: undefined,
-        beforePopout: undefined,
-        popout: undefined
+        minimize      : undefined,
+        beforeRestore : undefined,
+        restore       : undefined,
+        beforePopout  : undefined,
+        popout        : undefined
     };
     var dClass = "dockmodal";
     var windowWidth = $(window).width();
 
     function setAnimationCSS($this, $el) {
         var aniSpeed = $this.options.animationSpeed / 1000;
-        $el.css({"transition": aniSpeed + "s right, " + aniSpeed + "s left, " + aniSpeed + "s top, " + aniSpeed + "s bottom, " + aniSpeed + "s height, " + aniSpeed + "s width"});
+        $el.css({ "transition": aniSpeed + "s right, " + aniSpeed + "s left, " + aniSpeed + "s top, " + aniSpeed + "s bottom, " + aniSpeed + "s height, " + aniSpeed + "s width" });
         return true;
     }
 
     function removeAnimationCSS($el) {
-        $el.css({"transition": "none"});
+        $el.css({ "transition": "none" });
         return true;
     }
 
     var methods = {
-        init: function (options) {
+        init         : function (options) {
 
             return this.each(function () {
 
@@ -71,7 +71,6 @@
                     $this.data('dockmodal', $this);
                 } else {
                     $("body").append($this.closest("." + dClass).show());
-                    //methods.restore.apply($this);
                     methods.refreshLayout();
                     setTimeout(function () {
                         methods.restore.apply($this);
@@ -140,7 +139,6 @@
                     });
                 }
 
-
                 $dockHeader.append('<div class="title-text">' + ($this.options.title || $this.attr("title")) + '</div>');
                 $dockModal.append($dockHeader);
 
@@ -157,7 +155,10 @@
                     $dockFooter.append($dockFooterButtonset);
                     $.each($this.options.buttons, function (indx, el) {
                         var $btn = $('<a href="#" class="btn"></a>');
-                        $btn.attr({ "id": el.id, "class": el.buttonClass });
+                        $btn.attr({
+                            "id"   : el.id,
+                            "class": el.buttonClass
+                        });
                         $btn.html(el.html);
                         $btn.click(function (e) {
                             el.click(e, $this);
@@ -220,7 +221,7 @@
                 });
             });
         },
-        destroy: function () {
+        destroy      : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -239,14 +240,14 @@
 
                     if ($dockModal.hasClass("popped-out") && !$dockModal.hasClass("minimized")) {
                         $dockModal.css({
-                            "left": "50%",
-                            "right": "50%",
-                            "top": "50%",
+                            "left"  : "50%",
+                            "right" : "50%",
+                            "top"   : "50%",
                             "bottom": "50%"
                         });
                     } else {
                         $dockModal.css({
-                            "width": "0",
+                            "width" : "0",
                             "height": "0"
                         });
                     }
@@ -263,18 +264,17 @@
                         }
                     }, $this.options.animationSpeed);
 
-                }
-                catch (err) {
+                } catch (err) {
                     alert(err.message);
                 }
                 // other destroy routines
 
             })
         },
-        close: function () {
+        close        : function () {
             methods.destroy.apply(this);
         },
-        minimize: function () {
+        minimize     : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -291,11 +291,11 @@
                 var $dockModal = $this.closest("." + dClass);
                 var headerHeight = $dockModal.find(".dockmodal-header").outerHeight();
                 $dockModal.addClass("minimized").css({
-                    "width": $this.options.minimizedWidth + "px",
+                    "width" : $this.options.minimizedWidth + "px",
                     "height": headerHeight + "px",
-                    "left": "auto",
-                    "right": "auto",
-                    "top": "auto",
+                    "left"  : "auto",
+                    "right" : "auto",
+                    "top"   : "auto",
                     "bottom": "0"
                 });
                 setTimeout(function () {
@@ -314,7 +314,7 @@
                 methods.refreshLayout();
             })
         },
-        restore: function () {
+        restore      : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -332,11 +332,11 @@
                 $dockModal.removeClass("minimized popped-out");
                 $dockModal.find(".dockmodal-body, .dockmodal-footer").show();
                 $dockModal.css({
-                    "width": $this.options.width + "px",
+                    "width" : $this.options.width + "px",
                     "height": $this.options.height,
-                    "left": "auto",
-                    "right": "auto",
-                    "top": "auto",
+                    "left"  : "auto",
+                    "right" : "auto",
+                    "top"   : "auto",
                     "bottom": "0"
                 });
 
@@ -354,7 +354,7 @@
                 methods.refreshLayout();
             })
         },
-        popout: function () {
+        popout       : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -376,22 +376,22 @@
                 var offset = $dockModal.position();
                 var windowWidth = $(window).width();
                 $dockModal.css({
-                    "width": "auto",
+                    "width" : "auto",
                     "height": "auto",
-                    "left": offset.left + "px",
-                    "right": (windowWidth - offset.left - $dockModal.outerWidth(true)) + "px",
-                    "top": offset.top + "px",
+                    "left"  : offset.left + "px",
+                    "right" : (windowWidth - offset.left - $dockModal.outerWidth(true)) + "px",
+                    "top"   : offset.top + "px",
                     "bottom": 0
                 });
 
                 setAnimationCSS($this, $dockModal);
                 setTimeout(function () {
                     $dockModal.removeClass("minimized").addClass("popped-out").css({
-                        "width": "auto",
+                        "width" : "auto",
                         "height": "auto",
-                        "left": $this.options.poppedOutDistance,
-                        "right": $this.options.poppedOutDistance,
-                        "top": $this.options.poppedOutDistance,
+                        "left"  : $this.options.poppedOutDistance,
+                        "right" : $this.options.poppedOutDistance,
+                        "top"   : $this.options.poppedOutDistance,
                         "bottom": $this.options.poppedOutDistance
                     });
                     $("." + dClass + "-overlay").show();
@@ -440,8 +440,8 @@
     };
 
     $.fn.dockmodal = function (method) {
-        if (methods[method]) {
-            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        if (methods[ method ]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
@@ -451,9 +451,9 @@
 })(jQuery);
 
 /*
- * jQuery.fullscreen library v0.4.2
+ * mousetrap v1.5.3 craig.is/killing/mice
  */
-!function(e){function t(e){return"undefined"!=typeof e}function n(t,n,l){var r=function(){};r.prototype=n.prototype,t.prototype=new r,t.prototype.constructor=t,n.prototype.constructor=n,t._super=n.prototype,l&&e.extend(t.prototype,l)}function l(e,n){var l;"string"==typeof e&&(n=e,e=document);for(var i=0;i<r.length;++i){n=n.replace(r[i][0],r[i][1]);for(var o=0;o<s.length;++o)if(l=s[o],l+=0===o?n:n.charAt(0).toUpperCase()+n.substr(1),t(e[l]))return e[l]}return void 0}var r=[["",""],["exit","cancel"],["screen","Screen"]],s=["","o","ms","moz","webkit","webkitCurrent"],i=navigator.userAgent,o=l("fullscreenEnabled"),u=-1!==i.indexOf("Android")&&-1!==i.indexOf("Chrome"),c=!u&&t(l("fullscreenElement"))&&(!t(o)||o===!0),_=e.fn.jquery.split("."),h=parseInt(_[0])<2&&parseInt(_[1])<7,f=function(){this.__options=null,this._fullScreenElement=null,this.__savedStyles={}};f.prototype={_DEFAULT_OPTIONS:{styles:{boxSizing:"border-box",MozBoxSizing:"border-box",WebkitBoxSizing:"border-box"},toggleClass:null},__documentOverflow:"visible",__htmlOverflow:"visible",_preventDocumentScroll:function(){this.__documentOverflow=e("body")[0].style.overflow,this.__htmlOverflow=e("html")[0].style.overflow},_allowDocumentScroll:function(){e("body")[0].style.overflow=this.__documentOverflow,e("html")[0].style.overflow=this.__htmlOverflow},_fullScreenChange:function(){this.__options&&(this.isFullScreen()?(this._preventDocumentScroll(),this._triggerEvents()):(this._allowDocumentScroll(),this._revertStyles(),this._triggerEvents(),this._fullScreenElement=null))},_fullScreenError:function(t){this.__options&&(this._revertStyles(),this._fullScreenElement=null,t&&e(document).trigger("fscreenerror",[t]))},_triggerEvents:function(){e(this._fullScreenElement).trigger(this.isFullScreen()?"fscreenopen":"fscreenclose"),e(document).trigger("fscreenchange",[this.isFullScreen(),this._fullScreenElement])},_saveAndApplyStyles:function(){var t=e(this._fullScreenElement);this.__savedStyles={};for(var n in this.__options.styles)this.__savedStyles[n]=this._fullScreenElement.style[n],this._fullScreenElement.style[n]=this.__options.styles[n];this.__options.toggleClass&&t.addClass(this.__options.toggleClass)},_revertStyles:function(){var t=e(this._fullScreenElement);for(var n in this.__options.styles)this._fullScreenElement.style[n]=this.__savedStyles[n];this.__options.toggleClass&&t.removeClass(this.__options.toggleClass)},open:function(t,n){t!==this._fullScreenElement&&(this.isFullScreen()&&this.exit(),this._fullScreenElement=t,this.__options=e.extend(!0,{},this._DEFAULT_OPTIONS,n),this._saveAndApplyStyles())},exit:null,isFullScreen:null,isNativelySupported:function(){return c}};var p=function(){p._super.constructor.apply(this,arguments),this.exit=e.proxy(l("exitFullscreen"),document),this._DEFAULT_OPTIONS=e.extend(!0,{},this._DEFAULT_OPTIONS,{styles:{width:"100%",height:"100%"}}),e(document).bind(this._prefixedString("fullscreenchange")+" MSFullscreenChange",e.proxy(this._fullScreenChange,this)).bind(this._prefixedString("fullscreenerror")+" MSFullscreenError",e.proxy(this._fullScreenError,this))};n(p,f,{VENDOR_PREFIXES:["","o","moz","webkit"],_prefixedString:function(t){return e.map(this.VENDOR_PREFIXES,function(e){return e+t}).join(" ")},open:function(e){p._super.open.apply(this,arguments);var t=l(e,"requestFullscreen");t.call(e)},exit:e.noop,isFullScreen:function(){return null!==l("fullscreenElement")},element:function(){return l("fullscreenElement")}});var a=function(){a._super.constructor.apply(this,arguments),this._DEFAULT_OPTIONS=e.extend({},this._DEFAULT_OPTIONS,{styles:{position:"fixed",zIndex:"2147483647",left:0,top:0,bottom:0,right:0}}),this.__delegateKeydownHandler()};n(a,f,{__isFullScreen:!1,__delegateKeydownHandler:function(){var t=e(document);t.delegate("*","keydown.fullscreen",e.proxy(this.__keydownHandler,this));var n=h?t.data("events"):e._data(document).events,l=n.keydown;h?n.live.unshift(n.live.pop()):l.splice(0,0,l.splice(l.delegateCount-1,1)[0])},__keydownHandler:function(e){return this.isFullScreen()&&27===e.which?(this.exit(),!1):!0},_revertStyles:function(){a._super._revertStyles.apply(this,arguments),this._fullScreenElement.offsetHeight},open:function(){a._super.open.apply(this,arguments),this.__isFullScreen=!0,this._fullScreenChange()},exit:function(){this.__isFullScreen=!1,this._fullScreenChange()},isFullScreen:function(){return this.__isFullScreen},element:function(){return this.__isFullScreen?this._fullScreenElement:null}}),e.fullscreen=c?new p:new a,e.fn.fullscreen=function(t){var n=this[0];return t=e.extend({toggleClass:null,overflow:"hidden"},t),t.styles={overflow:t.overflow},delete t.overflow,n&&e.fullscreen.open(n,t),this}}(jQuery);
+!function(e,t,n){function r(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent("on"+t,n)}function a(e){if("keypress"==e.type){var t=String.fromCharCode(e.which);return e.shiftKey||(t=t.toLowerCase()),t}return p[e.which]?p[e.which]:f[e.which]?f[e.which]:String.fromCharCode(e.which).toLowerCase()}function i(e){var t=[];return e.shiftKey&&t.push("shift"),e.altKey&&t.push("alt"),e.ctrlKey&&t.push("ctrl"),e.metaKey&&t.push("meta"),t}function o(e){return"shift"==e||"ctrl"==e||"alt"==e||"meta"==e}function c(e,t){var n,r,a,i=[];for(n=e,"+"===n?n=["+"]:(n=n.replace(/\+{2}/g,"+plus"),n=n.split("+")),a=0;a<n.length;++a)r=n[a],d[r]&&(r=d[r]),t&&"keypress"!=t&&h[r]&&(r=h[r],i.push("shift")),o(r)&&i.push(r);if(n=r,a=t,!a){if(!u){u={};for(var c in p)c>95&&112>c||p.hasOwnProperty(c)&&(u[p[c]]=c)}a=u[n]?"keydown":"keypress"}return"keypress"==a&&i.length&&(a="keydown"),{key:r,modifiers:i,action:a}}function s(e,n){return null===e||e===t?!1:e===n?!0:s(e.parentNode,n)}function l(e){function n(e){e=e||{};var t,n=!1;for(t in m)e[t]?n=!0:m[t]=0;n||(g=!1)}function s(e,t,n,r,a,i){var c,s,l=[],u=n.type;if(!d._callbacks[e])return[];for("keyup"==u&&o(e)&&(t=[e]),c=0;c<d._callbacks[e].length;++c)if(s=d._callbacks[e][c],(r||!s.seq||m[s.seq]==s.level)&&u==s.action){var p;(p="keypress"==u&&!n.metaKey&&!n.ctrlKey)||(p=s.modifiers,p=t.sort().join(",")===p.sort().join(",")),p&&(p=r&&s.seq==r&&s.level==i,(!r&&s.combo==a||p)&&d._callbacks[e].splice(c,1),l.push(s))}return l}function u(e,t,n,r){d.stopCallback(t,t.target||t.srcElement,n,r)||!1!==e(t,n)||(t.preventDefault?t.preventDefault():t.returnValue=!1,t.stopPropagation?t.stopPropagation():t.cancelBubble=!0)}function p(e){"number"!=typeof e.which&&(e.which=e.keyCode);var t=a(e);t&&("keyup"==e.type&&k===t?k=!1:d.handleKey(t,i(e),e))}function f(e,t,r,i){function o(t){return function(){g=t,++m[e],clearTimeout(y),y=setTimeout(n,1e3)}}function s(t){u(r,t,e),"keyup"!==i&&(k=a(t)),setTimeout(n,10)}for(var l=m[e]=0;l<t.length;++l){var p=l+1===t.length?s:o(i||c(t[l+1]).action);h(t[l],p,i,e,l)}}function h(e,t,n,r,a){d._directMap[e+":"+n]=t,e=e.replace(/\s+/g," ");var i=e.split(" ");1<i.length?f(e,i,t,n):(n=c(e,n),d._callbacks[n.key]=d._callbacks[n.key]||[],s(n.key,n.modifiers,{type:n.action},r,e,a),d._callbacks[n.key][r?"unshift":"push"]({callback:t,modifiers:n.modifiers,action:n.action,seq:r,level:a,combo:e}))}var d=this;if(e=e||t,!(d instanceof l))return new l(e);d.target=e,d._callbacks={},d._directMap={};var y,m={},k=!1,b=!1,g=!1;d._handleKey=function(e,t,r){var a,i=s(e,t,r);t={};var c=0,l=!1;for(a=0;a<i.length;++a)i[a].seq&&(c=Math.max(c,i[a].level));for(a=0;a<i.length;++a)i[a].seq?i[a].level==c&&(l=!0,t[i[a].seq]=1,u(i[a].callback,r,i[a].combo,i[a].seq)):l||u(i[a].callback,r,i[a].combo);i="keypress"==r.type&&b,r.type!=g||o(e)||i||n(t),b=l&&"keydown"==r.type},d._bindMultiple=function(e,t,n){for(var r=0;r<e.length;++r)h(e[r],t,n)},r(e,"keypress",p),r(e,"keydown",p),r(e,"keyup",p)}var u,p={8:"backspace",9:"tab",13:"enter",16:"shift",17:"ctrl",18:"alt",20:"capslock",27:"esc",32:"space",33:"pageup",34:"pagedown",35:"end",36:"home",37:"left",38:"up",39:"right",40:"down",45:"ins",46:"del",91:"meta",93:"meta",224:"meta"},f={106:"*",107:"+",109:"-",110:".",111:"/",186:";",187:"=",188:",",189:"-",190:".",191:"/",192:"`",219:"[",220:"\\",221:"]",222:"'"},h={"~":"`","!":"1","@":"2","#":"3",$:"4","%":"5","^":"6","&":"7","*":"8","(":"9",")":"0",_:"-","+":"=",":":";",'"':"'","<":",",">":".","?":"/","|":"\\"},d={option:"alt",command:"meta","return":"enter",escape:"esc",plus:"+",mod:/Mac|iPod|iPhone|iPad/.test(navigator.platform)?"meta":"ctrl"};for(n=1;20>n;++n)p[111+n]="f"+n;for(n=0;9>=n;++n)p[n+96]=n;l.prototype.bind=function(e,t,n){return e=e instanceof Array?e:[e],this._bindMultiple.call(this,e,t,n),this},l.prototype.unbind=function(e,t){return this.bind.call(this,e,function(){},t)},l.prototype.trigger=function(e,t){return this._directMap[e+":"+t]&&this._directMap[e+":"+t]({},e),this},l.prototype.reset=function(){return this._callbacks={},this._directMap={},this},l.prototype.stopCallback=function(e,t){return-1<(" "+t.className+" ").indexOf(" mousetrap ")||s(t,this.target)?!1:"INPUT"==t.tagName||"SELECT"==t.tagName||"TEXTAREA"==t.tagName||t.isContentEditable},l.prototype.handleKey=function(){return this._handleKey.apply(this,arguments)},l.init=function(){var e,n=l(t);for(e in n)"_"!==e.charAt(0)&&(l[e]=function(e){return function(){return n[e].apply(n,arguments)}}(e))},l.init(),e.Mousetrap=l,"undefined"!=typeof module&&module.exports&&(module.exports=l),"function"==typeof define&&define.amd&&define(function(){return l})}(window,document);
 
 /*
  Easy pie chart is a jquery plugin to display simple animated pie charts for only one value

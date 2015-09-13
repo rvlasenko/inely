@@ -14,66 +14,66 @@ class m140703_123000_user extends Migration
         }
 
         $this->createTable('{{%user}}', [
-            'id' => $this->primaryKey(),
-            'username' => $this->string(32),
-            'auth_key' => $this->string(32)->notNull(),
-            'password_hash' => $this->string()->notNull(),
+            'id'                   => $this->primaryKey(),
+            'username'             => $this->string(32),
+            'auth_key'             => $this->string(32)->notNull(),
+            'password_hash'        => $this->string()->notNull(),
             'password_reset_token' => $this->string(),
-            'email_confirm_token' => $this->string(32)->notNull(),
-            'oauth_client' => $this->string(),
+            'email_confirm_token'  => $this->string(32)->notNull(),
+            'oauth_client'         => $this->string(),
             'oauth_client_user_id' => $this->string(),
-            'email' => $this->string()->notNull(),
-            'status' => $this->smallInteger()->notNull()->defaultValue(User::STATUS_ACTIVE),
-            'created_at' => $this->integer(),
-            'updated_at' => $this->integer(),
-            'logged_at' => $this->integer()
+            'email'                => $this->string()->notNull(),
+            'status'               => $this->smallInteger()->notNull()->defaultValue(User::STATUS_ACTIVE),
+            'created_at'           => $this->integer(),
+            'updated_at'           => $this->integer(),
+            'logged_at'            => $this->integer()
         ], $tableOptions);
 
         $this->insert('{{%user}}', [
-            'id' => 1,
-            'username' => 'webmaster',
-            'email' => 'webmaster@example.com',
+            'id'            => 1,
+            'username'      => 'webmaster',
+            'email'         => 'webmaster@example.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('webmaster'),
-            'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'status' => User::STATUS_ACTIVE,
-            'created_at' => time(),
-            'updated_at' => time()
+            'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),
+            'status'        => User::STATUS_ACTIVE,
+            'created_at'    => time(),
+            'updated_at'    => time()
         ]);
 
         $this->insert('{{%user}}', [
-            'id' => 2,
-            'username' => 'user',
-            'email' => 'user@example.com',
+            'id'            => 2,
+            'username'      => 'user',
+            'email'         => 'user@example.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('user'),
-            'auth_key' => Yii::$app->getSecurity()->generateRandomString(),
-            'status' => User::STATUS_ACTIVE,
-            'created_at' => time(),
-            'updated_at' => time()
+            'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),
+            'status'        => User::STATUS_ACTIVE,
+            'created_at'    => time(),
+            'updated_at'    => time()
         ]);
 
         $this->createTable('{{%user_profile}}', [
-            'user_id' => $this->primaryKey(),
-            'firstname' => $this->string(),
-            'lastname' => $this->string(),
-            'gender' => $this->string(10),
+            'user_id'        => $this->primaryKey(),
+            'firstname'      => $this->string(),
+            'lastname'       => $this->string(),
+            'gender'         => $this->string(10),
             'user_char_name' => $this->string(),
             'user_char_path' => $this->string(),
-            'def_char_name' => $this->string(),
-            'locale' => $this->string(12)->notNull(),
+            'def_char_name'  => $this->string(),
+            'locale'         => $this->string(12)->notNull(),
         ], $tableOptions);
 
         $this->insert('{{%user_profile}}', [
-            'user_id' => 1,
-            'firstname' => 'John',
-            'lastname' => 'Doe',
+            'user_id'     => 1,
+            'firstname'   => 'John',
+            'lastname'    => 'Doe',
             'mascot_name' => 'Holo',
-            'mascot_url' => 'images/mascots/holoo.png'
+            'mascot_url'  => 'images/mascots/holoo.png'
         ]);
 
         $this->insert('{{%user_profile}}', [
-            'user_id' => 2,
+            'user_id'   => 2,
             'firstname' => 'Bill',
-            'lastname' => 'Eod',
+            'lastname'  => 'Eod',
         ]);
 
         if ($this->db->driverName === 'mysql') {

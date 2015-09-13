@@ -10,6 +10,6 @@ class AfterSignUpEvent extends Event
 
     public function newUser($event)
     {
-        echo 'lol';
+        echo 'Under construction';
     }
 }

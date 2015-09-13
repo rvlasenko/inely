@@ -14,51 +14,51 @@
 ;
 (function ($) {
     var defaults = {
-        width: 400,
-        height: "65%",
-        minimizedWidth: 200,
-        gutter: 10,
+        width            : 400,
+        height           : "65%",
+        minimizedWidth   : 200,
+        gutter           : 10,
         poppedOutDistance: "6%",
-        title: function() {
+        title            : function () {
             return "";
         },
-        dialogClass: "",
-        buttons: [], /* id, html, buttonClass, click */
-        animationSpeed: 400,
-        opacity: 1,
-        initialState: 'modal', /* "modal", "docked", "minimized" */
+        dialogClass      : "",
+        buttons          : [], /* id, html, buttonClass, click */
+        animationSpeed   : 400,
+        opacity          : 1,
+        initialState     : 'modal', /* "modal", "docked", "minimized" */
 
-        showClose: true,
-        showPopout: true,
+        showClose   : true,
+        showPopout  : true,
         showMinimize: true,
 
-        create: undefined,
-        open: undefined,
-        beforeClose: undefined,
-        close: undefined,
+        create        : undefined,
+        open          : undefined,
+        beforeClose   : undefined,
+        close         : undefined,
         beforeMinimize: undefined,
-        minimize: undefined,
-        beforeRestore: undefined,
-        restore: undefined,
-        beforePopout: undefined,
-        popout: undefined
+        minimize      : undefined,
+        beforeRestore : undefined,
+        restore       : undefined,
+        beforePopout  : undefined,
+        popout        : undefined
     };
     var dClass = "dockmodal";
     var windowWidth = $(window).width();
 
     function setAnimationCSS($this, $el) {
         var aniSpeed = $this.options.animationSpeed / 1000;
-        $el.css({"transition": aniSpeed + "s right, " + aniSpeed + "s left, " + aniSpeed + "s top, " + aniSpeed + "s bottom, " + aniSpeed + "s height, " + aniSpeed + "s width"});
+        $el.css({ "transition": aniSpeed + "s right, " + aniSpeed + "s left, " + aniSpeed + "s top, " + aniSpeed + "s bottom, " + aniSpeed + "s height, " + aniSpeed + "s width" });
         return true;
     }
 
     function removeAnimationCSS($el) {
-        $el.css({"transition": "none"});
+        $el.css({ "transition": "none" });
         return true;
     }
 
     var methods = {
-        init: function (options) {
+        init         : function (options) {
 
             return this.each(function () {
 
@@ -146,8 +146,7 @@
                         }
                         return false;
                     });
-                } 
-
+                }
 
                 $dockHeader.append('<div class="title-text">' + ($this.options.title || $this.attr("title")) + '</div>');
                 $dockModal.append($dockHeader);
@@ -165,7 +164,10 @@
                     $dockFooter.append($dockFooterButtonset);
                     $.each($this.options.buttons, function (indx, el) {
                         var $btn = $('<a href="#" class="btn"></a>');
-                        $btn.attr({ "id": el.id, "class": el.buttonClass });
+                        $btn.attr({
+                            "id"   : el.id,
+                            "class": el.buttonClass
+                        });
                         $btn.html(el.html);
                         $btn.click(function (e) {
                             el.click(e, $this);
@@ -228,7 +230,7 @@
                 });
             });
         },
-        destroy: function () {
+        destroy      : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -247,14 +249,14 @@
 
                     if ($dockModal.hasClass("popped-out") && !$dockModal.hasClass("minimized")) {
                         $dockModal.css({
-                            "left": "50%",
-                            "right": "50%",
-                            "top": "50%",
+                            "left"  : "50%",
+                            "right" : "50%",
+                            "top"   : "50%",
                             "bottom": "50%"
                         });
                     } else {
                         $dockModal.css({
-                            "width": "0",
+                            "width" : "0",
                             "height": "0"
                         });
                     }
@@ -271,18 +273,17 @@
                         }
                     }, $this.options.animationSpeed);
 
-                }
-                catch (err) {
+                } catch (err) {
                     alert(err.message);
                 }
                 // other destroy routines
 
             })
         },
-        close: function () {
+        close        : function () {
             methods.destroy.apply(this);
         },
-        minimize: function () {
+        minimize     : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -299,11 +300,11 @@
                 var $dockModal = $this.closest("." + dClass);
                 var headerHeight = $dockModal.find(".dockmodal-header").outerHeight();
                 $dockModal.addClass("minimized").css({
-                    "width": $this.options.minimizedWidth + "px",
+                    "width" : $this.options.minimizedWidth + "px",
                     "height": headerHeight + "px",
-                    "left": "auto",
-                    "right": "auto",
-                    "top": "auto",
+                    "left"  : "auto",
+                    "right" : "auto",
+                    "top"   : "auto",
                     "bottom": "0"
                 });
                 setTimeout(function () {
@@ -322,7 +323,7 @@
                 methods.refreshLayout();
             })
         },
-        restore: function () {
+        restore      : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -340,11 +341,11 @@
                 $dockModal.removeClass("minimized popped-out");
                 $dockModal.find(".dockmodal-body, .dockmodal-footer").show();
                 $dockModal.css({
-                    "width": $this.options.width + "px",
+                    "width" : $this.options.width + "px",
                     "height": $this.options.height,
-                    "left": "auto",
-                    "right": "auto",
-                    "top": "auto",
+                    "left"  : "auto",
+                    "right" : "auto",
+                    "top"   : "auto",
                     "bottom": "0"
                 });
 
@@ -362,7 +363,7 @@
                 methods.refreshLayout();
             })
         },
-        popout: function () {
+        popout       : function () {
             return this.each(function () {
 
                 var $this = $(this).data('dockmodal');
@@ -384,22 +385,22 @@
                 var offset = $dockModal.position();
                 var windowWidth = $(window).width();
                 $dockModal.css({
-                    "width": "auto",
+                    "width" : "auto",
                     "height": "auto",
-                    "left": offset.left + "px",
-                    "right": (windowWidth - offset.left - $dockModal.outerWidth(true)) + "px",
-                    "top": offset.top + "px",
+                    "left"  : offset.left + "px",
+                    "right" : (windowWidth - offset.left - $dockModal.outerWidth(true)) + "px",
+                    "top"   : offset.top + "px",
                     "bottom": 0
                 });
 
                 setAnimationCSS($this, $dockModal);
                 setTimeout(function () {
                     $dockModal.removeClass("minimized").addClass("popped-out").css({
-                        "width": "auto",
+                        "width" : "auto",
                         "height": "auto",
-                        "left": $this.options.poppedOutDistance,
-                        "right": $this.options.poppedOutDistance,
-                        "top": $this.options.poppedOutDistance,
+                        "left"  : $this.options.poppedOutDistance,
+                        "right" : $this.options.poppedOutDistance,
+                        "top"   : $this.options.poppedOutDistance,
                         "bottom": $this.options.poppedOutDistance
                     });
                     $("." + dClass + "-overlay").show();
@@ -448,8 +449,8 @@
     };
 
     $.fn.dockmodal = function (method) {
-        if (methods[method]) {
-            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        if (methods[ method ]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {

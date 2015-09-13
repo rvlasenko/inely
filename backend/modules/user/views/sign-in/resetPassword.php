@@ -1,4 +1,10 @@
-<?php use yii\widgets\Pjax; use yii\widgets\ActiveForm; use yii\helpers\Html; ?>
+<?php
+
+use yii\widgets\Pjax;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
+?>
 
 <section id="content">
 
@@ -18,7 +24,8 @@
                         <label for="firstname" class="field prepend-icon">
 
                             <?= $form->field($model, 'password', [ 'template' => '{input}e' ])->passwordInput([
-                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'This will be your new password')
+                                'class'       => 'gui-input',
+                                'placeholder' => Yii::t('backend', 'This will be your new password')
                             ])->label(false) ?>
 
                         </label>
@@ -26,9 +33,11 @@
                     <div class="col-md-6">
                         <label for="firstname" class="field prepend-icon">
 
-                            <?= $form->field($model, 'passwordConfirm', [ 'template' => '{input}{error}' ])->passwordInput([
-                                'class' => 'gui-input', 'placeholder' => Yii::t('backend', 'Retype your password')
-                            ])->label(false) ?>
+                            <?= $form->field($model, 'passwordConfirm', [ 'template' => '{input}{error}' ])
+                                     ->passwordInput([
+                                         'class'       => 'gui-input',
+                                         'placeholder' => Yii::t('backend', 'Retype your password')
+                                     ])->label(false) ?>
 
                         </label>
                     </div>

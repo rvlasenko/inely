@@ -26,8 +26,8 @@ class PasswordResetRequestForm extends Model
                 'email',
                 'exist',
                 'targetClass' => '\common\models\User',
-                'filter' => [ 'status' => User::STATUS_ACTIVE ],
-                'message' => Yii::t('backend', 'There is no user with such email')
+                'filter'      => [ 'status' => User::STATUS_ACTIVE ],
+                'message'     => Yii::t('backend', 'There is no user with such email')
             ],
         ];
     }
@@ -42,15 +42,15 @@ class PasswordResetRequestForm extends Model
         /* @var $user User */
         $user = User::findOne([
             'status' => User::STATUS_ACTIVE,
-            'email' => $this->email
+            'email'  => $this->email
         ]);
 
         if ($user) {
             $user->generatePasswordResetToken();
             if ($user->save()) {
                 $this->addError('email', Yii::t('backend', 'Check your email for further instructions'));
-                return User::sendEmail($user, 'passwordResetToken', $this->email,
-                    Yii::t('mail', 'Inely password reset'));
+
+                return User::sendEmail($user, 'passwordResetToken', $this->email, Yii::t('mail', 'Inely password reset'));
             }
         }
 

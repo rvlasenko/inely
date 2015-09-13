@@ -12,8 +12,8 @@ class SiteController extends Controller
     {
         return [
             'set' => [
-                'class' => 'common\components\action\SetLocaleAction',
-                'locales' => array_keys(Yii::$app->params[ 'availableLocales' ]),
+                'class'    => 'common\components\action\SetLocaleAction',
+                'locales'  => array_keys(Yii::$app->params[ 'availableLocales' ]),
                 'callback' => function () {
                     Yii::$app->response->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
                 }
@@ -25,14 +25,14 @@ class SiteController extends Controller
     {
         return [
             [
-                'class' => 'yii\filters\PageCache',
-                'only' => [ 'index' ],
-                'duration' => 86400,
+                'class'      => 'yii\filters\PageCache',
+                'only'       => [ 'index' ],
+                'duration'   => 86400,
                 'variations' => [ Yii::$app->language ]
             ],
             [
-                'class' => 'yii\filters\HttpCache',
-                'only' => [ 'index' ],
+                'class'              => 'yii\filters\HttpCache',
+                'only'               => [ 'index' ],
                 'cacheControlHeader' => 'public, max-age=4200'
             ]
         ];

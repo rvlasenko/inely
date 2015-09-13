@@ -8,7 +8,6 @@ use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "user_profile".
- *
  * @property integer $user_id
  * @property integer $locale
  * @property string  $firstname
@@ -18,12 +17,11 @@ use yii\db\ActiveRecord;
  * @property string  $def_char_name
  * @property string  $picture
  * @property integer $gender
- *
  * @property User    $user
  */
 class UserProfile extends ActiveRecord
 {
-    const GENDER_MALE   = 2;
+    const GENDER_MALE = 2;
     const GENDER_FEMALE = 1;
 
     public static function tableName()
@@ -37,7 +35,12 @@ class UserProfile extends ActiveRecord
             [ [ 'user_id' ], 'required' ],
             [ [ 'user_id', 'gender' ], 'integer' ],
             [ [ 'gender' ], 'in', 'range' => [ self::GENDER_FEMALE, self::GENDER_MALE ] ],
-            [ [ 'firstname', 'lastname', 'def_char_name', 'user_char_name', 'user_char_name' ], 'string', 'max' => 255 ],
+            [ [ 'firstname',
+                'lastname',
+                'def_char_name',
+                'user_char_name',
+                'user_char_name' ], 'string', 'max' => 255
+            ],
             [ 'locale', 'default', 'value' => Yii::$app->language ],
             [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ]
         ];

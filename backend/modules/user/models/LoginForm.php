@@ -44,7 +44,6 @@ class LoginForm extends Model
         }
     }
 
-
     /**
      * Logs in a user using the provided username and password.
      *
@@ -69,7 +68,8 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::find()->where([ 'or',
+            $this->_user = User::find()->where([
+                'or',
                 [ 'username' => $this->identity ],
                 [ 'email' => $this->identity ]
             ])->one();

@@ -78,17 +78,14 @@ $this->registerAssetBundle('backend\assets\BootstrapJsAsset', $this::POS_END);
         // Init CanvasBG and pass target starting location
         CanvasBG.init({
             Loc: {
-                x: window.innerWidth / 2,
-                y: window.innerHeight / 3.3
+                x: window.innerWidth / 2, y: window.innerHeight / 3.3
             }
         });
 
         $('.forgot').magnificPopup({
-            removalDelay: 600,
-            items       : {
-                src : '#modal-form'
-            },
-            callbacks   : {
+            removalDelay: 600, items: {
+                src: '#modal-form'
+            }, callbacks: {
                 beforeOpen: function (e) {
                     // Set Magnific Animation
                     var Animation = "mfp-flipInY";

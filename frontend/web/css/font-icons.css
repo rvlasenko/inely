@@ -1,138 +1,138 @@
 @font-face {
-    font-family: 'font-icons';
-    src:         url('../fonts/font-icons/font-icons.eot');
-    src:         url('../fonts/font-icons/font-icons.eot') format('embedded-opentype'),
-                 url('../fonts/font-icons/font-icons.woff') format('woff'),
-                 url('../fonts/font-icons/font-icons.ttf') format('truetype'),
-                 url('../fonts/font-icons/font-icons.svg') format('svg');
-    font-weight: normal;
-    font-style:  normal;
+    font-family : 'font-icons';
+    src         : url('../fonts/font-icons/font-icons.eot');
+    src         : url('../fonts/font-icons/font-icons.eot') format('embedded-opentype'),
+    url('../fonts/font-icons/font-icons.woff') format('woff'),
+    url('../fonts/font-icons/font-icons.ttf') format('truetype'),
+    url('../fonts/font-icons/font-icons.svg') format('svg');
+    font-weight : normal;
+    font-style  : normal;
 }
 
 @font-face {
-    font-family: 'Simple-Line-Icons';
-    src:         url('../fonts/simple-line-icons/Simple-Line-Icons.eot');
-    src:         url('../fonts/simple-line-icons/Simple-Line-Icons.eot?#iefix') format('embedded-opentype'),
-                 url('../fonts/simple-line-icons/Simple-Line-Icons.woff') format('woff'),
-                 url('../fonts/simple-line-icons/Simple-Line-Icons.ttf') format('truetype'),
-                 url('../fonts/simple-line-icons/Simple-Line-Icons.svg#Simple-Line-Icons') format('svg');
-    font-weight: normal;
-    font-style:  normal;
+    font-family : 'Simple-Line-Icons';
+    src         : url('../fonts/simple-line-icons/Simple-Line-Icons.eot');
+    src         : url('../fonts/simple-line-icons/Simple-Line-Icons.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/simple-line-icons/Simple-Line-Icons.woff') format('woff'),
+    url('../fonts/simple-line-icons/Simple-Line-Icons.ttf') format('truetype'),
+    url('../fonts/simple-line-icons/Simple-Line-Icons.svg#Simple-Line-Icons') format('svg');
+    font-weight : normal;
+    font-style  : normal;
 }
 
 [class^="icon-"], [class*=" icon-"], [class*=" icon-line2-"] {
-    display:                 inline-block;
-    font-family:             'font-icons';
-    font-style:              normal;
-    font-weight:             normal;
-    font-variant:            normal;
-    text-transform:          none;
-    line-height:             inherit;
-    -webkit-font-smoothing:  antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    display                 : inline-block;
+    font-family             : 'font-icons';
+    font-style              : normal;
+    font-weight             : normal;
+    font-variant            : normal;
+    text-transform          : none;
+    line-height             : inherit;
+    -webkit-font-smoothing  : antialiased;
+    -moz-osx-font-smoothing : grayscale;
 }
 
 [class*=" icon-line2-"] {
-    font-family: 'Simple-Line-Icons';
+    font-family : 'Simple-Line-Icons';
 }
 
 @-moz-keyframes spin {
     0% {
-        -moz-transform: rotate(0deg);
+        -moz-transform : rotate(0deg);
     }
     100% {
-        -moz-transform: rotate(359deg);
+        -moz-transform : rotate(359deg);
     }
 }
 
 @-webkit-keyframes spin {
     0% {
-        -webkit-transform: rotate(0deg);
+        -webkit-transform : rotate(0deg);
     }
     100% {
-        -webkit-transform: rotate(359deg);
+        -webkit-transform : rotate(359deg);
     }
 }
 
 @-o-keyframes spin {
     0% {
-        -o-transform: rotate(0deg);
+        -o-transform : rotate(0deg);
     }
     100% {
-        -o-transform: rotate(359deg);
+        -o-transform : rotate(359deg);
     }
 }
 
 @-ms-keyframes spin {
     0% {
-        -ms-transform: rotate(0deg);
+        -ms-transform : rotate(0deg);
     }
     100% {
-        -ms-transform: rotate(359deg);
+        -ms-transform : rotate(359deg);
     }
 }
 
 @keyframes spin {
     0% {
-        transform: rotate(0deg);
+        transform : rotate(0deg);
     }
     100% {
-        transform: rotate(359deg);
+        transform : rotate(359deg);
     }
 }
 
 .icon-email2:before {
-    content: "\e662";
+    content : "\e662";
 }
 
 .icon-user:before {
-    content: "\e66c";
+    content : "\e66c";
 }
 
 .icon-cup:before {
-    content: "\e6a8";
+    content : "\e6a8";
 }
 
 .icon-gplus:before {
-    content: "\e838";
+    content : "\e838";
 }
 
 .icon-twitter:before {
-    content: "\e85f";
+    content : "\e85f";
 }
 
 .icon-facebook:before {
-    content: "\e86f";
+    content : "\e86f";
 }
 
 .icon-github:before {
-    content: "\e870";
+    content : "\e870";
 }
 
 .icon-time:before {
-    content: "\e6d2";
+    content : "\e6d2";
 }
 
 .icon-reorder:before {
-    content: "\e76d";
+    content : "\e76d";
 }
 
 .icon-caret-right:before {
-    content: "\e77d";
+    content : "\e77d";
 }
 
 .icon-angle-right:before {
-    content: "\e7a5";
+    content : "\e7a5";
 }
 
 .icon-angle-up:before {
-    content: "\e7a6";
+    content : "\e7a6";
 }
 
 .icon-code:before {
-    content: "\e7bf";
+    content : "\e7bf";
 }
 
 .icon-line2-graph:before {
-    content: "\e06b";
+    content : "\e06b";
 }

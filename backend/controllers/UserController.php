@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ */
+
 namespace backend\controllers;
 
 use Yii;
@@ -20,7 +28,7 @@ class UserController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => [ 'post' ],
                 ],
@@ -38,7 +46,7 @@ class UserController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -126,8 +134,7 @@ class UserController extends Controller
     {
         if (($model = User::findOne($id)) !== null) {
             return $model;
-        }
-        else {
+        } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }

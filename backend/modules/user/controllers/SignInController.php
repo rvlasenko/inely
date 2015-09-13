@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ *
+ * @var $this    yii\web\View
+ * @var $content string
+ */
+
 namespace backend\modules\user\controllers;
 
 use backend\modules\user\models\ConfirmEmailForm;
@@ -27,7 +38,7 @@ class SignInController extends Controller
     {
         return [
             'oauth' => [
-                'class' => 'yii\authclient\AuthAction',
+                'class'           => 'yii\authclient\AuthAction',
                 'successCallback' => [ $this, 'successOAuthCallback' ]
             ]
         ];
@@ -45,30 +56,37 @@ class SignInController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
+            'verbs'  => [
+                'class'   => VerbFilter::className(),
                 'actions' => [ 'logout' => [ 'post' ] ]
             ],
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => [ 'signup', 'confirm-email', 'login', 'request-password-reset', 'reset-password', 'oauth' ],
-                        'allow' => true,
-                        'roles' => [ '?' ]
+                        'actions' => [
+                            'signup',
+                            'confirm-email',
+                            'login',
+                            'request-password-reset',
+                            'reset-password',
+                            'oauth'
+                        ],
+                        'allow'   => true,
+                        'roles'   => [ '?' ]
                     ],
                     [
-                        'actions' => [ 'signup', 'login', 'reset', 'reset-password', 'oauth' ],
-                        'allow' => false,
-                        'roles' => [ '@' ],
-                        'denyCallback' => function() {
+                        'actions'      => [ 'signup', 'login', 'reset', 'reset-password', 'oauth' ],
+                        'allow'        => false,
+                        'roles'        => [ '@' ],
+                        'denyCallback' => function () {
                             return $this->redirect([ '/' ]);
                         }
                     ],
                     [
                         'actions' => [ 'logout', 'confirm-email' ],
-                        'allow' => true,
-                        'roles' => [ '@' ]
+                        'allow'   => true,
+                        'roles'   => [ '@' ]
                     ]
                 ]
             ]
@@ -148,12 +166,12 @@ class SignInController extends Controller
         if ($model->confirmEmail()) {
             Yii::$app->session->setFlash('alert', [
                 'title' => Yii::t('backend', 'Email confirmation'),
-                'body' => Yii::t('backend', 'Thanks! Account e-mail address confirmed successfully')
+                'body'  => Yii::t('backend', 'Thanks! Account e-mail address confirmed successfully')
             ]);
         } else {
             Yii::$app->session->setFlash('alert', [
                 'title' => Yii::t('backend', 'Email confirmation'),
-                'body' => Yii::t('backend', 'Sorry, an error occurred with confirmation')
+                'body'  => Yii::t('backend', 'Sorry, an error occurred with confirmation')
             ]);
         }
 
@@ -173,12 +191,12 @@ class SignInController extends Controller
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('alert', [
                     'title' => 'Восстановление пароля',
-                    'body' => Yii::t('backend', 'Check your email for further instructions'),
+                    'body'  => Yii::t('backend', 'Check your email for further instructions'),
                 ]);
             } else {
                 Yii::$app->session->setFlash('alert', [
                     'title' => 'Восстановление пароля',
-                    'body' => Yii::t('backend', 'Sorry, we are unable to reset password for email provided'),
+                    'body'  => Yii::t('backend', 'Sorry, we are unable to reset password for email provided'),
                 ]);
             }
         }
@@ -203,7 +221,7 @@ class SignInController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
             Yii::$app->session->setFlash('alert', [
                 'title' => Yii::t('backend', 'Password recover'),
-                'body' => Yii::t('backend', 'New password was saved'),
+                'body'  => Yii::t('backend', 'New password was saved'),
             ]);
 
             return $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
@@ -215,8 +233,9 @@ class SignInController extends Controller
     /**
      * Set info for facebook registration
      *
-     * @param array $attributes
+     * @param array  $attributes
      * @param object $user
+     *
      * @return array [$user, $profile]
      */
     protected function setInfoFacebook($attributes, $user)
@@ -225,16 +244,18 @@ class SignInController extends Controller
          * Set email/username if they are set
          * Email may be missing if user signed up using a phone number
          */
-        if (!empty($attributes[ 'email' ])) {
+        if (isset($attributes[ 'email' ])) {
             $user->email = $attributes[ 'email' ];
         }
 
-        if (!empty($attributes[ 'username' ])) {
+        if (isset($attributes[ 'username' ])) {
             $user->username = $attributes[ 'username' ];
         }
 
         // use facebook name as username as fallback
-        if (!empty($attributes[ 'email' ]) && empty($attributes[ 'username' ])) {
+        if (!isset($attributes[ 'first_name' ])) {
+            $user->username = $attributes[ 'name' ];
+        } else {
             $user->username = str_replace(" ", "_", $attributes[ 'first_name' ]);
         }
 
@@ -300,7 +321,7 @@ class SignInController extends Controller
         $attributes = $client->getUserAttributes();
 
         $user = User::find()->where([
-            'oauth_client' => $client->getName(),
+            'oauth_client'         => $client->getName(),
             'oauth_client_user_id' => ArrayHelper::getValue($attributes, 'id')
         ])->one();
         if (!$user) {
@@ -309,11 +330,14 @@ class SignInController extends Controller
 
             switch ($client->getName()) {
                 case 'vkontakte':
-                    $this->setInfoVkontakte($attributes, $user); break;
+                    $this->setInfoVkontakte($attributes, $user);
+                    break;
                 case 'facebook':
-                    $this->setInfoFacebook($attributes, $user); break;
+                    $this->setInfoFacebook($attributes, $user);
+                    break;
                 case 'google':
-                    $this->setInfoGoogle($attributes, $user); break;
+                    $this->setInfoGoogle($attributes, $user);
+                    break;
             }
 
             $user->oauth_client         = $client->getName();
@@ -323,9 +347,9 @@ class SignInController extends Controller
 
             if ($user->save()) {
                 $user->afterSignup([
-                    'firstname' => $attributes[ 'first_name' ],
-                    'lastname' => $attributes[ 'last_name' ],
-                    'id' => $user->id
+                    'firstname' => ArrayHelper::getValue($attributes, 'first_name'),
+                    'lastname'  => ArrayHelper::getValue($attributes, 'last_name'),
+                    'id'        => $user->id
                 ]);
             }
         }

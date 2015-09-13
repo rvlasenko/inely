@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
+ */
+
 namespace backend\controllers;
 
 use Yii;
@@ -26,7 +34,7 @@ class TimelineEventController extends Controller
         ];
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider
         ]);
     }

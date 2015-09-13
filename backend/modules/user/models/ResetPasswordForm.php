@@ -48,9 +48,13 @@ class ResetPasswordForm extends Model
         return [
             [ 'password', 'required' ],
             [ 'password', 'string', 'min' => 6 ],
-
             [ [ 'passwordConfirm' ], 'required', 'on' => [ 'reset' ] ],
-            [ [ 'passwordConfirm' ], 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('backend', 'Passwords do not match') ]
+            [
+                [ 'passwordConfirm' ],
+                'compare',
+                'compareAttribute' => 'password',
+                'message'          => Yii::t('backend', 'Passwords do not match')
+            ]
         ];
     }
 
@@ -61,7 +65,7 @@ class ResetPasswordForm extends Model
      */
     public function resetPassword()
     {
-        $user           = $this->_user;
+        $user = $this->_user;
         $user->password = $this->password;
         $user->removePasswordResetToken();
 

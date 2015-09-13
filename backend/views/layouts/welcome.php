@@ -1,20 +1,17 @@
 <?php
 
-/*
+/**
  * This file is part of the Inely project.
  *
  * (c) Inely <http://github.com/inely>
  *
- *
- */
-
-use yii\helpers\Html;
-
-/**
  * @author rootkit
+ *
  * @var $this    yii\web\View
  * @var $content string
  */
+
+use yii\helpers\Html;
 
 backend\assets\CharacterAsset::register($this);
 
@@ -86,22 +83,27 @@ $this->registerJs('$("#fin").click(function () { myDropzone.processQueue() })');
         $(".panel-tabs li:first-child").removeClass("active");
 
         // Upload page
-        $("#own").click(function () { $(".char-f").fadeOut(); $(".char-t").fadeIn(1000) });
+        $("#own").click(function () {
+            $(".char-f").fadeOut();
+            $(".char-t").fadeIn(1000)
+        });
 
         // Welcome page
-        $("#start").click(function () { $(".char-t").fadeOut(); $(".char-f").fadeIn(1000) });
+        $("#start").click(function () {
+            $(".char-t").fadeOut();
+            $(".char-f").fadeIn(1000)
+        });
 
         (function () {
 
             function init() {
-                var speed  = 250;
+                var speed = 250;
                 var easing = mina.easeinout;
 
                 [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
-                    var s = Snap(el.querySelector('svg')), path = s.select('path'),
-                        pathConfig = {
+                    var s = Snap(el.querySelector('svg')), path = s.select('path'), pathConfig = {
                             from: path.attr('d'),
-                            to  : el.getAttribute('data-path-hover')
+                            to:   el.getAttribute('data-path-hover')
                         };
 
                     el.addEventListener('mouseenter', function () {

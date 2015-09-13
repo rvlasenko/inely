@@ -14,10 +14,8 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
-backend\assets\DashboardAsset::register($this);
 $this->title = Yii::t('backend', 'Your dashboard');
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
-$onKeyEvent = Yii::$app->controller->route == 'task/index' ? 'onkeydown="keyDown(event)" onkeyup="keyUp(event)"' : false;
 $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : false;
 ?>
 
@@ -45,7 +43,7 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
 
 <?php $this->beginBody() ?>
 
-<body class="dashboard-page boxed-layout sb-l-c" <?= $onKeyEvent ?>>
+<body class="dashboard-page boxed-layout sb-l-c">
 
 <?= $this->render('header') ?>
 
@@ -59,11 +57,12 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
         <section id="content" class="animated fadeIn <?= $tableLayout ?>">
             <?php if (Yii::$app->session->hasFlash('alert')): ?>
 
-            <div class="alert alert-primary alert-dismissable mb30">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h3 class="mt5"><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'title') ?></h3>
-                <p><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body') ?></p>
-            </div>
+                <div class="alert alert-primary alert-dismissable mb30">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h3 class="mt5"><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'title') ?></h3>
+
+                    <p><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body') ?></p>
+                </div>
 
             <?php endif ?>
             <?= $content ?>
@@ -94,31 +93,32 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
 
         // Chart for user activity and perfomance
         $('.ct-chart').highcharts({
-            title  : { text: null },
+            title:   { text: null },
             credits: false,
-            chart  : {
-                marginTop      : 0,
+            chart:   {
+                marginTop:       0,
                 plotBorderWidth: 0
             },
-            xAxis  : {
-                categories: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'  ]
+            xAxis:   {
+                categories: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
             },
-            yAxis  : {
+            yAxis:   {
                 labels: { enabled: false },
-                title : { text: null }
+                title:  { text: null }
             },
-            legend : { enabled: false },
-            series : [
+            legend:  { enabled: false },
+            series:  [
                 {
                     name: 'All visits',
                     data: [ 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6 ]
-                },
-                {
+                }, {
                     name: 'XP earned',
                     data: [ 4, 6, 5, 9, 11, 14, 1 ]
                 }
             ]
         });
+        // Remove first line
+        $('.highcharts-grid path:first-child').remove();
 
         // Init plugins for ".task-widget"
         // plugins: Custom Functions + jQuery Sortable
@@ -130,10 +130,10 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
 
         // Init jQuery Sortable on Task Widget
         taskWidget.sortable({
-            items      : taskItems, // only init sortable on list items (not labels)
-            axis       : 'y',
+            items:       taskItems, // only init sortable on list items (not labels)
+            axis:        'y',
             connectWith: ".task-list",
-            update     : function (event, ui) {
+            update:      function (event, ui) {
                 var Item = ui.item;
                 var ParentList = Item.parent();
 
@@ -172,32 +172,32 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
         // Init plugins for ".calendar-widget" FullCalendar
         $('#calendar-widget').fullCalendar({
             contentHeight: 397,
-            editable     : true,
-            firstDay     : 1,
-            events       : [
+            editable:      true,
+            firstDay:      1,
+            events:        [
                 {
-                    title    : 'Sony Meeting',
-                    start    : '2015-09-1',
-                    end      : '2015-09-3',
+                    title:     'Sony Meeting',
+                    start:     '2015-09-1',
+                    end:       '2015-09-3',
                     className: 'fc-event-success'
                 }, {
-                    title    : 'Conference',
-                    start    : '2015-09-13',
-                    end      : '2015-09-15',
+                    title:     'Conference',
+                    start:     '2015-09-13',
+                    end:       '2015-09-15',
                     className: 'fc-event-primary'
                 }, {
-                    title    : 'Lunch Testing',
-                    start    : '2015-09-23',
-                    end      : '2015-09-25',
+                    title:     'Lunch Testing',
+                    start:     '2015-09-23',
+                    end:       '2015-09-25',
                     className: 'fc-event-danger'
                 }
             ],
-            eventRender  : function (event, element) {
+            eventRender:   function (event, element) {
                 // create event tooltip using bootstrap tooltips
                 $(element).attr("data-original-title", event.title);
                 $(element).tooltip({
                     container: 'body',
-                    delay    : {
+                    delay:     {
                         "show": 100,
                         "hide": 200
                     }
@@ -211,32 +211,13 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
             }
         });
 
-        // Remove first line
-        $('.highcharts-grid path:first-child').remove();
-
-        // Configure Progress Loader
-        NProgress.configure({
-            minimum     : 0.15,
-            trickleRate : .07,
-            trickleSpeed: 360,
-            showSpinner : false,
-            barColor    : 'firebrick',
-            barPos      : 'npr-top'
-        });
-
-        NProgress.start();
-        setTimeout(function() {
-            NProgress.done();
-            $('.fade').removeClass('out');
-        }, 1000);
-
         // Init Summernote Plugin
         $('.summernote').summernote({
-            height  : 255, //set editable area's height
-            focus   : false, //set focus editable area after Initialize summernote
-            oninit  : function () {},
+            height:   255, //set editable area's height
+            focus:    false, //set focus editable area after Initialize summernote
+            oninit:   function () {},
             onChange: function (contents, $editable) {},
-            toolbar : [
+            toolbar:  [
                 [ 'style', [ 'style' ] ],
                 [ 'font', [ 'bold', 'italic', 'underline' ] ],
                 [ 'color', [ 'color' ] ],
@@ -248,14 +229,14 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
 
         // Init Admin Panels on widgets inside the ".admin-panels" container
         $('.admin-panels').adminpanel({
-            grid        : '.admin-grid',
-            draggable   : true,
+            grid:         '.admin-grid',
+            draggable:    true,
             preserveGrid: true,
-            mobile      : false,
-            onFinish    : function () {
+            mobile:       false,
+            onFinish:     function () {
                 $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
             },
-            onSave      : function () { $(window).trigger('resize'); }
+            onSave:       function () { $(window).trigger('resize'); }
         });
 
     });

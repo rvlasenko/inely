@@ -4,6 +4,7 @@
 
         <div id="section-intro" class="divcenter center clearfix" style="max-width: 900px;">
             <h1><?= Yii::t('frontend', 'Welcome! This is <span class="tright">Inely</span>') ?></h1>
+
             <h2><?= Yii::t('frontend', 'Manage your personal goals, your projects, etc. in one place. Our task-manager designed to adapt to all needs. Inely will not give you get bored.') ?></h2>
             <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-3d button-large"><?= Yii::t('frontend', 'Try Now') ?></a>
         </div>
