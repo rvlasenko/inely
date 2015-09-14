@@ -1,7 +1,11 @@
 <?php
 
 /**
- * @author Copyright (c) 2015 rootkit
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/inely>
+ *
+ * @author rootkit
  */
 
 namespace frontend\assets;
@@ -27,5 +31,5 @@ class FrontendAsset extends AssetBundle
 
     public $jsOptions = [ 'position' => View::POS_HEAD ];
 
-    public $depends = [ 'common\assets\BootstrapAsset', 'frontend\assets\RevSliderAsset' ];
+    public $depends = [ 'common\assets\BootstrapAsset' ];
 }

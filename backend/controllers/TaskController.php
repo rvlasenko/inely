@@ -36,24 +36,24 @@ class TaskController extends Controller
                     ]
                 ]
             ],
-            //            [
-            //                'class' => 'yii\filters\HttpCache',
-            //                'only' => [ 'index', 'project', 'inbox' ],
-            //                'lastModified' => function () {
-            //                    $q = new Query();
-            //                    return $q->from('tasks')->max('updated_at');
-            //                },
-            //            ],
-            //            'pageCache' => [
-            //                'class' => 'yii\filters\PageCache',
-            //                'only' => [ 'index', 'project', 'inbox' ],
-            //                'duration' => 180,
-            //                'variations' => [ Yii::$app->language ],
-            //                'dependency' => [
-            //                    'class' => 'yii\caching\DbDependency',
-            //                    'sql' => 'SELECT MAX(updated_at) FROM tasks'
-            //                ]
-            //            ],
+//            [
+//                'class' => 'yii\filters\HttpCache',
+//                'only' => [ 'index', 'project', 'inbox' ],
+//                'lastModified' => function () {
+//                    $q = new Query();
+//                    return $q->from('tasks')->max('updated_at');
+//                },
+//            ],
+//            'pageCache' => [
+//                'class' => 'yii\filters\PageCache',
+//                'only' => [ 'index', 'project', 'inbox' ],
+//                'duration' => 180,
+//                'variations' => [ Yii::$app->language ],
+//                'dependency' => [
+//                    'class' => 'yii\caching\DbDependency',
+//                    'sql' => 'SELECT MAX(updated_at) FROM tasks'
+//                ]
+//            ],
             'verbs'  => [
                 'class'   => VerbFilter::className(),
                 'actions' => [
@@ -61,7 +61,7 @@ class TaskController extends Controller
                     'create'  => [ 'post' ],
                     'update'  => [ 'post' ],
                     'project' => [ 'post' ],
-                    'inbox'   => [ 'get' ]
+                    'inbox'   => [ 'get'  ]
                 ]
             ]
         ];

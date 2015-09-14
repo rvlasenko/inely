@@ -21,22 +21,21 @@ class SiteController extends Controller
         ];
     }
 
-    public function behaviors()
-    {
-        return [
-            [
-                'class'      => 'yii\filters\PageCache',
-                'only'       => [ 'index' ],
-                'duration'   => 86400,
-                'variations' => [ Yii::$app->language ]
-            ],
-            [
-                'class'              => 'yii\filters\HttpCache',
-                'only'               => [ 'index' ],
-                'cacheControlHeader' => 'public, max-age=4200'
-            ]
-        ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//            [
+//                'class' => 'yii\filters\HttpCache',
+//                'only'  => [ 'index' ]
+//            ],
+//            'pageCache' => [
+//                'class'      => 'yii\filters\PageCache',
+//                'only'       => [ 'index' ],
+//                'duration'   => 6800,
+//                'variations' => [ Yii::$app->language ]
+//            ],
+//        ];
+//    }
 
     public function actionIndex()
     {

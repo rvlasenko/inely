@@ -1,39 +1,58 @@
 <div class="content-wrap">
 
-    <div class="container clearfix">
+    <div class="container clearfix" id="section-intro">
+        <div class="row clearfix">
 
-        <div id="section-intro" class="divcenter center clearfix" style="max-width: 900px;">
-            <h1><?= Yii::t('frontend', 'Welcome! This is <span class="tright">Inely</span>') ?></h1>
-
-            <h2><?= Yii::t('frontend', 'Manage your personal goals, your projects, etc. in one place. Our task-manager designed to adapt to all needs. Inely will not give you get bored.') ?></h2>
-            <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-3d button-large"><?= Yii::t('frontend', 'Try Now') ?></a>
-        </div>
-
-        <div class="line"></div>
-
-    </div>
-
-    <div class="section notopmargin" style="padding-bottom: 150px;">
-
-        <div class="hidden-sm hidden-xs desc"></div>
-
-        <div id="section-desc" class="container clearfix" style="z-index: 1;">
-
-            <div class="col-md-6 nobottommargin">
-
-                <div class="heading-block topmargin-sm">
-                    <h2>Awesome Scalable Apps</h2>
-                    <span>Our Template acts &amp; behaves truly as a Canvas.</span>
+            <div class="col-lg-5">
+                <div class="heading-block topmargin">
+                    <h1><?= Yii::t('frontend', 'Welcome to Inely.<br>MultiPurpose helper.') ?></h1>
                 </div>
+                <p class="lead"><?= Yii::t('frontend', 'Manage your personal goals, your projects, etc. in one place. Our helper designed to adapt to all needs.') ?></p>
+            </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maiores pariatur voluptatem placeat laborum iste accusamus nam unde, iure id.</p>
+            <div class="col-lg-7">
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet cumque, perferendis accusamus porro illo exercitationem molestias, inventore obcaecati ut omnis voluptatibus ratione odio amet magnam quidem tempore necessitatibus quaerat, voluptates excepturi voluptatem, veritatis qui temporibus.</p>
+                <div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
+                    <img src="images/services/main-fbrowser.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="Chrome">
+                </div>
 
             </div>
 
         </div>
+    </div>
 
+    <div class="section">
+        <div class="container clear-bottommargin clearfix" id="section-services">
+
+            <div class="row topmargin-sm clearfix">
+
+                <div class="col-md-4 bottommargin">
+                    <i class="i-plain color i-large icon-line2-emoticon-smile inline-block" style="margin-bottom: 15px;"></i>
+                    <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
+                        <h4>Responsive &amp; Retina</h4>
+                    </div>
+                    <p>Employment respond committed meaningful fight against oppression social challenges rural legal aid governance. Meaningful work, implementation, process cooperation, campaign inspire.</p>
+                </div>
+
+                <div class="col-md-4 bottommargin">
+                    <i class="i-plain color i-large icon-line2-trophy inline-block" style="margin-bottom: 15px;"></i>
+                    <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
+                        <h4>Powerful Performance</h4>
+                    </div>
+                    <p>Medecins du Monde Jane Addams reduce child mortality challenges Ford Foundation. Diversification shifting landscape advocate pathway to a better life rights international. Assessment.</p>
+                </div>
+
+                <div class="col-md-4 bottommargin">
+                    <i class="i-plain color i-large icon-line2-directions inline-block" style="margin-bottom: 15px;"></i>
+                    <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
+                        <h4>Truly Multi-Purpose</h4>
+                    </div>
+                    <p>Democracy inspire breakthroughs, Rosa Parks; inspiration raise awareness natural resources. Governance impact; transformative donation philanthropy, respect reproductive.</p>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
     <div class="container clearfix">
@@ -72,7 +91,7 @@
                 </div>
                 <h3><?= Yii::t('frontend', 'Powerful Performance') ?></h3>
 
-                <p><?= Yii::t('frontend', 'Inely includes tons of optimized code that are completely customizable and deliver unmatched optimization.') ?></p>
+                <p><?= Yii::t('frontend', 'Inely includes tons of optimized code that are completely customizable and deliver unmatched speed.') ?></p>
             </div>
         </div>
 
@@ -123,15 +142,15 @@
             </div>
 
             <div style="position: relative; margin-bottom: -60px; height: 415px;" data-height-lg="415" data-height-md="342" data-height-sm="262" data-height-xs="160" data-height-xxs="102">
-                <img src="<?= Yii::t('frontend', 'images/services/chrome.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" alt="Chrome" class="fadeInUp animated">
-                <img src="<?= Yii::t('frontend', 'images/services/ipad3.png') ?>" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="300" alt="iPad" class="fadeInUp animated">
+                <img src="images/services/chrome.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" alt="Chrome" class="fadeInUp animated">
+                <img src="images/services/ipad3.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="300" alt="iPad" class="fadeInUp animated">
             </div>
 
         </div>
 
     </div>
 
-    <a href="<?= Yii::$app->urlManagerBackend->createUrl('') ?>" class="button button-full center tright footer-stick">
+    <a href="<?= Yii::$app->urlManagerBackend->createUrl(false) ?>" class="button button-full center tright footer-stick">
         <div class="container clearfix">
             <?= Yii::t('frontend', 'Now that you have read all the Tid-Bits, <strong>Let\'s go!</strong>') ?>
             <i class="icon-caret-right"></i>

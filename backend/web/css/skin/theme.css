@@ -15925,14 +15925,14 @@ div.next-button-container {
     }
 
     body.boxed-layout .navbar {
-        width      : 75%;
+        width      : 1100px;
         margin     : 0 auto;
         box-shadow : 0 0 10px rgba(0, 0, 0, 0.3);
     }
 
     body.boxed-layout #main {
         overflow : hidden;
-        width    : 75%;
+        width    : 1100px;
         margin   : 0 auto;
     }
 
@@ -16232,7 +16232,7 @@ body.boxed-layout #toggle_sidemenu_r {
     background-color   : #383838;
     -webkit-transition : margin 0.2s ease;
     transition         : margin 0.2s ease;
-    width              : 75%;
+    width              : 1100px;
     margin             : 0 auto !important;
     z-index            : 999;
 }
@@ -18193,11 +18193,6 @@ body.tray-rescale .tray .affix-pane.affix {
 
 /* Disable completely on resolutions <600 */
 @media (max-width : 600px) {
-    body.tray-rescale .tray-left,
-    body.tray-rescale .tray-right {
-        display : none;
-    }
-
     body.tray-rescale .tray-center {
         padding-right : 13px !important;
     }

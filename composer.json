@@ -11,8 +11,7 @@
     "todo"
   ],
   "homepage": "https://github.com/Exoticness/inely",
-  "license": "GPLv3",
-  "minimum-stability": "dev",
+  "license": "MIT",
   "authors": [
     {
       "name": "Roman Vlasenko",
@@ -32,8 +31,7 @@
     "kartik-v/yii2-widget-select2": "*",
     "vlucas/phpdotenv": "~1.0",
     "perminder-klair/yii2-dropzone": "dev-master",
-    "FortAwesome/Font-Awesome": "*",
-    "rev-slider/rev-slider": "dev-master"
+    "FortAwesome/Font-Awesome": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0",

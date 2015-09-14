@@ -34,12 +34,12 @@ var Core = function (options) {
             $('#form-compose').submit();
             setTimeout(function () {
                 $('.quick-compose-form').dockmodal("close");
-            }, 300);
             $.ajax({
                 url: "/task/inbox"
             }).done(function (data) {
                 ajaxCont.html(data);
             });
+            }, 400);
         }
     }
 

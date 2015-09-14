@@ -7,10 +7,9 @@
 -----------------------------------------------------------------------------------*/
 @import "//webfonts.ru/import/ralewayc.css";
 @import "//webfonts.ru/import/lato.css";
-@import "//webfonts.ru/import/creteround.css";
 
-.revo-slider-emphasis-text {
-    font-size      : 64px;
+.emphasis-text {
+    font-size      : 52px;
     font-weight    : 700;
     letter-spacing : -1px;
     font-family    : 'Raleway Cyr', sans-serif;
@@ -19,7 +18,7 @@
     border-bottom  : 2px solid #fff;
 }
 
-.revo-slider-desc-text {
+.desc-text {
     font-size   : 20px;
     font-family : 'Raleway Cyr', sans-serif;
     width       : 650px;
@@ -28,7 +27,7 @@
     font-weight : 300;
 }
 
-.revo-slider-caps-text {
+.caps-text {
     font-size      : 16px;
     font-weight    : 400;
     letter-spacing : 3px;
@@ -114,6 +113,10 @@ iframe { border : none !important; }
 
 .dark a:hover {
     color : #eee;
+}
+
+.dark .heading-block:not(.not-dark):after {
+    border-top-color : rgba(255, 255, 255, 0.4);
 }
 
 .dark .line {
@@ -354,7 +357,7 @@ h3 { font-size : 24px; }
 
 h4 { font-size : 18px; }
 
-h5 { font-size : 14px; }
+h5 { font-size : 15px; }
 
 h6 { font-size : 12px; }
 
@@ -1588,6 +1591,31 @@ body.top-search-open #side-panel-trigger { opacity : 0; }
     text-shadow      : 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+.button.button-3d {
+    border-radius      : 3px;
+    border-bottom      : 3px solid rgba(0, 0, 0, 0.15);
+    -webkit-transition : none;
+    -o-transition      : none;
+    transition         : none;
+}
+
+.button.button-3d:hover {
+    background-color : #1abc9c !important;
+    opacity          : 0.9;
+}
+
+.button.button-3d.button-light:hover,
+.button.button-reveal.button-light:hover {
+    text-shadow : none;
+    color       : #333;
+}
+
+.button.button-border.button-light:hover {
+    background-color : #eee;
+    color            : #333;
+    text-shadow      : none;
+}
+
 body:not(.device-touch) .button {
     -webkit-transition : all .2s ease-in-out;
     -o-transition      : all .2s ease-in-out;
@@ -1626,7 +1654,7 @@ body:not(.device-touch) .button {
 
 .button.button-large {
     padding     : 0 26px;
-    font-size   : 18px;
+    font-size   : 16px;
     height      : 46px;
     line-height : 46px;
 }
@@ -1654,7 +1682,7 @@ body:not(.device-touch) .button {
     font-size      : 14px;
     font-weight    : 400;
     letter-spacing : 1px;
-    font-family    : 'Crete Round', serif;
+    font-family    : 'Georgia', serif;
     font-style     : italic;
     text-transform : none;
 }
@@ -1792,6 +1820,134 @@ body:not(.device-touch) .button.button-full strong {
     text-shadow : none;
     color       : #333;
 }
+
+.button.button-reveal {
+    padding  : 0 28px;
+    overflow : hidden;
+}
+
+.button.button-reveal i {
+    display          : block;
+    position         : absolute;
+    top              : 0;
+    left             : -32px;
+    width            : 32px;
+    height           : 40px;
+    line-height      : 40px;
+    margin           : 0;
+    text-align       : center;
+    background-color : rgba(0, 0, 0, 0.1);
+}
+
+.button.button-reveal.button-border i { top : -2px; }
+
+.button.button-reveal.tright i {
+    left  : auto;
+    right : -32px;
+}
+
+.button.button-reveal.button-3d i,
+.button.button-reveal.button-rounded i { border-radius : 3px 0 0 3px; }
+
+.button.button-reveal.button-3d.tright i,
+.button.button-reveal.button-rounded.tright i { border-radius : 0 3px 3px 0; }
+
+.button.button-reveal span {
+    display        : inline-block;
+    position       : relative;
+    left           : 0;
+    text-transform : uppercase;
+}
+
+body:not(.device-touch) .button.button-reveal i,
+body:not(.device-touch) .button.button-reveal span {
+    -webkit-transition : left 0.3s ease, right 0.3s ease;
+    -o-transition      : left 0.3s ease, right 0.3s ease;
+    transition         : left 0.3s ease, right 0.3s ease;
+}
+
+.button.button-reveal.button-mini { padding : 0 17px; }
+
+.button.button-reveal.button-mini i {
+    left        : -22px;
+    width       : 22px;
+    height      : 28px;
+    line-height : 28px;
+}
+
+.button.button-reveal.button-mini.tright i {
+    left  : auto;
+    right : -22px;
+}
+
+.button.button-reveal.button-small { padding : 0 22px; }
+
+.button.button-reveal.button-small i {
+    left        : -26px;
+    width       : 26px;
+    height      : 34px;
+    line-height : 34px;
+}
+
+.button.button-reveal.button-small.tright i {
+    left  : auto;
+    right : -26px;
+}
+
+.button.button-reveal.button-large { padding : 0 32px; }
+
+.button.button-reveal.button-large i {
+    left        : -38px;
+    width       : 38px;
+    height      : 46px;
+    line-height : 46px;
+}
+
+.button.button-reveal.button-large.tright i {
+    left  : auto;
+    right : -38px;
+}
+
+.button.button-reveal.button-xlarge { padding : 0 40px; }
+
+.button.button-reveal.button-xlarge i {
+    left        : -44px;
+    width       : 44px;
+    height      : 52px;
+    line-height : 52px;
+}
+
+.button.button-reveal.button-xlarge.tright i {
+    left  : auto;
+    right : -44px;
+}
+
+.button.button-reveal:hover i { left : 0; }
+
+.button.button-reveal.tright:hover i {
+    left  : auto;
+    right : 0;
+}
+
+.button.button-reveal:hover span { left : 16px; }
+
+.button.button-reveal.button-mini:hover span { left : 11px; }
+
+.button.button-reveal.button-small:hover span { left : 13px; }
+
+.button.button-reveal.button-large:hover span { left : 19px; }
+
+.button.button-reveal.button-xlarge:hover span { left : 22px; }
+
+.button.button-reveal.tright:hover span { left : -16px; }
+
+.button.button-reveal.button-mini.tright:hover span { left : -11px; }
+
+.button.button-reveal.button-small.tright:hover span { left : -13px; }
+
+.button.button-reveal.button-large.tright:hover span { left : -19px; }
+
+.button.button-reveal.button-xlarge.tright:hover span { left : -22px; }
 
 /* Buttons - Colors
 -----------------------------------------------------------------*/
@@ -2938,7 +3094,7 @@ body:not(.device-touch) .social-icon i {
 
 .testi-content p {
     margin-bottom : 0;
-    font-family   : 'Crete Round', serif;
+    font-family   : 'Georgia', serif;
     font-style    : italic;
 }
 
@@ -3125,7 +3281,6 @@ label.error { display : none !important; }
 .emphasis-title h2 {
     margin-bottom  : 0;
     font-weight    : 700;
-    text-transform : uppercase;
     letter-spacing : 1px;
     color          : #333;
 }
@@ -3160,12 +3315,12 @@ label.error { display : none !important; }
 .heading-block.center > span,
 .heading-block.title-center > span,
 .center .heading-block > span {
-    max-width    : 700px;
+    max-width    : 800px;
     margin-left  : auto;
     margin-right : auto;
 }
 
-.heading-block h1 + span { font-size : 24px; }
+.heading-block h1 + span { font-size : 20px; }
 
 .heading-block h2 + span { font-size : 22px; }
 
@@ -3311,7 +3466,7 @@ label.error { display : none !important; }
     display     : block;
     margin      : 0 0 5px;
     font-size   : 16px;
-    font-family : 'Crete Round', serif;
+    font-family : 'Georgia', serif;
     font-style  : italic;
     font-weight : 400;
     color       : #999;

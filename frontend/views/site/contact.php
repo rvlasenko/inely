@@ -16,7 +16,7 @@ use yii\widgets\Pjax;
     <?php $form = ActiveForm::begin([
         'id'                     => 'quick-contact-form',
         'options'                => [ 'class' => 'quick-contact-form nobottommargin', 'data-pjax' => true ],
-        'enableClientValidation' => true
+        'enableClientValidation' => false
     ]) ?>
 
     <div class="form-process"></div>
@@ -47,7 +47,7 @@ use yii\widgets\Pjax;
         'cols'        => 30
     ])->label(false) ?>
 
-    <?= Html::submitButton(Yii::t('frontend', 'Send Letter'), [ 'class' => 'btn btn-danger nomargin' ]) ?>
+    <?= Html::submitButton(Yii::t('frontend', 'Send'), [ 'class' => 'btn btn-danger nomargin' ]) ?>
 
     <?php ActiveForm::end() ?>
     <?php Pjax::end() ?>

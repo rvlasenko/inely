@@ -3,7 +3,7 @@
 /**
  * This file is part of the Inely project.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
  * @author rootkit
  * @var $this    yii\web\View

@@ -1,23 +1,26 @@
 <?php
 
+/**
+ * This file is part of the Inely project.
+ *
+ * (c) Inely <http://github.com/hirootkit/inely>
+ *
+ * @author rootkit
+ */
+
 use frontend\assets\FrontendAsset;
 use yii\helpers\Html;
 
-/**
- * @author rootkit
- * @var $this    yii\web\View
- * @var $content string
- */
-
 FrontendAsset::register($this);
 
-$this->title = Yii::t('frontend', 'Welcome to Inely');
+$this->title = Yii::t('frontend', 'Inely - Service for achieving goals');
 
 $this->registerAssetBundle('common\assets\JuiAsset', $this::POS_END);
 $this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
 
 $this->registerJsFile('js/functions.js', [ 'position' => $this::POS_END ]);
-$this->registerJsFile('js/plugins.js', [ 'position' => $this::POS_END ]);
+$this->registerJsFile('js/plugins.js',   [ 'position' => $this::POS_END ]);
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -53,7 +56,7 @@ $this->registerJsFile('js/plugins.js', [ 'position' => $this::POS_END ]);
     ============================================= -->
     <?= $this->render('//common/header.php') ?>
 
-    <?= $this->render('//common/revoSlider.php') ?>
+    <?= $this->render('//common/heroSection.php') ?>
 
     <!-- Content
     ============================================= -->

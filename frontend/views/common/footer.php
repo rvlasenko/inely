@@ -12,9 +12,9 @@
 
                     <img src="images/footer-widget-logo.png" alt="" class="alignleft" style="margin-top: 8px; padding-right: 18px; border-right: 1px solid #4A4A4A;">
 
-                    <p>
+                    <p></p>
 
-                    <div class="author"><?= Yii::t('frontend', 'Crafted with <img src="http://shirta.com/media/catalog/product/cache/2/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pixel-heart-broken-d75686826.png" style="width: 1.7em;"> by rootkit.') ?></div>
+                    <div class="author">Crafted with <3 by rootkit.</div>
 
                     <div class="line" style="margin: 30px 0;"></div>
 
@@ -29,7 +29,7 @@
                                 <div class="counter counter-small" style="color: #35BBAA;">
                                     <span data-from="50" data-to="1506" data-refresh-interval="80" data-speed="3000" data-comma="true"></span>
                                 </div>
-                                <h5 class="nobottommargin"><?= Yii::t('frontend', 'Coins earned') ?></h5>
+                                <h5 class="nobottommargin"><?= Yii::t('frontend', 'XP earned') ?></h5>
                             </div>
 
                             <div class="col-md-6 col-xs-6 bottommargin-sm center col_last">
@@ -91,9 +91,7 @@
 
             <div class="col_half">
                 <div class="copyrights-menu copyright-links clearfix">
-                    <?php foreach (Yii::$app->params[ 'availableLocales' ] as $key => $language): ?>
-                        <?= \yii\helpers\Html::a($language, [ '/site/set', 'locale' => $key ]) ?>
-                    <?php endforeach ?>
+                    <?= $this->render('//layouts/_locale') ?>
                 </div>
                 Copyrights &copy; <?= date('Y') ?> All Rights Reserved by rootkit.
             </div>

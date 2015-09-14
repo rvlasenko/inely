@@ -125,6 +125,22 @@
     content : "\e7a5";
 }
 
+.icon-line2-emoticon-smile:before {
+    content: "\e021";
+}
+
+.icon-line2-trophy:before {
+    content: "\e006";
+}
+
+.icon-line2-heart:before {
+    content: "\e73e";
+}
+
+.icon-line2-directions:before {
+    content: "\e041";
+}
+
 .icon-angle-up:before {
     content : "\e7a6";
 }

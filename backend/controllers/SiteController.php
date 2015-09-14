@@ -3,7 +3,7 @@
 /**
  * This file is part of the Inely project.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
  * @author rootkit
  */
@@ -18,17 +18,11 @@ use yii\web\Controller;
 class SiteController extends Controller
 {
     /**
-     * Activation page caching for a period of one day
      * Set locale from SetLocaleAction class
      */
     public function actions()
     {
         return [
-            [
-                'class'    => 'yii\filters\PageCache',
-                'only'     => [ 'index' ],
-                'duration' => 84600
-            ],
             'error' => [ 'class' => 'yii\web\ErrorAction' ],
             'set'   => [
                 'class'    => 'common\components\action\SetLocaleAction',
@@ -39,6 +33,23 @@ class SiteController extends Controller
             ]
         ];
     }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'yii\filters\HttpCache',
+                'only'  => [ 'index' ]
+            ],
+            'pageCache' => [
+                'class'      => 'yii\filters\PageCache',
+                'only'       => [ 'index' ],
+                'duration'   => 6800,
+                'variations' => [ Yii::$app->language ]
+            ],
+        ];
+    }
+
 
     /**
      * When the user is detected as guest, he's directed to the login page

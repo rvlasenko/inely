@@ -22,16 +22,16 @@ $.extend($.infinitescroll.prototype, {
         // Define loadingStart to never hide pager
         instance.options.loading.start = function (opts) {
             opts.loading.msg.appendTo(opts.loading.selector).show(opts.loading.speed, function () {
-                    instance.beginAjax(opts);
-                });
+                instance.beginAjax(opts);
+            });
         }
     },
     _showdonemsg_portfolioinfiniteitemsloader: function infscr_showdonemsg_portfolioinfiniteitemsloader() {
         var opts = this.options, instance = this;
         //Do all the usual stuff
         opts.loading.msg.find('img').hide().parent().find('div').html(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000, function () {
-                $(this).parent().fadeOut('normal');
-            });
+            $(this).parent().fadeOut('normal');
+        });
         //And also hide the navSelector
         $(opts.navSelector).fadeOut('normal');
         // user provided callback when done
@@ -1433,27 +1433,28 @@ var SEMICOLON = SEMICOLON || {};
             return false;
         },
 
-        textRotater: function () {
-            if ($textRotaterEl.length > 0) {
-                $textRotaterEl.each(function () {
-                    var element = $(this), trRotate = $(this).attr('data-rotate'), trSpeed = $(this).attr('data-speed'), trSeparator = $(this).attr('data-separator');
+        textRotater: function(){
+            $("#slider").backstretch([
+                "images/slider/notgeneric2.jpg",
+                "images/slider/notgeneric.jpg"
+            ], { duration: 8000, fade: 750 });
+            if( $textRotaterEl.length > 0 ){
+                $textRotaterEl.each(function(){
+                    var element = $(this),
+                        trRotate = $(this).attr('data-rotate'),
+                        trSpeed = $(this).attr('data-speed'),
+                        trSeparator = $(this).attr('data-separator');
 
-                    if (!trRotate) {
-                        trRotate = "fade";
-                    }
-                    if (!trSpeed) {
-                        trSpeed = 1200;
-                    }
-                    if (!trSeparator) {
-                        trSeparator = ",";
-                    }
+                    if( !trRotate ) { trRotate = "fade"; }
+                    if( !trSpeed ) { trSpeed = 1200; }
+                    if( !trSeparator ) { trSeparator = ","; }
 
                     var tRotater = $(this).find('.t-rotate');
 
                     tRotater.Morphext({
                         animation: trRotate,
                         separator: trSeparator,
-                        speed    : Number(trSpeed)
+                        speed: Number(trSpeed)
                     });
                 });
             }

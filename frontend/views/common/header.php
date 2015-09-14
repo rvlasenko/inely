@@ -20,7 +20,7 @@
                 <ul class="one-page-menu">
                     <li class="current"><a href="#" data-href="#header"><div><?= Yii::t('frontend', 'Home') ?></div></a></li>
                     <li><a href="#" data-href="#section-intro"><div><?= Yii::t('frontend', 'Intro') ?></div></a></li>
-                    <li><a href="#" data-href="#section-desc"><div><?= Yii::t('frontend', 'Description') ?></div></a></li>
+                    <li><a href="#" data-href="#section-services"><div><?= Yii::t('frontend', 'Services') ?></div></a></li>
                     <li><a href="#" data-href="#section-features"><div><?= Yii::t('frontend', 'Features') ?></div></a></li>
                     <li><a href="#" data-href="#section-responsive"><div><?= Yii::t('frontend', 'Responsive') ?></div></a></li>
                 </ul>

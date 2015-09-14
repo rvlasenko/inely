@@ -3,7 +3,7 @@
 /**
  * This file is part of the Inely project.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
  * @author rootkit
  *
@@ -21,9 +21,10 @@ use yii\helpers\ArrayHelper;
 <div class="quick-compose-form">
 
     <?php Pjax::begin([ 'enablePushState' => false ]) ?>
-    <?php ActiveForm::begin([ 'id'      => 'form-compose',
-                              'action'  => 'task/create',
-                              'options' => [ 'data-pjax' => true ]
+    <?php ActiveForm::begin([
+        'id'      => 'form-compose',
+        'action'  => 'task/create',
+        'options' => [ 'data-pjax' => true ]
     ]) ?>
 
     <textarea class="form-control" name="Task[name]" id="task-name" placeholder="What you want to do?" autofocus></textarea>

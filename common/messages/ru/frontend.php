@@ -27,31 +27,28 @@ return [
      */
     'Home' => 'Начало',
     'Intro' => 'Введение',
-    'Description' => 'Описание',
-    'Features' => 'Особенности',
+    'Services' => 'Особенности',
+    'Features' => 'Возможности',
     'Responsive' => 'Адаптивность',
 
     /**
      * Title
      */
-    'Inely. Your personal assistant.' => 'Inely. Ваш личный помощник.',
+    'Inely - Service for achieving goals' => 'Inely - помощник для достижения целей',
 
     /**
-     * Revolution Slider
+     * Static Slider
      */
-    'Welcome to Inely' => 'Добро пожаловать',
-    'Welcome!' => 'Добро пожаловать!',
-    'He is here to help!' => 'Он уже готов помочь!',
+    'Inely. Your personal <span class="t-rotate">Assistant|Scheduler|Task-Manager|Organizer</span>' => 'Inely. Ваш личный <span class="t-rotate">ассистент|планировщик|задачник|ежедневник</span>',
+    'Join' => 'Присоединиться',
     'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where My Personal Assistant can come in.' =>
         'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть абсолютно всё. И здесь на помощь приходит Inely.',
-
 
     /**
      * Intro Section
      */
-    'Welcome! This is <span class="tright">Inely</span>' => 'Добро пожаловать! Это <span class="tright">Inely</span>',
-    'Try Now' => 'Попробуйте сейчас!',
-    'Manage your personal goals, your projects, etc. in one place. Our task-manager designed to adapt to all needs. Inely will not give you get bored.' => 'Отслеживайте личные задачи, планируйте проекты, и всё остальное в одном месте. Наш task-manager подходит для любой цели. Inely не даст Вам заскучать.',
+    'Welcome to Inely.<br>MultiPurpose helper.' => 'Добро пожаловать в Inely.<br>Многоцелевой помощник.',
+    'Manage your personal goals, your projects, etc. in one place. Our helper designed to adapt to all needs.' => 'Отслеживайте личные цели, планируйте проекты, и всё остальное в одном месте. Наш помощник подходит для любой цели.',
 
     /**
      * Review Section
@@ -71,7 +68,7 @@ return [
     'Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Retina Icons &amp; all others graphics are optimized.' => 'Превосходный вид на мониторах с высоким разрешением. Retina иконки &amp; прочая оптимизированная графика.',
 
     'Powerful Performance' => 'Производительность',
-    'Inely includes tons of optimized code that are completely customizable and deliver unmatched optimization.' => 'Inely включает в себя тонны оптимизированного кода, с непревзойденной оптимизацией.',
+    'Inely includes tons of optimized code that are completely customizable and deliver unmatched speed.' => 'Inely включает в себя тонны оптимизированного кода, с непревзойденной скоростью.',
 
     'Personalization' => 'Персонализация',
     'You have complete easy control on each &amp; every element that provides endless customization possibilities.' => 'Вы полностью контролируете каждый элемент на Вашей доске, что обеспечивает огромные возможности.',
@@ -81,15 +78,6 @@ return [
 
     'Fascinating achievements' => 'Увлекательность',
     'Earn achievements, increasing the level, receiving more coins and getting to various stages of the game.' => 'Зарабатывайте достижения, повышая свой уровень, получая больше монет и попадая в различные этапы игры.',
-
-    /**
-     * Code Section
-     */
-    'Hours of Coding' => 'Часов за кодом',
-    'Lines of Code' => 'Строчек кода',
-    'Cups of Tea' => 'Чашек чая',
-    'Commits in Git' => 'Коммитов в Git',
-    'images/services/home-testi-bg.jpg' => 'images/services/ru/home-testi-bg.jpg',
 
     /**
      * Retina Section
@@ -107,9 +95,7 @@ return [
     /**
      * Footer
      */
-    'Crafted with <img src="http://shirta.com/media/catalog/product/cache/2/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pixel-heart-broken-d75686826.png" style="width: 1.7em;"> by rootkit.'
-        => 'Создан с <img src="http://shirta.com/media/catalog/product/cache/2/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pixel-heart-broken-d75686826.png" style="width: 1.7em;"> от rootkit.',
-    'Coins earned' => 'Заработано монет',
+    'XP earned' => 'Заработано опыта',
     'Tasks performed' => 'Выполнено задач',
     'Client Testimonials' => 'Отзывы пользователей',
     'Send Message' => 'Отправить письмо',
@@ -117,20 +103,12 @@ return [
     'Full Name' => 'Ваше имя...',
     'Email Address' => 'Email...',
     'Message' => 'Ваше сообщение...',
-    'Send Letter' => 'Отправить письмо',
+    'Send' => 'Отправить',
 
     /**
      * Errors
      */
     'Ooopps.! The Page you were looking for, couldn\'t be found.' => 'Упс! К сожалению, страница, которую вы запросили, не существует.',
     'Try to search in other <a href="/">place</a>.' => 'Попробуйте поискать её <a href="/">в другом месте.</a>',
-    'Something went wrong. We apologize.' => 'Что-то пошло не так. Приносим свои извинения.',
-
-    /**
-     * The shift to the left for the header on slider
-     */
-    '130' => '125',
-    '485' => '468',
-    '460' => '433',
-    '380' => '360'
+    'Something went wrong. We apologize.' => 'Что-то пошло не так. Приносим свои извинения.'
 ];

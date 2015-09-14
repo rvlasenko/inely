@@ -23,7 +23,7 @@ use yii\widgets\ListView;
         <i class="fa fa-calendar fs20 pull-left"></i>
         <span class="badge badge-info fs11"><?= $countOf[ 2 ][ 0 ][ 'next' ] ?></span>
     </a>
-    <a href="#" id="done" class="list-group-item">Completed
+    <a href="#" id="done" class="list-group-item"><?= Yii::t('backend', 'Completed') ?>
         <i class="fa fa-calendar-check-o fs20 pull-left"></i>
         <span class="badge badge-success fs11">0</span>
     </a>
