@@ -13,39 +13,26 @@ class m150705_091355_tasks extends Migration
 
         $this->createTable('{{%tasks}}', [
             'id'         => $this->primaryKey(),
-            'name'       => $this->string()->notNull(),
-            'note'       => $this->text(),
-            'list'       => $this->integer(15),
             'author'     => $this->integer(50)->notNull(),
+            'list'       => $this->integer(15),
             'isDone'     => $this->integer(1),
-            'priority'   => $this->integer(1),
+            'priority'   => $this->string(9),
             'time'       => $this->timestamp(),
-            'updated_at' => $this->timestamp(),
+            'updated_at' => $this->integer(16),
         ], $tableOptions);
 
         $this->insert('{{%tasks}}', [
             'id'       => 1,
-            'name'     => 'Заполнить резюме с новым проектом и отправить',
-            'list'     => 1,
-            'author'   => 1,
+            'author'   => null,
+            'list'     => 2,
             'isDone'   => 0,
-            'priority' => 1,
-            'time'     => null
-        ]);
-
-        $this->insert('{{%tasks}}', [
-            'id'       => 2,
-            'name'     => 'Шарахнуть банхаммером по невменяемым юзерам',
-            'list'     => 1,
-            'author'   => 2,
-            'isDone'   => 0,
-            'priority' => 0,
+            'priority' => 'medium',
             'time'     => null
         ]);
 
         $this->createTable('{{%tasks_cat}}', [
             'id'         => $this->primaryKey(),
-            'userId'     => $this->integer(100),
+            'userId'     => $this->integer(50),
             'listName'   => $this->string(100),
             'badgeColor' => $this->string(7)
         ], $tableOptions);
@@ -66,6 +53,7 @@ class m150705_091355_tasks extends Migration
 
         if ($this->db->driverName === 'mysql') {
             $this->addForeignKey('fk_cat', '{{%tasks}}', 'list', '{{%tasks_cat}}', 'id', 'cascade', 'cascade');
+            $this->addForeignKey('fk_author', '{{%tasks}}', 'author', '{{%user}}', 'id', 'cascade', 'cascade');
         }
     }
 

@@ -46,21 +46,9 @@ class CharController extends Controller
         ];
     }
 
-    public function actions()
-    {
-        return [
-            [
-                'class'    => 'yii\filters\PageCache',
-                'only'     => [ 'index', 'char' ],
-                'duration' => 84600
-            ],
-            'error' => [ 'class' => 'yii\web\ErrorAction' ]
-        ];
-    }
-
     /**
      * Check user status and then performs the appropriate action
-     * @return string|\yii\web\Response
+     * @return redirect|\yii\web\Response
      */
     public function actionIndex()
     {
@@ -78,20 +66,14 @@ class CharController extends Controller
     }
 
     /**
-     *
+     * Selecting a character from a list of available characters.
      * @return \yii\web\Response
      * @throws HttpException
      */
     public function actionChar()
     {
         if (Yii::$app->request->post()) {
-            $userProfile = $this->findModel(Yii::$app->user->id, UserProfile::className());
-            $user        = $this->findModel(Yii::$app->user->id, User::className());
-
-            $user->status               = User::STATUS_ACTIVE;
-            $userProfile->def_char_name = $_POST[ 'mascot' ][ 0 ];
-
-            if ($userProfile->save() && $user->save()) {
+            if ((new User)->setActive() && (new UserProfile)->setDefChar($_POST[ 'mascot' ][ 0 ])) {
                 return $this->goHome();
             } else {
                 throw new HttpException(500, 'Unable to save user data');
@@ -102,7 +84,9 @@ class CharController extends Controller
     }
 
     /**
-     * Action for uploading a custom character to the server
+     * Uploading own character to the server.
+     * If everything is all right set the user as active and return JSON.
+     *
      * @property string $fileName
      * @property string $uploadPath
      * @return bool|string
@@ -111,22 +95,13 @@ class CharController extends Controller
     public function actionUpload()
     {
         $fileName   = 'mascot_path';
-        $uploadPath = Yii::getAlias('images/mascots/user/');
+        $uploadPath = Yii::getAlias('@storage/web/source/');
 
         if (isset($_FILES[ $fileName ]) && Yii::$app->request->isPost) {
             $file = UploadedFile::getInstanceByName($fileName);
 
             if ($file->saveAs($uploadPath . $file->name)) {
-
-                // Search current user and updating his character
-                $userProfile = $this->findModel(Yii::$app->user->id, UserProfile::className());
-                $user        = $this->findModel(Yii::$app->user->id, User::className());
-
-                $user->status                = User::STATUS_ACTIVE;
-                $userProfile->user_char_path = $uploadPath . $file->name;
-
-                // If everything is alright return JSON
-                if ($userProfile->save(true) && $user->save(true)) {
+                if ((new User)->setActive() && (new UserProfile)->setOwnChar($uploadPath . $file->name)) {
                     return Json::encode($file);
                 } else {
                     throw new HttpException(500, 'Unable to save user data');
@@ -135,6 +110,8 @@ class CharController extends Controller
         } else {
             return $this->goHome();
         }
+
+        return null;
     }
 
     /**
@@ -146,9 +123,9 @@ class CharController extends Controller
      * @return Page the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $class)
+    protected function findModel($id)
     {
-        if (($model = $class::findOne($id)) !== null) {
+        if (($model = UserProfile::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

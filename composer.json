@@ -1,53 +1,52 @@
 {
-  "name": "dev/inely",
-  "description": "Just awesome web-assistant",
-  "type": "project",
-  "keywords": [
-    "task",
-    "watch",
-    "time-manage",
-    "schedule",
-    "assistant",
-    "todo"
-  ],
-  "homepage": "https://github.com/Exoticness/inely",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Roman Vlasenko",
-      "email": "admiralexo@gmail.com",
-      "role": "Developer & Founder"
+    "name": "dev/inely",
+    "description": "Just awesome web-assistant",
+    "type": "project",
+    "keywords": [
+        "task",
+        "watch",
+        "time-manage",
+        "schedule",
+        "assistant",
+        "todo"
+    ],
+    "homepage": "https://github.com/Exoticness/inely",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Vlasenko",
+            "email": "admiralexo@gmail.com",
+            "role": "Developer & Founder"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-intl": "*",
+        "yiisoft/yii2": "~2.0.0",
+        "yiisoft/yii2-bootstrap": "~2.0",
+        "yiisoft/yii2-swiftmailer": "~2.0",
+        "yiisoft/yii2-authclient": "~2.0",
+        "yiisoft/yii2-jui": "~2.0.0",
+        "kartik-v/yii2-editable": "*",
+        "vlucas/phpdotenv": "~1.0",
+        "perminder-klair/yii2-dropzone": "dev-master",
+        "FortAwesome/Font-Awesome": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.0",
+        "yiisoft/yii2-gii": "~2.0",
+        "yiisoft/yii2-codeception": "~2.0",
+        "yiisoft/yii2-faker": "~2.0",
+        "phpunit/phpunit": "~4.5",
+        "codeception/codeception": "~2.0"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
     }
-  ],
-  "require": {
-    "php": ">=5.4.0",
-    "ext-intl": "*",
-    "yiisoft/yii2": "~2.0.0",
-    "yiisoft/yii2-bootstrap": "~2.0",
-    "yiisoft/yii2-swiftmailer": "~2.0",
-    "yiisoft/yii2-authclient": "~2.0",
-    "yiisoft/yii2-jui": "~2.0.0",
-    "kartik-v/yii2-editable": "*",
-    "kartik-v/yii2-widget-select2": "*",
-    "vlucas/phpdotenv": "~1.0",
-    "perminder-klair/yii2-dropzone": "dev-master",
-    "FortAwesome/Font-Awesome": "*"
-  },
-  "require-dev": {
-    "yiisoft/yii2-debug": "~2.0",
-    "yiisoft/yii2-gii": "~2.0",
-    "yiisoft/yii2-codeception": "~2.0",
-    "yiisoft/yii2-faker": "~2.0",
-    "phpunit/phpunit": "~4.5",
-    "codeception/codeception": "~2.0"
-  },
-  "config": {
-    "process-timeout": 1800
-  },
-  "extra": {
-    "asset-installer-paths": {
-      "npm-asset-library": "vendor/npm",
-      "bower-asset-library": "vendor/bower"
-    }
-  }
 }

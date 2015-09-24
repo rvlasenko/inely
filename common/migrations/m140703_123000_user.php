@@ -23,7 +23,7 @@ class m140703_123000_user extends Migration
             'oauth_client'         => $this->string(),
             'oauth_client_user_id' => $this->string(),
             'email'                => $this->string()->notNull(),
-            'status'               => $this->smallInteger()->notNull()->defaultValue(User::STATUS_ACTIVE),
+            'status'               => $this->smallInteger()->notNull()->defaultValue(User::STATUS_UNCONFIRMED),
             'created_at'           => $this->integer(),
             'updated_at'           => $this->integer(),
             'logged_at'            => $this->integer()
@@ -31,22 +31,22 @@ class m140703_123000_user extends Migration
 
         $this->insert('{{%user}}', [
             'id'            => 1,
-            'username'      => 'webmaster',
-            'email'         => 'webmaster@example.com',
+            'username'      => 'The Chosen One',
+            'email'         => 'admiralexo@gmail.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('webmaster'),
             'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),
-            'status'        => User::STATUS_ACTIVE,
+            'status'        => User::STATUS_UNCONFIRMED,
             'created_at'    => time(),
             'updated_at'    => time()
         ]);
 
         $this->insert('{{%user}}', [
             'id'            => 2,
-            'username'      => 'user',
-            'email'         => 'user@example.com',
+            'username'      => 'Mysterious Stranger',
+            'email'         => '@example.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('user'),
             'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),
-            'status'        => User::STATUS_ACTIVE,
+            'status'        => User::STATUS_UNCONFIRMED,
             'created_at'    => time(),
             'updated_at'    => time()
         ]);
@@ -63,17 +63,15 @@ class m140703_123000_user extends Migration
         ], $tableOptions);
 
         $this->insert('{{%user_profile}}', [
-            'user_id'     => 1,
-            'firstname'   => 'John',
-            'lastname'    => 'Doe',
-            'mascot_name' => 'Holo',
-            'mascot_url'  => 'images/mascots/holoo.png'
+            'user_id'   => 1,
+            'firstname' => 'Roman',
+            'lastname'  => 'Vlasenko'
         ]);
 
         $this->insert('{{%user_profile}}', [
             'user_id'   => 2,
-            'firstname' => 'Bill',
-            'lastname'  => 'Eod',
+            'firstname' => 'John',
+            'lastname'  => 'Morton',
         ]);
 
         if ($this->db->driverName === 'mysql') {

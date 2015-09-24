@@ -25,24 +25,23 @@ class TaskAsset extends AssetBundle
 
         // Theme CSS
         'css/skin/theme.css',
-        'css/animate.css',
-
-        // Admin Panels CSS
-        'tools/panels/adminpanels.css'
+        'css/animate.css'
     ];
 
     public $js = [
 
         // Theme Javascript
         'js/utility.js',
-        'js/main.js'
+        'js/main.js',
+
+        // jsTree
+        'vendor/plugins/jstree/jstree.min.js'
     ];
 
     public $jsOptions = [ 'position' => View::POS_END ];
 
     public $depends = [
         'yii\web\JqueryAsset',
-        'common\assets\JuiAsset',
         'common\assets\FontAwesome',
         'backend\assets\BootstrapJsAsset'
     ];

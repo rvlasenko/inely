@@ -140,7 +140,7 @@ class SignInController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
-                    return $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
+                    return $this->redirect(Yii::$app->urlManagerBackend->createUrl(false));
                 }
             }
         }
@@ -154,17 +154,22 @@ class SignInController extends Controller
 
     public function actionConfirmEmail($token)
     {
+        $status = Yii::$app->user->identity->status;
+
         try {
             $model = new ConfirmEmailForm($token);
         } catch (InvalidParamException $e) {
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        if ($model->confirmEmail()) {
+        if ($status != User::STATUS_UNCONFIRMED && $model->confirmEmail()) {
             Yii::$app->session->setFlash('alert', [
                 'title' => Yii::t('backend', 'Email confirmation'),
                 'body'  => Yii::t('backend', 'Thanks! Account e-mail address confirmed successfully')
             ]);
+        } elseif ($status == User::STATUS_UNCONFIRMED) {
+            $model->confirmEmail();
+            return $this->redirect('/welcome');
         } else {
             Yii::$app->session->setFlash('alert', [
                 'title' => Yii::t('backend', 'Email confirmation'),

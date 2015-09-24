@@ -17,9 +17,6 @@ use yii\web\Controller;
 
 class SiteController extends Controller
 {
-    /**
-     * Set locale from SetLocaleAction class
-     */
     public function actions()
     {
         return [
@@ -46,14 +43,14 @@ class SiteController extends Controller
                 'only'       => [ 'index' ],
                 'duration'   => 6800,
                 'variations' => [ Yii::$app->language ]
-            ],
+            ]
         ];
     }
 
-
     /**
-     * When the user is detected as guest, he's directed to the login page
+     * If a user is detected as a guest, he will be redirected to the login page
      * @return string
+     * @throws \yii\web\HttpException
      */
     public function actionIndex()
     {

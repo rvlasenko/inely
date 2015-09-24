@@ -41,7 +41,7 @@ return [
      */
     'Inely. Your personal <span class="t-rotate">Assistant|Scheduler|Task-Manager|Organizer</span>' => 'Inely. Ваш личный <span class="t-rotate">ассистент|планировщик|задачник|ежедневник</span>',
     'Join' => 'Присоединиться',
-    'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where My Personal Assistant can come in.' =>
+    'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where Inely can come in.' =>
         'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть абсолютно всё. И здесь на помощь приходит Inely.',
 
     /**

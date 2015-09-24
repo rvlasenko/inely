@@ -53,7 +53,7 @@ use yii\widgets\ActiveForm;
                             <figcaption>
                                 <h2><?= Yii::t('backend', 'Eve') ?></h2>
 
-                                <p><?= Yii::t('backend', 'EVE is one of several robots who are sent to Earth. She has a scanner she likes to fly and likes draw. After meeting you, she making a top priority to protect you.') ?></p>
+                                <p><?= Yii::t('backend', 'EVE is one of several robots who are sent to Earth. She likes to fly and likes draw. After meeting you, she making a top priority to protect you.') ?></p>
                                 <button><?= Yii::t('backend', 'Befriend!') ?></button>
                             </figcaption>
                         </figure>

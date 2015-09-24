@@ -1,6 +1,6 @@
 <?php
 $config = [
-    'name'           => 'madeasy',
+    'name'           => 'inely',
     'vendorPath'     => dirname(dirname(__DIR__)) . '/vendor',
     'extensions'     => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'sourceLanguage' => 'en-US',
@@ -41,8 +41,8 @@ $config = [
             'tablePrefix'         => getenv('DB_TABLE_PREFIX'),
             'charset'             => 'utf8',
             'enableSchemaCache'   => true,
-            // Duration of schema cache.
-            'schemaCacheDuration' => 4800,
+            // Duration of schema cache
+            'schemaCacheDuration' => 8600,
             // Name of the cache component used to store schema information
             'schemaCache'         => 'cache'
         ],
@@ -60,7 +60,14 @@ $config = [
                         'frontend' => 'frontend.php',
                         'mail'     => 'mail.php'
                     ]
-                ]
+                ],
+                /*'*' => [
+                    'class'                 => 'yii\i18n\DbMessageSource',
+                    'sourceMessageTable'    => '{{%i18n_source_message}}',
+                    'messageTable'          => '{{%i18n_message}}',
+                    'enableCaching'         => YII_ENV_DEV,
+                    'cachingDuration'       => 8600
+                ]*/
             ]
         ],
         'urlManagerBackend'  => \yii\helpers\ArrayHelper::merge([ 'hostInfo' => Yii::getAlias('@backendUrl') ], require(Yii::getAlias('@backend/config/_urlManager.php'))),

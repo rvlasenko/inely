@@ -39,8 +39,5 @@ class CharacterAsset extends AssetBundle
 
     public $jsOptions = [ 'position' => View::POS_END ];
 
-    public $depends = [
-        'common\assets\FontAwesome',
-        'backend\assets\BootstrapJsAsset'
-    ];
+    public $depends = [ 'common\assets\FontAwesome' ];
 }

@@ -4,17 +4,15 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
-use yii\data\ActiveDataProvider;
 use yii\db\Query;
 
 /**
  * This is the model class for table "tasks".
  *
  * @property integer    $id
- * @property string     $name
- * @property string     $note
  * @property integer    $list
  * @property integer    $author
  * @property integer    $isDone
@@ -23,7 +21,8 @@ use yii\db\Query;
  */
 class Task extends ActiveRecord
 {
-    const ACTIVE_TASK = 0;
+    const ACTIVE_TASK    = 0;
+    const COMPLETED_TASK = 1;
 
     public function behaviors()
     {
@@ -31,8 +30,7 @@ class Task extends ActiveRecord
             [
                 'class'              => TimestampBehavior::className(),
                 'createdAtAttribute' => false,
-                'updatedAtAttribute' => 'updated_at',
-                'value'              => (new Expression('NOW()'))
+                'updatedAtAttribute' => 'updated_at'
             ]
         ];
     }
@@ -43,8 +41,6 @@ class Task extends ActiveRecord
     public function rules()
     {
         return [
-            [ 'name', 'string', 'max' => 255 ],
-            [ 'note', 'string', 'max' => 255 ],
             [ 'author', 'default', 'value' => Yii::$app->user->getId() ],
             [ 'time', 'default', 'value' => (new Expression('NOW()')) ],
             [ 'isDone', 'default', 'value' => 0 ],
@@ -69,9 +65,7 @@ class Task extends ActiveRecord
     public static function getProject($id)
     {
         return new ActiveDataProvider([
-            'query' => Task::find()
-                           ->where([ 'author' => Yii::$app->user->getId(), 'list' => $id ])
-                           ->joinWith('tasks_cat')
+            'query' => Task::find()->where([ 'author' => Yii::$app->user->getId(), 'list' => $id ])->joinWith('tasks_cat')
         ]);
     }
 
@@ -82,7 +76,7 @@ class Task extends ActiveRecord
     {
         // Define some useful variables
         $result    = [ ];
-        $condition = [ 'author' => Yii::$app->user->getId(), 'isDone' => 0 ];
+        $condition = [ 'author' => Yii::$app->user->id, 'isDone' => 0 ];
 
         // Create subquery with unique expression (inbox / today tasks, tasks at next week)
         $inboxSubQuery = (new Query())->select('COUNT(*)')->from('tasks')->where($condition);
@@ -111,18 +105,45 @@ class Task extends ActiveRecord
     {
         return new ActiveDataProvider([
             'query' => Task::find()->where([
-                'author' => Yii::$app->user->getId(),
+                'author' => Yii::$app->user->id,
                 'isDone' => self::ACTIVE_TASK
-            ])->joinWith('tasks_cat')
+            ])->joinWith('tasksCat')
         ]);
+    }
+
+    /**
+     * Establishes the relationship between "tasks" and "tasks_data".
+     *
+     * @param array $data
+     *
+     * @return mixed
+     */
+    public function afterCreate($data = [ ])
+    {
+        $this->trigger(self::EVENT_AFTER_INSERT);
+
+        $tasksDataModel = new TasksData();
+        $tasksDataModel->setAttributes($data, false);
+        $this->link('tasksData', $tasksDataModel);
+
+        return $tasksDataModel->getPrimaryKey();
     }
 
     /**
      * Relation with the table "tasks_cat"
      * @return \yii\db\ActiveQuery
      */
-    public function getTasks_cat()
+    public function getTasksCat()
     {
         return $this->hasOne(TaskCat::className(), [ 'id' => 'list' ]);
+    }
+
+    /**
+     * Relation with the table "tasks_data"
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTasksData()
+    {
+        return $this->hasOne(TasksData::className(), [ 'dataId' => 'id' ]);
     }
 }

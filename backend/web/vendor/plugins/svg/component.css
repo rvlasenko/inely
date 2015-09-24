@@ -88,7 +88,7 @@
     position: absolute;
     top: -1px; /* fixes rendering issue in FF */
     z-index: 10;
-    width: 100%;
+    width: 101%;
     height: 100%;
 }
 

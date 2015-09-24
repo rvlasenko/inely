@@ -124,8 +124,7 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByLogin($login)
     {
         return static::findOne([
-            'and',
-            [ 'or', [ 'username' => $login ], [ 'email' => $login ] ],
+            'and', [ 'or', [ 'username' => $login ], [ 'email' => $login ] ],
             'status' => self::STATUS_ACTIVE
         ]);
     }
@@ -155,6 +154,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function getId()
     {
         return $this->getPrimaryKey();
+    }
+
+    public function setActive()
+    {
+        if (($model = User::findOne(Yii::$app->user->id)) !== null) {
+            $model->setAttribute('status', $this::STATUS_ACTIVE);
+            return $model->save();
+        }
+
+        return null;
     }
 
     public function getAuthKey()
@@ -225,7 +234,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Send email confirmation to user
-     *
      * @param $user
      * @param $layout
      * @param $email
@@ -246,7 +254,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Creates user profile and application event
-     *
      * @param array $profileData
      */
     public function afterSignup(array $profileData = [ ])
@@ -259,13 +266,13 @@ class User extends ActiveRecord implements IdentityInterface
 
         $this->link('userProfile', $profile);
 
-        // Add default task
-        $model           = new Task();
-        $model->author   = $profileData[ 'id' ];
-        $model->name     = Yii::t('backend', 'Try Inely');
-        $model->priority = 'medium';
-        $model->list     = 2;
-        $model->save();
+//        // Add default task
+//        $model           = new Task();
+//        $model->author   = $profileData[ 'id' ];
+//        $model->name     = Yii::t('backend', 'Try Inely');
+//        $model->priority = 'medium';
+//        $model->list     = 2;
+//        $model->save();
 
         // Default role
         $auth = Yii::$app->authManager;
@@ -293,8 +300,7 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByEmailConfirmToken($email_confirm_token)
     {
         return static::findOne([
-            'email_confirm_token' => $email_confirm_token,
-            'status'              => self::STATUS_ACTIVE,
+            'email_confirm_token' => $email_confirm_token
         ]);
     }
 

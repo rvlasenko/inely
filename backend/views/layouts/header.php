@@ -13,15 +13,25 @@
 
 use yii\helpers\Html;
 
+$taskSearch = <<<HTML
+    <form class="navbar-form navbar-left navbar-search" role="search">
+        <div class="form-group">
+            <input type="text" id="search_q" class="form-control" placeholder="Search...">
+        </div>
+    </form>
+HTML;
+
 ?>
 
 <header class="navbar bg-light">
     <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
-        <li class="active"><a href="/">Dashboard</a></li>
+        <li><a href="/">Dashboard</a></li>
         <li><a href="/calendar">Calendar</a></li>
         <li><a href="/todo">Tasks</a></li>
         <li><a href="/support">Support</a></li>
     </ul>
+
+    <?= Yii::$app->controller->id == 'task' ? $taskSearch : false ?>
 
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown dropdown-item-slide">

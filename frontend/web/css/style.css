@@ -187,6 +187,18 @@ iframe { border : none !important; }
     color : #555 !important;
 }
 
+.purple-footer-logo {
+    font-size               : 48px;
+    line-height             : 55px;
+    -webkit-background-clip : text !important;
+    -webkit-text-fill-color : transparent;
+    color                   : purple; background : -webkit-gradient(linear, left top, right top, from(#a02875), to(#584fb4));
+    padding-right           : 18px;
+    border-right            : 1px solid #4a4a4a;
+    float                   : left;
+    margin                  : 5px 20px 13px 0;
+}
+
 #footer.dark, .dark #footer {
     background-color : #333;
     color            : #ccc;
@@ -355,7 +367,7 @@ h2 { font-size : 30px; }
 
 h3 { font-size : 24px; }
 
-h4 { font-size : 18px; }
+h4 { font-size : 16px; }
 
 h5 { font-size : 15px; }
 
@@ -3556,7 +3568,7 @@ body:not(.device-touch) #gotoTop {
 }
 
 #footer .author {
-    margin-top : -20px;
+    margin-top : -10px;
 }
 
 .footer-widgets-wrap .col_full,

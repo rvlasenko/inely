@@ -48,7 +48,7 @@ class DashboardAsset extends AssetBundle
         'vendor/plugins/fullcalendar/fullcalendar.min.js',
 
         // Notification
-        'vendor/plugins/noty/packaged/jquery.noty.packaged.min.js',
+        //'vendor/plugins/noty/packaged/jquery.noty.packaged.min.js',
 
         // Admin Panels & Dock
         'tools/panels/adminpanels.js',

@@ -10,11 +10,11 @@
 
                 <div class="widget clearfix">
 
-                    <img src="images/footer-widget-logo.png" alt="" class="alignleft" style="margin-top: 8px; padding-right: 18px; border-right: 1px solid #4A4A4A;">
+                    <h2 class="purple-footer-logo">inely</h2>
 
                     <p></p>
 
-                    <div class="author">Crafted with <3 by rootkit.</div>
+                    <h4 class="author" style="font-weight: 400;">Crafted with &lt;3 by rootkit and my github friend.</h4>
 
                     <div class="line" style="margin: 30px 0;"></div>
 
@@ -93,7 +93,7 @@
                 <div class="copyrights-menu copyright-links clearfix">
                     <?= $this->render('//layouts/_locale') ?>
                 </div>
-                Copyrights &copy; <?= date('Y') ?> All Rights Reserved by rootkit.
+                Copyrights &copy; <?= date('Y') ?> All Rights Reserved by Vlasenko.
             </div>
 
             <div class="col_half col_last tright">

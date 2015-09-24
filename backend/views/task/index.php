@@ -23,19 +23,14 @@ $this->registerCssFile('tools/forms/admin-forms.css');
 <!-- end: .tray-left -->
 
 <section class="list-tabs">
-    <?= $this->render('project', [ 'dataProviderProject' => $dataProviderProject ]) ?>
+    <?= $this->render('project') ?>
 </section>
 
 <?= $this->render('create') ?>
 
 <?php
 $main = <<<SCRIPT
-
-$('ul.panel-tabs li:nth-child(2n+1)').addClass('active');
-$('ul.panel-tabs li:first-child').removeClass('active');
-
-Mousetrap.bind([ 'q', 'й' ], function () { $('#quick-compose').click() });
-
+$('ul.panel-tabs li:nth-child(3)').addClass('active');
 SCRIPT;
 
 $this->registerJs($main, $this::POS_END);

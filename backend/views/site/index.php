@@ -10,6 +10,9 @@
 
 \backend\assets\DashboardAsset::register($this);
 
+$main = "$('ul.panel-tabs li:nth-child(1)').addClass('active')";
+$this->registerJs($main, $this::POS_END);
+
 ?>
 
 <!-- Admin-panels -->

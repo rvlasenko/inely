@@ -38,7 +38,7 @@ class ConfirmEmailForm extends Model
     }
 
     /**
-     * Resets password.
+     * Resets token.
      *
      * @return boolean if password was reset.
      */

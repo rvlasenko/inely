@@ -40,10 +40,6 @@ class AuthAsset extends AssetBundle
         // Canvas BG
         'vendor/plugins/canvas/canvas.js',
 
-        // FullCalendar Plugin + moment Dependency
-        'vendor/plugins/fullcalendar/lib/moment.min.js',
-        'vendor/plugins/fullcalendar/fullcalendar.min.js',
-
         // Modal plugin
         'vendor/plugins/magnific/jquery.magnific-popup.min.js',
 

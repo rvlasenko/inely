@@ -36,16 +36,4 @@ class AccountForm extends Model
             [ [ 'passwordConfirm' ], 'compare', 'compareAttribute' => 'password' ]
         ];
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'username'        => Yii::t('backend', 'Username'),
-            'password'        => Yii::t('backend', 'Password'),
-            'passwordConfirm' => Yii::t('backend', 'Password Confirm')
-        ];
-    }
 }

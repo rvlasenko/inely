@@ -7,7 +7,7 @@
  *
  * @author rootkit
  *
- * @var $this    yii\web\View
+ * @var $this yii\web\View
  */
 
 $this->registerJs('

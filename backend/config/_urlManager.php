@@ -13,6 +13,7 @@ return [
         'todo'           => '/task/index',
         'schedule'       => '/calendar/index',
         'welcome'        => '/char/index',
+
         /*
          * Auth rules
          */

@@ -17,6 +17,8 @@ use yii\helpers\ArrayHelper;
 $this->title = Yii::t('backend', 'Your dashboard');
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : false;
+$curController = Yii::$app->controller->id;
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -43,7 +45,7 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
 
 <?php $this->beginBody() ?>
 
-<body class="dashboard-page boxed-layout sb-l-c">
+<body class="<?= $curController ?>-page boxed-layout sb-l-c">
 
 <?= $this->render('header') ?>
 
@@ -117,6 +119,7 @@ $tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : f
                 }
             ]
         });
+
         // Remove first line
         $('.highcharts-grid path:first-child').remove();
 

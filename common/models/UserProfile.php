@@ -15,7 +15,6 @@ use yii\db\ActiveRecord;
  * @property string  $user_char_path
  * @property string  $user_char_name
  * @property string  $def_char_name
- * @property string  $picture
  * @property integer $gender
  * @property User    $user
  */
@@ -35,12 +34,7 @@ class UserProfile extends ActiveRecord
             [ [ 'user_id' ], 'required' ],
             [ [ 'user_id', 'gender' ], 'integer' ],
             [ [ 'gender' ], 'in', 'range' => [ self::GENDER_FEMALE, self::GENDER_MALE ] ],
-            [ [ 'firstname',
-                'lastname',
-                'def_char_name',
-                'user_char_name',
-                'user_char_name' ], 'string', 'max' => 255
-            ],
+            [ [ 'firstname', 'lastname', 'def_char_name', 'user_char_name', 'user_char_name' ], 'string', 'max' => 255 ],
             [ 'locale', 'default', 'value' => Yii::$app->language ],
             [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ]
         ];
@@ -66,6 +60,10 @@ class UserProfile extends ActiveRecord
         return null;
     }
 
+    /**
+     * @return array
+     * @throws HttpException
+     */
     public function getChar()
     {
         $user = UserProfile::findOne([ Yii::$app->user->id ]);
@@ -77,5 +75,35 @@ class UserProfile extends ActiveRecord
         } else {
             throw new HttpException(500, 'Unable to detect user character');
         }
+    }
+
+    /**
+     * @param $name
+     *
+     * @return bool|null
+     */
+    public function setDefChar($name)
+    {
+        if (($model = $this::findOne(Yii::$app->user->id)) !== null) {
+            $model->setAttribute('def_char_name', $name);
+            return $model->save();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $path
+     *
+     * @return bool|null
+     */
+    public function setOwnChar($path)
+    {
+        if (($model = $this::findOne(Yii::$app->user->id)) !== null) {
+            $model->setAttribute('user_char_path', $path);
+            return $model->save();
+        }
+
+        return null;
     }
 }

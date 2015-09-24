@@ -6,15 +6,14 @@ use backend\models\Task;
 use backend\models\TaskCat;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\db\Query;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 /**
  * TaskController implements the CRUD actions for Task model.
  */
-class TaskController extends Controller
+class TaskController extends TreeController
 {
     public function behaviors()
     {
@@ -23,8 +22,7 @@ class TaskController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true,
-                        'roles' => [ '@' ]
+                        'allow' => true, 'roles' => [ '@' ]
                     ],
                     [
                         'actions'      => [ 'index', 'project', 'inbox' ],
@@ -36,71 +34,52 @@ class TaskController extends Controller
                     ]
                 ]
             ],
-//            [
-//                'class' => 'yii\filters\HttpCache',
-//                'only' => [ 'index', 'project', 'inbox' ],
-//                'lastModified' => function () {
-//                    $q = new Query();
-//                    return $q->from('tasks')->max('updated_at');
-//                },
-//            ],
-//            'pageCache' => [
-//                'class' => 'yii\filters\PageCache',
-//                'only' => [ 'index', 'project', 'inbox' ],
-//                'duration' => 180,
-//                'variations' => [ Yii::$app->language ],
-//                'dependency' => [
-//                    'class' => 'yii\caching\DbDependency',
-//                    'sql' => 'SELECT MAX(updated_at) FROM tasks'
-//                ]
-//            ],
-            'verbs'  => [
-                'class'   => VerbFilter::className(),
-                'actions' => [
-                    'delete'  => [ 'post' ],
-                    'create'  => [ 'post' ],
-                    'update'  => [ 'post' ],
-                    'project' => [ 'post' ],
-                    'inbox'   => [ 'get'  ]
+            /*'pageCache' => [
+                'class'      => 'yii\filters\PageCache',
+                'only'       => [ 'index', 'project', 'inbox' ],
+                'duration'   => 640,
+                'variations' => [ Yii::$app->language ],
+                'dependency' => [
+                    'class' => 'yii\caching\DbDependency',
+                    'sql'   => 'SELECT MAX(updated_at) FROM tasks'
+                ]
+            ],*/
+            /*[
+                'class'        => 'yii\filters\HttpCache',
+                'only'         => [ 'index', 'project', 'inbox' ],
+                'lastModified' => function () {
+                    $q = new Query();
+
+                    return $q->from('tasks')->max('updated_at');
+                },
+            ],*/
+            [
+                'class'   => 'yii\filters\ContentNegotiator',
+                'only'    => [ 'node', 'rename', 'create', 'move', 'delete' ],
+                'formats' => [
+                    'application/json' => Response::FORMAT_JSON
                 ]
             ]
         ];
     }
 
     /**
-     * Get a task instance, with public attributes
-     * @return mixed
+     * Executes query and returns the count of tasks.
+     * This method doesn't create a tree structure.
+     * @return view with the variable containing count of categories.
      */
     public function actionIndex()
     {
-        //                if (Yii::$app->request->post('hasEditable')) {
-        //            $post   = [ ];
-        //            $taskId = Yii::$app->request->post('editableKey');
-        //            $model  = Task::findOne($taskId);
-        //
-        //            $post[ 'Task' ] = current($_POST[ 'Task' ]);
-        //
-        //            if ($model->load($post)) $model->save();
-        //
-        //            return true;
-        //        }
-
         $query = TaskCat::find()->where([ 'userId' => null ])->orWhere([ 'userId' => Yii::$app->user->id ]);
 
         return $this->render('index', [
-            'dataProvider'        => new ActiveDataProvider([ 'query' => $query ]),
-            'dataProviderProject' => Task::getInbox(),
-            'countOf'             => Task::getCount()
+            'dataProvider' => new ActiveDataProvider([ 'query' => $query ]),
+            'countOf'      => Task::getCount()
         ]);
     }
 
-    public function actionSide()
-    {
-
-    }
-
     /**
-     * Returns a list of active tasks, receive foreign key "list"
+     * Executes query by POST value "list" and returns a list of active tasks.
      * @return ActiveDataProvider
      */
     public function actionProject()
@@ -111,8 +90,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Displays inbox tasks. Receive PJAX request and return a tasks
-     * User don't have access to this action, he will be go home
+     * Displays tasks in the category of "inbox".
      * @return ActiveDataProvider
      */
     public function actionInbox()
@@ -121,70 +99,92 @@ class TaskController extends Controller
     }
 
     /**
-     * Creates a new task. If user request this page with HEAD header, he won't see it
-     * @return bool|string
-     * @throws HttpException
+     * Receives a GET request(s) and find children by the given condition.
+     * @return node containing the name of the node, PK, and children, if any.
+     */
+    public function actionNode()
+    {
+        $result = [ ];
+
+        $node = $this->purifyGetRequest('id');
+        $temp = $this->getChildren($node);
+        foreach ($temp as $v) {
+            $result[ ] = [
+                'id'       => $v[ 'dataId' ],
+                'text'     => $v[ 'name' ],
+                //'priority' => TasksData::getPriority($node),
+                'children' => ($v[ 'rgt' ] - $v[ 'lft' ] > 1)
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
+     * Action receives a GET request which contains node ID, and his text.
+     * By default, the "text" attribute is "Renamed node".
+     * @return bool json
+     * @throws \Exception
+     */
+    public function actionRename()
+    {
+        $node   = $this->purifyGetRequest('id');
+        $result = $this->rename($node, [ 'name' => $this->purifyGetRequest('text') ]);
+
+        return $result;
+    }
+
+    /**
+     * Action receives a GET request which contains text node.
+     * @return json
      */
     public function actionCreate()
     {
-        $model = new Task();
+        $node   = $this->purifyGetRequest('id');
+        $pos    = $this->purifyGetRequest('position');
+        $temp   = $this->make($node, $pos, [ 'name' => $this->purifyGetRequest('text') ]);
+        $result = [ 'id' => $temp ];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->renderAjax('create');
-        } else {
-            throw new HttpException(500, 'Unable to save user data');
-        }
+        return $result;
     }
 
     /**
-     * Updates an existing Task model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     *
-     * @param integer $id
-     *
-     * @return mixed
+     * @return bool
+     * @throws \Exception
      */
-    public function actionUpdate($id)
+    public function actionMove()
     {
-        $model = $this->findModel($id);
+        $node   = $this->purifyGetRequest('id');
+        $parent = $this->purifyGetRequest('parent');
+        $result = $this->move($node, $parent, $this->purifyGetRequest('position'));
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return true;
-        } else {
-            return $this->goHome();
-        }
+        return $result;
     }
 
     /**
-     * Deletes an existing Task model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     *
-     * @param integer $id
-     *
-     * @return mixed
+     * Deletes an existing Task node.
+     * If deletion is successful, the browser will be returned a value.
+     * @return json|bool
      */
-    public function actionDelete($id)
+    public function actionDelete()
     {
-        $this->findModel($id)->delete();
+        $node   = $this->purifyGetRequest('id');
+        $result = $this->remove($node);
 
-        return $this->actionIndex();
+        return $result;
     }
 
     /**
-     * Finds the Task model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Deletes the table row corresponding to this active record.
      *
-     * @param integer $id
-     *
-     * @return Task the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return bool
+     * @throws \Exception
      */
-    protected function findModel($id)
+    public function actionDeleteOne()
     {
-        if (($model = Task::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+        $node = $this->purifyGetRequest('id');
+        Task::findOne([ $node ])->delete();
+
+        return true;
     }
 }

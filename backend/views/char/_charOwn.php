@@ -12,6 +12,14 @@ use kato\DropZone;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+$i18n = Yii::t("backend", "For the best view we recommend PNG format!");
+$dictMessage = <<<MSG
+    <i class="fa fa-cloud-upload"></i>
+    <span class="main-text"><b>Drop Files</b> to upload</span>
+    <br>
+    <span class="sub-text">$i18n</span>
+MSG;
+
 ?>
 
 <?php $form = ActiveForm::begin([ 'action' => 'char/upload', 'options' => [ 'enctype' => 'multipart/form-data' ] ]) ?>
@@ -38,10 +46,10 @@ use yii\widgets\ActiveForm;
                         'addRemoveLinks'     => true,
                         'paramName'          => 'mascot_path',
                         'autoProcessQueue'   => false,
-                        'dictDefaultMessage' => '<i class="fa fa-cloud-upload"></i><span class="main-text"><b>Drop Files</b> to upload</span><br><span class="sub-text">' . Yii::t("backend", "For the best view we recommend PNG format!") . '</span>'
+                        'dictDefaultMessage' => $dictMessage
                     ],
                     'clientEvents' => [
-                        'success'     => "function(file) { alert('" . Yii::t('backend', 'Your character has been uploaded!') . "') }",
+                        'success'     => "function(file) { alert('" . Yii::t('backend', 'Your character has been uploaded!') . "'); location.reload(); }",
                         'error'       => 'function(file) { alert("' . Yii::t('backend', 'No more files!') . '") }',
                         'addedfile'   => 'function(file) { $("#fin").prop("disabled", false) }',
                         'removedfile' => 'function(file) { $("#fin").prop("disabled", true) }'
