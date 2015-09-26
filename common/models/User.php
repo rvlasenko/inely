@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use backend\models\Task;
+use backend\models\TaskForm;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -50,7 +50,7 @@ class User extends ActiveRecord implements IdentityInterface
             TimestampBehavior::className(),
             'auth_key' => [
                 'class'      => AttributeBehavior::className(),
-                'attributes' => [ ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key' ],
+                'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => 'auth_key'],
                 'value'      => Yii::$app->getSecurity()->generateRandomString()
             ]
         ];
@@ -77,9 +77,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [ [ 'username', 'email' ], 'unique' ],
-            [ 'status', 'default', 'value' => self::STATUS_UNCONFIRMED ],
-            [ 'status', 'in', 'range' => array_keys(self::getStatuses()) ],
+            [['username', 'email'], 'unique'],
+            ['status', 'default', 'value' => self::STATUS_UNCONFIRMED],
+            ['status', 'in', 'range' => array_keys(self::getStatuses())],
         ];
     }
 
@@ -89,7 +89,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getUserProfile()
     {
-        return $this->hasOne(UserProfile::className(), [ 'user_id' => 'id' ]);
+        return $this->hasOne(UserProfile::className(), ['user_id' => 'id']);
     }
 
     public static function findIdentity($id)
@@ -99,7 +99,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return static::findOne([ 'auth_key' => $token, 'status' => self::STATUS_ACTIVE ]);
+        return static::findOne(['auth_key' => $token, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -111,7 +111,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne([ 'username' => $username, 'status' => self::STATUS_ACTIVE ]);
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -124,7 +124,8 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByLogin($login)
     {
         return static::findOne([
-            'and', [ 'or', [ 'username' => $login ], [ 'email' => $login ] ],
+            'and',
+            ['or', ['username' => $login], ['email' => $login]],
             'status' => self::STATUS_ACTIVE
         ]);
     }
@@ -160,6 +161,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (($model = User::findOne(Yii::$app->user->id)) !== null) {
             $model->setAttribute('status', $this::STATUS_ACTIVE);
+
             return $model->save();
         }
 
@@ -234,6 +236,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Send email confirmation to user
+     *
      * @param $user
      * @param $layout
      * @param $email
@@ -244,8 +247,8 @@ class User extends ActiveRecord implements IdentityInterface
     public static function sendEmail($user, $layout, $email, $subject)
     {
         $mailer  = Yii::$app->mailer;
-        $message = $mailer->compose($layout, [ 'user' => $user ])->setTo($email)->setSubject($subject);
-        $message->setFrom([ Yii::$app->params[ 'adminEmail' ] => Yii::$app->name ]);
+        $message = $mailer->compose($layout, ['user' => $user])->setTo($email)->setSubject($subject);
+        $message->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name]);
 
         $result = $message->send();
 
@@ -254,29 +257,25 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Creates user profile and application event
+     *
      * @param array $profileData
      */
-    public function afterSignup(array $profileData = [ ])
+    public function afterSignup(array $profileData = [])
     {
         $this->trigger(self::EVENT_AFTER_SIGNUP);
 
         $profile         = new UserProfile();
+        $data = ['lft' => 1, 'rgt' => 33, 'lvl' => 0, 'pid' => 0, 'pos' => 0, 'name' => 'Root'];
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
 
         $this->link('userProfile', $profile);
 
-//        // Add default task
-//        $model           = new Task();
-//        $model->author   = $profileData[ 'id' ];
-//        $model->name     = Yii::t('backend', 'Try Inely');
-//        $model->priority = 'medium';
-//        $model->list     = 2;
-//        $model->save();
-
         // Default role
         $auth = Yii::$app->authManager;
         $auth->assign($auth->getRole(User::ROLE_USER), $this->getId());
+
+        (new TaskForm)->make($data, $this->getId());
     }
 
     public function getPublicIdentity()

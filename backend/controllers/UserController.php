@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace backend\controllers;
@@ -19,9 +19,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * UserController implements the CRUD actions for User model.
- */
 class UserController extends Controller
 {
     public function behaviors()
@@ -30,7 +27,7 @@ class UserController extends Controller
             'verbs' => [
                 'class'   => VerbFilter::className(),
                 'actions' => [
-                    'delete' => [ 'post' ],
+                    'delete' => ['post'],
                 ],
             ],
         ];
@@ -75,7 +72,7 @@ class UserController extends Controller
         $model = new UserForm();
         $model->setScenario('create');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect([ 'index' ]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -96,7 +93,7 @@ class UserController extends Controller
         $model = new UserForm();
         $model->setModel($this->findModel($id));
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect([ 'index' ]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -118,7 +115,7 @@ class UserController extends Controller
         Yii::$app->authManager->revokeAll($id);
         $this->findModel($id)->delete();
 
-        return $this->redirect([ 'index' ]);
+        return $this->redirect(['index']);
     }
 
     /**

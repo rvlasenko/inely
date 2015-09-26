@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace backend\controllers;
@@ -31,14 +31,14 @@ class CharController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => [ '@' ]
+                        'roles' => ['@']
                     ],
                     [
-                        'actions'      => [ 'index' ],
+                        'actions'      => ['index'],
                         'allow'        => false,
-                        'roles'        => [ '?' ],
+                        'roles'        => ['?'],
                         'denyCallback' => function () {
-                            return $this->redirect([ '/login' ]);
+                            return $this->redirect(['/login']);
                         }
                     ]
                 ]
@@ -47,8 +47,9 @@ class CharController extends Controller
     }
 
     /**
-     * Check user status and then performs the appropriate action
-     * @return redirect|\yii\web\Response
+     * Проверка статуса пользователя и определение дальнейшего действия.
+     * Если пользователь подтвержден, он редиректится на Dashboard.
+     * @return homeUrl редирект на домашнюю страницу.
      */
     public function actionIndex()
     {
@@ -66,14 +67,14 @@ class CharController extends Controller
     }
 
     /**
-     * Selecting a character from a list of available characters.
-     * @return \yii\web\Response
-     * @throws HttpException
+     * Выбор любимца из списка достпных персонажей.
+     * @return homeUrl редирект на домашнюю страницу.
+     * @throws HttpException если сохранение пошло не так.
      */
     public function actionChar()
     {
         if (Yii::$app->request->post()) {
-            if ((new User)->setActive() && (new UserProfile)->setDefChar($_POST[ 'mascot' ][ 0 ])) {
+            if ((new User)->setActive() && (new UserProfile)->setDefChar($_POST['mascot'][0])) {
                 return $this->goHome();
             } else {
                 throw new HttpException(500, 'Unable to save user data');
@@ -84,20 +85,22 @@ class CharController extends Controller
     }
 
     /**
-     * Uploading own character to the server.
-     * If everything is all right set the user as active and return JSON.
+     * Загрузка собственного персонажа на сервер.
+     * Если загрузка осуществилась успешно, пользовательский статус обновляется.
      *
-     * @property string $fileName
-     * @property string $uploadPath
-     * @return bool|string
-     * @throws HttpException
+     * @property string $fileName   экземпляр загруженного файла.
+     * @property string $uploadPath путь к файлу, соответствующий алиасу.
+     * @return bool|string закодированная JSON строка файла.
+     * @throws HttpException если сохранение пошло не так.
+     *
+     * Возвращается null, если файла почему-то не существует в массиве.
      */
     public function actionUpload()
     {
         $fileName   = 'mascot_path';
         $uploadPath = Yii::getAlias('@storage/web/source/');
 
-        if (isset($_FILES[ $fileName ]) && Yii::$app->request->isPost) {
+        if (isset($_FILES[$fileName]) && Yii::$app->request->isPost) {
             $file = UploadedFile::getInstanceByName($fileName);
 
             if ($file->saveAs($uploadPath . $file->name)) {
@@ -115,13 +118,13 @@ class CharController extends Controller
     }
 
     /**
-     * Finds the Page model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Поиск модели "UserProfile" на основе её первичного ключа.
+     * Если модель не найдена, будет сгенерировано исключение HTTP со статусом 404.
      *
-     * @param integer $id
+     * @param int $id
      *
-     * @return Page the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * @return модель UserProfile
+     * @throws NotFoundHttpException если модель не может быть найдена.
      */
     protected function findModel($id)
     {

@@ -1,18 +1,15 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  * @var $this    yii\web\View
  */
 
 \backend\assets\TaskAsset::register($this);
-
-$this->registerCssFile('tools/dock/dockmodal.css');
-$this->registerCssFile('tools/forms/admin-forms.css');
 
 ?>
 

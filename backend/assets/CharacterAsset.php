@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
+
 namespace backend\assets;
 
 use yii\web\AssetBundle;
@@ -31,13 +32,12 @@ class CharacterAsset extends AssetBundle
     ];
 
     public $js = [
-
         // Theme Javascript
         'js/utility.js',
         'js/main.js'
     ];
 
-    public $jsOptions = [ 'position' => View::POS_END ];
+    public $jsOptions = ['position' => View::POS_END];
 
-    public $depends = [ 'common\assets\FontAwesome' ];
+    public $depends   = ['common\assets\FontAwesome'];
 }

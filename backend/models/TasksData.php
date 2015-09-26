@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace backend\models;
@@ -14,14 +14,14 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "tasks_data", containing structure "Nested Set".
+ * Это класс модели для таблицы "tasks_data", содержащий структуру "Nested Set"
  *
- * @property integer    $dataId
- * @property integer    $lft key left
- * @property integer    $rgt key right
- * @property integer    $lvl nesting level
- * @property integer    $pid parent id
- * @property integer    $pos
+ * @property int        $dataId
+ * @property int        $lft key left
+ * @property int        $rgt key right
+ * @property int        $lvl nesting level
+ * @property int        $pid parent id
+ * @property int        $pos
  * @property string     $name
  *
  */
@@ -35,31 +35,34 @@ class TasksData extends ActiveRecord
     public function rules()
     {
         return [
-            [ [ 'lft', 'rgt', 'lvl', 'pid', 'pos' ], 'integer' ],
-            [ [ 'name' ], 'string', 'max' => 255 ]
+            [['lft', 'rgt', 'lvl', 'pid', 'pos'], 'integer'],
+            [['name'], 'string', 'max' => 255]
         ];
     }
 
     /**
-     * @param $node
+     * Получение приоритета задачи по её идентификатору.
      *
-     * @return array|null|ActiveRecord
+     * @param int $node идентификатор узла
+     *
+     * @return array|ActiveRecord[] результат запроса. Если результат равен null, то будет возвращен пустой массив.
      */
     public static function getPriority($node)
     {
         return Task::find()
-            ->select('priority')
-            ->where([ 'author' => Yii::$app->user->getId() ])
-            ->andWhere([ 'id' => $node ])
-            ->asArray()->one();
+                   ->select('priority')
+                   ->where(['author' => Yii::$app->user->id])
+                   ->andWhere(['id' => $node])
+                   ->asArray()
+                   ->one();
     }
 
     /**
-     * Relation with the table "tasks"
-     * @return \yii\db\ActiveQuery
+     * Отношение с таблицей "tasks"
+     * @return ActiveQuery
      */
     public function getTasks()
     {
-        return $this->hasOne(Task::className(), [ 'id' => 'dataId' ]);
+        return $this->hasOne(Task::className(), ['id' => 'dataId']);
     }
 }

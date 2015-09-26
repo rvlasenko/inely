@@ -4,9 +4,9 @@ $config = [
     'homeUrl'             => Yii::getAlias('@frontendUrl'),
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute'        => 'site/index',
-    'modules'             => [ 'user' => [ 'class' => 'backend\modules\user\Module' ] ],
+    'modules'             => ['user' => ['class' => 'backend\modules\user\Module']],
     'components'          => [
-        'errorHandler' => [ 'errorAction' => 'site/error' ],
+        'errorHandler' => ['errorAction' => 'site/error'],
         'request'      => [
             'enableCookieValidation' => true,
             'enableCsrfValidation'   => true,

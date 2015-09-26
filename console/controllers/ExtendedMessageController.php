@@ -39,31 +39,31 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
 
         $config = array_merge($config, require($configFile));
 
-        if (!is_dir($config[ 'sourcePath' ])) {
+        if (!is_dir($config['sourcePath'])) {
             throw new Exception("The source path {$config['sourcePath']} is not a valid directory.");
         }
 
-        $files = FileHelper::findFiles(realpath($config[ 'sourcePath' ]), $config);
+        $files = FileHelper::findFiles(realpath($config['sourcePath']), $config);
 
-        $unremoved = [ ];
+        $unremoved = [];
         foreach ($files as $fileName) {
-            if (!is_array($config[ 'translator' ])) {
-                $translator = [ $config[ 'translator' ] ];
+            if (!is_array($config['translator'])) {
+                $translator = [$config['translator']];
             }
             foreach ($translator as $currentTranslator) {
                 $n               = 0;
                 $subject         = file_get_contents($fileName);
                 $replacedSubject = preg_replace_callback('/\b(\\\\)?' . $currentTranslator . '\s*\(\s*(\'.*?(?<!\\\\)\'|".*?(?<!\\\\)")\s*,\s*(\'.*?(?<!\\\\)\'|".*?(?<!\\\\)")\s*[,\)]/s', function ($matches) use ($newSourceLanguage, $fileName, &$unremoved) {
-                    $category = substr($matches[ 2 ], 1, -1);
-                    $message  = $matches[ 3 ];
+                    $category = substr($matches[2], 1, -1);
+                    $message  = $matches[3];
 
                     if ($newSourceLanguage !== false) {
                         $message = eval("return {$message};");
-                        $result  = str_replace($message, Yii::t($category, $message, [ ], $newSourceLanguage), $matches[ 0 ]);
+                        $result  = str_replace($message, Yii::t($category, $message, [], $newSourceLanguage), $matches[0]);
                     } else {
-                        if (strpos($matches[ 0 ], ')') != strlen($matches[ 0 ]) - 1) {
-                            $unremoved[ $fileName ][ ] = $message;
-                            $result                    = $matches[ 0 ];
+                        if (strpos($matches[0], ')') != strlen($matches[0]) - 1) {
+                            $unremoved[$fileName][] = $message;
+                            $result                 = $matches[0];
                         } else {
                             $result = $message;
                         }
@@ -110,7 +110,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
             'format'       => 'php',
         ], require($inputConfigFile));
 
-        switch ($inputConfig[ 'format' ]) {
+        switch ($inputConfig['format']) {
             case 'php':
                 $messages = $this->readFromPhpInput($inputConfig);
                 break;
@@ -121,7 +121,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                 $messages = $this->readFromPoInput($inputConfig);
                 break;
             default:
-                throw new InvalidConfigException('Unknown input format ' . $inputConfig[ 'format' ]);
+                throw new InvalidConfigException('Unknown input format ' . $inputConfig['format']);
         }
 
         if ($this->confirm('All existing messages in the output source will be removed. Proceed?')) {
@@ -138,7 +138,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                 'format'       => 'php',
             ], require($outputConfigFile));
 
-            switch ($outputConfig[ 'format' ]) {
+            switch ($outputConfig['format']) {
                 case 'php':
                     $this->saveToPhpOutput($messages, $outputConfig);
                     break;
@@ -161,13 +161,13 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
      */
     protected function readFromPhpInput($config)
     {
-        $messages = [ ];
-        foreach ($config[ 'languages' ] as $language) {
+        $messages = [];
+        foreach ($config['languages'] as $language) {
             $messagePath = Yii::getAlias("$config[messagePath]/$language");
             $files       = FileHelper::findFiles(FileHelper::normalizePath($messagePath));
             foreach ($files as $file) {
-                $category                           = pathinfo($file, PATHINFO_FILENAME);
-                $messages[ $language ][ $category ] = require($file);
+                $category                       = pathinfo($file, PATHINFO_FILENAME);
+                $messages[$language][$category] = require($file);
             }
         }
 
@@ -183,26 +183,26 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
      */
     protected function readFromDbInput($config)
     {
-        $messages           = [ ];
-        $db                 = Yii::$app->get(isset($config[ 'db' ]) ? $config[ 'db' ] : 'db');
-        $sourceMessageTable = isset($config[ 'sourceMessageTable' ]) ? $config[ 'sourceMessageTable' ] : '{{%source_message}}';
-        $messageTable       = isset($config[ 'messageTable' ]) ? $config[ 'messageTable' ] : '{{%message}}';
+        $messages           = [];
+        $db                 = Yii::$app->get(isset($config['db']) ? $config['db'] : 'db');
+        $sourceMessageTable = isset($config['sourceMessageTable']) ? $config['sourceMessageTable'] : '{{%source_message}}';
+        $messageTable       = isset($config['messageTable']) ? $config['messageTable'] : '{{%message}}';
         if (!$db instanceof \yii\db\Connection) {
             throw new \Exception('The "db" option must refer to a valid database application component.');
         }
         $q = new \yii\db\Query;
 
         Console::output('Reading messages from database');
-        $sourceMessages = $q->select([ '*' ])->from($sourceMessageTable)->all();
-        foreach ($config[ 'languages' ] as $language) {
-            $translations = $q->select([ '*' ])
+        $sourceMessages = $q->select(['*'])->from($sourceMessageTable)->all();
+        foreach ($config['languages'] as $language) {
+            $translations = $q->select(['*'])
                               ->from($messageTable)
-                              ->where([ 'language' => $language ])
+                              ->where(['language' => $language])
                               ->indexBy('id')
                               ->all();
             foreach ($sourceMessages as $row) {
-                $translation                                                      = ArrayHelper::getValue($translations, $row[ 'id' ]);
-                $messages[ $language ][ $row[ 'category' ] ][ $row[ 'message' ] ] = $translation ? $translation[ 'translation' ] : null;
+                $translation                                            = ArrayHelper::getValue($translations, $row['id']);
+                $messages[$language][$row['category']][$row['message']] = $translation ? $translation['translation'] : null;
             }
         }
 
@@ -228,9 +228,9 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
      */
     protected function saveToDbOutput($messages, $config)
     {
-        $db                 = Yii::$app->get(isset($config[ 'db' ]) ? $config[ 'db' ] : 'db');
-        $sourceMessageTable = isset($config[ 'sourceMessageTable' ]) ? $config[ 'sourceMessageTable' ] : '{{%source_message}}';
-        $messageTable       = isset($config[ 'messageTable' ]) ? $config[ 'messageTable' ] : '{{%message}}';
+        $db                 = Yii::$app->get(isset($config['db']) ? $config['db'] : 'db');
+        $sourceMessageTable = isset($config['sourceMessageTable']) ? $config['sourceMessageTable'] : '{{%source_message}}';
+        $messageTable       = isset($config['messageTable']) ? $config['messageTable'] : '{{%message}}';
         if (!$db instanceof \yii\db\Connection) {
             throw new \Exception('The "db" option must refer to a valid database application component.');
         }
@@ -238,7 +238,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
         $db->createCommand()->truncateTable($messageTable)->execute();
         $db->createCommand()->delete($sourceMessageTable)->execute();
 
-        $insertedSourceMessages = [ ];
+        $insertedSourceMessages = [];
         foreach ($messages as $language => $categories) {
             Console::output("Language: $language");
             foreach ($categories as $category => $msgs) {
@@ -248,13 +248,13 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                 Console::startProgress(0, $messagesCount);
                 foreach ($msgs as $m => $translation) {
                     Console::updateProgress(++$i, $messagesCount);
-                    $lastId = array_search($m, ArrayHelper::getValue($insertedSourceMessages, $category, [ ]));
+                    $lastId = array_search($m, ArrayHelper::getValue($insertedSourceMessages, $category, []));
                     if ($lastId === false) {
                         $db->createCommand()
-                           ->insert($sourceMessageTable, [ 'category' => $category, 'message' => $m ])
+                           ->insert($sourceMessageTable, ['category' => $category, 'message' => $m])
                            ->execute();
-                        $lastId                                         = $db->getLastInsertID($db->driverName == 'pgsql' ? 'i18n_source_message_id_seq' : null);
-                        $insertedSourceMessages[ $category ][ $lastId ] = $m;
+                        $lastId                                     = $db->getLastInsertID($db->driverName == 'pgsql' ? 'i18n_source_message_id_seq' : null);
+                        $insertedSourceMessages[$category][$lastId] = $m;
                     }
                     $db->createCommand()->insert($messageTable, [
                         'id'          => $lastId,
@@ -274,7 +274,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
     protected function saveToPhpOutput($messages, $config)
     {
         foreach ($messages as $language => $categories) {
-            $dirName = FileHelper::normalizePath(Yii::getAlias($config[ 'messagePath' ] . '/' . $language));
+            $dirName = FileHelper::normalizePath(Yii::getAlias($config['messagePath'] . '/' . $language));
             FileHelper::createDirectory($dirName);
             Console::output("Language: $language");
             foreach ($categories as $category => $msgs) {

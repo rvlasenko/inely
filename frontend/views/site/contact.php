@@ -12,10 +12,10 @@ use yii\widgets\Pjax;
 
     <h4><?= Yii::t('frontend', 'Send Message') ?></h4>
 
-    <?php Pjax::begin([ 'enablePushState' => false ]) ?>
+    <?php Pjax::begin(['enablePushState' => false]) ?>
     <?php $form = ActiveForm::begin([
         'id'                     => 'quick-contact-form',
-        'options'                => [ 'class' => 'quick-contact-form nobottommargin', 'data-pjax' => true ],
+        'options'                => ['class' => 'quick-contact-form nobottommargin', 'data-pjax' => true],
         'enableClientValidation' => false
     ]) ?>
 
@@ -24,7 +24,7 @@ use yii\widgets\Pjax;
     <div class="input-group divcenter">
         <span class="input-group-addon"><i class="icon-user"></i></span>
 
-        <?= $form->field($model, 'name', [ 'template' => '{input}' ])->textInput([
+        <?= $form->field($model, 'name', ['template' => '{input}'])->textInput([
             'class'       => 'required form-control input-block-level',
             'placeholder' => Yii::t('frontend', 'Full Name')
         ])->label(false) ?>
@@ -33,21 +33,21 @@ use yii\widgets\Pjax;
     <div class="input-group divcenter">
         <span class="input-group-addon"><i class="icon-email2"></i></span>
 
-        <?= $form->field($model, 'email', [ 'template' => '{input}' ])->textInput([
+        <?= $form->field($model, 'email', ['template' => '{input}'])->textInput([
             'class'       => 'required form-control email input-block-level',
             'placeholder' => Yii::t('frontend', 'Email Address')
         ])->label(false) ?>
 
     </div>
 
-    <?= $form->field($model, 'body', [ 'template' => '{input}' ])->textArea([
+    <?= $form->field($model, 'body', ['template' => '{input}'])->textArea([
         'class'       => 'required form-control input-block-level short-textarea',
         'placeholder' => Yii::t('frontend', 'Message'),
         'rows'        => 4,
         'cols'        => 30
     ])->label(false) ?>
 
-    <?= Html::submitButton(Yii::t('frontend', 'Send'), [ 'class' => 'btn btn-danger nomargin' ]) ?>
+    <?= Html::submitButton(Yii::t('frontend', 'Send'), ['class' => 'btn btn-danger nomargin']) ?>
 
     <?php ActiveForm::end() ?>
     <?php Pjax::end() ?>

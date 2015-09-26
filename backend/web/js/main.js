@@ -1,6 +1,8 @@
 'use strict';
-/* Core theme functions required for
- * most of the themes vital functionality */
+/*
+ * Core theme functions required for
+ * most of the themes vital functionality
+ */
 var Core = function () {
 
     // Variables
@@ -8,6 +10,7 @@ var Core = function () {
     var listName = 'Inbox';
     // ID of the jsTree div container
     var tree = $("#tree");
+    var parent;
     // jsTree object
     var $root;
     // Clear local storage
@@ -31,7 +34,7 @@ var Core = function () {
     }, 800);
     var runTaskPage = function () {
 
-        // Setting the JSTree
+        // Setting the JSTree. Before start, check for the existence
         if (tree.length) {
             $root = tree.jstree({
                 'core':        {
@@ -88,6 +91,8 @@ var Core = function () {
                                 "label":            "Delete task",
                                 "action":           function () {
                                     $root.jstree(true).delete_node($node);
+                                    $("a:contains('Root')").css("display", "none");
+                                    $(".jstree-last .jstree-icon").first().hide();
                                 }
                             },
                             "SetPriority": {
@@ -194,7 +199,14 @@ var Core = function () {
                 if (!$(event.target).is('i')) {
                     $root.jstree(true).uncheck_node(data.node.id);
                 }
+            }).on('redraw.jstree', function () {
+                $("a:contains('Root')").css("display", "none");
+                $(".jstree-last .jstree-icon").first().hide();
+            }).on('loaded.jstree', function () {
+                tree.jstree('open_all');
+                parent = $("a:contains('Root')");
             });
+
             var to = null;
             $('#search_q').keyup(function () {
                 if (to) { clearTimeout(to); }
@@ -244,9 +256,11 @@ var Core = function () {
         });
 
         var add = function () {
-            var node = $root.jstree(true).create_node("266", {
+            var node = $root.jstree(true).create_node(parent, {
                 "text": 'New task'
             }, 'last', null, false);
+            $("a:contains('Root')").css("display", "none");
+            $(".jstree-last .jstree-icon").first().hide();
             $root.jstree(true).edit(node);
             return false;
         };

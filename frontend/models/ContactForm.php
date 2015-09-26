@@ -24,20 +24,7 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            [ [ 'name', 'email', 'body' ], 'required' ],
-        ];
-    }
-
-    /**
-     * @return array customized attribute labels
-     */
-    public function attributeLabels()
-    {
-        return [
-            'name'       => Yii::t('frontend', 'Name'),
-            'email'      => Yii::t('frontend', 'Email'),
-            'body'       => Yii::t('frontend', 'Body'),
-            'verifyCode' => Yii::t('frontend', 'Verification Code')
+            [['name', 'email', 'body'], 'required'],
         ];
     }
 
@@ -55,7 +42,7 @@ class ContactForm extends Model
                 return Yii::$app->mailer->compose()
                                         ->setTo($email)
                                         ->setFrom(getenv('ROBOT_EMAIL'))
-                                        ->setReplyTo([ $this->email => $this->name ])
+                                        ->setReplyTo([$this->email => $this->name])
                                         ->setTextBody($this->body)
                                         ->send();
             } catch (ErrorException $e) {

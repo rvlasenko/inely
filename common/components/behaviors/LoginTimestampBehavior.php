@@ -17,7 +17,7 @@ class LoginTimestampBehavior extends Behavior
      */
     public function events()
     {
-        return [ User::EVENT_AFTER_LOGIN => 'afterLogin' ];
+        return [User::EVENT_AFTER_LOGIN => 'afterLogin'];
     }
 
     /**

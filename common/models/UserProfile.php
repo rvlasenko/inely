@@ -20,7 +20,7 @@ use yii\db\ActiveRecord;
  */
 class UserProfile extends ActiveRecord
 {
-    const GENDER_MALE = 2;
+    const GENDER_MALE   = 2;
     const GENDER_FEMALE = 1;
 
     public static function tableName()
@@ -31,12 +31,12 @@ class UserProfile extends ActiveRecord
     public function rules()
     {
         return [
-            [ [ 'user_id' ], 'required' ],
-            [ [ 'user_id', 'gender' ], 'integer' ],
-            [ [ 'gender' ], 'in', 'range' => [ self::GENDER_FEMALE, self::GENDER_MALE ] ],
-            [ [ 'firstname', 'lastname', 'def_char_name', 'user_char_name', 'user_char_name' ], 'string', 'max' => 255 ],
-            [ 'locale', 'default', 'value' => Yii::$app->language ],
-            [ 'locale', 'in', 'range' => array_keys(Yii::$app->params[ 'availableLocales' ]) ]
+            [['user_id'], 'required'],
+            [['user_id', 'gender'], 'integer'],
+            [['gender'], 'in', 'range' => [self::GENDER_FEMALE, self::GENDER_MALE]],
+            [['firstname', 'lastname', 'def_char_name', 'user_char_name', 'user_char_name'], 'string', 'max' => 255],
+            ['locale', 'default', 'value' => Yii::$app->language],
+            ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])]
         ];
     }
 
@@ -48,13 +48,13 @@ class UserProfile extends ActiveRecord
 
     public function getUser()
     {
-        return $this->hasOne(User::className(), [ 'id' => 'user_id' ]);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     public function getFullName()
     {
         if ($this->firstname || $this->lastname) {
-            return implode(' ', [ $this->firstname, $this->lastname ]);
+            return implode(' ', [$this->firstname, $this->lastname]);
         }
 
         return null;
@@ -66,12 +66,12 @@ class UserProfile extends ActiveRecord
      */
     public function getChar()
     {
-        $user = UserProfile::findOne([ Yii::$app->user->id ]);
+        $user = UserProfile::findOne([Yii::$app->user->id]);
 
         if ($user->user_char_path !== null || $user->user_char_name !== null) {
-            return [ 'own' => $user->user_char_path ];
+            return ['own' => $user->user_char_path];
         } elseif ($user->def_char_name !== null) {
-            return [ 'default' => $user->def_char_name ];
+            return ['default' => $user->def_char_name];
         } else {
             throw new HttpException(500, 'Unable to detect user character');
         }
@@ -86,6 +86,7 @@ class UserProfile extends ActiveRecord
     {
         if (($model = $this::findOne(Yii::$app->user->id)) !== null) {
             $model->setAttribute('def_char_name', $name);
+
             return $model->save();
         }
 
@@ -101,6 +102,7 @@ class UserProfile extends ActiveRecord
     {
         if (($model = $this::findOne(Yii::$app->user->id)) !== null) {
             $model->setAttribute('user_char_path', $path);
+
             return $model->save();
         }
 

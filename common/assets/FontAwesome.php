@@ -8,5 +8,5 @@ class FontAwesome extends AssetBundle
 {
     public $sourcePath = '@vendor/fortawesome/font-awesome';
 
-    public $css = [ 'css/font-awesome.min.css' ];
+    public $css        = ['css/font-awesome.min.css'];
 }

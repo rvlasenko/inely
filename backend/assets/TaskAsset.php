@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace backend\assets;
@@ -38,7 +38,7 @@ class TaskAsset extends AssetBundle
         'vendor/plugins/jstree/jstree.min.js'
     ];
 
-    public $jsOptions = [ 'position' => View::POS_END ];
+    public $jsOptions = ['position' => View::POS_END];
 
     public $depends = [
         'yii\web\JqueryAsset',

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл - часть проекта Inely.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace backend\assets;
@@ -48,7 +48,7 @@ class AuthAsset extends AssetBundle
         'js/main.js'
     ];
 
-    public $jsOptions = [ 'position' => View::POS_END ];
+    public $jsOptions = ['position' => View::POS_END];
 
-    public $depends = [ 'common\assets\FontAwesome' ];
+    public $depends   = ['common\assets\FontAwesome'];
 }

@@ -7,7 +7,7 @@ return [
     'rules'           => [
 
         /*
-         * General rules
+         * Основные правила
          */
         'contact'        => '/site/contact',
         'todo'           => '/task/index',
@@ -15,7 +15,7 @@ return [
         'welcome'        => '/char/index',
 
         /*
-         * Auth rules
+         * Правила авторизации
          */
         'signup'         => '/user/sign-in/signup',
         'reset'          => '/user/sign-in/request-password-reset',

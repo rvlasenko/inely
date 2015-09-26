@@ -5,8 +5,8 @@ $config = [
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute'        => 'site/index',
     'modules'             => [
-        'user'     => [ 'class' => 'backend\modules\user\Module' ],
-        'i18n'     => [
+        'user' => ['class' => 'backend\modules\user\Module'],
+        'i18n' => [
             'class'        => 'backend\modules\i18n\Module',
             'defaultRoute' => 'i18n-message/index'
         ]
@@ -33,12 +33,12 @@ $config = [
                 ]
             ]
         ],
-        'errorHandler'         => [ 'errorAction' => 'site/error' ],
-        'request'              => [ 'cookieValidationKey' => getenv('BACKEND_COOKIE_VALIDATION_KEY') ],
+        'errorHandler'         => ['errorAction' => 'site/error'],
+        'request'              => ['cookieValidationKey' => getenv('BACKEND_COOKIE_VALIDATION_KEY')],
         'user'                 => [
             'class'           => 'yii\web\User',
             'identityClass'   => 'common\models\User',
-            'loginUrl'        => [ 'login' ],
+            'loginUrl'        => ['login'],
             'enableAutoLogin' => true,
             'as afterLogin'   => 'common\components\behaviors\LoginTimestampBehavior'
         ]
@@ -46,7 +46,7 @@ $config = [
 ];
 
 if (YII_ENV_DEV) {
-    $config[ 'modules' ][ 'gii' ] = [ 'class' => 'yii\gii\Module' ];
+    $config['modules']['gii'] = ['class' => 'yii\gii\Module'];
 }
 
 return $config;

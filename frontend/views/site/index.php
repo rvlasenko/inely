@@ -28,6 +28,7 @@
 
                 <div class="col-md-4 bottommargin">
                     <i class="i-plain color i-large icon-line2-emoticon-smile inline-block" style="margin-bottom: 15px;"></i>
+
                     <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
                         <h4>Responsive &amp; Retina</h4>
                     </div>
@@ -36,6 +37,7 @@
 
                 <div class="col-md-4 bottommargin">
                     <i class="i-plain color i-large icon-line2-trophy inline-block" style="margin-bottom: 15px;"></i>
+
                     <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
                         <h4>Powerful Performance</h4>
                     </div>
@@ -44,6 +46,7 @@
 
                 <div class="col-md-4 bottommargin">
                     <i class="i-plain color i-large icon-line2-directions inline-block" style="margin-bottom: 15px;"></i>
+
                     <div class="heading-block nobottomborder" style="margin-bottom: 15px;">
                         <h4>Truly Multi-Purpose</h4>
                     </div>

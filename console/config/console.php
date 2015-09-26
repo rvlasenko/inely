@@ -10,7 +10,7 @@ return [
             'migrationPath'  => '@common/migrations',
             'migrationTable' => '{{%system_migration}}'
         ],
-        'message' => [ 'class' => 'console\controllers\ExtendedMessageController' ],
-        'rbac'    => [ 'class' => 'console\controllers\RbacController' ]
+        'message' => ['class' => 'console\controllers\ExtendedMessageController'],
+        'rbac'    => ['class' => 'console\controllers\RbacController']
     ]
 ];

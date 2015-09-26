@@ -1,14 +1,22 @@
 <?php
 
+/**
+ * Этот файл является частью проекта Inely.
+ *
+ * (c) Inely <http://github.com/hirootkit/inely>
+ *
+ * @author hirootkit
+ */
+
 namespace backend\models;
 
 use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "tasks_cat".
+ * Это класс модели для таблицы "tasks_cat".
  *
- * @property integer $id
+ * @property int     $id
  * @property string  $listName
  * @property string  $badgeColor
  * @property integer $userId
@@ -21,11 +29,11 @@ class TaskCat extends ActiveRecord
     }
 
     /**
-     * Relation with the table "tasks"
-     * @return \yii\db\ActiveQuery
+     * Отношение с таблицей "tasks"
+     * @return ActiveQuery
      */
     public function getTask()
     {
-        return $this->hasOne(Task::className(), [ 'list' => 'id' ]);
+        return $this->hasOne(Task::className(), ['list' => 'id']);
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
- * (c) Inely <http://github.com/inely>
+ * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace frontend\assets;
@@ -27,9 +27,9 @@ class FrontendAsset extends AssetBundle
     ];
 
     // External JavaScript
-    public $js = [ 'js/infinitescroll.min.js' ];
+    public $js        = ['js/infinitescroll.min.js'];
 
-    public $jsOptions = [ 'position' => View::POS_HEAD ];
+    public $jsOptions = ['position' => View::POS_HEAD];
 
-    public $depends = [ 'common\assets\BootstrapAsset' ];
+    public $depends   = ['common\assets\BootstrapAsset'];
 }

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  *
  * @var $this    yii\web\View
  * @var $content string
@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('backend', 'Your dashboard');
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
-$tableLayout = Yii::$app->controller->route == 'task/index' ? 'table-layout' : false;
+$tableLayout   = Yii::$app->controller->route == 'task/index' ? 'table-layout' : false;
 $curController = Yii::$app->controller->id;
 
 ?>
@@ -83,16 +83,13 @@ $curController = Yii::$app->controller->id;
 <script type="text/javascript">
     $(document).ready(function () {
         "use strict";
-
         // Init Theme Core
         Core.init({ sbm: "sb-l-c" });
-
         $('.skillbar').each(function () {
             jQuery(this).find('.skillbar-bar').animate({
                 width: jQuery(this).attr('data-percent')
             }, 2500);
         });
-
         // Chart for user activity and perfomance
         $('.ct-chart').highcharts({
             title:   { text: null },
@@ -119,10 +116,8 @@ $curController = Yii::$app->controller->id;
                 }
             ]
         });
-
         // Remove first line
         $('.highcharts-grid path:first-child').remove();
-
         // Init plugins for ".task-widget"
         // plugins: Custom Functions + jQuery Sortable
         //
@@ -130,7 +125,6 @@ $curController = Yii::$app->controller->id;
         var taskItems = taskWidget.find('li.task-item');
         var currentItems = taskWidget.find('ul.task-current');
         var completedItems = taskWidget.find('ul.task-completed');
-
         // Init jQuery Sortable on Task Widget
         taskWidget.sortable({
             items:       taskItems, // only init sortable on list items (not labels)
@@ -139,7 +133,6 @@ $curController = Yii::$app->controller->id;
             update:      function (event, ui) {
                 var Item = ui.item;
                 var ParentList = Item.parent();
-
                 // If item is already checked move it to "current items list"
                 if (ParentList.hasClass('task-current')) {
                     Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
@@ -147,20 +140,16 @@ $curController = Yii::$app->controller->id;
                 if (ParentList.hasClass('task-completed')) {
                     Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
                 }
-
             }
         });
-
         // Custom Functions to handle/assign list filter behavior
         taskItems.on('click', function (e) {
             e.preventDefault();
             var This = $(this);
-
             if ($(e.target).hasClass('fa-remove')) {
                 This.remove();
                 return;
             }
-
             // If item is already checked move it to "current items list"
             if (This.hasClass('item-checked')) {
                 This.removeClass('item-checked').appendTo(currentItems).find('input[type="checkbox"]').prop('checked', false);
@@ -169,9 +158,7 @@ $curController = Yii::$app->controller->id;
             else {
                 This.addClass('item-checked').appendTo(completedItems).find('input[type="checkbox"]').prop('checked', true);
             }
-
         });
-
         // Init plugins for ".calendar-widget" FullCalendar
         $('#calendar-widget').fullCalendar({
             contentHeight: 397,
@@ -213,7 +200,6 @@ $curController = Yii::$app->controller->id;
                 });
             }
         });
-
         // Init Summernote Plugin
         $('.summernote').summernote({
             height:   255, //set editable area's height
@@ -221,15 +207,40 @@ $curController = Yii::$app->controller->id;
             oninit:   function () {},
             onChange: function (contents, $editable) {},
             toolbar:  [
-                [ 'style', [ 'style' ] ],
-                [ 'font', [ 'bold', 'italic', 'underline' ] ],
-                [ 'color', [ 'color' ] ],
-                [ 'para', [ 'ul', 'ol', 'paragraph' ] ],
-                [ 'insert', [ 'hr' ] ],
-                [ 'view', [ 'codeview' ] ]
+                [
+                    'style',
+                    [ 'style' ]
+                ],
+                [
+                    'font',
+                    [
+                        'bold',
+                        'italic',
+                        'underline'
+                    ]
+                ],
+                [
+                    'color',
+                    [ 'color' ]
+                ],
+                [
+                    'para',
+                    [
+                        'ul',
+                        'ol',
+                        'paragraph'
+                    ]
+                ],
+                [
+                    'insert',
+                    [ 'hr' ]
+                ],
+                [
+                    'view',
+                    [ 'codeview' ]
+                ]
             ]
         });
-
         // Init Admin Panels on widgets inside the ".admin-panels" container
         $('.admin-panels').adminpanel({
             grid:         '.admin-grid',
@@ -241,7 +252,6 @@ $curController = Yii::$app->controller->id;
             },
             onSave:       function () { $(window).trigger('resize'); }
         });
-
     });
 </script>
 </body>

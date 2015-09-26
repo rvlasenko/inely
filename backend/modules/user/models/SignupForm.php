@@ -7,7 +7,7 @@ use yii\base\Model;
 use Yii;
 
 /**
- * Signup form
+ * Модель регистрации
  */
 class SignupForm extends Model
 {
@@ -16,15 +16,12 @@ class SignupForm extends Model
     public $password;
     public $passwordConfirm;
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            [ 'username', 'filter', 'filter' => 'trim' ],
-            [ 'username', 'required' ],
-            [ 'username', 'string', 'min' => 2, 'max' => 255 ],
+            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'required'],
+            ['username', 'string', 'min' => 2, 'max' => 255],
             [
                 'username',
                 'unique',
@@ -37,14 +34,14 @@ class SignupForm extends Model
                 'targetClass' => '\common\models\User',
                 'message'     => Yii::t('backend', 'This email address has already been taken')
             ],
-            [ 'email', 'filter', 'filter' => 'trim' ],
-            [ 'email', 'required' ],
-            [ 'email', 'email' ],
-            [ 'password', 'required' ],
-            [ 'password', 'string', 'min' => 6 ],
-            [ [ 'passwordConfirm' ], 'required', 'on' => [ 'reset' ] ],
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['password', 'required'],
+            ['password', 'string', 'min' => 6],
+            [['passwordConfirm'], 'required', 'on' => ['reset']],
             [
-                [ 'passwordConfirm' ],
+                ['passwordConfirm'],
                 'compare',
                 'compareAttribute' => 'password',
                 'message'          => Yii::t('backend', 'Passwords do not match')
@@ -53,16 +50,16 @@ class SignupForm extends Model
     }
 
     /**
-     * Signs user up.
+     * Регистрация пользователя.
      *
-     * @return User|null the saved model or null if saving fails
+     * @return User|null объект сохраненной модели или null, если сохранение не удалось.
      */
     public function signup()
     {
         if ($this->validate()) {
-            $user = new User();
+            $user           = new User();
             $user->username = $this->username;
-            $user->email = $this->email;
+            $user->email    = $this->email;
 
             $user->setPassword($this->password);
             $user->generateEmailConfirmToken();

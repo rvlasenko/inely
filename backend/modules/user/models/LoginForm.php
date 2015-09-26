@@ -7,7 +7,7 @@ use Yii;
 use yii\base\Model;
 
 /**
- * Login form
+ * Модель авторизации
  */
 class LoginForm extends Model
 {
@@ -17,22 +17,18 @@ class LoginForm extends Model
 
     private $_user = false;
 
-    /**
-     * Username and password are both required
-     * Password is validated by validatePassword()
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            [ [ 'identity', 'password' ], 'required' ],
-            [ 'password', 'validatePassword' ],
+            [['identity', 'password'], 'required'],
+            ['password', 'validatePassword'],
         ];
     }
 
     /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
+     * Собственный метод валидации пароля.
+     *
+     * Этот метод служит для inline валидации.
      */
     public function validatePassword()
     {
@@ -45,9 +41,9 @@ class LoginForm extends Model
     }
 
     /**
-     * Logs in a user using the provided username and password.
+     * Вход в систему используя полученные и валидированные пароль и имя пользователя.
      *
-     * @return boolean whether the user is logged in successfully
+     * @return boolean если пользователь успешной вошел в систему.
      */
     public function login()
     {
@@ -61,17 +57,17 @@ class LoginForm extends Model
     }
 
     /**
-     * Finds user by [[username]]
+     * Поиск пользователя по [[username]]
      *
-     * @return User|null
+     * @return User|null объект модели или null, если сохранение не удалось.
      */
     public function getUser()
     {
         if ($this->_user === false) {
             $this->_user = User::find()->where([
                 'or',
-                [ 'username' => $this->identity ],
-                [ 'email' => $this->identity ]
+                ['username' => $this->identity],
+                ['email' => $this->identity]
             ])->one();
         }
 

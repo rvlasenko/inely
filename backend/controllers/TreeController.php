@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace backend\controllers;
@@ -22,7 +22,7 @@ use yii\web\NotFoundHttpException;
 class TreeController extends Controller
 {
     /**
-     * Which field from the data table maps to the structure table.
+     * Какое значение какому полю соответствует в базе данных.
      * @var array
      */
     protected $options = [
@@ -37,34 +37,38 @@ class TreeController extends Controller
     ];
 
     /**
-     * Executes query and returns a single node of result.
+     * Создание экземпляра ActiveRecord таблицы "tasks_data".
+     * Если у узла существуют дочерние элементы, то они формируются в ключе "children" по вызову [[getChildren()]].
+     * Иначе возвращаются только сгруппированные узлы [[getPath()]].
      *
-     * @param       $id
-     * @param array $options
+     * @param int   $id      идентификатор узла
+     * @param array $options дополнительные параметры
      *
-     * @return ActiveRecord the newly created instance
+     * @return array|null полученные атрибуты узла.
      */
-    protected function getNode($id, $options = [ ])
+    protected function getNode($id, $options = [])
     {
-        $node = TasksData::find()->where([ 'dataId' => $id ])->asArray()->one();
+        $node = TasksData::find()->where(['dataId' => $id])->asArray()->one();
 
-        if (isset($options[ 'withChildren' ])) {
-            $node[ 'children' ] = $this->getChildren($id, isset($options[ 'deepChildren' ]));
+        if (isset($options['withChildren'])) {
+            $node['children'] = $this->getChildren($id, isset($options['deepChildren']));
         }
 
-        if (isset($options[ 'withPath' ])) {
-            $node[ 'path' ] = $this->getPath($id);
+        if (isset($options['withPath'])) {
+            $node['path'] = $this->getPath($id);
         }
 
         return $node;
     }
 
     /**
-     * Executes query and returns all results as an array.
-     * @param      $id
-     * @param bool $recursive
+     * Создание экземпляра ActiveRecord и получение всех дочерних элементов требуемого узла.
+     * Первичное обращение к методу выполняется из Task контроллера действием [[actionNode()]].
      *
-     * @return array|null|\yii\db\ActiveRecord[]
+     * @param int  $id        идентификатор узла
+     * @param bool $recursive параметр задающий рекурсию (напр. наличие дочерних узлов).
+     *
+     * @return array|ActiveRecord[] результат запроса. Если результат равен null, то будет возвращен пустой массив.
      */
     protected function getChildren($id, $recursive = false)
     {
@@ -72,16 +76,16 @@ class TreeController extends Controller
         if ($recursive) {
             $node  = $this->getNode($id);
             $query = TasksData::find()
-                              ->where([ '>', 'lft', $node[ 'lft' ] ])
-                              ->andWhere([ '<', 'rgt', $node[ 'rgt' ] ])
+                              ->where(['>', 'lft', $node['lft']])
+                              ->andWhere(['<', 'rgt', $node['rgt']])
                               ->orderBy('lft')
                               ->asArray()
                               ->all();
         } else {
             $query = TasksData::find()
                               ->joinWith('tasks')
-                              ->where([ 'pid' => $id, 'tasks.author' => Yii::$app->user->id ])
-                              ->andWhere([ 'tasks.isDone' => 0 ])
+                              ->where(['pid' => $id, 'tasks.author' => Yii::$app->user->id])
+                              ->andWhere(['tasks.isDone' => 0])
                               ->orderBy('pos')
                               ->asArray()
                               ->all();
@@ -91,12 +95,11 @@ class TreeController extends Controller
     }
 
     /**
-     * Executes query by condition "path" and returns all ordered nodes.
+     * Создание экземпляра ActiveRecord и получение всех сгруппированных элементов.
      *
-     * @param $id
+     * @param int $id идентификатор узла.
      *
-     * @return array|bool|\yii\db\ActiveRecord[]
-     * @throws \Exception
+     * @return array|ActiveRecord[] результат запроса. Если результат равен null, то будет возвращен пустой массив.
      */
     protected function getPath($id)
     {
@@ -104,8 +107,8 @@ class TreeController extends Controller
         $query = false;
         if ($node) {
             $query = TasksData::find()
-                              ->where([ '<', 'lft', $node[ 'lft' ] ])
-                              ->andWhere([ '>', 'rgt', $node[ 'rgt' ] ])
+                              ->where(['<', 'lft', $node['lft']])
+                              ->andWhere(['>', 'rgt', $node['rgt']])
                               ->orderBy('lft')
                               ->asArray()
                               ->all();
@@ -115,38 +118,35 @@ class TreeController extends Controller
     }
 
     /**
-     * Creates a new node with the default attributes.
+     * Выполнение SQL конструкций по вставке нового узла и обновления позиции существующих.
      *
-     * @param       $data - attributes
+     * @param int   $parent   родительский элемент, куда был создан данный узел.
+     * @param int   $position позиция узла, куда он был впоследствии перемещен.
+     * @param array $data     некоторые кастомные атрибуты.
      *
-     * @return node ID
-     *
-     * @param       $parent
-     * @param int   $position
-     * @param array $data
-     *
-     * @throws HttpException if unable to save data
-     * @throws \Exception
-     * @throws \yii\db\Exception if couldn't rename after create
+     * @throws HttpException если невозможно создать узел.
+     * @throws \Exception если не определен родитель.
+     * @throws \yii\db\Exception если невозможно переименовать после создания.
+     * @return id только что созданного узла.
      */
-    protected function make($parent, $position = 0, $data = [ ])
+    protected function make($parent, $position = 0, $data = [])
     {
         if ($parent == 0) {
             throw new \Exception('Parent is 0');
         }
-        $parent = $this->getNode($parent, [ 'withChildren' => true ]);
-        if (!$parent[ 'children' ]) {
+        $parent = $this->getNode($parent, ['withChildren' => true]);
+        if (!$parent['children']) {
             $position = 0;
         }
-        if ($parent[ 'children' ] && $position >= count($parent[ 'children' ])) {
-            $position = count($parent[ 'children' ]);
+        if ($parent['children'] && $position >= count($parent['children'])) {
+            $position = count($parent['children']);
         }
 
-        /* PREPARE NEW PARENT */
-        // update positions of all next elements
+        /* Подготовка нового родительского элемента */
+        // Обновление позиции всех следующих элементов.
         $db = Yii::$app->db;
         $db->createCommand('UPDATE tasks_data SET pos = pos + 1 WHERE pid = :pid AND pos >= :pos')
-           ->bindValue(':pid', (int)$parent[ 'dataId' ])
+           ->bindValue(':pid', (int)$parent['dataId'])
            ->bindValue(':pos', $position)
            ->execute();
 
@@ -161,30 +161,30 @@ class TreeController extends Controller
            ->bindValue(':rgt', (int)$refRgt)
            ->execute();
 
-        /* INSERT NEW NODE IN STRUCTURE */
-        $tmp = [ ];
-        foreach ($this->options[ 'structure' ] as $k => $v) {
+        /* Вставка нового узла в структуру */
+        $tmp = [];
+        foreach ($this->options['structure'] as $k => $v) {
             switch ($k) {
                 case 'id':
-                    $tmp[ $v ] = null;
+                    $tmp[$v] = null;
                     break;
                 case 'left':
-                    $tmp[ $v ] = (int)$refLft;
+                    $tmp[$v] = (int)$refLft;
                     break;
                 case 'right':
-                    $tmp[ $v ] = (int)$refLft + 1;
+                    $tmp[$v] = (int)$refLft + 1;
                     break;
                 case 'level':
-                    $tmp[ $v ] = (int)$parent[ $v ] + 1;
+                    $tmp[$v] = (int)$parent[$v] + 1;
                     break;
                 case 'parent_id':
-                    $tmp[ $v ] = $parent[ 'dataId' ];
+                    $tmp[$v] = $parent['dataId'];
                     break;
                 case 'position':
-                    $tmp[ $v ] = $position;
+                    $tmp[$v] = $position;
                     break;
                 default:
-                    $tmp[ ] = null;
+                    $tmp[] = null;
             }
         }
         $data = array_merge($data, $tmp);
@@ -205,78 +205,79 @@ class TreeController extends Controller
     }
 
     /**
-     * Renames the node by its unique ID
+     * Выполнение SQL конструкций для переименования данного узла.
      *
-     * @param $id   - the PK of the field which you want to rename
-     * @param $data - array which contains the name of a field
+     * @param int   $id   идентификатор узла, который был переименован
+     * @param array $data некоторые атрибуты, например, новое имя.
      *
-     * @return bool
-     * @throws \Exception
-     * @throws \yii\db\Exception
+     * @return bool если сохранение завершено.
+     * @throws \Exception если невозможно переименовать несуществующий узел.
      */
     protected function rename($id, $data)
     {
-        if (!TasksData::findOne([ 'dataId' => $id ])) {
+        if (!TasksData::findOne(['dataId' => $id])) {
             throw new \Exception('Could not rename non-existing node');
         }
 
         if (count($data)) {
             $db = Yii::$app->db;
-            $db->createCommand()->update('tasks_data', [ 'name' => $data[ 'name' ] ], "dataId = $id")->execute();
+            $db->createCommand()->update('tasks_data', ['name' => $data['name']], "dataId = $id")->execute();
         }
 
         return true;
     }
 
     /**
-     * @param     $id
-     * @param int $parent
-     * @param int $position
+     * Выполнение SQL конструкций для перемещения узла в указанную позицию некоего родителя.
      *
-     * @return bool
-     * @throws \Exception
-     * @throws \yii\db\Exception
+     * @param int $id       идентификатор узла, который был перемещен
+     * @param int $parent   родительский элемент, куда был перемещен данный узел.
+     * @param int $position позиция узла, куда он был впоследствии перемещен.
+     *
+     * @return bool если сохранение завершено.
+     * @throws \Exception если невозможно по каким-то причинам переместить узел...
+     * @throws InvalidConfigException если пользователь предпочел переместить узел за пределы корня.
      */
     protected function move($id, $parent = 0, $position = 0)
     {
         $id     = (int)$id;
         $parent = (int)$parent;
-        //        if($parent == 0 || $id == 0 || $id == 1) {
-        //            throw new Exception('Cannot move inside 0, or move root node');
-        //        }
+        if($parent == 0 || $id == 0 || $id == 1) {
+            throw new InvalidConfigException('Cannot move inside 0, or move root node');
+        }
 
-        $parent = $this->getNode($parent, [ 'withChildren' => true, 'withPath' => true ]);
-        $id     = $this->getNode($id, [ 'withChildren' => true, 'deepChildren' => true, 'withPath' => true ]);
+        $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
+        $id     = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true, 'withPath' => true]);
 
-        if (!$parent[ 'children' ]) {
+        if (!$parent['children']) {
             $position = 0;
         }
-        if ($id[ 'pid' ] == $parent[ 'dataId' ] && $position > $id[ 'pos' ]) {
+        if ($id['pid'] == $parent['dataId'] && $position > $id['pos']) {
             $position++;
         }
-        if ($parent[ 'children' ] && $position >= count($parent[ 'children' ])) {
-            $position = count($parent[ 'children' ]);
+        if ($parent['children'] && $position >= count($parent['children'])) {
+            $position = count($parent['children']);
         }
-        if ($id[ 'lft' ] < $parent[ 'lft' ] && $id[ 'rgt' ] > $parent[ 'rgt' ]) {
+        if ($id['lft'] < $parent['lft'] && $id['rgt'] > $parent['rgt']) {
             throw new \Exception('Could not move parent inside child');
         }
 
-        $tmp    = [ ];
-        $tmp[ ] = (int)$id[ 'dataId' ];
-        if ($id[ 'children' ] && is_array($id[ 'children' ])) {
-            foreach ($id[ 'children' ] as $c) {
-                $tmp[ ] = (int)$c[ 'dataId' ];
+        $tmp   = [];
+        $tmp[] = (int)$id['dataId'];
+        if ($id['children'] && is_array($id['children'])) {
+            foreach ($id['children'] as $c) {
+                $tmp[] = (int)$c['dataId'];
             }
         }
 
-        $width = $id[ 'rgt' ] - $id[ 'lft' ] + 1;
+        $width = $id['rgt'] - $id['lft'] + 1;
 
-        /* PREPARE NEW PARENT */
-        // update positions of all next elements
+        /* Подготовка нового родительского элемента */
+        // Обновление позиции всех следующих элементов.
         $db = Yii::$app->db;
         $db->createCommand('UPDATE tasks_data SET pos = pos + 1 WHERE dataId != :dataId AND pid = :pid AND pos >= :pos')
-           ->bindValue(':dataId', (int)$id[ 'dataId' ])
-           ->bindValue(':pid', (int)$parent[ 'dataId' ])
+           ->bindValue(':dataId', (int)$id['dataId'])
+           ->bindValue(':pid', (int)$parent['dataId'])
            ->bindValue(':pos', $position)
            ->execute();
 
@@ -295,45 +296,45 @@ class TreeController extends Controller
            ->bindValue(':dataId', (int)implode(',', $tmp))
            ->execute();
 
-        /* MOVE THE ELEMENT AND CHILDREN */
-        // left, right and level
-        $diff = $refLft - (int)$id[ 'lft' ];
+        /* Перемещение узла и его дочерних элементов */
+        // правый, левый атрибуты и уровень вложенности
+        $diff = $refLft - (int)$id['lft'];
 
         if ($diff > 0) {
             $diff = $diff - $width;
         }
-        $ldiff = ((int)$parent[ 'lvl' ] + 1) - (int)$id[ 'lvl' ];
+        $ldiff = ((int)$parent['lvl'] + 1) - (int)$id['lvl'];
         $db->createCommand('UPDATE tasks_data SET rgt = rgt + :diff, lft = lft + :diff, lvl = lvl + :ldiff WHERE dataId IN(:dataId)')
            ->bindValue(':diff', $diff)
            ->bindValue(':ldiff', $ldiff)
            ->bindValue(':dataId', (int)implode(',', $tmp))
            ->execute();
 
-        // position and parent_id
+        // позиция и id родителя
         $db->createCommand('UPDATE tasks_data SET pos = :pos, pid = :pid WHERE dataId = :id')
            ->bindValue(':pos', $position)
-           ->bindValue(':pid', (int)$parent[ 'dataId' ])
-           ->bindValue(':id', (int)$id[ 'dataId' ])
+           ->bindValue(':pid', (int)$parent['dataId'])
+           ->bindValue(':id', (int)$id['dataId'])
            ->execute();
 
-        /* CLEAN OLD PARENT */
-        // position of all next elements
+        /* Очистка старого родителя */
+        // Обновление позиции всех следующих элементов.
         $db->createCommand('UPDATE tasks_data SET pos = pos - 1 WHERE pid = :pid AND pos > :pos')
-           ->bindValue(':pid', (int)$id[ 'pid' ])
-           ->bindValue(':pos', (int)$id[ 'pos' ])
+           ->bindValue(':pid', (int)$id['pid'])
+           ->bindValue(':pos', (int)$id['pos'])
            ->execute();
 
-        // left indexes
+        // А также левых индексов
         $db->createCommand('UPDATE tasks_data SET lft = lft - :width WHERE lft > :rgt AND dataId NOT IN(:id)')
            ->bindValue(':width', $width)
-           ->bindValue(':rgt', $id[ 'rgt' ])
+           ->bindValue(':rgt', $id['rgt'])
            ->bindValue(':id', (int)implode(',', $tmp))
            ->execute();
 
-        // right indexes
+        // И правых индексов
         $db->createCommand('UPDATE tasks_data SET rgt = rgt - :width WHERE rgt > :rgt AND dataId NOT IN(:id)')
            ->bindValue(':width', $width)
-           ->bindValue(':rgt', $id[ 'rgt' ])
+           ->bindValue(':rgt', $id['rgt'])
            ->bindValue(':id', (int)implode(',', $tmp))
            ->execute();
 
@@ -341,59 +342,58 @@ class TreeController extends Controller
     }
 
     /**
-     * Finds the nodes based on its primary key value.
-     * Deleting node and its children from structure.
+     * Выполнение SQL конструкций на удаление узла дерева и всех его дочерних элементов.
      *
-     * @param $id
+     * @param int $id идентификатор узла, который был удален.
      *
-     * @return bool
-     * @throws NotFoundHttpException
+     * @return bool если удаление завершено.
+     * @throws NotFoundHttpException если пользователь передал несуществующий id.
      */
     protected function remove($id)
     {
-        if (!Task::findOne([ $id ])) {
+        if (!Task::findOne([$id])) {
             throw new NotFoundHttpException('Could not delete non-existing node');
         }
 
-        $tmp  = [ ];
+        $tmp  = [];
         $db   = Yii::$app->db;
-        $data = $this->getNode($id, [ 'withChildren' => true, 'deepChildren' => true ]);
+        $data = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true]);
         $db->createCommand('DELETE FROM tasks_data WHERE lft >= :lft AND rgt <= :rgt')
-           ->bindValue(':lft', $data[ 'lft' ])
-           ->bindValue(':rgt', $data[ 'rgt' ])
+           ->bindValue(':lft', $data['lft'])
+           ->bindValue(':rgt', $data['rgt'])
            ->execute();
 
-        $tmp[ ] = $data[ 'dataId' ];
-        if ($data[ 'children' ] && is_array($data[ 'children' ])) {
-            foreach ($data[ 'children' ] as $v) {
-                $tmp[ ] = $v[ 'dataId' ];
+        $tmp[] = $data['dataId'];
+        if ($data['children'] && is_array($data['children'])) {
+            foreach ($data['children'] as $v) {
+                $tmp[] = $v['dataId'];
             }
         }
         $db->createCommand('DELETE FROM tasks_data WHERE dataId IN (:dataId)')
            ->bindValue(':dataId', (int)implode(',', $tmp))
            ->execute();
-        $db->createCommand('DELETE FROM tasks WHERE id IN (:id)')
-            ->bindValue(':id', (int)implode(',', $tmp))
-            ->execute();
+        $db->createCommand('DELETE FROM tasks WHERE id IN (:id)')->bindValue(':id', (int)implode(',', $tmp))->execute();
 
         return true;
     }
 
     /**
-     * @param $parent
-     * @param $position
+     * Обновление структуры правых индексов.
      *
-     * @return key
+     * @param array $parent   родительский элемент, куда был перемещен данный узел.
+     * @param int   $position позиция узла, куда он был впоследствии перемещен.
+     *
+     * @return int правый ключ
      */
     protected function updateRightIndexes($parent, $position)
     {
-        if (!$parent[ 'children' ]) {
-            $refRgt = $parent[ 'rgt' ];
+        if (!$parent['children']) {
+            $refRgt = $parent['rgt'];
         } else {
-            if (!isset($parent[ 'children' ][ $position ])) {
-                $refRgt = $parent[ 'rgt' ];
+            if (!isset($parent['children'][$position])) {
+                $refRgt = $parent['rgt'];
             } else {
-                $refRgt = $parent[ 'children' ][ (int)$position ][ 'lft' ] + 1;
+                $refRgt = $parent['children'][(int)$position]['lft'] + 1;
             }
         }
 
@@ -401,20 +401,22 @@ class TreeController extends Controller
     }
 
     /**
-     * @param $parent
-     * @param $position
+     * Обновление структуры левых индексов.
      *
-     * @return key
+     * @param array $parent   родительский элемент, куда был перемещен данный узел.
+     * @param int   $position позиция узла, куда он был впоследствии перемещен.
+     *
+     * @return int левый ключ
      */
     protected function updateLeftIndexes($parent, $position)
     {
-        if (!$parent[ 'children' ]) {
-            $refLft = $parent[ 'rgt' ];
+        if (!$parent['children']) {
+            $refLft = $parent['rgt'];
         } else {
-            if (!isset($parent[ 'children' ][ $position ])) {
-                $refLft = $parent[ 'rgt' ];
+            if (!isset($parent['children'][$position])) {
+                $refLft = $parent['rgt'];
             } else {
-                $refLft = $parent[ 'children' ][ (int)$position ][ 'lft' ];
+                $refLft = $parent['children'][(int)$position]['lft'];
             }
         }
 
@@ -422,15 +424,16 @@ class TreeController extends Controller
     }
 
     /**
-     * @param $param
+     * Метод обрабатывает GET параметр на наличие необходимых значений.
      *
-     * @return mixed
-     * @throws InvalidConfigException
+     * @param string $param параметр, который требуется проверить.
+     *
+     * @return string|bool тот же самый параметр, либо 0.
      */
-    protected function purifyGetRequest($param)
+    protected static function purifyGetRequest($param)
     {
-        if (isset($_GET[ $param ]) && $_GET[ $param ] !== '#') {
-            return $_GET[ $param ];
+        if (isset($_GET[$param]) && $_GET[$param] !== '#') {
+            return $_GET[$param];
         }
 
         return false;

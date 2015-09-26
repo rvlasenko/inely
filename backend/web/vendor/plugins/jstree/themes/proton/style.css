@@ -282,9 +282,24 @@ a.action .fa-plus {
 .jstree-checkbox::before, .jstree-proton-responsive .jstree-checked >
 .jstree-checkbox::before {
     font-family : "FontAwesome";
-    content     : "\f05d";
+    content     : "\f05d" !important;
     font-style  : normal;
-    font-size   : 19px;
+    font-size   : 21px;
+}
+
+.jstree-anchor.high > .jstree-checkbox:before {
+    content : "\f111" !important;
+    color   : #e9573f !important;
+}
+
+.jstree-anchor.medium > .jstree-checkbox:before {
+    content : "\f111" !important;
+    color   : #f6bb42 !important;
+}
+
+.jstree-anchor.low > .jstree-checkbox:before {
+    content : "\f111" !important;
+    color   : #70ca63 !important;
 }
 
 .jstree-proton-responsive .jstree-leaf > .jstree-ocl {
@@ -300,7 +315,7 @@ a.action .fa-plus {
 }
 
 .jstree-proton-responsive.jstree-rtl .jstree-closed > .jstree-ocl {
-    background-position : -30px 0 !important;
+    background-position : -31px 0 !important;
 }
 
 .jstree-proton-responsive .jstree-themeicon {
@@ -433,10 +448,6 @@ ul.vakata-context .fa-trash-o {
     display : none;
 }
 
-.jstree-icon.jstree-checkbox {
-    margin-right : 5px;
-}
-
 .jstree-proton .jstree-wholerow-hovered {
 }
 
@@ -526,22 +537,23 @@ ul.vakata-context .fa-trash-o {
 }
 
 .jstree-proton-responsive .jstree-anchor {
-    line-height    : 36px;
+    line-height    : 37px;
     margin         : 0;
-    width          : 92%;
-    height         : 45%;
-    border-bottom  : 1px solid #e6e6e6;
+    height         : 43px;
     padding-top    : 4px;
     padding-bottom : 4px;
     opacity        : 1;
+    border-bottom  : 1px solid #e6e6e6;
+    width          : 92%;
 }
 
 .jstree-proton-responsive .jstree-icon,
 .jstree-proton-responsive .jstree-icon:empty {
-    margin-top  : 1px;
-    width       : 30px;
-    height      : 30px;
-    line-height : 35px;
+    margin-top    : 1px;
+    width         : 41px;
+    height        : 38px;
+    line-height   : 35px;
+    border-bottom : 1px solid white;
 }
 
 .jstree-proton-responsive > .jstree-container-ul > .jstree-node {
@@ -560,12 +572,12 @@ ul.vakata-context .fa-trash-o {
     font-family : "FontAwesome";
     content     : "\f1db";
     font-style  : normal;
-    font-size   : 19px;
+    font-size   : 21px;
 }
 
 .jstree-icon.jstree-ocl {
     margin-top  : 7px !important;
-    margin-left : 3px;
+    margin-left : -24px;
 }
 
 #catTree .jstree-icon.jstree-ocl {

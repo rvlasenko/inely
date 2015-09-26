@@ -23,7 +23,7 @@ class m150923_125612_i18n_tables extends Migration
             'translation' => $this->text()
         ], $tableOptions);
 
-        $this->addPrimaryKey('i18n_message_pk', '{{%i18n_message}}', [ 'id', 'language' ]);
+        $this->addPrimaryKey('i18n_message_pk', '{{%i18n_message}}', ['id', 'language']);
         $this->addForeignKey('fk_i18n_message_source_message', '{{%i18n_message}}', 'id', '{{%i18n_source_message}}', 'id', 'cascade', 'restrict');
     }
 

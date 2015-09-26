@@ -13,7 +13,7 @@ class SiteController extends Controller
         return [
             'set' => [
                 'class'    => 'common\components\action\SetLocaleAction',
-                'locales'  => array_keys(Yii::$app->params[ 'availableLocales' ]),
+                'locales'  => array_keys(Yii::$app->params['availableLocales']),
                 'callback' => function () {
                     Yii::$app->response->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
                 }
@@ -26,13 +26,13 @@ class SiteController extends Controller
         return [
             [
                 'class' => 'yii\filters\HttpCache',
-                'only'  => [ 'index' ]
+                'only'  => ['index']
             ],
             'pageCache' => [
                 'class'      => 'yii\filters\PageCache',
-                'only'       => [ 'index' ],
+                'only'       => ['index'],
                 'duration'   => 6800,
-                'variations' => [ Yii::$app->language ]
+                'variations' => [Yii::$app->language]
             ],
         ];
     }
@@ -48,11 +48,11 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->contact(getenv('ROBOT_EMAIL'))) {
-                return $this->renderAjax('contact', [ 'model' => $model ]);
+                return $this->renderAjax('contact', ['model' => $model]);
             }
         }
 
-        return $this->renderAjax('contact', [ 'model' => $model ]);
+        return $this->renderAjax('contact', ['model' => $model]);
     }
 
     public function actionError()
@@ -60,7 +60,7 @@ class SiteController extends Controller
         $exception = Yii::$app->errorHandler->exception;
 
         if ($exception !== null) {
-            return $this->render('error', [ 'exception' => $exception ]);
+            return $this->render('error', ['exception' => $exception]);
         }
     }
 

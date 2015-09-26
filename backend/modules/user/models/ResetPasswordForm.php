@@ -8,7 +8,7 @@ use yii\base\Model;
 use Yii;
 
 /**
- * Password reset form
+ * Модель сброса пароля
  */
 class ResetPasswordForm extends Model
 {
@@ -21,14 +21,14 @@ class ResetPasswordForm extends Model
     private $_user;
 
     /**
-     * Creates a form model given a token.
+     * Конструктор создания модели по данному токену.
      *
-     * @param  string $token
-     * @param  array  $config name-value pairs that will be used to initialize the object properties
+     * @param  string $token  уникальный токен.
+     * @param  array  $config пары имен-значений, которые будут использоваться для инициализации свойств объектов.
      *
-     * @throws \yii\base\InvalidParamException if token is empty or not valid
+     * @throws \yii\base\InvalidParamException если токен пустой, либо неверный.
      */
-    public function __construct($token, $config = [ ])
+    public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
             throw new InvalidParamException('Password reset token cannot be blank.');
@@ -40,17 +40,14 @@ class ResetPasswordForm extends Model
         parent::__construct($config);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-            [ 'password', 'required' ],
-            [ 'password', 'string', 'min' => 6 ],
-            [ [ 'passwordConfirm' ], 'required', 'on' => [ 'reset' ] ],
+            ['password', 'required'],
+            ['password', 'string', 'min' => 6],
+            [['passwordConfirm'], 'required', 'on' => ['reset']],
             [
-                [ 'passwordConfirm' ],
+                ['passwordConfirm'],
                 'compare',
                 'compareAttribute' => 'password',
                 'message'          => Yii::t('backend', 'Passwords do not match')
@@ -59,13 +56,13 @@ class ResetPasswordForm extends Model
     }
 
     /**
-     * Resets password.
+     * Сброс пароля.
      *
-     * @return boolean if password was reset.
+     * @return boolean если пароль был сброшен.
      */
     public function resetPassword()
     {
-        $user = $this->_user;
+        $user           = $this->_user;
         $user->password = $this->password;
         $user->removePasswordResetToken();
 

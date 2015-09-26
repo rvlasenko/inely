@@ -15028,22 +15028,6 @@ tr.message:hover .fa-ellipsis-v {
 
 .h1200 { }
 
-.pr:before {
-    content: "\f0c8" !important;
-}
-
-.pr.high {
-    color : #e9573f !important;
-}
-
-.pr.medium {
-    color : #f6bb42 !important;
-}
-
-.pr.low {
-    color : #70ca63 !important;
-}
-
 /* table header/footer styles */
 table.tc-text-center-head thead th,
 table.tc-text-center-head tfoot th {
@@ -19091,6 +19075,7 @@ body.external-page {
 
 body.external-page #main {
     overflow   : hidden;
+    height: 100%;
     background : url("../../images/patterns/backgrounds/1.jpg") no-repeat top center #2d494d;
 }
 

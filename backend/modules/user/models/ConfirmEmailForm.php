@@ -8,24 +8,24 @@ use yii\base\Model;
 use Yii;
 
 /**
- * Password reset form
+ * Модель сброса пароля
  */
 class ConfirmEmailForm extends Model
 {
     /**
-     * @var User
+     * @var User объект класса
      */
     private $_user;
 
     /**
-     * Creates a form model given a token.
+     * Конструктор создания модели по данному токену.
      *
-     * @param  string $token
-     * @param  array  $config
+     * @param  string $token  уникальный токен.
+     * @param  array  $config пары имен-значений, которые будут использоваться для инициализации свойств объектов.
      *
-     * @throws \yii\base\InvalidParamException if token is empty or not valid
+     * @throws \yii\base\InvalidParamException если токен пустой, либо неверный.
      */
-    public function __construct($token, $config = [ ])
+    public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
             throw new InvalidParamException(Yii::t('backend', 'No confirmation code'));
@@ -38,9 +38,9 @@ class ConfirmEmailForm extends Model
     }
 
     /**
-     * Resets token.
+     * Сброс токена.
      *
-     * @return boolean if password was reset.
+     * @return boolean если токен был сброшен.
      */
     public function confirmEmail()
     {

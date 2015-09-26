@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file is part of the Inely project.
+ * Этот файл является частью проекта Inely.
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author rootkit
+ * @author hirootkit
  */
 
 namespace backend\modules\user\controllers;
@@ -36,26 +36,17 @@ class SignInController extends Controller
         return [
             'oauth' => [
                 'class'           => 'yii\authclient\AuthAction',
-                'successCallback' => [ $this, 'successOAuthCallback' ]
+                'successCallback' => [$this, 'successOAuthCallback']
             ]
         ];
     }
 
-    /**
-     * Logout accept only post method
-     *
-     * Guests have access to signup, login, etc
-     *
-     * But are not authorized users not have access to this methods
-     *
-     * @return array
-     */
     public function behaviors()
     {
         return [
             'verbs'  => [
                 'class'   => VerbFilter::className(),
-                'actions' => [ 'logout' => [ 'post' ] ]
+                'actions' => ['logout' => ['post']]
             ],
             'access' => [
                 'class' => AccessControl::className(),
@@ -70,20 +61,20 @@ class SignInController extends Controller
                             'oauth'
                         ],
                         'allow'   => true,
-                        'roles'   => [ '?' ]
+                        'roles'   => ['?']
                     ],
                     [
-                        'actions'      => [ 'signup', 'login', 'reset', 'reset-password', 'oauth' ],
+                        'actions'      => ['signup', 'login', 'reset', 'reset-password', 'oauth'],
                         'allow'        => false,
-                        'roles'        => [ '@' ],
+                        'roles'        => ['@'],
                         'denyCallback' => function () {
-                            return $this->redirect([ '/' ]);
+                            return $this->redirect(['/']);
                         }
                     ],
                     [
-                        'actions' => [ 'logout', 'confirm-email' ],
+                        'actions' => ['logout', 'confirm-email'],
                         'allow'   => true,
-                        'roles'   => [ '@' ]
+                        'roles'   => ['@']
                     ]
                 ]
             ]
@@ -91,8 +82,8 @@ class SignInController extends Controller
     }
 
     /**
-     * Layout from /user/views/layouts
-     *
+     * Вход в систему, используя принятые данные.
+     * Также выполняется проверка модели и возвращается массив сообщений об ошибке в JSON формате.
      * @return array|string|Response
      */
     public function actionLogin()
@@ -111,26 +102,18 @@ class SignInController extends Controller
             return $this->goHome();
         } else {
             if (Yii::$app->request->isAjax) {
-                return $this->renderAjax('login', [ 'model' => $model ]);
+                return $this->renderAjax('login', ['model' => $model]);
             } else {
-                return $this->render('login', [ 'model' => $model ]);
+                return $this->render('login', ['model' => $model]);
             }
         }
     }
 
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
     /**
-     * If not ajax request, then redirect to login page
+     * Регистрация пользователя.
      *
-     * @return string|Response
+     * @return string|Response редирект на Dashboard либо вывод результата рендеринга.
      */
-
     public function actionSignup()
     {
         $this->layout = 'base';
@@ -146,12 +129,31 @@ class SignInController extends Controller
         }
 
         if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('signUp', [ 'model' => $model ]);
+            return $this->renderAjax('signUp', ['model' => $model]);
         } else {
             return $this->redirect(Yii::$app->getUser()->loginUrl);
         }
     }
 
+    /**
+     * Выход из системы и удаление аутентификационных данных.
+     * @return Response редирект на Dashboard
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+
+    /**
+     * Подтверждение email и запись flash сообщения.
+     *
+     * @param string $token уникальный токен.
+     *
+     * @return Response редирект зависит от условия.
+     * @throws BadRequestHttpException если произошла ошибка при создании формы 'ConfirmEmail'.
+     */
     public function actionConfirmEmail($token)
     {
         $status = Yii::$app->user->identity->status;
@@ -169,6 +171,7 @@ class SignInController extends Controller
             ]);
         } elseif ($status == User::STATUS_UNCONFIRMED) {
             $model->confirmEmail();
+
             return $this->redirect('/welcome');
         } else {
             Yii::$app->session->setFlash('alert', [
@@ -181,9 +184,8 @@ class SignInController extends Controller
     }
 
     /**
-     * If not ajax request, then redirect to login page
-     *
-     * @return string|Response
+     * Передача сообщения о востановлении данных на email со ссылкой для сброса пароля.
+     * @return string|Response редирект на страницу входа.
      */
     public function actionRequestPasswordReset()
     {
@@ -204,12 +206,20 @@ class SignInController extends Controller
         }
 
         if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('requestPasswordResetToken', [ 'model' => $model ]);
+            return $this->renderAjax('requestPasswordResetToken', ['model' => $model]);
         } else {
             return $this->redirect(Yii::$app->getUser()->loginUrl);
         }
     }
 
+    /**
+     * Сброс пароля и запись flash сообщения.
+     *
+     * @param $token уникальный токен.
+     *
+     * @return string|Response редирект на Dashboard.
+     * @throws BadRequestHttpException если произошла ошибка при создании формы 'ResetPassword'.
+     */
     public function actionResetPassword($token)
     {
         $this->layout = 'base';
@@ -226,66 +236,66 @@ class SignInController extends Controller
                 'body'  => Yii::t('backend', 'New password was saved'),
             ]);
 
-            return $this->redirect(Yii::$app->urlManagerBackend->createUrl(''));
+            return $this->redirect(Yii::$app->urlManagerBackend->createUrl(false));
         }
 
-        return $this->render('resetPassword', [ 'model' => $model ]);
+        return $this->render('resetPassword', ['model' => $model]);
     }
 
     /**
-     * Set info for facebook registration
+     * Запись набора пользовательской информации полученной от facebook.
      *
-     * @param array  $attributes
-     * @param object $user
+     * @param array  $attributes массив пользовательских данных.
+     * @param object $user       объект пользователя.
      *
-     * @return array [$user, $profile]
+     * @return object измененный объект пользователя.
      */
     protected function setInfoFacebook($attributes, $user)
     {
         /**
-         * Set email/username if they are set
-         * Email may be missing if user signed up using a phone number
+         * Запись email и имени пользователя, если они указаны.
+         * Email может отсутствовать, если пользователь зарегистрирован через телефон.
          */
-        if (isset($attributes[ 'email' ])) {
-            $user->email = $attributes[ 'email' ];
+        if (isset($attributes['email'])) {
+            $user->email = $attributes['email'];
         }
 
-        if (isset($attributes[ 'username' ])) {
-            $user->username = $attributes[ 'username' ];
+        if (isset($attributes['username'])) {
+            $user->username = $attributes['username'];
         }
 
-        // use facebook name as username as fallback
-        if (!isset($attributes[ 'first_name' ])) {
-            $user->username = $attributes[ 'name' ];
+        // Использование имени пользователя, как запасной вариант.
+        if (!isset($attributes['first_name'])) {
+            $user->username = $attributes['name'];
         } else {
-            $user->username = str_replace(" ", "_", $attributes[ 'first_name' ]);
+            $user->username = str_replace(" ", "_", $attributes['first_name']);
         }
 
         return $user;
     }
 
     /**
-     * Set info for google registration
+     * Запись набора пользовательской информации полученной от google.
      *
-     * @param $attributes
-     * @param $user
+     * @param array  $attributes массив пользовательских данных.
+     * @param object $user       объект пользователя.
      *
-     * @return mixed
+     * @return object измененный объект пользователя.
      */
     protected function setInfoGoogle($attributes, $user)
     {
-        $user->email = $attributes[ 'emails' ][ 0 ][ 'value' ];
+        $user->email = $attributes['emails'][0]['value'];
 
         return $user;
     }
 
     /**
-     * Set info for vk registration
+     * Запись набора пользовательской информации полученной от vk.com.
      *
-     * @param $attributes
-     * @param $user
+     * @param array  $attributes массив пользовательских данных.
+     * @param object $user       объект пользователя.
      *
-     * @return mixed
+     * @return object измененный объект пользователя.
      */
     protected function setInfoVkontakte($attributes, $user)
     {
@@ -296,27 +306,25 @@ class SignInController extends Controller
         }
 
         /**
-         * Set email/username if they are set
-         * Use vk_id name as username as fallback
+         * Запись email и имени пользователя в адресной строке, если они указаны.
+         * А также использование id пользователя, как запасной вариант.
          */
-
-        if (isset($attributes[ 'screen_name' ])) {
-            $user->username = $attributes[ 'screen_name' ];
+        if (isset($attributes['screen_name'])) {
+            $user->username = $attributes['screen_name'];
         } else {
-            $user->username = 'vk_' . $attributes[ 'id' ];
+            $user->username = 'vk_' . $attributes['id'];
         }
 
         return $user;
     }
 
     /**
+     * Callback метод успешной регистрации через OAuth.
+     *
      * @param $client \yii\authclient\BaseClient
      *
-     * First we need combine some attributes and get the email
-     * And now just send them to DB, send the letter, and redirect to home
-     *
-     * @return bool
-     * @throws Exception
+     * @return Response редирект на Dashboard.
+     * @throws Exception если в записи текущего пользователя произошла ошибка.
      */
     public function successOAuthCallback($client)
     {
@@ -350,8 +358,7 @@ class SignInController extends Controller
             if ($user->save()) {
                 $user->afterSignup([
                     'firstname' => ArrayHelper::getValue($attributes, 'first_name'),
-                    'lastname'  => ArrayHelper::getValue($attributes, 'last_name'),
-                    'id'        => $user->id
+                    'lastname'  => ArrayHelper::getValue($attributes, 'last_name')
                 ]);
             }
         }

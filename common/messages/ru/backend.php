@@ -58,7 +58,6 @@ return [
     'No' => 'Нет',
     'you forgot?' => 'вы забыли?',
     'Send' => 'Отправить',
-
     /**
      * Character Select
      */
@@ -79,7 +78,6 @@ return [
     'Holo the wise wolf in human form with cute ears and tail. She is very charming and... wise.' => 'Холо мудрый волк в человеческом обличии с хвостом и ушками. Очень очаровательная и... мудрая.',
     'For the best view we recommend PNG format!' => 'Для наилучшего вида рекомендуется png формат!',
     'Enter the name of your character' => 'Как зовут Вашего персонажа?',
-
     /**
      * Tasks
      */
