@@ -6435,11 +6435,9 @@ tbody.collapse.in {
     font-size        : 13px;
     text-align       : left;
     background-color : #fff;
-    border           : 1px solid #ccc;
     border           : 1px solid rgba(0, 0, 0, 0.15);
     border-radius    : 1px;
-    box-shadow       : 0 2px 20px rgba(0, 0, 0, .4);
-    background-clip  : padding-box;
+    box-shadow       : 0 2px 15px rgba(0, 0, 0, .4);
 }
 
 .dropdown-menu.pull-right {
@@ -8994,6 +8992,7 @@ a.thumbnail.active {
 
 .task-head {
     text-shadow : 1px 0px 4px rgba(230, 230, 229, 0.55);
+    display: block;
 }
 
 .progress-bar[aria-valuenow="0"] {
@@ -12328,10 +12327,10 @@ ol.timeline-list li.timeline-item .timeline-date {
 
 @media (max-width : 1368px) {
     body.site-page.boxed-layout .navbar,
-    body.site-page.boxed-layout #main {
+    body.site-page.boxed-layout main {
         width : 90%;
     }
-    body.task-page.boxed-layout #main {
+    body.task-page.boxed-layout main {
         width : 80%;
     }
 }
@@ -15235,13 +15234,13 @@ body {
     font-size-adjust         : 100%;
 }
 
-#main {
+main {
     position   : relative;
     background : #f9f9f9;
 }
 
 /* psuedo background */
-#main:before {
+main:before {
     content    : "";
     position   : fixed;
     top        : 0;
@@ -15993,7 +15992,7 @@ div.next-button-container {
     height          : 224px;
 }
 @media (min-width : 1368px) {
-    body.boxed-layout #main {
+    body.boxed-layout main {
         overflow : hidden;
         width    : 1100px !important;
         margin   : 0 auto;
@@ -16005,7 +16004,7 @@ div.next-button-container {
         background-color: #f9f9f9;
     }
 
-    body.boxed-layout #main {
+    body.boxed-layout main {
         margin   : 0 auto;
     }
 
@@ -16015,7 +16014,7 @@ div.next-button-container {
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
     }
 
-    body.boxed-layout #main:before {
+    body.boxed-layout main:before {
         content      : "";
         position     : fixed;
         top          : 0;
@@ -16076,17 +16075,17 @@ div.next-button-container {
     background : transparent;
 }
 
-body.boxed-layout #main {
+body.boxed-layout main {
     overflow : hidden;
 }
 
 /* hide psuedo background */
-body.boxed-layout #main:before {
+body.boxed-layout main:before {
     display : none;
 }
 
 @media (max-width : 1150px) {
-    body.boxed-layout #main,
+    body.boxed-layout main,
     body.boxed-layout .navbar,
     #content-footer {
         width : 100% !important;
@@ -16621,9 +16620,9 @@ body.boxed-layout.screenlock-page {
     background : url(../img/patterns/5.png) repeat top left #f6f6f6;
 }
 
-body.boxed-layout.coming-soon-page #main:after,
-body.boxed-layout.login-page #main:after,
-body.boxed-layout.screenlock-page #main:after {
+body.boxed-layout.coming-soon-page main:after,
+body.boxed-layout.login-page main:after,
+body.boxed-layout.screenlock-page main:after {
     display : none;
 }
 
@@ -16754,7 +16753,7 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
     }
 
     /* Shorten and center page */
-    #main {
+    main {
         width  : 1100px !important;
         margin : 0 auto !important;
     }
@@ -16945,26 +16944,31 @@ body:not(.device-touch) .rounded-skill {
     border-radius : 2px;
 }
 
-/*navbranding*/
+/*==========================================================
+  Navbar Branding - Logo/Text
+=========================================================== */
 .navbar-branding {
-    position         : relative;
-    overflow         : hidden;
-    float            : left;
-    width            : 230px;
-    height           : 60px;
-    background-color : #1f70a8;
-    margin-right     : 10px;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 230px;
+    height: 60px;
+    margin-right: 10px;
+    background-color: transparent;
+    /* Logo */
 }
-
-.navbar-branding a.navbar-brand {
-    height         : 60px;
-    line-height    : 60px;
-    padding        : 0;
-    padding-left   : 18px;
-    color          : #777;
-    font-size      : 17px;
-    font-weight    : 400;
-    letter-spacing : 0.5px;
+.navbar-branding .navbar-brand {
+    color: #666;
+    height: 60px;
+    line-height: 58px;
+    padding: 0;
+    padding-left: 18px;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+.navbar-branding .navbar-brand b {
+    font-weight: bold;
 }
 
 /*navbar toggle sidemenu button*/
@@ -19073,13 +19077,13 @@ body.external-page {
     overflow   : auto;
 }
 
-body.external-page #main {
+body.external-page main {
     overflow   : hidden;
     height: 100%;
     background : url("../../images/patterns/backgrounds/1.jpg") no-repeat top center #2d494d;
 }
 
-body.external-page #main:before {
+body.external-page main:before {
     display : none;
 }
 
@@ -19146,7 +19150,7 @@ body.external-page .coming-soon-title {
 /*===============================================
   I. Timeline.html
 ================================================= */
-body.timeline-page #main {
+body.timeline-page main {
     min-height : 1400px;
 }
 
@@ -19376,7 +19380,7 @@ body.error-page {
     overflow   : hidden;
 }
 
-body.error-page #main:before {
+body.error-page main:before {
     background : #f5f5f5;
 }
 
@@ -19452,6 +19456,8 @@ body.error-page .error-text {
     color       : #888;
     width       : 100%;
 }
+
+
 
 /*===============================================
   Animate Settings

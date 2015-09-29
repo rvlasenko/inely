@@ -265,7 +265,7 @@ class User extends ActiveRecord implements IdentityInterface
         $this->trigger(self::EVENT_AFTER_SIGNUP);
 
         $profile         = new UserProfile();
-        $data = ['lft' => 1, 'rgt' => 33, 'lvl' => 0, 'pid' => 0, 'pos' => 0, 'name' => 'Root'];
+        $data            = ['lft' => 1, 'rgt' => 33, 'lvl' => 0, 'pid' => 0, 'pos' => 0, 'name' => 'Root'];
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
 

@@ -60,11 +60,11 @@ $this->registerJsFile('js/plugins.js',   [ 'position' => $this::POS_END ]);
 
     <!-- Content
     ============================================= -->
-    <section id="content">
+    <main id="content" role="main">
 
         <?= $content ?>
 
-    </section>
+    </main>
     <!-- #content end -->
 
     <!-- Footer

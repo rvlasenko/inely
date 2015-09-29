@@ -100,7 +100,7 @@ class CharController extends Controller
         $fileName   = 'mascot_path';
         $uploadPath = Yii::getAlias('@storage/web/source/');
 
-        if (isset($_FILES[$fileName]) && Yii::$app->request->isPost) {
+        if (Yii::$app->request->isPost) {
             $file = UploadedFile::getInstanceByName($fileName);
 
             if ($file->saveAs($uploadPath . $file->name)) {

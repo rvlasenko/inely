@@ -12,6 +12,8 @@ namespace backend\controllers;
 
 use backend\models\Task;
 use backend\models\TaskCat;
+use backend\models\TasksData;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
@@ -23,7 +25,7 @@ class TaskController extends TreeController
     public function behaviors()
     {
         return [
-            'access'    => [
+            'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
@@ -40,9 +42,9 @@ class TaskController extends TreeController
                     ]
                 ]
             ],
-            /*'pageCache' => [
+/*            'pageCache' => [
                 'class'      => 'yii\filters\PageCache',
-                'only'       => ['index', 'project', 'inbox'],
+                'only'       => ['index', 'node'],
                 'duration'   => 640,
                 'variations' => [Yii::$app->language],
                 'dependency' => [
@@ -52,11 +54,9 @@ class TaskController extends TreeController
             ],
             [
                 'class'        => 'yii\filters\HttpCache',
-                'only'         => ['index', 'project', 'inbox'],
+                'only'         => ['index', 'node'],
                 'lastModified' => function () {
-                    $q = new Query();
-
-                    return $q->from('tasks')->max('updated_at');
+                    return (new Query)->from('tasks')->max('updated_at');
                 },
             ],*/
             [
@@ -86,22 +86,24 @@ class TaskController extends TreeController
     }
 
     /**
-     * Формирование javascript объекта, которое содержит в себе свойства имени узла, его атрибутов, и так далее.
-     * Метод также принимает GET запрос и выполняет поиск дочерних узлов у элемента с принятым id.
-     * Метод является источником данных для [[$.jstree.core.data]].
-     * @return array данные сконвертированные в JSON формат (см. behaviours -> ContentNegotiator)
+     * Формирование javascript объекта, содержащего в себе имя узла, его атрибуты, и так далее.
+     * Метод принимает GET запрос и выполняет поиск дочерних узлов у элемента с принятым id.
+     * Является источником данных для [[$.jstree.core.data]].
+     * @return array данные сконвертированные в JSON формат.
+     * @see behaviours [ContentNegotiator]
      */
     public function actionNode()
     {
         $result = [];
-
-        $node = parent::purifyGetRequest('id');
-        $temp = $this->getChildren($node);
+        $node   = parent::purifyGetRequest('id');
+        $list   = parent::purifyGetRequest('list') ?: null;
+        $temp   = $this->getChildren($node, false, $list);
         foreach ($temp as $v) {
             $result[] = [
                 'id'       => $v['dataId'],
                 'text'     => $v['name'],
                 'a_attr'   => ['class' => $v['tasks']['priority']],
+                'data'     => ['note'  => is_null($v['note']) ? false : $v['dataId']],
                 'children' => ($v['rgt'] - $v['lft'] > 1)
             ];
         }
@@ -143,7 +145,7 @@ class TaskController extends TreeController
     /**
      * Перемещение узла с помощью dnd в указанную позицию некоего родительского узла.
      * Данный метод по аналогии с остальными тоже принимает GET параметры.
-     * @return bool true если перемещение завершилось успехом.
+     * @return bool если перемещение завершилось успехом.
      * @throws \Exception если пользователь чудом переместил родительский узел внутрь дочернего.
      */
     public function actionMove()
@@ -157,7 +159,7 @@ class TaskController extends TreeController
 
     /**
      * Удаление существующего узла дерева и всех его дочерних элементов.
-     * @return bool значение, если удаление в таблицах всё-таки произошло.
+     * @return bool значение, если удаление записи всё-таки произошло.
      * @throws \yii\web\NotFoundHttpException если пользователь захотел удалить несуществующий узел.
      */
     public function actionDelete()
@@ -169,15 +171,20 @@ class TaskController extends TreeController
     }
 
     /**
-     * Удаление существующего узла деревав единственном экземпляре.
+     * Удаление существующего узла дерева в единственном экземпляре.
      * Метод используется исключительно для отмены события создания узла, происходящее по нажатию ESC.
      * @return bool если удаление произошло.
-     * @throws \Exception если удаление не так, как задумывалось.
+     * @throws AccessDeniedException если пользователь задумал удалить корень.
      */
     public function actionDeleteOne()
     {
         $node = parent::purifyGetRequest('id');
-        Task::findOne([$node])->delete();
+
+        if (!TasksData::findOne(['dataId' => $node, 'name' => 'Root'])) {
+            Task::findOne([$node])->delete();
+        } else {
+            throw new AccessDeniedException('Could not delete root node');
+        }
 
         return true;
     }

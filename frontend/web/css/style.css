@@ -1,13 +1,3 @@
-/*-----------------------------------------------------------------------------------
-
-	Description: The Multi-Purpose Template
-	Author: SemiColonWeb
-	Version: 2.5
-
------------------------------------------------------------------------------------*/
-@import "//webfonts.ru/import/ralewayc.css";
-@import "//webfonts.ru/import/lato.css";
-
 .emphasis-text {
     font-size      : 52px;
     font-weight    : 700;
@@ -2093,10 +2083,9 @@ div.alignleft {
     line-height : 64px;
 }
 
-.feature-box h3 {
+.feature-box figcaption {
     font-size      : 16px;
     font-weight    : 700;
-    text-transform : uppercase;
     letter-spacing : 1px;
     margin-bottom  : 0;
     color          : #333;

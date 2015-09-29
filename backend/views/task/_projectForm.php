@@ -21,7 +21,7 @@ $checkboxId = rand(1, 100);
         <span><?= $model->name ?></span>
     </td>
     <td class="text-left w90">
-        <?= Html::tag('i', null, [ 'class' => 'fa fa-ellipsis-v fs18 pull-right cursor mfp-r pt2' ]) ?>
+        <?= Html::tag('i', null, ['class' => 'fa fa-ellipsis-v fs18 pull-right cursor mfp-r pt2']) ?>
         <span><?= $model->isDone ? false : Yii::$app->formatter->asDatetime($model->time, 'd MMM'); ?></span>
     </td>
 </tr>

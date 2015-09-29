@@ -52,8 +52,8 @@ use yii\helpers\Html;
             </div>
 
             <!-- end .form-header section -->
-            <?php Pjax::begin([ 'enablePushState' => false ]) ?>
-            <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
+            <?php Pjax::begin(['enablePushState' => false]) ?>
+            <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true]]) ?>
             <div class="panel-body bg-light p30">
                 <div class="row">
                     <div class="col-sm-7 pr30">
@@ -62,9 +62,9 @@ use yii\helpers\Html;
                             <label for="username" class="field-label text-muted fs18 mb10"><?= Yii::t('backend', 'Username') ?></label>
                             <label for="username" class="field prepend-icon">
 
-                                <?= $form->field($model, 'identity', [ 'template' => '{input}' ])
-                                    ->textInput([ 'class' => 'gui-input' ])
-                                    ->label(false) ?>
+                                <?= $form->field($model, 'identity', ['template' => '{input}'])
+                                         ->textInput(['class' => 'gui-input'])
+                                         ->label(false) ?>
 
                             </label>
                         </div>
@@ -76,9 +76,9 @@ use yii\helpers\Html;
                             </label>
                             <label for="password" class="field prepend-icon">
 
-                                <?= $form->field($model, 'password', [ 'template' => '{input}{error}' ])
-                                    ->passwordInput([ 'class' => 'gui-input' ])
-                                    ->label(false) ?>
+                                <?= $form->field($model, 'password', ['template' => '{input}{error}'])
+                                         ->passwordInput(['class' => 'gui-input'])
+                                         ->label(false) ?>
 
                             </label>
                         </div>
@@ -105,7 +105,7 @@ use yii\helpers\Html;
             </div>
             <!-- end .form-body section -->
             <div class="panel-footer clearfix p10 ph15">
-                <?= Html::submitButton(Yii::t('backend', 'Sign In'), [ 'class' => 'button btn-primary mr10 pull-right' ]) ?>
+                <?= Html::submitButton(Yii::t('backend', 'Sign In'), ['class' => 'button btn-primary mr10 pull-right']) ?>
 
                 <label class="switch ib switch-primary pull-left input-align mt10">
                     <input type="checkbox" name="LoginForm[rememberMe]" id="remember" checked="">

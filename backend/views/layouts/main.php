@@ -50,11 +50,10 @@ $curController = Yii::$app->controller->id;
 <?= $this->render('header') ?>
 
 <!-- Start: Main -->
-<div id="main">
+<main role="main">
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-
         <!-- Begin: Content -->
         <section id="content" class="animated fadeIn <?= $tableLayout ?>">
             <?php if (Yii::$app->session->hasFlash('alert')): ?>
@@ -74,7 +73,7 @@ $curController = Yii::$app->controller->id;
         <?= $this->render('footer') ?>
     </section>
     <!-- End: Content-Wrapper -->
-</div>
+</main>
 <!-- End: Main -->
 
 <?php $this->endBody() ?>
@@ -208,36 +207,21 @@ $curController = Yii::$app->controller->id;
             onChange: function (contents, $editable) {},
             toolbar:  [
                 [
-                    'style',
-                    [ 'style' ]
-                ],
-                [
-                    'font',
-                    [
-                        'bold',
-                        'italic',
-                        'underline'
+                    'style', [ 'style' ]
+                ], [
+                    'font', [
+                        'bold', 'italic', 'underline'
                     ]
-                ],
-                [
-                    'color',
-                    [ 'color' ]
-                ],
-                [
-                    'para',
-                    [
-                        'ul',
-                        'ol',
-                        'paragraph'
+                ], [
+                    'color', [ 'color' ]
+                ], [
+                    'para', [
+                        'ul', 'ol', 'paragraph'
                     ]
-                ],
-                [
-                    'insert',
-                    [ 'hr' ]
-                ],
-                [
-                    'view',
-                    [ 'codeview' ]
+                ], [
+                    'insert', [ 'hr' ]
+                ], [
+                    'view', [ 'codeview' ]
                 ]
             ]
         });

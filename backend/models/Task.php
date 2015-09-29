@@ -81,19 +81,29 @@ class Task extends ActiveRecord
      */
     public static function getCount()
     {
-        $result    = [];
-        $condition = ['author' => Yii::$app->user->id, 'isDone' => 0];
+        $result  = [];
+        $cond    = ['author' => Yii::$app->user->id, 'isDone' => 0];
+        $condNot = ['<>', 'name', 'Root'];
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
-        $inboxSubQuery = (new Query())->select('COUNT(*)')->from('tasks')->where($condition);
+        $inboxSubQuery = (new Query())->select('COUNT(*)')
+                                      ->from('tasks')
+                                      ->innerJoin('tasks_data', 'dataId = id')
+                                      ->where($cond)
+                                      ->andWhere($condNot);
+
         $todaySubQuery = (new Query())->select('COUNT(*)')
                                       ->from('tasks')
-                                      ->where($condition)
+                                      ->innerJoin('tasks_data', 'dataId = id')
+                                      ->where($cond)
+                                      ->andWhere($condNot)
                                       ->andWhere((new Expression('DATE(TIME) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
                                      ->from('tasks')
-                                     ->where($condition)
+                                     ->innerJoin('tasks_data', 'dataId = id')
+                                     ->where($cond)
+                                     ->andWhere($condNot)
                                      ->andWhere((new Expression('TIME BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
 
         /* SELECT ( (SELECT COUNT(*) AS `inbox` FROM `tasks`... */

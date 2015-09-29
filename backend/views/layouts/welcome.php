@@ -50,7 +50,7 @@ $this->registerJs('$("#fin").click(function () { myDropzone.processQueue() })');
 <?= $this->render('header') ?>
 
 <!-- Start: Main -->
-<div id="main">
+<main role="main">
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
@@ -63,7 +63,7 @@ $this->registerJs('$("#fin").click(function () { myDropzone.processQueue() })');
 
     </section>
     <!-- End: Content-Wrapper -->
-</div>
+</main>
 <!-- End: Main -->
 
 <!-- We;come Form Popup -->
@@ -76,40 +76,31 @@ $this->registerJs('$("#fin").click(function () { myDropzone.processQueue() })');
 <script type="text/javascript">
     $(document).ready(function () {
         "use strict";
-
         // Init Theme Core
         Core.init({ sbm: "sb-l-c" });
-
         $(".panel-tabs li:first-child").removeClass("active");
-
         // Upload page
         $("#own").click(function () {
             $(".char-f").fadeOut();
             $(".char-t").fadeIn(1000)
         });
-
         // Welcome page
         $("#start").click(function () {
             $(".char-t").fadeOut();
             $(".char-f").fadeIn(1000)
         });
-
         (function () {
-
             function init() {
                 var speed = 250;
                 var easing = mina.easeinout;
-
                 [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
                     var s = Snap(el.querySelector('svg')), path = s.select('path'), pathConfig = {
-                            from: path.attr('d'),
-                            to:   el.getAttribute('data-path-hover')
-                        };
-
+                        from: path.attr('d'),
+                        to:   el.getAttribute('data-path-hover')
+                    };
                     el.addEventListener('mouseenter', function () {
                         path.animate({ 'path': pathConfig.to }, speed, easing);
                     });
-
                     el.addEventListener('mouseleave', function () {
                         path.animate({ 'path': pathConfig.from }, speed, easing);
                     });
@@ -117,7 +108,6 @@ $this->registerJs('$("#fin").click(function () { myDropzone.processQueue() })');
             }
 
             init();
-
         })();
     });
 </script>

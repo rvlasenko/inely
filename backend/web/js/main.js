@@ -1,24 +1,22 @@
 'use strict';
-/*
- * Core theme functions required for
- * most of the themes vital functionality
- */
+
 var Core = function () {
 
-    // Variables
     var Body = $('body');
-    var listName = 'Inbox';
-    // ID of the jsTree div container
+    var listName = null;
+    // Идентификатор контейнера с деревом
     var tree = $("#tree");
+    // Массив всех дочерних корневых элементов дерева
+    var nodes = [];
+    // Корневой элемент
     var parent;
-    // jsTree object
+    // Объект jsTree
     var $root;
-    // Clear local storage
+    // Очистка локального хранилища
     $("#clearLocalStorage").on('click', function () {
         localStorage.clear();
         location.reload();
     });
-    // Configure nprogress loader
     NProgress.configure({
         minimum:      0.15,
         trickleRate:  .07,
@@ -32,15 +30,19 @@ var Core = function () {
         NProgress.done();
         $('.fade').removeClass('out');
     }, 800);
+
     var runTaskPage = function () {
 
-        // Setting the JSTree. Before start, check for the existence
         if (tree.length) {
+            $('ul.panel-tabs li:nth-child(3)').addClass('active');
+            $('.list-tabs').css('display', 'block');
+
             $root = tree.jstree({
                 'core':        {
-                    'data':           {
-                        'url':  'task/node',
-                        'data': function (node) {
+                    'data': {
+                        'url':   'task/node',
+                        'cache': true,
+                        'data':  function (node) {
                             return { 'id': node.id };
                         }
                     },
@@ -167,19 +169,23 @@ var Core = function () {
                 }).fail(function () {
                     data.instance.refresh();
                 });
-                // user pressed escape, last node will be deleted
+                // Пользователь нажал хоткей при переименовывании только что созданной задачи
                 $(document).on('keyup', function (evt) {
                     if (evt.keyCode == 27) {
                         $.get('task/delete-one', { 'id': data.node.id });
                         data.instance.refresh();
                     }
                 });
+
+                addNoteToNode();
             }).on('delete_node.jstree', function (e, data) {
                 $.get('task/delete', {
                     'id': data.node.id
                 }).fail(function () {
                     data.instance.refresh();
                 });
+
+                addNoteToNode();
             }).on('rename_node.jstree', function (e, data) {
                 $.get('task/rename', {
                     'id':   data.node.id,
@@ -202,11 +208,20 @@ var Core = function () {
             }).on('redraw.jstree', function () {
                 $("a:contains('Root')").css("display", "none");
                 $(".jstree-last .jstree-icon").first().hide();
+                addNoteToNode();
             }).on('loaded.jstree', function () {
                 tree.jstree('open_all');
                 parent = $("a:contains('Root')");
+            }).on('ready.jstree', function () {
+                addNoteToNode();
+            }).on("load_node.jstree", function (e, data) {
+                // При событии load_node происходит добавление в массив id загруженного узла
+                // Необходимо отфильтровать узлы независимо от уровня вложенности
+                nodes.push(data.node.children);
+                nodes = nodes.toString().split(',');
+            }).on('open_node.jstree', function () {
+                addNoteToNode();
             });
-
             var to = null;
             $('#search_q').keyup(function () {
                 if (to) { clearTimeout(to); }
@@ -216,11 +231,6 @@ var Core = function () {
                 }, 250);
             });
         }
-        // On success add to header name of the list
-        $(document).ajaxSuccess(function () {
-            $('.task-head').html(listName);
-        });
-        $('.list-tabs').css('display', 'block');
 
         if ($('.h1200').length) {
             $(window).load(function () { // On load
@@ -231,31 +241,8 @@ var Core = function () {
             });
         }
 
-        $('.user-proj').click(function () {
-            var divKey = $(this).parent().data('key');
-            listName = $(this).text();
-            $.ajax({
-                type:    "POST",
-                url:     "task/project",
-                context: ajaxCont,
-                data:    { list: divKey }
-            }).done(function (data) {
-                $(this).html(data);
-            });
-            return false;
-        });
-        $('#inbox').click(function () {
-            $.ajax({
-                url:     "task/node",
-                context: tree
-            }).done(function (data) {
-                $(this).html(data);
-            });
-            listName = $(this).text().trim().slice(0, -1);
-            return false;
-        });
-
-        var add = function () {
+        var createNode = function () {
+            // Добавление задачи в корень
             var node = $root.jstree(true).create_node(parent, {
                 "text": 'New task'
             }, 'last', null, false);
@@ -264,10 +251,54 @@ var Core = function () {
             $root.jstree(true).edit(node);
             return false;
         };
+        var addNoteToNode = function () {
+            // Проверка существования свойства note в объекте $.jstree.data
+            // И добавление иконки заметки при различных событиях происходящих в дереве
+            setTimeout(function () {
+                $.each(nodes, function (index, value) {
+                    var treeObj = tree.jstree(true).get_node(value).data;
 
-        // Node will be create on button "add task" or hotkey
-        $('a.action').click(function () { add() });
-        Mousetrap.bind([ 'q', 'й' ], function () { setTimeout(function () { add() }, 100) });
+                    if (treeObj.hasOwnProperty('note')) {
+                        if (treeObj.note == value) {
+                            var node = $("li#" + value);
+
+                            if (!node.find("span.noty").length) {
+                                node.find("a:first").append('<span class="noty"></span>')
+                            }
+                        }
+                    }
+                })
+            }, 150);
+        };
+
+        // Бинд события на клавиши, по нажатию которых сработает событие create_node.jstree
+        Mousetrap.bind([ 'q', 'й' ], function () { setTimeout(function () { createNode() }, 100) });
+        $('a.action').click(function () { createNode() });
+
+        // Работа с проектами
+        $('.user-project').click(function () {
+            var divKey = $(this).parent().data('key');
+            var parId  = $("a:contains('Root')").parent('li').attr('id');
+            listName   = $(this).text();
+
+            tree.jstree(true).settings.core.data = {
+                url:  'task/node',
+                data: {
+                    'id':   parId,
+                    'list': divKey
+                }
+            };
+
+            tree.jstree(true).refresh();
+            $('.task-head').html(listName);
+        });
+        $('#inbox').click(function () {
+            tree.jstree(true).refresh();
+            listName = $(this).text().trim().slice(0, -1);
+            $('.task-head').html(listName);
+            return false;
+        });
+
     };
     var runDockModal = function () {
 
@@ -283,7 +314,7 @@ var Core = function () {
                     {
                         html:        'Add',
                         buttonClass: 'btn btn-primary btn-sm',
-                        click:       function () {  }
+                        click:       function () { }
                     }
                 ]
             });

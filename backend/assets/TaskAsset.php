@@ -40,7 +40,7 @@ class TaskAsset extends AssetBundle
 
     public $jsOptions = ['position' => View::POS_END];
 
-    public $depends = [
+    public $depends   = [
         'yii\web\JqueryAsset',
         'common\assets\FontAwesome',
         'backend\assets\BootstrapJsAsset'

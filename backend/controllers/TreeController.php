@@ -13,6 +13,7 @@ namespace backend\controllers;
 use backend\models\Task;
 use backend\models\TaskForm;
 use backend\models\TasksData;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\web\Controller;
@@ -27,12 +28,12 @@ class TreeController extends Controller
      */
     protected $options = [
         'structure' => [
-            'id'        => 'dataId',
-            'left'      => 'lft',
-            'right'     => 'rgt',
-            'level'     => 'lvl',
-            'parent_id' => 'pid',
-            'position'  => 'pos'
+            'id'       => 'dataId',
+            'left'     => 'lft',
+            'right'    => 'rgt',
+            'level'    => 'lvl',
+            'parentId' => 'pid',
+            'position' => 'pos'
         ]
     ];
 
@@ -67,10 +68,11 @@ class TreeController extends Controller
      *
      * @param int  $id        идентификатор узла
      * @param bool $recursive параметр задающий рекурсию (напр. наличие дочерних узлов).
+     * @param int  $list
      *
      * @return array|ActiveRecord[] результат запроса. Если результат равен null, то будет возвращен пустой массив.
      */
-    protected function getChildren($id, $recursive = false)
+    protected function getChildren($id, $recursive = false, $list = null)
     {
         $query = null;
         if ($recursive) {
@@ -81,6 +83,17 @@ class TreeController extends Controller
                               ->orderBy('lft')
                               ->asArray()
                               ->all();
+        } elseif (!is_null($list)) {
+            $condition = ['tasks.list' => $list];
+            $query = TasksData::find()
+                              ->joinWith('tasks')
+                              ->where(['pid' => $id, 'tasks.author' => Yii::$app->user->id])
+                              ->andWhere(['tasks.isDone' => 0])
+                              ->orderBy('pos')
+                              ->asArray();
+            // Если условие null (категория не важна) то искать все задачи независимо от категории.
+            // Иначе требуются задачи с категорией, которая пришла в $list.
+            $query = is_null($list) ? $query->orWhere($condition)->all() : $query->andWhere($condition)->all();
         } else {
             $query = TasksData::find()
                               ->joinWith('tasks')
@@ -90,6 +103,7 @@ class TreeController extends Controller
                               ->asArray()
                               ->all();
         }
+
 
         return $query;
     }
@@ -118,7 +132,7 @@ class TreeController extends Controller
     }
 
     /**
-     * Выполнение SQL конструкций по вставке нового узла и обновления позиции существующих.
+     * Выполнение SQL запросов по вставке нового узла и обновления позиции существующих.
      *
      * @param int   $parent   родительский элемент, куда был создан данный узел.
      * @param int   $position позиция узла, куда он был впоследствии перемещен.
@@ -135,6 +149,7 @@ class TreeController extends Controller
             throw new \Exception('Parent is 0');
         }
         $parent = $this->getNode($parent, ['withChildren' => true]);
+
         if (!$parent['children']) {
             $position = 0;
         }
@@ -169,15 +184,15 @@ class TreeController extends Controller
                     $tmp[$v] = null;
                     break;
                 case 'left':
-                    $tmp[$v] = (int)$refLft;
+                    $tmp[$v] = $refLft;
                     break;
                 case 'right':
-                    $tmp[$v] = (int)$refLft + 1;
+                    $tmp[$v] = $refLft + 1;
                     break;
                 case 'level':
-                    $tmp[$v] = (int)$parent[$v] + 1;
+                    $tmp[$v] = $parent[$v] + 1;
                     break;
-                case 'parent_id':
+                case 'parentId':
                     $tmp[$v] = $parent['dataId'];
                     break;
                 case 'position':
@@ -205,9 +220,9 @@ class TreeController extends Controller
     }
 
     /**
-     * Выполнение SQL конструкций для переименования данного узла.
+     * Выполнение SQL запросов для переименования данного узла.
      *
-     * @param int   $id   идентификатор узла, который был переименован
+     * @param int   $id   идентификатор узла, который был переименован.
      * @param array $data некоторые атрибуты, например, новое имя.
      *
      * @return bool если сохранение завершено.
@@ -217,6 +232,9 @@ class TreeController extends Controller
     {
         if (!TasksData::findOne(['dataId' => $id])) {
             throw new \Exception('Could not rename non-existing node');
+        }
+        if (TasksData::findOne(['dataId' => $id, 'name' => 'Root'])) {
+            throw new AccessDeniedException('Could not rename root node');
         }
 
         if (count($data)) {
@@ -228,7 +246,7 @@ class TreeController extends Controller
     }
 
     /**
-     * Выполнение SQL конструкций для перемещения узла в указанную позицию некоего родителя.
+     * Выполнение SQL запросов для перемещения узла в указанную позицию некоего родителя.
      *
      * @param int $id       идентификатор узла, который был перемещен
      * @param int $parent   родительский элемент, куда был перемещен данный узел.
@@ -240,9 +258,7 @@ class TreeController extends Controller
      */
     protected function move($id, $parent = 0, $position = 0)
     {
-        $id     = (int)$id;
-        $parent = (int)$parent;
-        if($parent == 0 || $id == 0 || $id == 1) {
+        if ($parent == 0 || $id == 0 || $id == 1) {
             throw new InvalidConfigException('Cannot move inside 0, or move root node');
         }
 
@@ -263,14 +279,14 @@ class TreeController extends Controller
         }
 
         $tmp   = [];
-        $tmp[] = (int)$id['dataId'];
+        $width = $id['rgt'] - $id['lft'] + 1;
+        $tmp[] = $id['dataId'];
+
         if ($id['children'] && is_array($id['children'])) {
             foreach ($id['children'] as $c) {
                 $tmp[] = (int)$c['dataId'];
             }
         }
-
-        $width = $id['rgt'] - $id['lft'] + 1;
 
         /* Подготовка нового родительского элемента */
         // Обновление позиции всех следующих элементов.
@@ -342,37 +358,39 @@ class TreeController extends Controller
     }
 
     /**
-     * Выполнение SQL конструкций на удаление узла дерева и всех его дочерних элементов.
+     * Выполнение SQL запросов на удаление узла дерева и всех его дочерних элементов.
      *
      * @param int $id идентификатор узла, который был удален.
      *
      * @return bool если удаление завершено.
      * @throws NotFoundHttpException если пользователь передал несуществующий id.
+     * @throws AccessDeniedException либо он задумал удалить корень.
      */
     protected function remove($id)
     {
         if (!Task::findOne([$id])) {
             throw new NotFoundHttpException('Could not delete non-existing node');
         }
+        if (TasksData::findOne(['dataId' => $id, 'name' => 'Root'])) {
+            throw new AccessDeniedException('Could not delete root node');
+        }
 
-        $tmp  = [];
-        $db   = Yii::$app->db;
-        $data = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true]);
-        $db->createCommand('DELETE FROM tasks_data WHERE lft >= :lft AND rgt <= :rgt')
-           ->bindValue(':lft', $data['lft'])
-           ->bindValue(':rgt', $data['rgt'])
-           ->execute();
-
+        $db    = Yii::$app->db;
+        $data  = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true]);
         $tmp[] = $data['dataId'];
+
+        $db->createCommand()->delete('tasks_data', 'lft >= :lft AND rgt <= :rgt', [
+            ':lft' => $data['lft'],
+            ':rgt' => $data['rgt']
+        ])->execute();
+
         if ($data['children'] && is_array($data['children'])) {
             foreach ($data['children'] as $v) {
                 $tmp[] = $v['dataId'];
             }
         }
-        $db->createCommand('DELETE FROM tasks_data WHERE dataId IN (:dataId)')
-           ->bindValue(':dataId', (int)implode(',', $tmp))
-           ->execute();
-        $db->createCommand('DELETE FROM tasks WHERE id IN (:id)')->bindValue(':id', (int)implode(',', $tmp))->execute();
+
+        $db->createCommand()->delete('tasks', 'id IN (:id)', [':id' => implode(',', $tmp)])->execute();
 
         return true;
     }

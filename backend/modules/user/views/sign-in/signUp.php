@@ -50,8 +50,8 @@ use yii\helpers\Html;
                 </div>
             </div>
 
-            <?php Pjax::begin([ 'enablePushState' => false ]) ?>
-            <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
+            <?php Pjax::begin(['enablePushState' => false]) ?>
+            <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true]]) ?>
             <div class="panel-body p25 bg-light">
                 <div class="section-divider col-md-12 mt10 mb40">
                     <span><?= Yii::t('backend', 'A few words about you') ?></span>
@@ -60,7 +60,7 @@ use yii\helpers\Html;
                 <div class="section col-md-6">
                     <label for="email" class="field prepend-icon">
 
-                        <?= $form->field($model, 'email', [ 'template' => '{input}{error}' ])->textInput([
+                        <?= $form->field($model, 'email', ['template' => '{input}{error}'])->textInput([
                             'class'       => 'gui-input',
                             'placeholder' => Yii::t('backend', 'Email address')
                         ])->label(false) ?>
@@ -73,7 +73,7 @@ use yii\helpers\Html;
                     <div class="smart-widget sm-right">
                         <label for="username" class="field prepend-icon">
 
-                            <?= $form->field($model, 'username', [ 'template' => '{input}{error}' ])->textInput([
+                            <?= $form->field($model, 'username', ['template' => '{input}{error}'])->textInput([
                                 'class'       => 'gui-input',
                                 'placeholder' => Yii::t('backend', 'Choose your username')
                             ])->label(false) ?>
@@ -87,7 +87,7 @@ use yii\helpers\Html;
                 <div class="section col-md-6">
                     <label for="password" class="field prepend-icon">
 
-                        <?= $form->field($model, 'password', [ 'template' => '{input}' ])->passwordInput([
+                        <?= $form->field($model, 'password', ['template' => '{input}'])->passwordInput([
                             'class'       => 'gui-input',
                             'placeholder' => Yii::t('backend', 'Create a password')
                         ])->label(false) ?>
@@ -99,7 +99,7 @@ use yii\helpers\Html;
                 <div class="section col-md-6">
                     <label for="confirmPassword" class="field prepend-icon">
 
-                        <?= $form->field($model, 'passwordConfirm', [ 'template' => '{input}{error}' ])->passwordInput([
+                        <?= $form->field($model, 'passwordConfirm', ['template' => '{input}{error}'])->passwordInput([
                             'class'       => 'gui-input',
                             'placeholder' => Yii::t('backend', 'Retype your password')
                         ])->label(false) ?>
@@ -111,7 +111,7 @@ use yii\helpers\Html;
             </div>
             <!-- end .form-body section -->
             <div class="panel-footer clearfix">
-                <?= Html::submitButton(Yii::t('backend', 'Finish sign up'), [ 'class' => 'button btn-primary pull-right' ]) ?>
+                <?= Html::submitButton(Yii::t('backend', 'Finish sign up'), ['class' => 'button btn-primary pull-right']) ?>
             </div>
             <!-- end .form-footer section -->
             <?php ActiveForm::end() ?>

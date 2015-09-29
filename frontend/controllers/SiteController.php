@@ -27,13 +27,7 @@ class SiteController extends Controller
             [
                 'class' => 'yii\filters\HttpCache',
                 'only'  => ['index']
-            ],
-            'pageCache' => [
-                'class'      => 'yii\filters\PageCache',
-                'only'       => ['index'],
-                'duration'   => 6800,
-                'variations' => [Yii::$app->language]
-            ],
+            ]
         ];
     }
 
@@ -62,6 +56,8 @@ class SiteController extends Controller
         if ($exception !== null) {
             return $this->render('error', ['exception' => $exception]);
         }
+
+        return null;
     }
 
     public function beforeAction($action)

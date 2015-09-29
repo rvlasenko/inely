@@ -13,8 +13,8 @@ use yii\helpers\Html;
         <div class="panel panel-info mt10 br-n">
 
             <!-- end .form-header section -->
-            <?php Pjax::begin([ 'enablePushState' => false ]) ?>
-            <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
+            <?php Pjax::begin(['enablePushState' => false]) ?>
+            <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true]]) ?>
             <div class="panel-body bg-light p30">
                 <div class="section row">
                     <div class="col-md-12 mb20">
@@ -23,7 +23,7 @@ use yii\helpers\Html;
                     <div class="col-md-6">
                         <label for="firstname" class="field prepend-icon">
 
-                            <?= $form->field($model, 'password', [ 'template' => '{input}e' ])->passwordInput([
+                            <?= $form->field($model, 'password', ['template' => '{input}e'])->passwordInput([
                                 'class'       => 'gui-input',
                                 'placeholder' => Yii::t('backend', 'This will be your new password')
                             ])->label(false) ?>
@@ -33,11 +33,12 @@ use yii\helpers\Html;
                     <div class="col-md-6">
                         <label for="firstname" class="field prepend-icon">
 
-                            <?= $form->field($model, 'passwordConfirm', [ 'template' => '{input}{error}' ])
+                            <?= $form->field($model, 'passwordConfirm', ['template' => '{input}{error}'])
                                      ->passwordInput([
                                          'class'       => 'gui-input',
                                          'placeholder' => Yii::t('backend', 'Retype your password')
-                                     ])->label(false) ?>
+                                     ])
+                                     ->label(false) ?>
 
                         </label>
                     </div>
@@ -46,7 +47,7 @@ use yii\helpers\Html;
             </div>
             <!-- end .form-body section -->
             <div class="panel-footer clearfix p10 ph15">
-                <?= Html::submitButton(Yii::t('backend', 'Submit'), [ 'class' => 'button btn-primary mr10 pull-right' ]) ?>
+                <?= Html::submitButton(Yii::t('backend', 'Submit'), ['class' => 'button btn-primary mr10 pull-right']) ?>
             </div>
             <!-- end .form-footer section -->
             <?php ActiveForm::end() ?>

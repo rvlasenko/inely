@@ -13,7 +13,6 @@ return [
         'todo'           => '/task/index',
         'schedule'       => '/calendar/index',
         'welcome'        => '/char/index',
-
         /*
          * Правила авторизации
          */

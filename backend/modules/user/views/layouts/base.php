@@ -1,12 +1,16 @@
 <?php
 
-use yii\helpers\Html;
-
 /**
+ * Этот файл является частью проекта Inely.
+ *
+ * (c) Inely <http://github.com/hirootkit/inely>
+ *
  * @author hirootkit
  * @var $this    yii\web\View
  * @var $content string
  */
+
+use yii\helpers\Html;
 
 backend\assets\AuthAsset::register($this);
 
@@ -21,7 +25,6 @@ $this->registerAssetBundle('backend\assets\BootstrapJsAsset', $this::POS_END);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-
     <meta charset="<?= Yii::$app->charset ?>" />
     <meta http-equiv="content-type" content="text/html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,14 +40,13 @@ $this->registerAssetBundle('backend\assets\BootstrapJsAsset', $this::POS_END);
     <link rel="icon" href="favicon.png">
 
     <?php $this->head() ?>
-
 </head>
 
 <?php $this->beginBody() ?>
 
 <body class="external-page sb-l-c sb-r-c">
 
-<div id="main" class="animated fadeIn">
+<main role="main" class="animated fadeIn">
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper" class="auth_wrapper">
@@ -65,7 +67,7 @@ $this->registerAssetBundle('backend\assets\BootstrapJsAsset', $this::POS_END);
     </section>
     <!-- End: Content-Wrapper -->
 
-</div>
+</main>
 
 <?php $this->endBody() ?>
 <script>

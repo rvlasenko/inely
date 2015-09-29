@@ -13,22 +13,14 @@
 
 ?>
 
-<!-- begin: .tray-left -->
-<aside class="tray tray-left va-t tray250">
-    <?= $this->render('aside', [ 'dataProvider' => $dataProvider, 'countOf' => $countOf ]) ?>
-</aside>
-<!-- end: .tray-left -->
+    <!-- begin: .tray-left -->
+    <aside class="tray tray-left va-t tray250">
+        <?= $this->render('aside', ['dataProvider' => $dataProvider, 'countOf' => $countOf]) ?>
+    </aside>
+    <!-- end: .tray-left -->
 
-<section class="list-tabs">
-    <?= $this->render('project') ?>
-</section>
+    <section class="list-tabs">
+        <?= $this->render('project') ?>
+    </section>
 
 <?= $this->render('create') ?>
-
-<?php
-$main = <<<SCRIPT
-$('ul.panel-tabs li:nth-child(3)').addClass('active');
-SCRIPT;
-
-$this->registerJs($main, $this::POS_END);
-?>

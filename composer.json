@@ -1,5 +1,5 @@
 {
-    "name": "dev/inely",
+    "name": "hirootkit/inely",
     "description": "Just awesome web-assistant",
     "type": "project",
     "keywords": [
@@ -10,8 +10,8 @@
         "assistant",
         "todo"
     ],
-    "homepage": "https://github.com/Exoticness/inely",
-    "license": "MIT",
+    "homepage": "https://github.com/hirootkit/inely",
+    "license": "Maybe later",
     "authors": [
         {
             "name": "Roman Vlasenko",
@@ -27,7 +27,6 @@
         "yiisoft/yii2-swiftmailer": "~2.0",
         "yiisoft/yii2-authclient": "~2.0",
         "yiisoft/yii2-jui": "~2.0.0",
-        "kartik-v/yii2-editable": "*",
         "vlucas/phpdotenv": "~1.0",
         "perminder-klair/yii2-dropzone": "dev-master",
         "FortAwesome/Font-Awesome": "*"

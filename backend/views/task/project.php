@@ -19,6 +19,7 @@
             <div id="tree" class="fs14 pt5 pl5"></div>
             <div class="controller">
                 <a href="#" class="action"><i class="fa fa-plus"></i><?= Yii::t('backend', 'Add Task') ?></a>
+
                 <div class="completed"><a href="#"></a></div>
             </div>
         </div>

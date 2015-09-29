@@ -53,7 +53,7 @@ return [
      * Features Section
      */
     'Features Overview' => 'Обзор возможностей',
-    'Some of the Features that are gonna blow your mind off' => 'Несколько особенностей, которые сведут Вас с ума',
+    'Some of the Features that are gonna blow your mind off' => 'Несколько возможностей, которые сведут Вас с ума',
     'Responsive Layout' => 'Адаптивность',
     'Powerful Layout with Responsive functionality that can be adapted to any screen size. Resize browser to view.' => 'Мощная разметка с отзывчивой функциональностью может быть адаптирована к любому размеру экрана.',
     'Retina Graphics' => 'Retina графика',
@@ -62,9 +62,11 @@ return [
     'Inely includes tons of optimized code that are completely customizable and deliver unmatched speed.' => 'Inely включает в себя тонны оптимизированного кода, с непревзойденной скоростью.',
     'Personalization' => 'Персонализация',
     'You have complete easy control on each &amp; every element that provides endless customization possibilities.' => 'Вы полностью контролируете каждый элемент на Вашей доске, что обеспечивает огромные возможности.',
-    'Visualize opportunities' => 'Визуализация',
-    'By means of adaptive schedules trace the productivity and over time visualize it.' => 'С помощью адаптивных графиков отслеживайте свою производительность и со временем визуализируйте её.',
-    'Fascinating achievements' => 'Увлекательность',
+    'Sub tasks' => 'Подзадачи',
+    'Achieve more by breaking big tasks into smaller sub-tasks.' => 'Добивайтесь большего, разбивая большой проект на несколько небольших задач.',
+    'Notes' => 'Заметки',
+    'Add as many details as you want to make sure you have everything you need.' => 'Добавляйте сколько угодно много деталей, чтобы быть увереным, что у вас есть все для выполнения.',
+
     'Earn achievements, increasing the level, receiving more coins and getting to various stages of the game.' => 'Зарабатывайте достижения, повышая свой уровень, получая больше монет и попадая в различные этапы игры.',
     /**
      * Retina Section

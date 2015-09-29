@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-<?php $form = ActiveForm::begin([ 'action' => 'char/char', 'id' => 'charPredefined' ]) ?>
+<?php $form = ActiveForm::begin(['action' => 'char/char', 'id' => 'charPredefined']) ?>
     <div class="mt10 char-f">
         <div class="ovh text-black">
             <i class="icon-def-mascot intro-icon"></i>

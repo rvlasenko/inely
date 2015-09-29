@@ -29,15 +29,18 @@ class CharacterAsset extends AssetBundle
         // Theme CSS
         'css/skin/theme.css',
         'css/animate.css'
+
     ];
 
     public $js = [
-        // Theme Javascript
         'js/utility.js',
         'js/main.js'
     ];
 
     public $jsOptions = ['position' => View::POS_END];
 
-    public $depends   = ['common\assets\FontAwesome'];
+    public $depends   = [
+        'common\assets\FontAwesome',
+        'backend\assets\BootstrapJsAsset'
+    ];
 }

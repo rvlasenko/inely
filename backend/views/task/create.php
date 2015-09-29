@@ -18,9 +18,9 @@ use yii\helpers\ArrayHelper;
 
     <form method="post">
 
-    <textarea class="form-control" name="Task[name]" id="task-name" placeholder="What you want to do?" autofocus></textarea>
-    <input type="text" class="form-control" name="Task[list]" placeholder="Tag for the task">
-    <input type="text" class="form-control" name="Task[list]" placeholder="Group">
+        <textarea class="form-control" name="Task[name]" id="task-name" placeholder="What you want to do?" autofocus></textarea>
+        <input type="text" class="form-control" name="Task[list]" placeholder="Tag for the task">
+        <input type="text" class="form-control" name="Task[list]" placeholder="Group">
 
     </form>
 

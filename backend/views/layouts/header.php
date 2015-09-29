@@ -38,7 +38,7 @@ HTML;
             <a class="dropdown-toggle pl10 pr10" data-toggle="dropdown" href="#">
                 <span class="fa fa fa-bell fs21"></span>
             </a>
-            <ul class="dropdown-menu noty dropdown-hover dropdown-persist pn bg-white animated animated-shorter zoomIn" role="menu">
+            <ul class="dropdown-menu noty dropdown-hover dropdown-persist pn bg-white animated animated-short fadeInUp" role="menu">
                 <li class="bg-light p8">
                     <span class="fw600 pl5 lh30"> Notifications</span>
                     <span class="label label-warning label-sm pull-right lh20 h-20 mt5 mr5">12</span>
@@ -80,25 +80,25 @@ HTML;
                 <span><?= Yii::$app->user->identity->username ?></span>
                 <span class="caret caret-tp hidden-xs"></span>
             </a>
-            <ul class="dropdown-menu dropdown-persist pn user bg-white animated animated-shorter zoomIn" role="menu">
+            <ul class="dropdown-menu dropdown-persist pn user bg-white animated animated-short fadeInUp" role="menu">
                 <li class="of-h">
-                    <?= Html::a('<span class="fa fa-user fs15 pr5"></span> My Profile', [ '' ], [
+                    <?= Html::a('<span class="fa fa-user fs15 pr5"></span> My Profile', [''], [
                         'class' => 'p12 animated animated-short fadeInDown'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-gear fs15 pr5"></span> Account Settings', [ '' ], [
+                    <?= Html::a('<span class="fa fa-gear fs15 pr5"></span> Account Settings', [''], [
                         'class' => 'p12 animated animated-short fadeInDown'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-trash-o fs15 pr5"></span> Clear Storage', [ '/' ], [
+                    <?= Html::a('<span class="fa fa-trash-o fs15 pr5"></span> Clear Storage', ['/'], [
                         'class' => 'p12 animated animated-short fadeInDown',
                         'id'    => 'clearLocalStorage'
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-power-off fs15 pr5"></span>Logout', [ '/logout' ], [
+                    <?= Html::a('<span class="fa fa-power-off fs15 pr5"></span>Logout', ['/logout'], [
                         'class'       => 'p12 animated animated-short fadeInDown',
                         'data-method' => 'post'
                     ]) ?>

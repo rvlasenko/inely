@@ -89,14 +89,14 @@ $this->registerJs($main, $this::POS_END);
                                 <li class="list-group-item"><span class="badge badge-dark">22</span>Video Games</li>
 
                             </ul>
-<!--                            <h5 class="mt5 ph10 mbn pb5 br-b fw700">Groups Cloud</h5>-->
-<!--                            <ul class="list-group mbn">-->
-<!---->
-<!--                                <li class="list-group-item"><span class="badge badge-info">9</span>Movies</li>-->
-<!--                                <li class="list-group-item"><span class="badge badge-info">11</span>TV Shows</li>-->
-<!--                                <li class="list-group-item"><span class="badge badge-info">22</span>Video Games</li>-->
-<!---->
-<!--                            </ul>-->
+                            <!--                            <h5 class="mt5 ph10 mbn pb5 br-b fw700">Groups Cloud</h5>-->
+                            <!--                            <ul class="list-group mbn">-->
+                            <!---->
+                            <!--                                <li class="list-group-item"><span class="badge badge-info">9</span>Movies</li>-->
+                            <!--                                <li class="list-group-item"><span class="badge badge-info">11</span>TV Shows</li>-->
+                            <!--                                <li class="list-group-item"><span class="badge badge-info">22</span>Video Games</li>-->
+                            <!---->
+                            <!--                            </ul>-->
                         </div>
 
                     </div>

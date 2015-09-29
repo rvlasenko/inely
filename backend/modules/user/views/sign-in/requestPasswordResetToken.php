@@ -12,8 +12,8 @@ use yii\helpers\Html;
     </div>
     <!-- end .panel-heading section -->
 
-    <?php Pjax::begin([ 'enablePushState' => false ]) ?>
-    <?php $form = ActiveForm::begin([ 'options' => [ 'data-pjax' => true ] ]) ?>
+    <?php Pjax::begin(['enablePushState' => false]) ?>
+    <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true]]) ?>
     <div class="panel-body p25">
         <div class="section row">
             <div class="col-md-12 mb20">
@@ -22,11 +22,12 @@ use yii\helpers\Html;
             <div class="col-md-12">
 
                 <label for="firstname" class="field prepend-icon">
-                    <?= $form->field($model, 'email', [ 'template' => '{input}<span class="text-center">{error}</span>' ])
+                    <?= $form->field($model, 'email', ['template' => '{input}<span class="text-center">{error}</span>'])
                              ->textInput([
                                  'class'       => 'gui-input',
                                  'placeholder' => 'Email'
-                             ])->label(false) ?>
+                             ])
+                             ->label(false) ?>
 
                 </label>
             </div>
@@ -37,7 +38,7 @@ use yii\helpers\Html;
     <!-- end .form-body section -->
 
     <div class="panel-footer">
-        <?= Html::submitButton(Yii::t('backend', 'Send'), [ 'class' => 'button btn-primary' ]) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Send'), ['class' => 'button btn-primary']) ?>
     </div>
     <!-- end .form-footer section -->
     <?php ActiveForm::end() ?>

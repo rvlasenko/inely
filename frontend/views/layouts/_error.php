@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * Этот файл является частью проекта Inely.
+ *
+ * (c) Inely <http://github.com/hirootkit/inely>
+ *
  * @author hirootkit
  * @var $this    yii\web\View
  * @var $content string

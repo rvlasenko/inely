@@ -14,7 +14,7 @@
 
                     <p></p>
 
-                    <h4 class="author" style="font-weight: 400;">Crafted with &lt;3 by rootkit and my github friend.</h4>
+                    <h4 class="author" style="font-weight: 500;">Crafted with love by hirootkit.</h4>
 
                     <div class="line" style="margin: 30px 0;"></div>
 
