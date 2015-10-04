@@ -1,4 +1,5 @@
 <?php
+
 $config = [
     'name'           => 'inely',
     'vendorPath'     => dirname(dirname(__DIR__)) . '/vendor',
@@ -8,13 +9,21 @@ $config = [
     'bootstrap'      => ['log'],
     'timeZone'       => 'Europe/Moscow',
     'components'     => [
-        'authManager'        => [
+        'authManager' => [
             'class'           => 'yii\rbac\DbManager',
             'cache'           => 'cache',
             'itemTable'       => '{{%rbac_auth_item}}',
             'itemChildTable'  => '{{%rbac_auth_item_child}}',
             'assignmentTable' => '{{%rbac_auth_assignment}}',
             'ruleTable'       => '{{%rbac_auth_rule}}'
+        ],
+        'commandBus'  => [
+            'class'                => '\trntv\tactician\Tactician',
+            'commandNameExtractor' => '\League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor',
+            'methodNameInflector'  => '\League\Tactician\Handler\MethodNameInflector\HandleInflector',
+            'commandToHandlerMap'  => [
+                'common\commands\SendEmailCommand' => '\common\commands\SendEmailHandler'
+            ]
         ],
         'cache'              => ['class' => 'yii\caching\DummyCache'],
         'formatter'          => ['class' => 'yii\i18n\Formatter'],
@@ -29,7 +38,7 @@ $config = [
                 'host'       => 'smtp.gmail.com',
                 'port'       => '587',
                 'username'   => getenv('ROBOT_EMAIL'),
-                'password'   => getenv('PASSWD'),
+                'password'   => getenv('PASSWORD'),
                 'encryption' => 'tls'
             ]
         ],
@@ -60,18 +69,13 @@ $config = [
                         'frontend' => 'frontend.php',
                         'mail'     => 'mail.php'
                     ]
-                ],
-                /*'*' => [
-                    'class'                 => 'yii\i18n\DbMessageSource',
-                    'sourceMessageTable'    => '{{%i18n_source_message}}',
-                    'messageTable'          => '{{%i18n_message}}',
-                    'enableCaching'         => YII_ENV_DEV,
-                    'cachingDuration'       => 8600
-                ]*/
+                ]
             ]
         ],
-        'urlManagerBackend'  => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@backendUrl')], require(Yii::getAlias('@backend/config/_urlManager.php'))),
-        'urlManagerFrontend' => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@frontendUrl')], require(Yii::getAlias('@frontend/config/_urlManager.php')))
+        'urlManagerBackend'  => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@backendUrl')],
+            require(Yii::getAlias('@backend/config/_urlManager.php'))),
+        'urlManagerFrontend' => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@frontendUrl')],
+            require(Yii::getAlias('@frontend/config/_urlManager.php')))
     ],
     'params'         => [
         'adminEmail'       => getenv('ADMIN_EMAIL'),

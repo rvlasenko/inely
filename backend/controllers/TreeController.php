@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\controllers;
@@ -16,6 +16,7 @@ use backend\models\TasksData;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
@@ -23,8 +24,8 @@ use yii\web\NotFoundHttpException;
 class TreeController extends Controller
 {
     /**
-     * Какое значение какому полю соответствует в базе данных.
      * @var array
+     * Массив, указывающий, какое значение какому полю соответствует в базе.
      */
     protected $options = [
         'structure' => [
@@ -38,6 +39,33 @@ class TreeController extends Controller
     ];
 
     /**
+     * @var array
+     * Перед выборкой, jsTree посылает запрос /task/node?id ожидая JSON данные корневого узла
+     * Чтобы предотвратить избыточность данных в базе, стоит сформировать фиктивный корень вида:
+     * ```js
+     * [{
+     *      "id":       1,
+     *      "text":     "Root",
+     *      "a_attr":   { "class":null },
+     *      "data":     { "note":false },
+     *      "children": true
+     * }]
+     * ```
+     */
+    protected $root = [
+        'dataId'   => 1,
+        'name'     => 'Root',
+        'note'     => null,
+        'lft'      => 1,
+        'rgt'      => 23,
+        'lvl'      => 0,
+        'pid'      => 0,
+        'pos'      => 0,
+        'children' => true,
+        'tasks'    => ['priority' => null]
+    ];
+
+    /**
      * Создание экземпляра ActiveRecord таблицы "tasks_data".
      * Если у узла существуют дочерние элементы, то они формируются в ключе "children" по вызову [[getChildren()]].
      * Иначе возвращаются только сгруппированные узлы [[getPath()]].
@@ -47,15 +75,15 @@ class TreeController extends Controller
      *
      * @return array|null полученные атрибуты узла.
      */
-    protected function getNode($id, $options = [])
+    public function getNode($id, $options = [])
     {
         $node = TasksData::find()->where(['dataId' => $id])->asArray()->one();
 
-        if (isset($options['withChildren'])) {
-            $node['children'] = $this->getChildren($id, isset($options['deepChildren']));
+        if (ArrayHelper::getValue($options, 'withChildren')) {
+            $node['children'] = $this->getChildren($id, ArrayHelper::getValue($options, 'deepChildren'));
         }
 
-        if (isset($options['withPath'])) {
+        if (ArrayHelper::getValue($options, 'withPath')) {
             $node['path'] = $this->getPath($id);
         }
 
@@ -67,43 +95,43 @@ class TreeController extends Controller
      * Первичное обращение к методу выполняется из Task контроллера действием [[actionNode()]].
      *
      * @param int  $id        идентификатор узла
-     * @param bool $recursive параметр задающий рекурсию (напр. наличие дочерних узлов).
-     * @param int  $list
+     * @param bool $recursive параметр задающий рекурсию
+     * @param int  $list      категория по которой будет произведена выборка
      *
-     * @return array|ActiveRecord[] результат запроса. Если результат равен null, то будет возвращен пустой массив.
+     * @return array|ActiveRecord[] результат запроса.
+     * Если результат равен null, то будет возвращен пустой массив.
      */
-    protected function getChildren($id, $recursive = false, $list = null)
+    public function getChildren($id, $recursive = false, $list = null)
     {
-        $query = null;
+        $query[] = $this->root;
+        $cond    = ['pid' => $id, 'tasks.author' => Yii::$app->user->id, 'tasks.isDone' => 0];
         if ($recursive) {
+            // Рекурсивная проверка на наличие вложенных задач
             $node  = $this->getNode($id);
             $query = TasksData::find()
                               ->where(['>', 'lft', $node['lft']])
                               ->andWhere(['<', 'rgt', $node['rgt']])
-                              ->orderBy('lft')
-                              ->asArray()
-                              ->all();
+                              ->orderBy('lft')->asArray()->all();
         } elseif (!is_null($list)) {
-            $condition = ['tasks.list' => $list];
-            $query = TasksData::find()
-                              ->joinWith('tasks')
-                              ->where(['pid' => $id, 'tasks.author' => Yii::$app->user->id])
-                              ->andWhere(['tasks.isDone' => 0])
-                              ->orderBy('pos')
-                              ->asArray();
-            // Если условие null (категория не важна) то искать все задачи независимо от категории.
-            // Иначе требуются задачи с категорией, которая пришла в $list.
-            $query = is_null($list) ? $query->orWhere($condition)->all() : $query->andWhere($condition)->all();
+            if ($id) {
+                // Если $list равен null, то искать все задачи независимо от категории
+                // Иначе требуются задачи с категорией, которая пришла в $list
+                $query = TasksData::find()
+                                  ->joinWith('tasks')
+                                  ->where($cond)
+                                  ->andWhere(['tasks.list' => $list])
+                                  ->orderBy('pos')->asArray()->all();
+            }
         } else {
-            $query = TasksData::find()
-                              ->joinWith('tasks')
-                              ->where(['pid' => $id, 'tasks.author' => Yii::$app->user->id])
-                              ->andWhere(['tasks.isDone' => 0])
-                              ->orderBy('pos')
-                              ->asArray()
-                              ->all();
+            // Выборка всех задач в Inbox, которым не назначен список
+            if ($id) {
+                $query = TasksData::find()
+                                  ->joinWith('tasks')
+                                  ->where($cond)
+                                  ->andWhere(['tasks.list' => null])
+                                  ->orderBy('pos')->asArray()->all();
+            }
         }
-
 
         return $query;
     }
@@ -113,9 +141,10 @@ class TreeController extends Controller
      *
      * @param int $id идентификатор узла.
      *
-     * @return array|ActiveRecord[] результат запроса. Если результат равен null, то будет возвращен пустой массив.
+     * @return array|ActiveRecord[] результат запроса.
+     * Если результат равен null, то будет возвращен пустой массив.
      */
-    protected function getPath($id)
+    public function getPath($id)
     {
         $node  = $this->getNode($id);
         $query = false;
@@ -123,9 +152,7 @@ class TreeController extends Controller
             $query = TasksData::find()
                               ->where(['<', 'lft', $node['lft']])
                               ->andWhere(['>', 'rgt', $node['rgt']])
-                              ->orderBy('lft')
-                              ->asArray()
-                              ->all();
+                              ->orderBy('lft')->asArray()->all();
         }
 
         return $query;
@@ -143,17 +170,17 @@ class TreeController extends Controller
      * @throws \yii\db\Exception если невозможно переименовать после создания.
      * @return id только что созданного узла.
      */
-    protected function make($parent, $position = 0, $data = [])
+    public function make($parent, $position = 0, $data = [])
     {
-        if ($parent == 0) {
-            throw new \Exception('Parent is 0');
+        if ($parent == 0) { throw new \Exception('Parent is 0'); }
+        if ($parent == 1) {
+            $parent = $this->root;
+        } else {
+            $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
-        $parent = $this->getNode($parent, ['withChildren' => true]);
 
-        if (!$parent['children']) {
-            $position = 0;
-        }
-        if ($parent['children'] && $position >= count($parent['children'])) {
+        if (!ArrayHelper::keyExists('children', $parent)) { $position = 0; }
+        if (ArrayHelper::keyExists('children', $parent) && $position >= count($parent['children'])) {
             $position = count($parent['children']);
         }
 
@@ -228,18 +255,16 @@ class TreeController extends Controller
      * @return bool если сохранение завершено.
      * @throws \Exception если невозможно переименовать несуществующий узел.
      */
-    protected function rename($id, $data)
+    public function rename($id, $data)
     {
-        if (!TasksData::findOne(['dataId' => $id])) {
-            throw new \Exception('Could not rename non-existing node');
-        }
         if (TasksData::findOne(['dataId' => $id, 'name' => 'Root'])) {
             throw new AccessDeniedException('Could not rename root node');
         }
 
-        if (count($data)) {
-            $db = Yii::$app->db;
-            $db->createCommand()->update('tasks_data', ['name' => $data['name']], "dataId = $id")->execute();
+        if (ArrayHelper::keyExists('name', $data)) {
+            $taskData = TasksData::findOne(['dataId' => $id]);
+            $taskData->name = $data['name'];
+            $taskData->save();
         }
 
         return true;
@@ -253,17 +278,21 @@ class TreeController extends Controller
      * @param int $position позиция узла, куда он был впоследствии перемещен.
      *
      * @return bool если сохранение завершено.
-     * @throws \Exception если невозможно по каким-то причинам переместить узел...
-     * @throws InvalidConfigException если пользователь предпочел переместить узел за пределы корня.
+     * @throws \Exception если невозможно по каким-то причинам переместить узел.
+     * @throws InvalidConfigException если пользователь захотел переместить узел за пределы корня.
      */
-    protected function move($id, $parent = 0, $position = 0)
+    public function move($id, $parent = 0, $position = 0)
     {
         if ($parent == 0 || $id == 0 || $id == 1) {
             throw new InvalidConfigException('Cannot move inside 0, or move root node');
         }
 
-        $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
-        $id     = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true, 'withPath' => true]);
+        if ($parent == 1) {
+            $parent = $this->root;
+        } else {
+            $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
+        }
+        $id = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true, 'withPath' => true]);
 
         if (!$parent['children']) {
             $position = 0;
@@ -366,7 +395,7 @@ class TreeController extends Controller
      * @throws NotFoundHttpException если пользователь передал несуществующий id.
      * @throws AccessDeniedException либо он задумал удалить корень.
      */
-    protected function remove($id)
+    public function remove($id)
     {
         if (!Task::findOne([$id])) {
             throw new NotFoundHttpException('Could not delete non-existing node');
@@ -411,7 +440,7 @@ class TreeController extends Controller
             if (!isset($parent['children'][$position])) {
                 $refRgt = $parent['rgt'];
             } else {
-                $refRgt = $parent['children'][(int)$position]['lft'] + 1;
+                $refRgt = $parent['children'][$position]['lft'] + 1;
             }
         }
 
@@ -434,7 +463,7 @@ class TreeController extends Controller
             if (!isset($parent['children'][$position])) {
                 $refLft = $parent['rgt'];
             } else {
-                $refLft = $parent['children'][(int)$position]['lft'];
+                $refLft = $parent['children'][$position]['lft'];
             }
         }
 
@@ -446,12 +475,14 @@ class TreeController extends Controller
      *
      * @param string $param параметр, который требуется проверить.
      *
-     * @return string|bool тот же самый параметр, либо 0.
+     * @return string|bool тот же самый параметр, либо 0, если проверка не пройдена.
      */
-    protected static function purifyGetRequest($param)
+    protected static function checkGetParam($param)
     {
-        if (isset($_GET[$param]) && $_GET[$param] !== '#') {
-            return $_GET[$param];
+        $getRequest = Yii::$app->request->get();
+
+        if (ArrayHelper::keyExists($param, $getRequest) && ArrayHelper::getValue($getRequest, $param) !== '#') {
+            return ArrayHelper::getValue($getRequest, $param);
         }
 
         return false;

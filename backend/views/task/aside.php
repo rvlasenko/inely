@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  *
  */
 
@@ -40,8 +40,8 @@ use yii\widgets\ListView;
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'summary'      => false,
-            'itemView'     => function ($model) {
-                return $this->render('_asideForm', ['model' => $model]);
+            'itemView'     => function ($model, $countOf) {
+                return $this->render('_asideForm', ['model' => $model, 'countOf' => $countOf]);
             }
         ]) ?>
     </div>

@@ -11,7 +11,7 @@
         "todo"
     ],
     "homepage": "https://github.com/hirootkit/inely",
-    "license": "Maybe later",
+    "license": "...",
     "authors": [
         {
             "name": "Roman Vlasenko",
@@ -28,6 +28,7 @@
         "yiisoft/yii2-authclient": "~2.0",
         "yiisoft/yii2-jui": "~2.0.0",
         "vlucas/phpdotenv": "~1.0",
+        "trntv/yii2-tactician": "*",
         "perminder-klair/yii2-dropzone": "dev-master",
         "FortAwesome/Font-Awesome": "*"
     },

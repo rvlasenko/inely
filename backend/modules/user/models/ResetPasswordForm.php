@@ -46,9 +46,7 @@ class ResetPasswordForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
             [['passwordConfirm'], 'required', 'on' => ['reset']],
-            [
-                ['passwordConfirm'],
-                'compare',
+            [['passwordConfirm'], 'compare',
                 'compareAttribute' => 'password',
                 'message'          => Yii::t('backend', 'Passwords do not match')
             ]

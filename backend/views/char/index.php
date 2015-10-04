@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  *
  * @var $this yii\web\View
  */
@@ -13,7 +13,6 @@
 $this->registerJs('
     function submitCharForm() { if (confirm("' . $i18n . '")) $("#charPredefined").submit(); }
 
-    // User select character
     $("#roboClick").click(function () {
         $("#robo").prop("checked", true);
 

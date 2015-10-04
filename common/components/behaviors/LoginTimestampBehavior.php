@@ -5,6 +5,9 @@ namespace common\components\behaviors;
 use yii\base\Behavior;
 use yii\web\User;
 
+/**
+ * @author Eugene Terentev <eugene@terentev.net>
+ */
 class LoginTimestampBehavior extends Behavior
 {
     /**

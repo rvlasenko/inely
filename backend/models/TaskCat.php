@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\models;

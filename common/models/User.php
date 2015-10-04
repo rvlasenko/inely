@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use backend\models\TaskForm;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -25,7 +24,7 @@ use yii\web\IdentityInterface;
  * @property integer                    $updated_at
  * @property integer                    $logged_at
  * @property string                     $password write-only password
- * @property \common\models\UserProfile $userProfile
+ * @property UserProfile                $userProfile
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -235,27 +234,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Send email confirmation to user
-     *
-     * @param $user
-     * @param $layout
-     * @param $email
-     * @param $subject
-     *
-     * @return bool
-     */
-    public static function sendEmail($user, $layout, $email, $subject)
-    {
-        $mailer  = Yii::$app->mailer;
-        $message = $mailer->compose($layout, ['user' => $user])->setTo($email)->setSubject($subject);
-        $message->setFrom([Yii::$app->params['adminEmail'] => Yii::$app->name]);
-
-        $result = $message->send();
-
-        return $result;
-    }
-
-    /**
      * Creates user profile and application event
      *
      * @param array $profileData
@@ -265,7 +243,6 @@ class User extends ActiveRecord implements IdentityInterface
         $this->trigger(self::EVENT_AFTER_SIGNUP);
 
         $profile         = new UserProfile();
-        $data            = ['lft' => 1, 'rgt' => 33, 'lvl' => 0, 'pid' => 0, 'pos' => 0, 'name' => 'Root'];
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
 
@@ -274,8 +251,6 @@ class User extends ActiveRecord implements IdentityInterface
         // Default role
         $auth = Yii::$app->authManager;
         $auth->assign($auth->getRole(User::ROLE_USER), $this->getId());
-
-        (new TaskForm)->make($data, $this->getId());
     }
 
     public function getPublicIdentity()

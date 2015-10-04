@@ -2,6 +2,7 @@
 
 namespace backend\modules\user\models;
 
+use common\commands\SendEmailCommand;
 use common\models\User;
 use Yii;
 use yii\base\Model;
@@ -19,9 +20,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            [
-                'email',
-                'exist',
+            ['email', 'exist',
                 'targetClass' => '\common\models\User',
                 'filter'      => ['status' => User::STATUS_ACTIVE],
                 'message'     => Yii::t('backend', 'There is no user with such email')
@@ -39,17 +38,20 @@ class PasswordResetRequestForm extends Model
         /**
          * @var $user User
          */
-        $user = User::findOne([
-            'status' => User::STATUS_ACTIVE,
-            'email'  => $this->email
-        ]);
+        $user = User::findOne(['status' => User::STATUS_ACTIVE, 'email' => $this->email]);
 
         if ($user) {
             $user->generatePasswordResetToken();
             if ($user->save()) {
                 $this->addError('email', Yii::t('backend', 'Check your email for further instructions'));
 
-                return User::sendEmail($user, 'passwordResetToken', $this->email, Yii::t('mail', 'Inely password reset'));
+                return Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'from'    => Yii::$app->params['adminEmail'],
+                    'to'      => $this->email,
+                    'subject' => Yii::t('backend', 'Inely password reset'),
+                    'view'    => 'passwordResetToken',
+                    'params'  => ['user' => $user]
+                ]));
             }
         }
 

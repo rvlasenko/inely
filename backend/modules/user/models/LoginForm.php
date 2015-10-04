@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Этот файл является частью проекта Inely.
+ *
+ * (c) Inely <http://github.com/hirootkit/inely>
+ *
+ * @author hirootkit <admiralexo@gmail.com>
+ */
+
 namespace backend\modules\user\models;
 
 use common\models\User;

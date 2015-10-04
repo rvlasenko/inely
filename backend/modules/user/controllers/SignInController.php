@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\modules\user\controllers;
@@ -16,6 +16,7 @@ use backend\modules\user\models\PasswordResetRequestForm;
 use backend\modules\user\models\ResetPasswordForm;
 use backend\modules\user\models\SignupForm;
 use backend\modules\user\models\WelcomeForm;
+use common\commands\SendEmailCommand;
 use common\models\User;
 use Yii;
 use yii\base\Exception;
@@ -170,9 +171,14 @@ class SignInController extends Controller
                 'body'  => Yii::t('backend', 'Thanks! Account e-mail address confirmed successfully')
             ]);
         } elseif ($status == User::STATUS_UNCONFIRMED) {
-            $model->confirmEmail();
+            if ($model->confirmEmail()) {
+                Yii::$app->session->setFlash('alert', [
+                    'title' => Yii::t('backend', 'Email confirmation'),
+                    'body'  => Yii::t('backend', 'Thanks! Account e-mail address confirmed successfully')
+                ]);
 
-            return $this->redirect('/welcome');
+                return $this->redirect('/welcome');
+            }
         } else {
             Yii::$app->session->setFlash('alert', [
                 'title' => Yii::t('backend', 'Email confirmation'),
@@ -194,12 +200,12 @@ class SignInController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('alert', [
-                    'title' => 'Восстановление пароля',
+                    'title' => Yii::t('backend', 'Password recover'),
                     'body'  => Yii::t('backend', 'Check your email for further instructions'),
                 ]);
             } else {
                 Yii::$app->session->setFlash('alert', [
-                    'title' => 'Восстановление пароля',
+                    'title' => Yii::t('backend', 'Password recover'),
                     'body'  => Yii::t('backend', 'Sorry, we are unable to reset password for email provided'),
                 ]);
             }
@@ -256,19 +262,19 @@ class SignInController extends Controller
          * Запись email и имени пользователя, если они указаны.
          * Email может отсутствовать, если пользователь зарегистрирован через телефон.
          */
-        if (isset($attributes['email'])) {
-            $user->email = $attributes['email'];
+        if (ArrayHelper::keyExists('email', $attributes)) {
+            $user->email = ArrayHelper::getValue($attributes, 'email');
         }
 
-        if (isset($attributes['username'])) {
-            $user->username = $attributes['username'];
+        if (ArrayHelper::keyExists('username', $attributes)) {
+            $user->username = ArrayHelper::getValue($attributes, 'username');
         }
 
         // Использование имени пользователя, как запасной вариант.
-        if (!isset($attributes['first_name'])) {
-            $user->username = $attributes['name'];
+        if (!ArrayHelper::keyExists('first_name', $attributes)) {
+            $user->username = ArrayHelper::getValue($attributes, 'name');
         } else {
-            $user->username = str_replace(" ", "_", $attributes['first_name']);
+            $user->username = str_replace(" ", "_", ArrayHelper::getValue($attributes, 'first_name'));
         }
 
         return $user;
@@ -297,7 +303,7 @@ class SignInController extends Controller
      *
      * @return object измененный объект пользователя.
      */
-    protected function setInfoVkontakte($attributes, $user)
+    protected function setInfoVk($attributes, $user)
     {
         foreach ($_SESSION as $k => $v) {
             if (is_object($v) && get_class($v) == 'yii\authclient\OAuthToken') {
@@ -309,10 +315,10 @@ class SignInController extends Controller
          * Запись email и имени пользователя в адресной строке, если они указаны.
          * А также использование id пользователя, как запасной вариант.
          */
-        if (isset($attributes['screen_name'])) {
-            $user->username = $attributes['screen_name'];
+        if (ArrayHelper::keyExists('screen_name', $attributes)) {
+            $user->username = ArrayHelper::getValue($attributes, 'screen_name');
         } else {
-            $user->username = 'vk_' . $attributes['id'];
+            $user->username = 'vk_' . ArrayHelper::getValue($attributes, 'id');
         }
 
         return $user;
@@ -324,7 +330,7 @@ class SignInController extends Controller
      * @param $client \yii\authclient\BaseClient
      *
      * @return Response редирект на Dashboard.
-     * @throws Exception если в записи текущего пользователя произошла ошибка.
+     * @throws Exception если при добавлении текущего пользователя произошла ошибка.
      */
     public function successOAuthCallback($client)
     {
@@ -340,7 +346,7 @@ class SignInController extends Controller
 
             switch ($client->getName()) {
                 case 'vkontakte':
-                    $this->setInfoVkontakte($attributes, $user);
+                    $this->setInfoVk($attributes, $user);
                     break;
                 case 'facebook':
                     $this->setInfoFacebook($attributes, $user);
@@ -360,6 +366,19 @@ class SignInController extends Controller
                     'firstname' => ArrayHelper::getValue($attributes, 'first_name'),
                     'lastname'  => ArrayHelper::getValue($attributes, 'last_name')
                 ]);
+
+                $sentSuccess = Yii::$app->commandBus->handle(new SendEmailCommand([
+                    'view'    => 'oauthWelcome',
+                    'params'  => ['user' => $user, 'password' => $password],
+                    'subject' => Yii::t('mail', 'Inely | Your login information'),
+                    'to'      => $user->email
+                ]));
+                if ($sentSuccess) {
+                    Yii::$app->session->setFlash('alert', [
+                        'title' => Yii::t('backend', 'Welcome to Inely.'),
+                        'body'  => Yii::t('backend', 'Your login information was sent to <b>{email}</b>', [ 'email' => $user->email ]),
+                    ]);
+                }
             }
         }
         if (Yii::$app->user->login($user, 3600 * 24 * 30)) {

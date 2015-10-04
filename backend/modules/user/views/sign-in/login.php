@@ -72,7 +72,7 @@ use yii\helpers\Html;
 
                         <div class="section">
                             <label for="username" class="field-label text-muted fs18 mb10"><?= Yii::t('backend', 'Password') ?>
-                                <a href="reset" class="fs14 forgot"><?= Yii::t('backend', 'you forgot?') ?></a>
+                                <a href="reset" class="fs14 forgot"><?= Yii::t('backend', 'You forgot?') ?></a>
                             </label>
                             <label for="password" class="field prepend-icon">
 

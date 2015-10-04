@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\controllers;
@@ -14,6 +14,7 @@ use common\models\User;
 use common\models\UserProfile;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -74,7 +75,9 @@ class CharController extends Controller
     public function actionChar()
     {
         if (Yii::$app->request->post()) {
-            if ((new User)->setActive() && (new UserProfile)->setDefChar($_POST['mascot'][0])) {
+            $userChar = ArrayHelper::getValue(Yii::$app->request->post(), 'mascot');
+
+            if ((new User)->setActive() && (new UserProfile)->setDefChar($userChar)) {
                 return $this->goHome();
             } else {
                 throw new HttpException(500, 'Unable to save user data');
@@ -97,14 +100,15 @@ class CharController extends Controller
      */
     public function actionUpload()
     {
-        $fileName   = 'mascot_path';
+        $fileName   = 'char_path';
         $uploadPath = Yii::getAlias('@storage/web/source/');
 
         if (Yii::$app->request->isPost) {
-            $file = UploadedFile::getInstanceByName($fileName);
+            $file     = UploadedFile::getInstanceByName($fileName);
+            $filePath = $uploadPath . $file->name;
 
-            if ($file->saveAs($uploadPath . $file->name)) {
-                if ((new User)->setActive() && (new UserProfile)->setOwnChar($uploadPath . $file->name)) {
+            if ($file->saveAs($filePath)) {
+                if ((new User)->setActive() && (new UserProfile)->setOwnChar($filePath)) {
                     return Json::encode($file);
                 } else {
                     throw new HttpException(500, 'Unable to save user data');

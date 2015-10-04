@@ -2,11 +2,13 @@
 
 var Core = function () {
 
-    var Body = $('body');
-    var listName = null;
+    var Body      = $('body');
+    var listName  = null;
+    var isClicked = false;
+    var divKey    = null;
     // Идентификатор контейнера с деревом
     var tree = $("#tree");
-    // Массив всех дочерних корневых элементов дерева
+    // Массив всех дочерних элементов дерева
     var nodes = [];
     // Корневой элемент
     var parent;
@@ -37,7 +39,7 @@ var Core = function () {
             $('ul.panel-tabs li:nth-child(3)').addClass('active');
             $('.list-tabs').css('display', 'block');
 
-            $root = tree.jstree({
+            var options = {
                 'core':        {
                     'data': {
                         'url':   'task/node',
@@ -93,8 +95,7 @@ var Core = function () {
                                 "label":            "Delete task",
                                 "action":           function () {
                                     $root.jstree(true).delete_node($node);
-                                    $("a:contains('Root')").css("display", "none");
-                                    $(".jstree-last .jstree-icon").first().hide();
+                                    hideRoot();
                                 }
                             },
                             "SetPriority": {
@@ -159,21 +160,26 @@ var Core = function () {
                 },
                 'force_text':  true,
                 'plugins':     [ 'dnd', 'contextmenu', 'search', 'state', 'checkbox' ]
-            }).on('create_node.jstree', function (e, data) {
+            };
+
+            $root = tree.jstree(
+                options
+            ).on('create_node.jstree', function (e, data) {
                 $.get('task/create', {
                     'id':       data.node.parent,
                     'position': data.position,
-                    'text':     data.node.text
+                    'text':     data.node.text,
+                    'list':     divKey
                 }).done(function (d) {
                     data.instance.set_id(data.node, d.id);
                 }).fail(function () {
                     data.instance.refresh();
                 });
-                // Пользователь нажал хоткей при переименовывании только что созданной задачи
+                // Пользователь нажал хоткей при редактировании только что созданной задачи
                 $(document).on('keyup', function (evt) {
                     if (evt.keyCode == 27) {
                         $.get('task/delete-one', { 'id': data.node.id });
-                        data.instance.refresh();
+                        tree.jstree(true).refresh();
                     }
                 });
 
@@ -183,9 +189,9 @@ var Core = function () {
                     'id': data.node.id
                 }).fail(function () {
                     data.instance.refresh();
+                }).done(function () {
+                    addNoteToNode();
                 });
-
-                addNoteToNode();
             }).on('rename_node.jstree', function (e, data) {
                 $.get('task/rename', {
                     'id':   data.node.id,
@@ -206,17 +212,16 @@ var Core = function () {
                     $root.jstree(true).uncheck_node(data.node.id);
                 }
             }).on('redraw.jstree', function () {
-                $("a:contains('Root')").css("display", "none");
-                $(".jstree-last .jstree-icon").first().hide();
+                tree.jstree('open_all');
+                hideRoot();
                 addNoteToNode();
             }).on('loaded.jstree', function () {
-                tree.jstree('open_all');
                 parent = $("a:contains('Root')");
             }).on('ready.jstree', function () {
                 addNoteToNode();
             }).on("load_node.jstree", function (e, data) {
                 // При событии load_node происходит добавление в массив id загруженного узла
-                // Необходимо отфильтровать узлы независимо от уровня вложенности
+                // Необходимо отфильтровать узлы независимо от уровня вложенности и положить в массив
                 nodes.push(data.node.children);
                 nodes = nodes.toString().split(',');
             }).on('open_node.jstree', function () {
@@ -233,27 +238,32 @@ var Core = function () {
         }
 
         if ($('.h1200').length) {
-            $(window).load(function () { // On load
+            $(window).load(function () {
                 $('.h1200').css({ 'height': (($(window).height() + 600)) + 'px' });
             });
-            $(window).resize(function () { // On resize
+            $(window).resize(function () {
                 $('.h1200').css({ 'height': (($(window).height() + 600)) + 'px' });
             });
         }
 
         var createNode = function () {
-            // Добавление задачи в корень
+            // Функция добавления задачи в корень, вызывающаяся при событии create_node
+            // После события задача немедленно переводится в режим редактирования
             var node = $root.jstree(true).create_node(parent, {
-                "text": 'New task'
+                text: 'New task'
             }, 'last', null, false);
+            hideRoot();
+            $root.jstree(true).edit(node);
+        };
+        var hideRoot = function () {
+            // Скрытие корневого элемента. И ничего больше.
             $("a:contains('Root')").css("display", "none");
             $(".jstree-last .jstree-icon").first().hide();
-            $root.jstree(true).edit(node);
-            return false;
         };
         var addNoteToNode = function () {
             // Проверка существования свойства note в объекте $.jstree.data
-            // И добавление иконки заметки при различных событиях происходящих в дереве
+            // и добавление иконки заметки при различных событиях происходящих в дереве
+            // так как jstree не позволяет сохранять пользовательские атрибуты в памяти
             setTimeout(function () {
                 $.each(nodes, function (index, value) {
                     var treeObj = tree.jstree(true).get_node(value).data;
@@ -270,39 +280,49 @@ var Core = function () {
                 })
             }, 150);
         };
+        var reloadInboxAndProject = function (inbox) {
+            // jsTree построен таким образом, что при переполнении стека реквестов
+            // ответ с сервера не дойдёт должным образом. Поэтому необходимо помешать
+            // пользователю заядло кликать больше, чем раз в полторы секунды
+            if (!isClicked) {
+                isClicked = true;
+                divKey    = $(this).parent().data('key');
+                listName  = $(this).text().trim().slice(0, -1);
 
-        // Бинд события на клавиши, по нажатию которых сработает событие create_node.jstree
+                // Перестроение дерева перед загрузкой проектов
+                tree.jstree("delete");
+                tree.jstree(options);
+                tree.jstree(true).settings.core.data = {
+                    url:  'task/node',
+                    data: function (node) {
+                        if (inbox)
+                            return { id: node.id, list: divKey };
+                        else
+                            return { id: node.id };
+                    }
+                };
+                tree.jstree(true).refresh();
+                $('.task-head').html(listName);
+                setTimeout(function () { isClicked = false }, 1500);
+            }
+        };
+
+        // Бинд на клавиши, по нажатию которых сработает событие create_node
         Mousetrap.bind([ 'q', 'й' ], function () { setTimeout(function () { createNode() }, 100) });
         $('a.action').click(function () { createNode() });
 
-        // Работа с проектами
+        // Обновление дерева с новыми данными, где поле list эквивалентно выбранному
         $('.user-project').click(function () {
-            var divKey = $(this).parent().data('key');
-            var parId  = $("a:contains('Root')").parent('li').attr('id');
-            listName   = $(this).text();
-
-            tree.jstree(true).settings.core.data = {
-                url:  'task/node',
-                data: {
-                    'id':   parId,
-                    'list': divKey
-                }
-            };
-
-            tree.jstree(true).refresh();
-            $('.task-head').html(listName);
+            reloadInboxAndProject.apply(this, [true]);
         });
+
+        // Обновление это банальная загрузка Inbox задач из [[actionNode()]]
         $('#inbox').click(function () {
-            tree.jstree(true).refresh();
-            listName = $(this).text().trim().slice(0, -1);
-            $('.task-head').html(listName);
-            return false;
+            reloadInboxAndProject.apply(this, [false]);
         });
-
     };
     var runDockModal = function () {
 
-        // On button click display quick compose message form
         $('#quick-compose').on('click', function () {
             $('.quick-compose-form').dockmodal({
                 minimizedWidth: 260,
@@ -320,16 +340,16 @@ var Core = function () {
             });
         });
     };
-    // jQuery Helper Functions
+    // jQuery хелперы
     var runHelpers = function () {
 
-        // Disable selection
+        // Отключение селекта
         $.fn.disableSelection = function () {
             return this.attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
         };
-        // Test for IE, Add body class if version 9
+        // Тест функция для IE, добавление класса if version 9 в тег <body>
         function msieversion() {
-            var ua = window.navigator.userAgent;
+            var ua   = window.navigator.userAgent;
             var msie = ua.indexOf("MSIE ");
             if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
                 var ieVersion = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
@@ -343,31 +363,25 @@ var Core = function () {
         }
 
         msieversion();
-        // Clean up helper that removes any leftover
-        // animation classes on the primary content container
-        // If left it can cause z-index and visibility problems
+        // Хелпер очищающий оставшиеся классы в основном контейнере
         setTimeout(function () {
             $('#content').removeClass('animated fadeIn');
         }, 500);
     };
-    // Delayed Animations
     var runAnimations = function () {
 
-        // Add a class after load to prevent css animations
-        // from bluring pages that have load intensive resources
+        // Добавление класса после загрузки, чтобы предотвратить css анимацию
+        // от размытия страниц, на которых много ресурсов.
         setTimeout(function () {
             $('body').addClass('onload-check');
         }, 100);
-        // Delayed Animations
-        // data attribute accepts delay(in ms) and animation style
-        // if only delay is provided fadeIn will be set as default
-        // eg. data-animate='["500","fadeIn"]'
+        // Атрибут data принимает число в миллисекундах (задержка) и стиль анимации
+        // При условии, что была передана только задержка, устанавливается анимация fadeIn
         $('.animated-delay[data-animate]').each(function () {
             var This = $(this);
             var delayTime = This.data('animate');
             var delayAnimation = 'fadeIn';
-            // if the data attribute has more than 1 value
-            // it's an array, reset defaults
+            // Если атрибут data имеет более одного значения, сбрасываем на умолчания
             if (delayTime.length > 1 && delayTime.length < 3) {
                 delayTime = This.data('animate')[ 0 ];
                 delayAnimation = This.data('animate')[ 1 ];

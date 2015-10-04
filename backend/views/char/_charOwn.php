@@ -5,19 +5,19 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 use kato\DropZone;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$i18n        = Yii::t("backend", "For the best view we recommend PNG format!");
+$i18nMessage = Yii::t("backend", "For the best view we recommend PNG format!");
 $dictMessage = <<<MSG
     <i class="fa fa-cloud-upload"></i>
     <span class="main-text"><b>Drop Files</b> to upload</span>
     <br>
-    <span class="sub-text">$i18n</span>
+    <span class="sub-text">$i18nMessage</span>
 MSG;
 
 ?>
@@ -44,7 +44,7 @@ MSG;
                         'acceptedFiles'      => 'image/*',
                         'maxFiles'           => 1,
                         'addRemoveLinks'     => true,
-                        'paramName'          => 'mascot_path',
+                        'paramName'          => 'char_path',
                         'autoProcessQueue'   => false,
                         'dictDefaultMessage' => $dictMessage
                     ],

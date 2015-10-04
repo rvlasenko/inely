@@ -34,6 +34,8 @@ return [
     'Password recovery' => 'Восстановление пароля',
     'Incorrect username or password.' => 'Неправильное имя пользователя или пароль',
     'Submit' => 'Отправить',
+    'Welcome to Inely.' => 'Добро пожаловать в Inely.',
+    'Your login information was sent to <b>{email}</b>' => 'Ваши персональные данные были отправлены на <b>{email}</b>',
     'This will be your new password' => 'Это будет вашим новым паролем',
     'Please enter a new password for your account' => 'Пожалуйста, введите новый пароль для вашего аккаунта',
     'This username has already been taken' => 'Данное имя уже кем-то занято!',
@@ -56,7 +58,7 @@ return [
     'Thanks! Account e-mail address confirmed successfully' => 'Спасибо! Ваш e-mail успешно подтверждён',
     'Yes' => 'Да',
     'No' => 'Нет',
-    'you forgot?' => 'вы забыли?',
+    'You forgot?' => 'Забыли?',
     'Send' => 'Отправить',
     /**
      * Character Select
@@ -81,8 +83,6 @@ return [
     /**
      * Tasks
      */
-    'You have no incomplete tasks in this list. Woohoo!' => 'Все задачи в списке выполнены. Поздравляем!',
-    'Try Inely' => 'Попробовать Inely',
     'Inbox' => 'Входящие',
     'Projects' => 'Проекты',
     'Today' => 'Сегодня',

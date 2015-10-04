@@ -9,5 +9,7 @@
 ?>
 
 <a href='#' class='list-group-item user-project'>
-    <?= $model->listName ?><span class='fa fa-dot-circle-o fs18 pull-right text-alert'></span>
+    <span class="fa fa-dot-circle-o fs16 mr5 text-alert"></span>
+    <?= $model->listName ?>
+    <span class="badge ml5 badge-alert fs11"><?= $model->id ?></span>
 </a>

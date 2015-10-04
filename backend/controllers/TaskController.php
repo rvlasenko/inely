@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\controllers;
@@ -16,6 +16,7 @@ use backend\models\TasksData;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -95,8 +96,8 @@ class TaskController extends TreeController
     public function actionNode()
     {
         $result = [];
-        $node   = parent::purifyGetRequest('id');
-        $list   = parent::purifyGetRequest('list') ?: null;
+        $node   = $this->checkGetParam('id');
+        $list   = $this->checkGetParam('list') ?: null;
         $temp   = $this->getChildren($node, false, $list);
         foreach ($temp as $v) {
             $result[] = [
@@ -119,8 +120,8 @@ class TaskController extends TreeController
      */
     public function actionRename()
     {
-        $node   = parent::purifyGetRequest('id');
-        $result = $this->rename($node, ['name' => parent::purifyGetRequest('text')]);
+        $node   = $this->checkGetParam('id');
+        $result = $this->rename($node, ['name' => $this->checkGetParam('text')]);
 
         return $result;
     }
@@ -134,9 +135,12 @@ class TaskController extends TreeController
      */
     public function actionCreate()
     {
-        $node   = parent::purifyGetRequest('id');
-        $pos    = parent::purifyGetRequest('position');
-        $temp   = $this->make($node, $pos, ['name' => parent::purifyGetRequest('text')]);
+        $node   = $this->checkGetParam('id');
+        $pos    = $this->checkGetParam('position');
+        $temp   = $this->make($node, $pos, [
+            'name' => $this->checkGetParam('text'),
+            'list' => $this->checkGetParam('list') ?: null
+        ]);
         $result = ['id' => $temp];
 
         return $result;
@@ -150,9 +154,9 @@ class TaskController extends TreeController
      */
     public function actionMove()
     {
-        $node   = parent::purifyGetRequest('id');
-        $parent = parent::purifyGetRequest('parent');
-        $result = $this->move($node, $parent, parent::purifyGetRequest('position'));
+        $node   = $this->checkGetParam('id');
+        $parent = $this->checkGetParam('parent');
+        $result = $this->move($node, $parent, $this->checkGetParam('position'));
 
         return $result;
     }
@@ -164,7 +168,7 @@ class TaskController extends TreeController
      */
     public function actionDelete()
     {
-        $node   = parent::purifyGetRequest('id');
+        $node   = $this->checkGetParam('id');
         $result = $this->remove($node);
 
         return $result;
@@ -178,7 +182,7 @@ class TaskController extends TreeController
      */
     public function actionDeleteOne()
     {
-        $node = parent::purifyGetRequest('id');
+        $node = $this->checkGetParam('id');
 
         if (!TasksData::findOne(['dataId' => $node, 'name' => 'Root'])) {
             Task::findOne([$node])->delete();

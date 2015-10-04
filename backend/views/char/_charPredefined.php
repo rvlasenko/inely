@@ -5,7 +5,7 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 use yii\widgets\ActiveForm;
@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
                 <section id="grid" class="grid clearfix">
                     <a href="#" id="roboClick" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
                         <figure>
-                            <input type="radio" id="robo" class="hidden" name="mascot[]" value="Robo">
+                            <input type="radio" id="robo" class="hidden" name="mascot" value="Robo">
                             <img src="images/mascots/robo/present/500mm.png" />
                             <svg viewBox="0 0 180 320" preserveAspectRatio="none">
                                 <path d="M 180,160 0,218 0,0 180,0 z" />
@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
                     </a>
                     <a href="#" id="eveClick" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
                         <figure>
-                            <input type="radio" id="eve" class="hidden" name="mascot[]" value="Eve">
+                            <input type="radio" id="eve" class="hidden" name="mascot" value="Eve">
                             <img src="images/mascots/eva/present/500mm.png" style="width: auto;" />
                             <svg viewBox="0 0 180 320" preserveAspectRatio="none">
                                 <path d="M 180,160 0,218 0,0 180,0 z" />

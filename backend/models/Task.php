@@ -5,14 +5,13 @@
  *
  * (c) Inely <http://github.com/hirootkit/inely>
  *
- * @author hirootkit
+ * @author hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\db\Query;
@@ -64,67 +63,44 @@ class Task extends ActiveRecord
     }
 
     /**
-     * @param $id
-     *
-     * @return ActiveDataProvider
-     */
-    public static function getProject($id)
-    {
-        return new ActiveDataProvider([
-            'query' => Task::find()->where(['author' => Yii::$app->user->getId(), 'list' => $id])->joinWith('tasks_cat')
-        ]);
-    }
-
-    /**
      * Статический метод, выполняющий вложенные запросы для получения количества задач.
      * @return array результаты запроса. Если результатов нет, будет возвращен пустой массив.
      */
     public static function getCount()
     {
-        $result  = [];
-        $cond    = ['author' => Yii::$app->user->id, 'isDone' => 0];
-        $condNot = ['<>', 'name', 'Root'];
+        $result      = [];
+        $condition   = ['author' => Yii::$app->user->id, 'isDone' => 0];
+        $excludeRoot = ['<>', 'name', 'Root'];
+        $inboxList   = ['list' => null];
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
         $inboxSubQuery = (new Query())->select('COUNT(*)')
                                       ->from('tasks')
                                       ->innerJoin('tasks_data', 'dataId = id')
-                                      ->where($cond)
-                                      ->andWhere($condNot);
+                                      ->where($condition)
+                                      ->andWhere($excludeRoot)
+                                      ->andWhere($inboxList);
 
         $todaySubQuery = (new Query())->select('COUNT(*)')
                                       ->from('tasks')
                                       ->innerJoin('tasks_data', 'dataId = id')
-                                      ->where($cond)
-                                      ->andWhere($condNot)
+                                      ->where($condition)
+                                      ->andWhere($excludeRoot)
                                       ->andWhere((new Expression('DATE(TIME) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
                                      ->from('tasks')
                                      ->innerJoin('tasks_data', 'dataId = id')
-                                     ->where($cond)
-                                     ->andWhere($condNot)
+                                     ->where($condition)
+                                     ->andWhere($excludeRoot)
                                      ->andWhere((new Expression('TIME BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
 
         /* SELECT ( (SELECT COUNT(*) AS `inbox` FROM `tasks`... */
         $result[] = (new Query)->select(['inbox' => $inboxSubQuery])->all();
         $result[] = (new Query)->select(['today' => $todaySubQuery])->all();
-        $result[] = (new Query)->select(['next' => $nextSubQuery])->all();
+        $result[] = (new Query)->select(['next'  => $nextSubQuery])->all();
 
         return $result;
-    }
-
-    /**
-     * @return ActiveDataProvider
-     */
-    public static function getInbox()
-    {
-        return new ActiveDataProvider([
-            'query' => Task::find()->where([
-                'author' => Yii::$app->user->id,
-                'isDone' => self::ACTIVE_TASK
-            ])->joinWith('tasksCat')
-        ]);
     }
 
     /**
