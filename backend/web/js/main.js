@@ -3,9 +3,10 @@
 var Core = function () {
 
     var Body      = $('body');
+    var formAdd   = $("#formAdd");
     var listName  = null;
     var isClicked = false;
-    var divKey    = null;
+    var listKey    = null;
     // Идентификатор контейнера с деревом
     var tree = $("#tree");
     // Массив всех дочерних элементов дерева
@@ -42,7 +43,7 @@ var Core = function () {
             var options = {
                 'core':        {
                     'data': {
-                        'url':   'task/node',
+                        'url':   '/task/node',
                         'cache': true,
                         'data':  function (node) {
                             return { 'id': node.id };
@@ -56,6 +57,14 @@ var Core = function () {
                         responsive: true
                     }
                 },
+                /*'massload' : {
+                    'url' : "/task/node",
+                    'data' : function (ids) {
+                        return { 'id' : ids.join(',') };
+                    }
+                    //'dataType' : 'json',
+                    //'type' : 'POST'
+                },*/
                 'checkbox':    {
                     'three_state': false,
                     'cascade':     'down'
@@ -75,7 +84,18 @@ var Core = function () {
                                 "action":           function (data) {
                                     var inst = $.jstree.reference(data.reference), obj = inst.get_node(data.reference);
                                     inst.create_node(obj, { type: "default" }, "last", function (new_node) {
-                                        setTimeout(function () { inst.edit(new_node); }, 0);
+                                        setTimeout(function () {
+                                            inst.edit(new_node, false, function (node) {
+                                                // Пользователь нажал хоткей при редактировании только что созданной задачи
+                                                $(document).on('keyup', function (evt) {
+                                                    if (evt.keyCode == 27) {
+                                                        tree.jstree(true).delete_node(node.id);
+                                                        hideRoot();
+                                                    }
+                                                });
+                                                hideRoot();
+                                            });
+                                        }, 0);
                                     });
                                 }
                             },
@@ -158,8 +178,7 @@ var Core = function () {
                         };
                     }
                 },
-                'force_text':  true,
-                'plugins':     [ 'dnd', 'contextmenu', 'search', 'state', 'checkbox' ]
+                'plugins':     [ 'dnd', 'contextmenu', 'search', 'state', 'checkbox', 'types', 'massload' ]
             };
 
             $root = tree.jstree(
@@ -169,28 +188,19 @@ var Core = function () {
                     'id':       data.node.parent,
                     'position': data.position,
                     'text':     data.node.text,
-                    'list':     divKey
+                    'list':     listKey
                 }).done(function (d) {
                     data.instance.set_id(data.node, d.id);
                 }).fail(function () {
                     data.instance.refresh();
                 });
-                // Пользователь нажал хоткей при редактировании только что созданной задачи
-                $(document).on('keyup', function (evt) {
-                    if (evt.keyCode == 27) {
-                        $.get('task/delete-one', { 'id': data.node.id });
-                        tree.jstree(true).refresh();
-                    }
-                });
 
-                addNoteToNode();
+                hideRoot();
             }).on('delete_node.jstree', function (e, data) {
                 $.get('task/delete', {
                     'id': data.node.id
                 }).fail(function () {
                     data.instance.refresh();
-                }).done(function () {
-                    addNoteToNode();
                 });
             }).on('rename_node.jstree', function (e, data) {
                 $.get('task/rename', {
@@ -214,18 +224,13 @@ var Core = function () {
             }).on('redraw.jstree', function () {
                 tree.jstree('open_all');
                 hideRoot();
-                addNoteToNode();
             }).on('loaded.jstree', function () {
                 parent = $("a:contains('Root')");
-            }).on('ready.jstree', function () {
-                addNoteToNode();
             }).on("load_node.jstree", function (e, data) {
                 // При событии load_node происходит добавление в массив id загруженного узла
                 // Необходимо отфильтровать узлы независимо от уровня вложенности и положить в массив
-                nodes.push(data.node.children);
-                nodes = nodes.toString().split(',');
-            }).on('open_node.jstree', function () {
-                addNoteToNode();
+                //nodes.push(data.node.children);
+                //nodes = nodes.toString().split(',');
             });
             var to = null;
             $('#search_q').keyup(function () {
@@ -247,38 +252,42 @@ var Core = function () {
         }
 
         var createNode = function () {
-            // Функция добавления задачи в корень, вызывающаяся при событии create_node
+            // Функция добавления задачи в корень, вызывающая событие create_node
             // После события задача немедленно переводится в режим редактирования
-            var node = $root.jstree(true).create_node(parent, {
-                text: 'New task'
-            }, 'last', null, false);
-            hideRoot();
-            $root.jstree(true).edit(node);
+            var textField    = $("#inputStandard");
+            var buttonAdd    = $("#buttonAdd");
+            var buttonCancel = $("#buttonCancel");
+            var hasChildren  = $("a:contains('Root')").parent('li').children('.jstree-children');
+
+            // Отображение контейнера редактирования новой задачи
+            formAdd.appendTo(".jstree-container-ul.jstree-children").show();
+
+            textField.on("keyup", function (e) {
+                // При хоткее escape произойдет отмена добавления
+                if (e.keyCode == 27) { formAdd.hide() }
+                //if (e.keyCode == 13) { buttonAdd.click() }
+                if ($(this).val().length != 0)
+                    buttonAdd.attr("disabled", false);
+                else
+                    buttonAdd.attr("disabled", true);
+            });
+
+            buttonCancel.click(function () { formAdd.hide() });
+            buttonAdd.click(function () {
+                // Инициализация события создания узла
+                tree.jstree(true).create_node(parent, { text: textField.val() }, "last");
+                //tree.jstree("create_node", parent, { 'text' : textField.val()}, "last");
+                // Лечение "особенности" jsTree
+                if (hasChildren.length === 0) {
+                    formAdd.hide();
+                    tree.jstree(true).refresh();
+                }
+            });
         };
         var hideRoot = function () {
             // Скрытие корневого элемента. И ничего больше.
             $("a:contains('Root')").css("display", "none");
             $(".jstree-last .jstree-icon").first().hide();
-        };
-        var addNoteToNode = function () {
-            // Проверка существования свойства note в объекте $.jstree.data
-            // и добавление иконки заметки при различных событиях происходящих в дереве
-            // так как jstree не позволяет сохранять пользовательские атрибуты в памяти
-            setTimeout(function () {
-                $.each(nodes, function (index, value) {
-                    var treeObj = tree.jstree(true).get_node(value).data;
-
-                    if (treeObj.hasOwnProperty('note')) {
-                        if (treeObj.note == value) {
-                            var node = $("li#" + value);
-
-                            if (!node.find("span.noty").length) {
-                                node.find("a:first").append('<span class="noty"></span>')
-                            }
-                        }
-                    }
-                })
-            }, 150);
         };
         var reloadInboxAndProject = function (inbox) {
             // jsTree построен таким образом, что при переполнении стека реквестов
@@ -286,8 +295,8 @@ var Core = function () {
             // пользователю заядло кликать больше, чем раз в полторы секунды
             if (!isClicked) {
                 isClicked = true;
-                divKey    = $(this).parent().data('key');
-                listName  = $(this).text().trim().slice(0, -1);
+                listKey   = $(this).parent().data('key');
+                listName  = $(this).text().trim().slice(0, -2);
 
                 // Перестроение дерева перед загрузкой проектов
                 tree.jstree("delete");
@@ -296,9 +305,9 @@ var Core = function () {
                     url:  'task/node',
                     data: function (node) {
                         if (inbox)
-                            return { id: node.id, list: divKey };
-                        else
                             return { id: node.id };
+                        else
+                            return { id: node.id, list: listKey };
                     }
                 };
                 tree.jstree(true).refresh();
@@ -308,17 +317,19 @@ var Core = function () {
         };
 
         // Бинд на клавиши, по нажатию которых сработает событие create_node
-        Mousetrap.bind([ 'q', 'й' ], function () { setTimeout(function () { createNode() }, 100) });
-        $('a.action').click(function () { createNode() });
+        Mousetrap.bind([ 'q', 'й' ], function () { $('a.action').click() });
+        $('a.action').click(function () {
+            createNode(); return false;
+        });
 
         // Обновление дерева с новыми данными, где поле list эквивалентно выбранному
         $('.user-project').click(function () {
-            reloadInboxAndProject.apply(this, [true]);
+            reloadInboxAndProject.apply(this, [false]);
         });
 
         // Обновление это банальная загрузка Inbox задач из [[actionNode()]]
         $('#inbox').click(function () {
-            reloadInboxAndProject.apply(this, [false]);
+            reloadInboxAndProject.apply(this, [true]);
         });
     };
     var runDockModal = function () {

@@ -2213,11 +2213,7 @@ a.text-white:hover {
 }
 
 .text-muted {
-    color : #999;
-}
-
-a.text-muted:hover {
-    color : #191919;
+    color : #a5a5a5;
 }
 
 .text-muted-light {
@@ -4787,18 +4783,28 @@ output {
     color       : #555;
 }
 
+.bs-component {
+    margin-top: 10px;
+    margin-left: 36px;
+    width: 91%;
+}
+
+#formAdd {
+    /*display: none;*/
+}
+
 .form-control {
     display            : block;
     width              : 100%;
-    height             : 39px;
-    padding            : 9px 12px;
+    height             : 37px;
+    padding            : 8px 12px;
     font-size          : 13px;
     line-height        : 1.5;
     color              : #555;
+    opacity: .7;
     background         : #fff none;
-    box-shadow         : inset 0 1px 1px rgba(0, 0, 0, .075);
     border             : 1px solid #ddd;
-    border-radius      : 0px;
+    border-radius      : 0;
     -webkit-transition : border-color ease-in-out .15s;
     -o-transition      : border-color ease-in-out .15s;
     transition         : border-color ease-in-out .15s;
@@ -5851,8 +5857,6 @@ fieldset[disabled] .btn-warning.active {
 .btn-danger {
     color              : #fff;
     background-color   : #e9573f;
-    -webkit-box-shadow : 0 1px 6px rgba(90, 90, 90, 0.35);
-    box-shadow         : 0 1px 6px rgba(90, 90, 90, 0.35);
 }
 
 .btn-danger:hover,

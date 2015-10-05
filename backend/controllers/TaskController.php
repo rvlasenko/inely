@@ -3,7 +3,7 @@
 /**
  * Этот файл является частью проекта Inely.
  *
- * (c) Inely <http://github.com/hirootkit/inely>
+ * @link http://github.com/hirootkit/inely
  *
  * @author hirootkit <admiralexo@gmail.com>
  */
@@ -16,7 +16,6 @@ use backend\models\TasksData;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\data\ActiveDataProvider;
-use yii\helpers\ArrayHelper;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -101,10 +100,17 @@ class TaskController extends TreeController
         $temp   = $this->getChildren($node, false, $list);
         foreach ($temp as $v) {
             $result[] = [
+                /**
+                 * @param int         id       идентификатор узла (задачи)
+                 * @param string      text     наименование
+                 * @param string|null a_attr   степень важности
+                 * @param string|bool icon     заметки
+                 * @param bool        children наличие дочерних узлов
+                 */
                 'id'       => $v['dataId'],
                 'text'     => $v['name'],
                 'a_attr'   => ['class' => $v['tasks']['priority']],
-                'data'     => ['note'  => is_null($v['note']) ? false : $v['dataId']],
+                'icon'     => is_null($v['note']) ? false : 'fa fa-sticky-note',
                 'children' => ($v['rgt'] - $v['lft'] > 1)
             ];
         }
@@ -172,24 +178,5 @@ class TaskController extends TreeController
         $result = $this->remove($node);
 
         return $result;
-    }
-
-    /**
-     * Удаление существующего узла дерева в единственном экземпляре.
-     * Метод используется исключительно для отмены события создания узла, происходящее по нажатию ESC.
-     * @return bool если удаление произошло.
-     * @throws AccessDeniedException если пользователь задумал удалить корень.
-     */
-    public function actionDeleteOne()
-    {
-        $node = $this->checkGetParam('id');
-
-        if (!TasksData::findOne(['dataId' => $node, 'name' => 'Root'])) {
-            Task::findOne([$node])->delete();
-        } else {
-            throw new AccessDeniedException('Could not delete root node');
-        }
-
-        return true;
     }
 }

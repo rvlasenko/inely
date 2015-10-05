@@ -1,9 +1,9 @@
 .jstree-rename-input {
     width              : 50% !important;
-    height             : 30px !important;
-    padding            : 9px 12px !important;
-    margin-bottom      : 4px !important;
-    line-height        : 1.49 !important;
+    height             : 35px !important;
+    padding            : 6px 8px !important;
+    /*margin-bottom      : 4px !important;*/
+    /*line-height        : 1.49 !important;*/
     color              : #555 !important;
     border-radius      : 0 !important;
     -webkit-transition : border-color ease-in-out .15s !important;
@@ -11,30 +11,40 @@
     transition         : border-color ease-in-out .15s !important;
 }
 
+.jstree-default .jstree-themeicon-custom {
+    background : transparent none 0 0;
+}
+
+.jstree-default .jstree-icon:empty {
+    width       : 24px;
+    height      : 24px;
+    line-height : 24px;
+}
+
 .jstree-rename-input:focus {
     border-color       : #75a5e4 !important;
     outline            : 0 !important;
-    -webkit-box-shadow : inset 0 1px 1px rgba(0, 0, 0, .075), 0 1px 4px rgba(90, 90, 90, .4) !important;
-    box-shadow         : inset 0 1px 1px rgba(0, 0, 0, .075), 0 1px 4px rgba(90, 90, 90, .4) !important;
+    -webkit-box-shadow : inset 0 1px 1px rgba(0, 0, 0, .075), 0 1px 3px rgba(90, 90, 90, .3) !important;
+    box-shadow         : inset 0 1px 1px rgba(0, 0, 0, .075), 0 1px 3px rgba(90, 90, 90, .3) !important;
 }
 
 .ajaxBusy {
-    display: block;
-    margin: 0 auto;
+    display : block;
+    margin  : 0 auto;
 }
 
-span.noty:before {
-    font-family : "FontAwesome";
-    content     : "\f249";
-    font-style  : normal;
-    font-size   : 16px;
-    margin-left : 1em;
-    opacity     : .6;
+.jstree-icon.jstree-themeicon:before {
+    font-size : 18px;
+    opacity   : .6;
 }
 
-span.noty:hover:before {
+.jstree-icon.jstree-themeicon {
+    border-bottom : 1px solid #e6e6e6 !important;
+}
+
+.jstree-icon.jstree-themeicon:hover:before {
     opacity : 1;
-    cursor : pointer;
+    cursor  : pointer;
 }
 
 .vakata-context {
@@ -117,7 +127,7 @@ a.action .fa-plus {
 
 .controller {
     padding-left : 44px;
-    display : block;
+    display      : block;
 }
 
 .jstree-proton > .jstree-container-ul .jstree-loading > .jstree-ocl {
@@ -448,12 +458,6 @@ ul.vakata-context .fa-trash-o {
 }
 
 .jstree-proton .jstree-search {
-    /*-webkit-animation-duration  : 0.7s;
-    animation-duration          : 0.7s;
-    -webkit-animation-fill-mode : backwards;
-    animation-fill-mode         : backwards;
-    -webkit-animation-name      : fadeIn;
-    animation-name              : pulse;*/
     font-weight : bold;
     color       : #ff3d3a;
 }
@@ -462,10 +466,6 @@ ul.vakata-context .fa-trash-o {
     -moz-box-sizing    : border-box;
     -webkit-box-sizing : border-box;
     box-sizing         : border-box;
-}
-
-.jstree-icon.jstree-themeicon {
-    display : none;
 }
 
 .jstree-proton .jstree-wholerow-hovered {
@@ -574,6 +574,7 @@ ul.vakata-context .fa-trash-o {
     height        : 38px;
     line-height   : 35px;
     border-bottom : 1px solid white;
+    opacity       : .9 !important;
 }
 
 .jstree-proton-responsive > .jstree-container-ul > .jstree-node {

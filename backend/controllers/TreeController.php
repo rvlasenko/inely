@@ -3,7 +3,7 @@
 /**
  * Этот файл является частью проекта Inely.
  *
- * (c) Inely <http://github.com/hirootkit/inely>
+ * @link http://github.com/hirootkit/inely
  *
  * @author hirootkit <admiralexo@gmail.com>
  */
@@ -21,11 +21,14 @@ use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
+/**
+ * Class TreeController
+ * @package backend\controllers
+ */
 class TreeController extends Controller
 {
     /**
-     * @var array
-     * Массив, указывающий, какое значение какому полю соответствует в базе.
+     * @var array Массив, указывающий, какое значение какому полю соответствует в базе.
      */
     protected $options = [
         'structure' => [
@@ -39,10 +42,10 @@ class TreeController extends Controller
     ];
 
     /**
-     * @var array
+     * @var array Фиктивный корневой узел.
      * Перед выборкой, jsTree посылает запрос /task/node?id ожидая JSON данные корневого узла
      * Чтобы предотвратить избыточность данных в базе, стоит сформировать фиктивный корень вида:
-     * ```js
+     * ```
      * [{
      *      "id":       1,
      *      "text":     "Root",
