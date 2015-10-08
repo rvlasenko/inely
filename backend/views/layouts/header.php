@@ -16,7 +16,7 @@ use yii\helpers\Html;
 $taskSearch = <<<HTML
     <form class="navbar-form navbar-left navbar-search" role="search">
         <div class="form-group">
-            <input type="text" id="search_q" class="form-control" placeholder="Search...">
+            <input type="text" id="search_q" class="form-control" placeholder="Search..." />
         </div>
     </form>
 HTML;
@@ -24,9 +24,12 @@ HTML;
 ?>
 
 <header class="navbar bg-light">
+    <div class="navbar-branding dark bg-info">
+        <a href="/"><img src="/images/logo.png" class="logo-class" /></a>
+    </div>
     <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
         <li><a href="/">Dashboard</a></li>
-        <li><a href="/calendar">Calendar</a></li>
+        <li><a href="/schedule">Calendar</a></li>
         <li><a href="/todo">Tasks</a></li>
         <li><a href="/support">Support</a></li>
     </ul>

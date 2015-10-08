@@ -53,7 +53,7 @@ return [
      * Features Section
      */
     'Features Overview' => 'Обзор возможностей',
-    'Some of the Features that are gonna blow your mind off' => 'Несколько возможностей, которые сведут Вас с ума',
+    'Some of the Features that are gonna blow your mind off' => 'Несколько возможностей, которые вам понравятся',
     'Responsive Layout' => 'Адаптивность',
     'Powerful Layout with Responsive functionality that can be adapted to any screen size. Resize browser to view.' => 'Мощная разметка с отзывчивой функциональностью может быть адаптирована к любому размеру экрана.',
     'Retina Graphics' => 'Retina графика',

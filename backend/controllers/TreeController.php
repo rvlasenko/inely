@@ -21,10 +21,6 @@ use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
-/**
- * Class TreeController
- * @package backend\controllers
- */
 class TreeController extends Controller
 {
     /**
@@ -44,7 +40,7 @@ class TreeController extends Controller
     /**
      * @var array Фиктивный корневой узел.
      * Перед выборкой, jsTree посылает запрос /task/node?id ожидая JSON данные корневого узла
-     * Чтобы предотвратить избыточность данных в базе, стоит сформировать фиктивный корень вида:
+     * Чтобы предотвратить избыточность данных в базе, формируется фиктивный корень вида:
      * ```
      * [{
      *      "id":       1,
@@ -60,10 +56,10 @@ class TreeController extends Controller
         'name'     => 'Root',
         'note'     => null,
         'lft'      => 1,
-        'rgt'      => 23,
+        'rgt'      => 11,
         'lvl'      => 0,
         'pid'      => 0,
-        'pos'      => 0,
+        'pos'      => 1,
         'children' => true,
         'tasks'    => ['priority' => null]
     ];
@@ -175,15 +171,17 @@ class TreeController extends Controller
      */
     public function make($parent, $position = 0, $data = [])
     {
+        $cond = ['tasks.author' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0) { throw new \Exception('Parent is 0'); }
         if ($parent == 1) {
             $parent = $this->root;
+            $parent['children'] = TasksData::find()->joinWith('tasks')->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
 
-        if (!ArrayHelper::keyExists('children', $parent)) { $position = 0; }
-        if (ArrayHelper::keyExists('children', $parent) && $position >= count($parent['children'])) {
+        if (!$parent['children']) { $position = 0; }
+        if ($parent['children'] && $position >= count($parent['children'])) {
             $position = count($parent['children']);
         }
 
@@ -235,18 +233,10 @@ class TreeController extends Controller
         $data = array_merge($data, $tmp);
 
         if ($node = (new TaskForm)->make($data)) {
-            if ($data && count($data)) {
-                if (!$this->rename($node, $data)) {
-                    $this->remove($node);
-
-                    throw new \Exception('Could not rename after create');
-                }
-            } else {
-                throw new HttpException(500, 'Unable to save user data');
-            }
+            return $node;
+        } else {
+            throw new HttpException(500, 'Unable to save user data');
         }
-
-        return $node;
     }
 
     /**
@@ -286,12 +276,14 @@ class TreeController extends Controller
      */
     public function move($id, $parent = 0, $position = 0)
     {
+        $cond = ['tasks.author' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0 || $id == 0 || $id == 1) {
             throw new InvalidConfigException('Cannot move inside 0, or move root node');
         }
 
         if ($parent == 1) {
             $parent = $this->root;
+            $parent['children'] = TasksData::find()->joinWith('tasks')->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
@@ -351,10 +343,10 @@ class TreeController extends Controller
         if ($diff > 0) {
             $diff = $diff - $width;
         }
-        $ldiff = ((int)$parent['lvl'] + 1) - (int)$id['lvl'];
+        $leftDiff = ((int)$parent['lvl'] + 1) - (int)$id['lvl'];
         $db->createCommand('UPDATE tasks_data SET rgt = rgt + :diff, lft = lft + :diff, lvl = lvl + :ldiff WHERE dataId IN(:dataId)')
            ->bindValue(':diff', $diff)
-           ->bindValue(':ldiff', $ldiff)
+           ->bindValue(':ldiff', $leftDiff)
            ->bindValue(':dataId', (int)implode(',', $tmp))
            ->execute();
 
@@ -443,7 +435,7 @@ class TreeController extends Controller
             if (!isset($parent['children'][$position])) {
                 $refRgt = $parent['rgt'];
             } else {
-                $refRgt = $parent['children'][$position]['lft'] + 1;
+                $refRgt = $parent['children'][(int)$position]['lft'] + 1;
             }
         }
 
@@ -466,7 +458,7 @@ class TreeController extends Controller
             if (!isset($parent['children'][$position])) {
                 $refLft = $parent['rgt'];
             } else {
-                $refLft = $parent['children'][$position]['lft'];
+                $refLft = $parent['children'][(int)$position]['lft'];
             }
         }
 

@@ -12,8 +12,6 @@ namespace backend\controllers;
 
 use backend\models\Task;
 use backend\models\TaskCat;
-use backend\models\TasksData;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;

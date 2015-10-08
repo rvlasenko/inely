@@ -28,27 +28,27 @@
                     <i class="i-plain color i-large icon-line2-emoticon-smile inline-block" style="margin-bottom: 15px;"></i>
 
                     <header class="heading-block nobottomborder" style="margin-bottom: 15px;">
-                        <h4>Responsive &amp; Retina</h4>
+                        <h4>Дружелюбная атмосфера</h4>
                     </header>
-                    <p>Employment respond committed meaningful fight against oppression social challenges rural legal aid governance. Meaningful work, implementation, process cooperation, campaign inspire.</p>
+                    <p>(В процессе написания) Возможность выбрать себе собственного персонажа, который будет сопровождать и пользователя на пути к становлению.</p>
                 </div>
 
                 <div class="col-md-4 bottommargin">
                     <i class="i-plain color i-large icon-line2-trophy inline-block" style="margin-bottom: 15px;"></i>
 
                     <header class="heading-block nobottomborder" style="margin-bottom: 15px;">
-                        <h4>Powerful Performance</h4>
+                        <h4>Увлекательное планирование</h4>
                     </header>
-                    <p>Medecins du Monde Jane Addams reduce child mortality challenges Ford Foundation. Diversification shifting landscape advocate pathway to a better life rights international. Assessment.</p>
+                    <p>Оставайтесь мотивированными, постепенно повышая свой уровень, зарабатывая достижения и приятные бонусы, выполняя задачи. Испытайте себя, пройдя путь от новичка до мастера.</p>
                 </div>
 
                 <div class="col-md-4 bottommargin">
                     <i class="i-plain color i-large icon-line2-directions inline-block" style="margin-bottom: 15px;"></i>
 
                     <header class="heading-block nobottomborder" style="margin-bottom: 15px;">
-                        <h4>Truly Multi-Purpose</h4>
+                        <h4>Ваша система эффективности</h4>
                     </header>
-                    <p>Democracy inspire breakthroughs, Rosa Parks; inspiration raise awareness natural resources. Governance impact; transformative donation philanthropy, respect reproductive.</p>
+                    <p>Inely способен помочь Вам гармонично охватывать все стороны жизни и концентрироваться на самых важных вещах, с помощью таких популярных методик, как <a href="https://ru.wikipedia.org/wiki/Getting_Things_Done">Agile Results</a> или <a href="https://ru.wikipedia.org/wiki/Getting_Things_Done">Getting Things Done</a>.</p>
                 </div>
 
             </div>

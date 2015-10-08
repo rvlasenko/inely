@@ -782,8 +782,8 @@ previous button's border...
 .dd-list .dd-list {
     padding-left: 30px;
 }
-.dd-collapsed .dd-list {
-    display: none;
+.hidden {
+    display: none !important;
 }
 .dd-item,
 .dd-empty,
@@ -4789,10 +4789,6 @@ output {
     width: 91%;
 }
 
-#formAdd {
-    /*display: none;*/
-}
-
 .form-control {
     display            : block;
     width              : 100%;
@@ -6969,12 +6965,16 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-left : -1px;
 }
 
+.logo-class {
+    width: 80px;
+}
+
 /*==================================================
   Navs
 ==================================================== */
 .nav {
     margin-bottom : 0;
-    padding-left  : 0;
+    padding-left  : 11rem;
     list-style    : none;
 }
 
@@ -7511,7 +7511,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
     margin-top: 14px;
-    margin-left: 413px;
+    margin-left: 400px;
 }
 
 @media (min-width : 768px) {
@@ -16955,11 +16955,11 @@ body:not(.device-touch) .rounded-skill {
     position: relative;
     overflow: hidden;
     float: left;
-    width: 230px;
     height: 60px;
-    margin-right: 10px;
+    padding-right: 15px;
     background-color: transparent;
-    /* Logo */
+    border-right: 1px solid #eee;
+    margin-left: 15px;
 }
 .navbar-branding .navbar-brand {
     color: #666;
@@ -18343,15 +18343,6 @@ body.tray-rescale .tray .affix-pane.affix {
 
 .sb-l-c #content_wrapper {
     margin-left : 0;
-}
-
-/*adjust navbar branding when closed*/
-.sb-l-c .navbar-branding {
-    width : 60px;
-}
-
-.sb-l-c .navbar-brand {
-    display : none;
 }
 
 /*====================================================
