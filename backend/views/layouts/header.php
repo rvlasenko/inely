@@ -25,7 +25,7 @@ HTML;
 
 <header class="navbar bg-light">
     <div class="navbar-branding dark bg-info">
-        <a href="/"><img src="/images/logo.png" class="logo-class" /></a>
+        <img src="/images/logo.png" class="logo-class" />
     </div>
     <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
         <li><a href="/">Dashboard</a></li>

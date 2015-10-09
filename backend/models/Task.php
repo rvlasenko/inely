@@ -17,7 +17,7 @@ use yii\db\Expression;
 use yii\db\Query;
 
 /**
- * Это класс модели для таблицы "tasks"
+ * Класс модели для таблицы "tasks"
  *
  * @property int        $id
  * @property int        $list
@@ -51,7 +51,7 @@ class Task extends ActiveRecord
         return [
             ['author', 'default', 'value' => Yii::$app->user->id],
             ['time', 'default', 'value' => (new Expression('NOW()'))],
-            ['isDone', 'default', 'value' => 0],
+            ['isDone', 'default', 'value' => self::ACTIVE_TASK],
             ['priority', 'in', 'range' => ['low', 'medium', 'high']],
             ['isDone', 'boolean']
         ];
@@ -63,36 +63,52 @@ class Task extends ActiveRecord
     }
 
     /**
-     * Статический метод, выполняющий вложенные запросы для получения количества задач.
-     * @return array результаты запроса. Если результатов нет, будет возвращен пустой массив.
+     * Получение количества задач по категориям.
+     * @return array результаты запроса. Если результатов нет, будет возвращен [].
      */
-    public static function getCount()
+    public static function getCountOfLists()
     {
-        $result      = [];
-        $condition   = ['author' => Yii::$app->user->id, 'isDone' => 0];
-        $excludeRoot = ['<>', 'name', 'Root'];
-        $inboxList   = ['list' => null];
+        $result    = [];
+        $condition = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $ids       = TaskCat::find()->where(['userId' => null])->orWhere(['userId' => Yii::$app->user->id])->all();
+        foreach ($ids as $id) {
+            $result[$id->id] = (new Query())->select('id')
+                                            ->from('tasks')
+                                            ->where($condition)
+                                            ->andWhere(['list' => $id->id])
+                                            ->count();
+        }
+
+        return $result;
+    }
+
+    /**
+     * Получение количества задач по группам.
+     * @return array результаты запроса. Если результатов нет, будет возвращен [].
+     */
+    public static function getCountOfGroups()
+    {
+        $result    = [];
+        $condition = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $inboxList = ['list' => null];
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
         $inboxSubQuery = (new Query())->select('COUNT(*)')
                                       ->from('tasks')
                                       ->innerJoin('tasks_data', 'dataId = id')
                                       ->where($condition)
-                                      ->andWhere($excludeRoot)
                                       ->andWhere($inboxList);
 
         $todaySubQuery = (new Query())->select('COUNT(*)')
                                       ->from('tasks')
                                       ->innerJoin('tasks_data', 'dataId = id')
                                       ->where($condition)
-                                      ->andWhere($excludeRoot)
                                       ->andWhere((new Expression('DATE(TIME) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
                                      ->from('tasks')
                                      ->innerJoin('tasks_data', 'dataId = id')
                                      ->where($condition)
-                                     ->andWhere($excludeRoot)
                                      ->andWhere((new Expression('TIME BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
 
         /* SELECT ( (SELECT COUNT(*) AS `inbox` FROM `tasks`... */

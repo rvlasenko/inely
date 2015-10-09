@@ -17,15 +17,15 @@ use yii\widgets\ListView;
 <div class="list-group list-group-links" id="sideInfo">
     <a href="#" id="inbox" class="list-group-item pt15"><?= Yii::t('backend', 'Inbox') ?>
         <i class="fa fa-inbox fs20 pull-left"></i>
-        <span class="badge badge-info fs11"><?= $countOf[0][0]['inbox'] ?></span>
+        <span class="badge badge-info fs11"><?= $countOfGroup[0][0]['inbox'] ?></span>
     </a>
     <a href="#" id="today" class="list-group-item"><?= Yii::t('backend', 'Today') ?>
         <i class="fa fa-calendar-o fs20 pull-left"></i>
-        <span class="badge badge-info fs11"><?= $countOf[1][0]['today'] ?></span>
+        <span class="badge badge-info fs11"><?= $countOfGroup[1][0]['today'] ?></span>
     </a>
     <a href="#" id="next" class="list-group-item"><?= Yii::t('backend', 'Next 7 days') ?>
         <i class="fa fa-calendar fs20 pull-left"></i>
-        <span class="badge badge-info fs11"><?= $countOf[2][0]['next'] ?></span>
+        <span class="badge badge-info fs11"><?= $countOfGroup[2][0]['next'] ?></span>
     </a>
     <a href="#" id="done" class="list-group-item"><?= Yii::t('backend', 'Completed') ?>
         <i class="fa fa-calendar-check-o fs20 pull-left"></i>
@@ -40,8 +40,10 @@ use yii\widgets\ListView;
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'summary'      => false,
-            'itemView'     => function ($model, $countOf) {
-                return $this->render('_asideForm', ['model' => $model, 'countOf' => $countOf]);
+            'itemView'     => function ($model) use ($countOfLists) {
+                return $this->render('_asideForm', [
+                    'model' => $model, 'countOfLists' => $countOfLists
+                ]);
             }
         ]) ?>
     </div>

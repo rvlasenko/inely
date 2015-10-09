@@ -19,7 +19,7 @@
         <div id="formAdd" hidden>
             <div class="bs-component">
                 <div class="col-md-9 col-sm-9 col-xs-9 pln prn">
-                    <input type="text" class="inputStandard form-control" placeholder="Начните набирать здесь..." autofocus>
+                    <input type="text" class="inputStandard form-control" placeholder="Начните набирать здесь...">
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-3 pln">
                     <input type="text" class="form-control br-l-n" id="datetimepicker1" placeholder="Назначить время">

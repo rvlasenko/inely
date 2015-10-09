@@ -16,6 +16,8 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use yii\filters\AccessControl;
+use yii\web\HttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 class TaskController extends TreeController
@@ -79,7 +81,8 @@ class TaskController extends TreeController
 
         return $this->render('index', [
             'dataProvider' => new ActiveDataProvider(['query' => $query]),
-            'countOf'      => Task::getCount()
+            'countOfGroup' => Task::getCountOfGroups(),
+            'countOfLists' => Task::getCountOfLists()
         ]);
     }
 
@@ -176,5 +179,30 @@ class TaskController extends TreeController
         $result = $this->remove($node);
 
         return $result;
+    }
+
+    /**
+     * Изменение степени важности для полученной задачи.
+     * @return bool при успешном обновлении поля "priority"
+     * @throws HttpException если невозможно обновить задачу
+     * @throws NotFoundHttpException если задачи с указанным идентификатором нет
+     */
+    public function actionSetPriority()
+    {
+        $node = $this->checkGetParam('id');
+        $pr   = $this->checkGetParam('pr');
+
+        if ($node && Task::findOne($node)) {
+            $task           = Task::findOne($node);
+            $task->priority = $pr;
+
+            if ($task->save()) {
+                return true;
+            } else {
+                throw new HttpException(500, 'Unable to save user data');
+            }
+        } else {
+            throw new NotFoundHttpException('Could not set on non-existing node');
+        }
     }
 }

@@ -14,13 +14,13 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * Это класс модели для таблицы "tasks_data", содержащий структуру "Nested Set"
+ * Класс модели для таблицы "tasks_data", содержащий структуру "Nested Set"
  *
  * @property int        $dataId
- * @property int        $lft key left
- * @property int        $rgt key right
- * @property int        $lvl nesting level
- * @property int        $pid parent id
+ * @property int        $lft
+ * @property int        $rgt
+ * @property int        $lvl
+ * @property int        $pid
  * @property int        $pos
  * @property string     $name
  *
@@ -38,23 +38,6 @@ class TasksData extends ActiveRecord
             [['lft', 'rgt', 'lvl', 'pid', 'pos'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
-    }
-
-    /**
-     * Получение приоритета задачи по её идентификатору.
-     *
-     * @param int $node идентификатор узла
-     *
-     * @return array|ActiveRecord[] результат запроса. Если результат равен null, то будет возвращен пустой массив.
-     */
-    public static function getPriority($node)
-    {
-        return Task::find()
-                   ->select('priority')
-                   ->where(['author' => Yii::$app->user->id])
-                   ->andWhere(['id' => $node])
-                   ->asArray()
-                   ->one();
     }
 
     /**

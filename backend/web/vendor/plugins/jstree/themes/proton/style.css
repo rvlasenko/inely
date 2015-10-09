@@ -69,7 +69,7 @@
     border             : 1px solid rgba(0, 0, 0, 0.15);
     border-radius      : 1px;
     -webkit-box-shadow : 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow         : 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow         : 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 
 .vakata-context ul {
@@ -457,7 +457,7 @@ ul.vakata-context .fa-trash-o {
     color : #e9573f;
 }
 
-.jstree-proton .jstree-search {
+.jstree-proton .jstree-search > span {
     font-weight : bold;
     color       : #ff3d3a;
 }

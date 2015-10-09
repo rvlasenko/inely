@@ -103,7 +103,11 @@ class TreeController extends Controller
     public function getChildren($id, $recursive = false, $list = null)
     {
         $query[] = $this->root;
-        $cond    = ['pid' => $id, 'tasks.author' => Yii::$app->user->id, 'tasks.isDone' => 0];
+        $cond    = [
+            'pid'          => $id,
+            'tasks.author' => Yii::$app->user->id,
+            'tasks.isDone' => Task::ACTIVE_TASK
+        ];
         if ($recursive) {
             // Рекурсивная проверка на наличие вложенных задач
             $node  = $this->getNode($id);
@@ -189,7 +193,7 @@ class TreeController extends Controller
         // Обновление позиции всех следующих элементов.
         $db = Yii::$app->db;
         $db->createCommand('UPDATE tasks_data SET pos = pos + 1 WHERE pid = :pid AND pos >= :pos')
-           ->bindValue(':pid', (int)$parent['dataId'])
+           ->bindValue(':pid', $parent['dataId'])
            ->bindValue(':pos', $position)
            ->execute();
 
@@ -197,11 +201,11 @@ class TreeController extends Controller
         $refRgt = $this->updateRightIndexes($parent, $position);
 
         $db->createCommand('UPDATE tasks_data SET lft = lft + 2 WHERE lft >= :lft')
-           ->bindValue(':lft', (int)$refLft)
+           ->bindValue(':lft', $refLft)
            ->execute();
 
         $db->createCommand('UPDATE tasks_data SET rgt = rgt + 2 WHERE rgt >= :rgt')
-           ->bindValue(':rgt', (int)$refRgt)
+           ->bindValue(':rgt', $refRgt)
            ->execute();
 
         /* Вставка нового узла в структуру */
@@ -308,7 +312,7 @@ class TreeController extends Controller
 
         if ($id['children'] && is_array($id['children'])) {
             foreach ($id['children'] as $c) {
-                $tmp[] = (int)$c['dataId'];
+                $tmp[] = $c['dataId'];
             }
         }
 
@@ -316,8 +320,8 @@ class TreeController extends Controller
         // Обновление позиции всех следующих элементов.
         $db = Yii::$app->db;
         $db->createCommand('UPDATE tasks_data SET pos = pos + 1 WHERE dataId != :dataId AND pid = :pid AND pos >= :pos')
-           ->bindValue(':dataId', (int)$id['dataId'])
-           ->bindValue(':pid', (int)$parent['dataId'])
+           ->bindValue(':dataId', $id['dataId'])
+           ->bindValue(':pid', $parent['dataId'])
            ->bindValue(':pos', $position)
            ->execute();
 
@@ -326,56 +330,56 @@ class TreeController extends Controller
 
         $db->createCommand('UPDATE tasks_data SET lft = lft + :width WHERE lft >= :lft AND dataId NOT IN (:dataId)')
            ->bindValue(':width', $width)
-           ->bindValue(':lft', (int)$refLft)
-           ->bindValue(':dataId', (int)implode(',', $tmp))
+           ->bindValue(':lft', $refLft)
+           ->bindValue(':dataId', (int) implode(',', $tmp))
            ->execute();
 
         $db->createCommand('UPDATE tasks_data SET rgt = rgt + :width WHERE rgt >= :rgt AND dataId NOT IN (:dataId)')
            ->bindValue(':width', $width)
-           ->bindValue(':rgt', (int)$refRgt)
-           ->bindValue(':dataId', (int)implode(',', $tmp))
+           ->bindValue(':rgt', $refRgt)
+           ->bindValue(':dataId', (int) implode(',', $tmp))
            ->execute();
 
         /* Перемещение узла и его дочерних элементов */
         // правый, левый атрибуты и уровень вложенности
-        $diff = $refLft - (int)$id['lft'];
+        $diff = $refLft - $id['lft'];
 
         if ($diff > 0) {
             $diff = $diff - $width;
         }
-        $leftDiff = ((int)$parent['lvl'] + 1) - (int)$id['lvl'];
+        $leftDiff = ($parent['lvl'] + 1) - $id['lvl'];
         $db->createCommand('UPDATE tasks_data SET rgt = rgt + :diff, lft = lft + :diff, lvl = lvl + :ldiff WHERE dataId IN(:dataId)')
            ->bindValue(':diff', $diff)
            ->bindValue(':ldiff', $leftDiff)
-           ->bindValue(':dataId', (int)implode(',', $tmp))
+           ->bindValue(':dataId', (int) implode(',', $tmp))
            ->execute();
 
         // позиция и id родителя
         $db->createCommand('UPDATE tasks_data SET pos = :pos, pid = :pid WHERE dataId = :id')
            ->bindValue(':pos', $position)
-           ->bindValue(':pid', (int)$parent['dataId'])
-           ->bindValue(':id', (int)$id['dataId'])
+           ->bindValue(':pid', $parent['dataId'])
+           ->bindValue(':id', $id['dataId'])
            ->execute();
 
         /* Очистка старого родителя */
         // Обновление позиции всех следующих элементов.
         $db->createCommand('UPDATE tasks_data SET pos = pos - 1 WHERE pid = :pid AND pos > :pos')
-           ->bindValue(':pid', (int)$id['pid'])
-           ->bindValue(':pos', (int)$id['pos'])
+           ->bindValue(':pid', $id['pid'])
+           ->bindValue(':pos', $id['pos'])
            ->execute();
 
         // А также левых индексов
         $db->createCommand('UPDATE tasks_data SET lft = lft - :width WHERE lft > :rgt AND dataId NOT IN(:id)')
            ->bindValue(':width', $width)
            ->bindValue(':rgt', $id['rgt'])
-           ->bindValue(':id', (int)implode(',', $tmp))
+           ->bindValue(':id', (int) implode(',', $tmp))
            ->execute();
 
         // И правых индексов
         $db->createCommand('UPDATE tasks_data SET rgt = rgt - :width WHERE rgt > :rgt AND dataId NOT IN(:id)')
            ->bindValue(':width', $width)
            ->bindValue(':rgt', $id['rgt'])
-           ->bindValue(':id', (int)implode(',', $tmp))
+           ->bindValue(':id', (int) implode(',', $tmp))
            ->execute();
 
         return true;
@@ -414,7 +418,7 @@ class TreeController extends Controller
             }
         }
 
-        $db->createCommand()->delete('tasks', 'id IN (:id)', [':id' => implode(',', $tmp)])->execute();
+        $db->createCommand()->delete('tasks', 'id IN (:id)', [':id' => (int) implode(',', $tmp)])->execute();
 
         return true;
     }
@@ -435,7 +439,7 @@ class TreeController extends Controller
             if (!isset($parent['children'][$position])) {
                 $refRgt = $parent['rgt'];
             } else {
-                $refRgt = $parent['children'][(int)$position]['lft'] + 1;
+                $refRgt = $parent['children'][$position]['lft'] + 1;
             }
         }
 
@@ -458,7 +462,7 @@ class TreeController extends Controller
             if (!isset($parent['children'][$position])) {
                 $refLft = $parent['rgt'];
             } else {
-                $refLft = $parent['children'][(int)$position]['lft'];
+                $refLft = $parent['children'][$position]['lft'];
             }
         }
 

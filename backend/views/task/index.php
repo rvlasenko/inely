@@ -15,7 +15,11 @@
 
 <!-- begin: .tray-left -->
 <aside class="tray tray-left va-t tray250">
-    <?= $this->render('aside', ['dataProvider' => $dataProvider, 'countOf' => $countOf]) ?>
+    <?= $this->render('aside', [
+        'dataProvider' => $dataProvider,
+        'countOfGroup' => $countOfGroup,
+        'countOfLists' => $countOfLists
+    ]) ?>
 </aside>
 <!-- end: .tray-left -->
 
