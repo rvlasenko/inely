@@ -61,7 +61,7 @@ class TaskController extends TreeController
             ],*/
             [
                 'class'   => 'yii\filters\ContentNegotiator',
-                'only'    => ['node', 'rename', 'create', 'move', 'delete'],
+                'only'    => ['node', 'rename', 'create', 'move', 'delete', 'sort'],
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON
                 ]
@@ -95,28 +95,14 @@ class TaskController extends TreeController
      */
     public function actionNode()
     {
-        $result = [];
-        $node   = $this->checkGetParam('id');
-        $list   = $this->checkGetParam('list') ?: null;
-        $temp   = $this->getChildren($node, false, $list);
-        foreach ($temp as $v) {
-            $result[] = [
-                /**
-                 * @param int         id       идентификатор узла (задачи)
-                 * @param string      text     наименование
-                 * @param string|null a_attr   степень важности
-                 * @param string|bool icon     заметки
-                 * @param bool        children наличие дочерних узлов
-                 */
-                'id'       => $v['dataId'],
-                'text'     => $v['name'],
-                'a_attr'   => ['class' => $v['tasks']['priority']],
-                'icon'     => is_null($v['note']) ? false : 'fa fa-sticky-note',
-                'children' => ($v['rgt'] - $v['lft'] > 1)
-            ];
-        }
+        $node = $this->checkGetParam('id');
+        $list = $this->checkGetParam('list') ?: null;
+        $sort = $this->checkGetParam('sort') ?: 'pos';
 
-        return $result;
+        $temp = $this->getChildren($node, false, $list, $sort);
+        $json = $this->buildJson($temp);
+
+        return $json;
     }
 
     /**

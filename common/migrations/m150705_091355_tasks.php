@@ -16,7 +16,7 @@ class m150705_091355_tasks extends Migration
             'author'     => $this->integer(50)->notNull(),
             'list'       => $this->integer(15),
             'isDone'     => $this->integer(1),
-            'priority'   => $this->string(9),
+            'priority'   => $this->integer(1),
             'time'       => $this->timestamp(),
             'updated_at' => $this->integer(16),
         ], $tableOptions);

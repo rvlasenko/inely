@@ -108,7 +108,7 @@
     width            : 100%;
     height           : 100%;
     top              : 23%;
-    margin-left      : 0px;
+    margin-left      : 0;
     text-align       : center;
     left             : 0;
 }
@@ -316,7 +316,7 @@
     padding             : 9px 12px;
     font-size           : 13px;
     line-height         : 1.5;
-    border-radius       : 0px;
+    border-radius       : 0;
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
@@ -326,6 +326,265 @@
     border-color        : rgba(0, 0, 0, 0.1);
     height              : auto;
     padding             : 6px 12px;
+}
+
+.ui-datepicker {
+    width              : 18em;
+    margin-top         : 8px;
+    display            : none;
+    background         : #fff;
+    position           : relative;
+    -webkit-box-shadow : 0 6px 12px rgba(0, 0, 0, 0.175);
+    -moz-box-shadow    : 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow         : 0 6px 12px rgba(0, 0, 0, 0.175);
+    z-index            : 1025 !important;
+    text-align         : center;
+    color              : #666;
+    border-radius      : 2px;
+}
+
+.ui-datepicker a {
+    color      : #404040;
+    text-align : center;
+}
+
+.ui-datepicker .ui-state-disabled span {
+    color : #dbdbdb;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    position    : relative;
+    line-height : 25px;
+    font-size   : 15px;
+    padding     : 8px;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    width           : 34px;
+    height          : 34px;
+    display         : block;
+    font-size       : 14px;
+    position        : absolute;
+    text-decoration : none;
+    cursor          : pointer;
+    color           : #666;
+    top             : 20.5%;
+    opacity         : .7;
+}
+
+.ui-datepicker .ui-datepicker-prev:hover,
+.ui-datepicker .ui-datepicker-next:hover {
+    opacity : 1;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+    left : 2px;
+}
+
+.ui-datepicker .ui-datepicker-next {
+    right : 2px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin      : 0 2.3em;
+    line-height : 1.8em;
+    text-align  : center;
+    color       : #555;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+    font-size        : 1em;
+    margin           : 1px 0;
+    padding          : 1px 5px;
+    background-color : #eee;
+    border-color     : #ccc;
+}
+
+.ui-datepicker .ui-datepicker-title select option {
+    background : #fff;
+}
+
+.ui-datepicker select.ui-datepicker-month-year {
+    width : 100%;
+}
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+    width : 52%;
+}
+
+.ui-datepicker table {
+    width           : 100%;
+    font-size       : .9em;
+    margin          : 0 0 15px;
+    border-collapse : collapse;
+}
+
+.ui-datepicker th {
+    padding     : .5em .3em;
+    text-align  : center;
+    font-weight : bold;
+    border      : 0;
+}
+
+.ui-datepicker td {
+    border  : 0;
+    padding : 2px 4px;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+    color           : #6e6e6e;
+    padding         : .25em;
+    display         : block;
+    text-align      : center;
+    text-decoration : none;
+    border-radius   : 15px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    color : #4a89dc;
+}
+
+#eventDate:focus ~ .field-icon i {
+    color : #4a89dc;
+}
+
+.ui-datepicker td span:hover,
+.ui-datepicker td a:hover {
+    background : #f5f5f5;
+}
+
+.ui-datepicker .ui-state-disabled span:hover {
+    background : none;
+}
+
+.ui-datepicker-today a,
+.ui-datepicker-today a:hover,
+.ui-datepicker .ui-state-active,
+.ui-datepicker .ui-state-highlight {
+    font-weight : 600;
+    color       : #fff;
+    background  : #ccc !important;
+}
+
+.ui-datepicker .ui-state-active {
+    background : #888 !important;
+}
+
+.ui-datepicker-buttonpane {
+    border-top : 1px solid #ddd;
+    padding    : 10px;
+    background : #f8f8f8;
+}
+
+.ui-datepicker-buttonpane button {
+    padding           : 5px 12px;
+    margin-right      : 10px;
+    font-size         : 13px;
+    position          : relative;
+    line-height       : normal;
+    display           : inline-block;
+    -webkit-user-drag : none;
+    text-shadow       : 0 1px rgba(255, 255, 255, 0.2);
+    vertical-align    : middle;
+    background        : #fff;
+    text-align        : center;
+    overflow          : visible;
+    cursor            : pointer;
+    color             : #333;
+    border            : 1px solid #ddd;
+}
+
+.ui-datepicker-buttonpane button:hover {
+    color      : #243140;
+    background : #e8e8e8;
+}
+
+.ui-datepicker-buttonpane button:active {
+    color      : #1d2938;
+    background : #c4c4c4;
+}
+
+.ui-monthpicker .ui-datepicker-header {
+    margin-bottom : 3px;
+}
+
+.ui-datepicker-inline {
+    width : 100%;
+}
+
+.ui-datepicker-inline,
+.ui-timepicker-inline,
+.ui-datetimepicker-inline {
+    box-shadow : none;
+    margin     : 0 auto;
+}
+
+.append-icon, .prepend-icon {
+    top            : 0;
+    left           : 0;
+    display        : inline-block;
+    vertical-align : top;
+    position       : relative;
+    width          : 100%;
+}
+
+.append-icon .field-icon, .prepend-icon .field-icon {
+    top                : 0;
+    z-index            : 4;
+    width              : 42px;
+    height             : 42px;
+    color              : inherit;
+    line-height        : 36px;
+    position           : absolute;
+    text-align         : center;
+    -webkit-transition : all 0.5s ease-out;
+    -moz-transition    : all 0.5s ease-out;
+    -ms-transition     : all 0.5s ease-out;
+    -o-transition      : all 0.5s ease-out;
+    transition         : all 0.5s ease-out;
+    pointer-events     : none;
+}
+
+label, input, button, select, textarea {
+    margin      : 0;
+    font-size   : 14px;
+    font-weight : 400;
+    color       : #626262;
+    outline     : none;
+}
+
+.append-icon .field-icon i, .prepend-icon .field-icon i {
+    position  : relative;
+    font-size : 14px;
+}
+
+.field-icon i {
+    color    : #bbb;
+    position : relative;
+}
+
+.theme-primary .gui-input:focus, .theme-primary .gui-textarea:focus, .theme-primary .select > select:focus, .theme-primary .select-multiple select:focus {
+    border-color : #5d9cec;
+    color        : #3c3c3c;
+}
+
+.select, .gui-input, .gui-textarea, .select > select, .select-multiple select {
+    position       : relative;
+    vertical-align : top;
+    border         : 1px solid #ddd;
+    display        : -moz-inline-stack;
+    display        : inline-block;
+    color          : #626262;
+    outline        : none;
+    height         : 42px;
+    width          : 100%;
+}
+
+.prepend-icon .field-icon {
+    left : 0;
 }
 
 .fc button:focus,
@@ -553,6 +812,10 @@ fieldset[disabled] .fc button.active {
     max-width : 600px;
     margin    : 40px auto;
     position  : relative;
+}
+
+#eventDate {
+    padding-left : 36px;
 }
 
 .modal-basic-bg {
@@ -1297,7 +1560,7 @@ input.ui-editRangeSlider-inputValue {
 
 .bootstrap-tagsinput .tag [data-role="remove"]:after {
     content : "x";
-    padding : 0px 2px;
+    padding : 0 2px;
 }
 
 .bootstrap-tagsinput .tag [data-role="remove"]:hover {
@@ -1961,7 +2224,7 @@ h1,
 
 h2,
 .h2 {
-    font-size : 24px;
+    font-size : 22px;
 }
 
 h3,
@@ -2534,7 +2797,7 @@ address {
     font-weight : 600;
     line-height : 45px;
     padding     : 5px;
-    margin      : 0px 5px 0 0;
+    margin      : 0 5px 0 0;
 }
 
 .dropcap.lead:first-letter {
@@ -2545,13 +2808,13 @@ address {
 .dropcap.dropcap-fill:first-letter {
     border-radius : 6px;
     color         : #fff;
-    margin        : 0px 10px 0 0;
+    margin        : 0 10px 0 0;
 }
 
 .dropcap.lead.dropcap-fill:first-letter {
     border-radius  : 6px;
     color          : #fff;
-    margin         : 0px 10px 0 0;
+    margin         : 0 10px 0 0;
     padding-bottom : 26px;
 }
 
@@ -2688,7 +2951,7 @@ kbd {
     font-size        : 90%;
     color            : #fff;
     background-color : #333;
-    border-radius    : 0px;
+    border-radius    : 0;
     box-shadow       : inset 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -4582,10 +4845,8 @@ legend {
 }
 
 label {
-    display       : inline-block;
-    max-width     : 100%;
-    margin-bottom : 5px;
-    font-weight   : 600;
+    display   : inline-block;
+    max-width : 100%;
 }
 
 input[type="search"] {
@@ -4631,9 +4892,8 @@ output {
 }
 
 .bs-component {
-    margin-top  : 10px;
-    margin-left : 36px;
-    width       : 91%;
+    margin-top : 10px;
+    width      : 91%;
 }
 
 .form-control {
@@ -4824,7 +5084,7 @@ fieldset[disabled] .checkbox label {
     padding       : 5px 10px;
     font-size     : 12px;
     line-height   : 1.5;
-    border-radius : 0px;
+    border-radius : 0;
 }
 
 select.input-sm {
@@ -5276,7 +5536,7 @@ select[multiple].input-lg {
     padding             : 9px 12px;
     font-size           : 13px;
     line-height         : 1.5;
-    border-radius       : 0px;
+    border-radius       : 0;
     -webkit-user-select : none;
     -moz-user-select    : none;
     -ms-user-select     : none;
@@ -6011,7 +6271,7 @@ fieldset[disabled] .btn-link:focus {
     padding       : 5px 10px;
     font-size     : 12px;
     line-height   : 1.5;
-    border-radius : 0px;
+    border-radius : 0;
 }
 
 .btn-xs,
@@ -6019,7 +6279,7 @@ fieldset[disabled] .btn-link:focus {
     padding       : 1px 5px;
     font-size     : 12px;
     line-height   : 1.5;
-    border-radius : 0px;
+    border-radius : 0;
 }
 
 .btn-block {
@@ -6284,9 +6544,9 @@ tbody.collapse.in {
 
 .dropdown-menu > li > a {
     display     : block;
-    padding     : 4px 15px;
+    padding     : 7px 15px;
     clear       : both;
-    color       : #666;
+    color       : #6f6666;
     font-weight : normal;
     white-space : nowrap;
 }
@@ -6325,6 +6585,14 @@ tbody.collapse.in {
 
 .open > .dropdown-menu {
     display : block;
+}
+
+.dropdown .fa-cogs {
+    opacity : .6;
+}
+
+.dropdown .fa-cogs:hover {
+    opacity : 1;
 }
 
 .open > a {
@@ -6661,7 +6929,7 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
     padding       : 5px 10px;
     font-size     : 12px;
     line-height   : 1.5;
-    border-radius : 0px;
+    border-radius : 0;
 }
 
 select.input-group-sm > .form-control,
@@ -6709,13 +6977,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     text-align       : center;
     background-color : #fafafa;
     border           : 1px solid #ddd;
-    border-radius    : 0px;
+    border-radius    : 0;
 }
 
 .input-group-addon.input-sm {
     padding       : 5px 10px;
     font-size     : 12px;
-    border-radius : 0px;
+    border-radius : 0;
 }
 
 .input-group-addon.input-lg {
@@ -7817,14 +8085,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 
 .pagination-sm > li:first-child > a,
 .pagination-sm > li:first-child > span {
-    border-bottom-left-radius : 0px;
-    border-top-left-radius    : 0px;
+    border-bottom-left-radius : 0;
+    border-top-left-radius    : 0;
 }
 
 .pagination-sm > li:last-child > a,
 .pagination-sm > li:last-child > span {
-    border-bottom-right-radius : 0px;
-    border-top-right-radius    : 0px;
+    border-bottom-right-radius : 0;
+    border-top-right-radius    : 0;
 }
 
 .pager {
@@ -8786,15 +9054,14 @@ a.thumbnail.active {
 }
 
 .task-head {
-    text-shadow : 1px 0px 4px rgba(230, 230, 229, 0.55);
+    text-shadow : 1px 0 4px rgba(230, 230, 229, 0.3);
     display     : block;
 }
 
 .progress-bar[aria-valuenow="0"] {
     color            : #777;
     min-width        : 30px;
-    background-color : transparent;
-    background-image : none;
+    background       : transparent none;
     box-shadow       : none;
 }
 
@@ -9186,6 +9453,22 @@ a.list-group-item:focus {
     color : #f5f8fd;
 }
 
+.controller a.action {
+    color     : #666;
+    font-size : 13px;
+}
+
+a.action .fa-plus {
+    font-size: 14px;
+    margin-right : 15px;
+    margin-top   : 20px;
+}
+
+.controller {
+    padding-left : 44px;
+    display      : block;
+}
+
 .list-group.list-group-links .list-group-header {
     list-style     : none;
     font-size      : 15px;
@@ -9252,9 +9535,9 @@ a.list-group-item:focus {
     margin-bottom      : 20px;
     background-color   : #fff;
     border-radius      : 2px;
-    -webkit-box-shadow : 0px 1px 10px 0px rgba(68, 68, 68, 0.1);
-    -moz-box-shadow    : 0px 1px 10px 0px rgba(68, 68, 68, 0.1);
-    box-shadow         : 0px 1px 10px 0px rgba(68, 68, 68, 0.1);
+    -webkit-box-shadow : 0 1px 10px 0 rgba(68, 68, 68, 0.1);
+    -moz-box-shadow    : 0 1px 10px 0 rgba(68, 68, 68, 0.1);
+    box-shadow         : 0 1px 10px 0 rgba(68, 68, 68, 0.1);
 }
 
 .panel.panel-transparent {
@@ -9309,7 +9592,7 @@ a.list-group-item:focus {
 }
 
 .bsh2 {
-    box-shadow : 0px 0px 6px 0px rgba(50, 50, 50, 0.15);
+    box-shadow : 0 0 6px 0 rgba(50, 50, 50, 0.15);
 }
 
 .panel-menu.dark {
@@ -9997,12 +10280,12 @@ a.list-group-item:focus {
 
 .well-sm {
     padding       : 9px;
-    border-radius : 0px;
+    border-radius : 0;
 }
 
 .well.well-xs {
     padding       : 6px;
-    border-radius : 0px;
+    border-radius : 0;
 }
 
 .well.well-clean {
@@ -14150,7 +14433,7 @@ ol.timeline-list li.timeline-item .timeline-date {
 }
 
 .br0 {
-    border-radius : 0px !important;
+    border-radius : 0 !important;
 }
 
 .br1 {
@@ -14788,7 +15071,7 @@ main:before {
 
 #content_wrapper {
     position    : relative;
-    left        : 0px;
+    left        : 0;
     margin-left : 230px;
 }
 
@@ -14878,7 +15161,7 @@ body.sb-l-o.sb-l-m #topbar.affix {
 }
 
 body.sb-l-c #topbar.affix {
-    margin-left : 0px;
+    margin-left : 0;
 }
 
 #topbar.affix + #content {
@@ -15158,13 +15441,18 @@ body.sidebar-collapsed #sidebar:before {
     background-color : #3bafda;
 }
 
-a.t-option {
+.t-option {
     position  : absolute;
-    right     : 64px;
-    top       : 37px;
+    right     : 60px;
+    top       : 28px;
     font-size : 17px;
     color     : #666;
-    opacity   : .5;
+}
+
+button.dropdown {
+    border           : 0;
+    background-color : #fff;
+    padding          : 0;
 }
 
 a.t-option:hover {
@@ -15535,7 +15823,7 @@ div.next-button-container {
     }
 
     body.boxed-layout #content_wrapper {
-        margin-top : 0px;
+        margin-top : 0;
     }
 }
 
@@ -15545,14 +15833,14 @@ div.next-button-container {
 }
 
 ::-webkit-scrollbar-button {
-    width  : 0px;
-    height : 0px;
+    width  : 0;
+    height : 0;
 }
 
 ::-webkit-scrollbar-thumb {
     background    : #e1e1e1;
-    border        : 0px none #fff;
-    border-radius : 0px;
+    border        : 0 none #fff;
+    border-radius : 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -15565,8 +15853,8 @@ div.next-button-container {
 
 ::-webkit-scrollbar-track {
     background    : #666;
-    border        : 0px none #fff;
-    border-radius : 0px;
+    border        : 0 none #fff;
+    border-radius : 0;
 }
 
 ::-webkit-scrollbar-track:hover {
@@ -16062,7 +16350,7 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
 #return-arrow span {
     float        : left;
     padding-left : 15px;
-    padding-top  : 0px;
+    padding-top  : 0;
     font-size    : 16px;
 }
 
@@ -16900,7 +17188,7 @@ li.dropdown-border-hover:hover,
     margin-bottom               : 15px;
     width                       : 100%;
     background                  : #232323;
-    box-shadow                  : 0px 0px 10px 0px rgb(45, 45, 45);
+    box-shadow                  : 0 0 10px 0 rgb(45, 45, 45);
     height                      : 15px;
     border-radius               : 3px;
     -moz-border-radius          : 3px;
@@ -16950,7 +17238,7 @@ li.dropdown-border-hover:hover,
 
 .skillbar-bar {
     height                : 15px;
-    width                 : 0px;
+    width                 : 0;
     background            : #2980b9;
     border-radius         : 3px;
     -moz-border-radius    : 3px;
@@ -17515,7 +17803,7 @@ body.tray-rescale .tray-right:hover {
 
 body.tray-rescale .tray-left:hover,
 body.tray-rescale .tray-right:hover {
-    right : 0px;
+    right : 0;
 }
 
 body.tray-rescale .tray .tray-nav.affix,
@@ -17630,9 +17918,9 @@ body.tray-rescale .tray .affix-pane.affix {
 
 .m-name {
     width              : 30%;
-    -webkit-box-shadow : 0px 0px 15px 0px rgba(50, 50, 50, 1);
-    -moz-box-shadow    : 0px 0px 15px 0px rgba(50, 50, 50, 1);
-    box-shadow         : 0px 0px 15px 0px rgba(50, 50, 50, 1);
+    -webkit-box-shadow : 0 0 15px 0 rgba(50, 50, 50, 1);
+    -moz-box-shadow    : 0 0 15px 0 rgba(50, 50, 50, 1);
+    box-shadow         : 0 0 15px 0 rgba(50, 50, 50, 1);
 }
 
 .breadcrumb {
@@ -17805,13 +18093,13 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
     opacity           : 1.0;
     display           : block;
     position          : absolute;
-    right             : 0px;
+    right             : 0;
     width             : 100px;
     height            : 100%;
     box-shadow        : none !important;
-    -webkit-transform : rotate(3deg) translate(0px, -4px);
-    -ms-transform     : rotate(3deg) translate(0px, -4px);
-    transform         : rotate(3deg) translate(0px, -4px);
+    -webkit-transform : rotate(3deg) translate(0, -4px);
+    -ms-transform     : rotate(3deg) translate(0, -4px);
+    transform         : rotate(3deg) translate(0, -4px);
 }
 
 #nprogress .spinner {
@@ -17966,7 +18254,7 @@ body.calendar-page .tray-center .fc-toolbar .fc-center h2 {
     width            : 100%;
     height           : 100%;
     top              : 23%;
-    margin-left      : 0px;
+    margin-left      : 0;
     margin-top       : -23px;
     text-align       : center;
     left             : 0;
@@ -18078,9 +18366,9 @@ body.calendar-page .tray-center .fc-toolbar .fc-center h2 {
 }
 
 .dropzone .dz-preview, .dropzone-previews .dz-preview {
-    -webkit-box-shadow : 0px 0px 15px 0px rgba(50, 50, 50, 1) !important;
-    -moz-box-shadow    : 0px 0px 15px 0px rgba(50, 50, 50, 1) !important;
-    box-shadow         : 0px 0px 15px 0px rgba(50, 50, 50, 1) !important;
+    -webkit-box-shadow : 0 0 15px 0 rgba(50, 50, 50, 1) !important;
+    -moz-box-shadow    : 0 0 15px 0 rgba(50, 50, 50, 1) !important;
+    box-shadow         : 0 0 15px 0 rgba(50, 50, 50, 1) !important;
     z-index            : 9999;
 }
 
@@ -18214,7 +18502,7 @@ body .dockmodal-body .note-editor .note-statusbar .note-resizebar {
 
 @media (max-width : 600px) {
     body.tray-rescale #content.table-layout .tray-center {
-        padding : 0px !important;
+        padding : 0 !important;
     }
 }
 

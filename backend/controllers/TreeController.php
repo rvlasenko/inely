@@ -93,20 +93,22 @@ class TreeController extends Controller
      * Создание экземпляра ActiveRecord и получение всех дочерних элементов требуемого узла.
      * Первичное обращение к методу выполняется из Task контроллера действием [[actionNode()]].
      *
-     * @param int  $id        идентификатор узла
-     * @param bool $recursive параметр задающий рекурсию
-     * @param int  $list      категория по которой будет произведена выборка
+     * @param int    $id        идентификатор узла
+     * @param bool   $recursive параметр задающий рекурсию
+     * @param int    $list      категория, по которой будет произведена выборка
+     * @param string $sort      поле, по которому будет произведена сортировка
      *
      * @return array|ActiveRecord[] результат запроса.
      * Если результат равен null, то будет возвращен пустой массив.
      */
-    public function getChildren($id, $recursive = false, $list = null)
+    public function getChildren($id, $recursive = false, $list = null, $sort = 'pos')
     {
         $query[] = $this->root;
+        $sortBy  = $sort == 'priority' ? ['priority' => SORT_DESC] : $sort;
         $cond    = [
-            'pid'          => $id,
-            'tasks.author' => Yii::$app->user->id,
-            'tasks.isDone' => Task::ACTIVE_TASK
+            'pid'    => $id,
+            'author' => Yii::$app->user->id,
+            'isDone' => Task::ACTIVE_TASK
         ];
         if ($recursive) {
             // Рекурсивная проверка на наличие вложенных задач
@@ -122,8 +124,8 @@ class TreeController extends Controller
                 $query = TasksData::find()
                                   ->joinWith('tasks')
                                   ->where($cond)
-                                  ->andWhere(['tasks.list' => $list])
-                                  ->orderBy('pos')->asArray()->all();
+                                  ->andWhere(['list' => $list])
+                                  ->orderBy($sortBy)->asArray()->all();
             }
         } else {
             // Выборка всех задач в Inbox, которым не назначен список
@@ -131,8 +133,8 @@ class TreeController extends Controller
                 $query = TasksData::find()
                                   ->joinWith('tasks')
                                   ->where($cond)
-                                  ->andWhere(['tasks.list' => null])
-                                  ->orderBy('pos')->asArray()->all();
+                                  ->andWhere(['list' => null])
+                                  ->orderBy($sortBy)->asArray()->all();
             }
         }
 
@@ -159,6 +161,48 @@ class TreeController extends Controller
         }
 
         return $query;
+    }
+
+    /**
+     * @param array temp узел, сформированный в результате запроса
+     *
+     * @key int         id       идентификатор узла (задачи)
+     * @key string      text     наименование
+     * @key string|null a_attr   степень важности
+     * @key string|bool icon     заметки
+     * @key bool        children наличие дочерних узлов
+     *
+     * @return array
+     */
+    public function buildJson($temp)
+    {
+        $result   = [];
+        //$priority = null;
+
+        foreach ($temp as $v) {
+            switch ($v['tasks']['priority']) {
+                case 3:
+                    $priority = Task::PR_HIGH;
+                    break;
+                case 2:
+                    $priority = Task::PR_MEDIUM;
+                    break;
+                case 1:
+                    $priority = Task::PR_LOW;
+                    break;
+                default:
+                    $priority = null;
+            }
+            $result[] = [
+                'id'       => $v['dataId'],
+                'text'     => $v['name'],
+                'a_attr'   => ['class' => $priority],
+                'icon'     => is_null($v['note']) ? false : 'fa fa-sticky-note',
+                'children' => ($v['rgt'] - $v['lft'] > 1)
+            ];
+        }
+
+        return $result;
     }
 
     /**
@@ -398,9 +442,6 @@ class TreeController extends Controller
     {
         if (!Task::findOne([$id])) {
             throw new NotFoundHttpException('Could not delete non-existing node');
-        }
-        if (TasksData::findOne(['dataId' => $id, 'name' => 'Root'])) {
-            throw new AccessDeniedException('Could not delete root node');
         }
 
         $db    = Yii::$app->db;

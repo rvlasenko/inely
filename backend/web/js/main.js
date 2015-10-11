@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * @author hirootkit <admiralexo@gmail.com>
@@ -7,6 +7,7 @@ var Core = function () {
 
     var Body      = $("body"),
         formAdd   = $("#formAdd"),
+        textField = $(".inputStandard"),
         tree      = $("#tree"), // Указатель на jsTree
         accept    = false,
         isClicked = false,
@@ -22,219 +23,273 @@ var Core = function () {
         trickleRate:  .07,
         trickleSpeed: 360,
         showSpinner:  false,
-        barColor:     'firebrick',
-        barPos:       'npr-top'
+        barColor:     "firebrick",
+        barPos:       "npr-top"
     });
     NProgress.start();
     setTimeout(function () {
         NProgress.done();
-        $('.fade').removeClass('out');
+        $(".fade").removeClass("out");
     }, 800);
-    $("#clearLocalStorage").on('click', function () {
+    $("#clearLocalStorage").on("click", function () {
         // Очистка локального хранилища
         localStorage.clear();
         location.reload();
     });
 
     var runTaskPage = function () {
-        if (onTaskPage) {
-            $('ul.panel-tabs li:nth-child(3)').addClass('active');
-            $('.list-tabs').css('display', 'block');
+        $("ul.panel-tabs li:nth-child(3)").addClass("active");
+        $(".list-tabs").css("display", "block");
+        function getInstance(data) {
+            return $.jstree.reference(data.reference).get_node(data.reference);
+        }
 
-            var options = {
-                'core':        {
-                    'data': {
-                        'url':   '/task/node',
-                        'cache': true,
-                        'data':  function (node) {
-                            return { 'id': node.id };
-                        }
-                    },
-                    'check_callback' : true,
-                    'multiple':       false,
-                    'themes':         {
-                        name:       'proton',
-                        url:        'vendor/plugins/jstree/themes/proton/style.css',
-                        responsive: true
+        var options = {
+            "core":        {
+                "data": {
+                    "url":   "/task/node",
+                    "data":  function (node) {
+                        return { "id": node.id };
                     }
                 },
-                'checkbox':    {
-                    'three_state': false,
-                    'cascade':     'down'
-                },
-                'search':      {
-                    "show_only_matches": true
-                },
-                "contextmenu": {
-                    'select_node': false,
-                    "items":       function ($node) {
-                        return {
-                            "Create":      {
-                                "icon":   "fa fa-leaf",
-                                "label":  "Add task",
-                                "action": function () {
-                                    createNode();
-                                }
-                            },
-                            "Rename":      {
-                                "icon":   "fa fa-i-cursor",
-                                "label":  "Rename task",
-                                "action": function () {
-                                    tree.jstree(true).edit($node);
-                                }
-                            },
-                            "Remove":      {
-                                "separator_after": true,
-                                "icon":            "fa fa-trash-o",
-                                "label":           "Delete task",
-                                "action":          function () {
-                                    tree.jstree(true).delete_node($node);
-                                    hideRoot();
-                                }
-                            },
-                            "SetPriority": {
-                                "icon":    "fa fa-clone",
-                                "label":   "Priority",
-                                "action":  false,
-                                "submenu": {
-                                    "high":   {
-                                        "icon":   "fa fa-circle",
-                                        "label":  "High",
-                                        "action": function (data) {
-                                            var inst = $.jstree.reference(data.reference),
-                                                node = inst.get_node(data.reference);
-
-                                            $.get('task/set-priority', {
-                                                'id': node.id,
-                                                'pr': 'high'
-                                            }).done(function () {
-                                                $("#" + node.id).children('a').addClass('high');
-                                            }).fail(function () {
-                                                data.instance.refresh();
-                                            });
-                                        }
-                                    },
-                                    "medium": {
-                                        "icon":   "fa fa-circle",
-                                        "label":  "Medium",
-                                        "action": function (data) {
-                                            var inst = $.jstree.reference(data.reference),
-                                                node = inst.get_node(data.reference);
-
-                                            $.get('task/set-priority', {
-                                                'id': node.id,
-                                                'pr': 'medium'
-                                            }).done(function () {
-                                                $("#" + node.id).children('a').addClass('medium');
-                                            }).fail(function () {
-                                                data.instance.refresh();
-                                            });
-                                        }
-                                    },
-                                    "low":    {
-                                        "icon":   "fa fa-circle",
-                                        "label":  "Low",
-                                        "action": function (data) {
-                                            var inst = $.jstree.reference(data.reference),
-                                                node = inst.get_node(data.reference);
-
-                                            $.get('task/set-priority', {
-                                                'id': node.id,
-                                                'pr': 'low'
-                                            }).done(function () {
-                                                $("#" + node.id).children('a').addClass('low');
-                                            }).fail(function () {
-                                                data.instance.refresh();
-                                            });
-                                        }
-                                    },
-                                    "none":   {
-                                        "icon":   "fa fa-circle-o",
-                                        "label":  "None",
-                                        "action": function (data) {
-                                            var inst = $.jstree.reference(data.reference),
-                                                node = inst.get_node(data.reference);
-
-                                            $.get('task/set-priority', {
-                                                'id': node.id,
-                                                'pr': null
-                                            }).done(function () {
-                                                $("#" + node.id).children('a')
-                                                                .removeClass('high')
-                                                                .removeClass('medium')
-                                                                .removeClass('low');
-                                            }).fail(function () {
-                                                data.instance.refresh();
-                                            });
-                                        }
+                "check_callback" : true,
+                "multiple":       false,
+                "animation":      150,
+                "themes":         {
+                    name:       "proton",
+                    url:        "vendor/plugins/jstree/themes/proton/style.css",
+                    responsive: true
+                }
+            },
+            "checkbox":    {
+                "three_state": false,
+                "cascade":     "down"
+            },
+            "search":      {
+                "show_only_matches": true
+            },
+            "contextmenu": {
+                "select_node": false,
+                "items":       function ($node) {
+                    return {
+                        "Create":      {
+                            "icon":   "fa fa-leaf",
+                            "label":  "Add task",
+                            "action": function () {
+                                createNode();
+                            }
+                        },
+                        "Rename":      {
+                            "separator_after": true,
+                            "icon":            "fa fa-i-cursor",
+                            "label":           "Edit task",
+                            "action":          function () {
+                                renameNode($node);
+                            }
+                        },
+                        "SetPriority": {
+                            "icon":    "fa fa-flag",
+                            "label":   "Priority",
+                            "action":  false,
+                            "submenu": {
+                                "high":   {
+                                    "icon":   "fa fa-circle",
+                                    "label":  "High",
+                                    "action": function (data) {
+                                        var node = getInstance(data);
+                                        $.get("task/set-priority", {
+                                            "id": node.id,
+                                            "pr": 3
+                                        }).done(function () {
+                                            $("#" + node.id).children("a").addClass("high").removeClass("low medium");
+                                        }).fail(function () {
+                                            data.instance.refresh();
+                                        });
+                                    }
+                                },
+                                "medium": {
+                                    "icon":   "fa fa-circle",
+                                    "label":  "Medium",
+                                    "action": function (data) {
+                                        var node = getInstance(data);
+                                        $.get("task/set-priority", {
+                                            "id": node.id,
+                                            "pr": 2
+                                        }).done(function () {
+                                            $("#" + node.id).children("a").addClass("medium").removeClass("high low");
+                                        }).fail(function () {
+                                            data.instance.refresh();
+                                        });
+                                    }
+                                },
+                                "low":    {
+                                    "icon":   "fa fa-circle",
+                                    "label":  "Low",
+                                    "action": function (data) {
+                                        var node = getInstance(data);
+                                        $.get("task/set-priority", {
+                                            "id": node.id,
+                                            "pr": 1
+                                        }).done(function () {
+                                            $("#" + node.id).children("a").addClass("low").removeClass("high medium");
+                                        }).fail(function () {
+                                            data.instance.refresh();
+                                        });
+                                    }
+                                },
+                                "none":   {
+                                    "icon":   "fa fa-circle-o",
+                                    "label":  "None",
+                                    "action": function (data) {
+                                        var node = getInstance(data);
+                                        $.get("task/set-priority", {
+                                            "id": node.id,
+                                            "pr": null
+                                        }).done(function () {
+                                            $("#" + node.id).children("a").removeClass("high medium low");
+                                        }).fail(function () {
+                                            data.instance.refresh();
+                                        });
                                     }
                                 }
                             }
-                        };
-                    }
-                },
-                'plugins': ['dnd', 'contextmenu', 'search', 'state', 'checkbox', 'types']
-            };
-
-            tree.jstree(
-                options
-            ).on('create_node.jstree', function (e, data) {
-                if (data.node.text !== '' && data.node.text != 'New node') {
-                    $.get('task/create', {
-                        'id':       data.node.parent,
-                        'position': data.position,
-                        'text':     data.node.text,
-                        'list':     listKey
-                    }).done(function (d) {
-                        data.instance.set_id(data.node, d.id);
-                    }).fail(function () {
-                        data.instance.refresh();
-                    });
-
-                    hideRoot();
+                        },
+                        "Move":        {
+                            "icon":    "fa fa-clock-o",
+                            "label":   "Move",
+                            "action":  false,
+                            "submenu": {
+                                "today":    {
+                                    "icon":   "fa fa-calendar-o",
+                                    "label":  "Today",
+                                    "action": function (data) {
+                                        var node = getInstance(data);
+                                        $.get("task/set-priority", {
+                                            "id": node.id,
+                                            "pr": "high"
+                                        }).done(function () {
+                                            $("#" + node.id).children("a").addClass("high");
+                                        }).fail(function () {
+                                            data.instance.refresh();
+                                        });
+                                    }
+                                },
+                                "tomorrow": {
+                                    "icon":   "fa fa-mail-forward",
+                                    "label":  "Tomorrow",
+                                    "action": function (data) {
+                                        var node = getInstance(data);
+                                        $.get("task/set-priority", {
+                                            "id": node.id,
+                                            "pr": "medium"
+                                        }).done(function () {
+                                            $("#" + node.id).children("a").addClass("medium");
+                                        }).fail(function () {
+                                            data.instance.refresh();
+                                        });
+                                    }
+                                },
+                                "more":     {
+                                    "icon":   "fa fa-ellipsis-h",
+                                    "label":  "More",
+                                    "action": function (data) {
+                                        var node = getInstance(data);
+                                        $.get("task/set-priority", {
+                                            'id': node.id,
+                                            'pr': 'low'
+                                        }).done(function () {
+                                            $("#" + node.id).children('a').addClass('low');
+                                        }).fail(function () {
+                                            data.instance.refresh();
+                                        });
+                                    }
+                                }
+                            }
+                        },
+                        "Remove":      {
+                            "separator_before": true,
+                            "icon":             "fa fa-trash-o",
+                            "label":            "Delete task",
+                            "action":           function () {
+                                tree.jstree(true).delete_node($node);
+                                hideRoot();
+                            }
+                        }
+                    };
                 }
-                    hideRoot();
-            }).on('delete_node.jstree', function (e, data) {
-                $.get('task/delete', {
-                    'id': data.node.id
-                }).done(function () {
-                    setCount(true);
+            },
+            'plugins': ['dnd', 'contextmenu', 'search', 'state', 'checkbox', 'types']
+        };
+
+        tree.jstree(
+            options
+        ).on('create_node.jstree', function (e, data) {
+            if (data.node.text !== '' && data.node.text != 'New node') {
+                $.get('task/create', {
+                    'id':       data.node.parent,
+                    'position': data.position,
+                    'text':     data.node.text,
+                    'list':     listKey
+                }).done(function (d) {
+                    data.instance.set_id(data.node, d.id);
+                    //data.instance.refresh(true);
                 }).fail(function () {
                     data.instance.refresh();
                 });
-            }).on('rename_node.jstree', function (e, data) {
-                $.get('task/rename', {
-                    'id':   data.node.id,
-                    'text': data.text
-                }).fail(function () {
-                    data.instance.refresh();
-                });
-            }).on('move_node.jstree', function (e, data) {
-                $.get('task/move', {
-                    'id':       data.node.id,
-                    'parent':   data.parent,
-                    'position': data.position
-                }).fail(function () {
-                    data.instance.refresh();
-                });
-            }).on('select_node.jstree', function (e, data) {
-                if (!$(event.target).is('i') || $(event.target).is('.jstree-themeicon')) {
-                    tree.jstree(true).uncheck_node(data.node.id);
-                }
-            }).on('redraw.jstree', function () {
-                tree.jstree('open_all');
+
                 hideRoot();
+            }
+                hideRoot();
+        }).on('delete_node.jstree', function (e, data) {
+            $.get('task/delete', {
+                'id': data.node.id
+            }).done(function () {
+                setCount(true);
+            }).fail(function () {
+                data.instance.refresh();
             });
+        }).on('rename_node.jstree', function (e, data) {
+            $.get('task/rename', {
+                'id':   data.node.id,
+                'text': data.text
+            }).fail(function () {
+                data.instance.refresh();
+            });
+        }).on('move_node.jstree', function (e, data) {
+            $.get('task/move', {
+                'id':       data.node.id,
+                'parent':   data.parent,
+                'position': data.position
+            }).fail(function () {
+                data.instance.refresh();
+            });
+        }).on('select_node.jstree', function (e, data) {
+            if (!$(event.target).is('i') || $(event.target).is('.jstree-themeicon')) {
+                tree.jstree(true).uncheck_node(data.node.id);
+            }
+        }).on("redraw.jstree", function () {
+            tree.jstree("open_all");
+            hideRoot();
+        });
 
-            var to = null;
-            $('#search_q').keyup(function () {
-                if (to) { clearTimeout(to); }
-                to = setTimeout(function () {
-                    var v = $('#search_q').val();
-                    $('#tree').jstree(true).search(v);
-                }, 250);
-            });
-        }
+        var to = null;
+        $('#search_q').keyup(function () {
+            if (to) { clearTimeout(to); }
+            to = setTimeout(function () {
+                var v = $('#search_q').val();
+                $('#tree').jstree(true).search(v);
+            }, 250);
+        });
+
+        // Применение набора языковых правил для календаря
+        $.datepicker.setDefaults($.datepicker.regional["ru"]);
+        $("#eventDate").datepicker({
+            numberOfMonths:  1,
+            prevText:        '<i class="fa fa-chevron-left"></i>',
+            nextText:        '<i class="fa fa-chevron-right"></i>',
+            showButtonPanel: false,
+            dateFormat:      'd M'
+        });
 
         if ($('.h1200').length) {
             $(window).load(function () {
@@ -244,49 +299,83 @@ var Core = function () {
                 $('.h1200').css({ 'height': (($(window).height() + 600)) + 'px' });
             });
         }
-        // Инкремент количества задач в той группе, где она была создана
+
+        var sortByCondition = function (cond) {
+            tree.jstree(true).settings.core.data = {
+                url:  "task/node",
+                data: function (node) {
+                    return { id: node.id, sort: cond, list: listKey };
+                }
+            };
+            tree.jstree(true).refresh();
+        };
+
+        // Инкремент или декремент количества задач в той группе, где она была создана
         var setCount = function (decrement) {
-            var projectDiv = $(".list-view div").filter('[data-key=' + listKey + ']').find("span:last-child"),
+            var projectDiv = $(".list-view div").filter("[data-key=" + listKey + "]").find("span:last-child"),
                 number     = 0,
                 inboxDiv   = $("#inbox").find("span");
+                accept = true;
 
-            accept = true;
             // Если переменная с ключом пуста, значит пользователь в "Inbox"
             if (listKey == null) {
                 number = parseInt(inboxDiv.text());
-                if (decrement) {
-                    inboxDiv.html(--number);
-                } else {
-                    inboxDiv.html(++number);
-                }
+                decrement ? inboxDiv.html(--number) : inboxDiv.html(++number);
             } else {
                 number = parseInt(projectDiv.text());
-                if (decrement) {
-                    projectDiv.html(--number);
-                } else {
-                    projectDiv.html(++number);
-                }
+                decrement ? projectDiv.html(--number) : projectDiv.html(++number);
             }
             // Исключить все дублированные реквесты, которыми любит мусорить jsTree
             setTimeout(function () { accept = false }, 100)
         };
-        var createNode = function () {
-            // Добавление задачи & вызов события create_node
-            // Перед добавлением, задача переводится в режим редактирования
-            var textField       = $(".inputStandard"),
-                rootHasChildren = $("a:contains('Root')").parent('li').children('.jstree-children');
+
+        // Редактирование задачи и вызов события rename_node
+        function renameNode (node) {
+            // Полезные DOM элементы исходя из полученной задачи
+            var nodeObject = tree.find("li#" + node.id),
+                nodeIcon   = nodeObject.find("i.jstree-ocl"),
+                nodeAnchor = nodeObject.find("a.jstree-anchor");
+
+            var closureRename = function () {
+                if (textField.val() != 0) {
+                    tree.jstree(true).rename_node(node, textField.val());
+                    textField.val("");
+                }
+            };
+
+            formAdd.prependTo(nodeObject).css({"margin-left": 0}).show();
+            // jsTree не дает напрямую изменять свойства якорей, исправляется это просто
+            nodeIcon.hide(); nodeAnchor.hide();
+            // После чего становится видна форма и курсор фокусируется внутри input'а
+            setTimeout(function () { formAdd.find(".inputStandard").focus() }, 100);
+            $(textField).on("keyup", function (e) {
+                // Escape - отмена
+                if (e.keyCode == 27) { formAdd.hide(); nodeIcon.show(); nodeAnchor.show() }
+                // Enter  - добавление
+                if (e.keyCode == 13) { closureRename(); nodeIcon.show(); nodeAnchor.show() }
+            });
+            $(document).on("click", ".buttonCancel", function () {
+                formAdd.hide(); nodeIcon.show(); nodeAnchor.show()
+            });
+            $(document).on("click", ".buttonRename", function () { closureRename() });
+        }
+
+        // Добавление задачи & вызов события create_node
+        // Перед добавлением, задача переводится в режим редактирования
+        function createNode () {
+            var rootHasChildren = $("a:contains('Root')").parent("li").children('.jstree-children');
 
             // Замыкание, инициализирующее создание узла
             var closureAdd = function () {
                 // Экземпляр корневого DOM-элемента преобразуется в объект jsTree
                 var obj = tree.jstree(true).get_node($("a:contains('Root')"), true);
 
-                // Хелпер, чтобы избежать дублирование кода при создании
+                // Хелпер добавления, дабы избежать дублирование кода
                 var helperAdd = function () {
                     tree.jstree(true).create_node(obj, { text: textField.val() }, "last");
-                    textField.val('');
+                    textField.val("");
                     tree.jstree(true).settings.core.data = {
-                        url:  'task/node',
+                        url:  "task/node",
                         data: function (node) {
                             return { id: node.id, list: listKey };
                         }
@@ -301,7 +390,7 @@ var Core = function () {
                         rootHasChildren.length = 1;
                     } else {
                         tree.jstree(true).create_node(obj, { text: textField.val() }, "last", false);
-                        textField.val('');
+                        textField.val("");
 
                         if (!accept) { setCount(false) }
                     }
@@ -309,9 +398,9 @@ var Core = function () {
             };
 
             // Добавление контейнера редактирования новой задачи в jsTree
-            formAdd.appendTo(".jstree-container-ul.jstree-children").show();
+            formAdd.appendTo(".jstree-container-ul.jstree-children").css({"margin-left": 40}).show();
             setTimeout(function () { formAdd.find(".inputStandard").focus() }, 100);
-            $(document).on("keyup", function (e) {
+            $(textField).on("keyup", function (e) {
                 // Escape - отмена
                 if (e.keyCode == 27) { formAdd.hide() }
                 // Enter  - добавление
@@ -319,13 +408,15 @@ var Core = function () {
             });
             $(document).on("click", ".buttonCancel", function () { formAdd.hide() });
             $(document).on("click", ".buttonAdd", function () { closureAdd() });
-        };
-        // Скрытие корневого элемента. И ничего больше.
+        }
+
+        // jsTree не способен скрыть необходимый узел. Решается банально
         var hideRoot = function () {
             $("a:contains('Root')").css("display", "none");
             $(".jstree-last .jstree-icon").first().hide();
         };
-        var reloadInboxAndProject = function () {
+
+        var appendData = function () {
             // jsTree построен таким образом, что при переполнении стака реквестов
             // ответ с сервера не дойдёт должным образом. Поэтому необходимо помешать
             // пользователю заядло кликать больше, чем раз в полторы секунды
@@ -352,15 +443,16 @@ var Core = function () {
         $('a.action').click(function () { createNode(); return false });
 
         // Обновление дерева с новыми данными, где поле list эквивалентно выбранному
-        $('.user-project').click(function () {
-            reloadInboxAndProject.apply(this);
-        });
+        $('.user-project').click(function () { appendData.apply(this) });
 
-        // Обновление это банальная загрузка Inbox задач из [[actionNode()]]
-        $('#inbox').click(function () {
-            reloadInboxAndProject.apply(this);
-        });
+        // Загрузка Inbox задач из [[actionNode()]]
+        $('#inbox').click(function () { appendData.apply(this) });
+
+        // Сортировка по условию
+        $("#pr").click(function () { sortByCondition('priority') });
+        $("#nm").click(function () { sortByCondition('name') });
     };
+
     var runDockModal = function () {
         $('#quick-compose').on('click', function () {
             $('.quick-compose-form').dockmodal({
@@ -379,152 +471,150 @@ var Core = function () {
             });
         });
     };
+
     var runDashBoard = function () {
-        if (onDashBoard) {
-            $('.skillbar').each(function () {
-                jQuery(this).find('.skillbar-bar').animate({
-                    width: jQuery(this).attr('data-percent')
-                }, 2500);
-            });
+        $('.skillbar').each(function () {
+            jQuery(this).find('.skillbar-bar').animate({
+                width: jQuery(this).attr('data-percent')
+            }, 2500);
+        });
 
-            $('.ct-chart').highcharts({
-                title:   { text: null },
-                credits: false,
-                chart:   {
-                    marginTop:       0,
-                    plotBorderWidth: 0
-                },
-                xAxis:   {
-                    categories: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
-                },
-                yAxis:   {
-                    labels: { enabled: false },
-                    title:  { text: null }
-                },
-                legend:  { enabled: false },
-                series:  [
-                    {
-                        name: 'All visits',
-                        data: [ 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6 ]
-                    }, {
-                        name: 'XP earned',
-                        data: [ 4, 6, 5, 9, 11, 14, 1 ]
-                    }
-                ]
-            });
+        $('.ct-chart').highcharts({
+            title:   { text: null },
+            credits: false,
+            chart:   {
+                marginTop:       0,
+                plotBorderWidth: 0
+            },
+            xAxis:   {
+                categories: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
+            },
+            yAxis:   {
+                labels: { enabled: false },
+                title:  { text: null }
+            },
+            legend:  { enabled: false },
+            series:  [
+                {
+                    name: 'All visits',
+                    data: [ 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6 ]
+                }, {
+                    name: 'XP earned',
+                    data: [ 4, 6, 5, 9, 11, 14, 1 ]
+                }
+            ]
+        });
 
-            // Удаление первой линии графика (портится вид)
-            $('.highcharts-grid path:first-child').remove();
-            // Init plugins for ".task-widget"
-            // plugins: Custom Functions + jQuery Sortable
-            var taskWidget = $('div.task-widget');
-            var taskItems = taskWidget.find('li.task-item');
-            var currentItems = taskWidget.find('ul.task-current');
-            var completedItems = taskWidget.find('ul.task-completed');
-            // Init jQuery Sortable on Task Widget
-            taskWidget.sortable({
-                items:       taskItems, // only init sortable on list items (not labels)
-                axis:        'y',
-                connectWith: ".task-list",
-                update:      function (event, ui) {
-                    var Item = ui.item;
-                    var ParentList = Item.parent();
-                    // If item is already checked move it to "current items list"
-                    if (ParentList.hasClass('task-current')) {
-                        Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
-                    }
-                    if (ParentList.hasClass('task-completed')) {
-                        Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
-                    }
-                }
-            });
-            // Custom Functions to handle/assign list filter behavior
-            taskItems.on('click', function (e) {
-                e.preventDefault();
-                var This = $(this);
-                if ($(e.target).hasClass('fa-remove')) {
-                    This.remove();
-                    return;
-                }
+        $('.highcharts-grid path:first-child').remove();
+        // Init plugins for ".task-widget"
+        // plugins: Custom Functions + jQuery Sortable
+        var taskWidget = $('div.task-widget');
+        var taskItems = taskWidget.find('li.task-item');
+        var currentItems = taskWidget.find('ul.task-current');
+        var completedItems = taskWidget.find('ul.task-completed');
+        // Init jQuery Sortable on Task Widget
+        taskWidget.sortable({
+            items:       taskItems, // only init sortable on list items (not labels)
+            axis:        'y',
+            connectWith: ".task-list",
+            update:      function (event, ui) {
+                var Item = ui.item;
+                var ParentList = Item.parent();
                 // If item is already checked move it to "current items list"
-                if (This.hasClass('item-checked')) {
-                    This.removeClass('item-checked').appendTo(currentItems).find('input[type="checkbox"]').prop('checked', false);
+                if (ParentList.hasClass('task-current')) {
+                    Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
                 }
-                // Otherwise move it to the "completed items list"
-                else {
-                    This.addClass('item-checked').appendTo(completedItems).find('input[type="checkbox"]').prop('checked', true);
+                if (ParentList.hasClass('task-completed')) {
+                    Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
                 }
-            });
+            }
+        });
+        // Custom Functions to handle/assign list filter behavior
+        taskItems.on('click', function (e) {
+            e.preventDefault();
+            var This = $(this);
+            if ($(e.target).hasClass('fa-remove')) {
+                This.remove();
+                return;
+            }
+            // If item is already checked move it to "current items list"
+            if (This.hasClass('item-checked')) {
+                This.removeClass('item-checked').appendTo(currentItems).find('input[type="checkbox"]').prop('checked', false);
+            }
+            // Otherwise move it to the "completed items list"
+            else {
+                This.addClass('item-checked').appendTo(completedItems).find('input[type="checkbox"]').prop('checked', true);
+            }
+        });
 
-            // Инициализация плагина для ".calendar-widget" FullCalendar
-            $('#calendar-widget').fullCalendar({
-                contentHeight: 397,
-                editable:      true,
-                firstDay:      1,
-                events:        [
-                    {
-                        title:     'Sony Meeting',
-                        start:     '2015-10-1',
-                        end:       '2015-10-3',
-                        className: 'fc-event-success'
-                    }, {
-                        title:     'Conference',
-                        start:     '2015-10-13',
-                        end:       '2015-10-15',
-                        className: 'fc-event-primary'
-                    }, {
-                        title:     'Lunch Testing',
-                        start:     '2015-10-23',
-                        end:       '2015-10-25',
-                        className: 'fc-event-danger'
+        // Инициализация плагина для FullCalendar
+        $('#calendar-widget').fullCalendar({
+            contentHeight: 397,
+            editable:      true,
+            firstDay:      1,
+            events:        [
+                {
+                    title:     'Sony Meeting',
+                    start:     '2015-10-1',
+                    end:       '2015-10-3',
+                    className: 'fc-event-success'
+                }, {
+                    title:     'Conference',
+                    start:     '2015-10-13',
+                    end:       '2015-10-15',
+                    className: 'fc-event-primary'
+                }, {
+                    title:     'Lunch Testing',
+                    start:     '2015-10-23',
+                    end:       '2015-10-25',
+                    className: 'fc-event-danger'
+                }
+            ],
+            eventRender:   function (event, element) {
+                // Создание подсказки используя bootstrap как основу
+                $(element).attr("data-original-title", event.title);
+                $(element).tooltip({
+                    container: 'body',
+                    delay:     {
+                        "show": 100,
+                        "hide": 200
                     }
-                ],
-                eventRender:   function (event, element) {
-                    // Создание тултипа используя bootstrap основу
-                    $(element).attr("data-original-title", event.title);
-                    $(element).tooltip({
-                        container: 'body',
-                        delay:     {
-                            "show": 100,
-                            "hide": 200
-                        }
-                    });
-                    // Автоскрытие тултипа по истечнию таймера
-                    $(element).on('show.bs.tooltip', function () {
-                        var autoClose = setTimeout(function () {
-                            $('.tooltip').fadeOut();
-                        }, 3500);
-                    });
-                }
-            });
-            // Инициализация Summertnote плагина
-            $('.summernote').summernote({
-                height:   255,
-                focus:    false,
-                oninit:   function () {},
-                onChange: function (contents, $editable) {},
-                toolbar:  [
-                    ['style', [ 'style' ]],
-                    ['font', ['bold', 'italic', 'underline']],
-                    ['color', [ 'color' ]],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['insert', [ 'hr' ]],
-                    ['view', [ 'codeview' ]]
-                ]
-            });
+                });
+                // Автоскрытие подсказки по истечнию таймера
+                $(element).on('show.bs.tooltip', function () {
+                    var autoClose = setTimeout(function () {
+                        $('.tooltip').fadeOut();
+                    }, 3500);
+                });
+            }
+        });
+        // Инициализация Summertnote плагина
+        $('.summernote').summernote({
+            height:   255,
+            focus:    false,
+            oninit:   function () {},
+            onChange: function (contents, $editable) {},
+            toolbar:  [
+                ['style', [ 'style' ]],
+                ['font', ['bold', 'italic', 'underline']],
+                ['color', [ 'color' ]],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', [ 'hr' ]],
+                ['view', [ 'codeview' ]]
+            ]
+        });
 
-            // Инициализация пользовательских виджетов внутри контейнера ".admin-panels"
-            $('.admin-panels').adminpanel({
-                grid:         '.admin-grid',
-                draggable:    true,
-                preserveGrid: true,
-                mobile:       false,
-                onFinish:     function () {
-                    $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload')
-                },
-                onSave:       function () { $(window).trigger('resize') }
-            });
-        }
+        // Инициализация пользовательских виджетов внутри контейнера ".admin-panels"
+        $('.admin-panels').adminpanel({
+            grid:         '.admin-grid',
+            draggable:    true,
+            preserveGrid: true,
+            mobile:       false,
+            onFinish:     function () {
+                $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload')
+            },
+            onSave:       function () { $(window).trigger('resize') }
+        });
     };
     // jQuery хелперы
     var runHelpers = function () {
@@ -560,13 +650,13 @@ var Core = function () {
         setTimeout(function () {
             $('body').addClass('onload-check');
         }, 100);
-        // Атрибут data принимает число в миллисекундах (задержка) и стиль анимации
+        // Атрибут data принимает число в миллисекундах (задержка) и класс анимации
         // При условии, что была передана только задержка, устанавливается анимация fadeIn
         $('.animated-delay[data-animate]').each(function () {
             var This = $(this);
             var delayTime = This.data('animate');
             var delayAnimation = 'fadeIn';
-            // Если атрибут data имеет более одного значения, сбрасываем на умолчания
+            // Если атрибут data имеет более одного значения, сброс на умолчания
             if (delayTime.length > 1 && delayTime.length < 3) {
                 delayTime = This.data('animate')[ 0 ];
                 delayAnimation = This.data('animate')[ 1 ];
@@ -577,15 +667,14 @@ var Core = function () {
                 });
             }, delayTime);
         });
-        // "In-View" Animations
-        // data attribute accepts animation style and offset(in %)
-        // eg. data-animate='["fadeIn","40%"]'
+        // "In-View" анимации
+        // Атрибут data принимает класс анимации и смещение (в %)
+        // например data-animate='["fadeIn","40%"]'
         $('.animated-waypoint').each(function () {
             var This = $(this);
             var Animation = This.data('animate');
             var offsetVal = '35%';
-            // if the data attribute has more than 1 value
-            // it's an array, reset defaults
+            // Если атрибут data имеет более одного значения, сброс на умолчания
             if (Animation.length > 1 && Animation.length < 3) {
                 Animation = This.data('animate')[ 0 ];
                 offsetVal = This.data('animate')[ 1 ];
@@ -603,38 +692,38 @@ var Core = function () {
             });
         });
     };
-    // Header Functions
+
+    // Header функции
     var runHeader = function () {
 
-        // Searchbar - Mobile modifcations
+        // Панель поиска - модификация для мобильного
         $('.navbar-search').on('click', function (e) {
-            // alert('hi')
-            var This = $(this);
-            var searchForm = This.find('input');
-            var searchRemove = This.find('.search-remove');
-            // Don't do anything unless in mobile mode
+            var This         = $(this),
+                searchForm   = This.find('input'),
+                searchRemove = This.find('.search-remove');
+            // Ничего не делать, только если не мобильный режим
             if ($('body.mobile-view').length || $('body.sb-top-mobile').length) {
 
-                // Open search bar and add closing icon if one isn't found
+                // Открыть панель поиска и добавить иконку сброса, если она не найдена
                 This.addClass('search-open');
                 if (!searchRemove.length) {
                     This.append('<div class="search-remove"></div>');
                 }
-                // Fadein remove btn and focus search input on animation complete
+                // Появление кнопки сброса и фокус на поле ввода по завершению анимации
                 setTimeout(function () {
                     This.find('.search-remove').fadeIn();
                     searchForm.focus().one('keydown', function () {
                         $(this).val('');
                     });
                 }, 250);
-                // If remove icon clicked close search bar
+                // Если нажата кнопка сброса, закрыть панель поиска
                 if ($(e.target).attr('class') == 'search-remove') {
                     This.removeClass('search-open').find('.search-remove').remove();
                 }
             }
         });
         var dropDown = $('.dropdown-item-slide');
-        // custom animation for header content dropdown
+        // Анимация для для выпадающего списка в хедере
         if (dropDown.length) {
             dropDown.on('shown.bs.dropdown', function () {
                 var This = $(this);
@@ -647,20 +736,20 @@ var Core = function () {
             });
         }
     };
-    // Tray related Functions
+    // Связанные с треем функции
     var runTrays = function () {
 
-        // Match height of tray with the height of body
+        // Соответствие высоты трея с высотой body
         var trayMatch = $('.tray[data-tray-height="match"]');
         if (trayMatch.length) {
 
-            // Loop each tray and set height to match body
+            // Установка такой высоты, которая соответствует высоте body
             trayMatch.each(function () {
                 var Height = $('body').height();
                 $(this).height(Height);
             });
         }
-        // Debounced resize handler
+        // Обработчик изменения размеров
         var rescale = function () {
             if ($(window).width() < 1000) {
                 Body.addClass('tray-rescale');
@@ -670,9 +759,9 @@ var Core = function () {
         };
         var lazyLayout = _.debounce(rescale, 300);
         if (!Body.hasClass('disable-tray-rescale')) {
-            // Rescale on window resize
+            // Масштабирование при изменении размеров окна
             $(window).resize(lazyLayout);
-            // Rescale on load
+            // Масштабирование при загрузке
             rescale();
         }
     };
@@ -751,15 +840,14 @@ var Core = function () {
     };
     return {
         init: function () {
-            // Call Core Functions
             runHelpers();
-            runTaskPage();
-            runDashBoard();
+            onTaskPage ? runTaskPage() : false;
+            onDashBoard ? runDashBoard() : false;
             runDockModal();
             runRoundedSkill();
             runAnimations();
             runTrays();
-            runFormElements();
+            //runFormElements();
             runHeader();
         }
     }

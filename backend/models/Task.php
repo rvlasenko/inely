@@ -30,6 +30,9 @@ class Task extends ActiveRecord
 {
     const ACTIVE_TASK    = 0;
     const COMPLETED_TASK = 1;
+    const PR_HIGH        = 'high';
+    const PR_MEDIUM      = 'medium';
+    const PR_LOW         = 'low';
 
     public function behaviors()
     {
@@ -52,7 +55,7 @@ class Task extends ActiveRecord
             ['author', 'default', 'value' => Yii::$app->user->id],
             ['time', 'default', 'value' => (new Expression('NOW()'))],
             ['isDone', 'default', 'value' => self::ACTIVE_TASK],
-            ['priority', 'in', 'range' => ['low', 'medium', 'high']],
+            ['priority', 'in', 'range' => [1, 2, 3]],
             ['isDone', 'boolean']
         ];
     }
