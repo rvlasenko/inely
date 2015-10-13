@@ -23,7 +23,7 @@
 return [
 
     /**
-     * Header
+     * Шапка
      */
     'Home' => 'Начало',
     'Intro' => 'Введение',
@@ -31,26 +31,26 @@ return [
     'Features' => 'Возможности',
     'Responsive' => 'Адаптивность',
     /**
-     * Title
+     * Заголовок
      */
     'Inely - Service for achieving goals' => 'Inely - помощник для достижения целей',
     /**
-     * Static Slider
+     * Статичный слайдер
      */
     'Inely. Your personal <span class="t-rotate">Assistant|Scheduler|Task-Manager|Organizer</span>' => 'Inely. Ваш личный <span class="t-rotate">ассистент|планировщик|задачник|ежедневник</span>',
     'Join' => 'Присоединиться',
     'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where Inely can come in.' => 'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть абсолютно всё. И здесь на помощь приходит Inely.',
     /**
-     * Intro Section
+     * Вводная секция
      */
     'Welcome to Inely.<br>MultiPurpose helper.' => 'Добро пожаловать в Inely.<br>Многоцелевой помощник.',
     'Manage your personal goals, your projects, etc. in one place. Our helper designed to adapt to all needs.' => 'Отслеживайте личные цели, планируйте проекты, и всё остальное в одном месте. Наш помощник подходит для любой цели.',
     /**
-     * Review Section
+     * Секция обзора
      */
     '' => '',
     /**
-     * Features Section
+     * Возможности
      */
     'Features Overview' => 'Обзор возможностей',
     'Some of the Features that are gonna blow your mind off' => 'Несколько возможностей, которые вам понравятся',
@@ -69,18 +69,15 @@ return [
 
     'Earn achievements, increasing the level, receiving more coins and getting to various stages of the game.' => 'Зарабатывайте достижения, повышая свой уровень, получая больше монет и попадая в различные этапы игры.',
     /**
-     * Retina Section
+     * Retina
      */
     'Access everywhere' => 'Получайте доступ откуда угодно',
     'With responsive design, your tasks are always there: on mobile devices, browsers, and more.' => 'C помощью адаптивного дизайна, ваш помощник всегда под рукой: в мобильном устройстве, браузере и не только',
     'images/services/chrome.png' => 'images/services/ru/chrome.png',
     'images/services/ipad3.png' => 'images/services/ru/ipad3.png',
-    /**
-     * Go Now Section
-     */
     'Now that you have read all the Tid-Bits, <strong>Let\'s go!</strong>' => 'Теперь, когда вы узнали о всех лакомых кусочках, <strong>вперёд!</strong>',
     /**
-     * Footer
+     * Подвал
      */
     'XP earned' => 'Заработано опыта',
     'Tasks performed' => 'Выполнено задач',
@@ -92,7 +89,7 @@ return [
     'Message' => 'Ваше сообщение...',
     'Send' => 'Отправить',
     /**
-     * Errors
+     * Ошибки
      */
     'Ooopps.! The Page you were looking for, couldn\'t be found.' => 'Упс! К сожалению, страница, которую вы запросили, не существует.',
     'Try to search in other <a href="/">place</a>.' => 'Попробуйте поискать её <a href="/">в другом месте.</a>',

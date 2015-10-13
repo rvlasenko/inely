@@ -17,7 +17,7 @@ class m150705_091355_tasks extends Migration
             'list'       => $this->integer(15),
             'isDone'     => $this->integer(1),
             'priority'   => $this->integer(1),
-            'time'       => $this->timestamp(),
+            'dueDate'    => $this->timestamp(),
             'updated_at' => $this->integer(16),
         ], $tableOptions);
 
@@ -27,7 +27,7 @@ class m150705_091355_tasks extends Migration
             'list'     => 2,
             'isDone'   => 0,
             'priority' => 'medium',
-            'time'     => null
+            'dueDate'  => null
         ]);
 
         $this->createTable('{{%tasks_cat}}', [

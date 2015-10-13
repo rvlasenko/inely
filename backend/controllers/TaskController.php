@@ -49,14 +49,14 @@ class TaskController extends TreeController
                 'variations' => [Yii::$app->language],
                 'dependency' => [
                     'class' => 'yii\caching\DbDependency',
-                    'sql'   => 'SELECT MAX(updated_at) FROM tasks'
+                    'sql'   => 'SELECT MAX(updatedAt) FROM tasks'
                 ]
             ],
             [
                 'class'        => 'yii\filters\HttpCache',
                 'only'         => ['index', 'node'],
                 'lastModified' => function () {
-                    return (new Query)->from('tasks')->max('updated_at');
+                    return (new Query)->from('tasks')->max('updatedAt');
                 },
             ],*/
             [
@@ -100,7 +100,7 @@ class TaskController extends TreeController
         $sort = $this->checkGetParam('sort') ?: 'pos';
 
         $temp = $this->getChildren($node, false, $list, $sort);
-        $json = $this->buildJson($temp);
+        $json = $this->buildTree($temp);
 
         return $json;
     }

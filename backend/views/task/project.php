@@ -34,7 +34,7 @@
                 <div class="col-md-9 col-sm-9 col-xs-9 pln">
                     <input type="text" class="inputStandard form-control" placeholder="Начните набирать здесь...">
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-3 pln">
+                <div class="col-md-3 col-sm-3 col-xs-3 pln prn">
                     <label for="eventDate" class="field prepend-icon">
                         <input type="text" class="form-control" id="eventDate" placeholder="Назначить дату">
                         <label class="field-icon">

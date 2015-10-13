@@ -11,6 +11,8 @@
  * @var $content string
  */
 
+use yii\helpers\Html;
+
 $taskSearch = <<<HTML
     <form class="navbar-form navbar-left navbar-search" role="search">
         <div class="form-group">
@@ -83,24 +85,26 @@ HTML;
             </a>
             <ul class="dropdown-menu dropdown-persist pn user bg-white animated animated-short fadeIn" role="menu">
                 <li class="of-h">
-                    <a href="#" class="p12 animated animated-short fadeInDown">
-                        <span class="fa fa-user fs15 pr5"></span> My Profile
-                    </a>
+                    <?= Html::a('<span class="fa fa-user fs15 pr5"></span> My Profile', [''], [
+                        'class' => 'p12 animated animated-short fadeInDown'
+                    ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <a href="#" class="p12 animated animated-short fadeInDown">
-                        <span class="fa fa-gear fs15 pr5"></span> Account Settings
-                    </a>
+                    <?= Html::a('<span class="fa fa-gear fs15 pr5"></span> Account Settings', [''], [
+                        'class' => 'p12 animated animated-short fadeInDown'
+                    ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <a href="#" class="p12 animated animated-short fadeInDown">
-                        <span class="fa fa-trash-o fs15 pr5"></span> Clear Storage
-                    </a>
+                    <?= Html::a('<span class="fa fa-trash-o fs15 pr5"></span> Clear Storage', ['/'], [
+                        'class' => 'p12 animated animated-short fadeInDown',
+                        'id'    => 'clearLocalStorage'
+                    ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <a href="#" data-method="post" class="p12 animated animated-short fadeInDown">
-                        <span class="fa fa-power-off fs15 pr5"></span> Logout
-                    </a>
+                    <?= Html::a('<span class="fa fa-power-off fs15 pr5"></span>Logout', ['/logout'], [
+                        'class'       => 'p12 animated animated-short fadeInDown',
+                        'data-method' => 'post'
+                    ]) ?>
                 </li>
             </ul>
         </li>

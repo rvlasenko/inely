@@ -15,7 +15,7 @@
 return [
 
     /**
-     * Authentication
+     * Авторизация
      */
     'Return to Dashboard' => 'Вернуться назад',
     'Sign In' => 'Вход',
@@ -61,7 +61,7 @@ return [
     'You forgot?' => 'Забыли?',
     'Send' => 'Отправить',
     /**
-     * Character Select
+     * Выбор персонажа
      */
     'Finish' => 'Завершить',
     'Coming Soon...' => 'Скоро...',
@@ -81,7 +81,13 @@ return [
     'For the best view we recommend PNG format!' => 'Для наилучшего вида рекомендуется png формат!',
     'Enter the name of your character' => 'Как зовут Вашего персонажа?',
     /**
-     * Tasks
+     * Время
+     */
+    'today' => 'сегодня',
+    '{delta, plural, =1{a day} other{in # days}}' => '{delta, plural, =1{завтра} one{через # день} few{через # дня} many{через # дней} other{через # дня}}',
+    '{delta, plural, =1{yesterday} other{in # days}} ago' => '{delta, plural, =1{вчера} one{# день назад} few{# дня назад} many{# дней назад} other{# дня назад}}',
+    /**
+     * Задачи
      */
     'Inbox' => 'Входящие',
     'Projects' => 'Проекты',

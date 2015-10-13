@@ -13,6 +13,7 @@ namespace backend\controllers;
 use backend\models\Task;
 use backend\models\TaskForm;
 use backend\models\TasksData;
+use common\components\classes\DateUtils;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\base\InvalidConfigException;
@@ -61,7 +62,10 @@ class TreeController extends Controller
         'pid'      => 0,
         'pos'      => 1,
         'children' => true,
-        'tasks'    => ['priority' => null]
+        'tasks'    => [
+            'priority' => null,
+            'dueDate'  => null
+        ]
     ];
 
     /**
@@ -118,9 +122,9 @@ class TreeController extends Controller
                               ->andWhere(['<', 'rgt', $node['rgt']])
                               ->orderBy('lft')->asArray()->all();
         } elseif (!is_null($list)) {
+            // Если $list равен null, то искать все задачи независимо от категории
+            // Иначе требуются задачи с категорией, которая пришла в $list
             if ($id) {
-                // Если $list равен null, то искать все задачи независимо от категории
-                // Иначе требуются задачи с категорией, которая пришла в $list
                 $query = TasksData::find()
                                   ->joinWith('tasks')
                                   ->where($cond)
@@ -164,39 +168,48 @@ class TreeController extends Controller
     }
 
     /**
+     * Кодирует полученный массив в JSON строку.
+     *
      * @param array temp узел, сформированный в результате запроса
      *
-     * @key int         id       идентификатор узла (задачи)
-     * @key string      text     наименование
-     * @key string|null a_attr   степень важности
-     * @key string|bool icon     заметки
-     * @key bool        children наличие дочерних узлов
+     * @key int    id       идентификатор узла (задачи)
+     * @key string text     наименование
+     * @key string a_attr   степень важности
+     * @key string li_attr  дата (+ относительная), подсказки, border-bottom
+     * @key string icon     иконка заметки
+     * @key bool   children наличие дочерних узлов
      *
-     * @return array
+     * @return array результат кодирования.
      */
-    public function buildJson($temp)
+    public function buildTree($temp)
     {
-        $result   = [];
-        //$priority = null;
+        $result    = [];
+        $dateUtils = new DateUtils();
 
         foreach ($temp as $v) {
+            // Абсолютная дата eg. '6 окт.' или относительная 'через 3 дня'
+            $dueDate = $dateUtils->asRelativeDate($v['tasks']['dueDate']);
+            // Словесная дата для подчеркивания в дереве eg. 'today', 'future'
+            $relativeDate = $dateUtils->timeInWords($v['tasks']['dueDate']);
+            // Относительная дата для тултипа, сколько ещё дней осталось eg. '3 дня осталось'
+            $futureDate = $dateUtils->dateLeft($v['tasks']['dueDate']);
+
             switch ($v['tasks']['priority']) {
                 case 3:
-                    $priority = Task::PR_HIGH;
-                    break;
+                    $priority = Task::PR_HIGH; break;
                 case 2:
-                    $priority = Task::PR_MEDIUM;
-                    break;
+                    $priority = Task::PR_MEDIUM; break;
                 case 1:
-                    $priority = Task::PR_LOW;
-                    break;
+                    $priority = Task::PR_LOW; break;
                 default:
                     $priority = null;
             }
+
             $result[] = [
                 'id'       => $v['dataId'],
                 'text'     => $v['name'],
                 'a_attr'   => ['class' => $priority],
+                'li_attr'  => ['value' => $dueDate, 'href' => $relativeDate, 'id' => $futureDate],
                 'icon'     => is_null($v['note']) ? false : 'fa fa-sticky-note',
                 'children' => ($v['rgt'] - $v['lft'] > 1)
             ];
