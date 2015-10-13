@@ -61,7 +61,7 @@ class TaskController extends TreeController
             ],*/
             [
                 'class'   => 'yii\filters\ContentNegotiator',
-                'only'    => ['node', 'rename', 'create', 'move', 'delete', 'sort'],
+                'only'    => ['node', 'rename', 'create', 'move', 'delete'],
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON
                 ]
@@ -131,8 +131,9 @@ class TaskController extends TreeController
         $node   = $this->checkGetParam('id');
         $pos    = $this->checkGetParam('position');
         $temp   = $this->make($node, $pos, [
-            'name' => $this->checkGetParam('text'),
-            'list' => $this->checkGetParam('list') ?: null
+            'name'   => $this->checkGetParam('text'),
+            'list'   => $this->checkGetParam('list') ?: null,
+            'format' => $this->checkGetParam('format') ?: null
         ]);
         $result = ['id' => $temp];
 

@@ -31,7 +31,7 @@ HTML;
         <li><a href="/">Dashboard</a></li>
         <li><a href="/schedule">Calendar</a></li>
         <li><a href="/todo">Tasks</a></li>
-        <li><a href="/support">Support</a></li>
+        <li><a href="/help">Help</a></li>
     </ul>
 
     <?= Yii::$app->controller->id == 'task' ? $taskSearch : false ?>

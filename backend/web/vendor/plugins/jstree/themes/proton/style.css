@@ -418,9 +418,8 @@ ul.vakata-context .fa-clock-o {
     transition : background-color 0.15s, box-shadow 0.15s, color 0.15s;
 }
 
-.jstree-proton .jstree-search > span {
-    font-weight : bold;
-    color       : #ff3d3a;
+.jstree-proton .jstree-search {
+    background-color: #ffb;
 }
 
 #formAdd {

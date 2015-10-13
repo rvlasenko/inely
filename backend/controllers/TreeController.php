@@ -56,6 +56,7 @@ class TreeController extends Controller
         'dataId'   => 1,
         'name'     => 'Root',
         'note'     => null,
+        'format'   => null,
         'lft'      => 1,
         'rgt'      => 11,
         'lvl'      => 0,
@@ -126,7 +127,7 @@ class TreeController extends Controller
             // Иначе требуются задачи с категорией, которая пришла в $list
             if ($id) {
                 $query = TasksData::find()
-                                  ->joinWith('tasks')
+                                  ->joinWith(Task::tableName())
                                   ->where($cond)
                                   ->andWhere(['list' => $list])
                                   ->orderBy($sortBy)->asArray()->all();
@@ -135,7 +136,7 @@ class TreeController extends Controller
             // Выборка всех задач в Inbox, которым не назначен список
             if ($id) {
                 $query = TasksData::find()
-                                  ->joinWith('tasks')
+                                  ->joinWith(Task::tableName())
                                   ->where($cond)
                                   ->andWhere(['list' => null])
                                   ->orderBy($sortBy)->asArray()->all();
@@ -188,13 +189,19 @@ class TreeController extends Controller
 
         foreach ($temp as $v) {
             // Абсолютная дата eg. '6 окт.' или относительная 'через 3 дня'
-            $dueDate = $dateUtils->asRelativeDate($v['tasks']['dueDate']);
+            $dueDate = $dateUtils->asRelativeDate($v[Task::tableName()]['dueDate']);
             // Словесная дата для подчеркивания в дереве eg. 'today', 'future'
-            $relativeDate = $dateUtils->timeInWords($v['tasks']['dueDate']);
+            $relativeDate = $dateUtils->timeInWords($v[Task::tableName()]['dueDate']);
             // Относительная дата для тултипа, сколько ещё дней осталось eg. '3 дня осталось'
-            $futureDate = $dateUtils->dateLeft($v['tasks']['dueDate']);
+            $futureDate = $dateUtils->dateLeft($v[Task::tableName()]['dueDate']);
 
-            switch ($v['tasks']['priority']) {
+            // Форматирование текста курсивом или полужирным шрифтом
+            $format = is_null($v['format']) ? false : $v['format'];
+
+            // Наличие текстовой заметки к задаче определяется иконкой
+            $hasNote = is_null($v['note']) ? false : 'fa fa-sticky-note';
+
+            switch ($v[Task::tableName()]['priority']) {
                 case 3:
                     $priority = Task::PR_HIGH; break;
                 case 2:
@@ -208,9 +215,9 @@ class TreeController extends Controller
             $result[] = [
                 'id'       => $v['dataId'],
                 'text'     => $v['name'],
-                'a_attr'   => ['class' => $priority],
-                'li_attr'  => ['value' => $dueDate, 'href' => $relativeDate, 'id' => $futureDate],
-                'icon'     => is_null($v['note']) ? false : 'fa fa-sticky-note',
+                'a_attr'   => ['class' => $priority, 'format' => $format],
+                'li_attr'  => ['date' => $dueDate, 'rel' => $relativeDate, 'hint' => $futureDate],
+                'icon'     => $hasNote,
                 'children' => ($v['rgt'] - $v['lft'] > 1)
             ];
         }
@@ -232,11 +239,11 @@ class TreeController extends Controller
      */
     public function make($parent, $position = 0, $data = [])
     {
-        $cond = ['tasks.author' => Yii::$app->user->id, 'pid' => 1];
+        $cond = [Task::tableName() . '.author' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0) { throw new \Exception('Parent is 0'); }
         if ($parent == 1) {
             $parent = $this->root;
-            $parent['children'] = TasksData::find()->joinWith('tasks')->where($cond)->asArray()->all();
+            $parent['children'] = TasksData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
@@ -337,14 +344,14 @@ class TreeController extends Controller
      */
     public function move($id, $parent = 0, $position = 0)
     {
-        $cond = ['tasks.author' => Yii::$app->user->id, 'pid' => 1];
+        $cond = [Task::tableName() . '.author' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0 || $id == 0 || $id == 1) {
             throw new InvalidConfigException('Cannot move inside 0, or move root node');
         }
 
         if ($parent == 1) {
             $parent = $this->root;
-            $parent['children'] = TasksData::find()->joinWith('tasks')->where($cond)->asArray()->all();
+            $parent['children'] = TasksData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
@@ -461,7 +468,7 @@ class TreeController extends Controller
         $data  = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true]);
         $tmp[] = $data['dataId'];
 
-        $db->createCommand()->delete('tasks_data', 'lft >= :lft AND rgt <= :rgt', [
+        $db->createCommand()->delete(TasksData::tableName(), 'lft >= :lft AND rgt <= :rgt', [
             ':lft' => $data['lft'],
             ':rgt' => $data['rgt']
         ])->execute();
@@ -472,7 +479,7 @@ class TreeController extends Controller
             }
         }
 
-        $db->createCommand()->delete('tasks', 'id IN (:id)', [':id' => (int) implode(',', $tmp)])->execute();
+        $db->createCommand()->delete(Task::tableName(), 'id IN (:id)', [':id' => (int) implode(',', $tmp)])->execute();
 
         return true;
     }
@@ -535,7 +542,7 @@ class TreeController extends Controller
         $getRequest = Yii::$app->request->get();
 
         if (ArrayHelper::keyExists($param, $getRequest) && ArrayHelper::getValue($getRequest, $param) !== '#') {
-            return ArrayHelper::getValue($getRequest, $param);
+            return trim(ArrayHelper::getValue($getRequest, $param));
         }
 
         return false;

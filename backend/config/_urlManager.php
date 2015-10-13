@@ -9,10 +9,12 @@ return [
         /*
          * Основные правила
          */
-        'contact'        => '/site/contact',
-        'todo'           => '/task/index',
-        'schedule'       => '/calendar/index',
-        'welcome'        => '/char/index',
+        'contact'  => '/site/contact',
+        'todo'     => '/task/index',
+        'schedule' => '/calendar/index',
+        'help'     => '/help/index',
+        'welcome'  => '/char/index',
+
         /*
          * Правила авторизации
          */

@@ -7,16 +7,19 @@ var Core = function () {
 
     var Body      = $("body"),
         formAdd   = $("#formAdd"),
+        popover   = $("[data-toggle=popover]"),
         textField = $(".inputStandard"),
         tree      = $("#tree"), // Указатель на jsTree
         accept    = false,
         isClicked = false,
+        format    = null,
         listName  = null, // Название категории (проекта)
         listKey   = null; // PK категории (проекта)
 
     // Переменные, определяющие принадлежность пользователя к странице
     var onDashBoard = $("body.site-page").length,
-        onTaskPage  = $("body.task-page").length;
+        onTaskPage  = $("body.task-page").length,
+        onHelpPage  = $("body.help-page").length;
 
     NProgress.configure({
         minimum:      0.15,
@@ -229,7 +232,8 @@ var Core = function () {
                     'id':       data.node.parent,
                     'position': data.position,
                     'text':     data.node.text,
-                    'list':     listKey
+                    'list':     listKey,
+                    'format':   format
                 }).done(function (d) {
                     data.instance.set_id(data.node, d.id);
                     //data.instance.refresh(true);
@@ -369,10 +373,13 @@ var Core = function () {
             var closureAdd = function () {
                 // Экземпляр корневого DOM-элемента преобразуется в объект jsTree
                 var obj = tree.jstree(true).get_node($("a:contains('Root')"), true);
+                var res = getFormat(textField.val());
 
                 // Хелпер добавления, дабы избежать дублирование кода
                 var helperAdd = function () {
-                    tree.jstree(true).create_node(obj, { text: textField.val() }, "last");
+                    tree.jstree(true).create_node(obj, {
+                        text: textField.val(), format: res
+                    }, "last");
                     textField.val("");
                     tree.jstree(true).settings.core.data = {
                         url:  "task/node",
@@ -389,7 +396,9 @@ var Core = function () {
                         helperAdd();
                         rootHasChildren.length = 1;
                     } else {
-                        tree.jstree(true).create_node(obj, { text: textField.val() }, "last", false);
+                        tree.jstree(true).create_node(obj, {
+                            text: textField.val(), format: res
+                        }, "last", false);
                         textField.val("");
 
                         if (!accept) { setCount(false) }
@@ -414,6 +423,20 @@ var Core = function () {
         var hideRoot = function () {
             $("a:contains('Root')").css("display", "none");
             $(".jstree-last .jstree-icon").first().hide();
+        };
+
+        // Определение ключевых знаков для форматирования текста
+        var getFormat = function (text) {
+            // Если в начале строки содержится '__' значит требуется курсивное начертание
+            if (text.substring(0, 2) == '__') {
+                format = 'cursive';
+            } else if (text.substring(0, 2) == '!!') {
+                format = 'bold';
+            } else {
+                format = null;
+            }
+
+            return format;
         };
 
         var appendData = function () {
@@ -451,6 +474,7 @@ var Core = function () {
         // Сортировка по условию
         $("#pr").click(function () { sortByCondition('priority') });
         $("#nm").click(function () { sortByCondition('name') });
+        $("#dt").click(function () { sortByCondition('dueDate') });
     };
 
     var runDockModal = function () {
@@ -626,7 +650,7 @@ var Core = function () {
         function msieversion() {
             var ua   = window.navigator.userAgent;
             var msie = ua.indexOf("MSIE ");
-            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv:11\./)) {
                 var ieVersion = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
                 if (ieVersion === 9) {
                     $('body').addClass('no-js ie' + ieVersion);
@@ -667,36 +691,12 @@ var Core = function () {
                 });
             }, delayTime);
         });
-        // "In-View" анимации
-        // Атрибут data принимает класс анимации и смещение (в %)
-        // например data-animate='["fadeIn","40%"]'
-        $('.animated-waypoint').each(function () {
-            var This = $(this);
-            var Animation = This.data('animate');
-            var offsetVal = '35%';
-            // Если атрибут data имеет более одного значения, сброс на умолчания
-            if (Animation.length > 1 && Animation.length < 3) {
-                Animation = This.data('animate')[ 0 ];
-                offsetVal = This.data('animate')[ 1 ];
-            }
-            var waypoint = new Waypoint({
-                element: This,
-                handler: function () {
-                    if (This.hasClass('animated-waypoint')) {
-                        This.removeClass('animated-waypoint').addClass('animated ' + Animation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                            This.removeClass('animated ' + Animation);
-                        });
-                    }
-                },
-                offset:  offsetVal
-            });
-        });
     };
 
     // Header функции
     var runHeader = function () {
 
-        // Панель поиска - модификация для мобильного
+        // Панель поиска - модификация для мобильных устройств
         $('.navbar-search').on('click', function (e) {
             var This         = $(this),
                 searchForm   = This.find('input'),
@@ -838,11 +838,86 @@ var Core = function () {
             });
         }
     };
+    // Form related Functions
+    var runHelpPage = function () {
+
+        // Slide content functionality for template pages
+        if ($('html').hasClass('template-page')) {
+            $('#template-code').on('click', function () {
+                Body.addClass('offscreen-active');
+            });
+            $('#template-return').on('click', function () {
+                Body.removeClass('offscreen-active');
+            });
+        }
+        // Toggle left sidebar functionality
+        var toggleInput = $('#left-col-toggle');
+        toggleInput.on('click', function () {
+            if ($('body.left-col-hidden').length) {
+                $('body').removeClass('left-col-hidden');
+            } else {
+                $('body').addClass('left-col-hidden');
+            }
+        });
+        // list-group-accordion functionality
+        var listAccordion = $('.list-group-accordion');
+        var accordionItems = listAccordion.find('.list-group-item');
+        var accordionLink = listAccordion.find('.sign-toggle');
+        accordionLink.on('click', function () {
+            var This = $(this);
+            var Parent = This.parent('.list-group-item');
+            if (Parent.hasClass('active')) {
+                Parent.toggleClass('active');
+            } else {
+                accordionItems.removeClass('active');
+                Parent.addClass('active');
+            }
+        });
+        // Mobile catch for hiding the left sidebar
+        if ($(window).width() < 940) {
+            $('body').addClass('left-col-hidden');
+        } else {
+            $('body').removeClass('left-col-hidden');
+        }
+        var scrollBtn = $('.scrollup');
+        // on scoll toggle scrollTop in/out
+        $(window).scroll(function () {
+            if ($('body').hasClass('scrolling')) {return;}
+            if ($(this).scrollTop() > 300) {
+                scrollBtn.fadeIn();
+            } else {
+                scrollBtn.fadeOut();
+            }
+        });
+        // on button click scrollTop
+        $('.scrollup, .return-top').on('click', function (e) {
+            e.preventDefault();
+            scrollReset();
+        });
+        // if link item clicked scrollTop
+        $('#nav-spy').find('li a').on('click', function () {
+            if ($(this).hasClass('sign-toggle')) { return; }
+            if ($(window).scrollTop() > 170) {
+                scrollReset();
+            }
+        });
+        // scrollTop function
+        function scrollReset() {
+            scrollBtn.fadeOut();
+            $("html, body").addClass('scrolling').animate({
+                scrollTop: 0
+            }, 320, function () {
+                $("html, body").removeClass('scrolling')
+            });
+            return false;
+        }
+    };
     return {
         init: function () {
-            runHelpers();
-            onTaskPage ? runTaskPage() : false;
+            onTaskPage  ? runTaskPage()  : false;
             onDashBoard ? runDashBoard() : false;
+            onHelpPage  ? runHelpPage()      : false;
+            runHelpers();
             runDockModal();
             runRoundedSkill();
             runAnimations();

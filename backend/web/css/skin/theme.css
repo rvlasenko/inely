@@ -2280,12 +2280,9 @@ p {
         position            : absolute;
         width               : 0;
         height              : 0;
-        border-color        : transparent;
-        border-style        : solid;
         right               : 8px;
         bottom              : 100%;
-        border-width        : 0 10px 10px;
-        border-bottom-color : #4a89dc;
+        border              : 10px solid transparent; border-top-width : 0; border-bottom-color : #4a89dc;
     }
 
     li.dropdown ul.noty,
@@ -2294,7 +2291,7 @@ p {
     }
 
     li.dropdown ul.user {
-        width : 250px;
+        width : 220px;
     }
 }
 
@@ -9371,6 +9368,7 @@ a.thumbnail.active {
     background-color : #fff;
     border           : 1px solid #e7e7e7;
     font-size        : 14px;
+    border-bottom: 0;
 }
 
 .list-group-item:first-child {
@@ -9381,6 +9379,7 @@ a.thumbnail.active {
 .list-group-item:last-child {
     margin-bottom              : 0;
     border-bottom-right-radius : 2px;
+    border-bottom           : 1px solid #e7e7e7;
     border-bottom-left-radius  : 2px;
 }
 
@@ -13337,6 +13336,14 @@ ol.timeline-list li.timeline-item .timeline-date {
 
 .fw600 {
     font-weight : 600 !important;
+}
+
+.bold {
+    font-weight : bold !important;
+}
+
+.cursive {
+    font-style : italic !important;
 }
 
 .fw700 {

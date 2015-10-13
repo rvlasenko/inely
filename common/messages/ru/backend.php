@@ -98,6 +98,7 @@ return [
     'Next 7 days' => 'След. 7 дней',
     'Sort by priority' => 'Сортировать по приоритету',
     'Sort by name' => 'Сортировать по названию',
+    'Sort by date' => 'Сортировать по дате',
     'Export as a template' => 'Экспорт в качестве шаблона',
     'Import from template' => 'Импорт из шаблона',
     'Delete completed tasks' => 'Удалить завершенные задачи',

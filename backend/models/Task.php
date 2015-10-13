@@ -30,9 +30,13 @@ class Task extends ActiveRecord
 {
     const ACTIVE_TASK    = 0;
     const COMPLETED_TASK = 1;
+
     const PR_HIGH        = 'high';
     const PR_MEDIUM      = 'medium';
     const PR_LOW         = 'low';
+
+    const FORMAT_BOLD    = 'bold';
+    const FORMAT_CURSIVE = 'cursive';
 
     public function behaviors()
     {
@@ -76,7 +80,7 @@ class Task extends ActiveRecord
         $ids       = TaskCat::find()->where(['userId' => null])->orWhere(['userId' => Yii::$app->user->id])->all();
         foreach ($ids as $id) {
             $result[$id->id] = (new Query())->select('id')
-                                            ->from('tasks')
+                                            ->from(self::tableName())
                                             ->where($condition)
                                             ->andWhere(['list' => $id->id])
                                             ->count();
@@ -97,20 +101,20 @@ class Task extends ActiveRecord
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
         $inboxSubQuery = (new Query())->select('COUNT(*)')
-                                      ->from('tasks')
-                                      ->innerJoin('tasks_data', 'dataId = id')
+                                      ->from(self::tableName())
+                                      ->innerJoin(TasksData::tableName(), 'dataId = id')
                                       ->where($condition)
                                       ->andWhere($inboxList);
 
         $todaySubQuery = (new Query())->select('COUNT(*)')
-                                      ->from('tasks')
-                                      ->innerJoin('tasks_data', 'dataId = id')
+                                      ->from(self::tableName())
+                                      ->innerJoin(TasksData::tableName(), 'dataId = id')
                                       ->where($condition)
                                       ->andWhere((new Expression('DATE(dueDate) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
-                                     ->from('tasks')
-                                     ->innerJoin('tasks_data', 'dataId = id')
+                                     ->from(self::tableName())
+                                     ->innerJoin(TasksData::tableName(), 'dataId = id')
                                      ->where($condition)
                                      ->andWhere((new Expression('dueDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
 

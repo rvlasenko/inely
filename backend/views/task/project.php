@@ -19,6 +19,7 @@
             <ul class="dropdown-menu" role="menu" style="margin: 2px -<?= Yii::t('backend', '9') ?>em 0;">
                 <li><a href="#" id="pr"><?= Yii::t('backend', 'Sort by priority') ?></a></li>
                 <li><a href="#" id="nm"><?= Yii::t('backend', 'Sort by name') ?></a></li>
+                <li><a href="#" id="dt"><?= Yii::t('backend', 'Sort by date') ?></a></li>
                 <li class="divider"></li>
                 <li><a href="#" id="ex"><?= Yii::t('backend', 'Export as a template') ?></a></li>
                 <li><a href="#" id="im"><?= Yii::t('backend', 'Import from template') ?></a></li>

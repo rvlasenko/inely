@@ -17,18 +17,9 @@ class m150705_091355_tasks extends Migration
             'list'       => $this->integer(15),
             'isDone'     => $this->integer(1),
             'priority'   => $this->integer(1),
-            'dueDate'    => $this->timestamp(),
+            'dueDate'    => $this->date(),
             'updated_at' => $this->integer(16),
         ], $tableOptions);
-
-        $this->insert('{{%tasks}}', [
-            'id'       => 1,
-            'author'   => null,
-            'list'     => 2,
-            'isDone'   => 0,
-            'priority' => 'medium',
-            'dueDate'  => null
-        ]);
 
         $this->createTable('{{%tasks_cat}}', [
             'id'         => $this->primaryKey(),

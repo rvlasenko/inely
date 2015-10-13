@@ -220,15 +220,105 @@ $this->registerJs($main, $this::POS_END);
                 </div>
 
             </div>
-
-            <!-- Note editor -->
-            <div class="panel panel-widget compose-widget">
+            <!-- Activity/Timeline widget -->
+            <div class="panel panel-widget ui-sortable" id="45">
                 <div class="panel-heading">
                     <span class="panel-icon"><i class="fa fa-pencil"></i></span>
-                    <span class="panel-title">Note editor</span>
+                    <span class="panel-title">Activity/Timeline Widget</span>
                 </div>
-                <div class="panel-body">
-                    <div class="summernote">Coming <b>Soon...</b></div>
+                <div class="panel-body ptn pbn p10">
+                    <ol class="timeline-list">
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-dark light">
+                                <span class="fa fa-tags"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Michael</b> Added to his store:
+                                <a href="#">Ipod</a>
+                            </div>
+                            <div class="timeline-date">1:25am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-dark light">
+                                <span class="fa fa-tags"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Sara</b> Added his store:
+                                <a href="#">Notebook</a>
+                            </div>
+                            <div class="timeline-date">3:05am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-success">
+                                <span class="fa fa-usd"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Admin</b> created invoice for:
+                                <a href="#">Software</a>
+                            </div>
+                            <div class="timeline-date">4:15am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-success">
+                                <span class="fa fa-usd"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Admin</b> created invoice for:
+                                <a href="#">Apple</a>
+                            </div>
+                            <div class="timeline-date">7:45am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-success">
+                                <span class="fa fa-usd"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Admin</b> created invoice for:
+                                <a href="#">Software</a>
+                            </div>
+                            <div class="timeline-date">4:15am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-success">
+                                <span class="fa fa-usd"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Admin</b> created invoice for:
+                                <a href="#">Apple</a>
+                            </div>
+                            <div class="timeline-date">7:45am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-dark light">
+                                <span class="fa fa-tags"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Michael</b> Added his store:
+                                <a href="#">Ipod</a>
+                            </div>
+                            <div class="timeline-date">8:25am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-system">
+                                <span class="fa fa-fire"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Admin</b> created invoice for:
+                                <a href="#">Software</a>
+                            </div>
+                            <div class="timeline-date">4:15am</div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="timeline-icon bg-dark light">
+                                <span class="fa fa-tags"></span>
+                            </div>
+                            <div class="timeline-desc">
+                                <b>Sara</b> Added to his store:
+                                <a href="#">Notebook</a>
+                            </div>
+                            <div class="timeline-date">3:05am</div>
+                        </li>
+                    </ol>
                 </div>
             </div>
 
