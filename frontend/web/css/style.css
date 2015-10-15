@@ -67,6 +67,10 @@ dl, dt, dd, ol, ul, li {
 body {
     line-height : 1.5;
     color       : #555;
+    font-family : sans-serif;
+}
+
+.w-l body {
     font-family : 'Lato', sans-serif;
 }
 
@@ -3321,7 +3325,7 @@ label.error { display : none !important; }
     margin-right : auto;
 }
 
-.heading-block h1 + span { font-size : 20px; }
+.heading-block h1 + span { font-size : 21px; }
 
 .heading-block h2 + span { font-size : 22px; }
 
@@ -3553,7 +3557,7 @@ body:not(.device-touch) #gotoTop {
 
 #footer .footer-widgets-wrap {
     position : relative;
-    padding  : 80px 0;
+    padding  : 40px 0;
 }
 
 #footer .author {

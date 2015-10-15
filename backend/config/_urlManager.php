@@ -11,7 +11,7 @@ return [
          */
         'contact'  => '/site/contact',
         'todo'     => '/task/index',
-        'schedule' => '/calendar/index',
+        'schedule' => '/schedule/index',
         'help'     => '/help/index',
         'welcome'  => '/char/index',
 

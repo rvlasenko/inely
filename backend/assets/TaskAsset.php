@@ -47,6 +47,6 @@ class TaskAsset extends AssetBundle
         'yii\web\JqueryAsset',
         'common\assets\JuiAsset',
         'common\assets\FontAwesome',
-        'backend\assets\BootstrapJsAsset'
+        'common\assets\BootstrapJsAsset'
     ];
 }

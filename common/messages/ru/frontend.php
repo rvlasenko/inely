@@ -39,12 +39,12 @@ return [
      */
     'Inely. Your personal <span class="t-rotate">Assistant|Scheduler|Task-Manager|Organizer</span>' => 'Inely. Ваш личный <span class="t-rotate">ассистент|планировщик|задачник|ежедневник</span>',
     'Join' => 'Присоединиться',
-    'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where Inely can come in.' => 'Личный помощник готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть абсолютно всё. И здесь на помощь приходит Inely.',
+    'Personal Assistant ready to make your life more manageable. In today\'s world it is easy to feel like there is never enough time in a day to get it all done. That is where Inely can come in.' => 'Личный ассистент готов сделать Вашу жизнь чуточку гибче. В современном мире легко ощутить нехватку времени в сутках, чтобы успеть абсолютно всё. И здесь на помощь приходит Inely.',
     /**
      * Вводная секция
      */
-    'Welcome to Inely.<br>MultiPurpose helper.' => 'Добро пожаловать в Inely.<br>Многоцелевой помощник.',
-    'Manage your personal goals, your projects, etc. in one place. Our helper designed to adapt to all needs.' => 'Отслеживайте личные цели, планируйте проекты, и всё остальное в одном месте. Наш помощник подходит для любой цели.',
+    'Welcome to Inely.' => 'Добро пожаловать в Inely.',
+    'o' => 'Inely – кроссплатформенный сервис управления персональными задачами. Inely не просто планировщик - это личный ассистент, который может стать путеводителем пользователя в его жизни.',
     /**
      * Секция обзора
      */
@@ -66,8 +66,6 @@ return [
     'Achieve more by breaking big tasks into smaller sub-tasks.' => 'Добивайтесь большего, разбивая большой проект на несколько небольших задач.',
     'Notes' => 'Заметки',
     'Add as many details as you want to make sure you have everything you need.' => 'Добавляйте сколько угодно много деталей, чтобы быть увереным, что у вас есть все для выполнения.',
-
-    'Earn achievements, increasing the level, receiving more coins and getting to various stages of the game.' => 'Зарабатывайте достижения, повышая свой уровень, получая больше монет и попадая в различные этапы игры.',
     /**
      * Retina
      */

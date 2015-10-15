@@ -10,14 +10,6 @@
 
                 <div class="widget clearfix">
 
-                    <h2 class="purple-footer-logo">inely</h2>
-
-                    <p></p>
-
-                    <h4 class="author" style="font-weight: 500;">Crafted with love by hirootkit.</h4>
-
-                    <div class="line" style="margin: 30px 0;"></div>
-
                     <div class="col_half">
                         <div class="widget clearfix">
 

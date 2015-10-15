@@ -18,7 +18,7 @@ $this->title = Yii::t('backend', 'Join Inely');
 
 $this->registerAssetBundle('common\assets\JuiAsset', $this::POS_HEAD);
 $this->registerAssetBundle('yii\web\JqueryAsset', $this::POS_END);
-$this->registerAssetBundle('backend\assets\BootstrapJsAsset', $this::POS_END);
+$this->registerAssetBundle('common\assets\BootstrapJsAsset', $this::POS_END);
 ?>
 
 <?php $this->beginPage() ?>

@@ -34,7 +34,7 @@ class SiteController extends Controller
         return [
             [
                 'class' => 'yii\filters\HttpCache',
-                'only'  => ['index']
+                'only'  => ['index', 'contact']
             ]
         ];
     }

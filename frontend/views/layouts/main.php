@@ -30,6 +30,8 @@ $this->registerJsFile('js/plugins.js',   [ 'position' => $this::POS_END ]);
 
     <meta http-equiv="content-type" content="text/html" />
     <meta charset="<?= Yii::$app->charset ?>" />
+    <link rel="preload" href="/fonts/lato/lato-regular.woff" />
+    <link rel="preload" href="/fonts/lato/lato-light.woff" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!--[if lt IE 9]>

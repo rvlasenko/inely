@@ -25,6 +25,7 @@ class HelpAsset extends AssetBundle
 
         // Theme CSS
         'css/skin/theme.css',
+        'css/animate.css',
         'css/res/styles.css'
     ];
 
@@ -41,6 +42,6 @@ class HelpAsset extends AssetBundle
     public $depends   = [
         'yii\web\JqueryAsset',
         'common\assets\FontAwesome',
-        'backend\assets\BootstrapJsAsset'
+        'common\assets\BootstrapJsAsset'
     ];
 }

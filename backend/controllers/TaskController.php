@@ -42,22 +42,15 @@ class TaskController extends TreeController
                     ]
                 ]
             ],
-/*            'pageCache' => [
+            /*'pageCache' => [
                 'class'      => 'yii\filters\PageCache',
                 'only'       => ['index', 'node'],
                 'duration'   => 640,
                 'variations' => [Yii::$app->language],
                 'dependency' => [
                     'class' => 'yii\caching\DbDependency',
-                    'sql'   => 'SELECT MAX(updatedAt) FROM tasks'
+                    'sql'   => 'SELECT updatedAt FROM tasks ORDER BY updatedAt DESC'
                 ]
-            ],
-            [
-                'class'        => 'yii\filters\HttpCache',
-                'only'         => ['index', 'node'],
-                'lastModified' => function () {
-                    return (new Query)->from('tasks')->max('updatedAt');
-                },
             ],*/
             [
                 'class'   => 'yii\filters\ContentNegotiator',
@@ -131,9 +124,11 @@ class TaskController extends TreeController
         $node   = $this->checkGetParam('id');
         $pos    = $this->checkGetParam('position');
         $temp   = $this->make($node, $pos, [
-            'name'   => $this->checkGetParam('text'),
-            'list'   => $this->checkGetParam('list') ?: null,
-            'format' => $this->checkGetParam('format') ?: null
+            'name'     => $this->checkGetParam('text'),
+            'list'     => $this->checkGetParam('list'),
+            'format'   => $this->checkGetParam('format'),
+            'priority' => $this->checkGetParam('priority'),
+            'dueDate'  => $this->checkGetParam('date')
         ]);
         $result = ['id' => $temp];
 

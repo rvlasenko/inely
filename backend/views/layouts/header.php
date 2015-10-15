@@ -90,7 +90,7 @@ HTML;
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-gear fs15 pr5"></span> Account Settings', [''], [
+                    <?= Html::a('<span class="fa fa-gear fs15 pr5"></span> Settings', [''], [
                         'class' => 'p12 animated animated-short fadeInDown'
                     ]) ?>
                 </li>
@@ -101,7 +101,7 @@ HTML;
                     ]) ?>
                 </li>
                 <li class="br-t of-h">
-                    <?= Html::a('<span class="fa fa-power-off fs15 pr5"></span>Logout', ['/logout'], [
+                    <?= Html::a('<span class="fa fa-power-off fs15 pr5"></span> Logout', ['/logout'], [
                         'class'       => 'p12 animated animated-short fadeInDown',
                         'data-method' => 'post'
                     ]) ?>

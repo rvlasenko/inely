@@ -467,11 +467,17 @@ class TreeController extends Controller
         $db    = Yii::$app->db;
         $data  = $this->getNode($id, ['withChildren' => true, 'deepChildren' => true]);
         $tmp[] = $data['dataId'];
+        $diff  = $data['rgt'] - $data['lft'] + 1;
 
         $db->createCommand()->delete(TasksData::tableName(), 'lft >= :lft AND rgt <= :rgt', [
             ':lft' => $data['lft'],
             ':rgt' => $data['rgt']
         ])->execute();
+
+        $db->createCommand('UPDATE tasks_data SET lft = lft - :dif WHERE lft > :rgt')
+           ->bindValue(':dif', $diff)
+           ->bindValue(':rgt', $data['rgt'])
+           ->execute();
 
         if ($data['children'] && is_array($data['children'])) {
             foreach ($data['children'] as $v) {
@@ -479,7 +485,7 @@ class TreeController extends Controller
             }
         }
 
-        $db->createCommand()->delete(Task::tableName(), 'id IN (:id)', [':id' => (int) implode(',', $tmp)])->execute();
+        Task::deleteAll('id IN (' . implode(',', $tmp) . ')');
 
         return true;
     }
@@ -542,9 +548,9 @@ class TreeController extends Controller
         $getRequest = Yii::$app->request->get();
 
         if (ArrayHelper::keyExists($param, $getRequest) && ArrayHelper::getValue($getRequest, $param) !== '#') {
-            return trim(ArrayHelper::getValue($getRequest, $param));
+            return ArrayHelper::getValue($getRequest, $param);
         }
 
-        return false;
+        return null;
     }
 }

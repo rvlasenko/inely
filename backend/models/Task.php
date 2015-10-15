@@ -43,8 +43,9 @@ class Task extends ActiveRecord
         return [
             [
                 'class'              => TimestampBehavior::className(),
-                'createdAtAttribute' => false,
-                'updatedAtAttribute' => 'updatedAt'
+                'createdAtAttribute' => 'createdAt',
+                'updatedAtAttribute' => 'updatedAt',
+                'value'              => (new Expression('NOW()'))
             ]
         ];
     }
@@ -57,7 +58,6 @@ class Task extends ActiveRecord
     {
         return [
             ['author', 'default', 'value' => Yii::$app->user->id],
-            ['dueDate', 'default', 'value' => (new Expression('NOW()'))],
             ['isDone', 'default', 'value' => self::ACTIVE_TASK],
             ['priority', 'in', 'range' => [1, 2, 3]],
             ['isDone', 'boolean']
@@ -95,9 +95,9 @@ class Task extends ActiveRecord
      */
     public static function getCountOfGroups()
     {
-        $result    = [];
-        $condition = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
-        $inboxList = ['list' => null];
+        $result     = [];
+        $condition  = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $inboxList  = ['list' => null];
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
         $inboxSubQuery = (new Query())->select('COUNT(*)')
@@ -110,13 +110,14 @@ class Task extends ActiveRecord
                                       ->from(self::tableName())
                                       ->innerJoin(TasksData::tableName(), 'dataId = id')
                                       ->where($condition)
-                                      ->andWhere((new Expression('DATE(dueDate) = CURDATE()')));
+                                      ->andWhere((new Expression('DATE(IFNULL(dueDate, createdAt)) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
                                      ->from(self::tableName())
                                      ->innerJoin(TasksData::tableName(), 'dataId = id')
                                      ->where($condition)
-                                     ->andWhere((new Expression('dueDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
+                                     ->andWhere((new Expression('IFNULL(dueDate, createdAt)
+                                        BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
 
         /* SELECT ( (SELECT COUNT(*) AS `inbox` FROM `tasks`... */
         $result[] = (new Query)->select(['inbox' => $inboxSubQuery])->all();

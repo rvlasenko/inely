@@ -25,9 +25,8 @@ $config = [
                 'common\commands\SendEmailCommand' => '\common\commands\SendEmailHandler'
             ]
         ],
-        'cache'              => ['class' => 'yii\caching\DummyCache'],
-        'formatter'          => ['class' => 'yii\i18n\Formatter'],
-        'mailer'             => [
+        'cache'     => ['class' => 'yii\caching\DummyCache'],
+        'mailer'    => [
             'class'         => 'yii\swiftmailer\Mailer',
             'messageConfig' => [
                 'charset' => 'UTF-8',

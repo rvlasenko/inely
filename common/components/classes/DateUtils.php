@@ -77,7 +77,7 @@ class DateUtils extends Formatter
      * В случаях с годом и месяцем указывается только абсолютная дата.
      *
      * @param DateTime|DateInterval $value         значение, которое нужно отформатировать.
-     * @param DateTime $referenceTime значение, которое будет использоваться вместо настоящего времени.
+     * @param DateTime              $referenceTime значение, которое будет использоваться вместо настоящего времени.
      *
      * @return string отформатированная строка.
      * @throws InvalidParamException если входное значение не может быть оценено как значение даты.
@@ -85,7 +85,7 @@ class DateUtils extends Formatter
     public function asRelativeDate($value, $referenceTime = null)
     {
         if ($value === null) {
-            return $this->nullDisplay;
+            return null;
         }
 
         if ($value instanceof DateInterval) {
@@ -152,8 +152,8 @@ class DateUtils extends Formatter
     /**
      * Форматирование значения как оставшийся интервал времени в читабельной форме.
      *
-     * @param DateTime|DateInterval $value значение, которое нужно отформатировать.
-     * @param DateTime $referenceTime значение, которое будет использоваться вместо настоящего времени.
+     * @param DateTime|DateInterval $value         значение, которое нужно отформатировать.
+     * @param DateTime              $referenceTime значение, которое будет использоваться вместо настоящего времени.
      *
      * @return string отформатированная строка.
      * @throws InvalidParamException если входное значение не может быть оценено как значение даты.

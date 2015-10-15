@@ -102,4 +102,12 @@ return [
     'Export as a template' => 'Экспорт в качестве шаблона',
     'Import from template' => 'Импорт из шаблона',
     'Delete completed tasks' => 'Удалить завершенные задачи',
+    /**
+     * Помощь
+     */
+    'General' => 'Основная информация',
+    'Dates and times' => 'Дата и время',
+    'Keywords' => 'Ключевые слова',
+    'Keyboard shortcuts' => 'Горячие клавиши',
+    'Notes' => 'Заметки и комментарии',
 ];

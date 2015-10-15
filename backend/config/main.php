@@ -12,6 +12,10 @@ $config = [
         ]
     ],
     'components'          => [
+        'formatter' => [
+            'class'       => 'yii\i18n\Formatter',
+            'nullDisplay' => ''
+        ],
         'authClientCollection' => [
             'class'   => 'yii\authclient\Collection',
             'clients' => [

@@ -8,7 +8,7 @@
  * @author hirootkit <admiralexo@gmail.com>
  */
 
-namespace backend\assets;
+namespace common\assets;
 
 use yii\web\AssetBundle;
 

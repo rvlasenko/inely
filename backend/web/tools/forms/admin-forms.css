@@ -15,6 +15,10 @@
     color       : #626262;
 }
 
+.admin-form .section {
+    margin-bottom: 22px;
+}
+
 /*==================================================================
   Browser Styling Reset
 ===================================================================*/
@@ -252,9 +256,9 @@
     height             : 42px;
     width              : 100%;
     *zoom              : 1;
-    box-shadow         : 0 0 10px 4px rgba(221, 221, 221, 0.2);
-    -moz-box-shadow    : 0 0 10px 4px rgba(221, 221, 221, 0.2);
-    -webkit-box-shadow : 0 0 10px 4px rgba(221, 221, 221, 0.2);
+    box-shadow         : 0 0 5px 2px rgba(221, 221, 221, 0.2);
+    -moz-box-shadow    : 0 0 5px 2px rgba(221, 221, 221, 0.2);
+    -webkit-box-shadow : 0 0 5px 2px rgba(221, 221, 221, 0.2);
 }
 
 .admin-form .select option {

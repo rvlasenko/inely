@@ -8,18 +8,18 @@ var Core = function () {
     var Body      = $("body"),
         formAdd   = $("#formAdd"),
         popover   = $("[data-toggle=popover]"),
-        textField = $(".inputStandard"),
         tree      = $("#tree"), // Указатель на jsTree
-        accept    = false,
-        isClicked = false,
         format    = null,
+        date      = null,
+        priority  = null,
         listName  = null, // Название категории (проекта)
         listKey   = null; // PK категории (проекта)
 
     // Переменные, определяющие принадлежность пользователя к странице
     var onDashBoard = $("body.site-page").length,
         onTaskPage  = $("body.task-page").length,
-        onHelpPage  = $("body.help-page").length;
+        onHelpPage  = $("body.help-page").length,
+        onSchPage   = $("body.schedule-page").length;
 
     NProgress.configure({
         minimum:      0.15,
@@ -41,8 +41,14 @@ var Core = function () {
     });
 
     var runTaskPage = function () {
+        var to        = null,
+            accept    = false,
+            isClicked = false,
+            textField = $(".inputStandard"), // Поле ввода названия задачи
+            searchInp = $('#search_q'),     // Поисковое поле
+            eventInp  = $('#eventDate');   // Поле выбора даты
+
         $("ul.panel-tabs li:nth-child(3)").addClass("active");
-        $(".list-tabs").css("display", "block");
         function getInstance(data) {
             return $.jstree.reference(data.reference).get_node(data.reference);
         }
@@ -78,17 +84,13 @@ var Core = function () {
                         "Create":      {
                             "icon":   "fa fa-leaf",
                             "label":  "Add task",
-                            "action": function () {
-                                createNode();
-                            }
+                            "action": function () { createNode() }
                         },
                         "Rename":      {
                             "separator_after": true,
                             "icon":            "fa fa-i-cursor",
                             "label":           "Edit task",
-                            "action":          function () {
-                                renameNode($node);
-                            }
+                            "action":          function () { renameNode($node) }
                         },
                         "SetPriority": {
                             "icon":    "fa fa-flag",
@@ -233,9 +235,13 @@ var Core = function () {
                     'position': data.position,
                     'text':     data.node.text,
                     'list':     listKey,
-                    'format':   format
+                    'priority': priority,
+                    'format':   format,
+                    'date':     date
                 }).done(function (d) {
                     data.instance.set_id(data.node, d.id);
+                    priority = null;
+                    date     = null;
                     //data.instance.refresh(true);
                 }).fail(function () {
                     data.instance.refresh();
@@ -276,31 +282,36 @@ var Core = function () {
             hideRoot();
         });
 
-        var to = null;
-        $('#search_q').keyup(function () {
-            if (to) { clearTimeout(to); }
+        searchInp.keyup(function (e) {
+            if (to) { clearTimeout(to) }
             to = setTimeout(function () {
-                var v = $('#search_q').val();
+                var v = searchInp.val();
                 $('#tree').jstree(true).search(v);
             }, 250);
+            if (e.keyCode == 27) { $('#inbox').focus() }
         });
 
         // Применение набора языковых правил для календаря
         $.datepicker.setDefaults($.datepicker.regional["ru"]);
-        $("#eventDate").datepicker({
+        eventInp.datepicker({
             numberOfMonths:  1,
+            minDate:         0,
             prevText:        '<i class="fa fa-chevron-left"></i>',
             nextText:        '<i class="fa fa-chevron-right"></i>',
             showButtonPanel: false,
-            dateFormat:      'd M'
+            dateFormat:      'd M',
+            onSelect: function(dateText, inst) {
+                date = inst.selectedYear + '-' + Math.abs(inst.selectedMonth + 1) + '-' + inst.selectedDay;
+                eventInp.focus();
+            }
         });
 
         if ($('.h1200').length) {
             $(window).load(function () {
-                $('.h1200').css({ 'height': (($(window).height() + 600)) + 'px' });
+                $('.h1200').css({ 'height': ($(window).height() + 600) + 'px' });
             });
             $(window).resize(function () {
-                $('.h1200').css({ 'height': (($(window).height() + 600)) + 'px' });
+                $('.h1200').css({ 'height': ($(window).height() + 600) + 'px' });
             });
         }
 
@@ -308,7 +319,7 @@ var Core = function () {
             tree.jstree(true).settings.core.data = {
                 url:  "task/node",
                 data: function (node) {
-                    return { id: node.id, sort: cond, list: listKey };
+                    return { id: node.id, sort: cond, list: listKey }
                 }
             };
             tree.jstree(true).refresh();
@@ -343,7 +354,7 @@ var Core = function () {
             var closureRename = function () {
                 if (textField.val() != 0) {
                     tree.jstree(true).rename_node(node, textField.val());
-                    textField.val("");
+                    textField.val('');
                 }
             };
 
@@ -352,7 +363,7 @@ var Core = function () {
             nodeIcon.hide(); nodeAnchor.hide();
             // После чего становится видна форма и курсор фокусируется внутри input'а
             setTimeout(function () { formAdd.find(".inputStandard").focus() }, 100);
-            $(textField).on("keyup", function (e) {
+            $(textField, eventInp).on("keyup", function (e) {
                 // Escape - отмена
                 if (e.keyCode == 27) { formAdd.hide(); nodeIcon.show(); nodeAnchor.show() }
                 // Enter  - добавление
@@ -373,14 +384,17 @@ var Core = function () {
             var closureAdd = function () {
                 // Экземпляр корневого DOM-элемента преобразуется в объект jsTree
                 var obj = tree.jstree(true).get_node($("a:contains('Root')"), true);
-                var res = getFormat(textField.val());
 
                 // Хелпер добавления, дабы избежать дублирование кода
                 var helperAdd = function () {
                     tree.jstree(true).create_node(obj, {
-                        text: textField.val(), format: res
+                        text:     textField.val(),
+                        format:   getShortcut('format', textField.val()),
+                        priority: getShortcut('priority', textField.val()),
+                        date:     date
                     }, "last");
-                    textField.val("");
+                    textField.val('');
+                    eventInp.val('');
                     tree.jstree(true).settings.core.data = {
                         url:  "task/node",
                         data: function (node) {
@@ -397,9 +411,13 @@ var Core = function () {
                         rootHasChildren.length = 1;
                     } else {
                         tree.jstree(true).create_node(obj, {
-                            text: textField.val(), format: res
+                            text:     textField.val(),
+                            format:   getShortcut('format', textField.val()),
+                            priority: getShortcut('priority', textField.val()),
+                            date:     date
                         }, "last", false);
-                        textField.val("");
+                        textField.val('');
+                        eventInp.val('');
 
                         if (!accept) { setCount(false) }
                     }
@@ -407,9 +425,9 @@ var Core = function () {
             };
 
             // Добавление контейнера редактирования новой задачи в jsTree
-            formAdd.appendTo(".jstree-container-ul.jstree-children").css({"margin-left": 40}).show();
+            formAdd.show();
             setTimeout(function () { formAdd.find(".inputStandard").focus() }, 100);
-            $(textField).on("keyup", function (e) {
+            $("#eventDate, .inputStandard").on("keyup", function (e) {
                 // Escape - отмена
                 if (e.keyCode == 27) { formAdd.hide() }
                 // Enter  - добавление
@@ -425,18 +443,32 @@ var Core = function () {
             $(".jstree-last .jstree-icon").first().hide();
         };
 
-        // Определение ключевых знаков для форматирования текста
-        var getFormat = function (text) {
-            // Если в начале строки содержится '__' значит требуется курсивное начертание
-            if (text.substring(0, 2) == '__') {
-                format = 'cursive';
-            } else if (text.substring(0, 2) == '!!') {
-                format = 'bold';
-            } else {
-                format = null;
-            }
+        // Получение ключевых знаков для быстрого задания формата задачи
+        var getShortcut = function (type, text) {
+            if (type === 'format') {
+                // Если в начале строки содержится '__' значит требуется курсивное начертание
+                if (text.substring(0, 2) == '__') {
+                    format = 'cursive';
+                } else if (text.substring(0, 2) == '--') {
+                    format = 'bold';
+                } else {
+                    format = null;
+                }
 
-            return format;
+                return format;
+            } else if (type === 'priority') {
+                if (text.substring(0, 3) == '!!1') {
+                    priority = 3;
+                } else if (text.substring(0, 3) == '!!2') {
+                    priority = 2;
+                } else if (text.substring(0, 3) == '!!3') {
+                    priority = 1;
+                } else {
+                    priority = null;
+                }
+
+                return priority;
+            }
         };
 
         var appendData = function () {
@@ -463,7 +495,11 @@ var Core = function () {
 
         // Бинд на клавиши, по нажатию которых сработает событие create_node
         Mousetrap.bind([ 'q', 'й' ], function () { $('a.action').click() });
+        Mousetrap.bind([ '/' ], function () {
+            setTimeout(function () { searchInp.focus() }, 100)
+        });
         $('a.action').click(function () { createNode(); return false });
+        $('.list-tabs').css('display', 'block');
 
         // Обновление дерева с новыми данными, где поле list эквивалентно выбранному
         $('.user-project').click(function () { appendData.apply(this) });
@@ -477,6 +513,129 @@ var Core = function () {
         $("#dt").click(function () { sortByCondition('dueDate') });
     };
 
+    var runSchedule = function () {
+        // Инициализация внешних событий FullCalendar
+        $('#external-events').find('.fc-event').each(function() {
+            // Хранить данные так, чтобы календарь знал, как рендерить событие после drop'а
+            $(this).data('event', {
+                title: $.trim($(this).text()), // использовать текст элемента в качестве имени события
+                stick: true, // (см. renderEvent method)
+                className: 'fc-event-' + $(this).attr('data-event') // добавить имя класса из data атрибута 'attr'
+            });
+
+            // сделать событие перетаскиваемым используя jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true,
+                revertDuration: 0
+            });
+
+        });
+
+        var Calendar = $('#calendar');
+        var Picker   = $('.inline-mp');
+
+        // Инициализация плагина FullCalendar
+        Calendar.fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            events: [{
+                title: 'Sony Meeting',
+                start: '2015-10-4',
+                end: '2015-10-6',
+                className: 'fc-event-success'
+            }, {
+                title: 'Conference',
+                start: '2015-10-14',
+                end: '2015-10-16',
+                className: 'fc-event-warning'
+            }, {
+                title: 'System Testing',
+                start: '2015-10-26',
+                end: '2015-10-28',
+                className: 'fc-event-primary'
+            }],
+            viewRender: function(view) {
+                // Если monthPicker был инициализирован, обновить его дату
+                if (Picker.hasClass('hasMonthpicker')) {
+                    var selectedDate = Calendar.fullCalendar('getDate');
+                    var formatted = moment(selectedDate, 'MM-DD-YYYY').format('MM/YY');
+                    Picker.monthpicker("setDate", formatted);
+                }
+                // Обновить заголовок мини-календаря с месяцами
+                var titleContainer = $('.fc-title-clone');
+                if (!titleContainer.length) {
+                    return;
+                }
+                titleContainer.html(view.title);
+            },
+            droppable: true, // Свойство, позволяющее перетаскивать события на календарь
+            drop: function() {
+                if (!$(this).hasClass('event-recurring')) {
+                    $(this).remove();
+                }
+            },
+            eventRender: function(event, element) {
+                // Создание подсказки используя bootstrap как основу
+                $(element).attr("data-original-title", event.title);
+                $(element).tooltip({
+                    container: 'body',
+                    delay: {
+                        "show": 100,
+                        "hide": 200
+                    }
+                });
+                $(element).on('show.bs.tooltip', function() {
+                    var autoClose = setTimeout(function() {
+                        $('.tooltip').fadeOut();
+                    }, 3500);
+                });
+            }
+        });
+
+        // Инициализация модального окна через Magnific Popup
+        $('#compose-event-btn').magnificPopup({
+            removalDelay: 500, // удаление задержки по оси X
+            callbacks: {
+                beforeOpen: function() {
+                    // Добавление класса к body чтобы показать, что наложение активно
+                    // Свойство z-index должно правильно конфигурировать отображение вложенности
+                    $('body').addClass('mfp-bg-open');
+                    this.st.mainClass = this.st.el.attr('data-effect');
+                },
+                afterClose: function() {
+                    $('body').removeClass('mfp-bg-open');
+                }
+            },
+            midClick: true
+        });
+
+        Picker.monthpicker({
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+            showButtonPanel: false,
+            onSelect: function(selectedDate) {
+                var formatted = moment(selectedDate, 'MM/YYYY').format('MM/DD/YYYY');
+                Calendar.fullCalendar('gotoDate', formatted)
+            }
+        });
+
+        // Инициализация выбора дат в модальном окне
+        $.datepicker.setDefaults($.datepicker.regional["ru"]);
+        $('#eventDate').datepicker({
+            numberOfMonths:  1,
+            minDate:         0,
+            prevText:        '<i class="fa fa-chevron-left"></i>',
+            nextText:        '<i class="fa fa-chevron-right"></i>',
+            showButtonPanel: false,
+            dateFormat:      'd M'
+        });
+    };
+
     var runDockModal = function () {
         $('#quick-compose').on('click', function () {
             $('.quick-compose-form').dockmodal({
@@ -485,13 +644,11 @@ var Core = function () {
                 height:         340,
                 title:          'Compose Message',
                 initialState:   'docked',
-                buttons:        [
-                    {
-                        html:        'Add',
-                        buttonClass: 'btn btn-primary btn-sm',
-                        click:       function () { }
-                    }
-                ]
+                buttons:        [{
+                    html:        'Add',
+                    buttonClass: 'btn btn-primary btn-sm',
+                    click:       function () { }
+                }]
             });
         });
     };
@@ -640,205 +797,7 @@ var Core = function () {
             onSave:       function () { $(window).trigger('resize') }
         });
     };
-    // jQuery хелперы
-    var runHelpers = function () {
-        // Отключение селекта
-        $.fn.disableSelection = function () {
-            return this.attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
-        };
-        // Тест функция для IE, добавление класса if version 9 в тег <body>
-        function msieversion() {
-            var ua   = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv:11\./)) {
-                var ieVersion = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
-                if (ieVersion === 9) {
-                    $('body').addClass('no-js ie' + ieVersion);
-                }
-                return ieVersion;
-            } else {
-                return false;
-            }
-        }
 
-        msieversion();
-        // Хелпер очищающий оставшиеся классы в основном контейнере
-        setTimeout(function () {
-            $('#content').removeClass('animated fadeIn');
-        }, 500);
-    };
-    var runAnimations = function () {
-
-        // Добавление класса после загрузки, чтобы предотвратить css анимацию
-        // от размытия страниц, на которых много ресурсов.
-        setTimeout(function () {
-            $('body').addClass('onload-check');
-        }, 100);
-        // Атрибут data принимает число в миллисекундах (задержка) и класс анимации
-        // При условии, что была передана только задержка, устанавливается анимация fadeIn
-        $('.animated-delay[data-animate]').each(function () {
-            var This = $(this);
-            var delayTime = This.data('animate');
-            var delayAnimation = 'fadeIn';
-            // Если атрибут data имеет более одного значения, сброс на умолчания
-            if (delayTime.length > 1 && delayTime.length < 3) {
-                delayTime = This.data('animate')[ 0 ];
-                delayAnimation = This.data('animate')[ 1 ];
-            }
-            var delayAnimate = setTimeout(function () {
-                This.removeClass('animated-delay').addClass('animated ' + delayAnimation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                    This.removeClass('animated ' + delayAnimation);
-                });
-            }, delayTime);
-        });
-    };
-
-    // Header функции
-    var runHeader = function () {
-
-        // Панель поиска - модификация для мобильных устройств
-        $('.navbar-search').on('click', function (e) {
-            var This         = $(this),
-                searchForm   = This.find('input'),
-                searchRemove = This.find('.search-remove');
-            // Ничего не делать, только если не мобильный режим
-            if ($('body.mobile-view').length || $('body.sb-top-mobile').length) {
-
-                // Открыть панель поиска и добавить иконку сброса, если она не найдена
-                This.addClass('search-open');
-                if (!searchRemove.length) {
-                    This.append('<div class="search-remove"></div>');
-                }
-                // Появление кнопки сброса и фокус на поле ввода по завершению анимации
-                setTimeout(function () {
-                    This.find('.search-remove').fadeIn();
-                    searchForm.focus().one('keydown', function () {
-                        $(this).val('');
-                    });
-                }, 250);
-                // Если нажата кнопка сброса, закрыть панель поиска
-                if ($(e.target).attr('class') == 'search-remove') {
-                    This.removeClass('search-open').find('.search-remove').remove();
-                }
-            }
-        });
-        var dropDown = $('.dropdown-item-slide');
-        // Анимация для для выпадающего списка в хедере
-        if (dropDown.length) {
-            dropDown.on('shown.bs.dropdown', function () {
-                var This = $(this);
-                setTimeout(function () {
-                    This.addClass('slide-open');
-                }, 20);
-            });
-            dropDown.on('hidden.bs.dropdown', function () {
-                $(this).removeClass('slide-open');
-            });
-        }
-    };
-    // Связанные с треем функции
-    var runTrays = function () {
-
-        // Соответствие высоты трея с высотой body
-        var trayMatch = $('.tray[data-tray-height="match"]');
-        if (trayMatch.length) {
-
-            // Установка такой высоты, которая соответствует высоте body
-            trayMatch.each(function () {
-                var Height = $('body').height();
-                $(this).height(Height);
-            });
-        }
-        // Обработчик изменения размеров
-        var rescale = function () {
-            if ($(window).width() < 1000) {
-                Body.addClass('tray-rescale');
-            } else {
-                Body.removeClass('tray-rescale tray-rescale-left tray-rescale-right');
-            }
-        };
-        var lazyLayout = _.debounce(rescale, 300);
-        if (!Body.hasClass('disable-tray-rescale')) {
-            // Масштабирование при изменении размеров окна
-            $(window).resize(lazyLayout);
-            // Масштабирование при загрузке
-            rescale();
-        }
-    };
-    var runRoundedSkill = function () {
-        var $roundedSkillEl = $('.rounded-skill');
-        if ($roundedSkillEl.length > 0) {
-            $roundedSkillEl.each(function () {
-                var element = $(this);
-                var roundSkillSize = element.attr('data-size');
-                var roundSkillAnimate = element.attr('data-animate');
-                var roundSkillWidth = element.attr('data-width');
-                var roundSkillColor = element.attr('data-color');
-                var roundSkillTrackColor = element.attr('data-trackcolor');
-                if (!roundSkillSize) { roundSkillSize = 110; }
-                if (!roundSkillAnimate) { roundSkillAnimate = 2500; }
-                if (!roundSkillWidth) { roundSkillWidth = 3; }
-                if (!roundSkillColor) { roundSkillColor = '#0093BF'; }
-                if (!roundSkillTrackColor) { roundSkillTrackColor = 'rgba(0,0,0,0.04)'; }
-                var properties = {
-                    roundSkillSize:       roundSkillSize,
-                    roundSkillAnimate:    roundSkillAnimate,
-                    roundSkillWidth:      roundSkillWidth,
-                    roundSkillColor:      roundSkillColor,
-                    roundSkillTrackColor: roundSkillTrackColor
-                };
-                element.easyPieChart({
-                    size:       Number(properties.roundSkillSize),
-                    animate:    Number(properties.roundSkillAnimate),
-                    scaleColor: false,
-                    trackColor: properties.roundSkillTrackColor,
-                    lineWidth:  Number(properties.roundSkillWidth),
-                    lineCap:    'square',
-                    barColor:   properties.roundSkillColor
-                });
-            });
-        }
-    };
-    // Form related Functions
-    var runFormElements = function () {
-        var Tooltips = $("[data-toggle=tooltip]");
-        // Init Bootstrap tooltips, if present
-        if (Tooltips.length) {
-            if (Tooltips.parents('#sidebar_left')) {
-                Tooltips.tooltip({
-                    container: $('body'),
-                    template:  '<div class="tooltip tooltip-white" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
-                });
-            } else {
-                Tooltips.tooltip();
-            }
-        }
-        // Init Bootstrap Popovers, if present
-        if ($("[data-toggle=popover]").length) {
-            $('[data-toggle=popover]').popover();
-        }
-        // Init Bootstrap persistent tooltips. This prevents a
-        // popup from closing if a checkbox it contains is clicked
-        $('.dropdown-menu .dropdown-persist').click(function (event) {
-            event.stopPropagation();
-        });
-        // Prevents a dropdown menu from closing when a navigation
-        // menu it contains is clicked (panel/tab menus)
-        $('.dropdown-menu .nav-tabs li a').click(function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            $(this).tab('show')
-        });
-        // if btn has ".btn-states" class we monitor it for user clicks. On Click we remove
-        // the active class from its siblings and give it to the button clicked.
-        // This gives the button set a menu like feel or state
-        if ($('.btn-states').length) {
-            $('.btn-states').click(function () {
-                $(this).addClass('active').siblings().removeClass('active');
-            });
-        }
-    };
-    // Form related Functions
     var runHelpPage = function () {
 
         // Slide content functionality for template pages
@@ -912,11 +871,216 @@ var Core = function () {
             return false;
         }
     };
+
+    // jQuery хелперы
+    var runHelpers = function () {
+        // Отключение селекта
+        $.fn.disableSelection = function () {
+            return this.attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
+        };
+        // Тест функция для IE, добавление класса if version 9 в тег <body>
+        function msieversion() {
+            var ua   = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv:11\./)) {
+                var ieVersion = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
+                if (ieVersion === 9) {
+                    $('body').addClass('no-js ie' + ieVersion);
+                }
+                return ieVersion;
+            } else {
+                return false;
+            }
+        }
+
+        msieversion();
+        // Хелпер очищающий оставшиеся классы в основном контейнере
+        setTimeout(function () {
+            $('#content').removeClass('animated fadeIn');
+        }, 500);
+    };
+
+    var runAnimations = function () {
+
+        // Добавление класса после загрузки, чтобы предотвратить css анимацию
+        // от размытия страниц, на которых много ресурсов.
+        setTimeout(function () {
+            $('body').addClass('onload-check');
+        }, 100);
+        // Атрибут data принимает число в миллисекундах (задержка) и класс анимации
+        // При условии, что была передана только задержка, устанавливается анимация fadeIn
+        $('.animated-delay[data-animate]').each(function () {
+            var This = $(this);
+            var delayTime = This.data('animate');
+            var delayAnimation = 'fadeIn';
+            // Если атрибут data имеет более одного значения, сброс на умолчания
+            if (delayTime.length > 1 && delayTime.length < 3) {
+                delayTime = This.data('animate')[ 0 ];
+                delayAnimation = This.data('animate')[ 1 ];
+            }
+            var delayAnimate = setTimeout(function () {
+                This.removeClass('animated-delay').addClass('animated ' + delayAnimation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    This.removeClass('animated ' + delayAnimation);
+                });
+            }, delayTime);
+        });
+    };
+
+    // Header функции
+    var runHeader = function () {
+
+        // Панель поиска - модификация для мобильных устройств
+        $('.navbar-search').on('click', function (e) {
+            var This         = $(this),
+                searchForm   = This.find('input'),
+                searchRemove = This.find('.search-remove');
+            // Ничего не делать, только если не мобильный режим
+            if ($('body.mobile-view').length || $('body.sb-top-mobile').length) {
+
+                // Открыть панель поиска и добавить иконку сброса, если она не найдена
+                This.addClass('search-open');
+                if (!searchRemove.length) {
+                    This.append('<div class="search-remove"></div>');
+                }
+                // Появление кнопки сброса и фокус на поле ввода по завершению анимации
+                setTimeout(function () {
+                    This.find('.search-remove').fadeIn();
+                    searchForm.focus().one('keydown', function () {
+                        $(this).val('');
+                    });
+                }, 250);
+                // Если нажата кнопка сброса, закрыть панель поиска
+                if ($(e.target).attr('class') == 'search-remove') {
+                    This.removeClass('search-open').find('.search-remove').remove();
+                }
+            }
+        });
+        var dropDown = $('.dropdown-item-slide');
+        // Анимация для для выпадающего списка в хедере
+        if (dropDown.length) {
+            dropDown.on('shown.bs.dropdown', function () {
+                var This = $(this);
+                setTimeout(function () {
+                    This.addClass('slide-open');
+                }, 20);
+            });
+            dropDown.on('hidden.bs.dropdown', function () {
+                $(this).removeClass('slide-open');
+            });
+        }
+    };
+
+    // Связанные с треем функции
+    var runTrays = function () {
+
+        // Соответствие высоты трея с высотой body
+        var trayMatch = $('.tray[data-tray-height="match"]');
+        if (trayMatch.length) {
+
+            // Установка такой высоты, которая соответствует высоте body
+            trayMatch.each(function () {
+                var Height = $('body').height();
+                $(this).height(Height);
+            });
+        }
+        // Обработчик изменения размеров
+        var rescale = function () {
+            if ($(window).width() < 1000) {
+                Body.addClass('tray-rescale');
+            } else {
+                Body.removeClass('tray-rescale tray-rescale-left tray-rescale-right');
+            }
+        };
+        var lazyLayout = _.debounce(rescale, 300);
+        if (!Body.hasClass('disable-tray-rescale')) {
+            // Масштабирование при изменении размеров окна
+            $(window).resize(lazyLayout);
+            // Масштабирование при загрузке
+            rescale();
+        }
+    };
+
+    var runRoundedSkill = function () {
+        var $roundedSkillEl = $('.rounded-skill');
+        if ($roundedSkillEl.length > 0) {
+            $roundedSkillEl.each(function () {
+                var element = $(this);
+                var roundSkillSize = element.attr('data-size');
+                var roundSkillAnimate = element.attr('data-animate');
+                var roundSkillWidth = element.attr('data-width');
+                var roundSkillColor = element.attr('data-color');
+                var roundSkillTrackColor = element.attr('data-trackcolor');
+                if (!roundSkillSize) { roundSkillSize = 110; }
+                if (!roundSkillAnimate) { roundSkillAnimate = 2500; }
+                if (!roundSkillWidth) { roundSkillWidth = 3; }
+                if (!roundSkillColor) { roundSkillColor = '#0093BF'; }
+                if (!roundSkillTrackColor) { roundSkillTrackColor = 'rgba(0,0,0,0.04)'; }
+                var properties = {
+                    roundSkillSize:       roundSkillSize,
+                    roundSkillAnimate:    roundSkillAnimate,
+                    roundSkillWidth:      roundSkillWidth,
+                    roundSkillColor:      roundSkillColor,
+                    roundSkillTrackColor: roundSkillTrackColor
+                };
+                element.easyPieChart({
+                    size:       Number(properties.roundSkillSize),
+                    animate:    Number(properties.roundSkillAnimate),
+                    scaleColor: false,
+                    trackColor: properties.roundSkillTrackColor,
+                    lineWidth:  Number(properties.roundSkillWidth),
+                    lineCap:    'square',
+                    barColor:   properties.roundSkillColor
+                });
+            });
+        }
+    };
+
+    // Form related Functions
+    var runFormElements = function () {
+        var Tooltips = $("[data-toggle=tooltip]");
+        // Init Bootstrap tooltips, if present
+        if (Tooltips.length) {
+            if (Tooltips.parents('#sidebar_left')) {
+                Tooltips.tooltip({
+                    container: $('body'),
+                    template:  '<div class="tooltip tooltip-white" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+                });
+            } else {
+                Tooltips.tooltip();
+            }
+        }
+        // Init Bootstrap Popovers, if present
+        if ($("[data-toggle=popover]").length) {
+            $('[data-toggle=popover]').popover();
+        }
+        // Init Bootstrap persistent tooltips. This prevents a
+        // popup from closing if a checkbox it contains is clicked
+        $('.dropdown-menu .dropdown-persist').click(function (event) {
+            event.stopPropagation();
+        });
+        // Prevents a dropdown menu from closing when a navigation
+        // menu it contains is clicked (panel/tab menus)
+        $('.dropdown-menu .nav-tabs li a').click(function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $(this).tab('show')
+        });
+        // if btn has ".btn-states" class we monitor it for user clicks. On Click we remove
+        // the active class from its siblings and give it to the button clicked.
+        // This gives the button set a menu like feel or state
+        if ($('.btn-states').length) {
+            $('.btn-states').click(function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+        }
+    };
+
     return {
         init: function () {
             onTaskPage  ? runTaskPage()  : false;
             onDashBoard ? runDashBoard() : false;
-            onHelpPage  ? runHelpPage()      : false;
+            onHelpPage  ? runHelpPage()  : false;
+            onSchPage  ? runSchedule()  : false;
             runHelpers();
             runDockModal();
             runRoundedSkill();

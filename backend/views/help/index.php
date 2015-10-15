@@ -32,19 +32,19 @@ $this->registerJs($main, $this::POS_END);
                     <ul class="list-group list-group-accordion">
                         <li class="list-group-item list-group-header br-n">Путеводитель по Inely</li>
                         <li class="list-group-item">
-                            <a href="#introduction" data-toggle="tab">Основная информация</a>
+                            <a href="#introduction" data-toggle="tab"><?= Yii::t('backend', 'General') ?></a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#file-structure" data-toggle="tab">Folder Structure</a>
+                            <a href="#file-structure" data-toggle="tab"><?= Yii::t('backend', 'Dates and times') ?></a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#file-structure" data-toggle="tab">Folder Structure</a>
+                            <a href="#file-structure" data-toggle="tab"><?= Yii::t('backend', 'Keywords') ?></a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#file-structure" data-toggle="tab">Folder Structure</a>
+                            <a href="#file-structure" data-toggle="tab"><?= Yii::t('backend', 'Keyboard shortcuts') ?></a>
                         </li>
                         <li class="list-group-item">
-                            <a href="#file-structure" data-toggle="tab">Folder Structure</a>
+                            <a href="#file-structure" data-toggle="tab"><?= Yii::t('backend', 'Notes') ?></a>
                         </li>
                         <li class="list-group-item">
                             <a href="#file-structure" data-toggle="tab">Folder Structure</a>
@@ -74,7 +74,7 @@ $this->registerJs($main, $this::POS_END);
 
                             <button data-toggle="modal" data-target="#timeline-modal" class="hidden btn btn-default btn-gradient btn-sm pull-right posr" type="button" style="top: -10px;">Requested Features</button>
 
-                            <h1 class="page-header">AdminDesigns UI Documentation </h1>
+                            <h1 class="page-header">Справочный центр</h1>
 
                             <p>The AdminDesigns UI Framework was designed to be one of the most balanced, well structured, and ideal solutions available to developers. Please feel free to contact as if you have any further questions regarding this theme. We're here to help!</p>
 
@@ -91,7 +91,6 @@ $this->registerJs($main, $this::POS_END);
                             <p>If you like our theme and appreciate our hard work please rate us
                                 <b>Five</b> Stars on Themeforest! Feel the need to rate us lower? Please contact us first and we will do absolutely everything we can to solve the problem. Happy customers are our number one priority!
                             </p>
-
 
                             <!-- basics -->
 

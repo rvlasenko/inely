@@ -14,9 +14,10 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
+$curRoute = Yii::$app->controller->route;
 $this->title = Yii::t('backend', 'Your dashboard');
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
-$tableLayout   = Yii::$app->controller->route == 'task/index' ? 'table-layout' : false;
+$tableLayout   = $curRoute == 'task/index' || $curRoute == 'schedule/index' ? 'table-layout' : false;
 $curController = Yii::$app->controller->id;
 
 ?>
@@ -79,7 +80,7 @@ $curController = Yii::$app->controller->id;
 <?php $this->endBody() ?>
 
 <script type="text/javascript">
-    $(document).ready(function () { Core.init({ sbm: "sb-l-c" }) });
+    $(document).ready(function () { Core.init() });
 </script>
 </body>
 </html>

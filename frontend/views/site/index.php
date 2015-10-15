@@ -5,9 +5,9 @@
 
             <div class="col-lg-5">
                 <header class="heading-block topmargin">
-                    <h1><?= Yii::t('frontend', 'Welcome to Inely.<br>MultiPurpose helper.') ?></h1>
+                    <h1><?= Yii::t('frontend', 'Welcome to Inely.') ?></h1>
                 </header>
-                <p class="lead"><?= Yii::t('frontend', 'Manage your personal goals, your projects, etc. in one place. Our helper designed to adapt to all needs.') ?></p>
+                <p class="lead"><?= Yii::t('frontend', 'o') ?></p>
             </div>
 
             <div class="col-lg-7">
@@ -30,7 +30,7 @@
                     <header class="heading-block nobottomborder" style="margin-bottom: 15px;">
                         <h4>Дружелюбная атмосфера</h4>
                     </header>
-                    <p>(В процессе написания) Возможность выбрать себе собственного персонажа, который будет сопровождать и пользователя на пути к становлению.</p>
+                    <p>(В процессе написания)</p>
                 </div>
 
                 <div class="col-md-4 bottommargin">
@@ -39,7 +39,7 @@
                     <header class="heading-block nobottomborder" style="margin-bottom: 15px;">
                         <h4>Увлекательное планирование</h4>
                     </header>
-                    <p>Оставайтесь мотивированными, постепенно повышая свой уровень, зарабатывая достижения и приятные бонусы, выполняя задачи. Испытайте себя, пройдя путь от новичка до мастера.</p>
+                    <p>Оставайтесь мотивированными, постепенно повышая свой уровень, зарабатывая достижения и приятные бонусы, выполняя задачи и используя функции Inely. Бросьте себе вызов.</p>
                 </div>
 
                 <div class="col-md-4 bottommargin">
@@ -48,7 +48,7 @@
                     <header class="heading-block nobottomborder" style="margin-bottom: 15px;">
                         <h4>Ваша система эффективности</h4>
                     </header>
-                    <p>Inely способен помочь Вам гармонично охватывать все стороны жизни и концентрироваться на самых важных вещах, с помощью таких популярных методик, как <a href="https://ru.wikipedia.org/wiki/Getting_Things_Done">Agile Results</a> или <a href="https://ru.wikipedia.org/wiki/Getting_Things_Done">Getting Things Done</a>.</p>
+                    <p>Inely способен помочь гармонично охватывать все стороны жизни и концентрироваться на самых важных вещах, с помощью таких популярных методик, как <a href="https://ru.wikipedia.org/wiki/Getting_Things_Done">Agile Results</a> или <a href="https://ru.wikipedia.org/wiki/Getting_Things_Done">Getting Things Done</a>.</p>
                 </div>
 
             </div>
