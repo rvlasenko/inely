@@ -1,16 +1,5 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hirootkit/inely/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hirootkit/inely/?branch=master) [![Codacy Badge](https://img.shields.io/badge/codacy-B-brightgreen.svg)](https://www.codacy.com/app/roof1rst/list) [![Build Status](https://scrutinizer-ci.com/g/Exoticness/madeasy/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/madeasy/build-status/master)
 
-Описание...
-
-
-Особенности
---------
-- I18N, OAuth2, CRUD, RESTful API, Timeline activity, dotenv.
-- Parallax Scrolling
-- Revolution Slider
-- Bootstrap 3.3
-- Responsive & Retina Ready
-
 Рабочий сервер
 ----
 Frontend:
