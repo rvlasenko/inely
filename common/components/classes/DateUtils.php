@@ -19,21 +19,6 @@ use yii\i18n\Formatter;
 class DateUtils extends Formatter
 {
     /**
-     * Возвращает отформатированную строку даты для принятой Datetime строки.
-     *
-     * @param string $dateString Datetime строка
-     * @param string $format     Формат возвращаемой даты
-     *
-     * @return string Отформатированная дата
-     */
-    public static function nice($dateString = null, $format = 'D, M jS Y, H:i')
-    {
-        $date = ($dateString == null) ? time() : strtotime($dateString);
-
-        return date($format, $date);
-    }
-
-    /**
      * Возвращает true, если принятая дата является сегодняшним днем.
      *
      * @param string $date Unix timestamp
@@ -55,18 +40,6 @@ class DateUtils extends Formatter
     public static function wasYesterday($date)
     {
         return date('Y-m-d', $date) == date('Y-m-d', strtotime('yesterday'));
-    }
-
-    /**
-     * Возвращает true, если принятая дата есть в текущей неделе.
-     *
-     * @param string $date Unix timestamp
-     *
-     * @return boolean true, если на этой неделе
-     */
-    public static function isThisWeek($date)
-    {
-        return date('W Y', $date) == date('W Y', time());
     }
 
     /**
@@ -236,7 +209,9 @@ class DateUtils extends Formatter
      */
     public function timeInWords($dateTime)
     {
-        $now = time();
+        $now    = time();
+        $future = null;
+        $past   = null;
 
         if (is_int($dateTime)) {
             $inSeconds = $dateTime;
@@ -262,7 +237,7 @@ class DateUtils extends Formatter
             list($future['H'], $future['i'], $future['s'], $future['d'], $future['m'], $future['Y']) = explode('/', date('H/i/s/d/m/Y', $futureTime));
 
             list($past['H'], $past['i'], $past['s'], $past['d'], $past['m'], $past['Y']) = explode('/', date('H/i/s/d/m/Y', $pastTime));
-            $years = $months = $weeks = $days = $hours = $minutes = $seconds = 0;
+            $years = $weeks = $minutes = 0;
 
             if ($future['Y'] == $past['Y'] && $future['m'] == $past['m']) {
                 $months = 0;

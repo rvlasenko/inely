@@ -6,7 +6,8 @@
 var Core = function () {
 
     var Body      = $("body"),
-        formAdd   = $("#formAdd"),
+        $formAdd   = $("#formAdd"),
+        $formEdit  = $("#formEdit"),
         popover   = $("[data-toggle=popover]"),
         tree      = $("#tree"), // Указатель на jsTree
         format    = null,
@@ -44,9 +45,7 @@ var Core = function () {
         var to        = null,
             accept    = false,
             isClicked = false,
-            textField = $(".inputStandard"), // Поле ввода названия задачи
-            searchInp = $('#search_q'),     // Поисковое поле
-            eventInp  = $('#eventDate');   // Поле выбора даты
+            searchInp = $('#search_q');
 
         $("ul.panel-tabs li:nth-child(3)").addClass("active");
         function getInstance(data) {
@@ -63,7 +62,7 @@ var Core = function () {
                 },
                 "check_callback" : true,
                 "multiple":       false,
-                "animation":      150,
+                "animation":      false,
                 "themes":         {
                     name:       "proton",
                     url:        "vendor/plugins/jstree/themes/proton/style.css",
@@ -79,7 +78,7 @@ var Core = function () {
             },
             "contextmenu": {
                 "select_node": false,
-                "items":       function ($node) {
+                "items":       function (node) {
                     return {
                         "Create":      {
                             "icon":   "fa fa-leaf",
@@ -90,7 +89,9 @@ var Core = function () {
                             "separator_after": true,
                             "icon":            "fa fa-i-cursor",
                             "label":           "Edit task",
-                            "action":          function () { renameNode($node) }
+                            "action":          function () {
+                                renameNode(node);
+                            }
                         },
                         "SetPriority": {
                             "icon":    "fa fa-flag",
@@ -216,14 +217,14 @@ var Core = function () {
                             "icon":             "fa fa-trash-o",
                             "label":            "Delete task",
                             "action":           function () {
-                                tree.jstree(true).delete_node($node);
+                                tree.jstree(true).delete_node(node);
                                 hideRoot();
                             }
                         }
                     };
                 }
             },
-            'plugins': ['dnd', 'contextmenu', 'search', 'state', 'checkbox', 'types']
+            'plugins': ['dnd', 'contextmenu', 'search', 'state', 'checkbox']
         };
 
         tree.jstree(
@@ -231,18 +232,17 @@ var Core = function () {
         ).on('create_node.jstree', function (e, data) {
             if (data.node.text !== '' && data.node.text != 'New node') {
                 $.get('task/create', {
-                    'id':       data.node.parent,
-                    'position': data.position,
-                    'text':     data.node.text,
-                    'list':     listKey,
-                    'priority': priority,
-                    'format':   format,
-                    'date':     date
+                    'id':   data.node.parent,
+                    'text': data.node.text,
+                    'ps':   data.position,
+                    'ls':   listKey,
+                    'pr':   priority,
+                    'fr':   format,
+                    'dt':   date
                 }).done(function (d) {
                     data.instance.set_id(data.node, d.id);
                     priority = null;
                     date     = null;
-                    //data.instance.refresh(true);
                 }).fail(function () {
                     data.instance.refresh();
                 });
@@ -254,14 +254,17 @@ var Core = function () {
             $.get('task/delete', {
                 'id': data.node.id
             }).done(function () {
-                setCount(true);
+                setCount(true)
             }).fail(function () {
-                data.instance.refresh();
+                data.instance.refresh()
             });
         }).on('rename_node.jstree', function (e, data) {
             $.get('task/rename', {
                 'id':   data.node.id,
-                'text': data.text
+                'text': data.text,
+                'pr':   priority,
+                'fr':   format,
+                'dt':   date
             }).fail(function () {
                 data.instance.refresh();
             });
@@ -293,7 +296,7 @@ var Core = function () {
 
         // Применение набора языковых правил для календаря
         $.datepicker.setDefaults($.datepicker.regional["ru"]);
-        eventInp.datepicker({
+        $("#eventDate, #editEvent").datepicker({
             numberOfMonths:  1,
             minDate:         0,
             prevText:        '<i class="fa fa-chevron-left"></i>',
@@ -302,7 +305,7 @@ var Core = function () {
             dateFormat:      'd M',
             onSelect: function(dateText, inst) {
                 date = inst.selectedYear + '-' + Math.abs(inst.selectedMonth + 1) + '-' + inst.selectedDay;
-                eventInp.focus();
+                $("#editEvent").length ? $("#editEvent").focus() : $("#eventDate").focus();
             }
         });
 
@@ -327,9 +330,9 @@ var Core = function () {
 
         // Инкремент или декремент количества задач в той группе, где она была создана
         var setCount = function (decrement) {
-            var projectDiv = $(".list-view div").filter("[data-key=" + listKey + "]").find("span:last-child"),
-                number     = 0,
-                inboxDiv   = $("#inbox").find("span");
+            var $projectDiv = $(".list-view div").filter("[data-key=" + listKey + "]").find("span:last"),
+                inboxDiv   = $("#inbox").find("span"),
+                number     = 0;
                 accept = true;
 
             // Если переменная с ключом пуста, значит пользователь в "Inbox"
@@ -337,8 +340,8 @@ var Core = function () {
                 number = parseInt(inboxDiv.text());
                 decrement ? inboxDiv.html(--number) : inboxDiv.html(++number);
             } else {
-                number = parseInt(projectDiv.text());
-                decrement ? projectDiv.html(--number) : projectDiv.html(++number);
+                number = parseInt($projectDiv.text());
+                decrement ? $projectDiv.html(--number) : $projectDiv.html(++number);
             }
             // Исключить все дублированные реквесты, которыми любит мусорить jsTree
             setTimeout(function () { accept = false }, 100)
@@ -347,30 +350,38 @@ var Core = function () {
         // Редактирование задачи и вызов события rename_node
         function renameNode (node) {
             // Полезные DOM элементы исходя из полученной задачи
-            var nodeObject = tree.find("li#" + node.id),
-                nodeIcon   = nodeObject.find("i.jstree-ocl"),
-                nodeAnchor = nodeObject.find("a.jstree-anchor");
+            var $nodeObject = tree.find("li#" + node.id),
+                $nodeIcon   = $nodeObject.find("i.jstree-ocl"),
+                $nodeAnchor = $nodeObject.find("a.jstree-anchor"),
+                $renameInp  = $("#editInput");
 
+            var showAnchor    = function () { $nodeIcon.show(); $nodeAnchor.show() };
             var closureRename = function () {
-                if (textField.val() != 0) {
-                    tree.jstree(true).rename_node(node, textField.val());
-                    textField.val('');
+                if ($renameInp.val() != 0) {
+                    tree.jstree(true).rename_node(node, {
+                        text: document.getElementById("editInput").value,
+                        fr:   getShortcut('format', document.getElementById("editInput").value),
+                        pr:   getShortcut('priority', document.getElementById("editInput").value),
+                        dt:   date
+                    });
+                    $renameInp.val('');
                 }
             };
 
-            formAdd.prependTo(nodeObject).css({"margin-left": 0}).show();
+            // Становится видна форма и курсор фокусируется внутри input
+            $formEdit.prependTo($nodeObject).css({"margin-left": 0}).show().find($("#editInput")).focus();
             // jsTree не дает напрямую изменять свойства якорей, исправляется это просто
-            nodeIcon.hide(); nodeAnchor.hide();
-            // После чего становится видна форма и курсор фокусируется внутри input'а
-            setTimeout(function () { formAdd.find(".inputStandard").focus() }, 100);
-            $(textField, eventInp).on("keyup", function (e) {
+            $nodeIcon.hide(); $nodeAnchor.hide(); $formAdd.hide();
+            // Текст помещается внутрь поле ввода
+            $renameInp.val($("li#" + node.id).find("a span:first").text());
+            $("#editEvent, #editInput").on("keyup", function (e) {
                 // Escape - отмена
-                if (e.keyCode == 27) { formAdd.hide(); nodeIcon.show(); nodeAnchor.show() }
+                if (e.keyCode == 27) { $formEdit.hide(); showAnchor() }
                 // Enter  - добавление
-                if (e.keyCode == 13) { closureRename(); nodeIcon.show(); nodeAnchor.show() }
+                if (e.keyCode == 13) { closureRename(); showAnchor() }
             });
-            $(document).on("click", ".buttonCancel", function () {
-                formAdd.hide(); nodeIcon.show(); nodeAnchor.show()
+            $(document).on("click", ".buttonCancelEdit", function () {
+                $formEdit.hide(); showAnchor();
             });
             $(document).on("click", ".buttonRename", function () { closureRename() });
         }
@@ -378,46 +389,42 @@ var Core = function () {
         // Добавление задачи & вызов события create_node
         // Перед добавлением, задача переводится в режим редактирования
         function createNode () {
-            var rootHasChildren = $("a:contains('Root')").parent("li").children('.jstree-children');
-
             // Замыкание, инициализирующее создание узла
             var closureAdd = function () {
                 // Экземпляр корневого DOM-элемента преобразуется в объект jsTree
-                var obj = tree.jstree(true).get_node($("a:contains('Root')"), true);
+                var obj = tree.jstree(true).get_node($("a:contains('Root')")),
+                    $rootHasChildren = $("#1").children('.jstree-children').length,
+                    $taskInp = $("#taskInput"),
+                    $eventInp = $("#eventDate");
 
-                // Хелпер добавления, дабы избежать дублирование кода
-                var helperAdd = function () {
-                    tree.jstree(true).create_node(obj, {
-                        text:     textField.val(),
-                        format:   getShortcut('format', textField.val()),
-                        priority: getShortcut('priority', textField.val()),
-                        date:     date
-                    }, "last");
-                    textField.val('');
-                    eventInp.val('');
-                    tree.jstree(true).settings.core.data = {
-                        url:  "task/node",
-                        data: function (node) {
-                            return { id: node.id, list: listKey };
-                        }
-                    };
-                    tree.jstree(true).refresh();
-                    if (!accept) { setCount(false) }
-                };
-                if (textField.val() != 0) {
+                if ($taskInp.val() != 0) {
                     // Дословно: если у корня нет дочерних элементов...
-                    if (rootHasChildren.length == 0) {
-                        helperAdd();
-                        rootHasChildren.length = 1;
+                    if (!$rootHasChildren) {
+                        tree.jstree(true).create_node(obj, {
+                            text: document.getElementById("taskInput").value,
+                            fr: getShortcut('format', $taskInp.val()),
+                            pr: getShortcut('priority', $taskInp.val()),
+                            dt: date
+                        }, "last");
+                        $taskInp.val('');
+                        $eventInp.val('');
+                        tree.jstree(true).settings.core.data = {
+                            url:  "task/node",
+                            data: function (node) {
+                                return { id: node.id, ls: listKey };
+                            }
+                        };
+                        tree.jstree(true).refresh();
+                        if (!accept) { setCount(false) }
                     } else {
                         tree.jstree(true).create_node(obj, {
-                            text:     textField.val(),
-                            format:   getShortcut('format', textField.val()),
-                            priority: getShortcut('priority', textField.val()),
-                            date:     date
-                        }, "last", false);
-                        textField.val('');
-                        eventInp.val('');
+                            text: document.getElementById("taskInput").value,
+                            fr: getShortcut('format', $taskInp.val()),
+                            pr: getShortcut('priority', $taskInp.val()),
+                            dt: date
+                        }, "last");
+                        $taskInp.val('');
+                        $eventInp.val('');
 
                         if (!accept) { setCount(false) }
                     }
@@ -425,15 +432,15 @@ var Core = function () {
             };
 
             // Добавление контейнера редактирования новой задачи в jsTree
-            formAdd.show();
-            setTimeout(function () { formAdd.find(".inputStandard").focus() }, 100);
-            $("#eventDate, .inputStandard").on("keyup", function (e) {
+            $formEdit.hide(); $formAdd.show();
+            setTimeout(function () { $formAdd.find("#taskInput").focus() }, 100);
+            $("#eventDate, #taskInput").on("keyup", function (e) {
                 // Escape - отмена
-                if (e.keyCode == 27) { formAdd.hide() }
+                if (e.keyCode == 27) { $formAdd.hide() }
                 // Enter  - добавление
                 if (e.keyCode == 13) { closureAdd() }
             });
-            $(document).on("click", ".buttonCancel", function () { formAdd.hide() });
+            $(document).on("click", ".buttonCancel", function () { $formAdd.hide() });
             $(document).on("click", ".buttonAdd", function () { closureAdd() });
         }
 
@@ -590,8 +597,8 @@ var Core = function () {
                     }
                 });
                 $(element).on('show.bs.tooltip', function() {
-                    var autoClose = setTimeout(function() {
-                        $('.tooltip').fadeOut();
+                    setTimeout(function() {
+                        $('.tooltip').fadeOut()
                     }, 3500);
                 });
             }
@@ -763,7 +770,7 @@ var Core = function () {
                 });
                 // Автоскрытие подсказки по истечнию таймера
                 $(element).on('show.bs.tooltip', function () {
-                    var autoClose = setTimeout(function () {
+                    setTimeout(function () {
                         $('.tooltip').fadeOut();
                     }, 3500);
                 });
@@ -918,7 +925,7 @@ var Core = function () {
                 delayTime = This.data('animate')[ 0 ];
                 delayAnimation = This.data('animate')[ 1 ];
             }
-            var delayAnimate = setTimeout(function () {
+            setTimeout(function () {
                 This.removeClass('animated-delay').addClass('animated ' + delayAnimation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     This.removeClass('animated ' + delayAnimation);
                 });

@@ -30,10 +30,34 @@
 
     <div class="tray tray-center h1200 pn va-t">
         <div id="tree" class="fs14 pt5 pl5"></div>
+        <div id="formEdit" class="e-form" hidden>
+            <div class="bs-component">
+                <div class="col-md-9 col-sm-9 col-xs-9 pln">
+                    <input type="text" class="form-control" id="editInput" placeholder="Начните набирать здесь...">
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3 pln prn">
+                    <label for="eventDate" class="field prepend-icon">
+                        <input type="text" class="form-control" id="editEvent" placeholder="Назначить дату">
+                        <label class="field-icon">
+                            <i class="fa fa-calendar"></i>
+                        </label>
+                    </label>
+                </div>
+            </div>
+
+            <div class="bs-component">
+                <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w150">
+                    <button type="button" class="buttonRename btn br2 fw600 btn-dark btn-block" style="padding: 7px 10px;">Сохранить</button>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w100">
+                    <button type="button" class="buttonCancelEdit btn br2 btn-danger btn-block" style="padding: 7px 10px;">Отмена</button>
+                </div>
+            </div>
+        </div>
         <div id="formAdd" class="a-form" hidden>
             <div class="bs-component">
                 <div class="col-md-9 col-sm-9 col-xs-9 pln">
-                    <input type="text" class="inputStandard form-control" placeholder="Начните набирать здесь...">
+                    <input type="text" class="form-control" id="taskInput" placeholder="Начните набирать здесь...">
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-3 pln prn">
                     <label for="eventDate" class="field prepend-icon">
@@ -47,7 +71,7 @@
 
             <div class="bs-component">
                 <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w150">
-                    <button type="button" class="buttonAdd buttonRename btn br2 fw600 btn-dark btn-block" style="padding: 7px 10px;">Добавить задачу</button>
+                    <button type="button" class="buttonAdd btn br2 fw600 btn-dark btn-block" style="padding: 7px 10px;">Добавить задачу</button>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w100">
                     <button type="button" class="buttonCancel btn br2 btn-danger btn-block" style="padding: 7px 10px;">Отмена</button>

@@ -51,7 +51,7 @@
                                         <tr>
                                             <td width="auto" align="center" valign="middle" height="30" st-title="read-more-button" style="padding-left:18px; padding-right:18px;font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300;">
                                                <span style="color: #ffffff; font-weight: 300;">
-                                                  <a style="color: #ffffff; text-align:center;text-decoration: none;" href="<?= $resetLink ?>" st-content="read-more-button"><?= Yii::t('mail', 'Reset password') ?></a>
+                                                  <a style="color: #ffffff; text-align:center;text-decoration: none;" href="<?= \yii\helpers\Html::encode($resetLink) ?>" st-content="read-more-button"><?= Yii::t('mail', 'Reset password') ?></a>
                                                </span>
                                             </td>
                                         </tr>

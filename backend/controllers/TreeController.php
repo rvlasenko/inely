@@ -16,6 +16,7 @@ use backend\models\TasksData;
 use common\components\classes\DateUtils;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
+use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -98,10 +99,10 @@ class TreeController extends Controller
      * Создание экземпляра ActiveRecord и получение всех дочерних элементов требуемого узла.
      * Первичное обращение к методу выполняется из Task контроллера действием [[actionNode()]].
      *
-     * @param int    $id        идентификатор узла
-     * @param bool   $recursive параметр задающий рекурсию
-     * @param int    $list      категория, по которой будет произведена выборка
-     * @param string $sort      поле, по которому будет произведена сортировка
+     * @param int         $id        идентификатор узла
+     * @param bool        $recursive параметр задающий рекурсию
+     * @param string|null $list      категория, по которой будет произведена выборка
+     * @param string|bool $sort      поле, по которому будет произведена сортировка
      *
      * @return array|ActiveRecord[] результат запроса.
      * Если результат равен null, то будет возвращен пустой массив.
@@ -176,7 +177,7 @@ class TreeController extends Controller
      * @key int    id       идентификатор узла (задачи)
      * @key string text     наименование
      * @key string a_attr   степень важности
-     * @key string li_attr  дата (+ относительная), подсказки, border-bottom
+     * @key string li_attr  дата (+ относительная), подсказки, подчеркивание
      * @key string icon     иконка заметки
      * @key bool   children наличие дочерних узлов
      *
@@ -198,9 +199,6 @@ class TreeController extends Controller
             // Форматирование текста курсивом или полужирным шрифтом
             $format = is_null($v['format']) ? false : $v['format'];
 
-            // Наличие текстовой заметки к задаче определяется иконкой
-            $hasNote = is_null($v['note']) ? false : 'fa fa-sticky-note';
-
             switch ($v[Task::tableName()]['priority']) {
                 case 3:
                     $priority = Task::PR_HIGH; break;
@@ -217,7 +215,7 @@ class TreeController extends Controller
                 'text'     => $v['name'],
                 'a_attr'   => ['class' => $priority, 'format' => $format],
                 'li_attr'  => ['date' => $dueDate, 'rel' => $relativeDate, 'hint' => $futureDate],
-                'icon'     => $hasNote,
+                'icon'     => 'fa fa-commenting',
                 'children' => ($v['rgt'] - $v['lft'] > 1)
             ];
         }
@@ -318,13 +316,34 @@ class TreeController extends Controller
      */
     public function rename($id, $data)
     {
-        if (TasksData::findOne(['dataId' => $id, 'name' => 'Root'])) {
-            throw new AccessDeniedException('Could not rename root node');
-        }
+        if ($id !== null && $data['name'] !== null) {
+            $name = $data['name'];
 
-        if (ArrayHelper::keyExists('name', $data)) {
+            switch (true) {
+                case stristr($name, '--') :
+                    $data['name'] = substr($name, 2);
+                    break;
+                case stristr($name, '__') :
+                    $data['name'] = substr($name, 2);
+                    break;
+                case stristr($name, '!1') :
+                    $data['name'] = substr($name, 2);
+                    break;
+                case stristr($name, '!2') :
+                    $data['name'] = substr($name, 2);
+                    break;
+                case stristr($name, '!3') :
+                    $data['name'] = substr($name, 2);
+                    break;
+            }
+            if (ArrayHelper::keyExists('priority', $data)) {
+                $task = Task::findOne($id);
+                $task->setAttributes($data, false);
+                $task->save();
+            }
+
             $taskData = TasksData::findOne(['dataId' => $id]);
-            $taskData->name = $data['name'];
+            $taskData->setAttributes($data, false);
             $taskData->save();
         }
 
@@ -543,7 +562,7 @@ class TreeController extends Controller
      *
      * @return string|bool тот же самый параметр, либо 0, если проверка не пройдена.
      */
-    protected static function checkGetParam($param)
+    protected static function checkParam($param)
     {
         $getRequest = Yii::$app->request->get();
 

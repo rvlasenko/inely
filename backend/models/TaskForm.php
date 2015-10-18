@@ -24,11 +24,11 @@ class TaskForm extends Model
      */
     public function make($data)
     {
-        $user = new Task();
-        $user->setAttributes($data, false);
+        $task = new Task();
+        $task->setAttributes($data, false);
 
-        if ($user->save()) {
-            return $user->afterCreate($data);
+        if ($task->save()) {
+            return $task->afterCreate($data);
         }
 
         return null;

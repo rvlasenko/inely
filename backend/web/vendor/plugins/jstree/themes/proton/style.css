@@ -57,7 +57,7 @@
 
 .jstree-icon.jstree-themeicon:before {
     font-size : 18px;
-    opacity   : .6;
+    opacity   : .7;
 }
 
 .jstree-icon.jstree-themeicon {
@@ -427,13 +427,22 @@ ul.vakata-context .fa-clock-o {
     overflow    : hidden;
 }
 
+#formEdit {
+    overflow: hidden;
+}
+
 .jstree-proton .jstree-wholerow {
     -moz-box-sizing    : border-box;
     -webkit-box-sizing : border-box;
     box-sizing         : border-box;
 }
 
-.jstree-proton .jstree-wholerow-hovered {
+.jstree-anchor .fa-commenting {
+    opacity: 0;
+}
+
+.jstree-proton .jstree-hovered > .fa-commenting {
+    opacity: .7;
 }
 
 .jstree-proton .jstree-node {
@@ -535,7 +544,6 @@ ul.vakata-context .fa-clock-o {
     height        : 40px;
     line-height   : 35px;
     border-bottom : 1px solid white;
-    opacity       : .9 !important;
 }
 
 .jstree-proton-responsive > .jstree-container-ul > .jstree-node {

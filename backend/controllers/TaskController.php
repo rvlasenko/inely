@@ -88,9 +88,9 @@ class TaskController extends TreeController
      */
     public function actionNode()
     {
-        $node = $this->checkGetParam('id');
-        $list = $this->checkGetParam('list') ?: null;
-        $sort = $this->checkGetParam('sort') ?: 'pos';
+        $node = $this->checkParam('id');
+        $list = $this->checkParam('list') ?: null;
+        $sort = $this->checkParam('sort') ?: 'pos';
 
         $temp = $this->getChildren($node, false, $list, $sort);
         $json = $this->buildTree($temp);
@@ -106,8 +106,13 @@ class TaskController extends TreeController
      */
     public function actionRename()
     {
-        $node   = $this->checkGetParam('id');
-        $result = $this->rename($node, ['name' => $this->checkGetParam('text')]);
+        $node   = $this->checkParam('id');
+        $result = $this->rename($node, [
+            'name'     => $this->checkParam('text'),
+            'format'   => $this->checkParam('fr'),
+            'priority' => $this->checkParam('pr'),
+            'dueDate'  => $this->checkParam('dt')
+        ]);
 
         return $result;
     }
@@ -121,14 +126,14 @@ class TaskController extends TreeController
      */
     public function actionCreate()
     {
-        $node   = $this->checkGetParam('id');
-        $pos    = $this->checkGetParam('position');
+        $node   = $this->checkParam('id');
+        $pos    = $this->checkParam('ps');
         $temp   = $this->make($node, $pos, [
-            'name'     => $this->checkGetParam('text'),
-            'list'     => $this->checkGetParam('list'),
-            'format'   => $this->checkGetParam('format'),
-            'priority' => $this->checkGetParam('priority'),
-            'dueDate'  => $this->checkGetParam('date')
+            'name'     => $this->checkParam('text'),
+            'list'     => $this->checkParam('ls'),
+            'format'   => $this->checkParam('fr'),
+            'priority' => $this->checkParam('pr'),
+            'dueDate'  => $this->checkParam('dt')
         ]);
         $result = ['id' => $temp];
 
@@ -143,9 +148,9 @@ class TaskController extends TreeController
      */
     public function actionMove()
     {
-        $node   = $this->checkGetParam('id');
-        $parent = $this->checkGetParam('parent');
-        $result = $this->move($node, $parent, $this->checkGetParam('position'));
+        $node   = $this->checkParam('id');
+        $parent = $this->checkParam('parent');
+        $result = $this->move($node, $parent, $this->checkParam('position'));
 
         return $result;
     }
@@ -157,7 +162,7 @@ class TaskController extends TreeController
      */
     public function actionDelete()
     {
-        $node   = $this->checkGetParam('id');
+        $node   = $this->checkParam('id');
         $result = $this->remove($node);
 
         return $result;
@@ -171,8 +176,8 @@ class TaskController extends TreeController
      */
     public function actionSetPriority()
     {
-        $node = $this->checkGetParam('id');
-        $pr   = $this->checkGetParam('pr');
+        $node = $this->checkParam('id');
+        $pr   = $this->checkParam('pr');
 
         if ($node && Task::findOne($node)) {
             $task           = Task::findOne($node);

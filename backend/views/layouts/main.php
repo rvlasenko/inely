@@ -14,9 +14,9 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
-$curRoute = Yii::$app->controller->route;
-$this->title = Yii::t('backend', 'Your dashboard');
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
+$this->title   = Yii::t('backend', 'Your dashboard');
+$curRoute      = Yii::$app->controller->route;
 $tableLayout   = $curRoute == 'task/index' || $curRoute == 'schedule/index' ? 'table-layout' : false;
 $curController = Yii::$app->controller->id;
 

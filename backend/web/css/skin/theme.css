@@ -820,7 +820,8 @@ fieldset[disabled] .fc button.active {
     position  : relative;
 }
 
-#eventDate {
+#eventDate,
+#editEvent {
     padding-left : 36px;
 }
 
@@ -11812,17 +11813,6 @@ div.switch.switch-dark input:checked + label {
 
 .fs18.fa-fw {
     width : 46px;
-}
-
-.glyphicon,
-.glyphicons,
-.imoon,
-.fa,
-.iconsweets {
-    opacity            : 1;
-    transition         : opacity 0.1s ease-in;
-    -moz-transition    : opacity 0.1s ease-in;
-    -webkit-transition : opacity 0.1s ease-in;
 }
 
 .glyphicons-2x,
