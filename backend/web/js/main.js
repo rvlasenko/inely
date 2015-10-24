@@ -6,48 +6,201 @@
 var Core = function () {
 
     var Body      = $("body"),
-        $formAdd   = $("#formAdd"),
-        $formEdit  = $("#formEdit"),
-        popover   = $("[data-toggle=popover]"),
+        $formAdd  = $("#formAdd"),
+        $formEdit = $("#formEdit"),
         tree      = $("#tree"), // Указатель на jsTree
-        format    = null,
+        projTree  = $("#projTree"),
+        format    = null, // Появляется при __task или --task
         date      = null,
-        priority  = null,
-        listName  = null, // Название категории (проекта)
-        listKey   = null; // PK категории (проекта)
+        priority  = null, // Появляется при !1task, !2task...
+        listName  = null, // Название проекта
+        listKey   = null; // PK проекта
 
-    // Переменные, определяющие принадлежность пользователя к странице
-    var onDashBoard = $("body.site-page").length,
-        onTaskPage  = $("body.task-page").length,
-        onHelpPage  = $("body.help-page").length,
-        onSchPage   = $("body.schedule-page").length;
+    // SideMenu Functions
+    var runSideMenu = function() {
 
-    NProgress.configure({
-        minimum:      0.15,
-        trickleRate:  .07,
-        trickleSpeed: 360,
-        showSpinner:  false,
-        barColor:     "firebrick",
-        barPos:       "npr-top"
-    });
-    NProgress.start();
-    setTimeout(function () {
-        NProgress.done();
-        $(".fade").removeClass("out");
-    }, 800);
-    $("#clearLocalStorage").on("click", function () {
-        // Очистка локального хранилища
-        localStorage.clear();
-        location.reload();
-    });
+        // Sidebar state naming conventions:
+        // "sb-l-o" - SideBar Left Open
+        // "sb-l-c" - SideBar Left Closed
+        // "sb-l-m" - SideBar Left Minified
+        // Same naming convention applies to right sidebar
+
+        // SideBar Left Toggle Function
+        var sidebarLeftToggle = function() {
+
+            // We check to see if the the user has closed the entire
+            // leftside menu. If true we reopen it, this will result
+            // in the menu resetting itself back to a minified state.
+            // A second click will fully expand the menu.
+            if (Body.hasClass('sb-l-c') && 'sb-l-m' === "sb-l-m") {
+                Body.removeClass('sb-l-c');
+            }
+
+            // Toggle sidebar state(open/close)
+            Body.toggleClass('sb-l-m');
+            triggerResize();
+        };
+
+        // Sidebar Left Collapse Entire Menu event
+        $('.sidebar-toggle-mini').on('click', function(e) {
+            e.preventDefault();
+
+            // Close Menu
+            Body.addClass('sb-l-c');
+            triggerResize();
+
+            // After animation has occured we toggle the menu.
+            // Upon the menu reopening the classes will be toggled
+            // again, effectively restoring the menus state prior
+            // to being hidden
+            if (!Body.hasClass('mobile-view')) {
+                setTimeout(function() {
+                    Body.toggleClass('sb-l-m sb-l-o');
+                }, 250);
+            }
+        });
+
+        // SideBar Right Toggle Function
+        var sidebarRightToggle = function() {
+
+            // toggle sidebar state(open/close)
+            if (!Body.hasClass('mobile-view') && Body.hasClass('sb-r-o')) {
+                Body.toggleClass('sb-r-o sb-r-c');
+            }
+            else {
+                Body.toggleClass('sb-r-o sb-r-c');
+            }
+
+            setTimeout(function () {
+                if (!Body.hasClass("sb-r-o")) {
+                    localStorage.setItem("inspect", "hide");
+                } else {
+                    localStorage.setItem("inspect", "show");
+                    Body.removeClass("sb-r-c").addClass("sb-r-o");
+                }
+            }, 100);
+            triggerResize();
+        };
+
+        // Check window size on load
+        // Adds or removes "mobile-view" class based on window size
+        var sbOnLoadCheck = function() {
+
+            if (Body.hasClass('sb-l-m')) { Body.addClass('sb-l-disable-animation'); }
+            else { Body.removeClass('sb-l-disable-animation'); }
+
+            // If window is < 1080px wide collapse both sidebars and add ".mobile-view" class
+            if ($(window).width() < 1080) {
+                Body.removeClass('sb-r-o').addClass('mobile-view sb-l-m sb-r-c');
+            }
+
+            resizeBody();
+        };
+
+
+        // Check window size on resize
+        // Adds or removes "mobile-view" class based on window size
+        var sbOnResize = function() {
+
+            // If window is < 1080px wide collapse both sidebars and add ".mobile-view" class
+            if ($(window).width() < 1080 && !Body.hasClass('mobile-view')) {
+                Body.removeClass('sb-r-o').addClass('mobile-view sb-l-m sb-r-c');
+            } else if ($(window).width() > 1080) {
+                Body.removeClass('mobile-view');
+            } else {
+                return;
+            }
+
+            resizeBody();
+        };
+
+        // Function to set the min-height of content
+        // to that of the body height. Ensures trays
+        // and content bgs span to the bottom of the page
+        var resizeBody = function() {
+
+            var sidebarH = $('#sidebar_left').outerHeight();
+
+            Body.css('min-height', sidebarH);
+        };
+
+        // Most CSS menu animations are set to 300ms. After this time
+        // we trigger a single global window resize to help catch any 3rd
+        // party plugins which need the event to resize their given elements
+        var triggerResize = function() {
+            setTimeout(function() {
+                $(window).trigger('resize');
+
+                if (Body.hasClass('sb-l-m')) {
+                    Body.addClass('sb-l-disable-animation');
+                } else {
+                    Body.removeClass('sb-l-disable-animation');
+                }
+            }, 300)
+        };
+
+        // Functions Calls
+        sbOnLoadCheck();
+        $("#toggle_sidemenu_l").on('click', sidebarLeftToggle);
+        $("#toggle_sidemenu_r").on('click', sidebarRightToggle);
+
+        // Attach debounced resize handler
+        var rescale    = function() { sbOnResize() };
+        var lazyLayout = _.debounce(rescale, 300);
+        $(window).resize(lazyLayout);
+
+        // LEFT MENU LINKS TOGGLE
+        $('.sidebar-menu li a.accordion-toggle').on('click', function(e) {
+            e.preventDefault();
+
+            // If the clicked menu item is minified and is a submenu (has sub-nav parent) we do nothing
+            if ($('body').hasClass('sb-l-m') && !$(this).parents('ul.sub-nav').length) { return; }
+
+            // If the clicked menu item is a dropdown we open its menu
+            if (!$(this).parents('ul.sub-nav').length) {
+
+                // If sidebar menu is set to Horizontal mode we return
+                // as the menu operates using pure CSS
+                if ($(window).width() > 900) {
+                    if ($('body.sb-top').length) { return; }
+                }
+
+                $('a.accordion-toggle.menu-open').next('ul').slideUp('fast', 'swing', function() {
+                    $(this).attr('style', '').prev().removeClass('menu-open');
+                });
+            }
+            // If the clicked menu item is a dropdown inside of a dropdown (sublevel menu)
+            // we only close menu items which are not a child of the uppermost top level menu
+            else {
+                var activeMenu = $(this).next('ul.sub-nav');
+                var siblingMenu = $(this).parent().siblings('li').children('a.accordion-toggle.menu-open').next('ul.sub-nav');
+
+                activeMenu.slideUp('fast', 'swing', function() {
+                    $(this).attr('style', '').prev().removeClass('menu-open');
+                });
+                siblingMenu.slideUp('fast', 'swing', function() {
+                    $(this).attr('style', '').prev().removeClass('menu-open');
+                });
+            }
+
+            // Now we expand targeted menu item, add the ".open-menu" class
+            // and remove any left over inline jQuery animation styles
+            if (!$(this).hasClass('menu-open')) {
+                $(this).next('ul').slideToggle('fast', 'swing', function() {
+                    $(this).attr('style', '').prev().toggleClass('menu-open');
+                });
+            }
+
+        });
+    };
 
     var runTaskPage = function () {
         var to        = null,
             accept    = false,
             isClicked = false,
-            searchInp = $('#search_q');
+            searchInp = $('#sidebar-search');
 
-        $("ul.panel-tabs li:nth-child(3)").addClass("active");
+        Pace.options = { ajax: false };
         function getInstance(data) {
             return $.jstree.reference(data.reference).get_node(data.reference);
         }
@@ -70,8 +223,7 @@ var Core = function () {
                 }
             },
             "checkbox":    {
-                "three_state": false,
-                "cascade":     "down"
+                "three_state": false
             },
             "search":      {
                 "show_only_matches": true
@@ -85,14 +237,6 @@ var Core = function () {
                             "label":  "Add task",
                             "action": function () { createNode() }
                         },
-                        "Rename":      {
-                            "separator_after": true,
-                            "icon":            "fa fa-i-cursor",
-                            "label":           "Edit task",
-                            "action":          function () {
-                                renameNode(node);
-                            }
-                        },
                         "SetPriority": {
                             "icon":    "fa fa-flag",
                             "label":   "Priority",
@@ -103,7 +247,7 @@ var Core = function () {
                                     "label":  "High",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("task/set-priority", {
+                                        $.get("/task/set-priority", {
                                             "id": node.id,
                                             "pr": 3
                                         }).done(function () {
@@ -118,7 +262,7 @@ var Core = function () {
                                     "label":  "Medium",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("task/set-priority", {
+                                        $.get("/task/set-priority", {
                                             "id": node.id,
                                             "pr": 2
                                         }).done(function () {
@@ -133,7 +277,7 @@ var Core = function () {
                                     "label":  "Low",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("task/set-priority", {
+                                        $.get("/task/set-priority", {
                                             "id": node.id,
                                             "pr": 1
                                         }).done(function () {
@@ -148,7 +292,7 @@ var Core = function () {
                                     "label":  "None",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("task/set-priority", {
+                                        $.get("/task/set-priority", {
                                             "id": node.id,
                                             "pr": null
                                         }).done(function () {
@@ -170,7 +314,7 @@ var Core = function () {
                                     "label":  "Today",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("task/set-priority", {
+                                        $.get("/task/set-priority", {
                                             "id": node.id,
                                             "pr": "high"
                                         }).done(function () {
@@ -185,7 +329,7 @@ var Core = function () {
                                     "label":  "Tomorrow",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("task/set-priority", {
+                                        $.get("/task/set-priority", {
                                             "id": node.id,
                                             "pr": "medium"
                                         }).done(function () {
@@ -200,7 +344,7 @@ var Core = function () {
                                     "label":  "More",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("task/set-priority", {
+                                        $.get("/task/set-priority", {
                                             'id': node.id,
                                             'pr': 'low'
                                         }).done(function () {
@@ -227,11 +371,53 @@ var Core = function () {
             'plugins': ['dnd', 'contextmenu', 'search', 'state', 'checkbox']
         };
 
+        var optionsProject = {
+            "core":        {
+                "data": {
+                    "url":   "/task-project/node",
+                    "data":  function (node) {
+                        return { "id": node.id };
+                    }
+                },
+                "check_callback" : true,
+                "multiple":       false,
+                "animation":      false,
+                "themes":         {
+                    name:       "neutron",
+                    url:        "vendor/plugins/jstree/themes/neutron/style.css",
+                    responsive: true
+                }
+            },
+            "checkbox":    { "three_state": false },
+            "contextmenu": {
+                "select_node": false,
+                "items":       function (node) {
+                    return {
+                        "Create":      {
+                            "icon":   "fa fa-leaf",
+                            "label":  "Add task",
+                            "action": function () { createNode() }
+                        },
+                        "Remove":      {
+                            "separator_before": true,
+                            "icon":             "fa fa-trash-o",
+                            "label":            "Delete task",
+                            "action":           function () {
+                                tree.jstree(true).delete_node(node);
+                                hideRoot();
+                            }
+                        }
+                    };
+                }
+            },
+            'plugins': ['dnd', 'contextmenu', 'checkbox', 'state']
+        };
+
         tree.jstree(
             options
         ).on('create_node.jstree', function (e, data) {
             if (data.node.text !== '' && data.node.text != 'New node') {
-                $.get('task/create', {
+                $.get('/task/create', {
                     'id':   data.node.parent,
                     'text': data.node.text,
                     'ps':   data.position,
@@ -251,7 +437,7 @@ var Core = function () {
             }
                 hideRoot();
         }).on('delete_node.jstree', function (e, data) {
-            $.get('task/delete', {
+            $.get('/task/delete', {
                 'id': data.node.id
             }).done(function () {
                 setCount(true)
@@ -259,7 +445,7 @@ var Core = function () {
                 data.instance.refresh()
             });
         }).on('rename_node.jstree', function (e, data) {
-            $.get('task/rename', {
+            $.get('/task/rename', {
                 'id':   data.node.id,
                 'text': data.text,
                 'pr':   priority,
@@ -269,7 +455,7 @@ var Core = function () {
                 data.instance.refresh();
             });
         }).on('move_node.jstree', function (e, data) {
-            $.get('task/move', {
+            $.get('/task/move', {
                 'id':       data.node.id,
                 'parent':   data.parent,
                 'position': data.position
@@ -277,12 +463,42 @@ var Core = function () {
                 data.instance.refresh();
             });
         }).on('select_node.jstree', function (e, data) {
-            if (!$(event.target).is('i') || $(event.target).is('.jstree-themeicon')) {
-                tree.jstree(true).uncheck_node(data.node.id);
-            }
+            //if (!$(event.target).is('i') || $(event.target).is('.jstree-themeicon')) {
+            //    tree.jstree(true).uncheck_node(data.node.id);
+            //}
         }).on("redraw.jstree", function () {
             tree.jstree("open_all");
             hideRoot();
+        });
+
+        projTree.jstree(
+            optionsProject
+        ).on("redraw.jstree", function () {
+            projTree.jstree("open_all");
+            hideRoot();
+        }).on('select_node.jstree', function (e, data) {
+            listKey = data.node.id;
+            // Перестроение дерева перед загрузкой проектов
+            tree.jstree(true).settings.core.data = {
+                url:  '/task/node',
+                data: function (node) {
+                    return { id: node.id, ls: data.node.id };
+                }
+            };
+            tree.jstree(true).refresh();
+
+            $('.crumb-active a').html(data.node.text);
+            $('.breadcrumb .crumb-link').each(function () {
+                $(this).remove();
+                $('.breadcrumb').append('<li class="crumb-link">Проекты</li>');
+            });
+            $("#inbox").removeClass("fw600 bg-white");
+            projTree.find("ul li .jstree-children").each(function () {
+                $(this).children().removeClass("bg-light fw600");
+            });
+            $(this).find("#" + data.node.id).addClass("bg-light fw600");
+
+            return false;
         });
 
         searchInp.keyup(function (e) {
@@ -304,7 +520,7 @@ var Core = function () {
             showButtonPanel: false,
             dateFormat:      'd M',
             onSelect: function(dateText, inst) {
-                date = inst.selectedYear + '-' + Math.abs(inst.selectedMonth + 1) + '-' + inst.selectedDay;
+                date = inst.selectedYear + '-' + inst.selectedMonth + 1 + '-' + inst.selectedDay;
                 $("#editEvent").length ? $("#editEvent").focus() : $("#eventDate").focus();
             }
         });
@@ -320,9 +536,9 @@ var Core = function () {
 
         var sortByCondition = function (cond) {
             tree.jstree(true).settings.core.data = {
-                url:  "task/node",
+                url:  "/task/node",
                 data: function (node) {
-                    return { id: node.id, sort: cond, list: listKey }
+                    return { id: node.id, sr: cond, ls: listKey }
                 }
             };
             tree.jstree(true).refresh();
@@ -409,7 +625,7 @@ var Core = function () {
                         $taskInp.val('');
                         $eventInp.val('');
                         tree.jstree(true).settings.core.data = {
-                            url:  "task/node",
+                            url:  "/task/node",
                             data: function (node) {
                                 return { id: node.id, ls: listKey };
                             }
@@ -489,13 +705,15 @@ var Core = function () {
 
                 // Перестроение дерева перед загрузкой проектов
                 tree.jstree(true).settings.core.data = {
-                    url:  'task/node',
+                    url:  '/task/node',
                     data: function (node) {
-                        return { id: node.id, list: listKey };
+                        return { id: node.id, ls: listKey };
                     }
                 };
                 tree.jstree(true).refresh();
-                $('.task-head').html(listName);
+                $('.crumb-active a').html(listName);
+                $('.tray-left a').removeClass('fw600');
+                $(this).toggleClass('fw600 link-color');
                 setTimeout(function () { isClicked = false }, 1500);
             }
         };
@@ -508,16 +726,32 @@ var Core = function () {
         $('a.action').click(function () { createNode(); return false });
         $('.list-tabs').css('display', 'block');
 
-        // Обновление дерева с новыми данными, где поле list эквивалентно выбранному
-        $('.user-project').click(function () { appendData.apply(this) });
-
         // Загрузка Inbox задач из [[actionNode()]]
-        $('#inbox').click(function () { appendData.apply(this) });
+        $('#inbox').click(function () {
+            appendData.apply(this);
+            $(this).addClass("bg-white");
+            // Поиск и удаление недействительных хлебных крошек
+            $('.breadcrumb .crumb-link').each(function () {
+                $(this).remove();
+                $('.breadcrumb').append('<li class="crumb-link">Обзор</li>');
+            });
+            // Поиск и удаление #fff с уже не активных проектов
+            projTree.find("ul li .jstree-children").each(function () {
+                $(this).children().removeClass("bg-light fw600");
+            });
+
+            return false;
+        });
 
         // Сортировка по условию
         $("#pr").click(function () { sortByCondition('priority') });
         $("#nm").click(function () { sortByCondition('name') });
         $("#dt").click(function () { sortByCondition('dueDate') });
+
+        // Скрыт или показан инспектор
+        if (localStorage.getItem("inspect") == "show") {
+            Body.removeClass("sb-r-c").addClass("sb-r-o");
+        }
     };
 
     var runSchedule = function () {
@@ -640,23 +874,6 @@ var Core = function () {
             nextText:        '<i class="fa fa-chevron-right"></i>',
             showButtonPanel: false,
             dateFormat:      'd M'
-        });
-    };
-
-    var runDockModal = function () {
-        $('#quick-compose').on('click', function () {
-            $('.quick-compose-form').dockmodal({
-                minimizedWidth: 260,
-                width:          390,
-                height:         340,
-                title:          'Compose Message',
-                initialState:   'docked',
-                buttons:        [{
-                    html:        'Add',
-                    buttonClass: 'btn btn-primary btn-sm',
-                    click:       function () { }
-                }]
-            });
         });
     };
 
@@ -805,296 +1022,10 @@ var Core = function () {
         });
     };
 
-    var runHelpPage = function () {
-
-        // Slide content functionality for template pages
-        if ($('html').hasClass('template-page')) {
-            $('#template-code').on('click', function () {
-                Body.addClass('offscreen-active');
-            });
-            $('#template-return').on('click', function () {
-                Body.removeClass('offscreen-active');
-            });
+    $(document).ready(function () {
+        if ($("body.task-page").length) {
+            runTaskPage();
+            runSideMenu();
         }
-        // Toggle left sidebar functionality
-        var toggleInput = $('#left-col-toggle');
-        toggleInput.on('click', function () {
-            if ($('body.left-col-hidden').length) {
-                $('body').removeClass('left-col-hidden');
-            } else {
-                $('body').addClass('left-col-hidden');
-            }
-        });
-        // list-group-accordion functionality
-        var listAccordion = $('.list-group-accordion');
-        var accordionItems = listAccordion.find('.list-group-item');
-        var accordionLink = listAccordion.find('.sign-toggle');
-        accordionLink.on('click', function () {
-            var This = $(this);
-            var Parent = This.parent('.list-group-item');
-            if (Parent.hasClass('active')) {
-                Parent.toggleClass('active');
-            } else {
-                accordionItems.removeClass('active');
-                Parent.addClass('active');
-            }
-        });
-        // Mobile catch for hiding the left sidebar
-        if ($(window).width() < 940) {
-            $('body').addClass('left-col-hidden');
-        } else {
-            $('body').removeClass('left-col-hidden');
-        }
-        var scrollBtn = $('.scrollup');
-        // on scoll toggle scrollTop in/out
-        $(window).scroll(function () {
-            if ($('body').hasClass('scrolling')) {return;}
-            if ($(this).scrollTop() > 300) {
-                scrollBtn.fadeIn();
-            } else {
-                scrollBtn.fadeOut();
-            }
-        });
-        // on button click scrollTop
-        $('.scrollup, .return-top').on('click', function (e) {
-            e.preventDefault();
-            scrollReset();
-        });
-        // if link item clicked scrollTop
-        $('#nav-spy').find('li a').on('click', function () {
-            if ($(this).hasClass('sign-toggle')) { return; }
-            if ($(window).scrollTop() > 170) {
-                scrollReset();
-            }
-        });
-        // scrollTop function
-        function scrollReset() {
-            scrollBtn.fadeOut();
-            $("html, body").addClass('scrolling').animate({
-                scrollTop: 0
-            }, 320, function () {
-                $("html, body").removeClass('scrolling')
-            });
-            return false;
-        }
-    };
-
-    // jQuery хелперы
-    var runHelpers = function () {
-        // Отключение селекта
-        $.fn.disableSelection = function () {
-            return this.attr('unselectable', 'on').css('user-select', 'none').on('selectstart', false);
-        };
-        // Тест функция для IE, добавление класса if version 9 в тег <body>
-        function msieversion() {
-            var ua   = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv:11\./)) {
-                var ieVersion = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
-                if (ieVersion === 9) {
-                    $('body').addClass('no-js ie' + ieVersion);
-                }
-                return ieVersion;
-            } else {
-                return false;
-            }
-        }
-
-        msieversion();
-        // Хелпер очищающий оставшиеся классы в основном контейнере
-        setTimeout(function () {
-            $('#content').removeClass('animated fadeIn');
-        }, 500);
-    };
-
-    var runAnimations = function () {
-
-        // Добавление класса после загрузки, чтобы предотвратить css анимацию
-        // от размытия страниц, на которых много ресурсов.
-        setTimeout(function () {
-            $('body').addClass('onload-check');
-        }, 100);
-        // Атрибут data принимает число в миллисекундах (задержка) и класс анимации
-        // При условии, что была передана только задержка, устанавливается анимация fadeIn
-        $('.animated-delay[data-animate]').each(function () {
-            var This = $(this);
-            var delayTime = This.data('animate');
-            var delayAnimation = 'fadeIn';
-            // Если атрибут data имеет более одного значения, сброс на умолчания
-            if (delayTime.length > 1 && delayTime.length < 3) {
-                delayTime = This.data('animate')[ 0 ];
-                delayAnimation = This.data('animate')[ 1 ];
-            }
-            setTimeout(function () {
-                This.removeClass('animated-delay').addClass('animated ' + delayAnimation).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                    This.removeClass('animated ' + delayAnimation);
-                });
-            }, delayTime);
-        });
-    };
-
-    // Header функции
-    var runHeader = function () {
-
-        // Панель поиска - модификация для мобильных устройств
-        $('.navbar-search').on('click', function (e) {
-            var This         = $(this),
-                searchForm   = This.find('input'),
-                searchRemove = This.find('.search-remove');
-            // Ничего не делать, только если не мобильный режим
-            if ($('body.mobile-view').length || $('body.sb-top-mobile').length) {
-
-                // Открыть панель поиска и добавить иконку сброса, если она не найдена
-                This.addClass('search-open');
-                if (!searchRemove.length) {
-                    This.append('<div class="search-remove"></div>');
-                }
-                // Появление кнопки сброса и фокус на поле ввода по завершению анимации
-                setTimeout(function () {
-                    This.find('.search-remove').fadeIn();
-                    searchForm.focus().one('keydown', function () {
-                        $(this).val('');
-                    });
-                }, 250);
-                // Если нажата кнопка сброса, закрыть панель поиска
-                if ($(e.target).attr('class') == 'search-remove') {
-                    This.removeClass('search-open').find('.search-remove').remove();
-                }
-            }
-        });
-        var dropDown = $('.dropdown-item-slide');
-        // Анимация для для выпадающего списка в хедере
-        if (dropDown.length) {
-            dropDown.on('shown.bs.dropdown', function () {
-                var This = $(this);
-                setTimeout(function () {
-                    This.addClass('slide-open');
-                }, 20);
-            });
-            dropDown.on('hidden.bs.dropdown', function () {
-                $(this).removeClass('slide-open');
-            });
-        }
-    };
-
-    // Связанные с треем функции
-    var runTrays = function () {
-
-        // Соответствие высоты трея с высотой body
-        var trayMatch = $('.tray[data-tray-height="match"]');
-        if (trayMatch.length) {
-
-            // Установка такой высоты, которая соответствует высоте body
-            trayMatch.each(function () {
-                var Height = $('body').height();
-                $(this).height(Height);
-            });
-        }
-        // Обработчик изменения размеров
-        var rescale = function () {
-            if ($(window).width() < 1000) {
-                Body.addClass('tray-rescale');
-            } else {
-                Body.removeClass('tray-rescale tray-rescale-left tray-rescale-right');
-            }
-        };
-        var lazyLayout = _.debounce(rescale, 300);
-        if (!Body.hasClass('disable-tray-rescale')) {
-            // Масштабирование при изменении размеров окна
-            $(window).resize(lazyLayout);
-            // Масштабирование при загрузке
-            rescale();
-        }
-    };
-
-    var runRoundedSkill = function () {
-        var $roundedSkillEl = $('.rounded-skill');
-        if ($roundedSkillEl.length > 0) {
-            $roundedSkillEl.each(function () {
-                var element = $(this);
-                var roundSkillSize = element.attr('data-size');
-                var roundSkillAnimate = element.attr('data-animate');
-                var roundSkillWidth = element.attr('data-width');
-                var roundSkillColor = element.attr('data-color');
-                var roundSkillTrackColor = element.attr('data-trackcolor');
-                if (!roundSkillSize) { roundSkillSize = 110; }
-                if (!roundSkillAnimate) { roundSkillAnimate = 2500; }
-                if (!roundSkillWidth) { roundSkillWidth = 3; }
-                if (!roundSkillColor) { roundSkillColor = '#0093BF'; }
-                if (!roundSkillTrackColor) { roundSkillTrackColor = 'rgba(0,0,0,0.04)'; }
-                var properties = {
-                    roundSkillSize:       roundSkillSize,
-                    roundSkillAnimate:    roundSkillAnimate,
-                    roundSkillWidth:      roundSkillWidth,
-                    roundSkillColor:      roundSkillColor,
-                    roundSkillTrackColor: roundSkillTrackColor
-                };
-                element.easyPieChart({
-                    size:       Number(properties.roundSkillSize),
-                    animate:    Number(properties.roundSkillAnimate),
-                    scaleColor: false,
-                    trackColor: properties.roundSkillTrackColor,
-                    lineWidth:  Number(properties.roundSkillWidth),
-                    lineCap:    'square',
-                    barColor:   properties.roundSkillColor
-                });
-            });
-        }
-    };
-
-    // Form related Functions
-    var runFormElements = function () {
-        var Tooltips = $("[data-toggle=tooltip]");
-        // Init Bootstrap tooltips, if present
-        if (Tooltips.length) {
-            if (Tooltips.parents('#sidebar_left')) {
-                Tooltips.tooltip({
-                    container: $('body'),
-                    template:  '<div class="tooltip tooltip-white" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
-                });
-            } else {
-                Tooltips.tooltip();
-            }
-        }
-        // Init Bootstrap Popovers, if present
-        if ($("[data-toggle=popover]").length) {
-            $('[data-toggle=popover]').popover();
-        }
-        // Init Bootstrap persistent tooltips. This prevents a
-        // popup from closing if a checkbox it contains is clicked
-        $('.dropdown-menu .dropdown-persist').click(function (event) {
-            event.stopPropagation();
-        });
-        // Prevents a dropdown menu from closing when a navigation
-        // menu it contains is clicked (panel/tab menus)
-        $('.dropdown-menu .nav-tabs li a').click(function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            $(this).tab('show')
-        });
-        // if btn has ".btn-states" class we monitor it for user clicks. On Click we remove
-        // the active class from its siblings and give it to the button clicked.
-        // This gives the button set a menu like feel or state
-        if ($('.btn-states').length) {
-            $('.btn-states').click(function () {
-                $(this).addClass('active').siblings().removeClass('active');
-            });
-        }
-    };
-
-    return {
-        init: function () {
-            onTaskPage  ? runTaskPage()  : false;
-            onDashBoard ? runDashBoard() : false;
-            onHelpPage  ? runHelpPage()  : false;
-            onSchPage  ? runSchedule()  : false;
-            runHelpers();
-            runDockModal();
-            runRoundedSkill();
-            runAnimations();
-            runTrays();
-            //runFormElements();
-            runHeader();
-        }
-    }
+    });
 }();

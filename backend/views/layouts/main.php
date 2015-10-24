@@ -15,11 +15,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
-$this->title   = Yii::t('backend', 'Your dashboard');
-$curRoute      = Yii::$app->controller->route;
-$tableLayout   = $curRoute == 'task/index' || $curRoute == 'schedule/index' ? 'table-layout' : false;
-$curController = Yii::$app->controller->id;
-
+$this->title = Yii::t('backend', 'Inbox ~ Inely');
 ?>
 
 <?php $this->beginPage() ?>
@@ -46,17 +42,17 @@ $curController = Yii::$app->controller->id;
 
 <?php $this->beginBody() ?>
 
-<body class="<?= $curController ?>-page boxed-layout sb-l-c">
-
-<?= $this->render('header') ?>
+<body class="task-page boxed-layout sb-l-o sb-r-c">
 
 <!-- Start: Main -->
 <main role="main">
 
+    <?= $this->render('left-sidebar') ?>
+
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
         <!-- Begin: Content -->
-        <section id="content" class="animated fadeIn <?= $tableLayout ?>">
+        <section id="content" class="animated fadeIn table-layout">
             <?php if (Yii::$app->session->hasFlash('alert')): ?>
 
                 <div class="alert alert-primary alert-dismissable mb30">
@@ -70,18 +66,15 @@ $curController = Yii::$app->controller->id;
             <?= $content ?>
         </section>
         <!-- End: Content -->
-
-        <?= $this->render('footer') ?>
     </section>
     <!-- End: Content-Wrapper -->
+
+    <?= $this->render('right-sidebar') ?>
 </main>
 <!-- End: Main -->
 
 <?php $this->endBody() ?>
 
-<script type="text/javascript">
-    $(document).ready(function () { Core.init() });
-</script>
 </body>
 </html>
 <?php $this->endPage() ?>

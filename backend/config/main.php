@@ -3,7 +3,7 @@
 $config = [
     'homeUrl'             => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute'        => 'site/index',
+    'defaultRoute'        => 'task/index',
     'modules'             => [
         'user' => ['class' => 'backend\modules\user\Module'],
         'i18n' => [

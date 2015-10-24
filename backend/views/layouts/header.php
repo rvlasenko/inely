@@ -28,14 +28,17 @@ HTML;
         <img src="/images/logo.png" class="logo-class" />
     </div>
     <ul class="nav panel-tabs-border panel-tabs panel-tabs-left">
-        <li><a href="/">Dashboard</a></li>
-        <li><a href="/schedule">Calendar</a></li>
-        <li><a href="/todo">Tasks</a></li>
-        <li><a href="/help">Help</a></li>
+<!--        <li><a href="/">Dashboard</a></li>-->
+<!--        <li><a href="/schedule">Calendar</a></li>-->
+<!--        <li><a href="/todo">Tasks</a></li>-->
+<!--        <li><a href="/help">Help</a></li>-->
     </ul>
-
-    <?= Yii::$app->controller->id == 'task' ? $taskSearch : false ?>
-
+    
+    <form class="navbar-form navbar-left navbar-search" role="search">
+        <div class="form-group">
+            <input type="text" id="search_q" class="form-control" placeholder="Search..." />
+        </div>
+    </form>
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown dropdown-item-slide">
             <a class="dropdown-toggle pl10 pr10" data-toggle="dropdown" href="#">

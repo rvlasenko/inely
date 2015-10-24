@@ -21,7 +21,7 @@ use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
-class TaskController extends TreeController
+class TaskProjectController extends TreeController
 {
     public function behaviors()
     {
@@ -34,7 +34,7 @@ class TaskController extends TreeController
                         'roles' => ['@']
                     ],
                     [
-                        'actions'      => ['index'],
+                        'actions'      => ['index', 'project', 'inbox'],
                         'allow'        => false,
                         'roles'        => ['?'],
                         'denyCallback' => function () {
@@ -64,27 +64,6 @@ class TaskController extends TreeController
     }
 
     /**
-     * Создание экземпляра ActiveRecord таблицы tasks_cat по заданному условию.
-     * Идентификатор пользователя может отсутствовать, так как существуют и общедоступные категории.
-     * Это действие не отвечает за формирование структуры дерева, как может показаться по логике.
-     * @return string результат рендеринга.
-     */
-    public function actionIndex()
-    {
-        if (Yii::$app->getUser()->isGuest) {
-            Yii::$app->getResponse()->redirect(Yii::$app->getUser()->loginUrl);
-        } else {
-            if (Yii::$app->user->identity->status == User::STATUS_UNCONFIRMED) {
-                $this->redirect('/welcome');
-            } else {
-                return $this->render('index', ['countOfGroup' => Task::getCountOfGroups()]);
-            }
-        }
-
-        return null;
-    }
-
-    /**
      * Формирование javascript объекта, содержащего в себе имя узла, его атрибуты, и так далее.
      * Метод принимает GET запрос и выполняет поиск дочерних узлов у элемента с принятым id.
      * Является источником данных для [[$.jstree.core.data]].
@@ -94,11 +73,9 @@ class TaskController extends TreeController
     public function actionNode()
     {
         $node = $this->checkParam('id');
-        $list = $this->checkParam('ls') ?: null;
-        $sort = $this->checkParam('sr') ?: 'pos';
 
-        $temp = $this->getChildren($node, false, ['list' => $list, 'sort' => $sort]);
-        $json = $this->buildTree($temp);
+        $temp = $this->getProjectChildren($node);
+        $json = $this->buildProjectTree($temp);
 
         return $json;
     }
@@ -113,10 +90,7 @@ class TaskController extends TreeController
     {
         $node   = $this->checkParam('id');
         $result = $this->rename($node, [
-            'name'     => $this->checkParam('text'),
-            'format'   => $this->checkParam('fr'),
-            'priority' => $this->checkParam('pr'),
-            'dueDate'  => $this->checkParam('dt')
+            'name' => $this->checkParam('text')
         ]);
 
         return $result;
@@ -134,11 +108,7 @@ class TaskController extends TreeController
         $node   = $this->checkParam('id');
         $pos    = $this->checkParam('ps');
         $temp   = $this->make($node, $pos, [
-            'name'     => $this->checkParam('text'),
-            'list'     => $this->checkParam('ls'),
-            'format'   => $this->checkParam('fr'),
-            'priority' => $this->checkParam('pr'),
-            'dueDate'  => $this->checkParam('dt')
+            'name' => $this->checkParam('text')
         ]);
         $result = ['id' => $temp];
 
@@ -172,29 +142,5 @@ class TaskController extends TreeController
 
         return $result;
     }
-
-    /**
-     * Изменение степени важности для полученной задачи.
-     * @return bool при успешном обновлении поля "priority"
-     * @throws HttpException если невозможно обновить задачу
-     * @throws NotFoundHttpException если задачи с указанным идентификатором нет
-     */
-    public function actionSetPriority()
-    {
-        $node = $this->checkParam('id');
-        $pr   = $this->checkParam('pr');
-
-        if ($node && Task::findOne($node)) {
-            $task           = Task::findOne($node);
-            $task->priority = $pr;
-
-            if ($task->save()) {
-                return true;
-            } else {
-                throw new HttpException(500, 'Unable to save user data');
-            }
-        } else {
-            throw new NotFoundHttpException('Could not set on non-existing node');
-        }
-    }
 }
+

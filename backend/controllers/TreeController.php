@@ -11,6 +11,7 @@
 namespace backend\controllers;
 
 use backend\models\Task;
+use backend\models\TaskCat;
 use backend\models\TaskForm;
 use backend\models\TasksData;
 use common\components\classes\DateUtils;
@@ -99,18 +100,21 @@ class TreeController extends Controller
      * Создание экземпляра ActiveRecord и получение всех дочерних элементов требуемого узла.
      * Первичное обращение к методу выполняется из Task контроллера действием [[actionNode()]].
      *
-     * @param int         $id        идентификатор узла
-     * @param bool        $recursive параметр задающий рекурсию
-     * @param string|null $list      категория, по которой будет произведена выборка
-     * @param string|bool $sort      поле, по которому будет произведена сортировка
+     * @param int   $id        идентификатор узла
+     * @param bool  $recursive параметр задающий рекурсию
+     * @param array $params    дополнительные параметры, к примеру, проект или сортировка
      *
      * @return array|ActiveRecord[] результат запроса.
      * Если результат равен null, то будет возвращен пустой массив.
      */
-    public function getChildren($id, $recursive = false, $list = null, $sort = 'pos')
+    public function getChildren($id, $recursive = false, $params = [])
     {
         $query[] = $this->root;
-        $sortBy  = $sort == 'priority' ? ['priority' => SORT_DESC] : $sort;
+        $sortBy  = ArrayHelper::getValue($params, 'sort', 'pos');
+        if (ArrayHelper::getValue($params, 'sort') == 'priority') {
+            $sortBy = ['priority' => SORT_DESC];
+        }
+
         $cond    = [
             'pid'    => $id,
             'author' => Yii::$app->user->id,
@@ -122,16 +126,21 @@ class TreeController extends Controller
             $query = TasksData::find()
                               ->where(['>', 'lft', $node['lft']])
                               ->andWhere(['<', 'rgt', $node['rgt']])
-                              ->orderBy('lft')->asArray()->all();
-        } elseif (!is_null($list)) {
+                              ->orderBy('lft')
+                              ->asArray()
+                              ->all();
+
+        } elseif (!is_null(ArrayHelper::getValue($params, 'list'))) {
             // Если $list равен null, то искать все задачи независимо от категории
             // Иначе требуются задачи с категорией, которая пришла в $list
             if ($id) {
                 $query = TasksData::find()
                                   ->joinWith(Task::tableName())
                                   ->where($cond)
-                                  ->andWhere(['list' => $list])
-                                  ->orderBy($sortBy)->asArray()->all();
+                                  ->andWhere(['list' => $params['list']])
+                                  ->orderBy($sortBy)
+                                  ->asArray()
+                                  ->all();
             }
         } else {
             // Выборка всех задач в Inbox, которым не назначен список
@@ -140,8 +149,45 @@ class TreeController extends Controller
                                   ->joinWith(Task::tableName())
                                   ->where($cond)
                                   ->andWhere(['list' => null])
-                                  ->orderBy($sortBy)->asArray()->all();
+                                  ->orderBy($sortBy)
+                                  ->asArray()
+                                  ->all();
             }
+        }
+
+        return $query;
+    }
+
+    /**
+     * Создание экземпляра ActiveRecord и получение всех дочерних элементов требуемого узла.
+     *
+     * @param int $id идентификатор узла
+     *
+     * @return array|ActiveRecord[] результат запроса.
+     * Если результат равен null, то будет возвращен пустой массив.
+     */
+    public function getProjectChildren($id)
+    {
+        $query = [
+            [
+                'id'         => 1,
+                'lft'        => 1,
+                'rgt'        => 11,
+                'lvl'        => 0,
+                'pid'        => 0,
+                'pos'        => 1,
+                'listName'   => 'Root',
+                'badgeColor' => '#ffffff'
+            ]
+        ];
+
+        if ($id) {
+            $query = TaskCat::find()
+                            ->where(['userId' => null, 'pid' => $id])
+                            ->orWhere(['userId' => Yii::$app->user->id])
+                            ->orderBy('pos')
+                            ->asArray()
+                            ->all();
         }
 
         return $query;
@@ -197,7 +243,8 @@ class TreeController extends Controller
             $futureDate = $dateUtils->dateLeft($v[Task::tableName()]['dueDate']);
 
             // Форматирование текста курсивом или полужирным шрифтом
-            $format = is_null($v['format']) ? false : $v['format'];
+            $format  = is_null($v['format']) ? false : $v['format'];
+            $hasNote = is_null($v['note']) ? null : 'fa fa-commenting';
 
             switch ($v[Task::tableName()]['priority']) {
                 case 3:
@@ -215,7 +262,36 @@ class TreeController extends Controller
                 'text'     => $v['name'],
                 'a_attr'   => ['class' => $priority, 'format' => $format],
                 'li_attr'  => ['date' => $dueDate, 'rel' => $relativeDate, 'hint' => $futureDate],
-                'icon'     => 'fa fa-commenting',
+                'icon'     => $hasNote,
+                'children' => ($v['rgt'] - $v['lft'] > 1)
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
+     * Кодирует полученный массив в JSON строку.
+     *
+     * @param array temp узел, сформированный в результате запроса
+     *
+     * @return array результат кодирования.
+     */
+    public function buildProjectTree($temp)
+    {
+        $result = [];
+        $colors = [
+            '#ffffff' => null,
+            null      => '#666',
+            '#95EF63' => 'proj-color-1',
+            '#FF8581' => 'proj-color-2',
+        ];
+
+        foreach ($temp as $v) {
+            $result[] = [
+                'id'       => $v['id'],
+                'text'     => $v['listName'],
+                'a_attr'   => ['class' => $colors[$v['badgeColor']]],
                 'children' => ($v['rgt'] - $v['lft'] > 1)
             ];
         }
