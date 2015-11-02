@@ -41,7 +41,8 @@
     </header>
 
     <div class="tray tray-center h1200 pn va-t">
-        <div id="tree" class="fs14 pt10 pl10"></div>
+        <div id="tree" class="fs14 pt10"></div>
+        <svg viewBox="0 0 32 32" class="svgBox hidden"><polygon points="30,5.077 26,2 11.5,22.5 4.5,15.5 1,19 12,30"></polygon></svg>
         <div id="formEdit" class="e-form" hidden>
             <div class="bs-component">
                 <div class="col-md-9 col-sm-9 col-xs-9 pln">
@@ -98,7 +99,11 @@
             </div>
         </div>-->
         <div class="controller">
-            <a href="#" class="action"><i class="fa fa-plus"></i><?= Yii::t('backend', 'Add Task') ?></a>
+            <a href="#" class="action">
+                <i class="fa fa-plus"></i>
+                <?= Yii::t('backend', 'Add Task') ?>
+                <div class="egg-arrow first"></div>
+            </a>
 
             <div class="completed"><a href="#"></a></div>
         </div>

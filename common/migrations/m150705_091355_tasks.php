@@ -13,30 +13,30 @@ class m150705_091355_tasks extends Migration
 
         $this->createTable('{{%tasks}}', [
             'id'         => $this->primaryKey(),
+            'listId'     => $this->integer(15),
             'author'     => $this->integer(50)->notNull(),
-            'list'       => $this->integer(15),
             'isDone'     => $this->integer(1),
             'priority'   => $this->integer(1),
             'dueDate'    => $this->date(),
-            'updatedAt'  => $this->timestamp(),
-            'createdAt'  => $this->date()
+            'updatedAt'  => $this->integer(),
+            'createdAt'  => $this->integer()
         ], $tableOptions);
 
-        $this->createTable('{{%tasks_cat}}', [
+        $this->createTable('{{%projects}}', [
             'id'         => $this->primaryKey(),
             'userId'     => $this->integer(50),
             'listName'   => $this->string(100),
             'badgeColor' => $this->string(7)
         ], $tableOptions);
 
-        $this->insert('{{%tasks_cat}}', [
+        $this->insert('{{%projects}}', [
             'id'         => 1,
             'userId'     => null,
             'listName'   => 'Работа',
             'badgeColor' => '#0074D9',
         ]);
 
-        $this->insert('{{%tasks_cat}}', [
+        $this->insert('{{%projects}}', [
             'id'         => 2,
             'userId'     => null,
             'listName'   => 'Личное',
@@ -44,7 +44,7 @@ class m150705_091355_tasks extends Migration
         ]);
 
         if ($this->db->driverName === 'mysql') {
-            $this->addForeignKey('fk_cat', '{{%tasks}}', 'list', '{{%tasks_cat}}', 'id', 'cascade', 'cascade');
+            $this->addForeignKey('fk_cat', '{{%tasks}}', 'list', '{{%projects}}', 'id', 'cascade', 'cascade');
             $this->addForeignKey('fk_author', '{{%tasks}}', 'author', '{{%user}}', 'id', 'cascade', 'cascade');
         }
     }

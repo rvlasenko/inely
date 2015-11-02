@@ -10,6 +10,8 @@
 
 namespace common\models;
 
+use backend\models\Task;
+use backend\models\TaskData;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -242,17 +244,24 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Creates user profile and application event
-     *
      * @param array $profileData
+     * @param       $userData
      */
-    public function afterSignup(array $profileData = [])
+    public function afterSignup(array $profileData = [], $userData)
     {
         $this->trigger(self::EVENT_AFTER_SIGNUP);
 
         $profile         = new UserProfile();
+        $taskModel       = new Task();
+        $newChild        = new TaskData();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
+
+        if ($taskModel->load($userData, '') && $taskModel->save()) {
+            $newChild->load($userData, '');
+            $newChild->makeRoot();
+            $taskModel->link('taskData', $newChild);
+        }
 
         $this->link('userProfile', $profile);
 

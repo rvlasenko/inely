@@ -19,25 +19,22 @@ class TaskAsset extends AssetBundle
     public $baseUrl  = '@backendUrl';
 
     public $css = [
-
-        // Font CSS (Via CDN)
+        // Шрифт Open Sans
         'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic',
 
-        // Theme CSS
-        'css/skin/theme.css',
+        // Общие CSS файлы
+        'css/theme.css',
         'css/animate.css'
     ];
 
     public $js = [
-
-        // Theme Javascript
         'js/utility.js',
         'js/main.js',
 
         // jsTree
         'vendor/plugins/jstree/jstree.min.js',
 
-        // DatePicker ru
+        // Перевод DatePicker
         'tools/forms/datepicker-ru.js'
     ];
 
@@ -45,8 +42,8 @@ class TaskAsset extends AssetBundle
 
     public $depends   = [
         'yii\web\JqueryAsset',
+        'common\assets\BootstrapAsset',
         'common\assets\JuiAsset',
         'common\assets\FontAwesome',
-        'common\assets\BootstrapJsAsset'
     ];
 }

@@ -5,24 +5,10 @@ return [
     'enablePrettyUrl' => true,
     'showScriptName'  => false,
     'rules'           => [
-
-        /*
-         * Основные правила
-         */
-        'contact'  => '/site/contact',
-        'todo'     => '/task/index',
-        'schedule' => '/schedule/index',
-        'help'     => '/help/index',
-        'welcome'  => '/char/index',
-
-        /*
-         * Правила авторизации
-         */
-        'signup'         => '/user/sign-in/signup',
-        'reset'          => '/user/sign-in/request-password-reset',
-        'reset-password' => '/user/sign-in/reset-password',
-        'confirm-email'  => '/user/sign-in/confirm-email',
-        'login'          => '/user/sign-in/login',
-        'logout'         => '/user/sign-in/logout'
+        // Основные правила
+        'task'    => '/task/index',
+        'welcome' => '/task/welcome',
+        // Авторизация
+        'logout' => '/user/logout'
     ]
 ];

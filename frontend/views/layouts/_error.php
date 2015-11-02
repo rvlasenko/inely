@@ -10,35 +10,25 @@
  * @var $content string
  */
 
-use frontend\assets\FrontendAsset;
+use frontend\assets\ErrorAsset;
 use yii\helpers\Html;
 
-FrontendAsset::register($this);
+ErrorAsset::register($this);
 
-$this->title = '!!!';
+$this->title = 'Lost Cloud - Error page';
 
-$this->registerAssetBundle('yii\bootstrap\BootstrapPluginAsset', $this::POS_END);
-
-$this->registerJsFile('js/functions.js', [ 'position' => $this::POS_END ]);
-$this->registerJsFile('js/plugins.js', [ 'position' => $this::POS_END ]);
 ?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html dir="ltr" lang="<?= Yii::$app->language ?>">
+<html>
 <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta charset="<?= Yii::$app->charset ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--[if lt IE 9]>
-    <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-    <![endif]-->
-
-    <!-- Document Title
-    ============================================= -->
     <title><?= Html::encode($this->title) ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="squirrellabs" />
+    <meta name="keywords" content="squirrellabs" />
+    <meta name="description" content="Lost Cloud" />
 
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
@@ -49,23 +39,9 @@ $this->registerJsFile('js/plugins.js', [ 'position' => $this::POS_END ]);
 
 <?php $this->beginBody() ?>
 
-<body class="stretched">
+<body id="errorpage" class="error404">
 
-<!-- Document Wrapper
-============================================= -->
-<div id="wrapper" class="clearfix">
-
-    <!-- Content
-    ============================================= -->
-    <section id="content">
-
-        <?= $content ?>
-
-    </section>
-    <!-- #content end -->
-
-</div>
-<!-- #wrapper end -->
+<?= $content ?>
 
 <?php $this->endBody() ?>
 </body>

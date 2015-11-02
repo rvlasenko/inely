@@ -265,7 +265,7 @@ ul.vakata-context .fa-clock-o {
 }
 
 .jstree-proton .jstree-clicked {
-    background-color : #e3efff;
+    background-color : #e8f7fb !important;
     border-radius    : 2px;
 }
 
@@ -283,34 +283,25 @@ ul.vakata-context .fa-clock-o {
 }
 
 .jstree-anchor.high > .jstree-checkbox {
-    border-color     : #e7482e !important;
-    background-color : #f5e5e5 !important;
-}
-
-.jstree-anchor.medium > .jstree-checkbox {
-    border-color     : #fcc12b !important;
-    background-color : #fff6e1 !important;
-}
-
-.jstree-anchor.low > .jstree-checkbox {
-    border-color     : #70ca63 !important;
-    background-color : #b9ffae !important;
-}
-
-.jstree-anchor.low > .jstree-checkbox:hover {
-    background-color : #8cfc7c !important;
-}
-
-.jstree-anchor.medium > .jstree-checkbox:hover {
-    background-color : #ffe7ae !important;
+    background-color : #fc636b !important;
+    border: 0;
 }
 
 .jstree-anchor.high > .jstree-checkbox:hover {
-    background-color : #e7c0c0 !important;
+    background-color : #FF7B82 !important;
 }
 
-.jstree-anchor.null > .jstree-checkbox:hover {
-    background-color : #ededed;
+.jstree-anchor.medium > .jstree-checkbox {
+    background-color : #4a89dc !important;
+}
+
+.jstree-anchor.low > .jstree-checkbox {
+    background-color : #55badf !important;
+}
+
+.jstree-anchor > .jstree-checkbox:hover {
+    transition         : background-color 200ms ease-in;
+    border-color       : transparent !important;
 }
 
 .jstree-proton-responsive .jstree-leaf > .jstree-ocl {
@@ -432,7 +423,7 @@ ul.vakata-context .fa-clock-o {
 
 #formAdd {
     /*margin-left : 40px;*/
-    overflow    : hidden;
+    overflow : hidden;
 }
 
 #formEdit {
@@ -449,11 +440,11 @@ ul.vakata-context .fa-clock-o {
     opacity : .6;
 }
 
-.jstree-proton .jstree-node {
-    min-height  : 22px;
-    line-height : 22px;
-    margin-left : 25px;
-    min-width   : 22px;
+.jstree-proton .jstree-leaf {
+    min-height   : 22px;
+    line-height  : 22px;
+    min-width    : 22px;
+    padding-left : 34px;
 }
 
 .jstree-proton .jstree-anchor {
@@ -590,29 +581,32 @@ ul.vakata-context .fa-clock-o {
     background-position : -30px -90px;
 }
 
+.jstree-node.jstree-open.jstree-last > i:first-child {
+    display : none;
+}
+
 .jstree-proton-responsive .jstree-last > .jstree-ocl {
     background-position : -30px -120px;
 }
 
-.jstree-proton-responsive > .jstree-container-ul > .jstree-node {
-    margin-left  : 0;
-    margin-right : 0;
-}
-
-.jstree-proton-responsive.jstree-checkbox-selection .jstree-clicked >
-.jstree-checkbox, .jstree-proton-responsive .jstree-checked >
-.jstree-checkbox {
+.jstree-proton .jstree-checked > a span {
+    -webkit-transition: opacity 150ms ease-in;
+    transition: opacity 150ms ease-in;
+    opacity : .6;
+    text-decoration: line-through;
 }
 
 .jstree-proton .jstree-checkbox {
-    border        : 2px solid #a8a8a8 !important;
     display       : inline-block !important;
-    width         : 20px !important;
-    height        : 20px !important;
+    width         : 24px !important;
+    height        : 24px !important;
     padding       : 2px !important;
-    margin-right  : 10px !important;
-    margin-left   : 10px !important;
-    margin-top    : 9px !important;
+    margin-right  : 13px !important;
+    margin-left   : 7px !important;
+    margin-top    : 7px !important;
     border-radius : 50% !important;
-    transition    : background 120ms ease-in;
+    cursor        : pointer;
+    transition    : border 200ms, box-shadow 200ms, color 200ms;
+    border        : 1px solid #e1e2e4;
+    fill          : #fff;
 }

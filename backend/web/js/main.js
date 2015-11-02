@@ -10,11 +10,13 @@ var Core = function () {
         $formEdit = $("#formEdit"),
         tree      = $("#tree"), // Указатель на jsTree
         projTree  = $("#projTree"),
-        format    = null, // Появляется при __task или --task
+        format    = null, // Форматирование при __task или --task
         date      = null,
-        priority  = null, // Появляется при !1task, !2task...
-        listName  = null, // Название проекта
-        listKey   = null; // PK проекта
+        priority  = null, // Приоритет при !1task, !2task...
+        projName  = null, // Название проекта
+        projKey   = null; // PK проекта
+
+    Pace.options = { ajax: false };
 
     // SideMenu Functions
     var runSideMenu = function() {
@@ -198,19 +200,18 @@ var Core = function () {
         var to        = null,
             accept    = false,
             isClicked = false,
-            searchInp = $('#sidebar-search');
-
-        Pace.options = { ajax: false };
-        function getInstance(data) {
-            return $.jstree.reference(data.reference).get_node(data.reference);
-        }
+            searchInp = $('#searchText');
 
         var options = {
             "core":        {
                 "data": {
-                    "url":   "/task/node",
-                    "data":  function (node) {
-                        return { "id": node.id };
+                    "type": "POST",
+                    "url":  "/task/node",
+                    "data": function (node) {
+                        return {
+                            "id":    node.id,
+                            "_csrf": $('meta[name=csrf-token]').attr("content")
+                        };
                     }
                 },
                 "check_callback" : true,
@@ -247,7 +248,7 @@ var Core = function () {
                                     "label":  "High",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("/task/set-priority", {
+                                        $.post("/task/set-priority", {
                                             "id": node.id,
                                             "pr": 3
                                         }).done(function () {
@@ -262,7 +263,7 @@ var Core = function () {
                                     "label":  "Medium",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("/task/set-priority", {
+                                        $.post("/task/set-priority", {
                                             "id": node.id,
                                             "pr": 2
                                         }).done(function () {
@@ -277,7 +278,7 @@ var Core = function () {
                                     "label":  "Low",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("/task/set-priority", {
+                                        $.post("/task/set-priority", {
                                             "id": node.id,
                                             "pr": 1
                                         }).done(function () {
@@ -292,7 +293,7 @@ var Core = function () {
                                     "label":  "None",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("/task/set-priority", {
+                                        $.post("/task/set-priority", {
                                             "id": node.id,
                                             "pr": null
                                         }).done(function () {
@@ -314,7 +315,7 @@ var Core = function () {
                                     "label":  "Today",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("/task/set-priority", {
+                                        $.post("/task/set-priority", {
                                             "id": node.id,
                                             "pr": "high"
                                         }).done(function () {
@@ -329,7 +330,7 @@ var Core = function () {
                                     "label":  "Tomorrow",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("/task/set-priority", {
+                                        $.post("/task/set-priority", {
                                             "id": node.id,
                                             "pr": "medium"
                                         }).done(function () {
@@ -344,7 +345,7 @@ var Core = function () {
                                     "label":  "More",
                                     "action": function (data) {
                                         var node = getInstance(data);
-                                        $.get("/task/set-priority", {
+                                        $.post("/task/set-priority", {
                                             'id': node.id,
                                             'pr': 'low'
                                         }).done(function () {
@@ -368,7 +369,7 @@ var Core = function () {
                     };
                 }
             },
-            'plugins': ['dnd', 'contextmenu', 'search', 'state', 'checkbox']
+            'plugins': ['dnd', 'contextmenu', 'search', 'checkbox']
         };
 
         var optionsProject = {
@@ -417,11 +418,11 @@ var Core = function () {
             options
         ).on('create_node.jstree', function (e, data) {
             if (data.node.text !== '' && data.node.text != 'New node') {
-                $.get('/task/create', {
+                $.post('/task/create', {
                     'id':   data.node.parent,
-                    'text': data.node.text,
-                    'ps':   data.position,
-                    'ls':   listKey,
+                    'name': data.node.text,
+                    'pos':  data.position,
+                    'ls':   projKey,
                     'pr':   priority,
                     'fr':   format,
                     'dt':   date
@@ -437,7 +438,7 @@ var Core = function () {
             }
                 hideRoot();
         }).on('delete_node.jstree', function (e, data) {
-            $.get('/task/delete', {
+            $.post('/task/delete', {
                 'id': data.node.id
             }).done(function () {
                 setCount(true)
@@ -445,7 +446,7 @@ var Core = function () {
                 data.instance.refresh()
             });
         }).on('rename_node.jstree', function (e, data) {
-            $.get('/task/rename', {
+            $.post('/task/rename', {
                 'id':   data.node.id,
                 'text': data.text,
                 'pr':   priority,
@@ -455,29 +456,43 @@ var Core = function () {
                 data.instance.refresh();
             });
         }).on('move_node.jstree', function (e, data) {
-            $.get('/task/move', {
+            $.post('/task/move', {
                 'id':       data.node.id,
                 'parent':   data.parent,
                 'position': data.position
             }).fail(function () {
                 data.instance.refresh();
             });
-        }).on('select_node.jstree', function (e, data) {
-            //if (!$(event.target).is('i') || $(event.target).is('.jstree-themeicon')) {
-            //    tree.jstree(true).uncheck_node(data.node.id);
-            //}
+        }).on('select_node.jstree', function (node, data) {
+            // Результирующий узел, на котором был нажат чекбокс
+            var $node = $('#' + data.node.id);
+            if ($(event.target).is('i')) {
+                tree.jstree(true).uncheck_node(data.node.id);
+                // Поиск нажатого чекбокса и добавление svg галочки
+                $('.svgBox').appendTo($node.find('.jstree-checkbox')).show();
+                setTimeout(function () {
+                    $node.removeClass('jstree-selected').addClass('jstree-checked').fadeOut(100);
+                }, 200);
+                $.post('/task/done', {
+                    'id':     data.node.id,
+                    'isDone': 1,
+                    '_csrf':  $('meta[name=csrf-token]').attr("content")
+                }).fail(function () {
+                    data.instance.refresh();
+                });
+            }
         }).on("redraw.jstree", function () {
             tree.jstree("open_all");
             hideRoot();
         });
 
-        projTree.jstree(
+        /*projTree.jstree(
             optionsProject
         ).on("redraw.jstree", function () {
             projTree.jstree("open_all");
             hideRoot();
         }).on('select_node.jstree', function (e, data) {
-            listKey = data.node.id;
+            projKey = data.node.id;
             // Перестроение дерева перед загрузкой проектов
             tree.jstree(true).settings.core.data = {
                 url:  '/task/node',
@@ -499,7 +514,7 @@ var Core = function () {
             $(this).find("#" + data.node.id).addClass("bg-light fw600");
 
             return false;
-        });
+        });*/
 
         searchInp.keyup(function (e) {
             if (to) { clearTimeout(to) }
@@ -538,7 +553,7 @@ var Core = function () {
             tree.jstree(true).settings.core.data = {
                 url:  "/task/node",
                 data: function (node) {
-                    return { id: node.id, sr: cond, ls: listKey }
+                    return { id: node.id, sr: cond, ls: projKey }
                 }
             };
             tree.jstree(true).refresh();
@@ -546,13 +561,13 @@ var Core = function () {
 
         // Инкремент или декремент количества задач в той группе, где она была создана
         var setCount = function (decrement) {
-            var $projectDiv = $(".list-view div").filter("[data-key=" + listKey + "]").find("span:last"),
+            var $projectDiv = $(".list-view div").filter("[data-key=" + projKey + "]").find("span:last"),
                 inboxDiv   = $("#inbox").find("span"),
                 number     = 0;
                 accept = true;
 
             // Если переменная с ключом пуста, значит пользователь в "Inbox"
-            if (listKey == null) {
+            if (projKey == null) {
                 number = parseInt(inboxDiv.text());
                 decrement ? inboxDiv.html(--number) : inboxDiv.html(++number);
             } else {
@@ -627,7 +642,7 @@ var Core = function () {
                         tree.jstree(true).settings.core.data = {
                             url:  "/task/node",
                             data: function (node) {
-                                return { id: node.id, ls: listKey };
+                                return { id: node.id, ls: projKey };
                             }
                         };
                         tree.jstree(true).refresh();
@@ -700,18 +715,18 @@ var Core = function () {
             // пользователю заядло кликать больше, чем раз в полторы секунды
             if (!isClicked) {
                 isClicked = true;
-                listKey   = $(this).parent().data("key");
-                listName  = $(this).text().trim().slice(0, -2);
+                projKey   = $(this).parent().data("key");
+                projName  = $(this).text().trim().slice(0, -2);
 
                 // Перестроение дерева перед загрузкой проектов
                 tree.jstree(true).settings.core.data = {
                     url:  '/task/node',
                     data: function (node) {
-                        return { id: node.id, ls: listKey };
+                        return { id: node.id, ls: projKey };
                     }
                 };
                 tree.jstree(true).refresh();
-                $('.crumb-active a').html(listName);
+                $('.crumb-active a').html(projName);
                 $('.tray-left a').removeClass('fw600');
                 $(this).toggleClass('fw600 link-color');
                 setTimeout(function () { isClicked = false }, 1500);
@@ -752,274 +767,10 @@ var Core = function () {
         if (localStorage.getItem("inspect") == "show") {
             Body.removeClass("sb-r-c").addClass("sb-r-o");
         }
-    };
 
-    var runSchedule = function () {
-        // Инициализация внешних событий FullCalendar
-        $('#external-events').find('.fc-event').each(function() {
-            // Хранить данные так, чтобы календарь знал, как рендерить событие после drop'а
-            $(this).data('event', {
-                title: $.trim($(this).text()), // использовать текст элемента в качестве имени события
-                stick: true, // (см. renderEvent method)
-                className: 'fc-event-' + $(this).attr('data-event') // добавить имя класса из data атрибута 'attr'
-            });
-
-            // сделать событие перетаскиваемым используя jQuery UI
-            $(this).draggable({
-                zIndex: 999,
-                revert: true,
-                revertDuration: 0
-            });
-
-        });
-
-        var Calendar = $('#calendar');
-        var Picker   = $('.inline-mp');
-
-        // Инициализация плагина FullCalendar
-        Calendar.fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: true,
-            events: [{
-                title: 'Sony Meeting',
-                start: '2015-10-4',
-                end: '2015-10-6',
-                className: 'fc-event-success'
-            }, {
-                title: 'Conference',
-                start: '2015-10-14',
-                end: '2015-10-16',
-                className: 'fc-event-warning'
-            }, {
-                title: 'System Testing',
-                start: '2015-10-26',
-                end: '2015-10-28',
-                className: 'fc-event-primary'
-            }],
-            viewRender: function(view) {
-                // Если monthPicker был инициализирован, обновить его дату
-                if (Picker.hasClass('hasMonthpicker')) {
-                    var selectedDate = Calendar.fullCalendar('getDate');
-                    var formatted = moment(selectedDate, 'MM-DD-YYYY').format('MM/YY');
-                    Picker.monthpicker("setDate", formatted);
-                }
-                // Обновить заголовок мини-календаря с месяцами
-                var titleContainer = $('.fc-title-clone');
-                if (!titleContainer.length) {
-                    return;
-                }
-                titleContainer.html(view.title);
-            },
-            droppable: true, // Свойство, позволяющее перетаскивать события на календарь
-            drop: function() {
-                if (!$(this).hasClass('event-recurring')) {
-                    $(this).remove();
-                }
-            },
-            eventRender: function(event, element) {
-                // Создание подсказки используя bootstrap как основу
-                $(element).attr("data-original-title", event.title);
-                $(element).tooltip({
-                    container: 'body',
-                    delay: {
-                        "show": 100,
-                        "hide": 200
-                    }
-                });
-                $(element).on('show.bs.tooltip', function() {
-                    setTimeout(function() {
-                        $('.tooltip').fadeOut()
-                    }, 3500);
-                });
-            }
-        });
-
-        // Инициализация модального окна через Magnific Popup
-        $('#compose-event-btn').magnificPopup({
-            removalDelay: 500, // удаление задержки по оси X
-            callbacks: {
-                beforeOpen: function() {
-                    // Добавление класса к body чтобы показать, что наложение активно
-                    // Свойство z-index должно правильно конфигурировать отображение вложенности
-                    $('body').addClass('mfp-bg-open');
-                    this.st.mainClass = this.st.el.attr('data-effect');
-                },
-                afterClose: function() {
-                    $('body').removeClass('mfp-bg-open');
-                }
-            },
-            midClick: true
-        });
-
-        Picker.monthpicker({
-            prevText: '<i class="fa fa-chevron-left"></i>',
-            nextText: '<i class="fa fa-chevron-right"></i>',
-            showButtonPanel: false,
-            onSelect: function(selectedDate) {
-                var formatted = moment(selectedDate, 'MM/YYYY').format('MM/DD/YYYY');
-                Calendar.fullCalendar('gotoDate', formatted)
-            }
-        });
-
-        // Инициализация выбора дат в модальном окне
-        $.datepicker.setDefaults($.datepicker.regional["ru"]);
-        $('#eventDate').datepicker({
-            numberOfMonths:  1,
-            minDate:         0,
-            prevText:        '<i class="fa fa-chevron-left"></i>',
-            nextText:        '<i class="fa fa-chevron-right"></i>',
-            showButtonPanel: false,
-            dateFormat:      'd M'
-        });
-    };
-
-    var runDashBoard = function () {
-        $('.skillbar').each(function () {
-            jQuery(this).find('.skillbar-bar').animate({
-                width: jQuery(this).attr('data-percent')
-            }, 2500);
-        });
-
-        $('.ct-chart').highcharts({
-            title:   { text: null },
-            credits: false,
-            chart:   {
-                marginTop:       0,
-                plotBorderWidth: 0
-            },
-            xAxis:   {
-                categories: [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun' ]
-            },
-            yAxis:   {
-                labels: { enabled: false },
-                title:  { text: null }
-            },
-            legend:  { enabled: false },
-            series:  [
-                {
-                    name: 'All visits',
-                    data: [ 29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6 ]
-                }, {
-                    name: 'XP earned',
-                    data: [ 4, 6, 5, 9, 11, 14, 1 ]
-                }
-            ]
-        });
-
-        $('.highcharts-grid path:first-child').remove();
-        // Init plugins for ".task-widget"
-        // plugins: Custom Functions + jQuery Sortable
-        var taskWidget = $('div.task-widget');
-        var taskItems = taskWidget.find('li.task-item');
-        var currentItems = taskWidget.find('ul.task-current');
-        var completedItems = taskWidget.find('ul.task-completed');
-        // Init jQuery Sortable on Task Widget
-        taskWidget.sortable({
-            items:       taskItems, // only init sortable on list items (not labels)
-            axis:        'y',
-            connectWith: ".task-list",
-            update:      function (event, ui) {
-                var Item = ui.item;
-                var ParentList = Item.parent();
-                // If item is already checked move it to "current items list"
-                if (ParentList.hasClass('task-current')) {
-                    Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
-                }
-                if (ParentList.hasClass('task-completed')) {
-                    Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
-                }
-            }
-        });
-        // Custom Functions to handle/assign list filter behavior
-        taskItems.on('click', function (e) {
-            e.preventDefault();
-            var This = $(this);
-            if ($(e.target).hasClass('fa-remove')) {
-                This.remove();
-                return;
-            }
-            // If item is already checked move it to "current items list"
-            if (This.hasClass('item-checked')) {
-                This.removeClass('item-checked').appendTo(currentItems).find('input[type="checkbox"]').prop('checked', false);
-            }
-            // Otherwise move it to the "completed items list"
-            else {
-                This.addClass('item-checked').appendTo(completedItems).find('input[type="checkbox"]').prop('checked', true);
-            }
-        });
-
-        // Инициализация плагина для FullCalendar
-        $('#calendar-widget').fullCalendar({
-            contentHeight: 397,
-            editable:      true,
-            firstDay:      1,
-            events:        [
-                {
-                    title:     'Sony Meeting',
-                    start:     '2015-10-1',
-                    end:       '2015-10-3',
-                    className: 'fc-event-success'
-                }, {
-                    title:     'Conference',
-                    start:     '2015-10-13',
-                    end:       '2015-10-15',
-                    className: 'fc-event-primary'
-                }, {
-                    title:     'Lunch Testing',
-                    start:     '2015-10-23',
-                    end:       '2015-10-25',
-                    className: 'fc-event-danger'
-                }
-            ],
-            eventRender:   function (event, element) {
-                // Создание подсказки используя bootstrap как основу
-                $(element).attr("data-original-title", event.title);
-                $(element).tooltip({
-                    container: 'body',
-                    delay:     {
-                        "show": 100,
-                        "hide": 200
-                    }
-                });
-                // Автоскрытие подсказки по истечнию таймера
-                $(element).on('show.bs.tooltip', function () {
-                    setTimeout(function () {
-                        $('.tooltip').fadeOut();
-                    }, 3500);
-                });
-            }
-        });
-        // Инициализация Summertnote плагина
-        $('.summernote').summernote({
-            height:   255,
-            focus:    false,
-            oninit:   function () {},
-            onChange: function (contents, $editable) {},
-            toolbar:  [
-                ['style', [ 'style' ]],
-                ['font', ['bold', 'italic', 'underline']],
-                ['color', [ 'color' ]],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', [ 'hr' ]],
-                ['view', [ 'codeview' ]]
-            ]
-        });
-
-        // Инициализация пользовательских виджетов внутри контейнера ".admin-panels"
-        $('.admin-panels').adminpanel({
-            grid:         '.admin-grid',
-            draggable:    true,
-            preserveGrid: true,
-            mobile:       false,
-            onFinish:     function () {
-                $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload')
-            },
-            onSave:       function () { $(window).trigger('resize') }
-        });
+        function getInstance(data) {
+            return $.jstree.reference(data.reference).get_node(data.reference);
+        }
     };
 
     $(document).ready(function () {

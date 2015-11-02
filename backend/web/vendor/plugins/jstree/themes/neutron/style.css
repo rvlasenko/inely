@@ -283,38 +283,38 @@ ul.vakata-context .fa-clock-o {
     text-align      : center;
 }
 
-.jstree-neutron-responsive .jstree-open > .jstree-ocl {
+.jstree-neutron .jstree-neutron-responsive .jstree-open > .jstree-ocl {
     background-position : 0 0 !important;
 }
 
-.jstree-anchor.high > .jstree-checkbox {
+.jstree-neutron .jstree-anchor.high > .jstree-checkbox {
     border-color     : #e7482e !important;
     background-color : #f5e5e5 !important;
 }
 
-.jstree-anchor.medium > .jstree-checkbox {
+.jstree-neutron .jstree-anchor.medium > .jstree-checkbox {
     border-color     : #fcc12b !important;
     background-color : #fff6e1 !important;
 }
 
-.jstree-anchor.low > .jstree-checkbox {
+.jstree-neutron .jstree-neutron .jstree-anchor.low > .jstree-checkbox {
     border-color     : #70ca63 !important;
     background-color : #b9ffae !important;
 }
 
-.jstree-anchor.low > .jstree-checkbox:hover {
+.jstree-neutron .jstree-anchor.low > .jstree-checkbox:hover {
     background-color : #8cfc7c !important;
 }
 
-.jstree-anchor.medium > .jstree-checkbox:hover {
+.jstree-neutron .jstree-anchor.medium > .jstree-checkbox:hover {
     background-color : #ffe7ae !important;
 }
 
-.jstree-anchor.high > .jstree-checkbox:hover {
+.jstree-neutron .jstree-anchor.high > .jstree-checkbox:hover {
     background-color : #e7c0c0 !important;
 }
 
-.jstree-anchor.null > .jstree-checkbox:hover {
+.jstree-neutron .jstree-anchor.null > .jstree-checkbox:hover {
     background-color : #ededed;
 }
 
@@ -559,6 +559,7 @@ ul.vakata-context .fa-clock-o {
     width          : 92%;
     font-size: 14px;
     cursor: pointer;
+    padding-left: 13px;
 }
 
 .jstree-neutron-responsive .jstree-icon,
@@ -608,10 +609,12 @@ ul.vakata-context .fa-clock-o {
 
 .jstree-neutron-responsive .jstree-leaf > .jstree-ocl {
     background-position : -30px -90px;
+    display: none;
 }
 
 .jstree-neutron-responsive .jstree-last > .jstree-ocl {
     background-position : -30px -120px;
+    display: none;
 }
 
 .jstree-neutron-responsive > .jstree-container-ul > .jstree-node {

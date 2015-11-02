@@ -18,11 +18,11 @@
  */
 return [
     'Hello, {username}!' => 'Здравствуйте, {username}!',
-    'Inely | User account activation' => 'Inely | Активация аккаунта',
+    'Inely ~ User account activation' => 'Inely ~ Активация аккаунта',
     'Inely | Your login information' => 'Inely | Ваши персональные данные',
     'Your user account with the e-mail address {email} has been created.' => 'Ваша учетная запись с адресом {email} была успешно создана.',
     'Please follow the link below to activate your account. The link will remain valid for 15 days.' => 'Перейдите по ссылке ниже, чтобы активировать аккаунт. Ссылка будет действительна в течение 15 дней.',
-    'Thank you for choosing Inely as your personal assistant.' => 'Спасибо за то, что выбрали Inely в качестве своего персонального помощника.',
+    'Thank you for choosing Inely as your personal task-manager.' => 'Спасибо за то, что выбрали Inely в качестве своего персонального менеджера задач.',
     'Link this email address' => 'Подтвердить этот e-mail',
     'Someone recently requested a password change for your Inely account. If this was you, you can set a new password by click on link below.' => 'Кто-то недавно запросил изменение пароля для вашей учетной записи на Inely. Если это были вы, вы можете установить новый пароль, нажав на ссылку ниже.',
     'If you don\'t want to change your password or didn\'t request this, just ignore and delete this message.' => 'Если вы не хотите менять свой пароль или не запрашивали его изменение, просто игнорируйте или удалите это письмо.',

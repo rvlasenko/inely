@@ -11,10 +11,10 @@
 namespace backend\controllers;
 
 use backend\models\Task;
-use backend\models\TaskCat;
+use backend\models\Project;
 use backend\models\TaskForm;
-use backend\models\TasksData;
-use common\components\classes\DateUtils;
+use backend\models\TaskData;
+use common\components\formatter\FormatterComponent;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
 use yii\base\Exception;
@@ -83,7 +83,7 @@ class TreeController extends Controller
      */
     public function getNode($id, $options = [])
     {
-        $node = TasksData::find()->where(['dataId' => $id])->asArray()->one();
+        $node = TaskData::find()->where(['dataId' => $id])->asArray()->one();
 
         if (ArrayHelper::getValue($options, 'withChildren')) {
             $node['children'] = $this->getChildren($id, ArrayHelper::getValue($options, 'deepChildren'));
@@ -123,7 +123,7 @@ class TreeController extends Controller
         if ($recursive) {
             // Рекурсивная проверка на наличие вложенных задач
             $node  = $this->getNode($id);
-            $query = TasksData::find()
+            $query = TaskData::find()
                               ->where(['>', 'lft', $node['lft']])
                               ->andWhere(['<', 'rgt', $node['rgt']])
                               ->orderBy('lft')
@@ -134,7 +134,7 @@ class TreeController extends Controller
             // Если $list равен null, то искать все задачи независимо от категории
             // Иначе требуются задачи с категорией, которая пришла в $list
             if ($id) {
-                $query = TasksData::find()
+                $query = TaskData::find()
                                   ->joinWith(Task::tableName())
                                   ->where($cond)
                                   ->andWhere(['list' => $params['list']])
@@ -145,7 +145,7 @@ class TreeController extends Controller
         } else {
             // Выборка всех задач в Inbox, которым не назначен список
             if ($id) {
-                $query = TasksData::find()
+                $query = TaskData::find()
                                   ->joinWith(Task::tableName())
                                   ->where($cond)
                                   ->andWhere(['list' => null])
@@ -182,7 +182,7 @@ class TreeController extends Controller
         ];
 
         if ($id) {
-            $query = TaskCat::find()
+            $query = Project::find()
                             ->where(['userId' => null, 'pid' => $id])
                             ->orWhere(['userId' => Yii::$app->user->id])
                             ->orderBy('pos')
@@ -206,7 +206,7 @@ class TreeController extends Controller
         $node  = $this->getNode($id);
         $query = false;
         if ($node) {
-            $query = TasksData::find()
+            $query = TaskData::find()
                               ->where(['<', 'lft', $node['lft']])
                               ->andWhere(['>', 'rgt', $node['rgt']])
                               ->orderBy('lft')->asArray()->all();
@@ -232,15 +232,15 @@ class TreeController extends Controller
     public function buildTree($temp)
     {
         $result    = [];
-        $dateUtils = new DateUtils();
+        $formatter = new FormatterComponent();
 
         foreach ($temp as $v) {
             // Абсолютная дата eg. '6 окт.' или относительная 'через 3 дня'
-            $dueDate = $dateUtils->asRelativeDate($v[Task::tableName()]['dueDate']);
+            $dueDate = $formatter->asRelativeDate($v[Task::tableName()]['dueDate']);
             // Словесная дата для подчеркивания в дереве eg. 'today', 'future'
-            $relativeDate = $dateUtils->timeInWords($v[Task::tableName()]['dueDate']);
+            $relativeDate = $formatter->timeInWords($v[Task::tableName()]['dueDate']);
             // Относительная дата для тултипа, сколько ещё дней осталось eg. '3 дня осталось'
-            $futureDate = $dateUtils->dateLeft($v[Task::tableName()]['dueDate']);
+            $futureDate = $formatter->dateLeft($v[Task::tableName()]['dueDate']);
 
             // Форматирование текста курсивом или полужирным шрифтом
             $format  = is_null($v['format']) ? false : $v['format'];
@@ -317,7 +317,7 @@ class TreeController extends Controller
         if ($parent == 0) { throw new \Exception('Parent is 0'); }
         if ($parent == 1) {
             $parent = $this->root;
-            $parent['children'] = TasksData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
+            $parent['children'] = TaskData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
@@ -418,7 +418,7 @@ class TreeController extends Controller
                 $task->save();
             }
 
-            $taskData = TasksData::findOne(['dataId' => $id]);
+            $taskData = TaskData::findOne(['dataId' => $id]);
             $taskData->setAttributes($data, false);
             $taskData->save();
         }
@@ -446,7 +446,7 @@ class TreeController extends Controller
 
         if ($parent == 1) {
             $parent = $this->root;
-            $parent['children'] = TasksData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
+            $parent['children'] = TaskData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
@@ -564,7 +564,7 @@ class TreeController extends Controller
         $tmp[] = $data['dataId'];
         $diff  = $data['rgt'] - $data['lft'] + 1;
 
-        $db->createCommand()->delete(TasksData::tableName(), 'lft >= :lft AND rgt <= :rgt', [
+        $db->createCommand()->delete(TaskData::tableName(), 'lft >= :lft AND rgt <= :rgt', [
             ':lft' => $data['lft'],
             ':rgt' => $data['rgt']
         ])->execute();

@@ -22,7 +22,6 @@ $this->title = Yii::t('backend', 'Inbox ~ Inely');
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-
     <meta http-equiv="content-type" content="text/html" />
     <meta charset="<?= Yii::$app->charset ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,8 +45,7 @@ $this->title = Yii::t('backend', 'Inbox ~ Inely');
 
 <!-- Start: Main -->
 <main role="main">
-
-    <?= $this->render('left-sidebar') ?>
+    <?= $this->render('//task/left-sidebar') ?>
 
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
@@ -69,12 +67,10 @@ $this->title = Yii::t('backend', 'Inbox ~ Inely');
     </section>
     <!-- End: Content-Wrapper -->
 
-    <?= $this->render('right-sidebar') ?>
+    <?= $this->render('//task/right-sidebar') ?>
 </main>
 <!-- End: Main -->
-
 <?php $this->endBody() ?>
-
 </body>
 </html>
 <?php $this->endPage() ?>

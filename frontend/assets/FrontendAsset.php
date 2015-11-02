@@ -3,7 +3,7 @@
 /**
  * Этот файл является частью проекта Inely.
  *
- * @link http://github.com/hirootkit/inely
+ * @link   http://github.com/hirootkit/inely
  *
  * @author hirootkit <admiralexo@gmail.com>
  */
@@ -18,18 +18,20 @@ class FrontendAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl  = '@web';
 
-    // Stylesheets
     public $css = [
-        'css/font-icons.css',
+        'http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:700,400|Varela+Round',
+        'fonts/icomoon/icomoon.css',
+        'css/animate.min.css',
         'css/style.css',
-        'css/animate.css',
-        'css/responsive.css'
+        'css/style-responsive.css'
     ];
 
-    // External JavaScript
-    public $js        = ['js/infinitescroll.min.js'];
+    public $js = [
+        'js/plugins.min.js',
+        'js/app.js'
+    ];
 
-    public $jsOptions = ['position' => View::POS_HEAD];
+    public $jsOptions = ['position' => View::POS_END];
 
-    public $depends   = ['common\assets\BootstrapAsset'];
+    public $depends = ['common\assets\BootstrapAsset'];
 }

@@ -14,7 +14,10 @@ return [
     ],
     'components' => [
         'db' => [
-            'dsn' => 'mysql:host=localhost;dbname=yii2_advanced_tests',
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;port=3306;dbname=madeasy',
+            'username' => 'root',
+            'password' => '123'
         ],
         'mailer' => [
             'useFileTransport' => true,

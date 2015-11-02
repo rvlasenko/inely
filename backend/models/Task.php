@@ -45,7 +45,6 @@ class Task extends ActiveRecord
                 'class'              => TimestampBehavior::className(),
                 'createdAtAttribute' => 'createdAt',
                 'updatedAtAttribute' => 'updatedAt',
-                'value'              => (new Expression('NOW()'))
             ]
         ];
     }
@@ -77,12 +76,12 @@ class Task extends ActiveRecord
     {
         $result    = [];
         $condition = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
-        $ids       = TaskCat::find()->where(['userId' => null])->orWhere(['userId' => Yii::$app->user->id])->all();
+        $ids       = Project::find()->where(['userId' => null])->orWhere(['userId' => Yii::$app->user->id])->all();
         foreach ($ids as $id) {
             $result[$id->id] = (new Query())->select('id')
                                             ->from(self::tableName())
                                             ->where($condition)
-                                            ->andWhere(['list' => $id->id])
+                                            ->andWhere(['listId' => $id->id])
                                             ->count();
         }
 
@@ -97,24 +96,24 @@ class Task extends ActiveRecord
     {
         $result     = [];
         $condition  = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
-        $inboxList  = ['list' => null];
+        $inboxList  = ['listId' => null];
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
         $inboxSubQuery = (new Query())->select('COUNT(*)')
                                       ->from(self::tableName())
-                                      ->innerJoin(TasksData::tableName(), 'dataId = id')
+                                      ->innerJoin(TaskData::tableName(), 'dataId = id')
                                       ->where($condition)
                                       ->andWhere($inboxList);
 
         $todaySubQuery = (new Query())->select('COUNT(*)')
                                       ->from(self::tableName())
-                                      ->innerJoin(TasksData::tableName(), 'dataId = id')
+                                      ->innerJoin(TaskData::tableName(), 'dataId = id')
                                       ->where($condition)
                                       ->andWhere((new Expression('DATE(IFNULL(dueDate, createdAt)) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
                                      ->from(self::tableName())
-                                     ->innerJoin(TasksData::tableName(), 'dataId = id')
+                                     ->innerJoin(TaskData::tableName(), 'dataId = id')
                                      ->where($condition)
                                      ->andWhere((new Expression('IFNULL(dueDate, createdAt)
                                         BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
@@ -128,37 +127,20 @@ class Task extends ActiveRecord
     }
 
     /**
-     * Установка отношений между "tasks" и "tasks_data".
-     * Отношение устанавливается на основании вторичных ключей в первой модели, которые соответствуют ключам во второй.
-     *
-     * @param array $data массив индексов, которые будут сформированы в дереве.
-     *
-     * @return int значение первичного ключа.
-     */
-    public function afterCreate($data = [])
-    {
-        $tasksDataModel = new TasksData();
-        $tasksDataModel->setAttributes($data, false);
-        $this->link('tasksData', $tasksDataModel);
-
-        return $tasksDataModel->getPrimaryKey();
-    }
-
-    /**
      * Отношение с таблицей "tasks_cat"
      * @return ActiveQuery
      */
-    public function getTasksCat()
+    public function getProject()
     {
-        return $this->hasOne(TaskCat::className(), ['id' => 'list']);
+        return $this->hasOne(Project::className(), ['id' => 'listId']);
     }
 
     /**
      * Отношение с таблицей "tasks_data"
      * @return ActiveQuery
      */
-    public function getTasksData()
+    public function getTaskData()
     {
-        return $this->hasOne(TasksData::className(), ['dataId' => 'id']);
+        return $this->hasOne(TaskData::className(), ['dataId' => 'id']);
     }
 }

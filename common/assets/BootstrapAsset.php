@@ -15,8 +15,8 @@ use yii\web\View;
 class BootstrapAsset extends \yii\bootstrap\BootstrapAsset
 {
     public $sourcePath = '@bower/bootstrap/dist';
-
-    public $jsOptions  = ['position' => View::POS_HEAD];
+    public $js         = ['js/bootstrap.min.js'];
+    public $jsOptions  = ['position' => View::POS_END];
 
     public $depends    = ['yii\web\JqueryAsset'];
 }

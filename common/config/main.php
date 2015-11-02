@@ -2,7 +2,7 @@
 
 $config = [
     'as locale'  => [
-        'class'                   => 'common\components\behaviors\LocaleBehavior',
+        'class'                   => 'common\behaviors\LocaleBehavior',
         'enablePreferredLanguage' => true
     ],
     'components' => [
@@ -11,14 +11,14 @@ $config = [
             'linkAssets'      => true,
             'appendTimestamp' => true,
             'bundles'         => [
-                'yii\web\JqueryAsset'                => [
+                'yii\web\JqueryAsset'          => [
                     'js' => [YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js']
                 ],
-                'yii\bootstrap\BootstrapAsset'       => [
+                'common\assets\BootstrapAsset' => [
                     'css' => [YII_ENV_DEV ? 'css/bootstrap.css' : 'css/bootstrap.min.css']
                 ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => [YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js']
+                'common\assets\JuiAsset'       => [
+                    'js' => [YII_ENV_DEV ? 'jquery-ui.js' : 'jquery-ui.min.js']
                 ]
             ]
         ],
