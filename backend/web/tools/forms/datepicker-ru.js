@@ -2,6 +2,11 @@
 /* Written by Andrew Stromnov (stromnov@gmail.com). */
 jQuery(function ($) {
     $.datepicker.regional['ru'] = {
+        taskDate: [
+            'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+            'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь',
+            'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'
+        ],
         closeText:          'Закрыть',
         prevText:           '&#x3c;Пред',
         nextText:           'След&#x3e;',
@@ -32,5 +37,22 @@ jQuery(function ($) {
         isRTL:              false,
         showMonthAfterYear: false,
         yearSuffix:         ''
+    };
+
+    var regional = {
+        monthNames: [
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Октябрь',
+            'Ноябрь',
+            'Декабрь'
+        ]
     };
 });

@@ -93,7 +93,7 @@ class UserForm extends Model
             }
 
             if ($model->save() && $isNewRecord) {
-                $model->afterSignup();
+                $model->afterSignup([]);
             }
 
             $auth = Yii::$app->authManager;

@@ -19,11 +19,11 @@ use yii\db\Query;
 /**
  * Класс модели для таблицы "tasks"
  *
- * @property int        $id
- * @property int        $list
- * @property int        $author
+ * @property int        $taskId
+ * @property int        $listId
+ * @property int        $userId
  * @property int        $isDone
- * @property string     $priority
+ * @property string     taskPriority
  * @property timestamp  $dueDate
  */
 class Task extends ActiveRecord
@@ -56,9 +56,10 @@ class Task extends ActiveRecord
     public function rules()
     {
         return [
-            ['author', 'default', 'value' => Yii::$app->user->id],
+            ['userId', 'default', 'value' => Yii::$app->user->id],
             ['isDone', 'default', 'value' => self::ACTIVE_TASK],
-            ['priority', 'in', 'range' => [1, 2, 3]],
+            ['dueDate', 'date', 'format' => 'yyyy-MM-dd'],
+            ['taskPriority', 'in', 'range' => [1, 2, 3]],
             ['isDone', 'boolean']
         ];
     }
@@ -75,7 +76,7 @@ class Task extends ActiveRecord
     public static function getCountOfLists()
     {
         $result    = [];
-        $condition = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $condition = ['userId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
         $ids       = Project::find()->where(['userId' => null])->orWhere(['userId' => Yii::$app->user->id])->all();
         foreach ($ids as $id) {
             $result[$id->id] = (new Query())->select('id')
@@ -94,26 +95,26 @@ class Task extends ActiveRecord
      */
     public static function getCountOfGroups()
     {
-        $result     = [];
-        $condition  = ['author' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
-        $inboxList  = ['listId' => null];
+        $result    = [];
+        $condition = ['userId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $inboxList = ['listId' => null];
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
         $inboxSubQuery = (new Query())->select('COUNT(*)')
                                       ->from(self::tableName())
-                                      ->innerJoin(TaskData::tableName(), 'dataId = id')
+                                      ->innerJoin(TaskData::tableName(), 'dataId = taskId')
                                       ->where($condition)
                                       ->andWhere($inboxList);
 
         $todaySubQuery = (new Query())->select('COUNT(*)')
                                       ->from(self::tableName())
-                                      ->innerJoin(TaskData::tableName(), 'dataId = id')
+                                      ->innerJoin(TaskData::tableName(), 'dataId = taskId')
                                       ->where($condition)
                                       ->andWhere((new Expression('DATE(IFNULL(dueDate, createdAt)) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
                                      ->from(self::tableName())
-                                     ->innerJoin(TaskData::tableName(), 'dataId = id')
+                                     ->innerJoin(TaskData::tableName(), 'dataId = taskId')
                                      ->where($condition)
                                      ->andWhere((new Expression('IFNULL(dueDate, createdAt)
                                         BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
@@ -141,6 +142,6 @@ class Task extends ActiveRecord
      */
     public function getTaskData()
     {
-        return $this->hasOne(TaskData::className(), ['dataId' => 'id']);
+        return $this->hasOne(TaskData::className(), ['dataId' => 'taskId']);
     }
 }

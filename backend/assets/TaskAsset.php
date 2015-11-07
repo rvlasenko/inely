@@ -19,17 +19,16 @@ class TaskAsset extends AssetBundle
     public $baseUrl  = '@backendUrl';
 
     public $css = [
-        // Шрифт Open Sans
         'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic',
 
-        // Общие CSS файлы
         'css/theme.css',
         'css/animate.css'
     ];
 
     public $js = [
         'js/utility.js',
-        'js/main.js',
+        'js/sideMenu.js',
+        'js/taskPage.js',
 
         // jsTree
         'vendor/plugins/jstree/jstree.min.js',
@@ -40,7 +39,7 @@ class TaskAsset extends AssetBundle
 
     public $jsOptions = ['position' => View::POS_END];
 
-    public $depends   = [
+    public $depends = [
         'yii\web\JqueryAsset',
         'common\assets\BootstrapAsset',
         'common\assets\JuiAsset',

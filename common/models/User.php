@@ -10,6 +10,7 @@
 
 namespace common\models;
 
+use backend\models\Project;
 use backend\models\Task;
 use backend\models\TaskData;
 use Yii;
@@ -254,16 +255,18 @@ class User extends ActiveRecord implements IdentityInterface
         $profile         = new UserProfile();
         $taskModel       = new Task();
         $newChild        = new TaskData();
+        $newProject      = new Project();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
 
         if ($taskModel->load($userData, '') && $taskModel->save()) {
-            $newChild->load($userData, '');
-            $newChild->makeRoot();
-            $taskModel->link('taskData', $newChild);
+            if ($newChild->load($userData, '') && $newChild->makeRoot()) {
+                $taskModel->link('taskData', $newChild);
+            }
+            if ($newProject->load($userData, '') && $newProject->makeRoot()) {
+                $this->link('userProfile', $profile);
+            }
         }
-
-        $this->link('userProfile', $profile);
 
         // Default role
         $auth = Yii::$app->authManager;

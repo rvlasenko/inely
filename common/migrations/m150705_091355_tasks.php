@@ -12,12 +12,12 @@ class m150705_091355_tasks extends Migration
         }
 
         $this->createTable('{{%tasks}}', [
-            'id'         => $this->primaryKey(),
+            'taskId'         => $this->primaryKey(),
             'listId'     => $this->integer(15),
-            'author'     => $this->integer(50)->notNull(),
-            'isDone'     => $this->integer(1),
-            'priority'   => $this->integer(1),
+            'userId'     => $this->integer(50)->notNull(),
+            'taskPriority'   => $this->smallInteger(4),
             'dueDate'    => $this->date(),
+            'isDone'     => $this->smallInteger(4),
             'updatedAt'  => $this->integer(),
             'createdAt'  => $this->integer()
         ], $tableOptions);

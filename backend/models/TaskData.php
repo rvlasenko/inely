@@ -16,14 +16,12 @@ use backend\models\query\TaskQuery;
 use common\components\nested\NestedSetBehavior;
 
 /**
- * Класс модели для таблицы "tasks_data", содержащий структуру "Nested Set"
+ * Класс модели для таблицы "tasks_data"
  *
  * @property int        $dataId
  * @property int        $lft
  * @property int        $rgt
  * @property int        $lvl
- * @property int        $pid
- * @property int        $pos
  * @property string     $name
  *
  */
@@ -62,7 +60,7 @@ class TaskData extends ActiveRecord
     {
         return [
             [['dataId'], 'integer'],
-            [['lft', 'rgt', 'lvl', 'pid', 'pos'], 'integer'],
+            [['lft', 'rgt', 'lvl'], 'integer'],
             [['name'], 'string', 'max' => 255]
         ];
     }
@@ -73,6 +71,6 @@ class TaskData extends ActiveRecord
      */
     public function getTasks()
     {
-        return $this->hasOne(Task::className(), ['id' => 'dataId']);
+        return $this->hasOne(Task::className(), ['taskId' => 'dataId']);
     }
 }

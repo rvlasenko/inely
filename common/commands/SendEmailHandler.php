@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Этот файл является частью проекта Inely.
- *
- * @link http://github.com/hirootkit/inely
- */
-
 namespace common\commands;
 
 use trntv\tactician\base\BaseHandler;

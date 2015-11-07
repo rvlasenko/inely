@@ -114,9 +114,6 @@
     color                 : #6f6666;
     white-space           : nowrap;
     line-height           : 2.4em;
-    -moz-text-shadow      : 1px 1px 0 white;
-    -webkit-text-shadow   : 1px 1px 0 white;
-    text-shadow           : 1px 1px 0 white;
     -moz-border-radius    : 1px;
     -webkit-border-radius : 1px;
     border-radius         : 1px;
@@ -124,9 +121,8 @@
 
 .vakata-context li > a:hover {
     position         : relative;
-    text-decoration  : none;
-    color            : #595959;
-    background-color : #f5f5f5;
+    color: #fff;
+    background-color: #666 !important;
 }
 
 ul.vakata-context .fa-leaf {
@@ -167,13 +163,6 @@ ul.vakata-context .fa-clock-o {
 
 .vakata-context li > a:focus {
     outline : 0;
-}
-
-.vakata-context .vakata-context-hover > a {
-    position         : relative;
-    text-decoration  : none;
-    color            : #595959;
-    background-color : #f5f5f5 !important;
 }
 
 .vakata-context .vakata-context-separator > a,
@@ -287,35 +276,36 @@ ul.vakata-context .fa-clock-o {
     background-position : 0 0 !important;
 }
 
-.jstree-neutron .jstree-anchor.high > .jstree-checkbox {
-    border-color     : #e7482e !important;
-    background-color : #f5e5e5 !important;
+.jstree-neutron .jstree-anchor.first > .jstree-checkbox {
+    color: #95EF63;
 }
 
-.jstree-neutron .jstree-anchor.medium > .jstree-checkbox {
-    border-color     : #fcc12b !important;
-    background-color : #fff6e1 !important;
+.jstree-neutron .jstree-anchor.second > .jstree-checkbox {
+    color: #FF8581;
 }
 
-.jstree-neutron .jstree-neutron .jstree-anchor.low > .jstree-checkbox {
-    border-color     : #70ca63 !important;
-    background-color : #b9ffae !important;
+.jstree-neutron .jstree-anchor.third > .jstree-checkbox {
+    color: #FFC471;
 }
 
-.jstree-neutron .jstree-anchor.low > .jstree-checkbox:hover {
-    background-color : #8cfc7c !important;
+.jstree-neutron .jstree-anchor.fourth > .jstree-checkbox {
+    color: #74E8D3;
 }
 
-.jstree-neutron .jstree-anchor.medium > .jstree-checkbox:hover {
-    background-color : #ffe7ae !important;
+.jstree-neutron .jstree-anchor.fifth > .jstree-checkbox {
+    color: #ccc;
 }
 
-.jstree-neutron .jstree-anchor.high > .jstree-checkbox:hover {
-    background-color : #e7c0c0 !important;
+.jstree-neutron .jstree-anchor.sixth > .jstree-checkbox {
+    color: #E2A8E4;
 }
 
-.jstree-neutron .jstree-anchor.null > .jstree-checkbox:hover {
-    background-color : #ededed;
+.jstree-neutron .jstree-anchor.seventh > .jstree-checkbox {
+    color: #D2B8A3;
+}
+
+.jstree-neutron .jstree-anchor.eighth > .jstree-checkbox {
+    color: #FFCC00;
 }
 
 .jstree-neutron-responsive .jstree-leaf > .jstree-ocl {
@@ -435,15 +425,6 @@ ul.vakata-context .fa-clock-o {
     background-color : #ffb;
 }
 
-#formAdd {
-    margin-left : 40px;
-    overflow    : hidden;
-}
-
-#formEdit {
-    overflow : hidden;
-}
-
 .jstree-neutron .jstree-wholerow {
     -moz-box-sizing    : border-box;
     -webkit-box-sizing : border-box;
@@ -467,11 +448,9 @@ ul.vakata-context .fa-clock-o {
 }
 
 .jstree-neutron .jstree-hovered {
-    background-color: #fff !important;
-}
-
-.jstree-neutron .jstree-hovered a span {
-    color: #4a89dc;
+    background-color: #DCEFFF !important;
+    -webkit-transition: color .1s ease-in,background-color .1s ease-in;
+    transition: color .1s ease-in,background-color .1s ease-in;
 }
 
 .jstree-neutron .jstree-node {

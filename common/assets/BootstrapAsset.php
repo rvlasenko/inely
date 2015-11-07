@@ -17,6 +17,5 @@ class BootstrapAsset extends \yii\bootstrap\BootstrapAsset
     public $sourcePath = '@bower/bootstrap/dist';
     public $js         = ['js/bootstrap.min.js'];
     public $jsOptions  = ['position' => View::POS_END];
-
     public $depends    = ['yii\web\JqueryAsset'];
 }

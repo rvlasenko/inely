@@ -18,7 +18,9 @@ class m150920_140218_tasks_data extends Migration
             'lvl'    => $this->integer(15),
             'pid'    => $this->integer(15),
             'pos'    => $this->integer(15),
-            'name'   => $this->string(255)
+            'name'   => $this->string(255),
+            'format' => $this->string(255),
+            'note'   => $this->string(255)
         ], $tableOptions);
 
         if ($this->db->driverName === 'mysql') {

@@ -17,7 +17,7 @@
     <header class="pn pl20" id="topbar">
         <ol class="breadcrumb fw400 mn pln task-head">
             <i class="fa fa-bars fs18 pr10" id="toggle_sidemenu_l"></i>
-            <li class="crumb-active"><a href="#">Входящие</a></li>
+            <li class="crumb-active"><span>Входящие</span></li>
             <li class="crumb-link">Обзор</li>
         </ol>
         <div class="btn-group t-option">
@@ -32,77 +32,33 @@
                 <li><a href="#" id="nm"><?= Yii::t('backend', 'Sort by name') ?></a></li>
                 <li><a href="#" id="dt"><?= Yii::t('backend', 'Sort by date') ?></a></li>
                 <li class="divider"></li>
-                <li><a href="#" id="ex"><?= Yii::t('backend', 'Export as a template') ?></a></li>
-                <li><a href="#" id="im"><?= Yii::t('backend', 'Import from template') ?></a></li>
-                <li class="divider"></li>
                 <li><a href="#" id="rm"><?= Yii::t('backend', 'Delete completed tasks') ?></a></li>
             </ul>
         </div>
     </header>
 
     <div class="tray tray-center h1200 pn va-t">
+        <svg class="svgBox" viewBox="0 0 32 32" hidden>
+            <polygon points="30,5.077 26,2 11.5,22.5 4.5,15.5 1,19 12,30"></polygon>
+        </svg>
         <div id="tree" class="fs14 pt10"></div>
-        <svg viewBox="0 0 32 32" class="svgBox hidden"><polygon points="30,5.077 26,2 11.5,22.5 4.5,15.5 1,19 12,30"></polygon></svg>
-        <div id="formEdit" class="e-form" hidden>
-            <div class="bs-component">
-                <div class="col-md-9 col-sm-9 col-xs-9 pln">
-                    <input type="text" class="form-control" id="editInput" placeholder="Начните набирать здесь...">
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-3 pln prn">
-                    <label for="eventDate" class="field prepend-icon">
-                        <input type="text" class="form-control" id="editEvent" placeholder="Назначить дату">
-                        <label class="field-icon">
-                            <i class="fa fa-calendar"></i>
-                        </label>
-                    </label>
-                </div>
-            </div>
-
-            <div class="bs-component">
-                <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w150">
-                    <button type="button" class="buttonRename btn br2 fw600 btn-dark btn-block" style="padding: 7px 10px;">Сохранить</button>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w100">
-                    <button type="button" class="buttonCancelEdit btn br2 btn-danger btn-block" style="padding: 7px 10px;">Отмена</button>
-                </div>
-            </div>
-        </div>
         <div id="formAdd" class="a-form" hidden>
             <div class="bs-component mh30">
                 <div class="form-group form-material col-md-12 mt15 mb15 pln prn">
-                    <input type="text" class="form-control input-lg empty" id="taskInput" placeholder="Write here something cool">
+                    <span class="input-group-addon">
+                        <i class="fa fa-question-circle fs18" title="Интеллектуальный ввод"></i>
+                    </span>
+                    <input type="text" class="form-control input-lg input-add empty" id="taskInput" placeholder="Write here something cool" spellcheck="false" autocomplete="off">
                 </div>
             </div>
         </div>
-        <!--<div id="formAdd" class="a-form" hidden>
-            <div class="bs-component">
-                <div class="col-md-8 col-sm-9 col-xs-9 pln">
-                    <input type="text" class="form-control" id="taskInput" placeholder="Начните набирать здесь...">
-                </div>
-                <div class="col-md-4 col-sm-3 col-xs-3 pln prn">
-                    <label for="eventDate" class="field prepend-icon">
-                        <input type="text" class="form-control" id="eventDate" placeholder="Назначить дату">
-                        <label class="field-icon">
-                            <i class="fa fa-calendar"></i>
-                        </label>
-                    </label>
-                </div>
-            </div>
-
-            <div class="bs-component">
-                <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w150">
-                    <button type="button" class="buttonAdd btn br2 fw600 btn-dark btn-block" style="padding: 7px 10px;">Добавить задачу</button>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-3 pln mt10 w100">
-                    <button type="button" class="buttonCancel btn br2 btn-danger btn-block" style="padding: 7px 10px;">Отмена</button>
-                </div>
-            </div>
-        </div>-->
         <div class="controller">
+            <i class="fa fa-clock-o fs18 pull-right mr45 option-disabled history in"></i>
             <a href="#" class="action">
-                <i class="fa fa-plus"></i>
-                <?= Yii::t('backend', 'Add Task') ?>
-                <div class="egg-arrow first"></div>
+                <svg class="svgIcon" viewBox="0 0 32 32">
+                    <polygon points="28,14 18,14 18,4 14,4 14,14 4,14 4,18 14,18 14,28 18,28 18,18 28,18"></polygon>
+                </svg>
+                <span class="pl15">Добавить задачу</span>
             </a>
 
             <div class="completed"><a href="#"></a></div>

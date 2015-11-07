@@ -110,9 +110,6 @@
     color                 : #6f6666;
     white-space           : nowrap;
     line-height           : 2.4em;
-    -moz-text-shadow      : 1px 1px 0 white;
-    -webkit-text-shadow   : 1px 1px 0 white;
-    text-shadow           : 1px 1px 0 white;
     -moz-border-radius    : 1px;
     -webkit-border-radius : 1px;
     border-radius         : 1px;
@@ -120,9 +117,8 @@
 
 .vakata-context li > a:hover {
     position         : relative;
-    text-decoration  : none;
-    color            : #595959;
-    background-color : #f5f5f5;
+    color: #fff;
+    background-color: #666 !important;
 }
 
 ul.vakata-context .fa-leaf {
@@ -146,15 +142,15 @@ ul.vakata-context .fa-clock-o {
 }
 
 .vakata-context li:nth-child(2) ul li:first-child .fa-circle {
-    color : #e9573f;
+    color : #fc636b;
 }
 
 .vakata-context li:nth-child(2) ul li:nth-child(2) .fa-circle {
-    color : #f6bb42;
+    color : #4a89dc;
 }
 
 .vakata-context li:nth-child(2) ul li:nth-child(3) .fa-circle {
-    color : #70ca63;
+    color : #55badf;
 }
 
 .vakata-context li > a.vakata-context-parent {
@@ -167,9 +163,8 @@ ul.vakata-context .fa-clock-o {
 
 .vakata-context .vakata-context-hover > a {
     position         : relative;
-    text-decoration  : none;
-    color            : #595959;
-    background-color : #f5f5f5 !important;
+    color: #fff;
+    background-color: #666;
 }
 
 .vakata-context .vakata-context-separator > a,
@@ -267,6 +262,9 @@ ul.vakata-context .fa-clock-o {
 .jstree-proton .jstree-clicked {
     background-color : #e8f7fb !important;
     border-radius    : 2px;
+    transition: background-color .3s ease;
+    -webkit-transition: background-color .3s ease;
+    -moz-transition: background-color .3s ease;
 }
 
 .jstree-icon {
@@ -287,21 +285,12 @@ ul.vakata-context .fa-clock-o {
     border: 0;
 }
 
-.jstree-anchor.high > .jstree-checkbox:hover {
-    background-color : #FF7B82 !important;
-}
-
 .jstree-anchor.medium > .jstree-checkbox {
     background-color : #4a89dc !important;
 }
 
 .jstree-anchor.low > .jstree-checkbox {
     background-color : #55badf !important;
-}
-
-.jstree-anchor > .jstree-checkbox:hover {
-    transition         : background-color 200ms ease-in;
-    border-color       : transparent !important;
 }
 
 .jstree-proton-responsive .jstree-leaf > .jstree-ocl {
@@ -418,14 +407,24 @@ ul.vakata-context .fa-clock-o {
 }
 
 .jstree-proton .jstree-search {
-    background-color : #ffb;
+    background-color: #e8f7fb !important;
+    border-radius: 2px;
+    transition: background-color .3s ease;
+    -webkit-transition: background-color .3s ease;
+    -moz-transition: background-color .3s ease;
 }
 
-#formAdd {
-    /*margin-left : 40px;*/
-    overflow : hidden;
+strong.col {
+    padding-left: 3px;
+    padding-right: 7px;
 }
 
+span.content {
+    display: block;
+}
+span.content:not(:first-child) {
+    padding-top: 0 !important;
+}
 #formEdit {
     overflow : hidden;
 }
@@ -581,10 +580,6 @@ ul.vakata-context .fa-clock-o {
     background-position : -30px -90px;
 }
 
-.jstree-node.jstree-open.jstree-last > i:first-child {
-    display : none;
-}
-
 .jstree-proton-responsive .jstree-last > .jstree-ocl {
     background-position : -30px -120px;
 }
@@ -598,15 +593,17 @@ ul.vakata-context .fa-clock-o {
 
 .jstree-proton .jstree-checkbox {
     display       : inline-block !important;
-    width         : 24px !important;
-    height        : 24px !important;
+    width         : 20px !important;
+    height        : 20px !important;
     padding       : 2px !important;
     margin-right  : 13px !important;
     margin-left   : 7px !important;
-    margin-top    : 7px !important;
+    margin-top    : 9px !important;
     border-radius : 50% !important;
     cursor        : pointer;
     transition    : border 200ms, box-shadow 200ms, color 200ms;
-    border        : 1px solid #e1e2e4;
-    fill          : #fff;
+    border-color: transparent;
+    box-shadow: 0 0 0 2px #E1E1E1;
+    -moz-box-shadow: 0 0 0 2px #E1E1E1;
+    -webkit-box-shadow: 0 0 0 2px #E1E1E1;
 }

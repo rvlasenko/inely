@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
 
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 $this->title = Yii::t('backend', 'Inbox ~ Inely');
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -34,7 +35,11 @@ $this->title = Yii::t('backend', 'Inbox ~ Inely');
     <title><?= Html::encode($this->title) ?></title>
 
     <?= Html::csrfMetaTags() ?>
-    <link rel="icon" href="favicon.png">
+    <?php $this->registerLinkTag([
+        'rel'  => 'shortcut icon',
+        'type' => 'image/x-icon',
+        'href' => '/backend/web/favicon.ico',
+    ]) ?>
 
     <?php $this->head() ?>
 </head>
@@ -43,13 +48,10 @@ $this->title = Yii::t('backend', 'Inbox ~ Inely');
 
 <body class="task-page boxed-layout sb-l-o sb-r-c">
 
-<!-- Start: Main -->
 <main role="main">
     <?= $this->render('//task/left-sidebar') ?>
 
-    <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
-        <!-- Begin: Content -->
         <section id="content" class="animated fadeIn table-layout">
             <?php if (Yii::$app->session->hasFlash('alert')): ?>
 
@@ -63,13 +65,10 @@ $this->title = Yii::t('backend', 'Inbox ~ Inely');
             <?php endif ?>
             <?= $content ?>
         </section>
-        <!-- End: Content -->
     </section>
-    <!-- End: Content-Wrapper -->
 
     <?= $this->render('//task/right-sidebar') ?>
 </main>
-<!-- End: Main -->
 <?php $this->endBody() ?>
 </body>
 </html>

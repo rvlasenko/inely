@@ -39,14 +39,9 @@ class UserController extends Controller
         ];
     }
 
-    public function actionIndex()
-    {
-
-    }
-
     /**
      * Выход из системы и удаление аутентификационных данных.
-     * @return Response редирект на лендинг
+     * @return редирект на лендинг
      */
     public function actionLogout()
     {

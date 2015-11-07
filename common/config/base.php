@@ -9,7 +9,7 @@ $config = [
     'bootstrap'      => ['log'],
     'timeZone'       => 'Europe/Moscow',
     'components'     => [
-        'authManager' => [
+        'authManager'        => [
             'class'           => 'yii\rbac\DbManager',
             'cache'           => 'cache',
             'itemTable'       => '{{%rbac_auth_item}}',
@@ -17,7 +17,7 @@ $config = [
             'assignmentTable' => '{{%rbac_auth_assignment}}',
             'ruleTable'       => '{{%rbac_auth_rule}}'
         ],
-        'commandBus'  => [
+        'commandBus'         => [
             'class'                => '\trntv\tactician\Tactician',
             'commandNameExtractor' => '\League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor',
             'methodNameInflector'  => '\League\Tactician\Handler\MethodNameInflector\HandleInflector',
@@ -25,8 +25,8 @@ $config = [
                 'common\commands\SendEmailCommand' => '\common\commands\SendEmailHandler'
             ]
         ],
-        'cache'     => ['class' => 'yii\caching\DummyCache'],
-        'mailer'    => [
+        'cache'              => ['class' => 'yii\caching\DummyCache'],
+        'mailer'             => [
             'class'         => 'yii\swiftmailer\Mailer',
             'messageConfig' => [
                 'charset' => 'UTF-8',
@@ -49,9 +49,7 @@ $config = [
             'tablePrefix'         => getenv('DB_TABLE_PREFIX'),
             'charset'             => 'utf8',
             'enableSchemaCache'   => true,
-            // Duration of schema cache
             'schemaCacheDuration' => 8600,
-            // Name of the cache component used to store schema information
             'schemaCache'         => 'cache'
         ],
         'i18n'               => [
@@ -71,10 +69,8 @@ $config = [
                 ]
             ]
         ],
-        'urlManagerBackend'  => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@backendUrl')],
-            require(Yii::getAlias('@backend/config/_urlManager.php'))),
-        'urlManagerFrontend' => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@frontendUrl')],
-            require(Yii::getAlias('@frontend/config/_urlManager.php')))
+        'urlManagerBackend'  => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@backendUrl')], require(Yii::getAlias('@backend/config/_urlManager.php'))),
+        'urlManagerFrontend' => \yii\helpers\ArrayHelper::merge(['hostInfo' => Yii::getAlias('@frontendUrl')], require(Yii::getAlias('@frontend/config/_urlManager.php')))
     ],
     'params'         => [
         'adminEmail'       => getenv('ADMIN_EMAIL'),

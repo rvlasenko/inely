@@ -36,8 +36,9 @@ class PasswordResetRequestForm extends Model
 
     /**
      * Передача сообщения о востановлении данных на email со ссылкой для сброса пароля.
+     * Перед отправкой пользователю генерируется уникальный хэш для пароля.
      *
-     * @return boolean whether the email was send
+     * @return true если сообщение было отправлено
      */
     public function sendEmail()
     {

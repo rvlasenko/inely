@@ -8,7 +8,7 @@ return [
         // Основные правила
         'task'    => '/task/index',
         'welcome' => '/task/welcome',
-        // Авторизация
+        // Выход из аккаунта
         'logout' => '/user/logout'
     ]
 ];

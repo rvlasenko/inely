@@ -117,7 +117,7 @@ class TreeController extends Controller
 
         $cond    = [
             'pid'    => $id,
-            'author' => Yii::$app->user->id,
+            'userId' => Yii::$app->user->id,
             'isDone' => Task::ACTIVE_TASK
         ];
         if ($recursive) {
@@ -235,18 +235,7 @@ class TreeController extends Controller
         $formatter = new FormatterComponent();
 
         foreach ($temp as $v) {
-            // Абсолютная дата eg. '6 окт.' или относительная 'через 3 дня'
-            $dueDate = $formatter->asRelativeDate($v[Task::tableName()]['dueDate']);
-            // Словесная дата для подчеркивания в дереве eg. 'today', 'future'
-            $relativeDate = $formatter->timeInWords($v[Task::tableName()]['dueDate']);
-            // Относительная дата для тултипа, сколько ещё дней осталось eg. '3 дня осталось'
-            $futureDate = $formatter->dateLeft($v[Task::tableName()]['dueDate']);
-
-            // Форматирование текста курсивом или полужирным шрифтом
-            $format  = is_null($v['format']) ? false : $v['format'];
-            $hasNote = is_null($v['note']) ? null : 'fa fa-commenting';
-
-            switch ($v[Task::tableName()]['priority']) {
+            /*switch ($v[Task::tableName()]['priority']) {
                 case 3:
                     $priority = Task::PR_HIGH; break;
                 case 2:
@@ -255,14 +244,11 @@ class TreeController extends Controller
                     $priority = Task::PR_LOW; break;
                 default:
                     $priority = null;
-            }
+            }*/
 
             $result[] = [
-                'id'       => $v['dataId'],
-                'text'     => $v['name'],
-                'a_attr'   => ['class' => $priority, 'format' => $format],
-                'li_attr'  => ['date' => $dueDate, 'rel' => $relativeDate, 'hint' => $futureDate],
-                'icon'     => $hasNote,
+                'id'       => $v['id'],
+                'text'     => $v['listName'],
                 'children' => ($v['rgt'] - $v['lft'] > 1)
             ];
         }
@@ -313,7 +299,7 @@ class TreeController extends Controller
      */
     public function make($parent, $position = 0, $data = [])
     {
-        $cond = [Task::tableName() . '.author' => Yii::$app->user->id, 'pid' => 1];
+        $cond = [Task::tableName() . '.userId' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0) { throw new \Exception('Parent is 0'); }
         if ($parent == 1) {
             $parent = $this->root;
@@ -439,7 +425,7 @@ class TreeController extends Controller
      */
     public function move($id, $parent = 0, $position = 0)
     {
-        $cond = [Task::tableName() . '.author' => Yii::$app->user->id, 'pid' => 1];
+        $cond = [Task::tableName() . '.userId' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0 || $id == 0 || $id == 1) {
             throw new InvalidConfigException('Cannot move inside 0, or move root node');
         }

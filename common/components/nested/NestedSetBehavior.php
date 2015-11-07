@@ -228,26 +228,49 @@ class NestedSetBehavior extends Behavior
 
     /**
      * Gets the children of the node.
-     * @param integer|null $depth  the depth
-     * @param integer      $author author
+     *
+     * @param integer      $author  author
+     * @param int          $history active task or not
+     * @param string       $sort
+     * @param integer|null $depth   the depth
+     *
      * @return \yii\db\ActiveQuery
      */
-    public function children($author, $depth = null)
+    public function children($author, $history = Task::ACTIVE_TASK, $sort = 'lft', $depth = null)
     {
         $condition = [
             'and',
             ['>', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
             ['<', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)],
         ];
+        $tableName = $this->owner->tableName() == 'task_data' ? 'tasks' : 'projects';
 
         if ($depth !== null) {
             $condition[] = ['<=', $this->depthAttribute, $this->owner->getAttribute($this->depthAttribute) + $depth];
         }
+        if ($sort == null) {
+            $sort = [$this->leftAttribute => SORT_DESC];
+        } elseif ($sort == 'taskPriority') {
+            $sort = ['taskPriority' => SORT_DESC];
+        } elseif ($sort == 'dueDate') {
+            $sort = ['dueDate' => SORT_DESC];
+        } else {
+            $sort = [$this->leftAttribute => SORT_DESC];
+        }
+        if ($history !== null) {
+            $cond = ['isDone' => $history];
+        } else {
+            $cond = [$tableName . '.userId' => $author];
+        }
 
         $this->applyTreeAttributeCondition($condition);
 
-        return $this->owner->find()->joinWith(Task::tableName())->andWhere($condition)
-            ->andWhere(['author' => $author, 'isDone' => Task::ACTIVE_TASK])->addOrderBy([$this->leftAttribute => SORT_DESC])->asArray();
+        return $this->owner->find()
+            ->joinWith(Task::tableName())
+            ->andWhere($condition)
+            ->andWhere([$tableName . '.userId' => $author])
+            ->andWhere($cond)
+            ->addOrderBy($sort)->asArray();
     }
 
     /**

@@ -10,12 +10,13 @@
 
 namespace backend\controllers;
 
+use backend\models\Project;
 use Yii;
-use yii\db\Query;
+use yii\base\Controller;
 use yii\filters\AccessControl;
 use yii\web\Response;
 
-class ProjectController extends TreeController
+class ProjectController extends Controller
 {
     public function behaviors()
     {
@@ -24,32 +25,15 @@ class ProjectController extends TreeController
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true,
-                        'roles' => ['@']
+                        'allow' => true, 'roles' => ['@']
                     ],
                     [
-                        'actions'      => ['index', 'project', 'inbox'],
-                        'allow'        => false,
-                        'roles'        => ['?'],
-                        'denyCallback' => function () {
-                            return $this->redirect(['/login']);
-                        }
+                        'allow' => false, 'roles' => ['?']
                     ]
                 ]
             ],
-            /*'pageCache' => [
-                'class'      => 'yii\filters\PageCache',
-                'only'       => ['index', 'node'],
-                'duration'   => 640,
-                'variations' => [Yii::$app->language],
-                'dependency' => [
-                    'class' => 'yii\caching\DbDependency',
-                    'sql'   => 'SELECT updatedAt FROM tasks ORDER BY updatedAt DESC'
-                ]
-            ],*/
             [
                 'class'   => 'yii\filters\ContentNegotiator',
-                'only'    => ['node', 'rename', 'create', 'move', 'delete'],
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON
                 ]
@@ -58,20 +42,26 @@ class ProjectController extends TreeController
     }
 
     /**
-     * Формирование javascript объекта, содержащего в себе имя узла, его атрибуты, и так далее.
-     * Метод принимает GET запрос и выполняет поиск дочерних узлов у элемента с принятым id.
+     * Формирование javascript хэша, содержащего в себе данные об узле, например, имя, дату и т.д.
+     * Первое обращение содержит параметр id со значением #, здесь формируется корень.
+     * При последующих обращениях выполняется поиск дочерних веток дерева у элемента с принятым id.
      * Является источником данных для [[$.jstree.core.data]].
-     * @return array данные сконвертированные в JSON формат.
+     * @return array данные преобразованные в JSON
      * @see behaviours [ContentNegotiator]
      */
     public function actionNode()
     {
-        $node = $this->checkParam('id');
+        $nodeId = Yii::$app->request->get('id');
+        $userId = Yii::$app->user->id;
 
-        $temp = $this->getProjectChildren($node);
-        $json = $this->buildProjectTree($temp);
+        if ($nodeId === '#') {
+            $node = Project::find()->roots($userId)->all();
+        } else {
+            $root = Project::findOne($nodeId);
+            $node = $root->children($userId, null)->all();
+        }
 
-        return $json;
+        return $this->buildTree($node);
     }
 
     /**
@@ -91,22 +81,20 @@ class ProjectController extends TreeController
     }
 
     /**
-     * Создание нового узла с его идентификатором, полученной позицией и именем, если таковое имеется.
-     * После фильтрации данных, идет обращение к родительскому методу.
-     * @return array с идентификатором только что созданного узла, сконвертированный в JSON.
-     * @throws \Exception если невозможно переименовать узел, после записи в базу.
-     * @throws \yii\web\HttpException если невозможно записать внесённые изменения.
+     * Создание нового проекта, исходя из полученного родительского идентификатора, и обновление индексов.
+     * @return array идентификатор только что созданной ветки, сконвертированный в JSON.
      */
     public function actionCreate()
     {
-        $node   = $this->checkParam('id');
-        $pos    = $this->checkParam('ps');
-        $temp   = $this->make($node, $pos, [
-            'name' => $this->checkParam('text')
-        ]);
-        $result = ['id' => $temp];
+        $newChild   = new Project();
+        $parentNode = Project::findOne(Yii::$app->request->post('id'));
 
-        return $result;
+        $newChild->load(Yii::$app->request->post(), '');
+        if ($newChild->prependTo($parentNode)) {
+            return $newChild->getPrimaryKey();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -125,14 +113,48 @@ class ProjectController extends TreeController
     }
 
     /**
-     * Удаление существующего узла дерева и всех его дочерних элементов.
+     * Удаление существующей ветки дерева и её дочерних элементов.
+     * Также опциональный параметр - удаление уже завершенных задач.
      * @return bool значение, если удаление записи всё-таки произошло.
-     * @throws \yii\web\NotFoundHttpException если пользователь захотел удалить несуществующий узел.
+     * @throws NotFoundHttpException если пользователь захотел удалить несуществующий узел.
      */
     public function actionDelete()
     {
-        $node   = $this->checkParam('id');
-        $result = $this->remove($node);
+        $node = Project::findOne(Yii::$app->request->post('id'));
+        if ($node->deleteWithChildren()) {
+            return true;
+        }
+
+        return null;
+    }
+
+    /**
+     * Преоразование полученного массива веток в JSON строку подобного вида:
+     * [{
+     *      "id":   "240",
+     *      "text": "Child",
+     *      "children": true
+     * }]
+     *
+     * @param array $temp узел, сформированный в результате запроса
+     *
+     * @return array результат преобразования
+     * @key int    id       идентификатор узла
+     * @key string text     наименование
+     * @key bool   children наличие дочерних узлов
+     */
+    protected function buildTree($temp)
+    {
+        $result = [];
+
+        foreach ($temp as $v) {
+            $result[] = [
+                'id'       => $v['id'],
+                'text'     => $v['listName'],
+                'a_attr'   => ['badge' => $v['badgeColor']],
+                'children' => ($v['rgt'] - $v['lft'] > 1)
+            ];
+        }
 
         return $result;
     }

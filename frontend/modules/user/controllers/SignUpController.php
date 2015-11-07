@@ -21,9 +21,9 @@ use yii\web\Response;
 class SignUpController extends AuthController
 {
     /**
-     * Регистрация пользователя.
+     * Регистрация пользователя, его валидация, создание нового аккаунта и отправка письма.
      *
-     * @return string|Response редирект на Dashboard либо вывод результата рендеринга.
+     * @return string|Response редирект на Dashboard либо вывод ошибок валидации.
      */
     public function actionSignup()
     {
