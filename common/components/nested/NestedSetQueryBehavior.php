@@ -1,8 +1,8 @@
 <?php
 /**
- * @link https://github.com/creocoder/yii2-nested-sets
+ * @link      https://github.com/creocoder/yii2-nested-sets
  * @copyright Copyright (c) 2015 Alexander Kochetov
- * @license http://opensource.org/licenses/BSD-3-Clause
+ * @license   http://opensource.org/licenses/BSD-3-Clause
  */
 
 namespace common\components\nested;
@@ -22,19 +22,20 @@ class NestedSetQueryBehavior extends Behavior
 {
     /**
      * Gets the root nodes.
+     *
      * @param $author
+     *
      * @return \yii\db\ActiveQuery the owner
      */
     public function roots($author)
     {
-        $model = new $this->owner->modelClass();
+        $model     = new $this->owner->modelClass();
         $tableName = $model::tableName() == 'task_data' ? 'tasks' : 'projects';
 
-        $this->owner
-            ->joinWith(Task::tableName())
-            ->andWhere([$model->leftAttribute => 1])
-            ->andWhere([$tableName .'.userId' => $author])
-            ->addOrderBy([$model->primaryKey()[0] => SORT_ASC]);
+        $this->owner->joinWith(Task::tableName())
+                    ->andWhere([$model->leftAttribute => 1])
+                    ->andWhere([$tableName . '.userId' => $author])
+                    ->addOrderBy([$model->primaryKey()[0] => SORT_ASC]);
 
         return $this->owner;
     }
@@ -46,7 +47,7 @@ class NestedSetQueryBehavior extends Behavior
     public function leaves()
     {
         $model = new $this->owner->modelClass();
-        $db = $model->getDb();
+        $db    = $model->getDb();
 
         $columns = [$model->leftAttribute => SORT_ASC];
 
@@ -54,9 +55,8 @@ class NestedSetQueryBehavior extends Behavior
             $columns = [$model->treeAttribute => SORT_ASC] + $columns;
         }
 
-        $this->owner
-            ->andWhere([$model->rightAttribute => new Expression($db->quoteColumnName($model->leftAttribute) . '+ 1')])
-            ->addOrderBy($columns);
+        $this->owner->andWhere([$model->rightAttribute => new Expression($db->quoteColumnName($model->leftAttribute) . '+ 1')])
+                    ->addOrderBy($columns);
 
         return $this->owner;
     }

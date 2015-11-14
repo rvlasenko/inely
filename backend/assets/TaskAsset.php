@@ -10,6 +10,7 @@
 
 namespace backend\assets;
 
+use Yii;
 use yii\web\AssetBundle;
 use yii\web\View;
 
@@ -19,22 +20,27 @@ class TaskAsset extends AssetBundle
     public $baseUrl  = '@backendUrl';
 
     public $css = [
-        'http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic',
+        'http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic',
 
         'css/theme.css',
-        'css/animate.css'
+        'css/animate.css',
+        'vendor/plugins/magnific/magnific-popup.css'
     ];
 
     public $js = [
-        'js/utility.js',
-        'js/sideMenu.js',
-        'js/taskPage.js',
-
-        // jsTree
         'vendor/plugins/jstree/jstree.min.js',
+        'vendor/plugins/magnific/jquery.magnific-popup.min.js',
+
+        'scripts/plugins.js',
+        'scripts/modules/projectTree.js',
+        'scripts/modules/taskTour.js',
+        'scripts/modules/sideMenu.js',
+        'scripts/modules/contentTree.js',
+        'scripts/app.js',
 
         // Перевод DatePicker
-        'tools/forms/datepicker-ru.js'
+        //'tools/forms/datepicker-ru.js',
+
     ];
 
     public $jsOptions = ['position' => View::POS_END];
@@ -45,4 +51,12 @@ class TaskAsset extends AssetBundle
         'common\assets\JuiAsset',
         'common\assets\FontAwesome',
     ];
+
+    public function init()
+    {
+        parent::init();
+        Yii::$app->assetManager->bundles['common\\assets\\BootstrapAsset'] = [
+            'css' => []
+        ];
+    }
 }

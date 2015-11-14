@@ -40,17 +40,6 @@ class m140703_123000_user extends Migration
             'updated_at'    => time()
         ]);
 
-        $this->insert('{{%user}}', [
-            'id'            => 2,
-            'username'      => 'Mysterious Stranger',
-            'email'         => '@example.com',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('user'),
-            'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),
-            'status'        => User::STATUS_UNCONFIRMED,
-            'created_at'    => time(),
-            'updated_at'    => time()
-        ]);
-
         $this->createTable('{{%user_profile}}', [
             'user_id'        => $this->primaryKey(),
             'firstname'      => $this->string(),
@@ -63,12 +52,6 @@ class m140703_123000_user extends Migration
             'user_id'   => 1,
             'firstname' => 'Roman',
             'lastname'  => 'Vlasenko'
-        ]);
-
-        $this->insert('{{%user_profile}}', [
-            'user_id'   => 2,
-            'firstname' => 'John',
-            'lastname'  => 'Morton',
         ]);
 
         if ($this->db->driverName === 'mysql') {

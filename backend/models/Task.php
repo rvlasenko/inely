@@ -12,6 +12,7 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\caching\DbDependency;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\db\Query;
@@ -28,15 +29,15 @@ use yii\db\Query;
  */
 class Task extends ActiveRecord
 {
-    const ACTIVE_TASK    = 0;
-    const COMPLETED_TASK = 1;
-
-    const PR_HIGH        = 'high';
-    const PR_MEDIUM      = 'medium';
-    const PR_LOW         = 'low';
-
-    const FORMAT_BOLD    = 'bold';
-    const FORMAT_CURSIVE = 'cursive';
+    const ACTIVE_TASK     = 0;
+    const COMPLETED_TASK  = 1;
+    const INCOMPLETE_TASK = 2;
+    const PR_HIGH         = 'high';
+    const PR_MEDIUM       = 'medium';
+    const PR_LOW          = 'low';
+    const FORMAT_BOLD     = 'bold';
+    const FORMAT_CURSIVE  = 'cursive';
+        const FORM_NAME       = '';
 
     public function behaviors()
     {
@@ -57,10 +58,11 @@ class Task extends ActiveRecord
     {
         return [
             ['userId', 'default', 'value' => Yii::$app->user->id],
+            ['listId', 'safe'],
             ['isDone', 'default', 'value' => self::ACTIVE_TASK],
             ['dueDate', 'date', 'format' => 'yyyy-MM-dd'],
-            ['taskPriority', 'in', 'range' => [1, 2, 3]],
-            ['isDone', 'boolean']
+            ['isDone', 'in', 'range' => [0, 1, 2]],
+            ['taskPriority', 'in', 'range' => [1, 2, 3]]
         ];
     }
 
@@ -95,34 +97,41 @@ class Task extends ActiveRecord
      */
     public static function getCountOfGroups()
     {
-        $result    = [];
-        $condition = ['userId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
-        $inboxList = ['listId' => null];
+        $cond  = ['userId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $inbox = ['listId' => null];
+        $db    = Task::getDb();
+        $dep   = new DbDependency();
 
         // Создание подзапроса с уникальными выражениями (входящие / задачи на сегодня, на след. неделю)
         $inboxSubQuery = (new Query())->select('COUNT(*)')
                                       ->from(self::tableName())
                                       ->innerJoin(TaskData::tableName(), 'dataId = taskId')
-                                      ->where($condition)
-                                      ->andWhere($inboxList);
+                                      ->where($cond)
+                                      ->andWhere($inbox);
 
         $todaySubQuery = (new Query())->select('COUNT(*)')
                                       ->from(self::tableName())
                                       ->innerJoin(TaskData::tableName(), 'dataId = taskId')
-                                      ->where($condition)
+                                      ->where($cond)
                                       ->andWhere((new Expression('DATE(IFNULL(dueDate, createdAt)) = CURDATE()')));
 
         $nextSubQuery = (new Query())->select('COUNT(*)')
                                      ->from(self::tableName())
                                      ->innerJoin(TaskData::tableName(), 'dataId = taskId')
-                                     ->where($condition)
+                                     ->where($cond)
                                      ->andWhere((new Expression('IFNULL(dueDate, createdAt)
                                         BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
 
-        /* SELECT ( (SELECT COUNT(*) AS `inbox` FROM `tasks`... */
-        $result[] = (new Query)->select(['inbox' => $inboxSubQuery])->all();
-        $result[] = (new Query)->select(['today' => $todaySubQuery])->all();
-        $result[] = (new Query)->select(['next'  => $nextSubQuery])->all();
+
+        $dep->sql = 'SELECT MAX(updatedAt) FROM tasks';
+
+        $result = $db->cache(function ($db) use ($inboxSubQuery, $todaySubQuery, $nextSubQuery) {
+            $query[] = (new Query)->select(['inbox' => $inboxSubQuery])->all();
+            $query[] = (new Query)->select(['today' => $todaySubQuery])->all();
+            $query[] = (new Query)->select(['next'  => $nextSubQuery])->all();
+
+            return $query;
+        }, 3600, $dep);
 
         return $result;
     }

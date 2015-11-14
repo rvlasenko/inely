@@ -1,8 +1,3 @@
-<!--
-==========================
-== BEGIN HEADER CONTENT ==
-==========================
--->
 <header id="main-header" class="the-header the-origin-header">
 
     <div class="container">
@@ -10,16 +5,11 @@
 
             <div class="col-lg-12">
 
-                <a href="/" class="logo"><img src="images/logo.png" alt="Urip Logo"></a> <!-- Your Logo -->
+                <a href="/" class="logo"><img src="images/logo.png" alt="Urip Logo"></a> 
 
-            </div> <!--/ .col-lg-12 -->
+            </div> 
 
-        </div> <!--/ .row -->
-    </div> <!--/ .container -->
+        </div> 
+    </div> 
 
 </header>
-<!--
-=========================
-==/ END HEADER CONTENT ==
-=========================
--->

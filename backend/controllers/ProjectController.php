@@ -14,6 +14,7 @@ use backend\models\Project;
 use Yii;
 use yii\base\Controller;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Response;
 
 class ProjectController extends Controller
@@ -30,6 +31,13 @@ class ProjectController extends Controller
                     [
                         'allow' => false, 'roles' => ['?']
                     ]
+                ]
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'create' => ['post'],
+                    'delete' => ['post'],
                 ]
             ],
             [
@@ -58,7 +66,7 @@ class ProjectController extends Controller
             $node = Project::find()->roots($userId)->all();
         } else {
             $root = Project::findOne($nodeId);
-            $node = $root->children($userId, null)->all();
+            $node = $root->children($userId, null, null)->all();
         }
 
         return $this->buildTree($node);

@@ -1,8 +1,3 @@
-<!--
-==========================
-== BEGIN FOOTER CONTENT ==
-==========================
--->
 <footer id="main-footer">
 
     <div class="container">
@@ -14,13 +9,12 @@
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Like Me</a></li>
                 <li><a href="#" class="contact-trigger">Contact</a></li>
-            </ul> <!--/ .footer-nav -->
+            </ul> 
 
             <div class="copyright">
 
                 <p>Copyright 2015 Vlasenko - All rights reserved.</p>
 
-                <!-- BEGIN language popover -->
                 <div class="language">
                     <span class="icon-globe"></span>
                     <a tabindex="0"
@@ -35,17 +29,11 @@
 										<li><a href='#'>Русский</a></li>
 									</ul>"
                         >Русский <span class="icon-chevron-small-up"></span></a>
-                </div> <!--/ .language -->
-                <!-- END language popover -->
+                </div> 
 
-            </div> <!--/ .copyright -->
+            </div> 
 
-        </div> <!--/ .row -->
-    </div> <!--/ .container -->
+        </div> 
+    </div> 
 
 </footer>
-<!--
-=========================
-==/ END FOOTER CONTENT ==
-=========================
--->

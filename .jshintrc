@@ -1,0 +1,26 @@
+{
+    "maxerr"        : 50,
+    "bitwise"       : true,
+    "camelcase"     : false,
+    "curly"         : true,
+    "expr"          : true,
+    "eqeqeq"        : true,
+    "forin"         : true,
+    "freeze"        : true,
+    "indent"        : 4,
+    "latedef"       : false,
+    "newcap"        : false,
+    "noarg"         : true,
+    "noempty"       : true,
+    "nonbsp"        : true,
+    "nonew"         : false,
+    "plusplus"      : false,
+    "quotmark"      : false,
+    "undef"         : false,
+    "strict"        : true,
+    "browser"       : true,
+    "globals"       : {
+        "$"         : false,
+        "jQuery"    : false
+    }
+}

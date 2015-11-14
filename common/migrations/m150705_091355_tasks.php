@@ -12,36 +12,25 @@ class m150705_091355_tasks extends Migration
         }
 
         $this->createTable('{{%tasks}}', [
-            'taskId'         => $this->primaryKey(),
-            'listId'     => $this->integer(15),
-            'userId'     => $this->integer(50)->notNull(),
-            'taskPriority'   => $this->smallInteger(4),
-            'dueDate'    => $this->date(),
-            'isDone'     => $this->smallInteger(4),
-            'updatedAt'  => $this->integer(),
-            'createdAt'  => $this->integer()
+            'taskId'       => $this->primaryKey(),
+            'listId'       => $this->integer(15),
+            'userId'       => $this->integer(50)->notNull(),
+            'taskPriority' => $this->smallInteger(4),
+            'dueDate'      => $this->date(),
+            'isDone'       => $this->smallInteger(4),
+            'updatedAt'    => $this->integer(),
+            'createdAt'    => $this->integer()
         ], $tableOptions);
 
         $this->createTable('{{%projects}}', [
             'id'         => $this->primaryKey(),
             'userId'     => $this->integer(50),
             'listName'   => $this->string(100),
+            'lft'        => $this->integer(15),
+            'rgt'        => $this->integer(15),
+            'lvl'        => $this->integer(15),
             'badgeColor' => $this->string(7)
         ], $tableOptions);
-
-        $this->insert('{{%projects}}', [
-            'id'         => 1,
-            'userId'     => null,
-            'listName'   => 'Работа',
-            'badgeColor' => '#0074D9',
-        ]);
-
-        $this->insert('{{%projects}}', [
-            'id'         => 2,
-            'userId'     => null,
-            'listName'   => 'Личное',
-            'badgeColor' => '#7FDBFF',
-        ]);
 
         if ($this->db->driverName === 'mysql') {
             $this->addForeignKey('fk_cat', '{{%tasks}}', 'list', '{{%projects}}', 'id', 'cascade', 'cascade');

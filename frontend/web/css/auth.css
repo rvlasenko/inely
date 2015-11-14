@@ -30,6 +30,21 @@ input, textarea, button, select {
     outline: none;
 }
 
+.icon-check {
+    font-size: 40px;
+    color: #2B88D9;
+}
+
+.icon-envelope-open {
+    font-size: 40px;
+    color: #2B88D9;
+}
+
+.icon-game-controller {
+    font-size: 40px;
+    color: #2B88D9;
+}
+
 a[target="_blank"], a[target="_blank"]:visited {
     color: #2b88d9;
     text-decoration: none;

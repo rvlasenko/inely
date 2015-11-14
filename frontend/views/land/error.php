@@ -2,6 +2,7 @@
     <div id="main-content">
         <div class="duck-animation" style="background-image:url('images/plane.png');"></div>
     </div>
+
     <div id="wrapper" class="clearfix">
         <div id="parallax_wrapper">
             <div id="content">
@@ -14,6 +15,7 @@
             <span class="scene scene_2"></span>
             <span class="scene scene_3"></span>
         </div>
+
     </div>
 
 </div>

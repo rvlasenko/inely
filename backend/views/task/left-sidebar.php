@@ -19,19 +19,19 @@
             <li>
                 <a href="#" class="active inboxGroup">
                     <span class="fa fa-inbox"></span>
-                    <span class="sidebar-title fw600">Входящие</span>
+                    <span class="sidebar-title">Входящие</span>
                     <span class="counter inbox"></span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="#" class="todayGroup">
                     <span class="fa fa-sun-o"></span>
                     <span class="sidebar-title">Сегодня</span>
                     <span class="counter today"></span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="#" class="nextGroup">
                     <span class="fa fa-calendar"></span>
                     <span class="sidebar-title">Следующие 7 дней</span>
                     <span class="counter next7days"></span>
@@ -42,7 +42,7 @@
         <div id="projects">
             <div class="control br-t-n ptn">Проекты</div>
             <div class="projectTree mb10"></div>
-            <div class="a-form project" hidden>
+            <div class="a-form project mb10" hidden>
                 <div class="form-group form-material">
                     <span class="input-group-addon color-pick">
                         <i class="fa fa-circle"></i>

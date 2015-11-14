@@ -65,7 +65,12 @@ class SignupForm extends Model
                     'params'  => ['user' => $user]
                 ]));
             }
-            $user->afterSignup([], ['author' => $user->id, 'name' => 'Root']);
+            $user->afterSignup([], [
+                'userId'   => $user->id,
+                'name'     => 'Root',
+                'listName' => 'Root',
+                'isDone'   => null
+            ]);
 
             return $user;
         }

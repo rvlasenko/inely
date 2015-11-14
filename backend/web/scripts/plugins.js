@@ -1,4 +1,4 @@
-/*
+/**
  * bootstrap-tour - v0.10.2
  * http://bootstraptour.com
  * Copyright 2012-2013 Ulrich Sossou
