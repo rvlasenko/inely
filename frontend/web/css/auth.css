@@ -276,7 +276,7 @@ html[dir=rtl] .external-auth .icon, html[dir=rtl] .icon.tick {
     -webkit-background-size: 80px;
     -moz-background-size: 80px;
     background-size: 80px;
-    background-image: url("//d2hkcehpyog59.cloudfront.net/3115f3e4c221acb12a1cd87ad613d6011f85e805/wl_icon.png");
+    background-image: url("");
     background-repeat: no-repeat;
     background-position: top right;
 }
