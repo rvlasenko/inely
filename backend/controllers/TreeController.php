@@ -117,7 +117,7 @@ class TreeController extends Controller
 
         $cond    = [
             'pid'    => $id,
-            'userId' => Yii::$app->user->id,
+            'ownerId' => Yii::$app->user->id,
             'isDone' => Task::ACTIVE_TASK
         ];
         if ($recursive) {
@@ -183,8 +183,8 @@ class TreeController extends Controller
 
         if ($id) {
             $query = Project::find()
-                            ->where(['userId' => null, 'pid' => $id])
-                            ->orWhere(['userId' => Yii::$app->user->id])
+                            ->where(['ownerId' => null, 'pid' => $id])
+                            ->orWhere(['ownerId' => Yii::$app->user->id])
                             ->orderBy('pos')
                             ->asArray()
                             ->all();
@@ -299,7 +299,7 @@ class TreeController extends Controller
      */
     public function make($parent, $position = 0, $data = [])
     {
-        $cond = [Task::tableName() . '.userId' => Yii::$app->user->id, 'pid' => 1];
+        $cond = [Task::tableName() . '.ownerId' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0) { throw new \Exception('Parent is 0'); }
         if ($parent == 1) {
             $parent = $this->root;
@@ -425,7 +425,7 @@ class TreeController extends Controller
      */
     public function move($id, $parent = 0, $position = 0)
     {
-        $cond = [Task::tableName() . '.userId' => Yii::$app->user->id, 'pid' => 1];
+        $cond = [Task::tableName() . '.ownerId' => Yii::$app->user->id, 'pid' => 1];
         if ($parent == 0 || $id == 0 || $id == 1) {
             throw new InvalidConfigException('Cannot move inside 0, or move root node');
         }

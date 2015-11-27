@@ -3,19 +3,21 @@
 /**
  * Этот файл является частью проекта Inely.
  *
- * @link http://github.com/hirootkit/inely
+ * @link   http://github.com/hirootkit/inely
  *
  * @author hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\controllers;
 
+use backend\models\Project;
 use backend\models\Task;
 use backend\models\TaskData;
 use common\components\formatter\FormatterComponent;
 use Yii;
 use yii\base\Controller;
 use yii\base\Exception;
+use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\filters\ContentNegotiator;
@@ -34,21 +36,24 @@ class TaskController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true,  'roles' => ['@']
+                        'allow' => true,
+                        'roles' => ['@']
                     ],
                     [
-                        'allow' => false, 'roles' => ['?']
+                        'allow' => false,
+                        'roles' => ['?']
                     ]
                 ]
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
+            'verbs'  => [
+                'class'   => VerbFilter::className(),
                 'actions' => [
+                    'get-history'  => ['get'],
+                    'node'         => ['get'],
                     'create'       => ['post'],
                     'delete'       => ['post'],
                     'edit'         => ['post'],
                     'set-priority' => ['post'],
-                    'get-history'  => ['get'],
                     'done'         => ['post']
                 ]
             ],
@@ -78,16 +83,21 @@ class TaskController extends Controller
     }
 
     /**
-     * Визуализация контента менеджера задач и применение шаблона (layout) main.
-     * Единственный экшн, чьи ответные данные будут рассматриваться без какого-либо преобразования.
-     * Т.е. заголовок "Content-Type" примет вид "text/html".
+     * Визуализация контента менеджера задач и передача списков пользователя в сооответствующий блок.
+     * Единственный экшн, чьи ответные данные будут рассматриваться без преобразования.
+     * Т.е. заголовок "Content-Type" примет вид "text/html", а не "application/json".
      * @return string результат визуализации страницы
      */
     public function actionIndex()
     {
         Yii::$app->response->format = Response::FORMAT_HTML;
 
-        return $this->render('index');
+        $query        = Project::find()
+                               ->where(['ownerId' => Yii::$app->user->id])
+                               ->orWhere(['assignedTo' => Yii::$app->user->id]);
+        $dataProvider = new ActiveDataProvider(['query' => $query]);
+
+        return $this->render('index', ['dataProvider' => $dataProvider]);
     }
 
     /**
@@ -99,16 +109,16 @@ class TaskController extends Controller
      */
     public function actionNode()
     {
-        $nodeId = Yii::$app->request->get('id');
-        $listId = Yii::$app->request->get('listId');
-        $sortBy = Yii::$app->request->get('sort');
-        $userId = Yii::$app->user->id;
+        $nodeId  = Yii::$app->request->get('id');
+        $listId  = Yii::$app->request->get('listId');
+        $sortBy  = Yii::$app->request->get('sort');
+        $ownerId = Yii::$app->user->id;
 
         if ($nodeId === '#') {
-            $node = TaskData::find()->roots($userId)->all();
+            $node = TaskData::find()->roots($ownerId, $listId)->all();
         } else {
             $root = TaskData::findOne($nodeId);
-            $node = $root->children($userId, Task::ACTIVE_TASK, $sortBy, $listId)->all();
+            $node = $root->children($ownerId, Task::ACTIVE_TASK, $sortBy, $listId)->all();
         }
 
         return $this->buildTree($node);
@@ -125,11 +135,8 @@ class TaskController extends Controller
         $taskModel = Task::findOne($request->post('id'));
         $taskData  = TaskData::findOne(['dataId' => $request->post('id')]);
 
-        $taskModel->attributes = Yii::$app->request->post();
-        if ($taskModel->save()) {
-            $taskData->attributes = Yii::$app->request->post();
-
-            if ($taskData->save()) {
+        if ($taskModel->load($request->post()) && $taskModel->save()) {
+            if ($taskData->load($request->post()) && $taskData->save()) {
                 return true;
             }
         } else {
@@ -149,38 +156,43 @@ class TaskController extends Controller
     {
         $taskModel  = new Task();
         $newChild   = new TaskData();
-        $parentNode = TaskData::findOne(['dataId' => Yii::$app->request->post('id')]);
+        $request    = Yii::$app->request;
+        $parentNode = TaskData::findOne(['dataId' => $request->post('id')]);
 
-        $taskModel->attributes = Yii::$app->request->post();
-        if ($taskModel->save()) {
-            $newChild->attributes = Yii::$app->request->post();
+        if ($newChild->load($request->post())) {
             $newChild->prependTo($parentNode);
-            $taskModel->link('taskData', $newChild);
+
+            $taskModel->taskId     = $newChild->getPrimaryKey();
+            $taskModel->attributes = $request->post();
+
+            if ($taskModel->save()) {
+                return true;
+            }
         } else {
             throw new HttpException(500, $taskModel->getErrors());
         }
 
-        return $newChild->getPrimaryKey();
+        return null;
     }
 
     /**
-     * Перемещение узла с помощью Drag'n'Drop в какую-либо родительскую ветку и обратно.
+     * Перемещение узла с помощью Drag'n'Drop в родительскую ветку и обратно.
      * @return bool если перемещение завершилось успешно.
-     * @throws Exception при пустых значениях родительских идентификаторов
+     * @throws Exception при пустых значениях идентификаторов, определяющие узел.
      */
     public function actionMove()
     {
-        $parentId = Yii::$app->request->post('parent');
-        $childId  = Yii::$app->request->post('id');
+        $parentId  = Yii::$app->request->post('parent');
+        $draggedId = Yii::$app->request->post('id');
 
-        if ($childId === null && $parentId === null) {
+        if ($draggedId === null && $parentId === null) {
             throw new Exception('Cannot move null node');
         } else {
-            $nodeChild = TaskData::findOne(['dataId' => $childId]);
-            $parentNode = TaskData::findOne(['dataId' => $parentId]);
+            $draggedNode = TaskData::findOne(['dataId' => $draggedId]);
+            $parentNode  = TaskData::findOne(['dataId' => $parentId]);
 
-            if ($nodeChild->prependTo($parentNode)) {
-                return $nodeChild->getPrimaryKey();
+            if ($draggedNode->prependTo($parentNode)) {
+                return $draggedNode->getPrimaryKey();
             }
         }
 
@@ -196,10 +208,10 @@ class TaskController extends Controller
     public function actionDelete()
     {
         $removeCompleted = Yii::$app->request->post('completed');
-        $condition = [
-            'isDone' => Task::COMPLETED_TASK,
-            'userId' => Yii::$app->user->id,
-            'listId' => ArrayHelper::getValue(Yii::$app->request->post(), 'listId', null)
+        $condition       = [
+            'isDone'  => Task::COMPLETED_TASK,
+            'ownerId' => Yii::$app->user->id,
+            'listId'  => ArrayHelper::getValue(Yii::$app->request->post(), 'listId', null)
         ];
 
         if ($removeCompleted) {
@@ -210,7 +222,7 @@ class TaskController extends Controller
             $node = TaskData::findOne(['dataId' => Yii::$app->request->post('id')]);
 
             if ($node->deleteWithChildren()) {
-                return $nodeChild->getPrimaryKey();
+                return $node->getPrimaryKey();
             }
         }
 
@@ -229,7 +241,7 @@ class TaskController extends Controller
         $taskModel = Task::findOne($request->post('id'));
 
         if ($taskModel !== null) {
-            if ($taskModel->load($request->post(), Task::FORM_NAME) && $taskModel->update()) {
+            if ($taskModel->load($request->post()) && $taskModel->update()) {
                 return $taskModel->getPrimaryKey();
             } else {
                 throw new HttpException(500, 'Unable to save user data');
@@ -264,15 +276,15 @@ class TaskController extends Controller
      */
     public function actionGetHistory()
     {
-        $taskId = Yii::$app->request->get('id');
-        $listId = Yii::$app->request->get('listId');
-        $userId = Yii::$app->user->id;
+        $taskId  = Yii::$app->request->get('id');
+        $listId  = Yii::$app->request->get('listId');
+        $ownerId = Yii::$app->user->id;
 
         if ($taskId === '#') {
-            $node = TaskData::find()->roots($userId)->all();
+            $node = TaskData::find()->roots($ownerId, $listId)->all();
         } else {
             $root = TaskData::findOne($taskId);
-            $node = $root->children($userId, Task::COMPLETED_TASK, null, $listId)->all();
+            $node = $root->children($ownerId, Task::COMPLETED_TASK, null, $listId)->all();
         }
 
         return $this->buildTree($node, true);
@@ -290,7 +302,7 @@ class TaskController extends Controller
         $taskModel = Task::findOne($request->post('id'));
 
         if ($taskModel !== null) {
-            if ($taskModel->load($request->post(), Task::FORM_NAME) && !$taskModel->update()) {
+            if ($taskModel->load($request->post()) && !$taskModel->update()) {
                 throw new HttpException(500, 'Unable to get thing done');
             }
         } else {
@@ -316,7 +328,7 @@ class TaskController extends Controller
      *      "children": true
      * }]
      *
-     * @param array $temp        узел, сформированный в результате запроса
+     * @param array $node        узел, сформированный в результате запроса
      * @param bool  $showHistory отображение завершенных задач
      *
      * @return array результат преобразования
@@ -328,12 +340,12 @@ class TaskController extends Controller
      * @key bool   children наличие дочерних узлов
      * @key bool   data     показ завершенных задач
      */
-    protected function buildTree($temp, $showHistory = false)
+    protected function buildTree($node, $showHistory = false)
     {
         $result    = [];
         $formatter = new FormatterComponent();
 
-        foreach ($temp as $v) {
+        foreach ($node as $v) {
             // Абсолютная дата выполнения например '6 окт.' или относительная 'через 3 дня'
             $dueDate = $formatter->asRelativeDate($v[Task::tableName()]['dueDate']);
             // Словесная дата степени просроченности, например 'today', 'future'
@@ -342,31 +354,37 @@ class TaskController extends Controller
             $futureDate = $formatter->dateLeft($v[Task::tableName()]['dueDate']);
 
             // Форматирование текста пользовательскими начертаниями
-            $format  = is_null($v['format']) ? false : $v['format'];
+            $format = empty($v['format']) ? false : $v['format'];
             // Наличие заметки или комментария у задачи
-            $hasNote = is_null($v['note']) ? null : 'fa fa-commenting';
+            $hasNote = empty($v['note']) ? null : 'fa fa-commenting';
             // Частичное завершение задачи (является дочерней)
             $incompletely = $v[Task::tableName()]['isDone'] == 2 ? true : false;
 
             switch ($v[Task::tableName()]['taskPriority']) {
-                case 3:  $priority = Task::PR_HIGH;   break;
-                case 2:  $priority = Task::PR_MEDIUM; break;
-                case 1:  $priority = Task::PR_LOW;    break;
-                default: $priority = null;
+                case 3:
+                    $priority = Task::PR_HIGH;
+                    break;
+                case 2:
+                    $priority = Task::PR_MEDIUM;
+                    break;
+                case 1:
+                    $priority = Task::PR_LOW;
+                    break;
+                default:
+                    $priority = null;
             }
 
             $result[] = [
                 'id'       => $v['dataId'],
                 'text'     => $v['name'],
                 'a_attr'   => [
+                    'note'       => $v['note'],
                     'class'      => $priority,
                     'format'     => $format,
-                    'incomplete' => $incompletely
-                ],
-                'li_attr'  => [
-                    'date' => $dueDate,
-                    'rel'  => $relativeDate,
-                    'hint' => $futureDate
+                    'incomplete' => $incompletely,
+                    'date'       => $dueDate,
+                    'rel'        => $relativeDate,
+                    'hint'       => $futureDate
                 ],
                 'icon'     => $hasNote,
                 'children' => ($v['rgt'] - $v['lft'] > 1),

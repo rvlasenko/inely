@@ -65,7 +65,7 @@ var sideMenu = (function () {
 
         // If window is < 1080px wide collapse both sidebars and add ".mobile-view" class
         if ($(window).width() < 1080 && !Body.hasClass('mobile-view')) {
-            Body.removeClass('sb-r-o').addClass('mobile-view sb-l-m sb-r-c');
+            Body.removeClass('sb-r-o').addClass('mobile-view sb-l-m');
         } else if ($(window).width() > 1080) {
             Body.removeClass('mobile-view');
         }

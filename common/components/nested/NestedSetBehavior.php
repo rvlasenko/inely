@@ -241,7 +241,7 @@ class NestedSetBehavior extends Behavior
     /**
      * Gets the children of the node.
      *
-     * @param integer      $userId  author
+     * @param integer      $ownerId author
      * @param int          $history active task or not
      * @param string       $sort
      * @param null         $listId
@@ -249,7 +249,7 @@ class NestedSetBehavior extends Behavior
      *
      * @return \yii\db\ActiveQuery
      */
-    public function children($userId, $history = Task::ACTIVE_TASK, $sort = 'lft', $listId = null, $depth = null)
+    public function children($ownerId, $history = Task::ACTIVE_TASK, $sort = 'lft', $listId = null, $depth = null)
     {
         $condition = [
             'and',
@@ -276,28 +276,24 @@ class NestedSetBehavior extends Behavior
             $sort = [$this->leftAttribute => SORT_DESC];
         }
 
-        if ($history === null) {
-            // Выборка списка проектов
-            $cond = ["$tableName.userId" => $userId];
-        } elseif ($history === Task::COMPLETED_TASK && $listId === '') {
+        if ($history === Task::COMPLETED_TASK && $listId === '') {
             // Выборка завершенных задач (входящие)
-            $cond = ["$tableName.userId" => $userId, 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
+            $cond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
         } elseif ($history === Task::COMPLETED_TASK && $listId !== '') {
             // Выборка завершенных задач (входящие)
-            $cond = ["$tableName.userId" => $userId, 'isDone' => Task::COMPLETED_TASK, 'listId' => $listId];
+            $cond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => $listId];
         } elseif (empty($listId) && $tableName == 'tasks') {
             // Выборка входящих задач
             $cond = [
-                "$tableName.userId" => $userId,
-                'isDone'            => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
-                'listId'            => null
+                "$tableName.ownerId" => $ownerId,
+                'isDone'             => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
+                'listId'             => null
             ];
         } else {
             // Выборка задач в проекте
             $cond = [
-                "$tableName.userId" => $userId,
-                'isDone'               => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
-                'listId'               => $listId
+                'isDone' => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
+                'listId' => $listId
             ];
         }
 
@@ -569,11 +565,11 @@ class NestedSetBehavior extends Behavior
             $this->depthAttribute => new Expression($depthAttribute . sprintf('%+d', -$depthValue)),
             $this->treeAttribute  => $this->owner->getPrimaryKey(),
         ], [
-                'and',
-                ['>=', $this->leftAttribute, $leftValue],
-                ['<=', $this->rightAttribute, $rightValue],
-                [$this->treeAttribute => $treeValue]
-            ]);
+            'and',
+            ['>=', $this->leftAttribute, $leftValue],
+            ['<=', $this->rightAttribute, $rightValue],
+            [$this->treeAttribute => $treeValue]
+        ]);
 
         $this->shiftLeftRightAttribute($rightValue + 1, $leftValue - $rightValue - 1);
     }
@@ -620,14 +616,14 @@ class NestedSetBehavior extends Behavior
 
             foreach ([$this->leftAttribute, $this->rightAttribute] as $attribute) {
                 $this->owner->updateAll([$attribute => new Expression($db->quoteColumnName($attribute) . sprintf('%+d', $rightValue - $leftValue + 1))], [
-                        'and',
-                        [
-                            '>=',
-                            $attribute,
-                            $value
-                        ],
-                        [$this->treeAttribute => $nodeRootValue]
-                    ]);
+                    'and',
+                    [
+                        '>=',
+                        $attribute,
+                        $value
+                    ],
+                    [$this->treeAttribute => $nodeRootValue]
+                ]);
             }
 
             $delta = $value - $leftValue;
@@ -638,11 +634,11 @@ class NestedSetBehavior extends Behavior
                 $this->depthAttribute => new Expression($depthAttribute . sprintf('%+d', $depth)),
                 $this->treeAttribute  => $nodeRootValue,
             ], [
-                    'and',
-                    ['>=', $this->leftAttribute, $leftValue],
-                    ['<=', $this->rightAttribute, $rightValue],
-                    [$this->treeAttribute => $this->owner->getAttribute($this->treeAttribute)],
-                ]);
+                'and',
+                ['>=', $this->leftAttribute, $leftValue],
+                ['<=', $this->rightAttribute, $rightValue],
+                [$this->treeAttribute => $this->owner->getAttribute($this->treeAttribute)],
+            ]);
 
             $this->shiftLeftRightAttribute($rightValue + 1, $leftValue - $rightValue - 1);
         }
@@ -656,10 +652,6 @@ class NestedSetBehavior extends Behavior
     {
         if ($this->owner->getIsNewRecord()) {
             throw new Exception('Can not delete a node when it is new record.');
-        }
-
-        if ($this->owner->isRoot() && $this->operation !== self::OPERATION_DELETE_WITH_CHILDREN) {
-            throw new NotSupportedException('Method "' . get_class($this->owner) . '::delete" is not supported for deleting root nodes.');
         }
 
         $this->owner->refresh();

@@ -66,9 +66,8 @@ class SignupForm extends Model
                 ]));
             }
             $user->afterSignup([], [
-                'userId'   => $user->id,
+                'ownerId'  => $user->id,
                 'name'     => 'Root',
-                'listName' => 'Root',
                 'isDone'   => null
             ]);
 

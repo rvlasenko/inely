@@ -440,6 +440,10 @@ span.content:not(:first-child) {
     overflow: hidden;
 }
 
+#formEdit:hover {
+    background-color: #FAFAFA;
+}
+
 .jstree-proton .jstree-wholerow {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -447,7 +451,7 @@ span.content:not(:first-child) {
 }
 
 .jstree-anchor .fa-commenting {
-    opacity: .6;
+    opacity: .7;
 }
 
 .jstree-proton .jstree-leaf {
@@ -473,6 +477,11 @@ span.content:not(:first-child) {
     width: 22px;
     height: 22px;
     line-height: 22px;
+}
+
+.jstree-proton .jstree-hovered > a > .task-grip,
+.jstree-proton .invisible:hover .task-grip {
+    display: block;
 }
 
 .jstree-proton .jstree-wholerow {

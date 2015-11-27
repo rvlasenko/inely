@@ -17,7 +17,7 @@ use yii\helpers\HtmlPurifier;
         <span class="input-group-addon">
             <i class="fa fa-search"></i>
         </span>
-        <input type="text" class="form-control empty input-lg input-search" id="searchText" spellcheck="false" autocomplete="off" placeholder="Quick search">
+        <input type="text" class="form-control empty input-lg input-search" id="searchText" spellcheck="false" autocomplete="off" placeholder="Поиск">
     </div>
     <div class="sidebar-widget author-widget">
         <div class="media">
@@ -27,8 +27,8 @@ use yii\helpers\HtmlPurifier;
 
             <div class="media-body">
                 <div class="media-links">
-                    <a href="#" class="sidebar-menu-toggle">User Menu -</a>
-                    <a href="/logout" data-method="post">Logout</a>
+                    <a href="#" class="sidebar-menu-toggle">Меню</a> &dash;
+                    <a href="/logout" data-method="post">Выйти</a>
                 </div>
                 <div class="media-author"><?= HtmlPurifier::process(Yii::$app->user->identity->username) ?></div>
             </div>

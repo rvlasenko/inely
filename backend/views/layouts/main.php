@@ -12,7 +12,6 @@
  */
 
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 
 $this->registerAssetBundle('yii\web\YiiAsset', $this::POS_END);
 $this->title = Yii::t('backend', 'Inbox ~ Inely');
@@ -45,28 +44,10 @@ $this->title = Yii::t('backend', 'Inbox ~ Inely');
 
 <?php $this->beginBody() ?>
 
-<body class="task-page boxed-layout sb-l-o sb-r-c">
+<body class="task-page boxed-layout sb-l-o sb-r-o">
 
 <main role="main">
-    <?= $this->render('//task/left-sidebar') ?>
-
-    <section id="content_wrapper">
-        <section id="content" class="animated fadeIn table-layout">
-            <?php if (Yii::$app->session->hasFlash('alert')): ?>
-
-                <div class="alert alert-primary alert-dismissable mb30">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h3 class="mt5"><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'title') ?></h3>
-
-                    <p><?= ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body') ?></p>
-                </div>
-
-            <?php endif ?>
-            <?= $content ?>
-        </section>
-    </section>
-
-    <?= $this->render('//task/right-sidebar') ?>
+    <?= $content ?>
 </main>
 <?php $this->endBody() ?>
 </body>

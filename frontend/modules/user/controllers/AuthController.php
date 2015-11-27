@@ -176,6 +176,10 @@ class AuthController extends Controller
                 $user->afterSignup([
                     'firstname' => ArrayHelper::getValue($attributes, 'first_name'),
                     'lastname'  => ArrayHelper::getValue($attributes, 'last_name')
+                ], [
+                    'ownerId'   => $user->id,
+                    'name'     => 'Root',
+                    'isDone'   => null
                 ]);
 
                 $sentSuccess = Yii::$app->commandBus->handle(new SendEmailCommand([

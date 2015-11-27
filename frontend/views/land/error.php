@@ -15,7 +15,5 @@
             <span class="scene scene_2"></span>
             <span class="scene scene_3"></span>
         </div>
-
     </div>
-
 </div>

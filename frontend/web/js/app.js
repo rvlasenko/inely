@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    'use strict';
 
     /* =========================
      ScrollReveal
@@ -43,7 +44,7 @@ $(document).ready(function () {
      ==============================*/
     $(function () {
         $('a.scroll-to[href*=#]:not([href=#])').click(function () {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
                 var target = $(this.hash);
                 target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
                 if (target.length) {
@@ -117,15 +118,17 @@ $(document).ready(function () {
      =====================================*/
     var triggerBttn = document.querySelectorAll('.contact-trigger');
     var overlay = document.querySelector('div.contact-overlay'),
-        closeBttn = overlay.querySelector('a.overlay-close');
-    transEndEventNames = {
+        closeBttn = overlay.querySelector('a.overlay-close'),
+        support = null;
+
+    var transEndEventNames = {
         'WebkitTransition': 'webkitTransitionEnd',
         'MozTransition':    'transitionend',
         'OTransition':      'oTransitionEnd',
         'msTransition':     'MSTransitionEnd',
         'transition':       'transitionend'
     };
-    transEndEventName = transEndEventNames[Modernizr.prefixed('transition')];
+    var transEndEventName = transEndEventNames[Modernizr.prefixed('transition')];
     support = { transitions: Modernizr.csstransitions };
     function toggleOverlay() {
         if (classie.has(overlay, 'open')) {
@@ -134,7 +137,7 @@ $(document).ready(function () {
             $('body').removeClass('overlay-on');
             var onEndTransitionFn = function (ev) {
                 if (support.transitions) {
-                    if (ev.propertyName !== 'visibility') return;
+                    if (ev.propertyName !== 'visibility') { return };
                     this.removeEventListener(transEndEventName, onEndTransitionFn);
                 }
                 classie.remove(overlay, 'close');
@@ -171,38 +174,38 @@ $(document).ready(function () {
         var subject = $('#subject').val();
         var message = $('#message').val();
         // Form field validation
-        if (fname.length == 0) {
-            var error = true;
+        if (fname.length === 0) {
+            error = true;
             $('#fname').parent('div').addClass('field-error');
         } else {
             $('#fname').parent('div').removeClass('field-error');
         }
-        if (email.length == 0 || email.indexOf('@') == '-1') {
-            var error = true;
+        if (email.length === 0 || email.indexOf('@') === '-1') {
+            error = true;
             $('#email').parent('div').addClass('field-error');
         } else {
             $('#email').parent('div').removeClass('field-error');
         }
-        if (subject.length == 0) {
-            var error = true;
-            $('#subject').parent('div').addClass('field-error');
-        } else {
-            $('#subject').parent('div').removeClass('field-error');
-        }
-        if (message.length == 0) {
-            var error = true;
+        if (message.length === 0) {
+            error = true;
             $('#message').parent('div').addClass('field-error');
         } else {
             $('#message').parent('div').removeClass('field-error');
         }
-        if (error == true) {
+        if (error === true) {
             $('#error-notification').addClass('show-up');
         } else {
             $('#error-notification').removeClass('show-up');
         }
-        if (error == false) {
-            $.post("contact.php", $("#contact-form").serialize(), function (result) {
-                if (result == 'sent') {
+        if (error === false) {
+            $.post("land/contact", {
+                name:  fname,
+                email: email,
+                body:  message,
+                subject: subject,
+                _csrf: $('meta[name=csrf-token]').attr("content")
+            }).done(function (result) {
+                if (result) {
                     $('#success-notification').addClass('show-up');
                     $('.submit-btn').addClass('disabled');
                 }
@@ -214,10 +217,4 @@ $(document).ready(function () {
     $('a.notification-close').click(function () {
         $(this).parent('div').fadeOut(200);
     });
-
-    /* ==========================
-     Custom Popover
-     (for Language Selection)
-     =============================*/
-    $("[data-toggle=popover]").popover();
 });

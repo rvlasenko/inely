@@ -25,19 +25,48 @@ class NestedSetQueryBehavior extends Behavior
      *
      * @param $author
      *
+     * @param $listId
+     *
      * @return \yii\db\ActiveQuery the owner
      */
-    public function roots($author)
+    public function roots($author, $listId)
     {
         $model     = new $this->owner->modelClass();
-        $tableName = $model::tableName() == 'task_data' ? 'tasks' : 'projects';
+        $listId = $listId === '' ? null : $listId;
 
         $this->owner->joinWith(Task::tableName())
                     ->andWhere([$model->leftAttribute => 1])
-                    ->andWhere([$tableName . '.userId' => $author])
+                    ->andWhere(['tasks.ownerId' => $author])
+                    ->orWhere(['tasks.assignedTo' => $author])
+                    ->andWhere(['tasks.listId' => $listId])
                     ->addOrderBy([$model->primaryKey()[0] => SORT_ASC]);
 
         return $this->owner;
+    }
+
+    /**
+     * Gets the root id by list id.
+     *
+     * @param $author
+     *
+     * @param $listId
+     *
+     * @return \yii\db\ActiveQuery the owner
+     */
+    public function rootId($author, $listId)
+    {
+        $model     = new $this->owner->modelClass();
+        $listId = $listId === '' ? null : $listId;
+
+        $this->owner->joinWith(Task::tableName())
+                    ->andWhere([$model->leftAttribute => 1])
+                    ->andWhere(['tasks.ownerId' => $author])
+                    ->orWhere(['tasks.assignedTo' => $author])
+                    ->andWhere(['tasks.listId' => $listId])
+                    ->addOrderBy([$model->primaryKey()[0] => SORT_ASC]);
+
+        $root = $this->owner->all();
+        return $root[0]['dataId'];
     }
 
     /**

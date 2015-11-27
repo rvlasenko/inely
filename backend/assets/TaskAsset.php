@@ -24,7 +24,8 @@ class TaskAsset extends AssetBundle
 
         'css/theme.css',
         'css/animate.css',
-        'vendor/plugins/magnific/magnific-popup.css'
+        'vendor/plugins/magnific/magnific-popup.css',
+        'vendor/plugins/jstree/themes/neutron/style.css'
     ];
 
     public $js = [
@@ -36,10 +37,7 @@ class TaskAsset extends AssetBundle
         'scripts/modules/taskTour.js',
         'scripts/modules/sideMenu.js',
         'scripts/modules/contentTree.js',
-        'scripts/app.js',
-
-        // Перевод DatePicker
-        //'tools/forms/datepicker-ru.js',
+        'scripts/app.js'
 
     ];
 
@@ -48,15 +46,12 @@ class TaskAsset extends AssetBundle
     public $depends = [
         'yii\web\JqueryAsset',
         'common\assets\BootstrapAsset',
-        'common\assets\JuiAsset',
-        'common\assets\FontAwesome',
+        'common\assets\FontAwesome'
     ];
 
     public function init()
     {
         parent::init();
-        Yii::$app->assetManager->bundles['common\\assets\\BootstrapAsset'] = [
-            'css' => []
-        ];
+        Yii::$app->assetManager->bundles['common\assets\BootstrapAsset'] = ['css' => []];
     }
 }

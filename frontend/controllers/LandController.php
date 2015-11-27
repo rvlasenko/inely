@@ -37,8 +37,7 @@ class LandController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow'   => true,
-                        'roles'   => ['?']
+                        'allow' => true, 'roles' => ['?']
                     ],
                     [
                         'allow' => false,
@@ -61,9 +60,9 @@ class LandController extends Controller
     {
         $model = new ContactForm();
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post(), '')) {
             if ($model->contact(getenv('ROBOT_EMAIL'))) {
-                return $this->renderAjax('contact', ['model' => $model]);
+                return true;
             }
         }
 

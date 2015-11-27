@@ -80,7 +80,7 @@ body {
     background: #fff;
     color: #777;
     font-size: 16px;
-    font-family: "Varela Round", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 html * {
@@ -144,7 +144,7 @@ select:focus {
 p {
     margin-bottom: 25px;
     font-size: 16px;
-    font-family: "Varela Round", sans-serif;
+    font-family: "Rubik", sans-serif;
     line-height: 24px;
 }
 
@@ -173,7 +173,7 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 h1 {
@@ -199,7 +199,7 @@ h5 {
 
 h6 {
     font-size: 16px;
-    font-family: "Varela Round", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 p.section-title {
@@ -225,7 +225,7 @@ p.section-title:after {
 }
 
 small {
-    font-family: "Droid Serif", serif;
+    font-family: "PT Sans", sans-serif;
 }
 
 b, strong {
@@ -567,7 +567,7 @@ body.overflow-hidden:before {
     border-radius: 25px;
     color: #fff;
     font-size: 18px;
-    font-family: "Montserrat", sans-serif;
+    font-family: "PT Sans", sans-serif;
 }
 
 .cta:hover, .cta:active, .cta:focus {
@@ -596,10 +596,10 @@ body.overflow-hidden:before {
     top: 0;
     display: inline;
     margin-left: 0;
-    content: '\e62a';
+    content: '\e606';
     font-weight: normal;
     font-size: 0;
-    font-family: "Icomoon";
+    font-family: "simple-line-icons";
     line-height: 1;
     opacity: 0;
     -webkit-transition: all ease-in-out 0.2s;
@@ -777,8 +777,6 @@ ul.checklist li:before {
 .section-tab .nav-tabs {
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
     display: flex;
     border: none;
     -ms-box-orient: horizontal;
@@ -1091,7 +1089,7 @@ ul.pricing .price.best-value:hover {
 }
 
 .overlay-scale.open {
-    z-index: 99999;
+    z-index: 999;
     visibility: visible;
     opacity: 1;
     -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
@@ -1130,18 +1128,14 @@ a.overlay-close:hover {
 }
 
 .contact-content {
-    margin-top: 108px;
-    margin-bottom: 120px;
+    margin-top: 110px;
+    margin-bottom: 110px;
 }
 
 .contact-content,
 .contact-content h2,
 .contact-content p {
     color: #fff;
-}
-
-.contact-content h2 {
-    margin-bottom: 36px;
 }
 
 .contact-form {
@@ -1201,20 +1195,6 @@ a.overlay-close:hover {
 
 .contact-form .submit-btn:hover {
     background: #11a1dd;
-}
-
-.contact-form .submit-btn:before {
-    position: absolute;
-    top: 7%;
-    left: 130%;
-    height: 100%;
-    color: #fff;
-    content: "\e62a";
-    font-size: 80%;
-    font-family: "Icomoon";
-    line-height: 2.7;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
 }
 
 .contact-form .submit-btn:hover:before {
@@ -1353,6 +1333,7 @@ a.overlay-close:hover {
 #hero-success-notification {
     background: #19a9e5;
     color: rgba(250, 251, 255, 0.95);
+    box-shadow: inset 4.5em 0 #1699D0;
 }
 
 #success-notification.notif-box
@@ -1769,6 +1750,7 @@ a.menu-toggle span {
 
 .hero-content p.lead {
     margin-bottom: 13px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .hero-content h1,
@@ -2215,23 +2197,6 @@ a.scroll-link:hover {
     margin-bottom: 55px;
 }
 
-/* 5.2 Introduction on App Layout */
-#introduction {
-    position: relative;
-    overflow: hidden;
-    padding-bottom: 662px;
-}
-
-#introduction:after {
-    position: absolute;
-    left: 0;
-    bottom: -56px;
-    width: 100%;
-    height: 665px;
-    background: url(../images/mockup/apps-perspectives-mockup-wide.png) top center no-repeat;
-    content: "";
-}
-
 /**
  * 6.0 HOW IT WORKS SECTION
  * -----------------------------------------------------------------------------
@@ -2242,7 +2207,7 @@ a.scroll-link:hover {
 
 ul.how-it-works-col li {
     float: left;
-    padding: 120px 0 100px;
+    padding: 100px 0 100px;
 }
 
 .how-it-works-title img {

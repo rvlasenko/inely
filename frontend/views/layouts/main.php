@@ -35,9 +35,7 @@ $this->registerJsFile('js/modernizr.min.js', ['position' => $this::POS_HEAD]);
     <![endif]-->
 
     <?= Html::csrfMetaTags() ?>
-    <link rel="shortcut icon" href="images/favicon/favicon.ico">
-
-    <link rel="icon" type="image/png" href="images/favicon/favicon-32.png">
+    <link rel="shortcut icon" href="favicon.ico">
 
     <?php $this->head() ?>
 </head>
@@ -49,7 +47,13 @@ $this->registerJsFile('js/modernizr.min.js', ['position' => $this::POS_HEAD]);
 <?= $content ?>
 <?= $this->render('footer') ?>
 
-<a id="to-top"><span class="icon-chevron-thin-up"></span></a>
+<a id="to-top"><span class="icon-arrow-up"></span></a>
+
+<div id="success-notification" class="notif-box">
+    <span class="icon-bell notif-icon"></span>
+    <p>Ваше сообщение было отправлено. Вы получите ответ совсем скоро!</p>
+    <a class="notification-close">Закрыть</a>
+</div>
 
 <?= $this->render('//land/contact') ?>
 

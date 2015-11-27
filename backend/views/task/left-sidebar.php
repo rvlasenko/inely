@@ -11,9 +11,8 @@
 ?>
 
 <aside id="sidebar_left" class="sidebar-light">
-    <div class="nano-content">
-
-        <?= $this->render('_leftHeader') ?>
+    <div>
+        <?= $this->render('_userPanel') ?>
 
         <ul class="nav sidebar-menu">
             <li>
@@ -40,9 +39,12 @@
         </ul>
 
         <div id="projects">
-            <div class="control br-t-n ptn">Проекты</div>
-            <div class="projectTree mb10"></div>
-            <div class="a-form project mb10" hidden>
+            <div class="control br-t-n ptn bold">Проекты</div>
+            <div class="control br-t-n ptn">Контекст</div>
+            <div class="projectTree jstree-neutron-responsive jstree-neutron mb10">
+                <?= $this->render('//project/projectList', ['dataProvider' => $dataProvider]) ?>
+            </div>
+            <div class="a-form project mb15" hidden>
                 <div class="form-group form-material">
                     <span class="input-group-addon color-pick">
                         <i class="fa fa-circle"></i>

@@ -124,6 +124,11 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email]);
+    }
+
     /**
      * Finds user by username or email
      *
@@ -255,16 +260,17 @@ class User extends ActiveRecord implements IdentityInterface
         $profile         = new UserProfile();
         $taskModel       = new Task();
         $newChild        = new TaskData();
-        $newProject      = new Project();
         $profile->locale = Yii::$app->language;
         $profile->load($profileData, '');
 
-        if ($taskModel->load($userData, '') && $taskModel->save()) {
-            if ($newChild->load($userData, '') && $newChild->makeRoot()) {
-                $taskModel->link('taskData', $newChild);
-            }
-            if ($newProject->load($userData, '') && $newProject->makeRoot()) {
-                $this->link('userProfile', $profile);
+        if ($newChild->load($userData) && $newChild->makeRoot()) {
+            if ($newChild->save()) {
+                $taskModel->taskId     = $newChild->getPrimaryKey();
+                $taskModel->attributes = $userData;
+
+                if ($taskModel->save()) {
+                    $this->link('userProfile', $profile);
+                }
             }
         }
 

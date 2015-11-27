@@ -3,7 +3,7 @@
 /**
  * Этот файл является частью проекта Inely.
  *
- * @link http://github.com/hirootkit/inely
+ * @link   http://github.com/hirootkit/inely
  *
  * @author hirootkit <admiralexo@gmail.com>
  */
@@ -11,6 +11,9 @@
 namespace backend\controllers;
 
 use backend\models\Project;
+use backend\models\Task;
+use backend\models\TaskData;
+use common\models\User;
 use Yii;
 use yii\base\Controller;
 use yii\filters\AccessControl;
@@ -26,18 +29,24 @@ class ProjectController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true, 'roles' => ['@']
+                        'allow' => true,
+                        'roles' => ['@']
                     ],
                     [
-                        'allow' => false, 'roles' => ['?']
+                        'allow' => false,
+                        'roles' => ['?']
                     ]
                 ]
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
+            'verbs'  => [
+                'class'   => VerbFilter::className(),
                 'actions' => [
-                    'create' => ['post'],
-                    'delete' => ['post'],
+                    'create'             => ['post'],
+                    'delete'             => ['post'],
+                    'rename'             => ['post'],
+                    'assign-user'        => ['post'],
+                    'unassign-user'      => ['post'],
+                    'get-assigned-users' => ['get'],
                 ]
             ],
             [
@@ -50,86 +59,66 @@ class ProjectController extends Controller
     }
 
     /**
-     * Формирование javascript хэша, содержащего в себе данные об узле, например, имя, дату и т.д.
-     * Первое обращение содержит параметр id со значением #, здесь формируется корень.
-     * При последующих обращениях выполняется поиск дочерних веток дерева у элемента с принятым id.
-     * Является источником данных для [[$.jstree.core.data]].
-     * @return array данные преобразованные в JSON
-     * @see behaviours [ContentNegotiator]
-     */
-    public function actionNode()
-    {
-        $nodeId = Yii::$app->request->get('id');
-        $userId = Yii::$app->user->id;
-
-        if ($nodeId === '#') {
-            $node = Project::find()->roots($userId)->all();
-        } else {
-            $root = Project::findOne($nodeId);
-            $node = $root->children($userId, null, null)->all();
-        }
-
-        return $this->buildTree($node);
-    }
-
-    /**
-     * Переименовывание узла по его первичному ключу.
-     * Метод принимает GET запрос, обрабатывает его, и обращается к родительскому методу.
+     * Переименовывание проекта.
      * @return bool результат сконвертированный в JSON.
-     * @throws \Exception если переименовывание завершилось неудачей, либо не был получен id.
+     * @throws HttpException если переименовывание завершилось неудачей.
      */
     public function actionRename()
     {
-        $node   = $this->checkParam('id');
-        $result = $this->rename($node, [
-            'name' => $this->checkParam('text')
-        ]);
+        $request = Yii::$app->request;
+        $project = Project::findOne($request->post('id'));
 
-        return $result;
-    }
-
-    /**
-     * Создание нового проекта, исходя из полученного родительского идентификатора, и обновление индексов.
-     * @return array идентификатор только что созданной ветки, сконвертированный в JSON.
-     */
-    public function actionCreate()
-    {
-        $newChild   = new Project();
-        $parentNode = Project::findOne(Yii::$app->request->post('id'));
-
-        $newChild->load(Yii::$app->request->post(), '');
-        if ($newChild->prependTo($parentNode)) {
-            return $newChild->getPrimaryKey();
+        if ($project->load($request->post()) && $project->save()) {
+            return $request->post('listName');
         } else {
-            return null;
+            throw new HttpException(500, $project->getErrors());
         }
     }
 
     /**
-     * Перемещение узла с помощью dnd в указанную позицию некоего родительского узла.
-     * Данный метод по аналогии с остальными тоже принимает GET параметры.
-     * @return bool если перемещение завершилось успехом.
-     * @throws \Exception если пользователь чудом переместил родительский узел внутрь дочернего.
+     * Создание нового проекта и его уникального корневого узла.
+     * @return array идентификатор и название созданного проекта, JSON.
+     * @throws HttpException при неудачном сохранении.
      */
-    public function actionMove()
+    public function actionCreate()
     {
-        $node   = $this->checkParam('id');
-        $parent = $this->checkParam('parent');
-        $result = $this->move($node, $parent, $this->checkParam('position'));
+        $newProject = new Project();
+        $taskModel  = new Task();
+        $newChild   = new TaskData();
+        $userData   = [
+            'ownerId' => Yii::$app->user->id,
+            'name'    => 'Root',
+            'isDone'  => null
+        ];
 
-        return $result;
+        if ($newProject->load(Yii::$app->request->post()) && $newProject->save()) {
+            $userData['listId'] = $newProject->getPrimaryKey();
+
+            if ($newChild->load($userData) && $newChild->makeRoot()) {
+                $userData['taskId'] = $newChild->getPrimaryKey();
+
+                if ($taskModel->load($userData) && $taskModel->save()) {
+                    return [
+                        'name' => Yii::$app->request->post('listName'),
+                        'id'   => $newProject->getPrimaryKey()
+                    ];
+                }
+            }
+        } else {
+            throw new HttpException(500, $newProject->getErrors());
+        }
     }
 
     /**
-     * Удаление существующей ветки дерева и её дочерних элементов.
-     * Также опциональный параметр - удаление уже завершенных задач.
+     * Удаление существующего проекта.
      * @return bool значение, если удаление записи всё-таки произошло.
-     * @throws NotFoundHttpException если пользователь захотел удалить несуществующий узел.
+     * @throws NotFoundHttpException если пользователь захотел удалить несуществующий проект.
      */
     public function actionDelete()
     {
-        $node = Project::findOne(Yii::$app->request->post('id'));
-        if ($node->deleteWithChildren()) {
+        $project = Project::findOne(Yii::$app->request->post('id'));
+        $root    = TaskData::find()->roots(Yii::$app->user->id, $project->getPrimaryKey())->one();
+        if ($project->delete() && $root->delete()) {
             return true;
         }
 
@@ -137,34 +126,78 @@ class ProjectController extends Controller
     }
 
     /**
-     * Преоразование полученного массива веток в JSON строку подобного вида:
-     * [{
-     *      "id":   "240",
-     *      "text": "Child",
-     *      "children": true
-     * }]
-     *
-     * @param array $temp узел, сформированный в результате запроса
-     *
-     * @return array результат преобразования
-     * @key int    id       идентификатор узла
-     * @key string text     наименование
-     * @key bool   children наличие дочерних узлов
+     * Приглашение пользователя к совместной работе над проектом.
+     * Поиск id пользователя по email, а также корневого id проекта для открытия доступа.
+     * @return bool если юзер теперь имеет доступ к проекту.
      */
-    protected function buildTree($temp)
+    public function actionAssignUser()
     {
-        $result = [];
+        $listId  = Yii::$app->request->post('listId');
+        $email   = Yii::$app->request->post('email');
+        $ownerId = Yii::$app->user->id;
 
-        foreach ($temp as $v) {
-            $result[] = [
-                'id'       => $v['id'],
-                'text'     => $v['listName'],
-                'a_attr'   => ['badge' => $v['badgeColor']],
-                'children' => ($v['rgt'] - $v['lft'] > 1)
-            ];
+        $userId = User::findByEmail($email)->getId();
+        $rootId = TaskData::find()->rootId($ownerId, $listId);
+
+        $node    = Task::findOne($rootId);
+        $project = Project::findOne($listId);
+        $data    = ['assignedTo' => $userId];
+
+        if ($node->load($data) && $node->save()) {
+            if ($project->load($data) && $project->save()) {
+                return true;
+            }
         }
 
-        return $result;
+        return null;
+    }
+
+    /**
+     * Удаление пользователя из совместного проекта.
+     * Поиск id пользователя по email, а также корневого id проекта для открытия доступа.
+     * @return bool если юзер теперь не имеет доступа к проекту.
+     */
+    public function actionUnassignUser()
+    {
+        $listId = Yii::$app->request->post('listId');
+        $userId = Yii::$app->request->post('userId');
+
+        $rootId = TaskData::find()->rootId($userId, $listId);
+
+        $node    = Task::findOne($rootId);
+        $project = Project::findOne($listId);
+        $data    = ['assignedTo' => null];
+
+        if ($node->load($data) && $node->save()) {
+            if ($project->load($data) && $project->save()) {
+                return true;
+            }
+        }
+
+        return null;
+    }
+
+    public function actionGetAssignedUsers()
+    {
+        if (Yii::$app->request->isAjax) {
+            $result  = [];
+            $listId  = Yii::$app->request->get('listId');
+            $project = Project::findOne($listId);
+
+            foreach (User::find()->where(['id' => [$project->ownerId, $project->assignedTo]])->each() as $user) {
+                $result[] = [
+                    'owner'   => $user->id == $project->ownerId ? 'Владелец' : '',
+                    'name'    => $user->username,
+                    'key'     => $user->id,
+                    'userpic' => 'http://backend.madeasy.local/images/avatars/4.jpg',
+                    'email'   => $user->email
+                ];
+            }
+
+            return $result;
+        }
+
+        return null;
     }
 }
 

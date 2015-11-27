@@ -22,9 +22,9 @@ use yii\db\Query;
  *
  * @property int        $taskId
  * @property int        $listId
- * @property int        $userId
+ * @property int        $ownerId
  * @property int        $isDone
- * @property string     taskPriority
+ * @property string     ;taskPriority
  * @property timestamp  $dueDate
  */
 class Task extends ActiveRecord
@@ -37,7 +37,6 @@ class Task extends ActiveRecord
     const PR_LOW          = 'low';
     const FORMAT_BOLD     = 'bold';
     const FORMAT_CURSIVE  = 'cursive';
-        const FORM_NAME       = '';
 
     public function behaviors()
     {
@@ -57,8 +56,8 @@ class Task extends ActiveRecord
     public function rules()
     {
         return [
-            ['userId', 'default', 'value' => Yii::$app->user->id],
-            ['listId', 'safe'],
+            ['ownerId', 'default', 'value' => Yii::$app->user->id],
+            [['listId', 'assignedTo'], 'safe'],
             ['isDone', 'default', 'value' => self::ACTIVE_TASK],
             ['dueDate', 'date', 'format' => 'yyyy-MM-dd'],
             ['isDone', 'in', 'range' => [0, 1, 2]],
@@ -78,8 +77,8 @@ class Task extends ActiveRecord
     public static function getCountOfLists()
     {
         $result    = [];
-        $condition = ['userId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
-        $ids       = Project::find()->where(['userId' => null])->orWhere(['userId' => Yii::$app->user->id])->all();
+        $condition = ['ownerId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $ids       = Project::find()->where(['ownerId' => null])->orWhere(['ownerId' => Yii::$app->user->id])->all();
         foreach ($ids as $id) {
             $result[$id->id] = (new Query())->select('id')
                                             ->from(self::tableName())
@@ -97,7 +96,7 @@ class Task extends ActiveRecord
      */
     public static function getCountOfGroups()
     {
-        $cond  = ['userId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
+        $cond  = ['ownerId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
         $inbox = ['listId' => null];
         $db    = Task::getDb();
         $dep   = new DbDependency();
@@ -125,7 +124,7 @@ class Task extends ActiveRecord
 
         $dep->sql = 'SELECT MAX(updatedAt) FROM tasks';
 
-        $result = $db->cache(function ($db) use ($inboxSubQuery, $todaySubQuery, $nextSubQuery) {
+        $result = $db->cache(function() use ($inboxSubQuery, $todaySubQuery, $nextSubQuery) {
             $query[] = (new Query)->select(['inbox' => $inboxSubQuery])->all();
             $query[] = (new Query)->select(['today' => $todaySubQuery])->all();
             $query[] = (new Query)->select(['next'  => $nextSubQuery])->all();
@@ -152,5 +151,27 @@ class Task extends ActiveRecord
     public function getTaskData()
     {
         return $this->hasOne(TaskData::className(), ['dataId' => 'taskId']);
+    }
+
+    /**
+     * Запись данных в модель. Метод перегружен от базового класса Model.
+     * @param array $data массив данных.
+     * @param string $formName имя формы, использующееся для записи данных в модель.
+     * @return boolean если `$data` содержит некие данные, которые связываются с атрибутами модели.
+     */
+    public function load($data, $formName = '')
+    {
+        $scope = $formName === null ? $this->formName() : $formName;
+        if ($scope === '' && !empty($data)) {
+            $this->setAttributes($data);
+
+            return true;
+        } elseif (isset($data[$scope])) {
+            $this->setAttributes($data[$scope]);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

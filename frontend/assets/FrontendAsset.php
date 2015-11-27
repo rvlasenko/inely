@@ -19,8 +19,8 @@ class FrontendAsset extends AssetBundle
     public $baseUrl  = '@web';
 
     public $css = [
-        'http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic|Montserrat:700,400|Varela+Round',
-        'fonts/icomoon/icomoon.css',
+        'https://fonts.googleapis.com/css?family=Rubik|PT+Sans|Open+Sans&subset=cyrillic',
+        'fonts/simple-line-icons/simple-line-icons.css',
         'css/animate.min.css',
         'css/style.css',
         'css/style-responsive.css'

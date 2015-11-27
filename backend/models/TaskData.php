@@ -3,7 +3,7 @@
 /**
  * Этот файл является частью проекта Inely.
  *
- * @link http://github.com/hirootkit/inely
+ * @link   http://github.com/hirootkit/inely
  *
  * @author hirootkit <admiralexo@gmail.com>
  */
@@ -22,6 +22,7 @@ use common\components\nested\NestedSetBehavior;
  * @property int        $lft
  * @property int        $rgt
  * @property int        $lvl
+ * @property int        $pid
  * @property string     $name
  *
  */
@@ -31,7 +32,8 @@ class TaskData extends ActiveRecord
     {
         return [
             'tree' => [
-                'class' => NestedSetBehavior::className(),
+                'class'          => NestedSetBehavior::className(),
+                'treeAttribute'  => 'pid',
                 'leftAttribute'  => 'lft',
                 'rightAttribute' => 'rgt',
                 'depthAttribute' => 'lvl',
@@ -59,9 +61,8 @@ class TaskData extends ActiveRecord
     public function rules()
     {
         return [
-            [['dataId'], 'integer'],
-            [['lft', 'rgt', 'lvl'], 'integer'],
-            [['name'], 'string', 'max' => 255]
+            [['lft', 'rgt', 'lvl', 'pid'], 'integer'],
+            [['name', 'note'], 'string', 'max' => 255],
         ];
     }
 
@@ -72,5 +73,27 @@ class TaskData extends ActiveRecord
     public function getTasks()
     {
         return $this->hasOne(Task::className(), ['taskId' => 'dataId']);
+    }
+
+    /**
+     * Запись данных в модель. Метод перегружен от базового класса Model.
+     * @param array $data массив данных.
+     * @param string $formName имя формы, использующееся для записи данных в модель.
+     * @return boolean если `$data` содержит некие данные, которые связываются с атрибутами модели.
+     */
+    public function load($data, $formName = '')
+    {
+        $scope = $formName === null ? $this->formName() : $formName;
+        if ($scope === '' && !empty($data)) {
+            $this->setAttributes($data);
+
+            return true;
+        } elseif (isset($data[$scope])) {
+            $this->setAttributes($data[$scope]);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

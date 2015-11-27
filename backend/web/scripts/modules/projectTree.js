@@ -4,145 +4,146 @@ var projectTree = (function () {
     /* ===========================
      jQuery селекторы
      ============================= */
-    var $projectTree = $(".projectTree");
     var $projectForm = $('.project');
+    var $projectTree = $('.projectTree');
+    var $userList    = $(".users-list");
     var $tree        = $("#tree");
     var $csrfToken   = $('meta[name=csrf-token]').attr("content");
 
     /* ===========================
-     URL константы и прочее
+     Прочее
      ============================= */
-    var urlNodeGet = "/project/node";
-
     var colors = [
         'first', 'second', 'third', 'fourth',
         'fifth', 'sixth', 'seventh', 'eighth'
     ];
 
-    // Инициализация плагина, отвечающего за отображение иерархии
-    var handleProjectTree = function () {
-        $projectTree.jstree({
-            "core":        {
-                "data": {
-                    "url":   urlNodeGet,
-                    "data":  function (node) {
-                        return { id: node.id };
+    var handleContextMenu = function () {
+        $.contextMenu({
+            selector: '.jstree-neutron .jstree-anchor',
+            items: {
+                "add": {
+                    name: "Добавить проект",
+                    icon: function () { return 'fa fa-leaf'; },
+                    callback: function() {
+                        createProjectNode();
                     }
                 },
-                "check_callback": true,
-                "multiple":       false,
-                "animation":      false,
-                "themes":         {
-                    name:       "neutron",
-                    url:        "vendor/plugins/jstree/themes/neutron/style.css",
-                    responsive: true
-                }
-            },
-            "contextmenu": {
-                "select_node": false,
-                "items":       function (node) {
-                    return {
-                        "Create":      {
-                            "icon":   "fa fa-leaf",
-                            "label":  "Добавить проект",
-                            "action": function () { createProjectNode(); }
-                        },
-                        "Edit":      {
-                            "icon":   "fa fa-pencil",
-                            "label":  "Редактировать проект",
-                            "action": function () { createProjectNode(); }
-                        },
-                        "Remove":      {
-                            "separator_before": true,
-                            "icon":             "fa fa-trash-o",
-                            "label":            "Удалить проект",
-                            "action":           function () {
-                                $.magnificPopup.open({
-                                    removalDelay: 300,
-                                    items: { src: '#modal-del-pr' },
-                                    callbacks: {
-                                        beforeOpen: function () {
-                                            this.st.mainClass = 'mfp-zoomIn';
-                                        }
-                                    }
-                                });
+                "edit":  {
+                    name: "Переименовать",
+                    icon: function () { return 'fa fa-pencil'; },
+                    callback: function(key, opt) {
+                        var dom = $projectTree.find('a:contains('+ opt.$trigger.text() +')');
 
-                                $(".del").click(function () {
-                                    $projectTree.jstree('delete_node', node);
-                                    $.magnificPopup.close();
-                                });
-                                $(".cancel").click(function () { $.magnificPopup.close(); });
+                        renameProjectNode(dom.parent().data('key'));
+                    }
+                },
+                "delete":  {
+                    name: "Удалить проект",
+                    icon: function () { return 'fa fa-trash-o'; },
+                    callback: function (key, opt) {
+                        var dom = $projectTree.find('a:contains('+ opt.$trigger.text() +')');
+
+                        $.magnificPopup.open({
+                            removalDelay: 300,
+                            items: { src: '#modal-del-pr' },
+                            callbacks: {
+                                beforeOpen: function () {
+                                    this.st.mainClass = 'mfp-zoomIn';
+                                }
                             }
-                        }
-                    };
-                }
-            },
-            "checkbox":    { "three_state": false },
-            'plugins': ['checkbox', 'contextmenu']
-        })
-        .on("redraw.jstree", function () {
-            $projectTree.jstree("open_all");
-        }).on('create_node.jstree', function (e, data) {
-            if (data.node.text !== '' && data.node.text !== 'New node') {
-                // Выбор случайного цвета для иконки проекта
-                var selectedColor = colors[Math.floor(Math.random() * colors.length)];
+                        });
 
-                $.post('/project/create', {
-                    'id':         data.node.parent,
-                    'listName':   data.node.text,
-                    'badgeColor': selectedColor,
-                    '_csrf':      $csrfToken
-                }).done(function (id) {
-                    data.instance.set_id(data.node, id);
-                    $("#" + id).find("a").addClass(selectedColor);
-                }).fail(function () {
-                    data.instance.refresh();
-                });
+                        $(".del").click(function () {
+                            deleteProjectNode(dom.parent().data('key'));
+                            $.magnificPopup.close();
+                        });
+                        $(".cancel").click(function () { $.magnificPopup.close(); });
+                    }
+                }
             }
-        }).on('delete_node.jstree', function (e, data) {
-            $.post('/project/delete', {
-                'id':    data.node.id,
-                '_csrf': $csrfToken
-            }).fail(function () {
-                data.instance.refresh();
-            });
-        }).on('select_node.jstree', function (node, data) {
-            localStorage.setItem("listId", data.node.id);
+        });
+    };
 
-            // Перестроение дерева перед загрузкой проектов
-            $tree.jstree(true).settings.core.data = {
-                url: "/task/node",
-                data: function (node) {
-                    return {
-                        id:     node.id,
-                        listId: localStorage.getItem("listId")
-                    };
+    var renameProjectNode = function (id) {
+        var $project = $('.jstree-node[data-key='+ id +']');
+        var $rename  = null;
+        var formEdit =
+        '<div id="formEditProject">' +
+            '<div class="form-group form-material">' +
+                '<input type="text" class="form-control input-lg pl50" id="editProjectInput" placeholder="Write here something cool" spellcheck="false">' +
+            '</div>' +
+        '</div>';
+
+        $project
+            .children('a')
+                .hide()
+            .parent('li')
+                .prepend($(formEdit));
+
+        $rename = $("#editProjectInput");
+        $rename.val(
+            $project
+                .children('a')
+                    .text()
+                    .trim()
+        ).focus();
+        $rename.on("keyup", function (e) {
+            // Escape - отмена
+            if (e.keyCode === 27) {
+                // Скрытие формы
+                $project
+                    .children()
+                        .show()
+                    .prev()
+                        .hide()
+                        .remove();
+            }
+            // Enter  - добавление
+            if (e.keyCode === 13) {
+                if ($rename.val().length) {
+                    $.post('/project/rename', {
+                        'id':       id,
+                        'listName': $rename.val(),
+                        '_csrf':    $csrfToken
+                    }).done(function (data) {
+                        $project
+                            .find('.text')
+                                .html(data)
+                            .end()
+                            .children('a')
+                                .show()
+                            .prev()
+                                .hide()
+                                .remove();
+                    });
                 }
-            };
-
-            $tree.jstree('refresh');
-            $(".inboxGroup, .todayGroup, .nextGroup").removeClass("active");
-            $('.action').fadeIn(200);
-            $('.history').removeClass('fa-reply out').addClass('fa-clock-o in');
-
-            // Хлебные крошки
-            $('.crumb-active span').html(data.node.text);
-            $('.crumb-link').html("Проект");
-
-            return false;
+            }
         });
     };
 
     var createProjectNode = function () {
-        // Экземпляр корневого DOM-элемента преобразуется в объект jsTree
-        var root = $("a:contains('Root')").first();
-        var text = document.getElementById("projectInput").value;
         var $input = $("#projectInput");
+        var text   = $input.val();
 
         if (text.length) {
-            $projectTree.jstree('create_node', root, {
-                text: text
-            }, "last");
+            // Выбор случайного цвета для иконки проекта
+            var selectedColor = colors[Math.floor(Math.random() * colors.length)];
+
+            $.post('/project/create', {
+                'listName':   text,
+                'badgeColor': selectedColor,
+                '_csrf':      $csrfToken
+            }).done(function (data) {
+                $projectTree.append(
+                '<li class="jstree-node jstree-leaf" data-key='+ data.id +'>' +
+                    '<a class="jstree-anchor private '+ selectedColor +'" href="#">' +
+                        '<i class="jstree-icon jstree-checkbox"></i>' +
+                        '<span class="text">'+ data.name +'</span>' +
+                    '</a>' +
+                '</li>'
+                );
+            });
             $input.val('');
         }
 
@@ -157,20 +158,152 @@ var projectTree = (function () {
         });
     };
 
+    var deleteProjectNode = function (id) {
+        $.post('/project/delete', {
+            'id':    id,
+            '_csrf': $csrfToken
+        }).done(function () {
+            $('.jstree-node[data-key='+ id +']').remove();
+        });
+    };
+
+    var fillTree = function () {
+        $(document).on('click', '.jstree-neutron a', function () {
+            localStorage.setItem("listId", $(this).parent().data('key'));
+
+            // Перестроение дерева на данный проект
+            $tree.jstree(true).settings.core.data = {
+                url: "/task/node",
+                data: function (node) {
+                    return {
+                        id:     node.id,
+                        listId: localStorage.getItem("listId")
+                    };
+                }
+            };
+
+            $tree.jstree('refresh');
+
+            $(".inboxGroup, .todayGroup, .nextGroup").removeClass("active");
+            $('.action').fadeIn(200);
+            $('.history').removeClass('fa-reply out').addClass('fa-clock-o in');
+            $('.btn-group button').first().fadeIn(200);
+
+            // Теперь ни один проект кроме данного не активен
+            $(".jstree-neutron li").each(function () {
+                $(this).removeClass('active');
+            });
+            $(this).parent().addClass('active');
+
+            // Хлебные крошки указывают на данный проект
+            $('.crumb-active span').html($(this).text());
+            $('.crumb-link').html("Проект");
+
+            return false;
+        });
+    };
+
+    var handleAssignUserToProject = function () {
+        $("#done").click(function () {
+            var listId   = localStorage.getItem("listId");
+            var $project = $('div[data-key='+ listId +']');
+            var $email   = $("#email").val();
+
+            if ($email.length) {
+                $.post('/project/assign-user', {
+                    'listId': listId,
+                    'email':  $email,
+                    '_csrf':  $csrfToken
+                }).done(function () {
+                    $("#done").attr('disabled', true);
+                    $project.find('a').removeClass('private').addClass('shared');
+                });
+            }
+        });
+    };
+
+    var handleUnassignUser = function () {
+        $(document).on('click', '#del-user', function () {
+            var userKey  = $(this).parent().data('key');
+            var listId   = localStorage.getItem("listId");
+            var $project = $('div[data-key='+ listId +']');
+            var $user    = $('.section-item[data-key='+ userKey +']');
+
+            $.post('/project/unassign-user', {
+                'listId': listId,
+                'userId': userKey,
+                '_csrf':  $csrfToken
+            }).done(function () {
+                $user.fadeOut();
+                $("#done").attr('disabled', false);
+                $project.find('a').removeClass('shared').addClass('private');
+            });
+        });
+    };
+
     return {
 
         init: function () {
-            handleProjectTree();
+            fillTree();
+            handleContextMenu();
+            handleAssignUserToProject();
+            handleUnassignUser();
 
             this.events();
         },
-
-        // Общие обработчики событий
         events: function () {
             $('.actionProject').click(function () {
                 createProjectNode();
 
                 return false;
+            });
+
+            $('button.assign').click(function () {
+                $.magnificPopup.open({
+                    removalDelay: 300,
+                    items: { src: '#assign-to-user' },
+                    callbacks: {
+                        beforeOpen: function () {
+                            this.st.mainClass = 'mfp-zoomIn';
+                        },
+                        open: function() {
+                            $.getJSON('/project/get-assigned-users', {
+                                listId: localStorage.getItem("listId")
+                            }).done(function(data) {
+                                $userList.empty();
+                                $.each(data, function(i, user) {
+                                    $(".users-list").append(
+                                    '<li class="section-item pb15" data-key="'+ user.key +'">' +
+                                        '<div class="section-icon picture">' +
+                                            '<div class="avatar medium">' +
+                                                '<img src="'+ user.userpic +'">' +
+                                            '</div>' +
+                                        '</div>' +
+                                        '<div class="section-content">' +
+                                            '<span class="comment-author mr5">'+ user.name +'</span>' +
+                                            '<span class="label label-rounded label-primary">'+ user.owner +'</span>' +
+
+                                            '<div class="comment-text fs12">'+ user.email +'</div>' +
+                                        '</div>' +
+                                    '</li>'
+                                    );
+
+                                    if (!user.owner) {
+                                        $(".users-list li:last-child").append(
+                                            '<button type="button" id="del-user" class="btn btn-rounded btn-default">Удалить</button>'
+                                        );
+                                    }
+                                });
+
+                                if ($userList.children().length >= 2) {
+                                    $("#done").attr('disabled', true);
+                                } else {
+                                    $("#done").attr('disabled', false);
+                                }
+                            });
+                        }
+                    }
+                });
             });
         }
 

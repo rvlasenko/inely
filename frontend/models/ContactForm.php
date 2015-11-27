@@ -33,6 +33,10 @@ class ContactForm extends Model
     {
         return [
             [['name', 'email', 'body'], 'required'],
+            ['name', 'string', 'max' => 25],
+            ['email', 'string', 'max' => 50],
+            ['body', 'string'],
+            ['subject', 'default', 'value' => 'Обращение']
         ];
     }
 
@@ -51,6 +55,7 @@ class ContactForm extends Model
                                         ->setTo($email)
                                         ->setFrom(getenv('ROBOT_EMAIL'))
                                         ->setReplyTo([$this->email => $this->name])
+                                        ->setSubject($this->subject)
                                         ->setTextBody($this->body)
                                         ->send();
             } catch (ErrorException $e) {

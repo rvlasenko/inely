@@ -4,10 +4,12 @@ var contentTree = (function() {
     /* ===========================
      jQuery селекторы
      ============================= */
-    var $formAdd     = $("#formAdd");
     var $tree        = $("#tree");
     var $csrfToken   = $('meta[name=csrf-token]').attr("content");
     var $searchInput = $('#searchText');
+    var $taskName = $("#name");
+    var $taskDate = $("#date");
+    var $taskNote = $("#note");
 
     /* ===========================
      Атрибуты задачи (включая Smarty Add)
@@ -48,7 +50,9 @@ var contentTree = (function() {
                 "data": {
                     "url":  urlNodeGet,
                     "data": function (node) {
-                        return { id: node.id };
+                        return {
+                            id: node.id
+                        };
                     }
                 },
                 "check_callback": true,
@@ -60,10 +64,19 @@ var contentTree = (function() {
                     responsive: true
                 }
             },
-            "checkbox":    {
+            "massload" : {
+                "url" : urlNodeGet,
+                "data" : function (nodes) {
+                    return { "ids" : nodes.join(',') };
+                }
+            },
+            "checkbox": {
                 "three_state": false
             },
-            "search":      {
+            "dnd": {
+                "check_while_dragging": false
+            },
+            "search":   {
                 "show_only_matches": true
             },
             "contextmenu": {
@@ -72,11 +85,11 @@ var contentTree = (function() {
                     return {
                         "Create":      {
                             "icon":   "fa fa-leaf",
-                            "label":  "Добавить задачу",
-                            "action": function () { createContentNode(); }
+                            "label":  "Добавить задачу здесь",
+                            "action": function () { createContentNode(node); }
                         },
                         "Edit":      {
-                            "icon":   "fa fa-leaf",
+                            "icon":   "fa fa-pencil",
                             "label":  "Редактировать задачу",
                             "action": function () { editContentNode(node); }
                         },
@@ -173,7 +186,7 @@ var contentTree = (function() {
                     };
                 }
             },
-            'plugins': ['dnd', 'contextmenu', 'search', 'checkbox']
+            'plugins': ['dnd', 'contextmenu', 'checkbox']
         }).on('create_node.jstree', function (e, data) {
             if (data.node.text !== '' && data.node.text !== 'New node') {
                 data.instance.refresh();
@@ -195,6 +208,8 @@ var contentTree = (function() {
                 });
             }
         }).on('delete_node.jstree', function (e, data) {
+            data.instance.refresh();
+
             $.post(urlNodeDelete, {
                 'id':    data.node.id,
                 '_csrf': $csrfToken
@@ -217,19 +232,61 @@ var contentTree = (function() {
             data.instance.refresh();
 
             $.post(urlNodeMove, {
-                'id':       data.node.id,
-                'parent':   data.parent
+                'id':     data.node.id,
+                'parent': data.parent
             });
         }).on('select_node.jstree', function (node, data) {
+            var $node = $("#" + data.node.id);
             nodeObj = data.node;
+
+            $taskName.val(nodeObj.text);
+            $taskDate.val(nodeObj.a_attr.date);
+            $taskNote.val(nodeObj.a_attr.note);
+
+            // Редактирование имени задачи в инспекторе
+            $taskName.keyup(function () {
+                if (nodeObj !== null) {
+                    $node.find(".text").html($(this).val());
+                    $.post(urlNodeEdit, {
+                        'id':    nodeObj.id,
+                        'name':  $(this).val(),
+                        '_csrf': $csrfToken
+                    });
+                }
+            });
+
+            // Редактирование заметки
+            $taskNote.keyup(function () {
+                if (nodeObj !== null) {
+                    nodeObj.a_attr.note = $(this).val();
+
+                    if ($(this).val()) {
+                        $node.find("i").last().addClass('fa fa-commenting');
+                    } else {
+                        $node.find("i").last().removeClass('fa fa-commenting');
+                    }
+                    $.post(urlNodeEdit, {
+                        'id':    nodeObj.id,
+                        'note':  $(this).val(),
+                        '_csrf': $csrfToken
+                    });
+                }
+            });
+        }).on('deselect_node.jstree', function () {
+            //nodeObj = null;
+
+            $taskName.val('');
+            $taskNote.val('');
+            $taskDate.val('');
         }).on("redraw.jstree", function () {
             $tree.jstree("open_all");
+            $(".nano").nanoScroller();
         });
     };
 
     // Перемещение задачи в историю, либо отметка галочкой, если задача дочерняя
     var handleCompleteTask = function () {
-        $(document).on('click', '.jstree-checkbox, svg', function () {
+        $(document).on('click', '.jstree-proton .jstree-checkbox, svg', function () {
             var $node = $('#' + nodeObj.id);
 
             // Если задача активная, нужно обозначить её как завершенную
@@ -238,7 +295,6 @@ var contentTree = (function() {
 
                 if ($node.attr("aria-level") > 2 && $node.find('a').attr('incompletely') !== 'true') {
                     // Поиск чекбокса и добавление статуса неполностью завершенной задачи
-
                     $node
                         .addClass('jstree-checked')
                             .children('a')
@@ -275,7 +331,7 @@ var contentTree = (function() {
                             setCountInGroup();
                         });
                     } else {
-                        // Массив всех дочерних задач, если её вложенность меньше 2 уровня
+                        // Массив всех дочерних задач, если их вложенность меньше 2 уровня
                         var nestedNodes = $.map($node.find('li'), function (li) {
                             return $(li).attr('id');
                         });
@@ -304,7 +360,7 @@ var contentTree = (function() {
                     }
                 }
             } else {
-                // Если задача завершена, но не удалена, возвращаем к жизни
+                // Если задача завершена, но не удалена, возвращаем её к жизни
                 $tree.jstree(true).uncheck_node(nodeObj.id);
                 $node
                     .removeClass('jstree-checked')
@@ -324,9 +380,9 @@ var contentTree = (function() {
         });
     };
 
-    // Поиск и получение введенной даты с помощью интеллектуального ввода
+    // Поиск и получение введенной даты с помощью Smarty Add
     var handleSmartyAdd = function () {
-        $('#taskInput').keyup(function() {
+        $(document).on('keyup', '#taskInput, #editInput', function() {
             var value = $(this).val();
             var userDate = null;
             var monthNames = [
@@ -347,7 +403,6 @@ var contentTree = (function() {
                         // Приведение вычисленной даты в формат YYYY-MM-DD
                         userDate = [moment().year(), monthNumber, dayNumber];
                         dueDate = moment(userDate).format('YYYY-MM-DD');
-                        console.log(dueDate);
                     }
                 }
             });
@@ -357,7 +412,6 @@ var contentTree = (function() {
                     // Получение дня недели в числовом формате eg. пн => 1
                     userDate = [moment().year(), moment().month(), dayNumber + 1];
                     dueDate = moment(userDate).format('YYYY-MM-DD');
-                    console.log(dueDate);
                 }
             });
             // Поиск человекопонятной даты
@@ -365,16 +419,12 @@ var contentTree = (function() {
                 if (value.indexOf(dateName) !== -1) {
                     switch (dateName) {
                         case ':сегодня':
-                            dueDate = moment().format('YYYY-MM-DD');
-                            break;
+                            dueDate = moment().format('YYYY-MM-DD');             break;
                         case ':завтра':
-                            dueDate = moment().add(1, 'd').format('YYYY-MM-DD');
-                            break;
+                            dueDate = moment().add(1, 'd').format('YYYY-MM-DD'); break;
                         case ':послезавтра':
-                            dueDate = moment().add(2, 'd').format('YYYY-MM-DD');
-                            break;
+                            dueDate = moment().add(2, 'd').format('YYYY-MM-DD'); break;
                     }
-                    console.log(dueDate);
                 }
             });
             // Поиск числа дней с этого момента
@@ -382,7 +432,6 @@ var contentTree = (function() {
                 var quantity = value.substr(value.indexOf(":+") + 2);
 
                 dueDate = moment().add(quantity, 'd').format('YYYY-MM-DD');
-                console.log(dueDate);
             }
         });
     };
@@ -407,14 +456,15 @@ var contentTree = (function() {
 
                 $('.history').removeClass('fa-reply out').addClass('fa-clock-o in');
                 $(this).addClass('active');
+                $('.btn-group button').first().fadeOut(200);
                 $('.action').fadeIn(200);
 
-                // Теперь ни один проект не активен, класс удаляется
+                // Теперь ни один проект не активен, кроме группы "Входящие"
                 $(".jstree-neutron li").each(function () {
-                    $(this).removeClass('jstree-clicked');
+                    $(this).removeClass('active');
                 });
 
-                // Удаление недействительных хлебных крошек
+                // Недействительные хлебные крошки
                 $('.crumb-active span')
                     .html("Входящие")
                     .parent()
@@ -428,19 +478,20 @@ var contentTree = (function() {
         });
     };
 
-    // Визуализация завершенных задач в определенной группе или проекте
+    // Визуализация завершенных задач во входящих или проекте
     var handleFillCompleted = function () {
         $(".history").click(function () {
             // Если пользователь вне завершенных, пускаем его
             if ($(this).hasClass('in')) {
-                // Добавление класса, который означает что следующее действие пользователя - это выход
+                // Добавление класса, который означает что предполагаемым
+                // следующим действием пользователя будет выход из страницы завершенных
                 $(this).removeClass('fa-clock-o in').addClass('fa-reply out');
 
-                // Добавление хлебных крошек
+                // Хлебные крошки
                 $('.crumb-link').html("Завершенные");
                 $('.action').fadeOut(200);
 
-                // Запрос у метода завершенных задач
+                // Запрос завершенных задач
                 $tree.jstree(true).settings.core.data = {
                     url:  '/task/get-history',
                     data: function (node) {
@@ -451,9 +502,10 @@ var contentTree = (function() {
                     }
                 };
                 $tree.jstree('refresh');
-                // Если внутри, то показываем кнопку возвращения назад
+                // Если пользователь в завершенных, отображается кнопка возвращения назад
             } else if ($(this).hasClass('out')) {
-                // Добавление класса, который означает что следующее действие пользователя - это вход
+                // Добавление класса, который означает что предполагаемым
+                // следующим действием пользователя будет вход на страницу завершенных
                 $(this).removeClass('fa-reply out').addClass('fa-clock-o in');
                 $('.action').fadeIn(200);
 
@@ -481,7 +533,7 @@ var contentTree = (function() {
         return $.jstree.reference(data.reference).get_node(data.reference);
     };
 
-    // Инкремент или декремент количества задач в созданной группе (напр. "Входящие")
+    // Инкремент или декремент количества задач во входящих
     var setCountInGroup = function (decrement) {
         var $inbox = $(".counter.inbox");
         var number = 0;
@@ -529,18 +581,18 @@ var contentTree = (function() {
     var editContentNode = function (node) {
         var $renameInp  = null;
         var $nodeObject = $tree.find("li#" + node.id);
-        var $nodeIcon   = $nodeObject.find("i.jstree-ocl");
-        var $nodeAnchor = $nodeObject.find("a.jstree-anchor");
-        var $formEdit   =
-        '<div id="formEdit" class="a-form" hidden>' +
-            '<div class="bs-component mh30">' +
+        var $nodeIcon   = $nodeObject.find("i.jstree-ocl").first();
+        var $nodeAnchor = $nodeObject.find("a.jstree-anchor").first();
+        var formEdit   =
+        '<div id="formEdit" hidden>' +
+        '<div class="bs-component ml30">' +
             '<div class="form-group form-material col-md-12 pln prn">' +
                 '<span class="input-group-addon">' +
                     '<i class="fa fa-question-circle fs18" title="Интеллектуальный ввод"></i>' +
                 '</span>' +
-            '<input type="text" class="form-control input-lg input-add empty" id="editInput" placeholder="Write here something cool" spellcheck="false">' +
+            '<input type="text" class="form-control input-lg input-add" id="editInput" placeholder="Write here something cool" spellcheck="false">' +
             '</div>' +
-            '</div>' +
+        '</div>' +
         '</div>';
 
         var showAnchor = function () {
@@ -549,22 +601,24 @@ var contentTree = (function() {
         };
 
         $nodeObject
-            .prepend($formEdit)
-            .addClass('pln');
+            .prepend(formEdit)
+            .addClass('pln')
+            .children('ul')
+            .addClass('pl33');
 
         $renameInp = $("#editInput");
         $("#formEdit")
-            .fadeIn(200)
+            .show()
             .find($renameInp)
             .focus();
 
-        $nodeIcon.hide(); $nodeAnchor.hide(); $formAdd.hide();
+        $nodeIcon.hide(); $nodeAnchor.hide();
 
-        $renameInp.val($("#" + node.id).find("a span:first").text());
+        $renameInp.val($("#" + node.id).find(".text").first().text());
         $renameInp.on("keyup", function (e) {
             // Escape - отмена
             if (e.keyCode === 27) {
-                $nodeObject.removeClass('pln');
+                $nodeObject.removeClass('pln').children('ul').removeClass('pl33');
                 $("#formEdit").hide().remove();
 
                 showAnchor();
@@ -585,38 +639,65 @@ var contentTree = (function() {
     };
 
     // Показ формы ввода, и создание задачи, при пройденной валидации
-    var createContentNode = function () {
-        var $taskInp = $("#taskInput");
+    var createContentNode = function (node) {
+        var $taskInp  = null;
+        var text = null;
+        var $selected = null;
+        var formAdd   =
+        '<div id="formAdd" hidden>' +
+        '<div class="bs-component mh30">' +
+            '<div class="form-group form-material col-md-12 mt10 mb10 pln prn">' +
+                '<span class="input-group-addon">' +
+                    '<i class="fa fa-question-circle fs18" title="Интеллектуальный ввод"></i>' +
+                '</span>' +
+            '<input type="text" class="form-control input-lg input-add" id="taskInput" placeholder="Write here something cool" spellcheck="false">' +
+            '</div>' +
+        '</div>' +
+        '</div>';
 
-        // Замыкание, отвечающее за передачу данных на сервер
-        var closureAdd = function () {
-            var root = $("a:contains('Root')").last();
-
-            if ($taskInp.val().length) {
-                // Стоило бы обновить дерево после добавления ради избежания ошибок
-                $tree.jstree('create_node', root, {
-                    text:         $taskInp.val(),
-                    //taskPriority: getShortcut('taskPriority', text),
-                    dueDate:      dueDate,
-                    listId:       localStorage.getItem("listId")
-                }, "last");
-                $taskInp.val('');
-                if (!acceptRequest) { setCountInGroup(false); }
-            }
-        };
-
-        // Добавление формы редактирования задачи
-        setTimeout(function () {
-            $formAdd
+        // Добавление формы редактирования задачи внутрь кликнутого узла,
+        // если пользователь вызвал событие из контекстного меню.
+        if (typeof node !== 'undefined') {
+            $tree
+                .find("#" + node.id)
+                    .append(formAdd)
+                .children("#formAdd")
+                    .show()
+                .find($("#taskInput"))
+                    .focus();
+            $selected = node;
+        } else {
+            $(formAdd)
+                .insertAfter($tree)
                 .fadeIn(200)
-                .find($taskInp)
+                .find($("#taskInput"))
                 .focus();
-        }, 100);
+
+            $selected = $("a:contains('Root')");
+        }
+
+        $taskInp = $("#taskInput");
         $taskInp.on("keyup", function (e) {
             // Escape - отмена
-            if (e.keyCode === 27) { $formAdd.fadeOut(200); }
+            if (e.keyCode === 27) {
+                $("#formAdd").fadeOut(200).remove();
+            }
             // Enter  - добавление
-            if (e.keyCode === 13) { closureAdd(); }
+            if (e.keyCode === 13) {
+                text = document.getElementById("taskInput").value;
+
+                if (text.length) {
+                    $tree.jstree('create_node', $("a:contains('Root')"), {
+                        text:         text,
+                        //taskPriority: getShortcut('taskPriority', text),
+                        dueDate:      dueDate,
+                        listId:       localStorage.getItem("listId")
+                    }, "last");
+                    $taskInp.val('');
+                    $selected = null;
+                    if (!acceptRequest) { setCountInGroup(false); }
+                }
+            }
         });
     };
 
@@ -635,13 +716,13 @@ var contentTree = (function() {
         // Общие обработчики событий
         events: function () {
             // Поиск по задачам
-            $searchInput.keyup(function (e) {
+            /*$searchInput.keyup(function (e) {
                 setTimeout(function () {
                     $tree.jstree(true).search($searchInput.val());
                 }, 250);
 
                 if (e.keyCode === 27) { $('.inboxGroup').focus(); }
-            });
+            });*/
 
             // Увеличение количества задач в селекторе групп с определенной скоростью
             $.getJSON(urlGetCount, function (data) {
@@ -658,20 +739,22 @@ var contentTree = (function() {
 
             // Добавление задачи
             $('.action').click(function () {
-                createContentNode();
+                setTimeout(function () {
+                    createContentNode();
+                }, 50);
 
                 return false;
             });
 
-            // Мгновенное редактирование по клику на тексте задачи
-            $(document).on('click', '.text', function () {
-                $tree.jstree('uncheck_node', nodeObj.id);
+            // Мгновенное редактирование по клику на названии
+            $(document).on('click', '.jstree-proton .text', function () {
                 editContentNode(nodeObj);
+                $tree.jstree('uncheck_node', nodeObj.id);
 
                 return false;
             });
 
-            // Сортировка по условию и удаление завершенных
+            // Сортировка по выбранному условию и удаление завершенных задач
             $("#pr").click(function () { sortByCondition('taskPriority'); });
             $("#nm").click(function () { sortByCondition('name'); });
             $("#dt").click(function () { sortByCondition('dueDate'); });
@@ -690,10 +773,32 @@ var contentTree = (function() {
                 $(".cancel").click(function () { $.magnificPopup.close(); });
             });
 
-            // Отображение или скрытие инспектора задач
+            // Отображен или скрыт инспектор задач
             if (localStorage.getItem("inspect") === "show") {
                 $("body").removeClass("sb-r-c").addClass("sb-r-o");
             }
+
+            $(".invisible").hover(function() {
+                $(this).parent().addClass('jstree-hovered');
+            });
+
+            $(".datetimepicker").datetimepicker({
+                format:    'DD MMM YYYY',
+                autoclose: true,
+                minDate:   new Date()
+            }).on('dp.change', function () {
+                var iso = $('.datetimepicker').data("DateTimePicker").getDate();
+
+                if (nodeObj !== null) {
+                    $.post(urlNodeEdit, {
+                        'id':       nodeObj.id,
+                        'dueDate':  moment(iso).format('YYYY-MM-DD'),
+                        '_csrf':    $csrfToken
+                    }).done(function () {
+                        $tree.jstree('refresh');
+                    });
+                }
+            });
         }
 
     };

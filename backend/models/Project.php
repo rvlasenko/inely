@@ -10,8 +10,6 @@
 
 namespace backend\models;
 
-use backend\models\query\ProjectQuery;
-use common\components\nested\NestedSetBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -20,51 +18,23 @@ use yii\db\ActiveRecord;
  *
  * @property int        $id
  * @property string     $listName
- * @property int        $lft
- * @property int        $rgt
- * @property int        $lvl
  * @property string     $badgeColor
- * @property integer    $userId
+ * @property integer    $ownerId
  */
 class Project extends ActiveRecord
 {
-    public function behaviors()
-    {
-        return [
-            'tree' => [
-                'class' => NestedSetBehavior::className(),
-                'leftAttribute'  => 'lft',
-                'rightAttribute' => 'rgt',
-                'depthAttribute' => 'lvl',
-            ]
-        ];
-    }
-
     public function rules()
     {
         return [
-            [['lft', 'rgt', 'lvl'], 'integer'],
-            [['badgeColor'], 'string'],
-            [['listName'], 'string', 'max' => 255],
-            ['userId', 'default', 'value' => Yii::$app->user->id]
+            ['assignedTo', 'integer'],
+            [['listName', 'badgeColor'], 'string', 'max' => 255],
+            ['ownerId', 'default', 'value' => Yii::$app->user->id]
         ];
     }
 
     public static function tableName()
     {
         return 'projects';
-    }
-
-    public function transactions()
-    {
-        return [
-            self::SCENARIO_DEFAULT => self::OP_ALL
-        ];
-    }
-
-    public static function find()
-    {
-        return new ProjectQuery(get_called_class());
     }
 
     /**
@@ -74,5 +44,27 @@ class Project extends ActiveRecord
     public function getTasks()
     {
         return $this->hasOne(Task::className(), ['listId' => 'id']);
+    }
+
+    /**
+     * Запись данных в модель. Метод перегружен от базового класса Model.
+     * @param array $data массив данных.
+     * @param string $formName имя формы, использующееся для записи данных в модель.
+     * @return boolean если `$data` содержит некие данные, которые связываются с атрибутами модели.
+     */
+    public function load($data, $formName = '')
+    {
+        $scope = $formName === null ? $this->formName() : $formName;
+        if ($scope === '' && !empty($data)) {
+            $this->setAttributes($data);
+
+            return true;
+        } elseif (isset($data[$scope])) {
+            $this->setAttributes($data[$scope]);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }
