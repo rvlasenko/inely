@@ -33,5 +33,8 @@ class FrontendAsset extends AssetBundle
 
     public $jsOptions = ['position' => View::POS_END];
 
-    public $depends = ['common\assets\BootstrapAsset'];
+    public $depends = [
+        'yii\web\JqueryAsset',
+        'common\assets\BootstrapAsset'
+    ];
 }

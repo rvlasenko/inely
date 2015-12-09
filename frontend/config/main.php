@@ -39,10 +39,9 @@ $config = [
             'cookieValidationKey'    => getenv('FRONTEND_COOKIE_VALIDATION_KEY')
         ],
         'user'                 => [
-            'class'           => 'yii\web\User',
-            'identityClass'   => 'common\models\User',
-            'loginUrl'        => ['login'],
-            'as afterLogin'   => 'common\behaviors\LoginTimestampBehavior'
+            'class'         => 'yii\web\User',
+            'identityClass' => 'common\models\User',
+            'loginUrl'      => ['login']
         ]
     ]
 ];

@@ -18,7 +18,7 @@ use yii\db\Expression;
 use yii\db\Query;
 
 /**
- * Класс модели для таблицы "tasks"
+ * Класс модели для таблицы "task"
  *
  * @property int        $taskId
  * @property int        $listId

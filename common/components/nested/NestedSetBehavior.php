@@ -245,13 +245,14 @@ class NestedSetBehavior extends Behavior
      * @param int          $history active task or not
      * @param string       $sort
      * @param null         $listId
+     * @param string       $group
      * @param integer|null $depth   the depth
      *
      * @return \yii\db\ActiveQuery
      */
-    public function children($ownerId, $history = Task::ACTIVE_TASK, $sort = 'lft', $listId = null, $depth = null)
+    public function children($ownerId, $history = Task::ACTIVE_TASK, $sort = 'lft', $listId = null, $group = 'inbox', $depth = null)
     {
-        $condition = [
+        $mainCond = [
             'and',
             ['>', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
             ['<', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)],
@@ -259,7 +260,7 @@ class NestedSetBehavior extends Behavior
         $tableName = $this->owner->tableName() == 'task_data' ? 'tasks' : 'projects';
 
         if ($depth !== null) {
-            $condition[] = ['<=', $this->depthAttribute, $this->owner->getAttribute($this->depthAttribute) + $depth];
+            $mainCond[] = ['<=', $this->depthAttribute, $this->owner->getAttribute($this->depthAttribute) + $depth];
         }
 
         if ($sort == 'taskPriority') {
@@ -278,31 +279,40 @@ class NestedSetBehavior extends Behavior
 
         if ($history === Task::COMPLETED_TASK && $listId === '') {
             // Выборка завершенных задач (входящие)
-            $cond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
+            $historyCond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
         } elseif ($history === Task::COMPLETED_TASK && $listId !== '') {
             // Выборка завершенных задач (входящие)
-            $cond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => $listId];
+            $historyCond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => $listId];
         } elseif (empty($listId) && $tableName == 'tasks') {
             // Выборка входящих задач
-            $cond = [
+            $historyCond = [
                 "$tableName.ownerId" => $ownerId,
                 'isDone'             => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
                 'listId'             => null
             ];
         } else {
             // Выборка задач в проекте
-            $cond = [
+            $historyCond = [
                 'isDone' => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
                 'listId' => $listId
             ];
         }
 
-        $this->applyTreeAttributeCondition($condition);
+        if ($group == 'today') {
+            $groupCond = (new Expression('DATE(dueDate) = CURDATE()'));
+        } elseif ($group == 'next') {
+            $groupCond = (new Expression('dueDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)'));
+        } else {
+            $groupCond = [];
+        }
+
+        $this->applyTreeAttributeCondition($mainCond);
 
         return $this->owner->find()
                            ->joinWith(Task::tableName())
-                           ->andWhere($condition)
-                           ->andWhere($cond)
+                           ->andWhere($mainCond)
+                           ->andWhere($historyCond)
+                           ->andWhere($groupCond)
                            ->addOrderBy($sort)
                            ->asArray();
     }

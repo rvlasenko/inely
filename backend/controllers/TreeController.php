@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Этот файл является частью проекта Inely.
- *
- * @link http://github.com/hirootkit/inely
+ * deprecated
  *
  * @author hirootkit <admiralexo@gmail.com>
  */

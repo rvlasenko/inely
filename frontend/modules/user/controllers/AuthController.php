@@ -190,8 +190,7 @@ class AuthController extends Controller
                 ]));
                 if ($sentSuccess) {
                     Yii::$app->session->setFlash('alert', [
-                        'title' => Yii::t('backend', 'Welcome to Inely.'),
-                        'body'  => Yii::t('backend', 'Your login information was sent to <b>{email}</b>', ['email' => $user->email]),
+                        'body' => Yii::t('backend', 'Ваши персональные данные были отправлены на <b>{email}</b>', ['email' => $user->email]),
                     ]);
                 }
             }

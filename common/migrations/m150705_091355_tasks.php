@@ -32,15 +32,18 @@ class m150705_091355_tasks extends Migration
         ], $tableOptions);
 
         if ($this->db->driverName === 'mysql') {
-            $this->addForeignKey('fk_cat', '{{%user}}', 'id', '{{%tasks}}', 'ownerId', 'cascade', 'cascade');
-            $this->addForeignKey('fk_data', '{{%tasks}}', 'taskId', '{{%task_data}}', 'dataId', 'cascade', 'cascade');
+            $this->addForeignKey('fk_user', '{{%user}}', 'id', '{{%tasks}}', 'ownerId', 'cascade', 'cascade');
+            $this->addForeignKey('fk_data', '{{%task_data}}', 'dataId', '{{%tasks}}', 'taskId', 'cascade', 'cascade');
         }
     }
 
     public function down()
     {
-        echo "m150705_091355_tasks cannot be reverted.\n";
-
-        return false;
+        if ($this->db->driverName === 'mysql') {
+            $this->dropForeignKey('fk_user', '{{%user}}');
+            $this->dropForeignKey('fk_data', '{{%task_data}}');
+        }
+        $this->dropTable('{{%tasks}}');
+        $this->dropTable('{{%projects}}');
     }
 }

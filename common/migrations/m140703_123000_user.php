@@ -33,7 +33,7 @@ class m140703_123000_user extends Migration
             'id'            => 1,
             'username'      => 'The Chosen One',
             'email'         => 'admiralexo@gmail.com',
-            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('webmaster'),
+            'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('chosen'),
             'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),
             'status'        => User::STATUS_UNCONFIRMED,
             'created_at'    => time(),
@@ -67,6 +67,5 @@ class m140703_123000_user extends Migration
         }
         $this->dropTable('{{%user_profile}}');
         $this->dropTable('{{%user}}');
-
     }
 }

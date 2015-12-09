@@ -1,3 +1,7 @@
+/**
+ * @author hirootkit <admiralexo@gmail.com>
+ */
+
 var taskTour = (function() {
     'use strict';
 
@@ -6,7 +10,7 @@ var taskTour = (function() {
             backdrop: false,
             storage: false,
             steps: [{
-                element: ".actionProject",
+                element: ".projectTitle",
                 content: "Начните с добавления проекта, над которым будет работать Ваша команда или Вы сами.",
                 placement: 'right'
             }, {

@@ -24,3 +24,5 @@ phpunit.phar
 
 # Environment
 .env
+
+tests/_output/*

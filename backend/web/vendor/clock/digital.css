@@ -1,0 +1,16 @@
+#clock li, #clock2 li {
+display:inline;
+color:#333333;
+font-size:11px;
+font-weight:bold;
+}
+#clock, #clock2 {
+padding-left: 0;
+margin: 5px 0;
+}
+.title {
+color:#333333;
+font-size:11px;
+font-weight:bold;
+margin: 0 10px;
+}

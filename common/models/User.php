@@ -10,7 +10,6 @@
 
 namespace common\models;
 
-use backend\models\Project;
 use backend\models\Task;
 use backend\models\TaskData;
 use Yii;

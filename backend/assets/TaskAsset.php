@@ -22,36 +22,30 @@ class TaskAsset extends AssetBundle
     public $css = [
         'http://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin,cyrillic',
 
-        'css/theme.css',
-        'css/animate.css',
-        'vendor/plugins/magnific/magnific-popup.css',
-        'vendor/plugins/jstree/themes/neutron/style.css'
+        'css/style.css',
+        'fonts/entypo-icon/entypo-icon.css',
+
+        'vendor/skin-select/skin-select.css',
+        'vendor/tip/tooltipster.css',
+        'vendor/slidebars/slidebars.css',
+        'vendor/magnific/magnific-popup.css',
+        'vendor/summernote/summernote.css',
     ];
 
     public $js = [
-        'vendor/plugins/jstree/jstree.min.js',
-        'vendor/plugins/magnific/jquery.magnific-popup.min.js',
-
         'scripts/plugins.js',
-        'scripts/modules/projectTree.js',
-        'scripts/modules/taskTour.js',
-        'scripts/modules/sideMenu.js',
-        'scripts/modules/contentTree.js',
-        'scripts/app.js'
-
+        'scripts/app.js',
+        'vendor/jstree/jstree.min.js',
+        'vendor/summernote/summernote.min.js',
+        'vendor/magnific/jquery.magnific-popup.min.js',
+        'vendor/noty/packaged/jquery.noty.packaged.min.js'
     ];
 
     public $jsOptions = ['position' => View::POS_END];
 
     public $depends = [
-        'yii\web\JqueryAsset',
+        'yii\web\YiiAsset',
         'common\assets\BootstrapAsset',
         'common\assets\FontAwesome'
     ];
-
-    public function init()
-    {
-        parent::init();
-        Yii::$app->assetManager->bundles['common\assets\BootstrapAsset'] = ['css' => []];
-    }
 }

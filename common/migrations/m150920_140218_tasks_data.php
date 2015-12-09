@@ -18,15 +18,28 @@ class m150920_140218_tasks_data extends Migration
             'lvl'    => $this->integer(15),
             'pid'    => $this->integer(15),
             'name'   => $this->string(255),
-            'format' => $this->string(255),
             'note'   => $this->string(255)
         ], $tableOptions);
+
+        $this->createTable('{{%task_comments}}', [
+            'commentId'  => $this->primaryKey(),
+            'taskId'     => $this->integer(),
+            'userId'     => $this->integer(),
+            'comment'    => $this->text(),
+            'timePosted' => $this->date()
+        ], $tableOptions);
+
+        if ($this->db->driverName === 'mysql') {
+            $this->addForeignKey('fk_comm', '{{%task_comments}}', 'taskId', '{{%tasks}}', 'taskId', 'cascade', 'cascade');
+        }
     }
 
     public function down()
     {
-        echo "m150920_140218_tasks_data cannot be reverted.\n";
-
-        return false;
+        if ($this->db->driverName === 'mysql') {
+            $this->dropForeignKey('fk_comm', '{{%task_comments}}');
+        }
+        $this->dropTable('{{%task_data}}');
+        $this->dropTable('{{%task_comments}}');
     }
 }

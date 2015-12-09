@@ -44,7 +44,7 @@ class ProjectController extends Controller
                     'create'             => ['post'],
                     'delete'             => ['post'],
                     'rename'             => ['post'],
-                    'assign-user'        => ['post'],
+                    'share-with-user'    => ['post'],
                     'unassign-user'      => ['post'],
                     'get-assigned-users' => ['get'],
                 ]
@@ -118,6 +118,7 @@ class ProjectController extends Controller
     {
         $project = Project::findOne(Yii::$app->request->post('id'));
         $root    = TaskData::find()->roots(Yii::$app->user->id, $project->getPrimaryKey())->one();
+
         if ($project->delete() && $root->delete()) {
             return true;
         }
@@ -130,7 +131,7 @@ class ProjectController extends Controller
      * Поиск id пользователя по email, а также корневого id проекта для открытия доступа.
      * @return bool если юзер теперь имеет доступ к проекту.
      */
-    public function actionAssignUser()
+    public function actionShareWithUser()
     {
         $listId  = Yii::$app->request->post('listId');
         $email   = Yii::$app->request->post('email');
@@ -154,7 +155,7 @@ class ProjectController extends Controller
 
     /**
      * Удаление пользователя из совместного проекта.
-     * Поиск id пользователя по email, а также корневого id проекта для открытия доступа.
+     * Поиск id пользователя по email, а также корневого id проекта для закрытия доступа.
      * @return bool если юзер теперь не имеет доступа к проекту.
      */
     public function actionUnassignUser()
@@ -177,6 +178,11 @@ class ProjectController extends Controller
         return null;
     }
 
+    /**
+     * Возвращает список пользователей, которые принимают участие в работе над проектом.
+     * Учитывается и владелец списка, который может взаимодействовать с юзерами. (Пока не более двух)
+     * @return array|null объект участников в списке.
+     */
     public function actionGetAssignedUsers()
     {
         if (Yii::$app->request->isAjax) {

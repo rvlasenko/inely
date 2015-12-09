@@ -17,7 +17,7 @@
     "plusplus"      : false,
     "quotmark"      : false,
     "undef"         : false,
-    "strict"        : true,
+    "strict"        : false,
     "browser"       : true,
     "globals"       : {
         "$"         : false,

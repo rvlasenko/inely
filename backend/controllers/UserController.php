@@ -30,6 +30,14 @@ class UserController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ],
+                    [
+                        'allow' => false,
+                        'roles' => ['?']
+                    ],
+                    [
                         'actions' => ['logout'],
                         'allow'   => true,
                         'roles'   => ['@']
@@ -37,6 +45,11 @@ class UserController extends Controller
                 ]
             ]
         ];
+    }
+
+    public function actionIndex()
+    {
+
     }
 
     /**

@@ -1,32 +1,107 @@
 /**
  * @author hirootkit <admiralexo@gmail.com>
- *
- * This file is reserved for changes made by the use.
- * Always seperate your work from the theme. It makes
- * modifications, and future theme updates much easier
  */
 
-// Модуль представляет из себя переменную, которой присвоено значение самовызывающейся анонимной функции
-// Функция возвращает объект, предоставляющий публичный API для работы с модулем
+/* ===========================
+ Инициализируем модули
+ ============================= */
+// Но перед этим необходимо завести right sidebar
+head.js("vendor/slidebars/slidebars.min.js");
 
-var App = (function() {
-    'use strict';
+head.js("scripts/modules/contentTree.js", function () { contentTree.init(); });
+head.js("scripts/modules/projectTree.js", function () { projectTree.init(); });
+//head.js("scripts/modules/taskTour.js", function () { taskTour.init(); });
 
-    var onTheTaskPage = $("body.task-page").length;
+/* ===========================
+ Инициализируем библиотеки
+ ============================= */
+// Эффект слайдинга
+head.js("vendor/skin-select/skin-select.js");
 
-    // Объект, содержащий публичное API
-    return {
-        init: function() {
-            if (onTheTaskPage) {
-                // Инициализируем модули на странице
-                contentTree.init();
-                projectTree.init();
-                //taskTour.init();
-                sideMenu.init();
-            }
-        }
+// Отображение даты
+head.js("vendor/clock/date.js");
+
+// Новостной стикер
+head.js("vendor/newsticker/jquery.newsTicker.min.js");
+
+// Всплывающие подсказки
+head.js("vendor/tip/jquery.tooltipster.min.js", function() {
+
+    $('.tooltitle').tooltip({
+        position: 'bottom'
+    });
+
+    $('.tooltip-tip').tooltipster({
+        position: 'right',
+        animation: 'slide',
+        theme: '.tooltipster-shadow',
+        delay: 1,
+        offsetX: '-12px',
+        onlyOne: true
+    });
+
+});
+
+// Полоса загрузки
+head.js("vendor/pace/pace.min.js", function() {
+
+    paceOptions = {
+        ajax: false,
+        document: false
     };
-})();
 
-// Инициализируем глобальный модуль
-App.init();
+});
+
+// Цифровые часы
+head.js("vendor/clock/jquery.clock.js", function() {
+
+    $('#digital-clock').clock();
+
+});
+//-------------------------------------------------------------
+
+//NICE SCROLL
+/*
+ head.js("assets/js/nano/jquery.nanoscroller.js", function() {
+
+ $(".nano").nanoScroller({
+ //stop: true
+ scroll: 'top',
+ scrollTop: 0,
+ sliderMinHeight: 40,
+ preventPageScrolling: true
+ //alwaysVisible: false
+
+ });
+
+ });*/
+
+
+
+//-------------------------------------------------------------
+
+/*
+ head.js("vendor/gage/raphael.2.1.0.min.js", "vendor/gage/justgage.js", function() {
+
+ var g1;
+ window.onload = function() {
+ var g1 = new JustGage({
+ id: "g1",
+ value: getRandomInt(0, 1000),
+ min: 0,
+ max: 1000,
+ relativeGaugeSize: true,
+ gaugeColor: "rgba(0,0,0,0.4)",
+ levelColors: "#0DB8DF",
+ labelFontColor : "#ffffff",
+ titleFontColor: "#ffffff",
+ valueFontColor :"#ffffff",
+ label: "VISITORS",
+ gaugeWidthScale: 0.2,
+ donut: true
+ });
+ };
+
+
+
+ });*/

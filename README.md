@@ -3,10 +3,10 @@
 Рабочий сервер
 ----
 Frontend:
-http://domain.net
+http://inely.ru
 
 Backend:
-http://backend.domain.net
+http://app.inely.ru
 
 Установка и развёртывание
 ------------
