@@ -36,6 +36,7 @@ class SignUpController extends AuthController
                 }
             } else {
                 $message = Yii::t('frontend', 'This email address has already been taken');
+
                 return $this->renderAjax('signUp', ['message' => $message, 'display' => true]);
             }
         }

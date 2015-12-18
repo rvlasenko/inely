@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=cyrillic");
-
 html, body, div, input {
     padding: 0;
     margin: 0;
@@ -32,17 +30,17 @@ input, textarea, button, select {
 
 .icon-check {
     font-size: 40px;
-    color: #2B88D9;
+    color: #2b88d9;
 }
 
 .icon-envelope-open {
     font-size: 40px;
-    color: #2B88D9;
+    color: #2b88d9;
 }
 
 .icon-game-controller {
     font-size: 40px;
-    color: #2B88D9;
+    color: #2b88d9;
 }
 
 a[target="_blank"], a[target="_blank"]:visited {
@@ -125,15 +123,13 @@ a[target="_blank"], a[target="_blank"]:visited {
     color: #555;
 }
 
-
-
 .auth-form {
     background-color: #fff;
     -webkit-border-radius: 4px;
     border-radius: 3px;
     font-size: 16px;
     overflow: hidden;
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 
 .auth-form .row {
@@ -608,18 +604,22 @@ h4.branding.signup {
     transition: all 0.3s;
     width: 0;
 }
+
 .icon-button:hover span {
     width: 3.6rem;
     height: 3.6rem;
     border-radius: 3.6rem;
     margin: -1.8rem;
 }
+
 .vk span {
     background-color: #45668e;
 }
+
 .facebook span {
-    background-color: #3B5998;
+    background-color: #3b5998;
 }
+
 .google-plus span {
     background-color: #db5a3c;
 }
@@ -640,15 +640,19 @@ h4.branding.signup {
     width: 3.6rem;
     z-index: 10;
 }
+
 .icon-button .icon-vk {
     color: #45668e;
 }
+
 .icon-button .icon-facebook {
-    color: #3B5998;
+    color: #3b5998;
 }
+
 .icon-button .icon-google-plus {
     color: #db5a3c;
 }
+
 .icon-button:hover .icon-vk,
 .icon-button:hover .icon-facebook,
 .icon-button:hover .icon-google-plus {
@@ -687,8 +691,8 @@ html[dir="rtl"] .wrapper.signup .card.benefits {
 }
 
 .errors div.message {
-    background-color: rgba(214,40,34,0.07);
-    border: 1px solid rgba(214,40,34,0.36);
+    background-color: rgba(214, 40, 34, 0.07);
+    border: 1px solid rgba(214, 40, 34, 0.36);
     color: #d62822;
     -webkit-border-radius: 4px;
     border-radius: 4px;
@@ -727,6 +731,7 @@ html[dir="rtl"] .wrapper.signup .card.benefits {
     z-index: 1000;
     background-color: rgba(42, 42, 42, 0.51);
 }
+
 #loader {
     display: block;
     position: relative;
@@ -771,26 +776,27 @@ html[dir="rtl"] .wrapper.signup .card.benefits {
 }
 
 @-webkit-keyframes spin {
-    0%   {
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    0% {
+        -webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg); /* IE 9 */
+        transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
     }
     100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+        -webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg); /* IE 9 */
+        transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
     }
 }
+
 @keyframes spin {
-    0%   {
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    0% {
+        -webkit-transform: rotate(0deg); /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg); /* IE 9 */
+        transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
     }
     100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+        -webkit-transform: rotate(360deg); /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg); /* IE 9 */
+        transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
     }
 }

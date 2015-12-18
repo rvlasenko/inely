@@ -62,7 +62,7 @@ class TaskData extends ActiveRecord
     {
         return [
             [['lft', 'rgt', 'lvl', 'pid'], 'integer'],
-            [['name', 'note'], 'string', 'max' => 255],
+            [['name', 'note'], 'string']
         ];
     }
 

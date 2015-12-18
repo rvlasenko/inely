@@ -250,14 +250,13 @@ class NestedSetBehavior extends Behavior
      *
      * @return \yii\db\ActiveQuery
      */
-    public function children($ownerId, $history = Task::ACTIVE_TASK, $sort = 'lft', $listId = null, $group = 'inbox', $depth = null)
+    public function children($ownerId, $history = Task::ACTIVE_TASK, $sort, $listId, $group = 'inbox', $depth = null)
     {
         $mainCond = [
             'and',
             ['>', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
             ['<', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)],
         ];
-        $tableName = $this->owner->tableName() == 'task_data' ? 'tasks' : 'projects';
 
         if ($depth !== null) {
             $mainCond[] = ['<=', $this->depthAttribute, $this->owner->getAttribute($this->depthAttribute) + $depth];
@@ -273,22 +272,22 @@ class NestedSetBehavior extends Behavior
             // По названию
             $sort = 'name';
         } else {
-            // По умолчанию
+            // По умолчанию левые индексы
             $sort = [$this->leftAttribute => SORT_DESC];
         }
 
-        if ($history === Task::COMPLETED_TASK && $listId === '') {
+        if ($history === Task::COMPLETED_TASK && $listId == '') {
             // Выборка завершенных задач (входящие)
-            $historyCond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
-        } elseif ($history === Task::COMPLETED_TASK && $listId !== '') {
+            $historyCond = ['ownerId' => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
+        } elseif ($history === Task::COMPLETED_TASK && $listId != '') {
             // Выборка завершенных задач (входящие)
-            $historyCond = ["$tableName.ownerId" => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => $listId];
-        } elseif (empty($listId) && $tableName == 'tasks') {
+            $historyCond = ['ownerId' => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => $listId];
+        } elseif (empty($listId) && $this->owner->tableName() == 'tasks' && $group == 'inbox') {
             // Выборка входящих задач
             $historyCond = [
-                "$tableName.ownerId" => $ownerId,
-                'isDone'             => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
-                'listId'             => null
+                'ownerId' => $ownerId,
+                'isDone'  => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
+                'listId'  => null
             ];
         } else {
             // Выборка задач в проекте

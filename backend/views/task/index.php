@@ -32,7 +32,7 @@
 
                         <div class="alert">
                             <span class="tittle-alert entypo-info-circled"></span>
-                            &nbsp;Привет, <strong><?= $this->params['first-name'] ?></strong>!
+                            &nbsp;Привет, <strong><?= $this->params['firstName'] ?></strong>!
                         </div>
 
                     </div>
@@ -78,8 +78,6 @@
                     </svg>
                     <span class="pl15">Добавить задачу</span>
                 </a>
-
-                <div class="completed"><a href="#"></a></div>
             </div>
 
             <svg class="svgBox source" viewBox="0 0 32 32" hidden>
@@ -112,11 +110,15 @@
                     <label for="name">Наименование</label>
                     <input type="text" placeholder="Что Вы хотите выполнить?" id="name" class="form-control">
                 </div>
+                <div class="col-md-12 mt10" hidden>
+                    <label for="assign-to">Делегирование</label>
+                    <select id="assign-to" class="form-control" style="width: 100%;"></select>
+                </div>
                 <div class="col-md-12 mt10">
                     <label for="name">Срок выполнения</label>
                     <input type="text" placeholder="Задайте дату выполнения" id="date" class="form-control datetimepicker">
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mt10">
                     <label for="summernote">Заметки</label>
                     <textarea id="summernote"></textarea>
                 </div>

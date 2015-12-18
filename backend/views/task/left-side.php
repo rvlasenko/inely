@@ -34,17 +34,21 @@
                     </li>
 
                     <li>
-                        <a class="tooltip-tip ajax-load inboxGroup" href="#">
+                        <a class="tooltip-tip ajax-load inboxGroup active" href="#">
                             <i class="entypo-archive"></i>
                             <span>Входящие</span>
+
                             <div class="noft-blue-number counter inbox"></div>
                         </a>
                     </li>
+
+                    <?= $this->render('_assignedToMe') ?>
 
                     <li>
                         <a class="tooltip-tip ajax-load todayGroup" href="#">
                             <i class="entypo-light-up"></i>
                             <span>Сегодня</span>
+
                             <div class="noft-blue-number counter today"></div>
                         </a>
                     </li>
@@ -53,7 +57,8 @@
                         <a class="tooltip-tip ajax-load nextGroup" href="#">
                             <i class="entypo-calendar"></i>
                             <span>Следующие 7 дней</span>
-                            <div class="noft-blue-number counter next7days"></div>
+
+                            <div class="noft-blue-number counter week"></div>
                         </a>
                     </li>
                 </ul>

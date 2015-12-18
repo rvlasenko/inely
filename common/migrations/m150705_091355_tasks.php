@@ -20,13 +20,14 @@ class m150705_091355_tasks extends Migration
             'isDone'       => $this->smallInteger(4),
             'updatedAt'    => $this->integer(),
             'createdAt'    => $this->integer(),
+            'sharedWith'   => $this->integer(),
             'assignedTo'   => $this->integer(),
         ], $tableOptions);
 
         $this->createTable('{{%projects}}', [
             'id'         => $this->primaryKey(),
             'ownerId'    => $this->integer(50),
-            'assignedTo' => $this->integer(),
+            'sharedWith' => $this->integer(),
             'listName'   => $this->string(100),
             'badgeColor' => $this->string(7)
         ], $tableOptions);

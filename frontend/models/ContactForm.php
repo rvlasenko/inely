@@ -14,9 +14,6 @@ use Yii;
 use yii\base\Model;
 use yii\base\ErrorException;
 
-/**
- * ContactForm is the model behind the contact form.
- */
 class ContactForm extends Model
 {
     public $name;
@@ -26,8 +23,8 @@ class ContactForm extends Model
     public $verifyCode;
 
     /**
-     * Name, email and body are required
-     * @return array the validation rules.
+     * Имя, email и тело письма обязательны
+     * @return array правила валидации.
      */
     public function rules()
     {
@@ -41,11 +38,11 @@ class ContactForm extends Model
     }
 
     /**
-     * Sends an email to the specified email address using the information collected by this model.
+     * Отправка email на указанную электронную почту используя информацию, полученной этой моделью.
      *
-     * @param  string $email the target email address
+     * @param string $email целевой адрес email.
      *
-     * @return boolean whether the model passes validation
+     * @return boolean если модель проходит валидацию.
      */
     public function contact($email)
     {

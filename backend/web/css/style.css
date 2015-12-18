@@ -678,7 +678,7 @@ img.ikon {
 }
 
 .noft-red {
-    background: none repeat scroll 0 0 #ea3f3f;
+    background: none repeat scroll 0 0 #d8422d !important;
     border-radius: 26px;
     color: #fff;
     font-size: 10px;
@@ -3572,7 +3572,7 @@ small.pull-right {
 
 #tree {
     outline: none;
-    color: #777;
+    color: #555;
     margin-left: 15px;
 }
 
@@ -4496,7 +4496,21 @@ label {
 
 .mt10 {
     margin-top: 10px;
-    margin-bottom: 10px;
+}
+
+.assigned-userpic {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.assigned-userpic.sm {
+    width: 28px;
+    height: 28px;
+    margin-top: 5px;
+    float: right;
+    margin-right: 15px;
 }
 
 ul.comment-list {
@@ -4505,7 +4519,26 @@ ul.comment-list {
     margin-bottom: 50px;
 }
 
+ul.comment-list li:first-child {
+    padding-top: 10px;
+}
+
 .row .bottom {
     position: absolute;
     bottom: 15px;
+}
+
+#all-completed-today {
+    display: none;
+    text-align: center;
+}
+
+#all-completed-today .illustration {
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+#all-completed-today .head {
+    font-size: 20px;
+    margin-bottom: 10px;
 }

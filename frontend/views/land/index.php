@@ -10,7 +10,7 @@
                             <div class="col-lg-12">
 
                                 <p class="lead text-shadow-small margin-bot-30" data-sr="enter bottom over 1s and move 50px wait 0.4s">Inely - сервис для достижения целей</p>
-                                <h1 class="text-shadow-medium" data-sr="enter bottom over 1s and move 50px wait 0.3s">Каждый день достигайте большего за меньшее время</h1>
+                                <h1 class="text-shadow-medium" data-sr="enter bottom over 1s and move 50px wait 0.3s">Достигайте большего за меньшее время</h1>
                                 
                                 <ul class="inline-cta">
                                     <li data-sr="enter right over 1s wait 0.3s">
@@ -69,7 +69,7 @@
 
                         <div class="how-it-works-info">
                             <h4>Производительность</h4>
-                            <p>Inely способен помочь Вам гармонично охватывать все стороны жизни и концентрироваться на самых важных вещах, с помощью таких популярных методик, как Getting Things Done, либо Agile Results.</p>
+                            <p>Inely способен помочь Вам гармонично охватывать все стороны жизни и концентрироваться на самых важных вещах, с помощью такой популярной методики, как Getting Things Done.</p>
                         </div>
                     </li> 
 

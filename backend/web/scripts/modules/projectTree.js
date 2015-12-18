@@ -9,28 +9,32 @@ var projectTree = (function () {
      jQuery селекторы
      ============================= */
     var $tree = $("#tree");
-    var $projectTree = $('.jstree-neutron');
-    var $dropDownMenu  = $('#paper-top').find('.dropdown-menu');
+    var $projectTree  = $('.jstree-neutron');
+    var $dropDownMenu = $('#paper-top').find('.dropdown-menu');
     var $userList  = $(".users-list");
+    var $assignTo  = $('#assign-to');
     var $csrfToken = $('meta[name=csrf-token]').attr("content");
 
     /* ===========================
-     Цвет иконки проекта
+     Прочее
      ============================= */
     var badgeColors = ['first', 'second', 'third', 'fourth'];
 
+    /**
+     * Обновление названия проекта
+     */
     var renameProjectNode = function () {
-        var name = $('#edit-name').val();
+        var name = $('#edit-name').val(); // Новое название
         var listId = localStorage.getItem("listId");
 
         if (name.length) {
-            $.post('/project/rename', {
+            $.post('/project/edit', {
                 'id':       listId,
                 'listName': name,
                 '_csrf':    $csrfToken
             }).done(function () {
-                noty({
-                    text: 'Имя проекта успешно изменено',
+                noty({ // Отображение уведомления для пользователя
+                    text: 'Новые настройки успешно применены',
                     layout: 'topRight',
                     theme: 'relax',
                     timeout: 3000,
@@ -41,7 +45,7 @@ var projectTree = (function () {
                     }
                 });
 
-                // Присваивание нового текста в селекторы, где оно было ранее
+                // Присваивание нового названия в элементы, где оно было ранее
                 $('[data-key='+ listId +']')
                     .find('.text')
                     .html(name);
@@ -54,20 +58,24 @@ var projectTree = (function () {
         }
     };
 
+    /**
+     * Создание нового проекта
+     */
     var createProjectNode = function () {
-        var $input = $("#project-input");
-        var name   = $input.val();
+        var $input   = $("#project-input");
+        var projName = $input.val();
 
-        if (name.length) {
+        if (projName.length) {
             // Выбор случайного цвета для иконки проекта
             var selectedColor = badgeColors[Math.floor(Math.random() * badgeColors.length)];
 
             $.post('/project/create', {
-                'listName':   name,
+                'listName':   projName,
                 'badgeColor': selectedColor,
                 '_csrf':      $csrfToken
             }).done(function (data) {
-                $('.empty').remove(); // Оповещение об отсутствии проектов
+                // Оповещение об отсутствии проектов для новых юзеров
+                $('.empty').remove();
                 $projectTree.append(
                 '<li class="jstree-node jstree-leaf" data-key='+ data.id +'>' +
                     '<a class="jstree-anchor private '+ selectedColor +'" href="#">' +
@@ -88,6 +96,9 @@ var projectTree = (function () {
         });
     };
 
+    /**
+     * Удаление существующего проекта
+     */
     var deleteProjectNode = function () {
         var listId = localStorage.getItem("listId");
         var dlg = confirm("Вы действительно хотите удалить этот проект? Данное действие необратимо!");
@@ -97,8 +108,8 @@ var projectTree = (function () {
                 'id':    listId,
                 '_csrf': $csrfToken
             }).done(function () {
-                $('[data-key='+ listId +']').remove();
-                $.magnificPopup.close();
+                $('[data-key='+ listId +']').remove(); // Удаление li элемента
+                $.magnificPopup.close(); // Скрытие диалогово окна
                 $tree.jstree(true).settings.core.data = {
                     url: "/task/node",
                     data: function (node) {
@@ -111,8 +122,12 @@ var projectTree = (function () {
         }
     };
 
+    /**
+     * Заполнение дерева задачами проекта, во время его выбора в левом сайдбаре
+     */
     var fillTree = function () {
         $(document).on('click', '.jstree-neutron a', function () {
+            // Переменная хранилища содержит идентификатор проекта
             localStorage.setItem("listId", $(this).parent().data('key'));
 
             // Перестроение дерева под данный проект
@@ -123,31 +138,35 @@ var projectTree = (function () {
                         id:     node.id,
                         listId: localStorage.getItem("listId")
                     };
+                },
+                success: function () {
+                    // Делегирование задач возможно только в проектах
+                    $assignTo.parent().show();
                 }
             };
 
             $tree.jstree('refresh');
 
-            $(".inboxGroup, .todayGroup, .nextGroup").removeClass("active");
             $('.action').fadeIn(200);
             $('.history').fadeIn(200).removeClass('fa-reply out').addClass('fa-clock-o in');
+            $('#all-completed-today').fadeOut(200);
 
             // Теперь ни один проект кроме данного не активен
             $(".jstree-neutron li").each(function () {
                 $(this).removeClass('active');
             });
             $(this).parent().addClass('active');
+            $(".inboxGroup, .todayGroup, .nextGroup").removeClass("active");
 
             // Хлебные крошки указывают на данный проект
             $('.crumb-active').html($(this).text());
 
-            // Присваивание уникальных действий с проектом во всплывающее меню
+            // Настройки проекта присваиваются только после удаления прошлых
             if ($('#settings').length) {
                 $dropDownMenu
                     .find('li:lt(2)')
                     .remove();
             }
-
             $dropDownMenu.prepend(
                 '<li><a href="#" id="settings">' +
                     '<span class="entypo-user-add margin-iconic"></span>Настройки проекта</a>' +
@@ -160,10 +179,10 @@ var projectTree = (function () {
     };
 
     /**
-     * Поиск необходимого, отправка сообщения юзеру о вступлении в проект.
+     * Поиск и отправка сообщения юзеру о вступлении в проект.
      * Отображение диалога об успешной отправке.
      */
-    var handleAssignUserToProject = function () {
+    var handleShareWithUser = function () {
         $("#done").click(function () {
             var listId   = localStorage.getItem("listId");
             var $project = $('div[data-key='+ listId +']');
@@ -197,14 +216,14 @@ var projectTree = (function () {
     /**
      * Поиск необходимых идентификаторов, jQuery объектов и удаление юзера из проекта.
      */
-    var handleUnassignUser = function () {
+    var handleRemoveCollaborator = function () {
         $(document).on('click', '#del-user', function () {
             var userKey  = $(this).parent().data('key');
             var listId   = localStorage.getItem("listId");
             var $project = $('div[data-key='+ listId +']');
             var $user    = $('.section-item[data-key='+ userKey +']');
 
-            $.post('/project/unassign-user', {
+            $.post('/project/remove-collaborator', {
                 'listId': listId,
                 'userId': userKey,
                 '_csrf':  $csrfToken
@@ -235,7 +254,7 @@ var projectTree = (function () {
                         this.st.mainClass = 'mfp-zoomIn';
                     },
                     open: function() {
-                        $.getJSON('/project/get-assigned-users', {
+                        $.getJSON('/project/get-collaborators', {
                             listId: localStorage.getItem("listId")
                         }).done(function(data) {
                             $userList.empty();
@@ -244,7 +263,7 @@ var projectTree = (function () {
                                 '<li class="section-item" data-key="'+ user.key +'">' +
                                     '<div class="section-icon picture">' +
                                     '<div class="avatar medium">' +
-                                        '<img src="'+ user.userpic +'">' +
+                                        '<img src="'+ user.picture +'">' +
                                     '</div>' +
                                     '</div>' +
                                 '<div class="section-content">' +
@@ -277,10 +296,10 @@ var projectTree = (function () {
     return {
 
         init: function () {
-            fillTree();
-            handleAssignUserToProject();
-            handleUnassignUser();
+            handleShareWithUser();
+            handleRemoveCollaborator();
             handleOpenSettings();
+            fillTree();
 
             this.events();
         },

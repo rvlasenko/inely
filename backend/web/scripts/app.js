@@ -5,8 +5,10 @@
 /* ===========================
  Инициализируем модули
  ============================= */
-// Но перед этим необходимо завести right sidebar
+// Перед этим необходимо завести right sidebar
 head.js("vendor/slidebars/slidebars.min.js");
+// и плагин для иерархии
+head.js("vendor/jstree/jstree.min.js");
 
 head.js("scripts/modules/contentTree.js", function () { contentTree.init(); });
 head.js("scripts/modules/projectTree.js", function () { projectTree.init(); });
@@ -20,6 +22,13 @@ head.js("vendor/skin-select/skin-select.js");
 
 // Отображение даты
 head.js("vendor/clock/date.js");
+
+// Цифровые часы
+head.js("vendor/clock/jquery.clock.js", function() {
+
+    $('#digital-clock').clock();
+
+});
 
 // Новостной стикер
 head.js("vendor/newsticker/jquery.newsTicker.min.js");
@@ -49,13 +58,6 @@ head.js("vendor/pace/pace.min.js", function() {
         ajax: false,
         document: false
     };
-
-});
-
-// Цифровые часы
-head.js("vendor/clock/jquery.clock.js", function() {
-
-    $('#digital-clock').clock();
 
 });
 //-------------------------------------------------------------

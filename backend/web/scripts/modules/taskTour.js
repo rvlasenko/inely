@@ -20,7 +20,7 @@ var taskTour = (function() {
             }]
         });
 
-        // Инициализация обзора задачника и его запуск
+        // Инициализация тура по сайту и его запуск
         tour.init();
         setTimeout(function () { tour.restart(); }, 3000);
     };

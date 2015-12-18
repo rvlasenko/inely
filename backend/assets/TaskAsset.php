@@ -30,15 +30,17 @@ class TaskAsset extends AssetBundle
         'vendor/slidebars/slidebars.css',
         'vendor/magnific/magnific-popup.css',
         'vendor/summernote/summernote.css',
+        'vendor/select2/css/select2.css'
     ];
 
     public $js = [
         'scripts/plugins.js',
         'scripts/app.js',
-        'vendor/jstree/jstree.min.js',
+
         'vendor/summernote/summernote.min.js',
         'vendor/magnific/jquery.magnific-popup.min.js',
-        'vendor/noty/packaged/jquery.noty.packaged.min.js'
+        'vendor/noty/packaged/jquery.noty.packaged.min.js',
+        'vendor/select2/js/select2.min.js'
     ];
 
     public $jsOptions = ['position' => View::POS_END];

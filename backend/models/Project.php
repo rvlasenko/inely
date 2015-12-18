@@ -26,7 +26,7 @@ class Project extends ActiveRecord
     public function rules()
     {
         return [
-            ['assignedTo', 'integer'],
+            ['sharedWith', 'integer'],
             [['listName', 'badgeColor'], 'string', 'max' => 255],
             ['ownerId', 'default', 'value' => Yii::$app->user->id]
         ];

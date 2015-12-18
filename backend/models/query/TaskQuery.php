@@ -17,8 +17,6 @@ class TaskQuery extends ActiveQuery
 {
     public function behaviors()
     {
-        return [
-            NestedSetQueryBehavior::className()
-        ];
+        return [NestedSetQueryBehavior::className()];
     }
 }

@@ -1,15 +1,10 @@
 <?php
 
-/**
- * deprecated
- *
- * @author hirootkit <admiralexo@gmail.com>
- */
-
 namespace backend\controllers;
 
 use backend\models\Task;
 use backend\models\Project;
+use backend\models\TaskComments;
 use backend\models\TaskForm;
 use backend\models\TaskData;
 use common\components\formatter\FormatterComponent;
@@ -21,7 +16,13 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
+/**
+ * deprecated
+ *
+ * @author hirootkit <admiralexo@gmail.com>
+ */
 class TreeController extends Controller
 {
     /**
@@ -53,20 +54,13 @@ class TreeController extends Controller
      * ```
      */
     protected $root = [
-        'dataId'   => 1,
-        'name'     => 'Root',
-        'note'     => null,
-        'format'   => null,
-        'lft'      => 1,
-        'rgt'      => 11,
-        'lvl'      => 0,
-        'pid'      => 0,
-        'pos'      => 1,
-        'children' => true,
-        'tasks'    => [
-            'priority' => null,
-            'dueDate'  => null
-        ]
+        'id'       => 27,
+        'text'     => 'Root',
+        'a_attr'   => [
+            'degree' => null,
+            'date'   => null,
+        ],
+        'children' => true
     ];
 
     /**
@@ -113,43 +107,43 @@ class TreeController extends Controller
             $sortBy = ['priority' => SORT_DESC];
         }
 
-        $cond    = [
-            'pid'    => $id,
+        $cond = [
+            'pid'     => $id,
             'ownerId' => Yii::$app->user->id,
-            'isDone' => Task::ACTIVE_TASK
+            'isDone'  => Task::ACTIVE_TASK
         ];
         if ($recursive) {
             // Рекурсивная проверка на наличие вложенных задач
             $node  = $this->getNode($id);
             $query = TaskData::find()
-                              ->where(['>', 'lft', $node['lft']])
-                              ->andWhere(['<', 'rgt', $node['rgt']])
-                              ->orderBy('lft')
-                              ->asArray()
-                              ->all();
+                             ->where(['>', 'lft', $node['lft']])
+                             ->andWhere(['<', 'rgt', $node['rgt']])
+                             ->orderBy('lft')
+                             ->asArray()
+                             ->all();
 
         } elseif (!is_null(ArrayHelper::getValue($params, 'list'))) {
             // Если $list равен null, то искать все задачи независимо от категории
             // Иначе требуются задачи с категорией, которая пришла в $list
             if ($id) {
                 $query = TaskData::find()
-                                  ->joinWith(Task::tableName())
-                                  ->where($cond)
-                                  ->andWhere(['list' => $params['list']])
-                                  ->orderBy($sortBy)
-                                  ->asArray()
-                                  ->all();
+                                 ->joinWith(Task::tableName())
+                                 ->where($cond)
+                                 ->andWhere(['list' => $params['list']])
+                                 ->orderBy($sortBy)
+                                 ->asArray()
+                                 ->all();
             }
         } else {
             // Выборка всех задач в Inbox, которым не назначен список
             if ($id) {
                 $query = TaskData::find()
-                                  ->joinWith(Task::tableName())
-                                  ->where($cond)
-                                  ->andWhere(['list' => null])
-                                  ->orderBy($sortBy)
-                                  ->asArray()
-                                  ->all();
+                                 ->joinWith(Task::tableName())
+                                 ->where($cond)
+                                 ->andWhere(['list' => null])
+                                 ->orderBy($sortBy)
+                                 ->asArray()
+                                 ->all();
             }
         }
 
@@ -205,12 +199,29 @@ class TreeController extends Controller
         $query = false;
         if ($node) {
             $query = TaskData::find()
-                              ->where(['<', 'lft', $node['lft']])
-                              ->andWhere(['>', 'rgt', $node['rgt']])
-                              ->orderBy('lft')->asArray()->all();
+                             ->where(['<', 'lft', $node['lft']])
+                             ->andWhere(['>', 'rgt', $node['rgt']])
+                             ->orderBy('lft')
+                             ->asArray()
+                             ->all();
         }
 
         return $query;
+    }
+
+    public function actionNode($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        if ($id === '#') {
+            return $this->root;
+        } else {
+            $node = TaskData::find()->joinWith(Task::tableName())->where([
+                'assignedTo' => Yii::$app->user->id
+            ])->asArray()->all();
+
+            return $this->buildTree($node);
+        }
     }
 
     /**
@@ -227,27 +238,40 @@ class TreeController extends Controller
      *
      * @return array результат кодирования.
      */
-    public function buildTree($temp)
+    public function buildTree($node)
     {
         $result    = [];
         $formatter = new FormatterComponent();
 
-        foreach ($temp as $v) {
-            /*switch ($v[Task::tableName()]['priority']) {
-                case 3:
-                    $priority = Task::PR_HIGH; break;
-                case 2:
-                    $priority = Task::PR_MEDIUM; break;
-                case 1:
-                    $priority = Task::PR_LOW; break;
-                default:
-                    $priority = null;
-            }*/
+        foreach ($node as $v) {
+            $project      = Project::findOne($v[Task::tableName()]['listId']);
+            $assignedId   = $v[Task::tableName()]['assignedTo'];
+            $dueDate      = $formatter->asRelativeDate($v[Task::tableName()]['dueDate']);
+            $relativeDate = $formatter->timeInWords($v[Task::tableName()]['dueDate']);
+            $futureDate   = $formatter->dateLeft($v[Task::tableName()]['dueDate']);
+            $hasComment   = empty(TaskComments::findOne(['taskId' => $v['dataId']])) ? null : 'entypo-chat';
+            $incompletely = $v[Task::tableName()]['isDone'] == 2 ? true : false;
+            $isAssigned   = $assignedId ? /*UserProfile::findOne(['user_id' => $assignedId])->avatar_path*/
+                '/images/avatars/4.jpg' : false;
 
             $result[] = [
-                'id'       => $v['id'],
-                'text'     => $v['listName'],
-                'children' => ($v['rgt'] - $v['lft'] > 1)
+                'id'       => $v['dataId'],
+                'text'     => $v['name'],
+                'a_attr'   => [
+                    'note'       => $v['note'],
+                    'degree'     => $v[Task::tableName()]['taskPriority'],
+                    'incomplete' => $incompletely,
+                    'assigned'   => $isAssigned,
+                    'assignId'   => $assignedId,
+                    'date'       => $dueDate,
+                    'rel'        => $relativeDate,
+                    'hint'       => $futureDate,
+                    'pname'      => $project->listName,
+                    'pcolor'     => $project->badgeColor,
+                ],
+                'icon'     => $hasComment,
+                'children' => ($v['rgt'] - $v['lft'] > 1),
+                'data'     => false
             ];
         }
 
@@ -298,15 +322,19 @@ class TreeController extends Controller
     public function make($parent, $position = 0, $data = [])
     {
         $cond = [Task::tableName() . '.ownerId' => Yii::$app->user->id, 'pid' => 1];
-        if ($parent == 0) { throw new \Exception('Parent is 0'); }
+        if ($parent == 0) {
+            throw new \Exception('Parent is 0');
+        }
         if ($parent == 1) {
-            $parent = $this->root;
+            $parent             = $this->root;
             $parent['children'] = TaskData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
         }
 
-        if (!$parent['children']) { $position = 0; }
+        if (!$parent['children']) {
+            $position = 0;
+        }
         if ($parent['children'] && $position >= count($parent['children'])) {
             $position = count($parent['children']);
         }
@@ -429,7 +457,7 @@ class TreeController extends Controller
         }
 
         if ($parent == 1) {
-            $parent = $this->root;
+            $parent             = $this->root;
             $parent['children'] = TaskData::find()->joinWith(Task::tableName())->where($cond)->asArray()->all();
         } else {
             $parent = $this->getNode($parent, ['withChildren' => true, 'withPath' => true]);
@@ -474,13 +502,13 @@ class TreeController extends Controller
         $db->createCommand('UPDATE tasks_data SET lft = lft + :width WHERE lft >= :lft AND dataId NOT IN (:dataId)')
            ->bindValue(':width', $width)
            ->bindValue(':lft', $refLft)
-           ->bindValue(':dataId', (int) implode(',', $tmp))
+           ->bindValue(':dataId', (int)implode(',', $tmp))
            ->execute();
 
         $db->createCommand('UPDATE tasks_data SET rgt = rgt + :width WHERE rgt >= :rgt AND dataId NOT IN (:dataId)')
            ->bindValue(':width', $width)
            ->bindValue(':rgt', $refRgt)
-           ->bindValue(':dataId', (int) implode(',', $tmp))
+           ->bindValue(':dataId', (int)implode(',', $tmp))
            ->execute();
 
         /* Перемещение узла и его дочерних элементов */
@@ -494,7 +522,7 @@ class TreeController extends Controller
         $db->createCommand('UPDATE tasks_data SET rgt = rgt + :diff, lft = lft + :diff, lvl = lvl + :ldiff WHERE dataId IN(:dataId)')
            ->bindValue(':diff', $diff)
            ->bindValue(':ldiff', $leftDiff)
-           ->bindValue(':dataId', (int) implode(',', $tmp))
+           ->bindValue(':dataId', (int)implode(',', $tmp))
            ->execute();
 
         // позиция и id родителя
@@ -515,14 +543,14 @@ class TreeController extends Controller
         $db->createCommand('UPDATE tasks_data SET lft = lft - :width WHERE lft > :rgt AND dataId NOT IN(:id)')
            ->bindValue(':width', $width)
            ->bindValue(':rgt', $id['rgt'])
-           ->bindValue(':id', (int) implode(',', $tmp))
+           ->bindValue(':id', (int)implode(',', $tmp))
            ->execute();
 
         // И правых индексов
         $db->createCommand('UPDATE tasks_data SET rgt = rgt - :width WHERE rgt > :rgt AND dataId NOT IN(:id)')
            ->bindValue(':width', $width)
            ->bindValue(':rgt', $id['rgt'])
-           ->bindValue(':id', (int) implode(',', $tmp))
+           ->bindValue(':id', (int)implode(',', $tmp))
            ->execute();
 
         return true;

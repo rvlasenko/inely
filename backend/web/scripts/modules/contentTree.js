@@ -14,6 +14,7 @@ var contentTree = (function() {
     var $searchInput = $('.searchText');
     var $addComment  = $("#add-comment");
     var $taskName = $("#name");
+    var $assignTo = $('#assign-to');
     var $comments = $(".comment-list");
     var $taskDate = $("#date");
     var $taskNote = $('#summernote');
@@ -23,16 +24,15 @@ var contentTree = (function() {
     /* ===========================
      Атрибуты задачи (включая Smarty Add)
      ============================= */
-    var taskPriority = null; // task !1, task !2
-    var dueDate = null; // task :завтра, task :12 Янв, task :+5
+    var taskPriority; // task !1, task !2
+    var dueDate; // task :завтра, task :12 Янв, task :+5
     var listId  = localStorage.getItem("listId");
     var nodeObj = null;
 
     /* ===========================
-     Таймаут реквестов
+     Предотвращение дублирования запросов
      ============================= */
     var acceptRequest = false;
-    var isClicked     = false;
 
     /* ===========================
      URL константы и прочее
@@ -59,23 +59,21 @@ var contentTree = (function() {
                         return {
                             id: node.id
                         };
+                    },
+                    success: function () {
+                        localStorage.setItem('listId', '');
                     }
                 },
                 "check_callback": true,
-                "multiple":       false,
-                "animation":      160,
+                "multiple":  false,
+                "worker":    false,
+                "animation": 160,
                 "themes":         {
-                    name:       "proton",
-                    url:        "vendor/jstree/themes/proton/style.css",
-                    responsive: true
+                    responsive: true,
+                    name: "proton",
+                    url:  "vendor/jstree/themes/proton/style.css"
                 }
             },
-            /*"massload" : {
-                "url" : urlNodeGet,
-                "data" : function (nodes) {
-                    return { "ids" : nodes.join(',') };
-                }
-            },*/
             "checkbox": {
                 "three_state": false
             },
@@ -220,45 +218,69 @@ var contentTree = (function() {
                 'parent': data.parent
             });
         }).on('select_node.jstree', function (node, data) {
-            nodeObj = data.node; // Объект хелпер, содержащий многие свойства задачи
+            nodeObj = data.node; // Объект хелпер, содержащий свойства задачи
 
             // Не нужно вызывать инспектор, если пользователь намеренно этого не хотел
             // e.g. было вызвано контекстное меню, сработало событие, но было отменено
             if (!$(data.event.target).is("i, div, span, polygon, svg") && data.event.which !== 3) {
+                var listId = localStorage.getItem("listId");
+
                 $('.wrap-fluid').css({ "margin-left": "300px" });
                 $('.navbar').css({ "margin-left": "290px" });
-                inspector.open('right');
-            }
+                inspector.open('right'); // Открывашка инспектора задач
 
-            // Заполнение полей ввода атрибутами
-            $taskName.val(nodeObj.text);
-            $taskDate.val(nodeObj.a_attr.date);
-            $taskNote.summernote('code', nodeObj.a_attr.note);
+                // Заполнение полей ввода атрибутами
+                $taskName.val(nodeObj.text);
+                $taskDate.val(nodeObj.a_attr.date);
+                $taskNote.summernote('code', nodeObj.a_attr.note);
 
-            // Циклическое заполнение списка комментариев
-            $.getJSON('/task/get-comments', {
-                taskId: nodeObj.id
-            }).done(function(data) {
-                $comments.empty(); // Очистить старые комменты
-                $.each(data, function(i, entity) {
-                    $comments.append(
-                    '<li class="section-item">' +
-                        '<div class="section-icon picture">' +
-                            '<div class="avatar medium" title="'+ entity.author +'">' +
-                                '<img src="'+ entity.userpic +'" />' +
+                if (listId !== '') {
+                    // Получение пользователей, работающих над проектом
+                    $.get('/project/get-assigned', {
+                        listId: listId
+                    }).done(function (users) {
+                        var $assignedUserId = $('#' + nodeObj.id).find('img').attr('id');
+
+                        $assignTo.select2({
+                            data: users, // Данные
+                            templateResult: formatState // Перегрузка шаблона
+                        });
+
+                        // Если задача кому-то назначена, выбрать его в списке
+                        // Иначе в списке пользователей активен пункт "Нет"
+                        if ($assignedUserId) {
+                            $assignTo.val($assignedUserId).trigger('change');
+                        } else {
+                            $assignTo.val(0).trigger('change');
+                        }
+                    });
+                }
+
+                // Циклическое заполнение списка комментариев
+                $.getJSON('/task/get-comments', {
+                    taskId: nodeObj.id
+                }).done(function(data) {
+                    $comments.empty(); // Очистить старые комменты
+                    $.each(data, function(i, entity) { // Добавить новые
+                        $comments.append(
+                        '<li class="section-item">' +
+                            '<div class="section-icon picture">' +
+                                '<div class="avatar medium" title="'+ entity.author +'">' +
+                                    '<img src="'+ entity.picture +'" />' +
+                                '</div>' +
                             '</div>' +
-                        '</div>' +
-                        '<div class="section-content">' +
-                            '<span class="comment-author mr5">'+ entity.author +'</span>' +
-                            '<span class="comment-time">'+ entity.time +'</span>' +
-                            '<div class="comment-text">'+ entity.comment +'</div>' +
-                        '</div>' +
-                    '</li>'
-                    );
+                            '<div class="section-content">' +
+                                '<span class="comment-author mr5">'+ entity.author +'</span>' +
+                                '<span class="comment-time">'+ entity.time +'</span>' +
+                                '<div class="comment-text">'+ entity.comment +'</div>' +
+                            '</div>' +
+                        '</li>'
+                        );
+                    });
                 });
-            });
+            }
         }).on('deselect_node.jstree', function () {
-            detachInspector(); // Закрывашка инспектора
+            emptyInspector(); // Закрывашка инспектора
         }).on("redraw.jstree", function () {
             $tree.jstree("open_all");
             //$(".nano").nanoScroller();
@@ -387,7 +409,7 @@ var contentTree = (function() {
                     if (dayNumber >= 1 && dayNumber <= 31) {
                         // Приведение вычисленной даты в формат YYYY-MM-DD
                         userDate = [moment().year(), monthNumber, dayNumber];
-                        dueDate = moment(userDate).format('YYYY-MM-DD');
+                        dueDate  = moment(userDate).format('YYYY-MM-DD');
                     }
                 }
             });
@@ -434,8 +456,8 @@ var contentTree = (function() {
 
     // Заполнение необходимой группы (Входящие, Сегодня...) и её перестроение под полученные задачи
     var handleFillGroup = function () {
-        var closure = function (group) {
-            detachInspector(); // Закрывашка инспектора
+        var prepare = function (group) {
+            emptyInspector(); // Закрывашка инспектора
             if ($('#settings').length) {
                 // Не нужны операции с проектами в выпадающем списке
                 $('#paper-top')
@@ -446,10 +468,11 @@ var contentTree = (function() {
             // Указатель на id списка в группах отсутствует
             localStorage.setItem("listId", '');
 
+            $('#all-completed-today').hide(); // По умолчанию неизвестно, выполнены ли задачи
+            $('#assign-to').parent().hide(); // Делегирование в группах не требуется
             $('.crumb-active').html(group); // Заголовок соответствует названию группы
-            $('.history').fadeIn(200).toggleClass('entypo-reply out').addClass('entypo-clock in');
-            $(this).addClass('active');
-            $tree.jstree('refresh');
+            $('.history').fadeOut(200);
+            $('a.action').fadeOut(200);
 
             // Теперь ни один проект не активен, кроме этой группы
             $(".jstree-neutron li").each(function () {
@@ -457,52 +480,74 @@ var contentTree = (function() {
             });
         };
 
-        $('.inboxGroup').click(function () {
-            closure('Входящие'); // Получение задач для входящих
-            $('a.action').fadeIn(200);
-            $tree.jstree(true).settings.core.data = { // Ленивая загрузка
-                url:  '/task/node',
-                data: function (node) {
-                    return {
-                        id: node.id
-                    };
-                }
-            };
+        $('.inboxGroup').click(function () { // Получение входящих задач
+            prepare('Входящие'); // Выполнение стандартных операций для всех типов групп
+            $('a.action')
+                .fadeIn(200);
+            $('.history')
+                .fadeIn(200)
+                .removeClass('entypo-reply out')
+                .addClass('entypo-clock in');
+            $(this).addClass('active');
 
+            // Ленивая загрузка и обновление дерева
+            fillTree(urlNodeGet, function (node) {
+                return { id: node.id };
+            });
+
+            $tree.jstree('refresh');
             return false;
         });
 
-        $('.todayGroup').click(function () {
-            closure('На сегодня'); // Получение задач на сегодня
-            $('a.action').fadeOut(200);
-            $('.history').fadeOut(200);
+        $('.todayGroup').click(function () { // Получение задач на сегодня
+            prepare('На сегодня');
             $tree.jstree(true).settings.core.data = {
-                url:  '/task/node',
+                url:  urlNodeGet,
                 data: function (node) {
                     return {
                         id:    node.id,
                         group: 'today'
                     };
+                },
+                success: function (node) {
+                    // Сообщение добавляется, если активных задач нет
+                    if ($.isEmptyObject(node)) {
+                        $('.content-wrap .row').append(
+                        '<div id="all-completed-today">' +
+                            '<img src="/images/sunset.png" class="illustration">' +
+                            '<div class="head">Нет задач на сегодня.</div>' +
+                            '<span class="text">Все задачи в списке выполнены. Поздравляем!</span>' +
+                        '</div>'
+                        );
+                        $('#all-completed-today').fadeIn(200);
+                    }
                 }
             };
 
+            $tree.jstree('refresh');
             return false;
         });
 
-        $('.nextGroup').click(function () {
-            closure('На неделю'); // Получение задач на след. неделю
-            $('a.action').fadeOut(200);
-            $('.history').fadeOut(200);
-            $tree.jstree(true).settings.core.data = {
-                url:  '/task/node',
-                data: function (node) {
-                    return {
-                        id:    node.id,
-                        group: 'next'
-                    };
-                }
-            };
+        $('.nextGroup').click(function () { // Получение задач на след. неделю
+            prepare('На неделю');
+            fillTree(urlNodeGet, function (node) {
+                return {
+                    id:    node.id,
+                    group: 'next'
+                };
+            });
 
+            $tree.jstree('refresh');
+            return false;
+        });
+
+        $('.assignedGroup').click(function () { // Получение назначенных для юзера задач
+            prepare('Поручены мне');
+            fillTree('/tree/node', function (node) {
+                return { id: node.id };
+            });
+
+            $tree.jstree('refresh');
             return false;
         });
     };
@@ -510,80 +555,59 @@ var contentTree = (function() {
     // Визуализация завершенных задач в группах или проектах
     var handleFillCompleted = function () {
         $(".history").click(function () {
-            detachInspector();
-            // Если пользователь вне завершенных, пускаем его
+            emptyInspector();
+            // Если пользователь вне завершенных, разрешить вход
             if ($(this).hasClass('in')) {
-                // Добавление иконки и класса, который означает что следующим
-                // действием пользователя будет выход из страницы завершенных
+                // Добавление иконки и класса, указывающие на выход из завершенных
                 $(this).removeClass('entypo-clock in').addClass('entypo-reply out');
 
                 $('.crumb-active').html("Завершенные"); // Хлебные крошки
-                $('a.action').fadeOut(200); // Нельзя сюда добавлять задачи
+                $('a.action').fadeOut(200); // Добавлять задачи нельзя
 
-                // Ленивая загрузка завершенных задач
-                $tree.jstree(true).settings.core.data = {
-                    url:  '/task/get-history',
-                    data: function (node) {
-                        return {
-                            id:     node.id,
-                            listId: localStorage.getItem("listId")
-                        };
-                    }
-                };
+                // Ленивая загрузка завершенных задач (включая проекты)
+                fillTree('/task/get-history', function (node) {
+                    return {
+                        id:     node.id,
+                        listId: localStorage.getItem("listId")
+                    };
+                });
                 $tree.jstree('refresh');
             } else
             // Если пользователь в завершенных, отображается кнопка возвращения назад
             if ($(this).hasClass('out')) {
-                // Добавление иконки и класса, который означает что следующим
-                // действием пользователя будет вход на страницу завершенных
+                // Добавление иконки и класса, указывающие на вход в завершенные
                 $(this).removeClass('entypo-reply out').addClass('entypo-clock in');
                 $('a.action').fadeIn(200);
 
-                if ($("a.active").length) { // Условие выполнится, если пользователь в группах
+                // Условие выполнится, если пользователь в группах
+                if ($("a.active").length) {
                     $('.inboxGroup').click();
                 } else {
-                    $tree.jstree(true).settings.core.data = {
-                        url: urlNodeGet,
-                        data: function (node) {
-                            return {
-                                id:     node.id,
-                                listId: localStorage.getItem("listId")
-                            };
-                        }
-                    };
+                    $('.crumb-active').html($('.active').find('.text').text());
+                    fillTree(urlNodeGet, function (node) {
+                        return {
+                            id:     node.id,
+                            listId: localStorage.getItem("listId")
+                        };
+                    });
                     $tree.jstree('refresh');
                 }
             }
         });
     };
 
-    // Инкремент или декремент количества задач в группах
-    var setCountInGroup = function (decrement) {
-        var $inbox = $(".counter.inbox"); // Количество во "Входящих"
-        var number;
-
-        acceptRequest = true;
-
-        // Если переменная с ключом пуста, значит пользователь в группах
-        number = parseInt($inbox.text());
-        decrement ? $inbox.html(--number) : $inbox.html(++number);
-
-        // Исключение всех дублированных реквестов
-        setTimeout(function () { acceptRequest = false; }, 100);
-    };
-
-    // Вызов сортировки или удаление завершенных задач
+    // Вызов функции сортировки или удаление завершенных задач
     var handleSort = function () {
         $("#pr").click(function () { sortByCondition('taskPriority'); });
         $("#nm").click(function () { sortByCondition('name');         });
         $("#dt").click(function () { sortByCondition('dueDate');      });
         $("#rm").click(function () {
-            $.magnificPopup.open({
+            $.magnificPopup.open({ // Диалоговое окно
                 removalDelay: 300,
                 items: { src: '#modal-text' },
                 callbacks: {
                     beforeOpen: function () {
-                        this.st.mainClass = 'mfp-zoomIn';
+                        this.st.mainClass = 'mfp-zoomIn'; // Кастомный класс анимации открытия
                     }
                 }
             });
@@ -593,11 +617,118 @@ var contentTree = (function() {
         });
     };
 
+    var handleEditInspector = function () {
+        // Добавление комментария к задаче
+        $addComment.keyup(function (e) {
+            if (e.keyCode === 13 && this.value.length) {
+                $.post('/task/set-comment', {
+                    'taskId':     nodeObj.id,
+                    'comment':    this.value,
+                    'timePosted': moment().format('YYYY-MM-DD'),
+                    '_csrf':      $csrfToken
+                }).done(function (entity) {
+                    $addComment.val('');
+                    // Если комментариев до этого момента не было, не помешала бы иконка
+                    if (!$('.comment-list li').length) {
+                        $('#' + nodeObj.id)
+                        .find('.jstree-icon')
+                        .last()
+                        .addClass('entypo-chat');
+                    }
+                    $comments.append(
+                    '<li class="section-item">' +
+                        '<div class="section-icon picture">' +
+                            '<div class="avatar medium" title="'+ entity.author +'">' +
+                            '<img src="'+ entity.picture +'" />' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="section-content">' +
+                            '<span class="comment-author mr5">'+ entity.author +'</span>' +
+                            '<span class="comment-time">'+ entity.time +'</span>' +
+                        '<div class="comment-text">'+ entity.comment +'</div>' +
+                        '</div>' +
+                    '</li>'
+                    );
+                });
+            }
+        });
+
+        // Редактирование названия в инспекторе
+        $taskName.keyup(function () {
+            if (nodeObj !== null) {
+                $.post(urlNodeEdit, {
+                    'id':    nodeObj.id,
+                    'name':  $(this).val(),
+                    '_csrf': $csrfToken
+                });
+            }
+        });
+
+        $assignTo.on('select2:select', function () {
+            var userId  = $assignTo.select2('data')[0].id;
+            var $avatar = $('#' + nodeObj.id).find('img');
+
+            $.post(urlNodeEdit, {
+                'id':         nodeObj.id,
+                'assignedTo': userId,
+                '_csrf':      $csrfToken
+            }).done(function () {
+                if (userId === '0') {
+                    $avatar
+                        .attr('src', '')
+                        .removeClass('assigned-userpic');
+                }
+
+                $avatar.attr('id', userId);
+            });
+        });
+    };
+
+    var handleChangeBackground = function () {
+        var bgKey = localStorage.getItem("back");
+        // Ключ фона хранится в локальном хранилище
+        $("li.theme-bg div").click(function () {
+            Body.css({
+                "background": "url('images/bg/bg"+ $(this).data('key') +".jpg') no-repeat center center fixed"
+            });
+
+            localStorage.setItem("back", $(this).data('key'));
+        });
+
+        // При пустом ключе, ставится фон по умолчанию
+        if (bgKey === null) {
+            Body.css({
+                "background": "url('images/bg/bg5.jpg') no-repeat center center fixed"
+            });
+        } else {
+            Body.css({
+                "background": "url('images/bg/bg"+ bgKey +".jpg') no-repeat center center fixed"
+            });
+        }
+    };
+
+    // Инкремент или декремент количества задач в группах
+    var setCountInGroup = function (decrement) {
+        var $inbox = $(".counter.inbox"); // Изначальное количество
+        var listId = localStorage.getItem("listId");
+        var number;
+
+        acceptRequest = true; // Исключение дублированных реквестов
+
+        if (listId === '') {
+            number = parseInt($inbox.text());
+            decrement ? $inbox.html(--number) : $inbox.html(++number);
+        }
+
+        setTimeout(function () { acceptRequest = false; }, 100);
+    };
+
     // Установка степени важности
     var setPriority = function (id, priority) {
-        var $node = $("#" + id).children("a"); // Задача
+        var $node = $("#" + id).children("a"); // Задача, которой требуется изменить приоритет
         $tree.jstree('uncheck_node', id);
 
+        // Добавление класса без обновления дерева
         var addClass = function () {
             switch (priority) {
                 case 3:
@@ -631,33 +762,44 @@ var contentTree = (function() {
 
     // Выполнение сортировки по заданному условию
     var sortByCondition = function (sortBy) {
-        $tree.jstree(true).settings.core.data = {
-            url:  urlNodeGet,
-            data: function (node) {
-                return {
-                    id:     node.id,
-                    sort:   sortBy,
-                    listId: localStorage.getItem("listId")
-                };
-            }
-        };
+        fillTree(urlNodeGet, function (node) {
+            return {
+                id:     node.id,
+                sort:   sortBy,
+                listId: localStorage.getItem("listId")
+            };
+        });
         $tree.jstree('refresh');
     };
 
-    // Удаление выполненных задач
+    // Удаление выполненных задач в группе или списке
     var deleteCompleted = function () {
+        var listId = localStorage.getItem("listId");
+        var $crumb = $(".crumb-active"); // Заголовок списка, где был выбран данный пункт
+
         $.post(urlDeleteAll, {
             completed: true,
-            listId:    localStorage.getItem("listId"),
+            listId:    listId === '' ? null : listId,
             _csrf:     $csrfToken
         });
-
         $.magnificPopup.close();
-        $tree.jstree('refresh');
+
+        // Перенаправление из завершенных обратно в тот список, где пользователь был до этого
+        if ($crumb.text() === 'Завершенные') {
+            fillTree(urlNodeGet, function (node) {
+                return {
+                    id:     node.id,
+                    listId: localStorage.getItem("listId")
+                };
+            });
+            $tree.jstree('refresh');
+            $('a.action').fadeIn(200);
+            $crumb.text($('.active').find('span').text());
+        }
     };
 
     // Сброс значений в полях инспектора задач и его скрытие
-    var detachInspector = function () {
+    var emptyInspector = function () {
         $('.wrap-fluid').css({ "margin-left": "270px" });
         $('.navbar').css({ "margin-left": "260px" });
         inspector.close();
@@ -668,6 +810,13 @@ var contentTree = (function() {
         $comments.empty();
     };
 
+    var formatState = function (state) {
+        if (!state.id) {
+            return state.text;
+        }
+        return $('<span><img src="' + state.picture + '" class="assigned-userpic" /> ' + state.text + '</span>');
+    };
+
     // Перенос задачи на завтра или сегодня с помощью контектового меню
     var setDueDate = function (date, text) {
         $.post(urlNodeEdit, {
@@ -675,16 +824,17 @@ var contentTree = (function() {
             'dueDate': date,
             '_csrf':   $csrfToken
         }).done(function () {
-            $tree.jstree('uncheck_node', nodeObj.id);
-            $('#' + nodeObj.id).find('.due-date').html(text);
+            $tree.jstree('uncheck_node', nodeObj.id); // Выделение контекстного меню снято
+            $('.noft-blue-number').first().removeClass('noft-red'); // Просроченных задач теперь нет
+            $('#' + nodeObj.id).find('.due-date').html(text); // Срок выполнения виден в строке задачи
         });
     };
 
-    // Редактирование задачи с полученными параметрами Smarty Add (дата, приоритет)
+    // Отображение формы редактирования задачи и отправка данных
     var editContentNode = function (node) {
-        var $renameInp  = null; // Поле ввода недоступно т.к. формы не существует
-        var $nodeObject = $tree.find("li#" + node.id);
-        var $nodeIcon   = $nodeObject.find("i.jstree-ocl").first();
+        var $renameInp  = null; // Поле ввода недоступно т.к. формы пока не существует
+        var $nodeObject = $tree.find("li#" + node.id); // Объект редактирования
+        var $nodeIcon   = $nodeObject.find("i.jstree-ocl").first(); // Иконка задачи
         var $nodeAnchor = $nodeObject.find("a.jstree-anchor").first();
         var formEdit   =
         '<div id="formEdit" hidden>' +
@@ -703,11 +853,10 @@ var contentTree = (function() {
             $nodeAnchor.fadeIn(200);
         };
 
-        // Снять выделение с задачи
-        $tree.jstree('uncheck_node', nodeObj.id);
+        $tree.jstree('uncheck_node', nodeObj.id); // Выделение на задаче не требуется
         $nodeObject
             .prepend(formEdit) // Добавление формы внутрь задачи
-            .addClass('pln') // И её выравнивание
+            .addClass('pln')  // И её выравнивание
             .children('ul')
             .addClass('pl33');
 
@@ -717,20 +866,18 @@ var contentTree = (function() {
             .find($renameInp)
             .focus();
 
-        $nodeIcon.hide(); $nodeAnchor.hide();
+        $nodeIcon.hide(); $nodeAnchor.hide(); // Форма ставится "поверх" задачи
 
         // Исходный текст задачи внутри поля редактирования
         $renameInp.val($("#" + node.id).find(".text").first().text());
         $renameInp.on("keyup", function (e) {
-            // Escape - отмена
-            if (e.keyCode === 27) {
+            if (e.keyCode === 27) { // Escape - отмена
                 $nodeObject.removeClass('pln').children('ul').removeClass('pl33');
                 $("#formEdit").hide().remove();
 
                 showAnchor();
             }
-            // Enter  - добавление
-            if (e.keyCode === 13) {
+            if (e.keyCode === 13) { // Enter  - добавление
                 if ($renameInp.val().length) {
                     $tree.jstree(true).rename_node(node, {
                         text:    $renameInp.val(),
@@ -744,11 +891,11 @@ var contentTree = (function() {
         });
     };
 
-    // Показ формы, и создание задачи, при пройденной валидации
+    // Отображение формы создания задачи и отправка данных на сервер
     var createContentNode = function (node) {
-        var text = null; // Данные от пользователя
-        var $taskInp = null;
-        var selected = null; // Добавление задачи в корень или внутрь другой задачи
+        var text = null;     // Данные от пользователя
+        var $taskInp = null; // Поле ввода
+        var selected = null; // Значение зависит от пути добавления задачи: внутрь другой или в корень
         var formAdd  =
         '<div id="formAdd" hidden>' +
         '<div class="bs-component">' +
@@ -787,12 +934,10 @@ var contentTree = (function() {
 
         $taskInp = $("#taskInput");
         $taskInp.on("keyup", function (e) {
-            // Escape - отмена
-            if (e.keyCode === 27) {
+            if (e.keyCode === 27) { // Escape - отмена
                 $("#formAdd").fadeOut(200).remove();
             }
-            // Enter  - добавление
-            if (e.keyCode === 13) {
+            if (e.keyCode === 13) { // Enter  - добавление
                 text = document.getElementById("taskInput").value;
 
                 if (text.length) {
@@ -810,49 +955,17 @@ var contentTree = (function() {
         });
     };
 
-    var handleEditInspector = function () {
-        // Добавление комментария к задаче
-        $addComment.keyup(function (e) {
-            if (e.keyCode === 13 && this.value.length) {
-                $.post('/task/set-comment', {
-                    'taskId':     nodeObj.id,
-                    'comment':    this.value,
-                    'timePosted': moment().format('YYYY-MM-DD'),
-                    '_csrf':      $csrfToken
-                }).done(function (entity) {
-                    $addComment.val('');
-                    $comments.append(
-                    '<li class="section-item">' +
-                        '<div class="section-icon picture">' +
-                        '<div class="avatar medium" title="'+ entity.author +'">' +
-                            '<img src="'+ entity.userpic +'" />' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="section-content">' +
-                            '<span class="comment-author mr5">'+ entity.author +'</span>' +
-                            '<span class="comment-time">'+ entity.time +'</span>' +
-                        '<div class="comment-text">'+ entity.comment +'</div>' +
-                        '</div>' +
-                    '</li>'
-                    );
-                });
-            }
-        });
-
-        // Редактирование имени задачи в инспекторе
-        $taskName.keyup(function () {
-            if (nodeObj !== null) {
-                $.post(urlNodeEdit, {
-                    'id':    nodeObj.id,
-                    'name':  $(this).val(),
-                    '_csrf': $csrfToken
-                });
-            }
-        });
+    // Ленивая загрузка данных а-ля обновление дерева
+    var fillTree = function (url, data) {
+        $tree.jstree(true).settings.core.data = {
+            url:  url,
+            data: data
+        };
     };
 
     return {
 
+        // Инициализация независимых функциональных обработчиков и событий к ним
         init: function () {
             handleContentTree();
             handleCompleteTask();
@@ -861,6 +974,7 @@ var contentTree = (function() {
             handleFillCompleted();
             handleSort();
             handleEditInspector();
+            handleChangeBackground();
 
             this.events();
         },
@@ -876,7 +990,7 @@ var contentTree = (function() {
                 if (e.keyCode === 27) { $('.inboxGroup').focus(); }
             });
 
-            // Отображение сессионного флеш сообщения при наличии
+            // Отображение сессионного сообщения при его наличии
             if ($("#alert").length) {
                 noty({
                     text: $('#alert').find('.body').text(),
@@ -884,20 +998,21 @@ var contentTree = (function() {
                     theme: 'relax',
                     type: 'success',
                     animation: {
-                        open: 'animated fadeIn',
+                        open:  'animated fadeIn',
                         close: 'animated fadeOut'
                     }
                 });
             }
 
-            // Увеличение значения счетчика задач в группах
+            // Увеличение счетчика задач в группах
             $.getJSON(urlGetCount, function (data) {
-                $('.counter.inbox').countTo({from: 0, to: data.inbox});
-                $('.counter.today').countTo({from: 0, to: data.today});
-                $('.counter.next7days').countTo({from: 0, to: data.next});
+                $('.counter.inbox') .countTo({from: 0, to: data.inbox});
+                $('.counter.today') .countTo({from: 0, to: data.today});
+                $('.counter.week')  .countTo({from: 0, to: data.next});
+                $('.counter.assign').countTo({from: 0, to: data.assign});
             });
 
-            // Горячие клавиши
+            // Просто горячие клавиши
             Mousetrap.bind(['q', 'й'], function () { $('a.action').click(); });
             Mousetrap.bind(['/'], function () {
                 setTimeout(function () { $searchInput.focus(); }, 100);
@@ -910,7 +1025,7 @@ var contentTree = (function() {
                 return false;
             });
 
-            // Мгновенное редактирование по клику на названии
+            // Мгновенное редактирование по нажатию на название задачи
             $(document).on('click', '.jstree-proton .text', function () {
                 editContentNode(nodeObj);
                 $tree.jstree('uncheck_node', nodeObj.id);
@@ -926,42 +1041,24 @@ var contentTree = (function() {
                 });
             });
 
-            // Номер фона в задачнике хранится в локальном хранилище
-            $("li.theme-bg div").click(function () {
-                Body.css({
-                    "background": "url('images/bg/bg"+ $(this).data('key') +".jpg') no-repeat center center fixed"
-                });
-
-                localStorage.setItem("back", $(this).data('key'));
-            });
-
-            // Достаем фон или ставим по умолчанию.
-            if (localStorage.getItem("back") !== null) {
-                Body.css({
-                    "background": "url('images/bg/bg"+ localStorage.getItem("back") +".jpg') no-repeat center center fixed"
-                });
-            } else {
-                Body.css({
-                    "background": "url('images/bg/bg1.jpg') no-repeat center center fixed"
-                });
-            }
-
+            // Невидимое пространство для отображения иконки захвата задачи
             $(".invisible").hover(function () {
                 $(this).parent().addClass('jstree-hovered');
             });
 
+            // Взаимодействие с датой посредством календаря в input форме
             $(".datetimepicker").datetimepicker({
                 format:     'DD MMM YYYY',
                 autoclose:  true,
-                useCurrent: false,
-                minDate:    new Date()
+                useCurrent: false, // Дата "Сегодня" не ставится автоматически
+                minDate:    new Date() // Нельзя выбрать день до текущего
             }).on('dp.change', function () {
-                var iso = $('.datetimepicker').data("DateTimePicker").getDate();
+                var dateISO = $('.datetimepicker').data("DateTimePicker").getDate();
 
                 if (nodeObj !== null) {
                     $.post(urlNodeEdit, {
                         'id':       nodeObj.id,
-                        'dueDate':  moment(iso).format('YYYY-MM-DD'),
+                        'dueDate':  moment(dateISO).format('YYYY-MM-DD'),
                         '_csrf':    $csrfToken
                     }).done(function () {
                         $tree.jstree('refresh');
@@ -969,7 +1066,7 @@ var contentTree = (function() {
                 }
             });
 
-            // WYSIWYG редактор для заметок
+            // WYSIWYG редактор заметок
             $taskNote.summernote({
                 lang: 'ru-RU',
                 height: 70,
@@ -979,7 +1076,7 @@ var contentTree = (function() {
                     ['fontsize', ['fontsize']]
                 ],
                 callbacks: {
-                    onBlur: function() {
+                    onBlur: function() { // При потере элемента фокуса заметка сохраняется
                         var value = $taskNote.summernote('code');
                         if (nodeObj !== null) {
                             nodeObj.a_attr.note = value;
@@ -994,9 +1091,9 @@ var contentTree = (function() {
                 }
             });
 
-            // При выборе проектов, детальная информация о задачах не нужна
+            // При выборе проекта, детальная информация о задачах не особо нужна
             $('.jstree-neutron a').click(function () {
-                detachInspector();
+                emptyInspector();
             });
         }
 

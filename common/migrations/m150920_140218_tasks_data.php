@@ -28,17 +28,10 @@ class m150920_140218_tasks_data extends Migration
             'comment'    => $this->text(),
             'timePosted' => $this->date()
         ], $tableOptions);
-
-        if ($this->db->driverName === 'mysql') {
-            $this->addForeignKey('fk_comm', '{{%task_comments}}', 'taskId', '{{%tasks}}', 'taskId', 'cascade', 'cascade');
-        }
     }
 
     public function down()
     {
-        if ($this->db->driverName === 'mysql') {
-            $this->dropForeignKey('fk_comm', '{{%task_comments}}');
-        }
         $this->dropTable('{{%task_data}}');
         $this->dropTable('{{%task_comments}}');
     }

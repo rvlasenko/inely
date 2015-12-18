@@ -20,9 +20,7 @@ use yii\db\ActiveRecord;
  * @property integer $locale
  * @property string  $firstname
  * @property string  $lastname
- * @property string  $user_char_path
- * @property string  $user_char_name
- * @property string  $def_char_name
+ * @property string  $avatar_path
  * @property integer $gender
  * @property User    $user
  */

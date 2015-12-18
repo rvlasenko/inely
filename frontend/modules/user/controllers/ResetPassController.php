@@ -63,6 +63,7 @@ class ResetPassController extends AuthController
                 return $this->redirect(Yii::$app->urlManagerBackend->createUrl(false));
             } else {
                 $message = Yii::t('frontend', 'The passwords you entered do not match.');
+
                 return $this->render('requestPasswordReset', ['message' => $message, 'display' => true]);
             }
         }

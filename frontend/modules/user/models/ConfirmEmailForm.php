@@ -3,7 +3,7 @@
 /**
  * Этот файл является частью проекта Inely.
  *
- * @link http://github.com/hirootkit/inely
+ * @link   http://github.com/hirootkit/inely
  *
  * @author hirootkit <admiralexo@gmail.com>
  */

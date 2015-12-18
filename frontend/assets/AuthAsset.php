@@ -18,7 +18,7 @@ class AuthAsset extends AssetBundle
     public $baseUrl  = '@web';
 
     public $css = [
-        'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&subset=cyrillic',
+        'https://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=cyrillic',
         'css/auth.css',
         'fonts/icomoon/icomoon.css',
         'fonts/simple-line-icons/simple-line-icons.css'

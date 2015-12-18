@@ -15,7 +15,7 @@ use backend\models\Task;
 use backend\models\TaskData;
 use common\models\User;
 use Yii;
-use yii\base\Controller;
+use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -41,12 +41,13 @@ class ProjectController extends Controller
             'verbs'  => [
                 'class'   => VerbFilter::className(),
                 'actions' => [
-                    'create'             => ['post'],
-                    'delete'             => ['post'],
-                    'rename'             => ['post'],
-                    'share-with-user'    => ['post'],
-                    'unassign-user'      => ['post'],
-                    'get-assigned-users' => ['get'],
+                    'create'              => ['post'],
+                    'delete'              => ['post'],
+                    'edit'                => ['post'],
+                    'share-with-user'     => ['post'],
+                    'remove-collaborator' => ['post'],
+                    'get-collaborators'   => ['get'],
+                    'get-assigned'        => ['get'],
                 ]
             ],
             [
@@ -59,11 +60,12 @@ class ProjectController extends Controller
     }
 
     /**
-     * Переименовывание проекта.
-     * @return bool результат сконвертированный в JSON.
-     * @throws HttpException если переименовывание завершилось неудачей.
+     * Валидация принятых атрибутов и добавление их значений в соответствующие поля базы данных.
+     * В случае несоответствия формату, поле игнорируется и выбрасывается исключение.
+     * @return bool если редактирование завершилось успешно.
+     * @throws HttpException если принятые атрибуты не прошли валидацию.
      */
-    public function actionRename()
+    public function actionEdit()
     {
         $request = Yii::$app->request;
         $project = Project::findOne($request->post('id'));
@@ -77,6 +79,7 @@ class ProjectController extends Controller
 
     /**
      * Создание нового проекта и его уникального корневого узла.
+     * Чтобы добавленные в него задачи имели id корня проекта, а не общий.
      * @return array идентификатор и название созданного проекта, JSON.
      * @throws HttpException при неудачном сохранении.
      */
@@ -110,7 +113,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * Удаление существующего проекта.
+     * Удаление существующего проекта и его корневого узла.
      * @return bool значение, если удаление записи всё-таки произошло.
      * @throws NotFoundHttpException если пользователь захотел удалить несуществующий проект.
      */
@@ -128,7 +131,8 @@ class ProjectController extends Controller
 
     /**
      * Приглашение пользователя к совместной работе над проектом.
-     * Поиск id пользователя по email, а также корневого id проекта для открытия доступа.
+     * Такие пользователи, могут добавлять, удалять и завершать задачи из этого списка.
+     * Ищем id пользователя по email, а также id корневого узла проекта и добавляем в список.
      * @return bool если юзер теперь имеет доступ к проекту.
      */
     public function actionShareWithUser()
@@ -136,13 +140,11 @@ class ProjectController extends Controller
         $listId  = Yii::$app->request->post('listId');
         $email   = Yii::$app->request->post('email');
         $ownerId = Yii::$app->user->id;
-
-        $userId = User::findByEmail($email)->getId();
-        $rootId = TaskData::find()->rootId($ownerId, $listId);
+        $rootId  = TaskData::find()->rootId($ownerId, $listId);
 
         $node    = Task::findOne($rootId);
         $project = Project::findOne($listId);
-        $data    = ['assignedTo' => $userId];
+        $data    = ['sharedWith' => User::findByEmail($email)->getId()];
 
         if ($node->load($data) && $node->save()) {
             if ($project->load($data) && $project->save()) {
@@ -154,11 +156,11 @@ class ProjectController extends Controller
     }
 
     /**
-     * Удаление пользователя из совместного проекта.
-     * Поиск id пользователя по email, а также корневого id проекта для закрытия доступа.
+     * Исключение пользователя из совместного проекта.
+     * Ищем id пользователя по email, а также id корневого узла проекта и исключаем из списка.
      * @return bool если юзер теперь не имеет доступа к проекту.
      */
-    public function actionUnassignUser()
+    public function actionRemoveCollaborator()
     {
         $listId = Yii::$app->request->post('listId');
         $userId = Yii::$app->request->post('userId');
@@ -167,7 +169,7 @@ class ProjectController extends Controller
 
         $node    = Task::findOne($rootId);
         $project = Project::findOne($listId);
-        $data    = ['assignedTo' => null];
+        $data    = ['sharedWith' => null];
 
         if ($node->load($data) && $node->save()) {
             if ($project->load($data) && $project->save()) {
@@ -179,23 +181,24 @@ class ProjectController extends Controller
     }
 
     /**
-     * Возвращает список пользователей, которые принимают участие в работе над проектом.
-     * Учитывается и владелец списка, который может взаимодействовать с юзерами. (Пока не более двух)
+     * Возвращение списка пользователей, которые имеющих доступ к проекту, включая владельца.
+     * Он может взаимодействовать с юзерами, добавлять и удалять их. (Пока не более двух)
+     *
+     * @param integer $listId ID проекта (списка), по которому группируются требуемые задачи.
+     *
      * @return array|null объект участников в списке.
      */
-    public function actionGetAssignedUsers()
+    public function actionGetCollaborators($listId = null)
     {
-        if (Yii::$app->request->isAjax) {
-            $result  = [];
-            $listId  = Yii::$app->request->get('listId');
+        if (Yii::$app->request->isAjax && $listId) {
             $project = Project::findOne($listId);
 
-            foreach (User::find()->where(['id' => [$project->ownerId, $project->assignedTo]])->each() as $user) {
+            foreach (User::find()->with('userProfile')->where(['id' => [$project->ownerId, $project->sharedWith]])->each() as $user) {
                 $result[] = [
                     'owner'   => $user->id == $project->ownerId ? 'Владелец' : '',
                     'name'    => $user->username,
                     'key'     => $user->id,
-                    'userpic' => 'http://backend.madeasy.local/images/avatars/4.jpg',
+                    'picture' => '/images/avatars/4.jpg',
                     'email'   => $user->email
                 ];
             }
@@ -205,5 +208,34 @@ class ProjectController extends Controller
 
         return null;
     }
-}
 
+    /**
+     * Возвращение списка пользователей, имеющих доступ к проекту, включая владельца.
+     * Первым элементом в списке пользователей, которых можно назначить на задачу, следует "отключающий".
+     *
+     * @param integer $listId ID проекта (списка), по которому группируются требуемые задачи.
+     *
+     * @return array объект участников в списке.
+     */
+    public function actionGetAssigned($listId = null)
+    {
+        if (Yii::$app->request->isAjax && $listId) {
+            $project  = Project::findOne($listId);
+            $result[] = [
+                'id'      => 0,
+                'text'    => 'Нет',
+                'picture' => '/images/avatars/none.png'
+            ];
+
+            foreach (User::find()->with('userProfile')->where(['id' => [$project->ownerId, $project->sharedWith]])->each() as $user) {
+                $result[] = [
+                    'id'      => $user->id,
+                    'text'    => $user->username,
+                    'picture' => '/images/avatars/4.jpg',
+                ];
+            }
+
+            return $result;
+        }
+    }
+}

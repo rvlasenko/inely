@@ -1,24 +1,52 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 /* === Reset === */
-body { font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, Verdana, sans-serif; margin: 0; padding: 0; }
+body {
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, Helvetica, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-ol, ul, li { list-style: none; margin: 0; padding: 0; border: 0 }
+ol, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0
+}
 
-a { text-decoration: none; }
+a {
+    text-decoration: none;
+}
 
-::-moz-selection { background-color: #adcdea; color: #333; text-shadow: none }
+::-moz-selection {
+    background-color: #adcdea;
+    color: #333;
+    text-shadow: none
+}
 
-::selection { background-color: #adcdea; color: #333; text-shadow: none }
+::selection {
+    background-color: #adcdea;
+    color: #333;
+    text-shadow: none
+}
 
-textarea, input { outline: none; }
+textarea, input {
+    outline: none;
+}
 
 /* === page content === */
-#pagewrap { min-height: 100% }
+#pagewrap {
+    min-height: 100%
+}
 
-.container { margin: 0 auto; width: 960px }
+.container {
+    margin: 0 auto;
+    width: 960px
+}
 
-#wrapper .container { margin: 25px auto }
+#wrapper .container {
+    margin: 25px auto
+}
 
 /* === home button === */
 .button {
@@ -42,31 +70,84 @@ textarea, input { outline: none; }
     font-size: 18px;
 }
 
-.button:hover { opacity: 0.9 !important; color: black }
+.button:hover {
+    opacity: 0.9 !important;
+    color: black
+}
 
 /* === header === */
-#header { height: 52px; position: fixed; width: 100%; position: relative; z-index: 999; background: #fff; border-bottom: 1px solid #e5e5e5 }
+#header {
+    height: 52px;
+    position: fixed;
+    width: 100%;
+    position: relative;
+    z-index: 999;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5
+}
 
-#header .container .logo { height: 42px; margin: 5px 0; vertical-align: middle; border: 0 }
+#header .container .logo {
+    height: 42px;
+    margin: 5px 0;
+    vertical-align: middle;
+    border: 0
+}
 
-#header .container .link { font-weight: 700; font-size: 18px; line-height: 18px; color: #222; font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif; vertical-align: middle; }
+#header .container .link {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    color: #222;
+    font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+    vertical-align: middle;
+}
 
 /* === footer === */
-#footer { font-size: 11px; line-height: 11px; color: #666; overflow: hidden; clear: both; position: relative; text-shadow: rgba(255, 255, 255, 0.3) 0px 1px; padding: 0px; }
+#footer {
+    font-size: 11px;
+    line-height: 11px;
+    color: #666;
+    overflow: hidden;
+    clear: both;
+    position: relative;
+    text-shadow: rgba(255, 255, 255, 0.3) 0px 1px;
+    padding: 0px;
+}
 
-#footer .container { padding: 0 0 10px }
+#footer .container {
+    padding: 0 0 10px
+}
 
-#footer .container .copyright_info { float: left; width: 450px }
+#footer .container .copyright_info {
+    float: left;
+    width: 450px
+}
 
-#footer .container .copyright_info li { float: left; margin-right: 10px }
+#footer .container .copyright_info li {
+    float: left;
+    margin-right: 10px
+}
 
-#footer .container .links { float: right; width: 450px }
+#footer .container .links {
+    float: right;
+    width: 450px
+}
 
-#footer .container .links li { float: right; margin-left: 10px }
+#footer .container .links li {
+    float: right;
+    margin-left: 10px
+}
 
-#main-content { position: relative; margin-bottom: -100px }
+#main-content {
+    position: relative;
+    margin-bottom: -100px
+}
 
-.duck-animation { background-position: -1000px 30%; background-repeat: no-repeat; height: 100px }
+.duck-animation {
+    background-position: -1000px 30%;
+    background-repeat: no-repeat;
+    height: 100px
+}
 
 /* === Search form === */
 #email {
@@ -144,56 +225,167 @@ textarea, input { outline: none; }
 
 /* === Media Query === */
 @media screen and (min-width: 768px) {
-    #errorpage #header { border-bottom: none; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25) }
+    #errorpage #header {
+        border-bottom: none;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25)
+    }
 
-    #errorpage #parallax_wrapper { width: 1920px; min-height: 100%; position: relative; margin-left: -960px }
+    #errorpage #parallax_wrapper {
+        width: 1920px;
+        min-height: 100%;
+        position: relative;
+        margin-left: -960px
+    }
 
-    #errorpage #content { width: 590px; margin: 0 auto; color: #fff; text-align: center; z-index: 2; position: fixed; top: 50%; left: 50%; margin: -385px -300px 0 }
+    #errorpage #content {
+        width: 590px;
+        margin: 0 auto;
+        color: #fff;
+        text-align: center;
+        z-index: 2;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin: -385px -300px 0
+    }
 
-    #errorpage #content .button { margin-top: 35px; cursor: pointer; position: relative; z-index: 99999; }
+    #errorpage #content .button {
+        margin-top: 35px;
+        cursor: pointer;
+        position: relative;
+        z-index: 99999;
+    }
 
-    #errorpage #content h1 { font-color: #fff; font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif; font-size: 45px; font-weight: normal; line-height: 65px; text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45) }
+    #errorpage #content h1 {
+        font-color: #fff;
+        font-family: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+        font-size: 45px;
+        font-weight: normal;
+        line-height: 65px;
+        text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45)
+    }
 
-    #errorpage #content p { font-family: "Open Sans", HelveticaNeue, Arial, Verdana, sans-serif; font-size: 18px; font-weight: normal; width: 512px; margin: 0 auto; line-height: 26px; text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45) }
+    #errorpage #content p {
+        font-family: "Open Sans", HelveticaNeue, Arial, Verdana, sans-serif;
+        font-size: 18px;
+        font-weight: normal;
+        width: 512px;
+        margin: 0 auto;
+        line-height: 26px;
+        text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.45)
+    }
 
-    #errorpage.error404 { background: url(../images/bg.jpg) }
+    #errorpage.error404 {
+        background: url(../images/bg.jpg)
+    }
 
-    #errorpage.error404 #content { width: 590px; z-index: 9999 }
+    #errorpage.error404 #content {
+        width: 590px;
+        z-index: 9999
+    }
 
-    #errorpage.error404 h1 { margin: 0 auto; padding: 200px 0 20px }
+    #errorpage.error404 h1 {
+        margin: 0 auto;
+        padding: 200px 0 20px
+    }
 
-    #errorpage.error404 p { width: 440px }
+    #errorpage.error404 p {
+        width: 440px
+    }
 
-    #errorpage.error404 p a { color: #fffbe5; font-weight: bold; text-decoration: underline }
+    #errorpage.error404 p a {
+        color: #fffbe5;
+        font-weight: bold;
+        text-decoration: underline
+    }
 
-    #errorpage.error404 .scene { position: absolute; bottom: -100px; display: block; width: 1920px }
+    #errorpage.error404 .scene {
+        position: absolute;
+        bottom: -100px;
+        display: block;
+        width: 1920px
+    }
 
     /* === scene's === */
-    #errorpage.error404 .scene.scene_1 { height: 336px; background: url(../images/scene_1.png) no-repeat left top; pozition: relative; z-index: 3; }
+    #errorpage.error404 .scene.scene_1 {
+        height: 336px;
+        background: url(../images/scene_1.png) no-repeat left top;
+        pozition: relative;
+        z-index: 3;
+    }
 
-    #errorpage.error404 .scene.scene_2 { height: 500px; background: url(../images/scene_2.png) no-repeat left top; pozition: relative; z-index: 2; }
+    #errorpage.error404 .scene.scene_2 {
+        height: 500px;
+        background: url(../images/scene_2.png) no-repeat left top;
+        pozition: relative;
+        z-index: 2;
+    }
 
-    #errorpage.error404 .scene.scene_3 { height: 500px; background: url(../images/scene_3.png) no-repeat left top; pozition: relative; z-index: 1; }
+    #errorpage.error404 .scene.scene_3 {
+        height: 500px;
+        background: url(../images/scene_3.png) no-repeat left top;
+        pozition: relative;
+        z-index: 1;
+    }
 
     /* === footer === */
-    #errorpage.error404 #footer .container { color: #111; margin-top: 0; font-size: 12px; text-shadow: none }
+    #errorpage.error404 #footer .container {
+        color: #111;
+        margin-top: 0;
+        font-size: 12px;
+        text-shadow: none
+    }
 
-    #errorpage.error404 #footer .container a { color: #111 }
+    #errorpage.error404 #footer .container a {
+        color: #111
+    }
 
-    #errorpage #footer { background-image: none; border: none; box-shadow: none; z-index: 9999; height: 30px; margin-top: -30px }
+    #errorpage #footer {
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        z-index: 9999;
+        height: 30px;
+        margin-top: -30px
+    }
 
-    #errorpage #wrapper { padding: 0; overflow: hidden; position: relative }
+    #errorpage #wrapper {
+        padding: 0;
+        overflow: hidden;
+        position: relative
+    }
 }
 
 @media screen and (max-width: 767px) {
-    #errorpage #header .container { width: auto }
+    #errorpage #header .container {
+        width: auto
+    }
 
-    #errorpage #content { background: #fff; padding: 20px; margin: 20px; border: 1px solid #ccc; text-align: center; border-radius: 5px; box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05) }
+    #errorpage #content {
+        background: #fff;
+        padding: 20px;
+        margin: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05)
+    }
 
-    #errorpage #content h1 { font-size: 24px; line-height: 28px; margin: 0 0 10px }
+    #errorpage #content h1 {
+        font-size: 24px;
+        line-height: 28px;
+        margin: 0 0 10px
+    }
 
-    #errorpage #content p { font-size: 14px; line-height: 18px; color: #666; margin: 0 0 10px }
+    #errorpage #content p {
+        font-size: 14px;
+        line-height: 18px;
+        color: #666;
+        margin: 0 0 10px
+    }
 
-    #errorpage #footer { display: none }
+    #errorpage #footer {
+        display: none
+    }
 }
 

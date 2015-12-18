@@ -37,7 +37,7 @@ class NestedSetQueryBehavior extends Behavior
         $this->owner->joinWith(Task::tableName())
                     ->andWhere([$model->leftAttribute => 1])
                     ->andWhere(['tasks.ownerId' => $author])
-                    ->orWhere(['tasks.assignedTo' => $author])
+                    ->orWhere(['tasks.sharedWith' => $author])
                     ->andWhere(['tasks.listId' => $listId])
                     ->addOrderBy([$model->primaryKey()[0] => SORT_ASC]);
 
@@ -61,7 +61,7 @@ class NestedSetQueryBehavior extends Behavior
         $this->owner->joinWith(Task::tableName())
                     ->andWhere([$model->leftAttribute => 1])
                     ->andWhere(['tasks.ownerId' => $author])
-                    ->orWhere(['tasks.assignedTo' => $author])
+                    ->orWhere(['tasks.sharedWith' => $author])
                     ->andWhere(['tasks.listId' => $listId])
                     ->addOrderBy([$model->primaryKey()[0] => SORT_ASC]);
 

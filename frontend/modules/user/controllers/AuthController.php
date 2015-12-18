@@ -40,7 +40,8 @@ class AuthController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true, 'roles' => ['?']
+                        'allow' => true,
+                        'roles' => ['?']
                     ],
                     [
                         'actions'      => ['signup', 'login', 'reset', 'reset-password', 'oauth'],
@@ -52,7 +53,8 @@ class AuthController extends Controller
                     ],
                     [
                         'actions' => ['confirm-email'],
-                        'allow' => true, 'roles' => ['@']
+                        'allow'   => true,
+                        'roles'   => ['@']
                     ]
                 ]
             ]
@@ -60,7 +62,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Запись набора пользовательской информации полученной от facebook.
+     * Запись набора пользовательской информации полученной через OAuth от facebook.
      *
      * @param array  $attributes массив пользовательских данных.
      * @param object $user       объект пользователя.
@@ -69,10 +71,8 @@ class AuthController extends Controller
      */
     protected function setInfoFacebook($attributes, $user)
     {
-        /**
-         * Запись email и имени пользователя, если они указаны.
-         * Email может отсутствовать, если пользователь зарегистрирован через телефон.
-         */
+        // Запись email и имени пользователя в адресной строке, если они указаны.
+        // Email может отсутствовать, если пользователь зарегистрирован через телефон.
         if (ArrayHelper::keyExists('email', $attributes)) {
             $user->email = ArrayHelper::getValue($attributes, 'email');
         }
@@ -102,6 +102,8 @@ class AuthController extends Controller
     protected function setInfoGoogle($attributes, $user)
     {
         $user->email = $attributes['emails'][0]['value'];
+        $attributes['first_name'] = "{$attributes["name"]["givenName"]}";
+        $attributes['last_name']  = "{$attributes["name"]["familyName"]}";
 
         return $user;
     }
@@ -117,15 +119,14 @@ class AuthController extends Controller
     protected function setInfoVk($attributes, $user)
     {
         foreach ($_SESSION as $k => $v) {
-            if (is_object($v) && get_class($v) == 'yii\authclient\OAuthToken') {
+            if (is_object($v) && get_class($v) == "yii\\authclient\\OAuthToken") {
+                /** @var \yii\authclient\OAuthToken $v */
                 $user->email = $v->getParam('email');
             }
         }
 
-        /**
-         * Запись email и имени пользователя в адресной строке, если они указаны.
-         * А также использование id пользователя, как запасной вариант.
-         */
+            // Запись email и имени пользователя в адресной строке, если они указаны.
+        // А также использование id пользователя, как запасной вариант.
         if (ArrayHelper::keyExists('screen_name', $attributes)) {
             $user->username = ArrayHelper::getValue($attributes, 'screen_name');
         } else {
@@ -169,7 +170,8 @@ class AuthController extends Controller
 
             $user->oauth_client         = $client->getName();
             $user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
-            $password                   = Yii::$app->security->generateRandomString(8);
+
+            $password = Yii::$app->security->generateRandomString(8);
             $user->setPassword($password);
 
             if ($user->save()) {
@@ -177,9 +179,9 @@ class AuthController extends Controller
                     'firstname' => ArrayHelper::getValue($attributes, 'first_name'),
                     'lastname'  => ArrayHelper::getValue($attributes, 'last_name')
                 ], [
-                    'ownerId'   => $user->id,
-                    'name'     => 'Root',
-                    'isDone'   => null
+                    'ownerId' => $user->id,
+                    'name'    => 'Root',
+                    'isDone'  => null
                 ]);
 
                 $sentSuccess = Yii::$app->commandBus->handle(new SendEmailCommand([

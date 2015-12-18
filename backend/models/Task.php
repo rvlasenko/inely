@@ -57,37 +57,18 @@ class Task extends ActiveRecord
     {
         return [
             ['ownerId', 'default', 'value' => Yii::$app->user->id],
-            [['listId', 'assignedTo'], 'safe'],
+            [['listId', 'sharedWith'], 'safe'],
             ['isDone', 'default', 'value' => self::ACTIVE_TASK],
             ['dueDate', 'date', 'format' => 'yyyy-MM-dd'],
             ['isDone', 'in', 'range' => [0, 1, 2]],
-            ['taskPriority', 'in', 'range' => [1, 2, 3]]
+            ['taskPriority', 'in', 'range' => [1, 2, 3]],
+            ['assignedTo', 'integer']
         ];
     }
 
     public static function tableName()
     {
         return 'tasks';
-    }
-
-    /**
-     * Получение количества задач по категориям.
-     * @return array результаты запроса. Если результатов нет, будет возвращен [].
-     */
-    public static function getCountOfLists()
-    {
-        $result    = [];
-        $condition = ['ownerId' => Yii::$app->user->id, 'isDone' => self::ACTIVE_TASK];
-        $ids       = Project::find()->where(['ownerId' => null])->orWhere(['ownerId' => Yii::$app->user->id])->all();
-        foreach ($ids as $id) {
-            $result[$id->id] = (new Query())->select('id')
-                                            ->from(self::tableName())
-                                            ->where($condition)
-                                            ->andWhere(['listId' => $id->id])
-                                            ->count();
-        }
-
-        return $result;
     }
 
     /**
@@ -121,13 +102,18 @@ class Task extends ActiveRecord
                                      ->andWhere((new Expression('IFNULL(dueDate, createdAt)
                                         BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)')));
 
+        $assignQuery = (new Query())->select('COUNT(*)')
+                                     ->from(self::tableName())
+                                     ->where(['assignedTo' => Yii::$app->user->id]);
+
 
         $dep->sql = 'SELECT MAX(updatedAt) FROM tasks';
 
-        $result = $db->cache(function() use ($inboxSubQuery, $todaySubQuery, $nextSubQuery) {
+        $result = $db->cache(function() use ($inboxSubQuery, $todaySubQuery, $nextSubQuery, $assignQuery) {
             $query[] = (new Query)->select(['inbox' => $inboxSubQuery])->all();
             $query[] = (new Query)->select(['today' => $todaySubQuery])->all();
-            $query[] = (new Query)->select(['next'  => $nextSubQuery])->all();
+            $query[] = (new Query)->select(['next'   => $nextSubQuery])->all();
+            $query[] = (new Query)->select(['assign' => $assignQuery])->all();
 
             return $query;
         }, 3600, $dep);

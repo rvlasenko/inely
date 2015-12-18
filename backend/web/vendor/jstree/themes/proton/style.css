@@ -35,6 +35,34 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 1px 3px rgba(90, 90, 90, .3) !important;
 }
 
+.project-item {
+    display: none;
+    font-size: 11px;
+    font-weight: normal;
+    padding: 1px 0 1px 0 !important;
+    color: #777;
+    float: right;
+    margin-right: 10px;
+}
+
+.project-item .pname {
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 150px;
+    white-space: nowrap;
+}
+
+.project-item .pcolor {
+    padding: 0 !important;
+    margin-left: 5px !important;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    position: relative;
+    top: 2px;
+}
+
 .ajaxBusy {
     display: block;
     margin: 0 auto;
@@ -43,10 +71,9 @@
 .due-date {
     float: right;
     color: #333;
-    margin-right: 5px;
-    font-size: 13px;
-    padding: 1px 0;
+    font-size: 12px;
     display: block;
+    margin-right: 8px;
 }
 
 .due-date.today {
@@ -643,6 +670,22 @@ span.content:not(:first-child) {
     box-shadow: 0 0 0 2px #e1e1e1;
     -moz-box-shadow: 0 0 0 2px #e1e1e1;
     -webkit-box-shadow: 0 0 0 2px #e1e1e1;
+}
+
+.jstree-proton .first {
+    background-color: #95EF63;
+}
+
+.jstree-proton .second {
+    background-color: #FF8581;
+}
+
+.jstree-proton .third {
+    background-color: #FFCC00;
+}
+
+.jstree-proton .fourth {
+    background-color: #3BD5FB;
 }
 
 .jstree-neutron .jstree-anchor.first > .jstree-checkbox {
