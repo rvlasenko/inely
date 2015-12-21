@@ -41,7 +41,7 @@ composer install
 
 ## Руководство по настройке
 ### Требования
-Минимальное требование, которое налагается на Inely – поддержка Вашим сервером PHP 5.4.0.
+Минимальное требование, которое налагается на Inely – поддержка веб-сервером PHP 5.4.0.
 Обязательные PHP расширения:
 - intl
 - mcrypt
@@ -90,7 +90,7 @@ php console/yii app/setup
 5. На этом всё – приложение доступно на http://inely.dev:8000
 
 ### Docker FAQ
-1. Как я могу выполнять консольные команды yii?
+- Как я могу выполнять консольные команды yii?
 
 ``docker-compose run cli help``
 
@@ -98,18 +98,19 @@ php console/yii app/setup
 
 ``docker-compose run cli rbac-migrate``
 
-2. Как мне подключиться к базе данных приложения с помощью инструментов, например, MySQLWorkbench?
+- Как мне подключиться к базе данных приложения с помощью инструментов, например, MySQLWorkbench?
 MySQL доступен по локальному адресу ``127.0.0.1``, порт ``33060``. Пользователь - `root`, Пароль - `root`
 
 ## Установка Vagrant
 1. Сперва установите [Vagrant](https://www.vagrantup.com/)
 2. Откройте терминал и перейдите в директорию inely.
 3. Установите хостменеджер, поднимите виртуальную машину и сделайте перерыв. :coffee:
-```
-vagrant plugin install vagrant-hostmanager
-vagrant up
-```
-4. Инициализируйте окружение ```php console/yii app/setup```.
+
+``vagrant plugin install vagrant-hostmanager``
+
+``vagrant up``
+
+- Инициализируйте окружение ```php console/yii app/setup```.
 
 На этом всё. После этих действий приложение будет доступно по адресу http://inely.dev:8000 на базе сервера Apache 2.4. Управление базой данных происходит через /adminer или MySQLWorkbench.
 
