@@ -15,7 +15,10 @@
 
 <?= $this->render('navigation') ?>
 
-<?= $this->render('left-side', ['dataProvider' => $dataProvider]) ?>
+<?= $this->render('left-side', [
+    'projectProvider' => $projectProvider,
+    'labelProvider'   => $labelProvider
+]) ?>
 
 <div class="wrap-fluid">
     <div class="container-fluid paper-wrap bevel tlbr">

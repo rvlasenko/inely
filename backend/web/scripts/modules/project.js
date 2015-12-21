@@ -2,7 +2,7 @@
  * @author hirootkit <admiralexo@gmail.com>
  */
 
-var projectTree = (function () {
+var project = (function () {
     'use strict';
 
     /* ===========================

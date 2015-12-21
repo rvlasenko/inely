@@ -51,6 +51,24 @@
     </div>
 </div>
 
+<div id="add-label" class="popup-basic text-center fs14 mfp-with-anim">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <span class="panel-title">Добавить новую метку</span>
+        </div>
+        <div class="panel-body border">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" id="label-input" placeholder="Имя метки" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-lg btn-danger" id="add-save-label">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="modal-text" class="popup-basic text-center fs14 mfp-with-anim mfp-hide">
     <div class="panel panel-info">
         <div class="panel-heading">

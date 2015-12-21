@@ -11,8 +11,8 @@
  * @var $content string
  */
 
-use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 $this->title = Yii::t('backend', 'Inbox ~ Inely');
 

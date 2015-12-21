@@ -15,12 +15,11 @@ use backend\models\Task;
 use backend\models\TaskData;
 use common\models\User;
 use Yii;
-use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 
-class ProjectController extends Controller
+class ProjectController extends TaskController
 {
     public function behaviors()
     {

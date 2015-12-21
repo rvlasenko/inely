@@ -42,7 +42,7 @@
                         </a>
                     </li>
 
-                    <?= $this->render('_assignedToMe') ?>
+                    <?= $this->render('//layouts/_assignedToMe') ?>
 
                     <li>
                         <a class="tooltip-tip ajax-load todayGroup" href="#">
@@ -70,21 +70,33 @@
                         </a>
                     </li>
 
-                    <?= $this->render('//project/projectList', ['dataProvider' => $dataProvider]) ?>
+                    <?= \yii\widgets\ListView::widget([
+                        'dataProvider' => $projectProvider,
+                        'summary'      => false,
+                        'emptyText'    => 'У вас нет активных проектов',
+                        'options'      => ['class' => 'jstree-neutron'],
+                        'itemView'     => function ($model, $key) {
+                            return $this->render('//layouts/_projectView', ['model' => $model, 'key' => $key]);
+                        }
+                    ]) ?>
                 </ul>
                 <ul class="topnav menu-left-nest">
                     <li>
                         <a href="#" style="border-left: 0 solid !important;" class="title-menu-left">
                             <span class="component"></span>
+                            <i data-toggle="tooltip" class="entypo-plus-circled pull-right config-label-wrap"></i>
                         </a>
                     </li>
 
-                    <li>
-                        <a class="tooltip-tip ajax-load" href="#">
-                            <i class="icon-preview"></i>
-                            <span>Icons</span>
-                        </a>
-                    </li>
+                    <?= \yii\widgets\ListView::widget([
+                        'dataProvider' => $labelProvider,
+                        'summary'      => false,
+                        'emptyText'    => 'У вас нет контекстных меток',
+                        'options'      => ['class' => 'jstree-label'],
+                        'itemView'     => function ($model, $key) {
+                            return $this->render('//layouts/_labelView', ['model' => $model, 'key' => $key]);
+                        }
+                    ]) ?>
                 </ul>
             </div>
         </div>

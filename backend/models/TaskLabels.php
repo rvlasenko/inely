@@ -6,39 +6,28 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * Класс модели для таблицы "task_comments"
+ * Класс модели для таблицы "task_labels".
  *
- * @property integer $commentId
- * @property integer $taskId
- * @property integer $userId
- * @property string $comment
- * @property string $timePosted
- *
- * @property Tasks $task
+ * @property integer $labelId
+ * @property integer $ownerId
+ * @property string $labelName
+ * @property string $badgeColor
  */
-class TaskComments extends ActiveRecord
+class TaskLabels extends ActiveRecord
 {
-    const ICON_CLASS = 'entypo-chat';
-
     public static function tableName()
     {
-        return 'task_comments';
+        return 'task_labels';
     }
 
     public function rules()
     {
         return [
-            [['taskId', 'comment', 'timePosted'], 'required'],
-            [['taskId', 'userId'], 'integer'],
-            [['userId'], 'default', 'value' => Yii::$app->user->id],
-            [['comment'], 'string'],
-            [['timePosted'], 'safe']
+            [['ownerId'], 'default', 'value' => Yii::$app->user->id],
+            [['ownerId'], 'integer'],
+            [['taskId'], 'integer'],
+            [['labelName', 'badgeColor'], 'string']
         ];
-    }
-
-    public function getTask()
-    {
-        return $this->hasOne(Tasks::className(), ['taskId' => 'taskId']);
     }
 
     /**

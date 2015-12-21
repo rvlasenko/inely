@@ -24,8 +24,9 @@ var contentTree = (function() {
     /* ===========================
      Атрибуты задачи (включая Smarty Add)
      ============================= */
-    var taskPriority; // task !1, task !2
-    var dueDate; // task :завтра, task :12 Янв, task :+5
+    var taskPriority; // !1, !2, !3
+    var dueDate; // :завтра, :12 Янв, :+5
+    var label; // @контекст
     var listId  = localStorage.getItem("listId");
     var nodeObj = null;
 
@@ -56,9 +57,7 @@ var contentTree = (function() {
                 "data": {
                     "url":  urlNodeGet,
                     "data": function (node) {
-                        return {
-                            id: node.id
-                        };
+                        return { id: node.id };
                     },
                     success: function () {
                         localStorage.setItem('listId', '');
@@ -177,6 +176,7 @@ var contentTree = (function() {
                     'name':         data.node.text,
                     'pos':          data.position,
                     'listId':       localStorage.getItem("listId"),
+                    'label':        label,
                     'taskPriority': taskPriority,
                     'dueDate':      dueDate,
                     '_csrf':        $csrfToken
@@ -185,6 +185,7 @@ var contentTree = (function() {
                     // Обнуление атрибутов Smarty Add
                     taskPriority = null;
                     dueDate = null;
+                    label = null;
                 }).fail(function () {
                     data.instance.refresh();
                 });
@@ -442,6 +443,10 @@ var contentTree = (function() {
                 var quantity = value.substr(value.indexOf(":+") + 2);
 
                 dueDate = moment().add(quantity, 'd').format('YYYY-MM-DD');
+            }
+            // Поиск контекстной метки
+            if (value.indexOf("@") !== -1) {
+                label = value.substr(value.indexOf("@") + 1).substring(0, value.indexOf(' '));
             }
             // Поиск степени важности
             if (value.indexOf("!1") !== -1) {
@@ -942,13 +947,14 @@ var contentTree = (function() {
 
                 if (text.length) {
                     $tree.jstree('create_node', selected, {
-                        text:         text,
-                        taskPriority: taskPriority,
-                        dueDate:      dueDate,
-                        listId:       localStorage.getItem("listId")
+                        text:    text,
+                        label:   label,
+                        dueDate: dueDate,
+                        listId:  localStorage.getItem("listId"),
+                        taskPriority: taskPriority
                     }, "last");
                     $taskInp.val('');
-                    selected = null;
+                    //selected = null;
                     if (!acceptRequest) { setCountInGroup(false); }
                 }
             }

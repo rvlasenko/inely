@@ -7,6 +7,7 @@ use backend\models\Project;
 use backend\models\TaskComments;
 use backend\models\TaskForm;
 use backend\models\TaskData;
+use backend\models\TaskLabels;
 use common\components\formatter\FormatterComponent;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
@@ -244,6 +245,9 @@ class TreeController extends Controller
         $formatter = new FormatterComponent();
 
         foreach ($node as $v) {
+            $taskLabel    = TaskLabels::findOne(['taskId' => $v['dataId']]);
+            $labelName    = ArrayHelper::getValue($taskLabel, 'labelName', false);
+            $labelColor   = ArrayHelper::getValue($taskLabel, 'badgeColor', false);
             $project      = Project::findOne($v[Task::tableName()]['listId']);
             $assignedId   = $v[Task::tableName()]['assignedTo'];
             $dueDate      = $formatter->asRelativeDate($v[Task::tableName()]['dueDate']);
@@ -263,6 +267,8 @@ class TreeController extends Controller
                     'incomplete' => $incompletely,
                     'assigned'   => $isAssigned,
                     'assignId'   => $assignedId,
+                    'lname'      => $labelName,
+                    'lcolor'     => $labelColor,
                     'date'       => $dueDate,
                     'rel'        => $relativeDate,
                     'hint'       => $futureDate,

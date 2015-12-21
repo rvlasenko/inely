@@ -4370,7 +4370,8 @@ div.bs-component span {
     border-radius: 6px;
 }
 
-#add-proj .row div:last-child {
+#add-proj .row div:last-child,
+#add-label .row div:last-child {
     float: right;
     margin-top: 10px;
 }

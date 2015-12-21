@@ -11,7 +11,8 @@ head.js("vendor/slidebars/slidebars.min.js");
 head.js("vendor/jstree/jstree.min.js");
 
 head.js("scripts/modules/contentTree.js", function () { contentTree.init(); });
-head.js("scripts/modules/projectTree.js", function () { projectTree.init(); });
+head.js("scripts/modules/project.js", function () { project.init(); });
+head.js("scripts/modules/label.js", function () { label.init(); });
 //head.js("scripts/modules/taskTour.js", function () { taskTour.init(); });
 
 /* ===========================
