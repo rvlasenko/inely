@@ -31,7 +31,7 @@ class m140703_123000_user extends Migration
 
         $this->insert('{{%user}}', [
             'id'            => 1,
-            'username'      => 'The Chosen One',
+            'username'      => 'hirootkit',
             'email'         => 'admiralexo@gmail.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('chosen'),
             'auth_key'      => Yii::$app->getSecurity()->generateRandomString(),

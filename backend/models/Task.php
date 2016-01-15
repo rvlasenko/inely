@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Этот файл является частью проекта Inely.
+ * Эта модель является частью проекта Inely.
  *
- * @link http://github.com/hirootkit/inely
- *
- * @author hirootkit <admiralexo@gmail.com>
+ * @link    http://github.com/hirootkit/inely
+ * @licence http://github.com/hirootkit/inely/blob/master/LICENSE.md GPL
+ * @author  hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\models;
@@ -24,7 +24,7 @@ use yii\db\Query;
  * @property int        $listId
  * @property int        $ownerId
  * @property int        $isDone
- * @property string     ;taskPriority
+ * @property string     $priority
  * @property timestamp  $dueDate
  */
 class Task extends ActiveRecord
@@ -61,7 +61,7 @@ class Task extends ActiveRecord
             ['isDone', 'default', 'value' => self::ACTIVE_TASK],
             ['dueDate', 'date', 'format' => 'yyyy-MM-dd'],
             ['isDone', 'in', 'range' => [0, 1, 2]],
-            ['taskPriority', 'in', 'range' => [1, 2, 3]],
+            ['priority', 'in', 'range' => [1, 2, 3]],
             ['assignedTo', 'integer']
         ];
     }
@@ -112,7 +112,7 @@ class Task extends ActiveRecord
         $result = $db->cache(function() use ($inboxSubQuery, $todaySubQuery, $nextSubQuery, $assignQuery) {
             $query[] = (new Query)->select(['inbox' => $inboxSubQuery])->all();
             $query[] = (new Query)->select(['today' => $todaySubQuery])->all();
-            $query[] = (new Query)->select(['next'   => $nextSubQuery])->all();
+            $query[] = (new Query)->select(['week'   => $nextSubQuery])->all();
             $query[] = (new Query)->select(['assign' => $assignQuery])->all();
 
             return $query;
@@ -141,7 +141,7 @@ class Task extends ActiveRecord
 
     /**
      * Запись данных в модель. Метод перегружен от базового класса Model.
-     * @param array $data массив данных.
+     * @param array|boolean $data массив данных.
      * @param string $formName имя формы, использующееся для записи данных в модель.
      * @return boolean если `$data` содержит некие данные, которые связываются с атрибутами модели.
      */

@@ -14,7 +14,7 @@
                 <input type="text" id="email" placeholder="Электронная почта" class="form-control" required pattern="^[^\s@＠=]+[@|＠][^\.\s@＠]+(\.[^\.\s@＠]+)+$">
             </div>
             <div class="col-md-3">
-                <button class="btn btn-lg btn-danger" id="done">Пригласить</button>
+                <button class="btn btn-lg btn-danger" id="invite">Пригласить</button>
             </div>
             <div class="col-md-12 members p15 text-left">
                 <ul class="users-list user-list pln pb10"></ul>
@@ -23,6 +23,7 @@
             <div class="col-md-12 divider"></div>
 
             <p class="blank-text">Люди, которых Вы приглашаете, смогут добавлять, удалять и завершать задачи из этого списка.</p>
+
             <div class="col-md-3 col-xs-3 drop-list">
                 <i data-placement="bottom" style="font-size:20px; font-style: normal;" class="entypo-trash tooltitle" id="del-proj" data-original-title="Удалить"></i>
             </div>
@@ -76,6 +77,7 @@
         </div>
         <div class="panel-body border">
             <p>Вы действительно хотите удалить все завершенные задачи в этом списке?</p>
+
             <div class="mt20">
                 <button type="button" class="btn btn-rounded btn-dark del">Удалить</button>
                 <button type="button" class="btn ml10 btn-rounded btn-default cancel">Нет, не нужно</button>
@@ -83,3 +85,5 @@
         </div>
     </div>
 </div>
+
+<div id="user-settings" class="popup-basic mw500 text-center fs14 mfp-with-anim"></div>

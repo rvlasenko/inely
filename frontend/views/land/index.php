@@ -194,27 +194,4 @@
 
     </section>
 
-    <section id="subscribe-section" class="breaking">
-
-        <div class="color-overlay">
-            <div class="breaking-content">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-4 centered">
-                            <img class="subscribe-icon" src="images/132x149.png" alt="Open Envelope Icon" data-sr="scale up 40% wait .2s"/>
-                        </div> 
-
-                        <div class="subscribe-section-content col-lg-5 col-md-5 col-sm-7">
-                            <h4>Subscribe For Updates</h4>
-                            <p>Join our 622,314 subscribers and get access to the latest tools, freebies, product announcements and much more!</p>
-                        </div> 
-
-                    </div> 
-                </div>
-            </div>
-        </div>
-
-    </section>
-
 </main> 

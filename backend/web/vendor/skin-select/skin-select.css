@@ -10,9 +10,9 @@
 
 #skin-select {
     position: absolute;
-    top: 20px;
+    top: 30px;
     width: 270px;
-    z-index: 1000;
+    z-index: 1;
 }
 
 #skin-select #toggle {
@@ -153,7 +153,7 @@
 }
 
 .widget-menu:before {
-    content: "Фильтры" !important;
+    content: "Группы" !important;
 }
 
 .design-kit:before {

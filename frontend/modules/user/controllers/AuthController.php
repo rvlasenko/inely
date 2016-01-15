@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Этот файл является частью проекта Inely.
+ * Этот контроллер является частью проекта Inely.
  *
- * @link   http://github.com/hirootkit/inely
- *
- * @author hirootkit <admiralexo@gmail.com>
+ * @link    http://github.com/hirootkit/inely
+ * @licence http://github.com/hirootkit/inely/blob/master/LICENSE.md GPL
+ * @author  hirootkit <admiralexo@gmail.com>
  */
 
 namespace frontend\modules\user\controllers;
@@ -176,8 +176,9 @@ class AuthController extends Controller
 
             if ($user->save()) {
                 $user->afterSignup([
-                    'firstname' => ArrayHelper::getValue($attributes, 'first_name'),
-                    'lastname'  => ArrayHelper::getValue($attributes, 'last_name')
+                    'firstname'   => ArrayHelper::getValue($attributes, 'first_name'),
+                    'lastname'    => ArrayHelper::getValue($attributes, 'last_name'),
+                    'avatar_path' => ArrayHelper::getValue($attributes, 'photo_200')
                 ], [
                     'ownerId' => $user->id,
                     'name'    => 'Root',

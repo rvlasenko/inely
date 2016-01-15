@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Этот файл является частью проекта Inely.
+ * Эта модель является частью проекта Inely.
  *
- * @link http://github.com/hirootkit/inely
- *
- * @author hirootkit <admiralexo@gmail.com>
+ * @link    http://github.com/hirootkit/inely
+ * @licence http://github.com/hirootkit/inely/blob/master/LICENSE.md GPL
+ * @author  hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\models;
@@ -48,7 +48,7 @@ class Project extends ActiveRecord
 
     /**
      * Запись данных в модель. Метод перегружен от базового класса Model.
-     * @param array $data массив данных.
+     * @param array|boolean $data массив данных.
      * @param string $formName имя формы, использующееся для записи данных в модель.
      * @return boolean если `$data` содержит некие данные, которые связываются с атрибутами модели.
      */

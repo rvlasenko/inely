@@ -1,15 +1,5 @@
 <?php
 
-/**
- * Этот файл является частью проекта Inely.
- *
- * @link http://github.com/hirootkit/inely
- *
- * @author hirootkit <admiralexo@gmail.com>
- * @var $this    yii\web\View
- * @var $content string
- */
-
 use frontend\assets\ErrorAsset;
 use yii\helpers\Html;
 

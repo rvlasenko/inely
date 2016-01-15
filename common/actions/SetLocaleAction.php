@@ -14,7 +14,7 @@ use yii\web\Cookie;
 class SetLocaleAction extends Action
 {
     /**
-     * @var array List of available locales
+     * @var array Список доступных локалей
      */
     public $locales;
 

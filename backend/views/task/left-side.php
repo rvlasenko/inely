@@ -34,7 +34,7 @@
                     </li>
 
                     <li>
-                        <a class="tooltip-tip ajax-load inboxGroup active" href="#">
+                        <a class="tooltip-tip ajax-load inboxGroup active" title="Входящие" href="#">
                             <i class="entypo-archive"></i>
                             <span>Входящие</span>
 
@@ -45,7 +45,7 @@
                     <?= $this->render('//layouts/_assignedToMe') ?>
 
                     <li>
-                        <a class="tooltip-tip ajax-load todayGroup" href="#">
+                        <a class="tooltip-tip ajax-load todayGroup" title="Сегодня" href="#">
                             <i class="entypo-light-up"></i>
                             <span>Сегодня</span>
 
@@ -54,7 +54,7 @@
                     </li>
 
                     <li>
-                        <a class="tooltip-tip ajax-load nextGroup" href="#">
+                        <a class="tooltip-tip ajax-load nextGroup" title="Следующие 7 дней" href="#">
                             <i class="entypo-calendar"></i>
                             <span>Следующие 7 дней</span>
 

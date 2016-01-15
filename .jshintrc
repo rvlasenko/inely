@@ -1,5 +1,5 @@
 {
-    "maxerr"        : 50,
+    "browser"       : true,
     "bitwise"       : true,
     "camelcase"     : false,
     "curly"         : true,
@@ -7,6 +7,7 @@
     "eqeqeq"        : true,
     "forin"         : true,
     "freeze"        : true,
+    "jquery"        : true,
     "indent"        : 4,
     "latedef"       : false,
     "newcap"        : false,
@@ -15,12 +16,7 @@
     "nonbsp"        : true,
     "nonew"         : false,
     "plusplus"      : false,
-    "quotmark"      : false,
+    "quotmark"      : "single",
     "undef"         : false,
-    "strict"        : false,
-    "browser"       : true,
-    "globals"       : {
-        "$"         : false,
-        "jQuery"    : false
-    }
+    "strict"        : false
 }

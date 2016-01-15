@@ -12,16 +12,16 @@ class m150705_091355_tasks extends Migration
         }
 
         $this->createTable('{{%tasks}}', [
-            'taskId'       => $this->primaryKey(),
-            'listId'       => $this->integer(15),
-            'ownerId'      => $this->integer(50)->notNull(),
-            'taskPriority' => $this->smallInteger(4),
-            'dueDate'      => $this->date(),
-            'isDone'       => $this->smallInteger(4),
-            'updatedAt'    => $this->integer(),
-            'createdAt'    => $this->integer(),
-            'sharedWith'   => $this->integer(),
-            'assignedTo'   => $this->integer(),
+            'taskId'     => $this->primaryKey(),
+            'listId'     => $this->integer(15),
+            'ownerId'    => $this->integer(50)->notNull(),
+            'priority'   => $this->smallInteger(4),
+            'dueDate'    => $this->date(),
+            'isDone'     => $this->smallInteger(4),
+            'updatedAt'  => $this->integer(),
+            'createdAt'  => $this->integer(),
+            'sharedWith' => $this->integer(),
+            'assignedTo' => $this->integer(),
         ], $tableOptions);
 
         $this->createTable('{{%projects}}', [

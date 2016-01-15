@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Этот контроллер является частью проекта Inely.
+ *
+ * @link    http://github.com/hirootkit/inely
+ * @licence http://github.com/hirootkit/inely/blob/master/LICENSE.md GPL
+ * @author  hirootkit <admiralexo@gmail.com>
+ * @deprecated Более не используется в коде.
+ */
+
 namespace backend\controllers;
 
 use backend\models\Task;
@@ -9,9 +18,7 @@ use backend\models\TaskForm;
 use backend\models\TaskData;
 use backend\models\TaskLabels;
 use common\components\formatter\FormatterComponent;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
-use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -20,9 +27,8 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 /**
- * deprecated
- *
- * @author hirootkit <admiralexo@gmail.com>
+ * Class TreeController
+ * @package backend\controllers
  */
 class TreeController extends Controller
 {
@@ -218,7 +224,8 @@ class TreeController extends Controller
             return $this->root;
         } else {
             $node = TaskData::find()->joinWith(Task::tableName())->where([
-                'assignedTo' => Yii::$app->user->id
+                'assignedTo' => Yii::$app->user->id,
+                'isDone'     => [0, 2]
             ])->asArray()->all();
 
             return $this->buildTree($node);
@@ -255,15 +262,14 @@ class TreeController extends Controller
             $futureDate   = $formatter->dateLeft($v[Task::tableName()]['dueDate']);
             $hasComment   = empty(TaskComments::findOne(['taskId' => $v['dataId']])) ? null : 'entypo-chat';
             $incompletely = $v[Task::tableName()]['isDone'] == 2 ? true : false;
-            $isAssigned   = $assignedId ? /*UserProfile::findOne(['user_id' => $assignedId])->avatar_path*/
-                '/images/avatars/4.jpg' : false;
+            $isAssigned   = $assignedId ? Yii::$app->user->identity->userProfile->getAvatar() : false;
 
             $result[] = [
                 'id'       => $v['dataId'],
                 'text'     => $v['name'],
                 'a_attr'   => [
                     'note'       => $v['note'],
-                    'degree'     => $v[Task::tableName()]['taskPriority'],
+                    'degree'     => $v[Task::tableName()]['priority'],
                     'incomplete' => $incompletely,
                     'assigned'   => $isAssigned,
                     'assignId'   => $assignedId,

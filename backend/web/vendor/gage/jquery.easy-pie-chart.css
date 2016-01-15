@@ -1,16 +1,12 @@
 .chart, .speed-car, .overall {
     display: inline-block;
-    height: 60px;
     position: relative;
     text-align: center;
-    width: 60px;
 }
 .chart canvas, .speed-car canvas, .overall canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 60px;
-    width: 60px;
+    position: fixed;
+    top: 45px;
+    left: 3px;
 }
 .percent {
     display: inline-block;

@@ -11,7 +11,7 @@
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">
+                    <a href="#" class="profile">
                         <i data-placement="bottom" title="Профиль" style="font-size:20px;font-style: normal;" class="entypo-user tooltitle"></i>
                     </a>
                 </li>
@@ -33,20 +33,19 @@
                 </ul>
 
                 <ul id="digital-clock" class="digital">
-                    <li class="entypo-clock" style="margin-right:5px"></li>
+                    <li class="entypo-clock" style="margin-right:5px;"></li>
                     <li class="hour"></li>
                     <li>:</li>
                     <li class="min"></li>
                     <li>:</li>
                     <li class="sec"></li>
-                    <li class="meridiem"></li>
                 </ul>
             </div>
 
             <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/profile">
-                        <img alt="" class="admin-pic img-circle" src="images/avatars/4.jpg">
+                    <a href="#" class="profile">
+                        <img alt="Avatar" class="admin-pic img-circle" src="<?= Yii::$app->user->identity->userProfile->getAvatar() ?>">
                         <?= Yii::$app->user->identity->username ?>
                     </a>
                 </li>

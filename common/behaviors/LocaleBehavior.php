@@ -30,9 +30,6 @@ class LocaleBehavior extends Behavior
         return [Application::EVENT_BEFORE_REQUEST => 'beforeRequest'];
     }
 
-    /**
-     * Resolve application language by checking user cookies, preferred language and profile settings
-     */
     public function beforeRequest()
     {
         if (Yii::$app->getRequest()

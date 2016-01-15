@@ -299,7 +299,7 @@ class NestedSetBehavior extends Behavior
 
         if ($group == 'today') {
             $groupCond = (new Expression('DATE(dueDate) = CURDATE()'));
-        } elseif ($group == 'next') {
+        } elseif ($group == 'week') {
             $groupCond = (new Expression('dueDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)'));
         } else {
             $groupCond = [];

@@ -1,10 +1,6 @@
 # Inely [![Build Status](https://scrutinizer-ci.com/g/Exoticness/madeasy/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/madeasy/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hirootkit/inely/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hirootkit/inely/?branch=master) [![Codacy Badge](https://img.shields.io/badge/codacy-B-brightgreen.svg)](https://www.codacy.com/app/roof1rst/list)
 
-##### Inely – облачный менеджер задач, который готов сделать Вашу жизнь чуточку гибче.
-
-- [Сервер приложения](http://www.inely.ru)
-
-Lorem ipsum
+##### [Inely](http://www.inely.ru) – свободный облачный сервис для управления персональными задачами, позволяющий составить расписание дел, либо работать над общими планами и целями, делегировать задачи между родными и коллегами и многое другое...
 
 # Установка
 
@@ -13,7 +9,7 @@ Lorem ipsum
 - [Руководство по настройке](#)
     - [Требования](#)
     - [Установка приложения](#)
-    - [Настройка веб-сервера](#configure-your-web-server)
+    - [Настройка веб-сервера](#)
 - [Установка Docker](#)
 - [Установка Vagrant](#)
 
@@ -21,7 +17,7 @@ Lorem ipsum
 1. Если Вы ещё не обзавелись таким инструментом, как [Composer](http://getcomposer.org/), Вы можете установить его следуя инструкциям
 на [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
-2. Установка composer-asset-plugin необходима для управления ассетами в Yii
+2. Установите composer-asset-plugin для управления ассетами в Yii
 ```bash
 composer global require "fxp/composer-asset-plugin"
 ```

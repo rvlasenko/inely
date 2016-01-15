@@ -1,22 +1,26 @@
 <?php
 
 /**
- * Этот файл является частью проекта Inely.
+ * Этот контроллер является частью проекта Inely.
  *
- * @link   http://github.com/hirootkit/inely
- *
- * @author hirootkit <admiralexo@gmail.com>
+ * @link    http://github.com/hirootkit/inely
+ * @licence http://github.com/hirootkit/inely/blob/master/LICENSE.md GPL
+ * @author  hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\controllers;
 
 use backend\models\TaskLabels;
 use Yii;
+use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
-use yii\web\HttpException;
 use yii\web\Response;
 
+/**
+ * Class LabelController
+ * @package backend\controllers
+ */
 class LabelController extends TaskController
 {
     public function behaviors()
@@ -56,38 +60,38 @@ class LabelController extends TaskController
      * Валидация принятых атрибутов и добавление их значений в соответствующие поля базы данных.
      * В случае несоответствия формату, поле игнорируется и выбрасывается исключение.
      * @return bool если редактирование завершилось успешно.
-     * @throws HttpException если принятые атрибуты не прошли валидацию.
+     * @throws Exception если принятые атрибуты не прошли валидацию.
      */
     public function actionEdit()
     {
-        $request = Yii::$app->request;
-        $label   = TaskLabels::findOne($request->post('id'));
+        $request   = Yii::$app->request;
+        $taskLabel = TaskLabels::findOne($request->post('id'));
 
-        if ($label->load($request->post()) && $label->save()) {
-            return $request->post('labelName');
-        } else {
-            throw new HttpException(500, $label->getErrors());
+        if ($taskLabel->load($request->post()) && !$taskLabel->save()) {
+            throw new Exception('Получены данные, отличные от необходимого формата');
         }
+
+        return $request->post('labelName');
     }
 
     /**
      * Создание новой метки.
      * @return array идентификатор и название созданной метки, JSON.
-     * @throws HttpException при неудачном сохранении.
+     * @throws Exception если принятые атрибуты не прошли валидацию.
      */
     public function actionCreate()
     {
-        $request = Yii::$app->request;
-        $label   = new TaskLabels();
+        $request   = Yii::$app->request;
+        $taskLabel = new TaskLabels();
 
-        if ($label->load($request->post()) && $label->save()) {
-            return [
-                'name' => $request->post('labelName'),
-                'id'   => $label->getPrimaryKey()
-            ];
-        } else {
-            throw new HttpException(500, $label->getErrors());
+        if ($taskLabel->load($request->post()) && !$taskLabel->save()) {
+            throw new Exception('Получены данные, отличные от необходимого формата');
         }
+
+        return [
+            'name' => $request->post('labelName'),
+            'id'   => $taskLabel->getPrimaryKey()
+        ];
     }
 
     /**

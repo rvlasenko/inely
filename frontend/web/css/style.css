@@ -98,7 +98,7 @@ main#main-content {
     position: relative;
     z-index: 1;
     background: #fff;
-    box-shadow: 0 2px 6px rgba(39, 36, 36, 0.42);
+    box-shadow: 0 2px 6px rgba(39, 36, 36, 0.15);
 }
 
 hr {
@@ -143,8 +143,8 @@ select:focus {
 /* 1.1 Typography */
 p {
     margin-bottom: 25px;
-    font-size: 16px;
-    font-family: "Rubik", sans-serif;
+    font-size: 18px;
+    font-family: "PT Sans", sans-serif;
     line-height: 24px;
 }
 

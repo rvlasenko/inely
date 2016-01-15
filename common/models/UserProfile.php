@@ -1,17 +1,8 @@
 <?php
 
-/**
- * Этот файл является частью проекта Inely.
- *
- * @link http://github.com/hirootkit/inely
- *
- * @author hirootkit <admiralexo@gmail.com>
- */
-
 namespace common\models;
 
 use Yii;
-use yii\web\HttpException;
 use yii\db\ActiveRecord;
 
 /**
@@ -21,7 +12,6 @@ use yii\db\ActiveRecord;
  * @property string  $firstname
  * @property string  $lastname
  * @property string  $avatar_path
- * @property integer $gender
  * @property User    $user
  */
 class UserProfile extends ActiveRecord
@@ -38,11 +28,18 @@ class UserProfile extends ActiveRecord
     {
         return [
             [['user_id'], 'required'],
-            [['user_id', 'gender'], 'integer'],
-            [['gender'], 'in', 'range' => [self::GENDER_FEMALE, self::GENDER_MALE]],
-            [['firstname', 'lastname', 'def_char_name', 'user_char_name', 'user_char_name'], 'string', 'max' => 255],
+            [['user_id'], 'integer'],
+            [['firstname', 'lastname'], 'string', 'max' => 50],
             ['locale', 'default', 'value' => Yii::$app->language],
             ['locale', 'in', 'range' => array_keys(Yii::$app->params['availableLocales'])]
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'firstname' => 'Имя',
+            'lastname'  => 'Фамилия'
         ];
     }
 
@@ -50,6 +47,11 @@ class UserProfile extends ActiveRecord
     {
         parent::afterSave($insert, $changedAttributes);
         Yii::$app->session->setFlash('forceUpdateLocale');
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar_path ? Yii::getAlias($this->avatar_path) : '/images/avatars/none.png';
     }
 
     public function getUser()
@@ -61,55 +63,6 @@ class UserProfile extends ActiveRecord
     {
         if ($this->firstname || $this->lastname) {
             return implode(' ', [$this->firstname, $this->lastname]);
-        }
-
-        return null;
-    }
-
-    /**
-     * @return array
-     * @throws HttpException
-     */
-    public function getChar()
-    {
-        $user = UserProfile::findOne([Yii::$app->user->id]);
-
-        if ($user->user_char_path !== null || $user->user_char_name !== null) {
-            return ['own' => $user->user_char_path];
-        } elseif ($user->def_char_name !== null) {
-            return ['default' => $user->def_char_name];
-        } else {
-            throw new HttpException(500, 'Unable to detect user character');
-        }
-    }
-
-    /**
-     * @param $name
-     *
-     * @return bool|null
-     */
-    public function setDefChar($name)
-    {
-        if (($model = $this::findOne(Yii::$app->user->id)) !== null) {
-            $model->setAttribute('def_char_name', $name);
-
-            return $model->save();
-        }
-
-        return null;
-    }
-
-    /**
-     * @param $path
-     *
-     * @return bool|null
-     */
-    public function setOwnChar($path)
-    {
-        if (($model = $this::findOne(Yii::$app->user->id)) !== null) {
-            $model->setAttribute('user_char_path', $path);
-
-            return $model->save();
         }
 
         return null;

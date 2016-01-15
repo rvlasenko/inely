@@ -1,6 +1,6 @@
 {
     "name": "hirootkit/inely",
-    "description": "Just awesome web-assistant",
+    "description": "yet another project management app",
     "type": "project",
     "keywords": [
         "task",
@@ -35,9 +35,8 @@
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",
         "yiisoft/yii2-gii": "~2.0",
-        "yiisoft/yii2-faker": "~2.0",
-        "phpunit/phpunit": "~4.5",
-        "codeception/codeception": "~2.0"
+        "yiisoft/yii2-faker": "*",
+        "phpunit/phpunit": "~4.5"
     },
     "config": {
         "process-timeout": 1800

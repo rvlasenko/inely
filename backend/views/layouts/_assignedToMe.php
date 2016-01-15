@@ -1,7 +1,7 @@
-<?php if ($this->params['assignedToMe']): ?>
+<?php if ($this->params['haveAssignedToMe']): ?>
 
 <li>
-    <a class="tooltip-tip ajax-load assignedGroup" href="#">
+    <a class="tooltip-tip ajax-load assignedGroup" title="Поручены мне" href="#">
         <i class="entypo-user-add"></i>
         <span>Поручены мне</span>
 

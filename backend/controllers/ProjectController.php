@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Этот файл является частью проекта Inely.
+ * Этот контроллер является частью проекта Inely.
  *
- * @link   http://github.com/hirootkit/inely
- *
- * @author hirootkit <admiralexo@gmail.com>
+ * @link    http://github.com/hirootkit/inely
+ * @licence http://github.com/hirootkit/inely/blob/master/LICENSE.md GPL
+ * @author  hirootkit <admiralexo@gmail.com>
  */
 
 namespace backend\controllers;
@@ -15,10 +15,15 @@ use backend\models\Task;
 use backend\models\TaskData;
 use common\models\User;
 use Yii;
+use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 
+/**
+ * Class ProjectController
+ * @package backend\controllers
+ */
 class ProjectController extends TaskController
 {
     public function behaviors()
@@ -62,31 +67,32 @@ class ProjectController extends TaskController
      * Валидация принятых атрибутов и добавление их значений в соответствующие поля базы данных.
      * В случае несоответствия формату, поле игнорируется и выбрасывается исключение.
      * @return bool если редактирование завершилось успешно.
-     * @throws HttpException если принятые атрибуты не прошли валидацию.
+     * @throws Exception если принятые атрибуты не прошли валидацию.
      */
     public function actionEdit()
     {
         $request = Yii::$app->request;
         $project = Project::findOne($request->post('id'));
 
-        if ($project->load($request->post()) && $project->save()) {
-            return $request->post('listName');
-        } else {
-            throw new HttpException(500, $project->getErrors());
+        if ($project->load($request->post()) && !$project->save()) {
+            throw new Exception('Переданы данные, несоответствующие формату');
         }
+
+        return $request->post('listName');
     }
 
     /**
      * Создание нового проекта и его уникального корневого узла.
      * Чтобы добавленные в него задачи имели id корня проекта, а не общий.
+     * @method boolean makeRoot() Создает корень, если Active Record объект новый.
      * @return array идентификатор и название созданного проекта, JSON.
      * @throws HttpException при неудачном сохранении.
      */
     public function actionCreate()
     {
         $newProject = new Project();
-        $taskModel  = new Task();
-        $newChild   = new TaskData();
+        $childTask  = new Task();
+        $childTaskData   = new TaskData();
         $userData   = [
             'ownerId' => Yii::$app->user->id,
             'name'    => 'Root',
@@ -96,10 +102,10 @@ class ProjectController extends TaskController
         if ($newProject->load(Yii::$app->request->post()) && $newProject->save()) {
             $userData['listId'] = $newProject->getPrimaryKey();
 
-            if ($newChild->load($userData) && $newChild->makeRoot()) {
-                $userData['taskId'] = $newChild->getPrimaryKey();
+            if ($childTaskData->load($userData) && $childTaskData->makeRoot()) {
+                $userData['taskId'] = $childTaskData->getPrimaryKey();
 
-                if ($taskModel->load($userData) && $taskModel->save()) {
+                if ($childTask->load($userData) && $childTask->save()) {
                     return [
                         'name' => Yii::$app->request->post('listName'),
                         'id'   => $newProject->getPrimaryKey()
@@ -113,6 +119,7 @@ class ProjectController extends TaskController
 
     /**
      * Удаление существующего проекта и его корневого узла.
+     * @method ActiveQuery roots(string $author, integer $listId) Получает корневой узел.
      * @return bool значение, если удаление записи всё-таки произошло.
      * @throws NotFoundHttpException если пользователь захотел удалить несуществующий проект.
      */
@@ -132,6 +139,7 @@ class ProjectController extends TaskController
      * Приглашение пользователя к совместной работе над проектом.
      * Такие пользователи, могут добавлять, удалять и завершать задачи из этого списка.
      * Ищем id пользователя по email, а также id корневого узла проекта и добавляем в список.
+     * @method ActiveQuery rootId(string $author, integer $listId) Получает id корневого списка.
      * @return bool если юзер теперь имеет доступ к проекту.
      */
     public function actionShareWithUser()
@@ -141,36 +149,34 @@ class ProjectController extends TaskController
         $ownerId = Yii::$app->user->id;
         $rootId  = TaskData::find()->rootId($ownerId, $listId);
 
-        $node    = Task::findOne($rootId);
+        $task    = Task::findOne($rootId);
         $project = Project::findOne($listId);
         $data    = ['sharedWith' => User::findByEmail($email)->getId()];
 
-        if ($node->load($data) && $node->save()) {
+        if ($task->load($data) && $task->save()) {
             if ($project->load($data) && $project->save()) {
                 return true;
             }
         }
-
-        return null;
     }
 
     /**
      * Исключение пользователя из совместного проекта.
      * Ищем id пользователя по email, а также id корневого узла проекта и исключаем из списка.
+     * @method ActiveQuery rootId(string $author, integer $listId) Получает id корневого списка.
      * @return bool если юзер теперь не имеет доступа к проекту.
      */
     public function actionRemoveCollaborator()
     {
         $listId = Yii::$app->request->post('listId');
         $userId = Yii::$app->request->post('userId');
-
         $rootId = TaskData::find()->rootId($userId, $listId);
 
-        $node    = Task::findOne($rootId);
+        $task    = Task::findOne($rootId);
         $project = Project::findOne($listId);
         $data    = ['sharedWith' => null];
 
-        if ($node->load($data) && $node->save()) {
+        if ($task->load($data) && $task->save()) {
             if ($project->load($data) && $project->save()) {
                 return true;
             }
@@ -189,7 +195,8 @@ class ProjectController extends TaskController
      */
     public function actionGetCollaborators($listId = null)
     {
-        if (Yii::$app->request->isAjax && $listId) {
+        if (Yii::$app->request->isAjax && $listId !== null) {
+            $result  = [];
             $project = Project::findOne($listId);
 
             foreach (User::find()->with('userProfile')->where(['id' => [$project->ownerId, $project->sharedWith]])->each() as $user) {
@@ -197,7 +204,7 @@ class ProjectController extends TaskController
                     'owner'   => $user->id == $project->ownerId ? 'Владелец' : '',
                     'name'    => $user->username,
                     'key'     => $user->id,
-                    'picture' => '/images/avatars/4.jpg',
+                    'picture' => Yii::$app->user->identity->userProfile->getAvatar(),
                     'email'   => $user->email
                 ];
             }
@@ -218,7 +225,7 @@ class ProjectController extends TaskController
      */
     public function actionGetAssigned($listId = null)
     {
-        if (Yii::$app->request->isAjax && $listId) {
+        if (Yii::$app->request->isAjax && $listId !== null) {
             $project  = Project::findOne($listId);
             $result[] = [
                 'id'      => 0,
@@ -230,7 +237,7 @@ class ProjectController extends TaskController
                 $result[] = [
                     'id'      => $user->id,
                     'text'    => $user->username,
-                    'picture' => '/images/avatars/4.jpg',
+                    'picture' => Yii::$app->user->identity->userProfile->getAvatar()
                 ];
             }
 

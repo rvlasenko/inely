@@ -15,7 +15,6 @@ body {
     line-height: 20px;
     overflow-x: hidden !important;
     min-height: 100%;
-    z-index: -2;
     margin: 0 !important;
     -moz-background-size: cover;
     -webkit-background-size: cover;
@@ -28,23 +27,6 @@ body {
  */
 a:hover {
     text-decoration: none !important;
-}
-
-#preloader {
-    background: transparent;
-    \9;
-    /* IE 8 and below */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(37, 45, 59, 0.8);
-    /* change if the mask should have another color then white */
-    z-index: 2000;
-    /* makes sure it stays on top */
-    /*   background-image: url("../img/overlays/06.png");
-  background-repeat: repeat; */
 }
 
 .btn .caret {
@@ -94,9 +76,6 @@ a:hover {
     text-transform: lowercase;
 }
 
-/**
- * BOOTSRAP COUSTOM
- */
 .container-fluid {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -140,6 +119,7 @@ a:hover {
 .navbar-nav > li > a {
     color: #f5f5f5 !important;
     font-size: 13px !important;
+    outline: none;
 }
 
 .nav-pills > li > a {
@@ -353,29 +333,6 @@ a:hover {
     margin: 30px;
     width: 200px;
     min-height: 100px;
-}
-
-.btn {
-    border-color: #c7d5e0 !important;
-    background: #fff;
-    display: inline-block;
-    padding: 6px 12px !important;
-    margin-bottom: 0;
-    font-size: 12px !important;
-    font-weight: normal;
-    line-height: 1.428571429;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
 .btn-success {
@@ -645,14 +602,13 @@ li.theme-bg div:nth-child(9) {
 .header {
     position: fixed;
     top: 0;
-    z-index: 9999;
     width: 100%;
     height: 60px;
     background: #000;
 }
 
 .nav-pad-top {
-    margin: 13px 0 0 0;
+    margin: 13px !important;
 }
 
 img.logo {
@@ -811,6 +767,10 @@ img.ikon {
  */
 #search {
     float: right;
+}
+
+.mw500 {
+    max-width: 500px !important;
 }
 
 #search input[type="text"] {
@@ -1129,7 +1089,6 @@ input::-webkit-input-placeholder {
     position: fixed;
     right: 0;
     width: 7%;
-    z-index: 1031;
 }
 
 /* CLOCK*/
@@ -1206,8 +1165,9 @@ input::-webkit-input-placeholder {
 }
 
 .panel ul {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
     list-style: none;
 }
 
@@ -1234,7 +1194,7 @@ input::-webkit-input-placeholder {
     color: #fff;
     margin: 6px;
     padding: 10px 0 0 20px;
-    width: 345px;
+    width: 320px;
 }
 
 #nt-title {
@@ -2597,8 +2557,11 @@ img.sidebar-icon {
 .media-heading {
     border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
     font-size: 14px;
-    margin: 0 0 6px;
-    padding: 0 0 5px;
+    margin: 0 0 10px;
+}
+
+.lead {
+    margin-bottom: 10px;
 }
 
 .message-form {
@@ -3285,7 +3248,7 @@ b#speed {
 .right-wrapper {
     background: rgba(0, 0, 0, 0.2);
     margin: 0 10px 0;
-    min-height: 89.9vh;
+    min-height: 88vh;
     padding: 15px 15px;
     border-radius: 4px;
     top: 75px;
@@ -3308,7 +3271,7 @@ b#speed {
     border-radius: 11px;
     color: #fff;
     font-size: 13px;
-    margin: 0 0 20px 0px;
+    margin: 0 0 20px 0;
     font-weight: normal;
 }
 
@@ -3406,7 +3369,7 @@ button.navbar-toggle.toggle-menu-mobile {
     background: #efeff0;
     color: #fff;
     border-radius: 4px 4px 0 0;
-    margin: -16px 0 30px 0px;
+    margin: -16px 0 30px 0;
 }
 
 small.pull-right {
@@ -3418,7 +3381,7 @@ small.pull-right {
 .page-header {
     padding-bottom: 9px !important;
     margin: 30px 0 20px !important;
-    border-bottom: 0px solid #eee !important;
+    border-bottom: 0 solid #eee !important;
 }
 
 .pace {
@@ -3436,17 +3399,20 @@ small.pull-right {
 .pace .pace-progress {
     background: #dd212d;
     position: fixed;
-    z-index: 2000;
     top: 0;
     right: 100%;
     width: 100%;
     height: 2px;
 }
 
+.right-wrapper label {
+    color: #fff;
+}
+
 .pace .pace-progress-inner {
     display: block;
     position: absolute;
-    right: 0px;
+    right: 0;
     width: 100px;
     height: 100%;
     box-shadow: 0 0 10px #dd212d, 0 0 5px #dd212d;
@@ -3461,7 +3427,7 @@ small.pull-right {
 .pace .pace-activity {
     display: block;
     position: fixed;
-    z-index: 2000;
+    z-index: 1;
     top: 15px;
     right: 15px;
     width: 14px;
@@ -3524,10 +3490,8 @@ small.pull-right {
 @keyframes pace-spinner {
     0% {
         transform: rotate(0deg);
-        transform: rotate(0deg);
     }
     100% {
-        transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }
@@ -3568,6 +3532,53 @@ small.pull-right {
     height: 20px;
     top: 4px;
     right: 4px;
+}
+
+.btn-danger.btn {
+    border-color: #c7d5e0 !important;
+    background: #fff;
+    display: inline-block;
+    padding: 6px 12px !important;
+    margin-bottom: 0;
+    font-size: 12px !important;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.achievement {
+    width: 86px;
+    float: left;
+    position: relative;
+    right: 10px;
+}
+
+.achievement-rank {
+    width: 86px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.achievement-date {
+    width: 86px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.btn.dropdown-toggle {
+    border-color: #c7d5e0 !important;
+    background: #fff;
 }
 
 #tree {
@@ -4147,6 +4158,20 @@ div.bs-component span {
     font-size: 20px !important;
 }
 
+.fs22 {
+    font-size: 22px !important;
+}
+
+@media (min-width: 768px) {
+    .lead {
+        font-size: 17px;
+    }
+}
+
+.media-links {
+    margin-top: 10px;
+}
+
 .ml30 {
     margin-left: 40px !important;
 }
@@ -4279,6 +4304,7 @@ div.bs-component span {
 }
 
 .comment-author {
+    font-size: 13px;
     font-weight: bold;
     max-width: 150px;
     display: inline-block;
@@ -4491,10 +4517,6 @@ div.bs-component span {
     transition: margin-left .3s ease;
 }
 
-label {
-    color: #fafafa;
-}
-
 .mt10 {
     margin-top: 10px;
 }
@@ -4529,17 +4551,43 @@ ul.comment-list li:first-child {
     bottom: 15px;
 }
 
-#all-completed-today {
+#all-completed-today,
+#all-completed-week {
     display: none;
     text-align: center;
 }
 
-#all-completed-today .illustration {
+#all-completed-today .illustration,
+#all-completed-week .illustration {
     margin-bottom: 20px;
     width: 300px;
 }
 
-#all-completed-today .head {
+#all-completed-today .head,
+#all-completed-week .head {
     font-size: 20px;
     margin-bottom: 10px;
+}
+
+.pr30 {
+    padding-right: 30px !important;
+}
+
+.media-object {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 150px;
+}
+
+.media:first-child {
+    margin-top: 5px;
+}
+
+.panel-footer {
+    border-top: none;
+}
+
+.ph15 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
 }

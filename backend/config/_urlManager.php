@@ -6,7 +6,7 @@ return [
     'showScriptName'  => false,
     'rules'           => [
         'task'    => '/task/index',
-        'profile' => '/user/index',
+        'profile' => '/user/profile',
         'logout'  => '/user/logout'
     ]
 ];
