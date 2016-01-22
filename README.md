@@ -1,6 +1,6 @@
 # Inely [![Build Status](https://scrutinizer-ci.com/g/Exoticness/madeasy/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/madeasy/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hirootkit/inely/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hirootkit/inely/?branch=master) [![Codacy Badge](https://img.shields.io/badge/codacy-B-brightgreen.svg)](https://www.codacy.com/app/roof1rst/list)
 
-##### [Inely](http://www.inely.ru) – свободный облачный сервис для управления персональными задачами, позволяющий составить расписание дел, либо работать над общими планами и целями, делегировать задачи между родными и коллегами и многое другое...
+##### [Inely](http://www.inely.ru) представляет собой облачный сервис для управления задачами на веб-основе, который может использоваться для ведения задач в организации, либо на персональной основе.
 
 # Установка
 

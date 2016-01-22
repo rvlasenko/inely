@@ -4,6 +4,7 @@ namespace console\controllers;
 
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\console\controllers\MessageController;
 use yii\console\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
@@ -14,7 +15,7 @@ use yii\helpers\VarDumper;
  * Class ExtendedMessageController
  * @package console\controllers
  */
-class ExtendedMessageController extends \yii\console\controllers\MessageController
+class ExtendedMessageController extends MessageController
 {
     /**
      * @param bool $newSourceLanguage
@@ -72,7 +73,7 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
                     return $result;
 
                 }, $subject, -1, $n);
-                if (@file_put_contents($fileName, $replacedSubject) !== false) {
+                if (file_put_contents($fileName, $replacedSubject) !== false) {
                     Console::output("File: {$fileName}; Translator: {$currentTranslator}; Affected: {$n}");
                 } else {
                     Console::error("File: {$fileName}; Translator: {$currentTranslator}; Affected: {$n}");
@@ -289,12 +290,9 @@ class ExtendedMessageController extends \yii\console\controllers\MessageControll
     }
 
     /**
-     * @param $messages
-     * @param $config
-     *
      * @throws \Exception
      */
-    protected function saveToPoOutput($messages, $config)
+    protected function saveToPoOutput()
     {
         throw new \Exception("PO migration didn't implemented yet");
     }

@@ -38,8 +38,7 @@ class UserProfile extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'firstname' => 'Имя',
-            'lastname'  => 'Фамилия'
+            'firstname' => 'Имя'
         ];
     }
 
@@ -49,9 +48,19 @@ class UserProfile extends ActiveRecord
         Yii::$app->session->setFlash('forceUpdateLocale');
     }
 
-    public function getAvatar()
+    public function getAvatar($id)
     {
-        return $this->avatar_path ? Yii::getAlias($this->avatar_path) : '/images/avatars/none.png';
+        $model = $this::findOne($id);
+
+        return $model->avatar_path ? Yii::getAlias($model->avatar_path) : '/images/avatars/none.png';
+    }
+
+    public function setAvatar($fileName)
+    {
+        $model = $this::findOne(Yii::$app->user->id);
+        $model->setAttribute('avatar_path', '/images/avatars/storage/' . $fileName);
+
+        return $model->save();
     }
 
     public function getUser()

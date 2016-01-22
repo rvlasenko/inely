@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/doc">
                         <i data-placement="bottom" title="Помощь" style="font-size:20px;font-style: normal;" class="entypo-info-circled tooltitle"></i>
                     </a>
                 </li>
@@ -45,7 +45,7 @@
             <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#" class="profile">
-                        <img alt="Avatar" class="admin-pic img-circle" src="<?= Yii::$app->user->identity->userProfile->getAvatar() ?>">
+                        <img alt="Avatar" class="admin-pic img-circle" src="<?= Yii::$app->user->identity->userProfile->getAvatar(Yii::$app->user->id) ?>">
                         <?= Yii::$app->user->identity->username ?>
                     </a>
                 </li>

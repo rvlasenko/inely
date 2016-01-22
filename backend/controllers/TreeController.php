@@ -262,7 +262,7 @@ class TreeController extends Controller
             $futureDate   = $formatter->dateLeft($v[Task::tableName()]['dueDate']);
             $hasComment   = empty(TaskComments::findOne(['taskId' => $v['dataId']])) ? null : 'entypo-chat';
             $incompletely = $v[Task::tableName()]['isDone'] == 2 ? true : false;
-            $isAssigned   = $assignedId ? Yii::$app->user->identity->userProfile->getAvatar() : false;
+            $isAssigned   = $assignedId ? Yii::$app->user->identity->userProfile->getAvatar(Yii::$app->user->id) : false;
 
             $result[] = [
                 'id'       => $v['dataId'],

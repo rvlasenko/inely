@@ -29,11 +29,12 @@ class LandController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'allow' => true, 'roles' => ['?']
+                        'allow' => true,
+                        'roles' => ['?']
                     ],
                     [
-                        'allow' => false,
-                        'roles' => ['@'],
+                        'allow'        => false,
+                        'roles'        => ['@'],
                         'denyCallback' => function () {
                             return $this->redirect(Yii::$app->urlManagerBackend->createUrl(false));
                         }

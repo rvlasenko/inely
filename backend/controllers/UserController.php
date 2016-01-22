@@ -12,11 +12,14 @@ namespace backend\controllers;
 
 use backend\models\UserForm;
 use common\models\User;
+use common\models\UserProfile;
 use Yii;
 use yii\base\Exception;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * Class UserController
@@ -39,14 +42,15 @@ class UserController extends Controller
     }
 
     /**
-     * @return string
-     * @throws Exception
+     * Отображение одиночной модели пользователя.
+     * @return string результат визуализации профиля.
+     * @throws Exception если данные не прошли валидацию.
      */
     public function actionProfile()
     {
-        $userProfile  = Yii::$app->user->identity->userProfile;
         $userModel    = new UserForm();
         $userIdentity = Yii::$app->user->identity;
+        $userProfile  = $userIdentity->userProfile;
 
         $userModel->email = $userIdentity->email;
 
@@ -61,7 +65,8 @@ class UserController extends Controller
     }
 
     /**
-     * @throws Exception
+     * Обновление существующей модели пользовательского профиля.
+     * @throws Exception если email не прошел валидацию.
      */
     public function actionAccount()
     {
@@ -86,6 +91,36 @@ class UserController extends Controller
         Yii::$app->user->logout();
 
         return $this->redirect(Yii::$app->urlManagerFrontend->createUrl(false));
+    }
+
+    /**
+     * Загрузка аватарки на сервер и смена пути к ней в профиле БД.
+     * Если загрузка осуществилась успешно, плагину DropZone отправляется имя файла в JSON.
+     *
+     * @property string $fileName   параметр, в котором находится файл.
+     * @property string $uploadPath путь к файлу, соответствующий алиасу.
+     * @return string закодированная JSON строка файла.
+     * @throws Exception если сохранение пошло не так.
+     */
+    public function actionUpload()
+    {
+        $fileParam  = 'avatar';
+        $uploadPath = Yii::getAlias('@backend/web/images/avatars/storage/');
+
+        if (Yii::$app->request->isPost) {
+            $fileName = UploadedFile::getInstanceByName($fileParam);
+            $filePath = $uploadPath . $fileName;
+
+            if ($fileName->saveAs($filePath)) {
+                if (!(new UserProfile())->setAvatar($fileName)) {
+                    throw new Exception('Невозможно сохранить пользовательские данные.');
+                }
+
+                return Json::encode($fileName);
+            }
+        }
+
+        return null;
     }
 
     /**

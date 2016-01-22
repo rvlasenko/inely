@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <ul class="footer-nav all-caps">
-                <li><a href="#" class="contact-trigger">Связаться с нами</a></li>
+                <li><a href="#" class="contact-trigger">Связаться с автором</a></li>
             </ul> 
 
             <div class="copyright">

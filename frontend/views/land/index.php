@@ -140,30 +140,6 @@
                     </a>
                 </div>
 
-                <!--<div class="the-feature col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
-                        <span class="feature-icon icon-gears"></span>
-                        <h4 class="feature-title"></h4>
-                        <p></p>
-                    </a>
-                </div>
-
-                <div class="the-feature col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
-                        <span class="feature-icon icon-trophy3"></span>
-                        <h4 class="feature-title"></h4>
-                        <p></p>
-                    </a>
-                </div>
-
-                <div class="the-feature col-lg-4 col-md-4 col-sm-6">
-                    <a href="#">
-                        <span class="feature-icon icon-lightbulb"></span>
-                        <h4 class="feature-title"></h4>
-                        <p></p>
-                    </a>
-                </div>-->
-
                 <div class="the-feature zero-bottom col-lg-4 col-md-4 col-sm-6">
                     <a href="#">
                         <span class="feature-icon icon-notebook"></span>

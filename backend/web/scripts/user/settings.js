@@ -42,9 +42,21 @@ var settings = (function() {
                 $('#user-settings').html(data);
             });
 
+            $(document).on('click', '#avatar', function() {
+                $('#avatar-upload').slideToggle();
+            });
+
+            // Загрузка аватарки
+            $(document).on('click', '#load', function() {
+                if ($('.dz-preview').length) {
+                    myDropzone.processQueue();
+                }
+            });
+
             // Сериализованные объекты ActiveForm. Альтернатива PJAX
             $(document).on('click', '#send-profile', function(e) {
                 e.preventDefault();
+                $.magnificPopup.close();
 
                 var profileData = $('form#user-settings').serializeArray();
                 var accountData = $('form#account-settings').serializeArray();

@@ -204,7 +204,7 @@ class ProjectController extends TaskController
                     'owner'   => $user->id == $project->ownerId ? 'Владелец' : '',
                     'name'    => $user->username,
                     'key'     => $user->id,
-                    'picture' => Yii::$app->user->identity->userProfile->getAvatar(),
+                    'picture' => Yii::$app->user->identity->userProfile->getAvatar($user->id),
                     'email'   => $user->email
                 ];
             }
@@ -237,7 +237,7 @@ class ProjectController extends TaskController
                 $result[] = [
                     'id'      => $user->id,
                     'text'    => $user->username,
-                    'picture' => Yii::$app->user->identity->userProfile->getAvatar()
+                    'picture' => Yii::$app->user->identity->userProfile->getAvatar($user->id)
                 ];
             }
 

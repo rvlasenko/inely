@@ -3564,6 +3564,10 @@ small.pull-right {
     right: 10px;
 }
 
+#avatar-upload {
+    display: none;
+}
+
 .achievement-rank {
     width: 86px;
     text-align: center;
@@ -4303,6 +4307,102 @@ div.bs-component span {
     margin-right: 5px !important;
 }
 
+.dropzone {
+    border: 2px dashed #0087f7;
+    border-radius: 5px;
+    background: white;
+}
+
+.dropzone .dz-message {
+    font-weight: 400;
+}
+
+.dropzone .dz-message .note {
+    font-size: 0.8em;
+    font-weight: 200;
+    display: block;
+    margin-top: 1.4rem;
+}
+
+.next-button-container {
+    margin-top: 10px;
+}
+
+.dropzone.dropzone-sm .dz-default.dz-message i.fa {
+    color: #bbb;
+    font-size: 70px;
+    margin-bottom: 6px;
+}
+
+.dropzone.dropzone-sm .dz-default.dz-message span.main-text b {
+    font-size: 32px;
+}
+
+.dropzone .dz-default.dz-message span.main-text b {
+    cursor: pointer;
+    font-size: 40px;
+    color: #555;
+}
+
+.dropzone.dropzone-sm .dz-default.dz-message span.main-text {
+    font-size: 22px;
+}
+
+.dropzone .dz-default.dz-message span.main-text {
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 400;
+    color: #666;
+}
+
+.dropzone .dz-default.dz-message span {
+    display: inline-block;
+    text-align: center;
+}
+
+.dropzone.dropzone-sm .dz-default.dz-message i.fa {
+    color: #bbb;
+    font-size: 70px;
+    margin-bottom: 6px;
+}
+
+.dropzone .dz-default.dz-message i.fa {
+    cursor: pointer;
+    color: #4a89dc;
+    font-size: 60px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.dropzone .dz-default.dz-message span {
+    display: inline-block;
+    text-align: center;
+}
+
+.dropzone .dz-default.dz-message {
+    cursor: pointer;
+    background-image: none;
+    width: 100%;
+    height: 100%;
+    margin-left: 0px;
+    text-align: center;
+    left: 0;
+}
+
+.dropzone.dropzone-sm .dz-default.dz-message span.sub-text {
+    font-size: 16px;
+}
+
+.dropzone .dz-default.dz-message span.sub-text {
+    font-size: 18px;
+    color: #888;
+}
+
+.dropzone .dz-default.dz-message span {
+    display: inline-block;
+    text-align: center;
+}
+
 .comment-author {
     font-size: 13px;
     font-weight: bold;
@@ -4577,6 +4677,7 @@ ul.comment-list li:first-child {
     -webkit-border-radius: 50%;
     border-radius: 50%;
     width: 150px;
+    height: 150px;
 }
 
 .media:first-child {
@@ -4590,4 +4691,83 @@ ul.comment-list li:first-child {
 .ph15 {
     padding-left: 15px !important;
     padding-right: 15px !important;
+}
+
+.tray-bin {
+    min-height: 65px;
+    padding: 7px;
+    border: 1px dashed #ccc;
+    background: #eee;
+}
+
+.mb10 {
+    margin-bottom: 10px !important;
+}
+
+.pl10 {
+    padding-left: 10px !important;
+}
+
+ul.img-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+ul.img-list li {
+    display: inline-block;
+}
+
+span.text-content {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    cursor: pointer;
+    display: table;
+    height: 150px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 150px;
+    border-radius: 50%;
+}
+
+span.text-content span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+span.text-content {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    cursor: pointer;
+    display: table;
+    height: 150px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 150px;
+    opacity: 0;
+}
+
+ul.img-list li:hover span.text-content {
+    opacity: 1;
+}
+
+span.text-content {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    cursor: pointer;
+    display: table;
+    height: 150px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 150px;
+    opacity: 0;
+    -webkit-transition: opacity 500ms;
+    -moz-transition: opacity 500ms;
+    -o-transition: opacity 500ms;
+    transition: opacity 500ms;
 }

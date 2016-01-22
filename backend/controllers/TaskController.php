@@ -314,7 +314,7 @@ class TaskController extends Controller
                     'author'  => User::findOne($comment->userId)->username,
                     'time'    => $formatter->asRelativeDate($comment->timePosted),
                     'comment' => $comment->comment,
-                    'picture' => Yii::$app->user->identity->userProfile->getAvatar()
+                    'picture' => Yii::$app->user->identity->userProfile->getAvatar(User::findOne($comment->userId)->id)
                 ];
             }
 
@@ -438,7 +438,7 @@ class TaskController extends Controller
             // Частичное завершение задачи (если она дочерняя)
             $incompletely = $v[Task::tableName()]['isDone'] == Task::INCOMPLETE_TASK ? true : false;
             // Наличие у пользователя делегированной задачи
-            $isAssigned = $assignedId ? Yii::$app->user->identity->userProfile->getAvatar() : false;
+            $isAssigned = $assignedId ? Yii::$app->user->identity->userProfile->getAvatar(User::findOne($assignedId)->id) : false;
             // Если для задачи установлена некая контекстная метка, отобразить её
             $labelName  = ArrayHelper::getValue($taskLabel, 'labelName', false);
             $labelColor = ArrayHelper::getValue($taskLabel, 'badgeColor', false);

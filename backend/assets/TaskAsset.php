@@ -13,10 +13,10 @@ class TaskAsset extends AssetBundle
 
     public $css = [
         'http://fonts.googleapis.com/css?family=Open+Sans:300,400,600&subset=latin,cyrillic',
+        'fonts/entypo-icon/entypo-icon.css',
 
         'css/effect.css',
         'css/style.css',
-        'fonts/entypo-icon/entypo-icon.css',
 
         'vendor/skin-select/skin-select.css',
         'vendor/gage/jquery.easy-pie-chart.css',
@@ -29,7 +29,6 @@ class TaskAsset extends AssetBundle
 
     public $js = [
         'scripts/load.min.js',
-        'scripts/app.js',
 
         // Древовидные списки
         'vendor/jstree/jstree.min.js',
@@ -56,6 +55,7 @@ class TaskAsset extends AssetBundle
         'vendor/noty/packaged/jquery.noty.packaged.min.js',
         'vendor/select2/js/select2.min.js',
 
+        'scripts/app.js',
         'scripts/preload/classie.js',
         'scripts/preload/pathLoader.js',
         'scripts/preload/main.js'
