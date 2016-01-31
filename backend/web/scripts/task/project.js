@@ -72,7 +72,7 @@ var project = (function () {
                 '<li class="jstree-node jstree-leaf" data-key='+ data.id +'>' +
                     '<a class="jstree-anchor private '+ selectedColor +'" href="#">' +
                         '<i class="jstree-icon jstree-checkbox"></i>' +
-                        '<span class="text">'+ data.name +'</span>' +
+                        '<span class="text">'+ data.name.listName +'</span>' +
                     '</a>' +
                 '</li>'
                 );
@@ -174,14 +174,14 @@ var project = (function () {
      * Поиск и отправка сообщения юзеру о вступлении в проект.
      * Отображение диалога об успешной отправке.
      */
-    var handleShareWithUser = function () {
+    var handleShare = function () {
         $('#invite').click(function () {
             var listId   = localStorage.getItem('listId');
             var $project = $('div[data-key='+ listId +']');
             var $email   = $('#email').val();
 
             if ($email.length) {
-                $.post('/project/share-with-user', {
+                $.post('/project/share', {
                     'listId': listId,
                     'email':  $email,
                     '_csrf':  $csrfToken
@@ -288,7 +288,7 @@ var project = (function () {
     return {
 
         init: function () {
-            handleShareWithUser();
+            handleShare();
             handleRemoveCollaborator();
             handleOpenSettings();
             fillTree();

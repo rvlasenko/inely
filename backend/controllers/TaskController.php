@@ -10,13 +10,12 @@
 
 namespace backend\controllers;
 
+use backend\models\GamifyLevels;
+use backend\models\GamifyUserStats;
 use backend\models\Project;
 use backend\models\Task;
-use backend\models\TaskComments;
 use backend\models\TaskData;
 use backend\models\TaskLabels;
-use common\components\formatter\FormatterComponent;
-use common\models\User;
 use Yii;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
@@ -33,10 +32,20 @@ use yii\web\Response;
 class TaskController extends Controller
 {
     public $userId;
+    public $layout = 'task';
 
     public function init()
     {
         $this->userId = Yii::$app->user->id;
+    }
+
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction'
+            ]
+        ];
     }
 
     public function behaviors()
@@ -58,13 +67,11 @@ class TaskController extends Controller
             'verbs'  => [
                 'class'   => VerbFilter::className(),
                 'actions' => [
-                    'get-history'  => ['get'],
-                    'get-comments' => ['get'],
-                    'node'         => ['get'],
-                    'create'       => ['post'],
-                    'delete'       => ['post'],
-                    'edit'         => ['post'],
-                    'set-comment'  => ['post']
+                    'get-history' => ['get'],
+                    'node'        => ['get'],
+                    'create'      => ['post'],
+                    'delete'      => ['post'],
+                    'edit'        => ['post'],
                 ]
             ],
             /*'pageCache' => [
@@ -96,11 +103,14 @@ class TaskController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_HTML;
 
+        // Получить как личные так и общие проекты
         $projectProvider = new ActiveDataProvider([
             'query' => Project::find()
-                              ->where(['ownerId' => $this->userId])
-                              ->orWhere(['sharedWith' => $this->userId])
+                ->where(['ownerId' => $this->userId])
+                ->orWhere(['sharedWith' => $this->userId])
         ]);
+
+        // Получить все метки
         $labelProvider = new ActiveDataProvider([
             'query' => TaskLabels::find(['ownerId' => $this->userId])
         ]);
@@ -116,7 +126,7 @@ class TaskController extends Controller
      * Первое обращение содержит параметр id со значением #, на этом этапе формируется корень.
      * При последующих обращениях выполняется поиск дочерних веток дерева у элемента с принятым id.
      * Является источником данных для [[$.jstree.core.data]].
-     * @method ActiveQuery roots(string $author, integer $listId) Получает корневой узел.
+     * @method ActiveQuery roots(array $data) Получает корневой узел.
      *
      * @param integer $id     Уникальный идентификатор задачи.
      * @param string  $sort   Сортировка по условию. По умолчанию происходит по левому индексу.
@@ -127,18 +137,29 @@ class TaskController extends Controller
      */
     public function actionNode($id, $sort = 'lft', $listId = null, $group = 'inbox')
     {
+        $model = new Task();
+
         if ($id == '#') {
-            $node = TaskData::find()->roots($this->userId, $listId)->all();
+            $node = TaskData::find()->roots([
+                'author' => $this->userId,
+                'listID' => $listId
+            ])->all();
         } else {
             $root = TaskData::findOne($id);
-            $node = $root->children($this->userId, Task::ACTIVE_TASK, $sort, $listId, $group)->all();
+            $node = $root->children([
+                'ownerID' => $this->userId,
+                'history' => Task::ACTIVE_TASK,
+                'sort'    => $sort,
+                'listID'  => $listId,
+                'group'   => $group
+            ])->all();
         }
 
-        return $this->buildTree($node);
+        return $model->buildTree($node);
     }
 
     /**
-     * Валидация принятых атрибутов и добавление их значений в соответствующие поля базы данных.
+     * Валидация принятых атрибутов и массовое их присваивание.
      * В случае несоответствия формату, поле игнорируется и выбрасывается исключение.
      * @return bool если редактирование завершилось успешно.
      * @throws Exception если принятые атрибуты не прошли валидацию, либо не был получен id.
@@ -149,15 +170,35 @@ class TaskController extends Controller
         $task     = Task::findOne($request->post('id'));
         $taskData = TaskData::findOne(['dataId' => $request->post('id')]);
 
-        if ($task->load($request->post()) && $task->update()) {
-            if ($taskData->load($request->post()) && $taskData->update()) {
+        if ($task->load($request->post()) && $taskData->load($request->post())) {
+            if ($task->update() && $taskData->update()) {
                 return true;
             }
-        } else {
-            throw new Exception('Получены данные, отличные от необходимого формата');
         }
+    }
 
-        return true;
+    /**
+     * Поиск задачи по идентификатору для присовения выполненного статуса.
+     * @return bool при успешном обновлении поля "isDone"
+     * @throws Exception если невозможно обновить задачу
+     * @throws NotFoundHttpException если задачи с указанным идентификатором нет
+     */
+    public function actionDone()
+    {
+        $request   = Yii::$app->request;
+        $userName  = Yii::$app->user->identity->username;
+        $taskModel = Task::findOne($request->post('id'));
+
+        if ($taskModel->load($request->post()) && $taskModel->update()) {
+            (new GamifyUserStats())->updateCounter([
+                'isDone'   => $request->post('isDone'),
+                'userName' => $userName
+            ]);
+
+            return (new GamifyLevels())->addExperience($userName, 20);
+        } else {
+            throw new Exception('Невозможно выполнить задачу');
+        }
     }
 
     /**
@@ -170,38 +211,31 @@ class TaskController extends Controller
      */
     public function actionCreate()
     {
-        $request = Yii::$app->request;
-        $taskKey = null;
-
-        $parentTask    = TaskData::findOne(['dataId' => $request->post('id')]);
-        $childTask     = new Task();
+        $request    = Yii::$app->request;
+        $parentTask = TaskData::findOne(['dataId' => $request->post('id')]);
+        $taskModel  = new Task();
+        $taskLabel  = new TaskLabels();
         $childTaskData = new TaskData();
 
-        if ($childTaskData->load($request->post())) {
-            $childTaskData->prependTo($parentTask);
+        if ($childTaskData->load($request->post()) && $childTaskData->prependTo($parentTask)) {
+            $taskModel->ownerId    = Yii::$app->user->id;
+            $taskModel->attributes = $request->post();
+            $taskModel->link('taskData', $childTaskData);
 
-            $taskKey = $childTaskData->getPrimaryKey();
+            return (new GamifyLevels())->addExperience(Yii::$app->user->identity->username, 10);
+        }
 
-            $childTask->taskId     = $taskKey;
-            $childTask->attributes = $request->post();
-
-            if ($request->post('label')) {
-                $this->setLabel($taskKey, $request->post('label'));
-            }
-
-            if (!$childTask->save()) {
-                throw new Exception('Невозможно сохранить данные');
-            }
-
-            return true;
-        } else {
-            throw new Exception('Переданы данные, несоответствующие формату');
+        if (ArrayHelper::keyExists('label', $request->post())) {
+            $taskLabel->setLabel([
+                'taskPK'    => $childTaskData->getPrimaryKey(),
+                'labelName' => $request->post('label')
+            ]);
         }
     }
 
     /**
      * Перемещение задачи с помощью Drag'n'Drop.
-     * Устанавливаем первичный ключ родителькой задачи и перемещенной.
+     * Ищем существующие задачи в базе и присваиваем новые индексы.
      * @return bool если перемещение завершилось успешно.
      * @throws Exception при пустых ids, указывающих на задачу.
      */
@@ -228,6 +262,7 @@ class TaskController extends Controller
      */
     public function actionDelete()
     {
+        $model       = new Task();
         $request     = Yii::$app->request;
         $rmCompleted = $request->post('completed');
         $condition   = [
@@ -237,15 +272,10 @@ class TaskController extends Controller
         ];
 
         if ($rmCompleted) {
-            foreach (TaskData::find()->joinWith(Task::tableName())->where($condition)->each() as $task) {
-                $task->deleteWithChildren();
-            }
+            $model->removeCompleted($condition);
         } else {
             $task = TaskData::findOne(['dataId' => $request->post('id')]);
-
-            if (!$task->deleteWithChildren()) {
-                throw new Exception('Ошибка при удалении задачи.');
-            }
+            $task->deleteWithChildren();
 
             return $task->getPrimaryKey();
         }
@@ -255,27 +285,19 @@ class TaskController extends Controller
 
     /**
      * Получение количества задач в каждой группе [[getCountOfGroups()]].
-     * Нормализация данных и передача во внешнюю функцию jQuery.getJSON().
+     * Нормализация данных и отправка в jQuery.getJSON().
      * @return array данные преобразованные в JSON
      */
     public function actionGetTaskCount()
     {
-        $quantity = Task::getCountOfGroups();
-        $result   = [
-            'inbox'  => ArrayHelper::getValue($quantity, '0.0.inbox'),
-            'today'  => ArrayHelper::getValue($quantity, '1.0.today'),
-            'week'   => ArrayHelper::getValue($quantity, '2.0.week'),
-            'assign' => ArrayHelper::getValue($quantity, '3.0.assign')
-        ];
-
-        return $result;
+        return Task::getCountOfGroups();
     }
 
     /**
      * Формирование объекта, содержащего в себе данные о завершенных задачах.
      * Первое обращение содержит параметр id со значением #, на этом этапе формируется корень.
      * При последующих обращениях выполняется поиск дочерних веток дерева у элемента с принятым id.
-     * @method ActiveQuery roots(string $author, integer $listId) Получает корневой узел.
+     * @method ActiveQuery roots(array $data) Получает корневой узел.
      *
      * @param integer $id     ID задачи.
      * @param integer $listId ID проекта (списка), по которому группируются требуемые задачи.
@@ -284,186 +306,44 @@ class TaskController extends Controller
      */
     public function actionGetHistory($id, $listId = null)
     {
+        $model = new Task();
+
         if ($id == '#') {
-            $node = TaskData::find()->roots($this->userId, $listId)->all();
+            $node = TaskData::find()->roots([
+                'author' => $this->userId,
+                'listID' => $listId
+            ])->all();
         } else {
             $root = TaskData::findOne($id);
-            $node = $root->children($this->userId, Task::COMPLETED_TASK, null, $listId)->all();
+
+            $node = $root->children([
+                'ownerID' => $this->userId,
+                'history' => Task::COMPLETED_TASK,
+                'sort'    => null,
+                'listID'  => $listId,
+                'group'   => 'inbox'
+            ])->all();
         }
 
-        return $this->buildTree($node, true);
+        return $model->buildTree($node);
     }
 
     /**
-     * Формирование комментариев задачи со свойствами в будущий объект и передача инициатору.
-     * Инциатором запроса является callback $.magnificPopup.open в обработчике [[handleOpenSettings()]].
+     * @param \yii\base\Action $action
      *
-     * @param integer $taskId ID задачи, для которой требуется сформировать комментарии.
-     *
-     * @return array|null JSON объект с комментариями пользователей.
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
      */
-    public function actionGetComments($taskId)
+    public function beforeAction($action)
     {
-        if (Yii::$app->request->isAjax) {
-            $result    = [];
-            $formatter = new FormatterComponent();
-            $task      = Task::findOne($taskId);
-
-            foreach (TaskComments::find()->where(['taskId' => $task->taskId])->each() as $comment) {
-                $result[] = [
-                    'author'  => User::findOne($comment->userId)->username,
-                    'time'    => $formatter->asRelativeDate($comment->timePosted),
-                    'comment' => $comment->comment,
-                    'picture' => Yii::$app->user->identity->userProfile->getAvatar(User::findOne($comment->userId)->id)
-                ];
+        if (parent::beforeAction($action)) {
+            if ($action->id == 'error') {
+                Yii::$app->response->format = Response::FORMAT_HTML;
             }
 
-            return $result;
+            return true;
         }
 
-        return null;
-    }
-
-    /**
-     * Запись комментария к необходимой задаче в базу данных, и передача инициатору запроса.
-     * @return array объект с текущим комментарием.
-     * @throws Exception если принятые атрибуты не прошли валидацию.
-     */
-    public function actionSetComment()
-    {
-        $request     = Yii::$app->request;
-        $formatter   = new FormatterComponent();
-        $taskComment = new TaskComments();
-
-        if ($taskComment->load($request->post()) && $taskComment->insert()) {
-            return [
-                'author'  => Yii::$app->user->identity->username,
-                'time'    => $formatter->asRelativeDate($request->post('timePosted')),
-                'comment' => $request->post('comment'),
-                'picture' => Yii::$app->user->identity->userProfile->getAvatar()
-            ];
-        } else {
-            throw new Exception('Получены данные, отличные от необходимого формата');
-        }
-    }
-
-    /**
-     * Установка к задаче контекстной метки во внешнюю таблицу, при наличии.
-     *
-     * @param integer $taskPK    Первичный ключ задачи, в которой может содержаться метка
-     * @param string  $labelName Название метки, полученное от пользователя
-     *
-     * @return bool если сохранение завершилось успешно
-     * @throws Exception при ошибке сохранения и валидации данных
-     */
-    protected function setLabel($taskPK, $labelName)
-    {
-        $labelModel = new TaskLabels();
-        $taskLabel  = TaskLabels::findOne(['labelName' => $labelName]);
-
-        if ($taskLabel) {
-            $taskLabel->taskId = $taskPK;
-
-            return $taskLabel->update();
-        } else {
-            $labelData = [
-                'ownerId'    => $this->userId,
-                'taskId'     => $taskPK,
-                'labelName'  => $labelName,
-                'badgeColor' => 'first'
-            ];
-
-            if ($labelModel->load($labelData) && !$labelModel->insert()) {
-                throw new Exception('Невозможно сохранить данные');
-            }
-        }
-    }
-
-    /**
-     * Преоразование массива задач в объект вида:
-     * [{
-     *      "id":   "240",
-     *      "text": "Child task",
-     *      "a_attr": {
-     *          "note":       "<p>Не забыть</p>",
-     *          "degree":     "high",
-     *          "incomplete": "true",
-     *          "lname":      "новая метка",
-     *          "assignedId": "26",
-     *          "assigned":   "/images/avatars/some.jpg",
-     *          "date":  "5 Янв",
-     *          "rel":   "future",
-     *          "hint":  "осталось 10 дней"
-     *      },
-     *      "icon":     "entypo-chat",
-     *      "children": false
-     * }]
-     *
-     * @param array $node        узел, сформированный в результате запроса
-     * @param bool  $showHistory отображение завершенных задач
-     *
-     * @return array результат преобразования
-     * @key int     id       уникальный идентификатор узла
-     * @key string  text     строка определяющая имя задачи юзера
-     * @key string  note     заметка к задаче как html, при наличии
-     * @key string  degree   степень важности как css класс, от которого меняется цвет
-     * @key bool    incomplete указывает на зависимость дочерней задачи, когда она выполнена, но всё ещё в списке
-     * @key int     assignedId идентификатор юзера, на которого назначена задача
-     * @key string  assigned   аватар юзера при делегированной ему задаче
-     * @key string  date     дата (+ относительная), подсказки и подчеркивание
-     * @key string  icon     при общении в комментариях к задаче стоит иконка
-     * @key bool    children наличие дочерних узлов
-     * @key bool    data     отображение активных (true) или завершенных (false) задач
-     */
-    protected function buildTree($node, $showHistory = false)
-    {
-        $result    = [];
-        $formatter = new FormatterComponent();
-
-        foreach ($node as $v) {
-            $assignedId = $v[Task::tableName()]['assignedTo'];
-            $taskLabel  = TaskLabels::findOne(['taskId' => $v['dataId']]);
-            $taskComm   = TaskComments::findOne(['taskId' => $v['dataId']]);
-
-            // Абсолютная дата выполнения например '6 окт.' или относительная 'через 3 дня'
-            $dueDate = $formatter->asRelativeDate($v[Task::tableName()]['dueDate']);
-            // Словесная дата степени просроченности, например 'today', 'future'
-            $relativeDate = $formatter->timeInWords($v[Task::tableName()]['dueDate']);
-            // Относительная дата для тултипа, кол-во оставшихся дней eg. '3 дня осталось'
-            $futureDate = $formatter->dateLeft($v[Task::tableName()]['dueDate']);
-            // Иконка при наличии комментария у задачи
-            $hasComment = ArrayHelper::getValue($taskComm, function ($taskComm) {
-                return $taskComm ? TaskComments::ICON_CLASS : null;
-            });
-            // Частичное завершение задачи (если она дочерняя)
-            $incompletely = $v[Task::tableName()]['isDone'] == Task::INCOMPLETE_TASK ? true : false;
-            // Наличие у пользователя делегированной задачи
-            $isAssigned = $assignedId ? Yii::$app->user->identity->userProfile->getAvatar(User::findOne($assignedId)->id) : false;
-            // Если для задачи установлена некая контекстная метка, отобразить её
-            $labelName  = ArrayHelper::getValue($taskLabel, 'labelName', false);
-            $labelColor = ArrayHelper::getValue($taskLabel, 'badgeColor', false);
-
-            $result[] = [
-                'id'       => $v['dataId'],
-                'text'     => $v['name'],
-                'a_attr' => [
-                    'note'       => $v['note'],
-                    'degree'     => $v[Task::tableName()]['priority'],
-                    'incomplete' => $incompletely,
-                    'lname'      => $labelName,
-                    'lcolor'     => $labelColor,
-                    'assigned'   => $isAssigned,
-                    'assignId'   => $assignedId,
-                    'date'       => $dueDate,
-                    'rel'        => $relativeDate,
-                    'hint'       => $futureDate
-                ],
-                'icon'     => $hasComment,
-                'children' => ($v['rgt'] - $v['lft'] > 1),
-                'data'     => $showHistory
-            ];
-        }
-
-        return $result;
+        return false;
     }
 }

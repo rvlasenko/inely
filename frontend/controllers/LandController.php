@@ -70,7 +70,7 @@ class LandController extends Controller
             return $this->render('error', ['exception' => $exception]);
         }
 
-        return null;
+        return false;
     }
 
     public function beforeAction($action)
@@ -83,6 +83,6 @@ class LandController extends Controller
             return true;
         }
 
-        return null;
+        return false;
     }
 }

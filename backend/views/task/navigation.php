@@ -16,8 +16,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/doc">
-                        <i data-placement="bottom" title="Помощь" style="font-size:20px;font-style: normal;" class="entypo-info-circled tooltitle"></i>
+                    <a href="/docs">
+                        <i data-placement="bottom" title="Поддержка" style="font-size:20px;font-style: normal;" class="entypo-info-circled tooltitle"></i>
                     </a>
                 </li>
                 <li>

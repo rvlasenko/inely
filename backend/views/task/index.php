@@ -2,7 +2,6 @@
 
 /* @var $this yii\web\View */
 
-\backend\assets\TaskAsset::register($this);
 $this->title = 'Входящие ~ Inely';
 
 ?>

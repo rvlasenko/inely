@@ -10,6 +10,8 @@
 
 namespace backend\models;
 
+use common\models\User;
+use common\models\UserProfile;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -47,9 +49,143 @@ class Project extends ActiveRecord
     }
 
     /**
+     * @param $data
+     *
+     * @return array
+     */
+    public function createProject($data)
+    {
+        $newProject    = new Project();
+        $childTask     = new Task();
+        $childTaskData = new TaskData();
+        $userData      = [
+            'ownerId' => Yii::$app->user->id,
+            'name'    => 'Root',
+            'isDone'  => null
+        ];
+
+        if ($newProject->load($data) && $newProject->save()) {
+            $userData['listId'] = $newProject->getPrimaryKey();
+
+            if ($childTaskData->load($userData) && $childTaskData->makeRoot()) {
+                $userData['taskId'] = $childTaskData->getPrimaryKey();
+
+                if ($childTask->load($userData) && $childTask->save()) {
+                    return [
+                        'name' => $data,
+                        'id'   => $userData['listId']
+                    ];
+                }
+            }
+        }
+    }
+
+    /**
+     * @param $listId
+     *
+     * @return array
+     */
+    public function getAssignedUsers($listId)
+    {
+        $project  = Project::findOne($listId);
+        $result[] = [
+            'id'      => 0,
+            'text'    => 'Нет',
+            'picture' => '/images/avatars/none.png'
+        ];
+
+        foreach (User::find()
+                     ->with('userProfile')
+                     ->where(['id' => [$project->ownerId, $project->sharedWith]])
+                     ->each() as $user) {
+            $result[] = [
+                'id'      => $user->id,
+                'text'    => $user->username,
+                'picture' => (new UserProfile())->getAvatar($user->id)
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
+     * Ищем id пользователя по email, а также id корневого узла проекта и исключаем из списка.
+     *
+     * @param $userData
+     *
+     * @return bool
+     */
+    public function removeCollaborator($userData)
+    {
+        $rootId  = TaskData::find()->rootId($userData['userID'], $userData['listID']);
+        $task    = Task::findOne($rootId);
+        $project = Project::findOne($userData['listID']);
+        $attr    = ['sharedWith' => null];
+
+        $task->attributes    = $attr;
+        $project->attributes = $attr;
+
+        if ($task->save() && $project->save()) {
+            return true;
+        }
+    }
+
+    /**
+     * Ищем id пользователя по email, а также id корневого узла проекта и добавляем в список.
+     * @method ActiveQuery rootId(string $author, integer $listId) Получает id корневого списка.
+     *
+     * @param $userData
+     *
+     * @return bool
+     */
+    public function shareWithUser($userData)
+    {
+        $ownerId = Yii::$app->user->id;
+        $rootId  = TaskData::find()->rootId($ownerId, $userData['listID']);
+        $task    = Task::findOne($rootId);
+        $project = Project::findOne($userData['listID']);
+        $attr    = ['sharedWith' => User::findByEmail($userData['email'])->getId()];
+
+        $task->attributes    = $attr;
+        $project->attributes = $attr;
+
+        if ($task->save() && $project->save()) {
+            return true;
+        }
+    }
+
+    /**
+     * @param $listId
+     *
+     * @return array
+     */
+    public function getCollaborators($listId)
+    {
+        $result  = [];
+        $project = Project::findOne($listId);
+
+        foreach (User::find()
+                     ->with('userProfile')
+                     ->where(['id' => [$project->ownerId, $project->sharedWith]])
+                     ->each() as $user) {
+            $result[] = [
+                'owner'   => $user->id == $project->ownerId ? 'Владелец' : '',
+                'name'    => $user->username,
+                'key'     => $user->id,
+                'picture' => (new UserProfile())->getAvatar($user->id),
+                'email'   => $user->email
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
      * Запись данных в модель. Метод перегружен от базового класса Model.
-     * @param array|boolean $data массив данных.
-     * @param string $formName имя формы, использующееся для записи данных в модель.
+     *
+     * @param array|boolean $data     массив данных.
+     * @param string        $formName имя формы, использующееся для записи данных в модель.
+     *
      * @return boolean если `$data` содержит некие данные, которые связываются с атрибутами модели.
      */
     public function load($data, $formName = '')

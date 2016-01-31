@@ -39,6 +39,30 @@ class TaskLabels extends ActiveRecord
     }
 
     /**
+     * Установка к задаче контекстной метки во внешнюю таблицу, при наличии.
+     *
+     * @param array $data Атрибуты для метки, ID задачи и название метки
+     *
+     * @return bool если сохранение завершилось успешно
+     * @throws Exception при ошибке сохранения и валидации данных
+     */
+    public function setLabel($data)
+    {
+        $labelModel = new TaskLabels();
+
+        $labelData = [
+            'ownerId'    => Yii::$app->user->id,
+            'taskId'     => $data['taskPK'],
+            'labelName'  => $data['labelName'],
+            'badgeColor' => 'first'
+        ];
+
+        if ($labelModel->load($labelData) && !$labelModel->insert()) {
+            throw new Exception('Невозможно сохранить данные');
+        }
+    }
+
+    /**
      * Запись данных в модель. Метод перегружен от базового класса Model.
      * @param array|boolean $data массив данных.
      * @param string $formName имя формы, использующееся для записи данных в модель.

@@ -18,22 +18,20 @@ class NestedSetQueryBehavior extends Behavior
     /**
      * Gets the root nodes.
      *
-     * @param $author
-     *
-     * @param $listId
+     * @param $data
      *
      * @return \yii\db\ActiveQuery the owner
      */
-    public function roots($author, $listId)
+    public function roots($data)
     {
-        $model     = new $this->owner->modelClass();
-        $listId = $listId === '' ? null : $listId;
+        $model  = new $this->owner->modelClass();
+        $listID = $data['listID'] === '' ? null : $data['listID'];
 
         $this->owner->joinWith(Task::tableName())
                     ->andWhere([$model->leftAttribute => 1])
-                    ->andWhere(['tasks.ownerId' => $author])
-                    ->orWhere(['tasks.sharedWith' => $author])
-                    ->andWhere(['tasks.listId' => $listId])
+                    ->andWhere(['tasks.ownerId' => $data['author']])
+                    ->orWhere(['tasks.sharedWith' => $data['author']])
+                    ->andWhere(['tasks.listId' => $listID])
                     ->addOrderBy([$model->primaryKey()[0] => SORT_ASC]);
 
         return $this->owner;

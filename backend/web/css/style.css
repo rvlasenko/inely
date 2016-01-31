@@ -4771,3 +4771,11 @@ span.text-content {
     -o-transition: opacity 500ms;
     transition: opacity 500ms;
 }
+
+.user-level {
+    text-decoration: underline;
+}
+
+.user-level:hover {
+    cursor: pointer;
+}

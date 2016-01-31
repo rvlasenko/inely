@@ -42,19 +42,35 @@ class UserProfile extends ActiveRecord
         ];
     }
 
+    /**
+     * @param bool  $insert
+     * @param array $changedAttributes
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
         Yii::$app->session->setFlash('forceUpdateLocale');
     }
 
+    /**
+     * @param $id
+     *
+     * @return bool|string
+     */
     public function getAvatar($id)
     {
         $model = $this::findOne($id);
 
-        return $model->avatar_path ? Yii::getAlias($model->avatar_path) : '/images/avatars/none.png';
+        if (isset($model->avatar_path)) {
+            return Yii::getAlias($model->avatar_path);
+        }
     }
 
+    /**
+     * @param $fileName
+     *
+     * @return bool
+     */
     public function setAvatar($fileName)
     {
         $model = $this::findOne(Yii::$app->user->id);
@@ -63,11 +79,17 @@ class UserProfile extends ActiveRecord
         return $model->save();
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * @return null|string
+     */
     public function getFullName()
     {
         if ($this->firstname || $this->lastname) {

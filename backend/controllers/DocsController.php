@@ -14,13 +14,20 @@ use Yii;
 use yii\web\Controller;
 
 /**
- * Class DocController
+ * Class DocsController
  * @package backend\controllers
  */
-class DocController extends Controller
+class DocsController extends Controller
 {
+    public $layout = 'support';
+
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionArticle()
+    {
+        return $this->render('article');
     }
 }

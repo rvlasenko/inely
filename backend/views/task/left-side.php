@@ -76,7 +76,7 @@
                         'emptyText'    => 'У вас нет активных проектов',
                         'options'      => ['class' => 'jstree-neutron'],
                         'itemView'     => function ($model, $key) {
-                            return $this->render('//layouts/_projectView', ['model' => $model, 'key' => $key]);
+                            return $this->render('//layouts/_project', ['model' => $model, 'key' => $key]);
                         }
                     ]) ?>
                 </ul>
@@ -94,7 +94,7 @@
                         'emptyText'    => 'У вас нет контекстных меток',
                         'options'      => ['class' => 'jstree-label'],
                         'itemView'     => function ($model, $key) {
-                            return $this->render('//layouts/_labelView', ['model' => $model, 'key' => $key]);
+                            return $this->render('//layouts/_label', ['model' => $model, 'key' => $key]);
                         }
                     ]) ?>
                 </ul>

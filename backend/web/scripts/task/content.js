@@ -132,13 +132,17 @@ var content = (function() {
                         'DeleteDate':      {
                             'icon':   'fa fa-calendar-minus-o',
                             'label':  'Удалить дату выполнения',
-                            'action': function() { setDueDate(null, ''); }
+                            'action': function() {
+                                setDueDate(null, '');
+                            }
                         },
                         'Remove':      {
                             'separator_before': true,
                             'icon':   'fa fa-trash-o',
                             'label':  'Удалить задачу',
-                            'action': function() { $tree.jstree('delete_node', node); }
+                            'action': function() {
+                                $tree.jstree('delete_node', node);
+                            }
                         }
                     };
                 }
@@ -155,6 +159,7 @@ var content = (function() {
                 'label':    label,
                 'priority': priority,
                 'dueDate':  dueDate,
+                'isDone':   ACTIVE_TASK,
                 '_csrf':    $csrfToken
             }).done(function(id) {
                 data.instance.set_id(data.node, id);
@@ -211,7 +216,7 @@ var content = (function() {
                 appendUsersIntoSelect2();
 
                 // Циклическое заполнение списка комментариев
-                $.getJSON('/task/get-comments', {
+                $.getJSON('/comment/get-comments', {
                     taskId: nodeObj.id
                 }).done(function(data) {
                     $comments.empty(); // Очистить старые комменты
@@ -328,7 +333,7 @@ var content = (function() {
                                 '<polygon points="30,5.077 26,2 11.5,22.5 4.5,15.5 1,19 12,30"></polygon>' +
                             '</svg>');
 
-                    $.post(EDIT_NODE, {
+                    $.post('/task/done', {
                         'id':     nodeObj.id,
                         'isDone': 2, // Относительно выполненная задача
                         '_csrf':  $csrfToken
@@ -345,7 +350,7 @@ var content = (function() {
                             .find('.svgBox')
                                 .fadeOut(100);
 
-                        $.post(EDIT_NODE, {
+                        $.post('/task/done', {
                             'id':     nodeObj.id,
                             'isDone': ACTIVE_TASK,
                             '_csrf':  $csrfToken
@@ -371,7 +376,7 @@ var content = (function() {
 
                         nestedNodes.push(nodeObj.id);
                         $.each(nestedNodes, function(i, id) {
-                            $.post(EDIT_NODE, {
+                            $.post('/task/done', {
                                 'id':     id,
                                 'isDone': 1, // Выполненная задача
                                 '_csrf':  $csrfToken
@@ -389,7 +394,7 @@ var content = (function() {
                     .end()
                     .fadeOut(250); // Скрытие задачи
 
-                $.post(EDIT_NODE, {
+                $.post('/task/done', {
                     'id':     nodeObj.id,
                     'isDone': ACTIVE_TASK,
                     '_csrf':  $csrfToken
@@ -639,7 +644,7 @@ var content = (function() {
         // Добавление комментария к задаче
         $addComment.keyup(function(e) {
             if (e.keyCode === 13 && this.value.length) {
-                $.post('/task/set-comment', {
+                $.post('/comment/set-comment', {
                     'taskId':     nodeObj.id,
                     'comment':    this.value,
                     'timePosted': moment().format('YYYY-MM-DD'),
@@ -994,7 +999,8 @@ var content = (function() {
                         label:    label,
                         dueDate:  dueDate,
                         listId:   localStorage.getItem('listId'),
-                        priority: priority
+                        priority: priority,
+                        isDone:   ACTIVE_TASK
                     }, 'last');
                     $taskInp.val('');
                     incrementCounter(false);

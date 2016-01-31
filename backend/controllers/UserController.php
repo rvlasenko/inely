@@ -10,6 +10,8 @@
 
 namespace backend\controllers;
 
+use backend\models\GamifyUserStats;
+use backend\models\Task;
 use backend\models\UserForm;
 use common\models\User;
 use common\models\UserProfile;
@@ -51,16 +53,16 @@ class UserController extends Controller
         $userModel    = new UserForm();
         $userIdentity = Yii::$app->user->identity;
         $userProfile  = $userIdentity->userProfile;
+        $userStats    = (new GamifyUserStats())->getUserStats();
 
         $userModel->email = $userIdentity->email;
-
-        if ($userProfile->load(Yii::$app->request->post()) && !$userProfile->save()) {
-            throw new Exception('Ошибка при изменении имени пользователя.');
-        }
+        $userProfile->load(Yii::$app->request->post());
+        $userProfile->save();
 
         return $this->renderAjax('index', [
             'userProfile' => $userProfile,
-            'userModel'   => $userModel
+            'userModel'   => $userModel,
+            'userStats'   => $userStats
         ]);
     }
 
@@ -112,15 +114,22 @@ class UserController extends Controller
             $filePath = $uploadPath . $fileName;
 
             if ($fileName->saveAs($filePath)) {
-                if (!(new UserProfile())->setAvatar($fileName)) {
+                if ((new UserProfile())->setAvatar($fileName)) {
+                    return Json::encode($fileName);
+                } else {
                     throw new Exception('Невозможно сохранить пользовательские данные.');
                 }
-
-                return Json::encode($fileName);
             }
         }
 
         return null;
+    }
+
+    public function actionGet()
+    {
+        $a = new Task();
+
+        return var_dump($a::getCountOfGroups());
     }
 
     /**

@@ -11,12 +11,14 @@ class DocAsset extends AssetBundle
     public $baseUrl  = '@backendUrl';
 
     public $css = [
-        'https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic',
-        'css/doc.css'
+        'http://themes.vsart.me/vsdocs/css/style.min.css'
+    ];
+
+    public $js = [
+        'http://themes.vsart.me/vsdocs/js/all.js'
     ];
 
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapPluginAsset'
+        'common\assets\FontAwesome'
     ];
 }

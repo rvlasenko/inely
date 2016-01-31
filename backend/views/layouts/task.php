@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 $this->registerJsFile('scripts/preload/modernizr.custom.min.js');
+\backend\assets\TaskAsset::register($this);
 
 ?>
 
@@ -33,8 +34,7 @@ $this->registerJsFile('scripts/preload/modernizr.custom.min.js');
 </head>
 
 <?php $this->beginBody() ?>
-
-<body class="<?= Yii::$app->controller->id ?>" data-spy="scroll" data-target="#docNav">
+<body class="<?= Yii::$app->controller->id ?>">
 
 <?= $content ?>
 

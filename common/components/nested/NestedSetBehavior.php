@@ -236,16 +236,12 @@ class NestedSetBehavior extends Behavior
     /**
      * Gets the children of the node.
      *
-     * @param integer      $ownerId author
-     * @param int          $history active task or not
-     * @param string       $sort
-     * @param null         $listId
-     * @param string       $group
-     * @param integer|null $depth   the depth
+     * @param array $data
+     * @param array $depth
      *
      * @return \yii\db\ActiveQuery
      */
-    public function children($ownerId, $history = Task::ACTIVE_TASK, $sort, $listId, $group = 'inbox', $depth = null)
+    public function children($data, $depth = null)
     {
         $mainCond = [
             'and',
@@ -257,30 +253,30 @@ class NestedSetBehavior extends Behavior
             $mainCond[] = ['<=', $this->depthAttribute, $this->owner->getAttribute($this->depthAttribute) + $depth];
         }
 
-        if ($sort == 'taskPriority') {
+        if ($data['sort'] == 'taskPriority') {
             // Сортировка по степени важности
-            $sort = ['taskPriority' => SORT_DESC];
-        } elseif ($sort == 'dueDate') {
+            $data['sort'] = ['taskPriority' => SORT_DESC];
+        } elseif ($data['sort'] == 'dueDate') {
             // По дате выполнения
-            $sort = ['dueDate' => SORT_DESC];
-        } elseif ($sort == 'name') {
+            $data['sort'] = ['dueDate' => SORT_DESC];
+        } elseif ($data['sort'] == 'name') {
             // По названию
-            $sort = 'name';
+            $data['sort'] = 'name';
         } else {
             // По умолчанию левые индексы
-            $sort = [$this->leftAttribute => SORT_DESC];
+            $data['sort'] = [$this->leftAttribute => SORT_DESC];
         }
 
-        if ($history === Task::COMPLETED_TASK && $listId == '') {
+        if ($data['history'] === Task::COMPLETED_TASK && $data['listID'] == '') {
             // Выборка завершенных задач (входящие)
-            $historyCond = ['ownerId' => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
-        } elseif ($history === Task::COMPLETED_TASK && $listId != '') {
+            $historyCond = ['ownerId' => $data['ownerID'], 'isDone' => Task::COMPLETED_TASK, 'listId' => null];
+        } elseif ($data['history'] === Task::COMPLETED_TASK && $data['listID'] != '') {
             // Выборка завершенных задач (входящие)
-            $historyCond = ['ownerId' => $ownerId, 'isDone' => Task::COMPLETED_TASK, 'listId' => $listId];
-        } elseif (empty($listId) && $this->owner->tableName() == 'tasks' && $group == 'inbox') {
+            $historyCond = ['ownerId' => $data['ownerID'], 'isDone' => Task::COMPLETED_TASK, 'listId' => $data['listID']];
+        } elseif (empty($data['listID']) && $this->owner->tableName() == 'tasks' && $data['group'] == 'inbox') {
             // Выборка входящих задач
             $historyCond = [
-                'ownerId' => $ownerId,
+                'ownerId' => $data['ownerID'],
                 'isDone'  => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
                 'listId'  => null
             ];
@@ -288,13 +284,13 @@ class NestedSetBehavior extends Behavior
             // Выборка задач в проекте
             $historyCond = [
                 'isDone' => [Task::ACTIVE_TASK, Task::INCOMPLETE_TASK],
-                'listId' => $listId
+                'listId' => $data['listID']
             ];
         }
 
-        if ($group == 'today') {
+        if ($data['group'] == 'today') {
             $groupCond = (new Expression('DATE(dueDate) = CURDATE()'));
-        } elseif ($group == 'week') {
+        } elseif ($data['group'] == 'week') {
             $groupCond = (new Expression('dueDate BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)'));
         } else {
             $groupCond = [];
@@ -307,7 +303,7 @@ class NestedSetBehavior extends Behavior
                            ->andWhere($mainCond)
                            ->andWhere($historyCond)
                            ->andWhere($groupCond)
-                           ->addOrderBy($sort)
+                           ->addOrderBy($data['sort'])
                            ->asArray();
     }
 

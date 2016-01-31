@@ -65,7 +65,7 @@ class LabelController extends TaskController
     public function actionEdit()
     {
         $request   = Yii::$app->request;
-        $taskLabel = TaskLabels::findOne($request->post('id'));
+        $taskLabel = $this->findModel($request->post('id'));
 
         if ($taskLabel->load($request->post()) && !$taskLabel->save()) {
             throw new Exception('Получены данные, отличные от необходимого формата');
@@ -101,10 +101,26 @@ class LabelController extends TaskController
      */
     public function actionDelete()
     {
-        if (TaskLabels::findOne(Yii::$app->request->post('id'))->delete()) {
-            return true;
-        }
+        $this->findModel(Yii::$app->request->post('id'))->delete();
 
-        return null;
+        return true;
+    }
+
+    /**
+     * Поиск модели пользователя по его PK.
+     * Если модель не найдена, будет сгенерировано исключение.
+     *
+     * @param integer $id
+     *
+     * @return модель пользователя
+     * @throws NotFoundHttpException если модель не может быть найдена
+     */
+    protected function findModel($id)
+    {
+        if (($model = TaskLabels::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Запрошенная страница не существует');
+        }
     }
 }

@@ -75,8 +75,10 @@ class TaskData extends ActiveRecord
 
     /**
      * Запись данных в модель. Метод перегружен от базового класса Model.
-     * @param array $data массив данных.
+     *
+     * @param array  $data     массив данных.
      * @param string $formName имя формы, использующееся для записи данных в модель.
+     *
      * @return boolean если `$data` содержит некие данные, которые связываются с атрибутами модели.
      */
     public function load($data, $formName = '')

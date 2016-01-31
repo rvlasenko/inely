@@ -11,20 +11,19 @@
 namespace backend\controllers;
 
 use backend\models\Project;
-use backend\models\Task;
 use backend\models\TaskData;
-use common\models\User;
 use Yii;
 use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
 use yii\web\Response;
 
 /**
  * Class ProjectController
  * @package backend\controllers
  */
-class ProjectController extends TaskController
+class ProjectController extends Controller
 {
     public function behaviors()
     {
@@ -72,7 +71,7 @@ class ProjectController extends TaskController
     public function actionEdit()
     {
         $request = Yii::$app->request;
-        $project = Project::findOne($request->post('id'));
+        $project = $this->findModel($request->post('id'));
 
         if ($project->load($request->post()) && !$project->save()) {
             throw new Exception('Переданы данные, несоответствующие формату');
@@ -86,47 +85,26 @@ class ProjectController extends TaskController
      * Чтобы добавленные в него задачи имели id корня проекта, а не общий.
      * @method boolean makeRoot() Создает корень, если Active Record объект новый.
      * @return array идентификатор и название созданного проекта, JSON.
-     * @throws HttpException при неудачном сохранении.
      */
     public function actionCreate()
     {
-        $newProject = new Project();
-        $childTask  = new Task();
-        $childTaskData   = new TaskData();
-        $userData   = [
-            'ownerId' => Yii::$app->user->id,
-            'name'    => 'Root',
-            'isDone'  => null
-        ];
+        $model = new Project();
 
-        if ($newProject->load(Yii::$app->request->post()) && $newProject->save()) {
-            $userData['listId'] = $newProject->getPrimaryKey();
-
-            if ($childTaskData->load($userData) && $childTaskData->makeRoot()) {
-                $userData['taskId'] = $childTaskData->getPrimaryKey();
-
-                if ($childTask->load($userData) && $childTask->save()) {
-                    return [
-                        'name' => Yii::$app->request->post('listName'),
-                        'id'   => $newProject->getPrimaryKey()
-                    ];
-                }
-            }
-        } else {
-            throw new HttpException(500, $newProject->getErrors());
-        }
+        return $model->createProject(Yii::$app->request->post());
     }
 
     /**
      * Удаление существующего проекта и его корневого узла.
      * @method ActiveQuery roots(string $author, integer $listId) Получает корневой узел.
      * @return bool значение, если удаление записи всё-таки произошло.
-     * @throws NotFoundHttpException если пользователь захотел удалить несуществующий проект.
      */
     public function actionDelete()
     {
-        $project = Project::findOne(Yii::$app->request->post('id'));
-        $root    = TaskData::find()->roots(Yii::$app->user->id, $project->getPrimaryKey())->one();
+        $project = $this->findModel(Yii::$app->request->post('id'));
+        $root    = TaskData::find()->roots([
+            'author' => Yii::$app->user->id,
+            'listID' => $project->getPrimaryKey()
+        ])->one();
 
         if ($project->delete() && $root->delete()) {
             return true;
@@ -138,51 +116,31 @@ class ProjectController extends TaskController
     /**
      * Приглашение пользователя к совместной работе над проектом.
      * Такие пользователи, могут добавлять, удалять и завершать задачи из этого списка.
-     * Ищем id пользователя по email, а также id корневого узла проекта и добавляем в список.
-     * @method ActiveQuery rootId(string $author, integer $listId) Получает id корневого списка.
      * @return bool если юзер теперь имеет доступ к проекту.
      */
-    public function actionShareWithUser()
+    public function actionShare()
     {
-        $listId  = Yii::$app->request->post('listId');
-        $email   = Yii::$app->request->post('email');
-        $ownerId = Yii::$app->user->id;
-        $rootId  = TaskData::find()->rootId($ownerId, $listId);
+        $model = new Project();
 
-        $task    = Task::findOne($rootId);
-        $project = Project::findOne($listId);
-        $data    = ['sharedWith' => User::findByEmail($email)->getId()];
-
-        if ($task->load($data) && $task->save()) {
-            if ($project->load($data) && $project->save()) {
-                return true;
-            }
-        }
+        return $model->shareWithUser([
+            'listID' => Yii::$app->request->post('listId'),
+            'email'  => Yii::$app->request->post('email')
+        ]);
     }
 
     /**
      * Исключение пользователя из совместного проекта.
-     * Ищем id пользователя по email, а также id корневого узла проекта и исключаем из списка.
      * @method ActiveQuery rootId(string $author, integer $listId) Получает id корневого списка.
      * @return bool если юзер теперь не имеет доступа к проекту.
      */
     public function actionRemoveCollaborator()
     {
-        $listId = Yii::$app->request->post('listId');
-        $userId = Yii::$app->request->post('userId');
-        $rootId = TaskData::find()->rootId($userId, $listId);
+        $model = new Project();
 
-        $task    = Task::findOne($rootId);
-        $project = Project::findOne($listId);
-        $data    = ['sharedWith' => null];
-
-        if ($task->load($data) && $task->save()) {
-            if ($project->load($data) && $project->save()) {
-                return true;
-            }
-        }
-
-        return null;
+        return $model->removeCollaborator([
+            'listID' => Yii::$app->request->post('listId'),
+            'userID' => Yii::$app->request->post('userId')
+        ]);
     }
 
     /**
@@ -196,20 +154,9 @@ class ProjectController extends TaskController
     public function actionGetCollaborators($listId = null)
     {
         if (Yii::$app->request->isAjax && $listId !== null) {
-            $result  = [];
-            $project = Project::findOne($listId);
+            $model = new Project();
 
-            foreach (User::find()->with('userProfile')->where(['id' => [$project->ownerId, $project->sharedWith]])->each() as $user) {
-                $result[] = [
-                    'owner'   => $user->id == $project->ownerId ? 'Владелец' : '',
-                    'name'    => $user->username,
-                    'key'     => $user->id,
-                    'picture' => Yii::$app->user->identity->userProfile->getAvatar($user->id),
-                    'email'   => $user->email
-                ];
-            }
-
-            return $result;
+            return $model->getCollaborators($listId);
         }
 
         return null;
@@ -226,22 +173,27 @@ class ProjectController extends TaskController
     public function actionGetAssigned($listId = null)
     {
         if (Yii::$app->request->isAjax && $listId !== null) {
-            $project  = Project::findOne($listId);
-            $result[] = [
-                'id'      => 0,
-                'text'    => 'Нет',
-                'picture' => '/images/avatars/none.png'
-            ];
+            $model = new Project();
 
-            foreach (User::find()->with('userProfile')->where(['id' => [$project->ownerId, $project->sharedWith]])->each() as $user) {
-                $result[] = [
-                    'id'      => $user->id,
-                    'text'    => $user->username,
-                    'picture' => Yii::$app->user->identity->userProfile->getAvatar($user->id)
-                ];
-            }
+            return $model->getAssignedUsers($listId);
+        }
+    }
 
-            return $result;
+    /**
+     * Поиск модели пользователя по его PK.
+     * Если модель не найдена, будет сгенерировано исключение.
+     *
+     * @param integer $id
+     *
+     * @return null|static модель пользователя
+     * @throws NotFoundHttpException если модель не может быть найдена
+     */
+    protected function findModel($id)
+    {
+        if (($model = Project::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Запрошенная страница не существует');
         }
     }
 }
