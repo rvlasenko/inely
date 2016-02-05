@@ -47,6 +47,15 @@ use yii\helpers\Html;
         .text-warning {
             color: #f6bb42;
         }
+
+        .faq-answer img {
+            padding: 5px;
+            background: white;
+            -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            max-width: 100%;
+        }
     ') ?>
 
     <?php $this->head() ?>

@@ -57,7 +57,7 @@ $this->title = 'Inely ~ Справка';
                     <a href="#faq" class="">
                         <span class="one-page-nav-icon">
                             <i class="fa fa-question"></i>
-                        </span>Статьи</a>
+                        </span>FAQ</a>
                 </li>
             </ul>
         </div>
@@ -242,7 +242,7 @@ $this->title = 'Inely ~ Справка';
                         </div>
 
                         <div class="category-info" id="faq">
-                            <h3 class="category-title"> Статьи
+                            <h3 class="category-title"> Ответы на вопросы
                                 <a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#faq">
                                     <i class="fa fa-link"></i>
                                 </a>
@@ -255,53 +255,129 @@ $this->title = 'Inely ~ Справка';
                                     <div class="col-md-12">
                                         <ul class="faq js-faq" id="my-faq">
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> What is
-                                                    <span class="faq-keyword">WordPress</span>? </h4>
-                                                <div class="faq-answer" style="display: none;"> WordPress is open source web software that you can install on your web server to create your website, blog, community or network. WordPress started out as a tool for blogging, but has evolved into a full-fledged Content Management System (CMS),
-                                                                                                capable of powering websites, networks and communities. </div>
+                                                <h4 class="faq-question">
+                                                    <span class="faq-keyword">Создание</span> задачи </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <ol>
+                                                        <li>Нажмите на название списка, чтобы открыть его</li>
+                                                        <li>Нажмите на кнопку "Добавить задачу"</li>
+                                                        <li>В появившемся поле ввода наберите название вашей задачи</li>
+                                                        <li>Нажмите на клавишу Return/Enter, чтобы добавить её в список</li>
+                                                    </ol>
+                                                    <img src="../../images/screenshots/add.png" alt="" />
+                                                </div>
                                             </li>
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> Why
-                                                    <span class="faq-keyword">choose</span> WordPress? </h4>
-                                                <div class="faq-answer" style="display: none;"> One of the principal advantages of WordPress is that you are in control. Unlike remote-hosted scripts such as Blogger and LiveJournal, you host WordPress on your own server. Installation is very simple, as is the configuration. Unlike other software
-                                                                                                programs, there are not a million files to chmod nor are there dozens of templates to edit just to get your site set up and looking the way you want. </div>
+                                                <h4 class="faq-question">
+                                                    <span class="faq-keyword">Переименовывание</span> задачи </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <ol>
+                                                        <li>Нажмите на название задачи, которую вы хотите переименовать</li>
+                                                        <li>В появившемся поле ввода наберите новое название вашей задачи</li>
+                                                        <li>Нажмите на клавишу Return/Enter, чтобы подтвердить изменения или ESC для отмены</li>
+                                                    </ol>
+                                                    Вы также можете кликнуть на задаче, чтобы открыть детальную информацию, затем кликнуть в верхнем поле ввода заголовка задачи, чтобы изменить его. Изменения сохраняются автоматически.
+                                                </div>
                                             </li>
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> What are WordPress'
-                                                    <span class="faq-keyword">features</span>? </h4>
-                                                <div class="faq-answer"> WordPress has an extensive list of features and, as it is constantly evolving, this list of features is constantly growing. </div>
+                                                <h4 class="faq-question">
+                                                    <span class="faq-keyword">Перемещение</span> и реорганизация задач </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    Вы можете просто использовать drag & drop, чтобы перемещать элементы в любую позицию в списке. Например, перетаскивать внутрь других задач или проектов.
+                                                </div>
                                             </li>
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> When was WordPress
-                                                    <span class="faq-keyword">first</span> released? </h4>
-                                                <div class="faq-answer"> WordPress started out life as a fork of b2/cafelog by Matt Mullenweg and Mike Little. The first version was released in 2003 </div>
+                                                <h4 class="faq-question">Как
+                                                    <span class="faq-keyword">завершить</span> задачу </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    Чтобы отметить задачу как выполненную, нажмите на флажок слева от её названия. Вы можете посмотреть ваши завершенные задачи для каждого списка по нажатию значка часов в правой нижней части списка.
+                                                    <img src="../../images/screenshots/complete.png" alt="" />
+                                                </div>
                                             </li>
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> What is the
-                                                    <span class="faq-keyword">GPL</span>? </h4>
-                                                <div class="faq-answer"> The GPL is an open source license. This means you are free to modify and redistribute the source code under certain conditions. You can read more about why we chose the GPL on the License Page. </div>
+                                                <h4 class="faq-question">Как установить
+                                                    <span class="faq-keyword">крайний срок</span>?</h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>Для определения даты, дважды кликните на задаче, чтобы открыть детальную информацию. Нажмите на поле ввода "Срок выполнения", чтобы выбрать дату.</p>
+                                                    <img src="../../images/screenshots/date.png" alt="" />
+                                                </div>
                                             </li>
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> What’s the
-                                                    <span class="faq-keyword">difference</span> between WordPress.org and WordPress.com? </h4>
-                                                <div class="faq-answer"> WordPress.com is a blog network run by Automattic. It uses WordPress software, but individual blogs are hosted and managed by WordPress.com. This is a free service with premium addons and upgrades. </div>
+                                                <h4 class="faq-question">Как создать
+                                                    <span class="faq-keyword">новый проект</span>?</h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>В списке всех проектов нажмите на кнопку "+", расположенную в верхней части проектов, введите имя нового списка и нажмите "Сохранить".</p>
+                                                    <img src="../../images/screenshots/project.png" alt="" />
+                                                </div>
                                             </li>
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> How Is WordPress related to other
-                                                    <span class="faq-keyword">blogging</span> applications? </h4>
-                                                <div class="faq-answer"> WordPress was primarily inspired by Noah Grey's Greymatter open-source web log and journal software. It is related to b2, sort of a second cousin twice removed. You can use WordPress to post your own stories, ideas, rants, reviews, links, and
-                                                                         pictures of your toothless Uncle Ernie at the wedding reception, if you choose. In addition, you can customize the look and feel of your site. Numerous themes are available and may be modified in many different ways. Through the use of WordPress
-                                                                         Themes, you can quickly change the look and style of your site. You can also extend WordPress' functionality through the use of Plugins. Plugins let you create the website or blog that suits your needs. As you can see, its functionality exceeds
-                                                                         or at least is similar to what is available in most blogging tools today. </div>
+                                                <h4 class="faq-question">Как
+                                                    <span class="faq-keyword">удалить</span> задачу </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>Обратите внимание: удаление задачи перманентно. Если вы хотите вновь вернуться в задаче, вы можете пометить её как выполненную, а затем в списке выполненных вновь активировать её.</p>
+                                                    <p>Для удаления ваших задач, зажмите Command (Mac) или Shift (Windows) клавишу и выбирайте задачи. Затем вызовите контекстное меню на одной из них и выберите "Удалить".</p>
+                                                    <img src="../../images/screenshots/delete.png" alt="" />
+                                                </div>
                                             </li>
                                             <li class="faq-item">
-                                                <h4 class="faq-question"> Do I need to know
-                                                    <span class="faq-keyword">PHP</span> to use WordPress? </h4>
-                                                <div class="faq-answer"> No. You should be able to use WordPress through the user interface, without ever having to touch PHP. The only time you would modify your WordPress website with PHP would be when integrating some of the plugins. There are a small number of plugins
-                                                                         that still require manual edits to your files. In most cases, clear instructions are usually given within a text file with the plugin. </div>
+                                                <h4 class="faq-question">
+                                                    <span class="faq-keyword">Сортировка</span> задач </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    Список действий предоставляет возможность сортировки задач в алфавитном порядке, по дате выполнения или по приоритету.
+                                                    <img src="../../images/screenshots/sort.png" alt="" />
+                                                </div>
+                                            </li>
+                                            <li class="faq-item">
+                                                <h4 class="faq-question">
+                                                    <span class="faq-keyword">Поиск</span> задач </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    В верхей левой части приложения вы найдете значок увеличительного стекла, расположенный ниже логотипа. Введите в это поле ввода название вашей задачи и результаты подсветятся голубым цветом.
+                                                    <img src="../../images/screenshots/search.png" alt="" />
+                                                </div>
+                                            </li>
+                                            <li class="faq-item">
+                                                <h4 class="faq-question">
+                                                    <span class="faq-keyword">Совместный</span> доступ </h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>Обмен проектами это отличный способ сотрудничества с друзьями или коллегами, чтобы добиться цели. Каждый участник проекта способен просматривать, редактировать, выполнять задачи, делегировать их между участниками и оставлять комментарии.</p>
+                                                    <p>Чтобы поделиться проектом, выберите пункт "настройки проекта" из списка действий, введите адрес электронной почты зарегистрированного пользователя Inely и нажмите кнопку "пригласить". Пользователь получит уведомление о приглашении в проект.</p>
+                                                    <img src="../../images/screenshots/share.png" alt="" />
+                                                </div>
+                                            </li>
+                                            <li class="faq-item">
+                                                <h4 class="faq-question">Добавление
+                                                    <span class="faq-keyword">заметки</span></h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>Чтобы добавить заметку к задаче, кликните в любом месте раздела "заметки". Введенный текст будет сохранен автоматически. Нажимайте на маленькие иконки для форматирования введенного текста.</p>
+                                                    <img src="../../images/screenshots/note.png" alt="" />
+                                                </div>
+                                            </li>
+                                            <li class="faq-item">
+                                                <h4 class="faq-question">Добавление
+                                                    <span class="faq-keyword">подзадач</span></h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>Задачи также могут иметь связанные с ними подзадачи. Для их добавления, просто вызовите контекстное меню на одной из задач, и выберите пункт "Добавить". Вы также можете перетаскивать задачи внутрь других.</p>
+                                                    <img src="../../images/screenshots/subtask.png" alt="" />
+                                                </div>
+                                            </li>
+                                            <li class="faq-item">
+                                                <h4 class="faq-question">Добавление
+                                                    <span class="faq-keyword">контекста</span></h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>Контекстные метки помогут вам фильтровать списки дел. Вы можете использовать метку в любой из ваших задач, и одним кликом найти все соответствующие этой метке задачи.</p>
+                                                    <p>Чтобы отметить задачу, просто добавьте к её имени символ @ и без пробела укажите нужную вам метку, например, @работа.</p>
+                                                    <img src="../../images/screenshots/label.png" alt="" />
+                                                </div>
+                                            </li>
+                                            <li class="faq-item">
+                                                <h4 class="faq-question">Добавление
+                                                    <span class="faq-keyword">комментариев</span></h4>
+                                                <div class="faq-answer" style="display: none;">
+                                                    <p>Комментарии находятся в нижней части детальной информации о задаче. Они позволяют начать разговор, оставить отзыв, задать вопрос или добавить дополнительное представление в режиме реального времени к любой вашей задаче. Затем комментарии сохраняются с меткой времени и немедленно доступны для любого участника вашего общего списка.</p>
+                                                    <img src="../../images/screenshots/comment.png" alt="" />
+                                                </div>
                                             </li>
                                         </ul>
-                                        <!-- End of Faq -->
                                     </div>
                                 </div>
                             </div>

@@ -47,7 +47,7 @@ class GamifyUserStats extends \yii\db\ActiveRecord
      * @throws Exception
      * @throws \Exception
      */
-    public function updateCounter($data)
+    public function updateCounter(array $data)
     {
         $userStats = self::findOne(['username' => $data['userName']]);
 

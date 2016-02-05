@@ -15,9 +15,9 @@ $this->title = $name;
             <div class="error-content text-center">
                 <h3 class="headline">
                     <i class="fa fa-warning text-yellow"></i>
-                    <?php echo Yii::t('backend', 'Error {code}', [
-                            'code' => property_exists($exception, 'statusCode') ? $exception->statusCode : 500
-                        ])
+                    <?= Yii::t('backend', 'Error {code}', [
+                        'code' => property_exists($exception, 'statusCode') ? $exception->statusCode : 500
+                    ])
                     ?>
                 </h3>
 

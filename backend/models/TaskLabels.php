@@ -46,7 +46,7 @@ class TaskLabels extends ActiveRecord
      * @return bool если сохранение завершилось успешно
      * @throws Exception при ошибке сохранения и валидации данных
      */
-    public function setLabel($data)
+    public function setLabel(array $data)
     {
         $labelModel = new TaskLabels();
 

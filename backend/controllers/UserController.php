@@ -122,7 +122,7 @@ class UserController extends Controller
             }
         }
 
-        return null;
+        return false;
     }
 
     public function actionGet()

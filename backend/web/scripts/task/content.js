@@ -315,6 +315,8 @@ var content = (function() {
     var handleCompleteTask = function() {
         $(document).on('click', '.jstree-proton .jstree-checkbox, svg, .vakata-context a[rel="0"]', function() {
             var $node = $('#' + nodeObj.id); // Поиск объекта, который был нажат
+            var template = $('#tick-temp').html().trim();
+            var tick = $(template);
             $.vakata.context.hide(); // Скрытие контекстного меню (может оно инициатор события)
 
             // Если задача активная, нужно обозначить её как завершенную
@@ -328,10 +330,7 @@ var content = (function() {
                         .addClass('jstree-checked')
                         .children('a')
                             .attr('incomplete', true)
-                            .append(
-                            '<svg class="svgBox" viewBox="0 0 32 32">' +
-                                '<polygon points="30,5.077 26,2 11.5,22.5 4.5,15.5 1,19 12,30"></polygon>' +
-                            '</svg>');
+                            .append(tick);
 
                     $.post('/task/done', {
                         'id':     nodeObj.id,
@@ -367,10 +366,7 @@ var content = (function() {
                         $node
                             .addClass('jstree-checked')
                             .find('a')
-                                .append(
-                                '<svg class="svgBox" viewBox="0 0 32 32">' +
-                                    '<polygon points="30,5.077 26,2 11.5,22.5 4.5,15.5 1,19 12,30"></polygon>' +
-                                '</svg>')
+                                .append(tick)
                             .end()
                             .fadeOut(250);
 
@@ -640,6 +636,8 @@ var content = (function() {
 
     var handleEditTaskDetails = function() {
         var $addComment = $('#add-comment');
+        var template = $('#comment-temp').html().trim();
+        var comment  = $(template);
 
         // Добавление комментария к задаче
         $addComment.keyup(function(e) {
@@ -658,19 +656,20 @@ var content = (function() {
                             .last()
                                 .addClass('entypo-chat');
                     }
-                    $comments.append(
-                    '<li class="section-item">' +
-                        '<div class="section-icon picture">' +
-                            '<div class="avatar medium" title="'+ entity.author +'">' +
-                            '<img src="'+ entity.picture +'" />' +
-                        '</div>' +
-                        '</div>' +
-                        '<div class="section-content">' +
-                            '<span class="comment-author mr5">'+ entity.author +'</span>' +
-                            '<span class="comment-time">'+ entity.time +'</span>' +
-                        '<div class="comment-text">'+ entity.comment +'</div>' +
-                        '</div>' +
-                    '</li>');
+                    $(comment)
+                        .find('.comment-picture')
+                            .attr('src', entity.picture)
+                        .end()
+
+                        .find('.section-content')
+                            .children('.comment-author')
+                                .text(entity.author)
+                            .next()
+                                .text(entity.time)
+                            .next()
+                                .text(entity.comment);
+
+                        $(comment).appendTo($comments);
                 });
             }
         });
@@ -712,7 +711,7 @@ var content = (function() {
         // Ключ фона хранится в локальном хранилище
         $('li.theme-bg div').click(function() {
             Body.css({
-                'background': 'url("images/bg/bg' + $(this).data('key') + '.jpg") no-repeat center center fixed'
+                'background': 'url("images/bg/bg'+ $(this).data('key') +'.jpg") no-repeat center center fixed'
             });
 
             localStorage.setItem('back', $(this).data('key'));
@@ -879,7 +878,7 @@ var content = (function() {
             return state.text;
         }
 
-        return $('<span><img src="' + state.picture + '" class="assigned-userpic" /> ' + state.text + '</span>');
+        return $('<span><img src="'+ state.picture +'" class="assigned-userpic" /> '+ state.text+ '</span>');
     };
 
     // Отображение формы редактирования задачи и отправка данных
@@ -888,17 +887,8 @@ var content = (function() {
         var $nodeObject = $tree.find('li#' + node.id); // Объект редактирования
         var $nodeIcon   = $nodeObject.find('i.jstree-ocl').first(); // Иконка задачи
         var $nodeAnchor = $nodeObject.find('a.jstree-anchor').first();
-        var formEdit   =
-        '<div id="formEdit" hidden>' +
-        '<div class="bs-component ml30">' +
-            '<div class="form-group form-material col-md-12 pln prn">' +
-                '<span class="input-group-addon">' +
-                    '<i class="fa fa-question-circle fs18" title="Интеллектуальный ввод"></i>' +
-                '</span>' +
-            '<input type="text" class="form-control input-lg input-add" id="editInput" placeholder="Write here something cool" spellcheck="false">' +
-            '</div>' +
-        '</div>' +
-        '</div>';
+        var template = $('#form-edit-temp').html().trim();
+        var formEdit = $(template);
 
         var showAnchor = function() {
             $nodeIcon.fadeIn(200);
@@ -945,20 +935,11 @@ var content = (function() {
 
     // Отображение формы создания задачи и отправка данных на сервер
     var createContentNode = function(node) {
-        var text = null;     // Данные от пользователя
-        var $taskInp = null; // Поле ввода
+        var text = null;      // Данные от пользователя
+        var $taskInp = null;  // Поле ввода
         var $selected = null; // Значение зависит от пути добавления задачи: внутрь другой или в корень
-        var formAdd  =
-        '<div id="formAdd" hidden>' +
-        '<div class="bs-component">' +
-            '<div class="form-group form-material col-md-12 mt5 mb5 pln prn">' +
-                '<span class="input-group-addon">' +
-                    '<i class="fa fa-question-circle fs18" title="Интеллектуальный ввод"></i>' +
-                '</span>' +
-            '<input type="text" class="form-control input-lg input-add" id="taskInput" placeholder="Write here something cool" spellcheck="false">' +
-            '</div>' +
-        '</div>' +
-        '</div>';
+        var template = $('#form-add-temp').html().trim();
+        var formAdd  = $(template);
 
         // Добавление формы редактирования задачи внутрь кликнутого узла,
         // если пользователь вызвал событие из контекстного меню.

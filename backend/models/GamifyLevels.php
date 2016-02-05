@@ -52,7 +52,7 @@ class GamifyLevels extends \yii\db\ActiveRecord
      * @return bool|int
      * @throws \Exception
      */
-    public function updateLevel($experience, $levelID, $userID)
+    private function updateLevel($experience, $levelID, $userID)
     {
         $user = GamifyUserStats::findOne($userID);
         $user->experience = $experience;
@@ -67,7 +67,7 @@ class GamifyLevels extends \yii\db\ActiveRecord
      *
      * @return bool|int
      */
-    public function checkLevel($experience, $userStats)
+    private function checkLevel($experience, $userStats)
     {
         $level = self::findOne([
             'experience_needed' => self::find()

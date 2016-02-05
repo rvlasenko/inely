@@ -12,17 +12,13 @@ nbproject
 # Windows thumbnail cache
 Thumbs.db
 
-# Mac DS_Store Files
-.DS_Store
-
 # PHPUnit
 phpunit.phar
 /phpunit.xml
+tests/_output/*
 
 # Vagrant machine folder
 /.vagrant
 
 # Environment
 .env
-
-tests/_output/*

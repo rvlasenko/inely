@@ -53,7 +53,7 @@ class Project extends ActiveRecord
      *
      * @return array
      */
-    public function createProject($data)
+    public function createProject(array $data)
     {
         $newProject    = new Project();
         $childTask     = new Task();
@@ -115,7 +115,7 @@ class Project extends ActiveRecord
      *
      * @return bool
      */
-    public function removeCollaborator($userData)
+    public function removeCollaborator(array $userData)
     {
         $rootId  = TaskData::find()->rootId($userData['userID'], $userData['listID']);
         $task    = Task::findOne($rootId);
@@ -138,7 +138,7 @@ class Project extends ActiveRecord
      *
      * @return bool
      */
-    public function shareWithUser($userData)
+    public function shareWithUser(array $userData)
     {
         $ownerId = Yii::$app->user->id;
         $rootId  = TaskData::find()->rootId($ownerId, $userData['listID']);

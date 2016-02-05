@@ -145,7 +145,7 @@ class Task extends ActiveRecord
      * @key bool    children наличие дочерних узлов
      * @key bool    data     отображение активных (true) или завершенных (false) задач
      */
-    public function buildTree($node, $showHistory = false)
+    public function buildTree(array $node, $showHistory = false)
     {
         $result    = [];
         $formatter = new FormatterComponent();

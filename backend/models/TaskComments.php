@@ -79,7 +79,7 @@ class TaskComments extends ActiveRecord
      * @return array
      * @throws \Exception
      */
-    public function setComment($data)
+    public function setComment(array $data)
     {
         $formatter   = new FormatterComponent();
         $taskComment = new TaskComments();
