@@ -3,16 +3,15 @@
 namespace backend\config;
 
 use backend\models\Task;
-use common\models\UserProfile;
 use Yii;
 use yii\base\BootstrapInterface;
 
 /**
- * Class bsInterface
+ * Class BsInterface
  * @package backend\config
  */
 
-class bsInterface implements BootstrapInterface
+class BsInterface implements BootstrapInterface
 {
     private $userId;
 

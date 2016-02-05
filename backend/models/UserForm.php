@@ -10,6 +10,7 @@
 
 namespace backend\models;
 
+use common\models\User;
 use Yii;
 use yii\base\Model;
 
@@ -23,7 +24,7 @@ class UserForm extends Model
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => '\common\models\User',
-             'filter' => function ($query) {
+             'filter' => function (User $query) {
                  $query->andWhere(['not', ['id' => Yii::$app->user->getId()]]);
              }
             ]

@@ -3,14 +3,9 @@
 composer.phar
 
 # IDE settings
-.idea
-nbproject
 .buildpath
 .project
 .settings
-
-# Windows thumbnail cache
-Thumbs.db
 
 # PHPUnit
 phpunit.phar

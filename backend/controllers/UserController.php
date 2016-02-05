@@ -11,7 +11,6 @@
 namespace backend\controllers;
 
 use backend\models\GamifyUserStats;
-use backend\models\Task;
 use backend\models\UserForm;
 use common\models\User;
 use common\models\UserProfile;

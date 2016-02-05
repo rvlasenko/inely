@@ -6,7 +6,7 @@ $config = [
     'homeUrl'             => Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute'        => 'task/index',
-    'bootstrap'           => ['backend\config\bsInterface'],
+    'bootstrap'           => ['backend\config\BsInterface'],
     'components'          => [
         'formatter'    => ['class' => 'yii\i18n\Formatter'],
         'urlManager'   => require(__DIR__ . '/_urlManager.php'),
