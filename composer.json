@@ -29,7 +29,7 @@
         "yiisoft/yii2-jui": "~2.0.0",
         "vlucas/phpdotenv": "~1.0",
         "trntv/yii2-tactician": "*",
-        "perminder-klair/yii2-dropzone": "*",
+        "perminder-klair/yii2-dropzone": "~1.0.0",
         "FortAwesome/Font-Awesome": "*"
     },
     "require-dev": {
