@@ -11,6 +11,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\base\Exception;
 use yii\db\ActiveRecord;
 
 /**

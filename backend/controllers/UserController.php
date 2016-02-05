@@ -125,13 +125,6 @@ class UserController extends Controller
         return false;
     }
 
-    public function actionGet()
-    {
-        $a = new Task();
-
-        return var_dump($a::getCountOfGroups());
-    }
-
     /**
      * Поиск модели пользователя по его PK.
      * Если модель не найдена, будет сгенерировано исключение.

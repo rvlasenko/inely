@@ -59,7 +59,7 @@ class ExtendedMessageController extends MessageController
                     $message  = $matches[3];
 
                     if ($newSourceLanguage !== false) {
-                        $message = eval("return {$message};");
+                        $message = print("return {$message};");
                         $result  = str_replace($message, Yii::t($category, $message, [], $newSourceLanguage), $matches[0]);
                     } else {
                         if (strpos($matches[0], ')') != strlen($matches[0]) - 1) {
