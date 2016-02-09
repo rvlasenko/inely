@@ -10,6 +10,7 @@
 
 namespace backend\controllers;
 
+use backend\models\GamifyAchievements;
 use backend\models\GamifyUserStats;
 use backend\models\UserForm;
 use common\models\User;

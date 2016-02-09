@@ -3,29 +3,74 @@ API Index
 
 * backend
     * backend\config
-        * [bsInterface](backend-config-bsInterface.md)
+        * [bsInterface](app/backend-config-bsInterface.md)
     * backend\assets
-        * [TaskAsset](backend-assets-TaskAsset.md)
-        * [DocAsset](backend-assets-DocAsset.md)
+        * [TaskAsset](app/backend-assets-TaskAsset.md)
     * backend\models
-        * [UserForm](backend-models-UserForm.md)
-        * [TaskData](backend-models-TaskData.md)
-        * backend\models\query
-            * [TaskQuery](backend-models-query-TaskQuery.md)
-        * [GamifyUserStats](backend-models-GamifyUserStats.md)
-        * [Task](backend-models-Task.md)
-        * [TaskLabels](backend-models-TaskLabels.md)
-        * [TaskComments](backend-models-TaskComments.md)
-        * [GamifyLevels](backend-models-GamifyLevels.md)
-        * [GamifyAchievements](backend-models-GamifyAchievements.md)
-        * [Project](backend-models-Project.md)
-        * [GamifyUsersAch](backend-models-GamifyUsersAch.md)
+        * [UserForm](app/backend-models-UserForm.md)
+        * [TaskData](app/backend-models-TaskData.md)
+        * [GamifyUserStats](app/backend-models-GamifyUserStats.md)
+        * [Task](app/backend-models-Task.md)
+        * [TaskLabels](app/backend-models-TaskLabels.md)
+        * [TaskComments](app/backend-models-TaskComments.md)
+        * [GamifyLevels](app/backend-models-GamifyLevels.md)
+        * [GamifyAchievements](app/backend-models-GamifyAchievements.md)
+        * [Project](app/backend-models-Project.md)
+        * [GamifyUsersAch](app/backend-models-GamifyUsersAch.md)
     * backend\controllers
-        * [LabelController](backend-controllers-LabelController.md)
-        * [ProjectController](backend-controllers-ProjectController.md)
-        * [UserController](backend-controllers-UserController.md)
-        * [DocsController](backend-controllers-DocsController.md)
-        * [TaskController](backend-controllers-TaskController.md)
-        * [TreeController](backend-controllers-TreeController.md)
-        * [CommentController](backend-controllers-CommentController.md)
+        * [LabelController](app/backend-controllers-LabelController.md)
+        * [ProjectController](app/backend-controllers-ProjectController.md)
+        * [UserController](app/backend-controllers-UserController.md)
+        * [DocsController](app/backend-controllers-DocsController.md)
+        * [TaskController](app/backend-controllers-TaskController.md)
+        * [TreeController](app/backend-controllers-TreeController.md)
+        * [CommentController](app/backend-controllers-CommentController.md)
 
+* frontend
+    * frontend\assets
+        * [AuthAsset](front/frontend-assets-AuthAsset.md)
+        * [ErrorAsset](front/frontend-assets-ErrorAsset.md)
+        * [FrontendAsset](front/frontend-assets-FrontendAsset.md)
+    * frontend\models
+        * [ContactForm](front/frontend-models-ContactForm.md)
+    * frontend\controllers
+        * [LandController](front/frontend-controllers-LandController.md)
+    * frontend\modules
+        * frontend\modules\user
+            * [Module](front/frontend-modules-user-Module.md)
+            * frontend\modules\user\models
+                * [ConfirmEmailForm](front/frontend-modules-user-models-ConfirmEmailForm.md)
+                * [ResetPasswordForm](front/frontend-modules-user-models-ResetPasswordForm.md)
+                * [SignupForm](front/frontend-modules-user-models-SignupForm.md)
+                * [LoginForm](front/frontend-modules-user-models-LoginForm.md)
+                * [PasswordResetRequestForm](front/frontend-modules-user-models-PasswordResetRequestForm.md)
+            * frontend\modules\user\controllers
+                * [ResetPassController](front/frontend-modules-user-controllers-ResetPassController.md)
+                * [SignInController](front/frontend-modules-user-controllers-SignInController.md)
+                * [AuthController](front/frontend-modules-user-controllers-AuthController.md)
+                * [SignUpController](front/frontend-modules-user-controllers-SignUpController.md)
+
+* common
+    * common\actions
+        * [SetLocaleAction](core/common-actions-SetLocaleAction.md)
+    * common\behaviors
+        * [LocaleBehavior](core/common-behaviors-LocaleBehavior.md)
+    * common\assets
+        * [BootstrapAsset](core/common-assets-BootstrapAsset.md)
+        * [JuiAsset](core/common-assets-JuiAsset.md)
+        * [FontAwesome](core/common-assets-FontAwesome.md)
+    * common\components
+        * common\components\formatter
+            * [FormatterComponent](core/common-components-formatter-FormatterComponent.md)
+        * common\components\nested
+            * [NestedSetBehavior](core/common-components-nested-NestedSetBehavior.md)
+            * [NestedSetQueryBehavior](core/common-components-nested-NestedSetQueryBehavior.md)
+    * common\models
+        * [UserProfile](core/common-models-UserProfile.md)
+        * [User](core/common-models-User.md)
+    * common\rbac
+        * [OwnModelRule](core/common-rbac-OwnModelRule.md)
+        * [UserGroupRule](core/common-rbac-UserGroupRule.md)
+    * common\commands
+        * [SendEmailHandler](core/common-commands-SendEmailHandler.md)
+        * [SendEmailCommand](core/common-commands-SendEmailCommand.md)

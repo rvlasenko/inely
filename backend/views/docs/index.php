@@ -76,7 +76,7 @@ $this->title = 'Inely ~ Справка';
                         <div class="js-prepend-mobile-menu"></div>
 
                         <div class="category-info helper pt0" id="main-features">
-                            <h3 class="category-title">Основные возможности</a>
+                            <h3 class="category-title">Основные возможности
                                 <a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#main-features">
                                     <i class="fa fa-link"></i>
                                 </a>
