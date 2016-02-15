@@ -1,4 +1,4 @@
-# Inely [![Build Status](https://scrutinizer-ci.com/g/Exoticness/madeasy/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/madeasy/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hirootkit/inely/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hirootkit/inely/?branch=master) [![Yii2](https://img.shields.io/badge/Powered_by-Yii_Framework-green.svg?style=flat)](http://www.yiiframework.com/) [![Project License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](https://github.com/hirootkit/inely/blob/master/LICENSE.md) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/bf3c5df4-1df1-4e0f-8c0a-9f24ca690685/small.png)](https://insight.sensiolabs.com/projects/bf3c5df4-1df1-4e0f-8c0a-9f24ca690685)
+# Inely [![Build Status](https://scrutinizer-ci.com/g/Exoticness/madeasy/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Exoticness/madeasy/build-status/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hirootkit/inely/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hirootkit/inely/?branch=master) [![Project License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](https://github.com/hirootkit/inely/blob/master/LICENSE.md) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/bf3c5df4-1df1-4e0f-8c0a-9f24ca690685/small.png)](https://insight.sensiolabs.com/projects/bf3c5df4-1df1-4e0f-8c0a-9f24ca690685)
 
 [Inely](http://www.inely.ru) это простой, стильный, и легкий в использовании инструмент управления задачами. Создавайте задачи, которые покроют всю вашу повседневную жизнь, и организуют их в виде проектов. Вы также можете поделиться проектами с друзьями или коллегами. Inely можно использовать как инструмент совместной работы, чтобы помочь друг другу достичь поставленных целей.
 
@@ -37,8 +37,7 @@ composer install
 
 ## Руководство по настройке
 ### Требования
-Минимальное требование, которое налагается на Inely – поддержка веб-сервером PHP 5.4.0.
-Обязательные PHP расширения:
+Веб-сервер должен предоставлять поддержку PHP >= 5.4 и включать в себя обязательные расширения:
 - intl
 - mcrypt
 
