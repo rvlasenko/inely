@@ -1,12 +1,12 @@
-backend\config\bsInterface
+backend\config\BsInterface
 ===============
 
-Class bsInterface
+Class BsInterface
 
 
 
 
-* Class name: bsInterface
+* Class name: BsInterface
 * Namespace: backend\config
 * This class implements: yii\base\BootstrapInterface
 
@@ -34,7 +34,7 @@ Methods
 
 ### __construct
 
-    mixed backend\config\bsInterface::__construct()
+    mixed backend\config\BsInterface::__construct()
 
 
 
@@ -47,7 +47,7 @@ Methods
 
 ### bootstrap
 
-    mixed backend\config\bsInterface::bootstrap(\backend\config\Application $app)
+    mixed backend\config\BsInterface::bootstrap(\backend\config\Application $app)
 
 Bootstrap method to be called during application bootstrap stage.
 

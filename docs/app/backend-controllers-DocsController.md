@@ -45,16 +45,3 @@ Methods
 
 
 
-
-### actionArticle
-
-    mixed backend\controllers\DocsController::actionArticle()
-
-
-
-
-
-* Visibility: **public**
-
-
-

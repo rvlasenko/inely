@@ -15,13 +15,14 @@ use Yii;
 use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
 use yii\web\Response;
 
 /**
  * Class LabelController
  * @package backend\controllers
  */
-class LabelController extends TaskController
+class LabelController extends Controller
 {
     public function behaviors()
     {
@@ -58,7 +59,9 @@ class LabelController extends TaskController
 
     /**
      * Валидация принятых атрибутов и добавление их значений в соответствующие поля базы данных.
+     *
      * В случае несоответствия формату, поле игнорируется и выбрасывается исключение.
+     *
      * @return bool если редактирование завершилось успешно.
      * @throws Exception если принятые атрибуты не прошли валидацию.
      */

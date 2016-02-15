@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Exception;
 
 /**
- * This is the model class for table "gamify_achievements".
+ * Модель таблицы "gamify_achievements".
  *
  * @property integer          $ID
  * @property string           $achievement_name
@@ -45,14 +45,14 @@ class GamifyAchievements extends \yii\db\ActiveRecord
     }
 
     /**
-     * @param     $username
-     * @param     $achievement
+     * @param string $username
+     * @param int    $achievement
      * @param int $amount
      *
      * @return null|static
-     * @throws \Exception
+     * @throws \Exception Если достижение отсутствует в списке
      */
-    public function action($username, $achievement, $amount = 1)
+    public function achievement($username, $achievement, $amount = 1)
     {
         $user = GamifyUserStats::findOne(['username' => $username]);
         $ach  = GamifyAchievements::findOne(['ID' => $achievement]);

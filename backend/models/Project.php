@@ -49,34 +49,51 @@ class Project extends ActiveRecord
     }
 
     /**
+     * Создание уникального корневого узла проекта.
+     *
+     * @param $userData
+     *
+     * @return array
+     */
+    private function createProjectRoot(array $userData)
+    {
+        $childTask     = new Task();
+        $childTaskData = new TaskData();
+
+        if ($childTaskData->load($userData) && $childTaskData->makeRoot()) {
+            $userData['taskId'] = $childTaskData->getPrimaryKey();
+
+            if ($childTask->load($userData) && $childTask->save()) {
+                return [
+                    'name' => $userData['request'],
+                    'id'   => $userData['listId']
+                ];
+            }
+        }
+    }
+
+    /**
+     * Создание проекта.
+     *
      * @param $data
+     * @method boolean makeRoot() Создает корень, если Active Record объект новый.
      *
      * @return array
      */
     public function createProject(array $data)
     {
-        $newProject    = new Project();
-        $childTask     = new Task();
-        $childTaskData = new TaskData();
-        $userData      = [
+        $newProject = new Project();
+        $userData   = [
             'ownerId' => Yii::$app->user->id,
             'name'    => 'Root',
             'isDone'  => null
         ];
 
         if ($newProject->load($data) && $newProject->save()) {
-            $userData['listId'] = $newProject->getPrimaryKey();
+            $userData['listId']  = $newProject->getPrimaryKey();
+            $userData['request'] = $data;
 
-            if ($childTaskData->load($userData) && $childTaskData->makeRoot()) {
-                $userData['taskId'] = $childTaskData->getPrimaryKey();
-
-                if ($childTask->load($userData) && $childTask->save()) {
-                    return [
-                        'name' => $data,
-                        'id'   => $userData['listId']
-                    ];
-                }
-            }
+            return $this->createProjectRoot($userData);
         }
     }
 

@@ -25,9 +25,4 @@ class DocsController extends Controller
     {
         return $this->render('index');
     }
-
-    public function actionArticle()
-    {
-        return $this->render('article');
-    }
 }

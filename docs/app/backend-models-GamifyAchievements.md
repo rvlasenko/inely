@@ -1,7 +1,7 @@
 backend\models\GamifyAchievements
 ===============
 
-This is the model class for table &quot;gamify_achievements&quot;.
+Модель таблицы &quot;gamify_achievements&quot;.
 
 
 
@@ -9,6 +9,24 @@ This is the model class for table &quot;gamify_achievements&quot;.
 * Class name: GamifyAchievements
 * Namespace: backend\models
 * Parent class: yii\db\ActiveRecord
+
+
+
+Constants
+----------
+
+
+### ACTIVE
+
+    const ACTIVE = 'active'
+
+
+
+
+
+### COMPLETED
+
+    const COMPLETED = 'completed'
 
 
 
@@ -134,6 +152,24 @@ Methods
 
 * Visibility: **public**
 
+
+
+
+### achievement
+
+    null|static backend\models\GamifyAchievements::achievement(string $username, integer $achievement, integer $amount)
+
+
+
+
+
+* Visibility: **public**
+
+
+#### Arguments
+* $username **string**
+* $achievement **integer**
+* $amount **integer**
 
 
 

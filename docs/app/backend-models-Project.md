@@ -106,11 +106,27 @@ Methods
 
 
 
+### createProjectRoot
+
+    array backend\models\Project::createProjectRoot($userData)
+
+Создание уникального корневого узла проекта.
+
+
+
+* Visibility: **private**
+
+
+#### Arguments
+* $userData **mixed**
+
+
+
 ### createProject
 
     array backend\models\Project::createProject($data)
 
-
+Создание проекта.
 
 
 

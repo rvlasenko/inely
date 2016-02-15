@@ -82,8 +82,6 @@ class ProjectController extends Controller
 
     /**
      * Создание нового проекта и его уникального корневого узла.
-     * Чтобы добавленные в него задачи имели id корня проекта, а не общий.
-     * @method boolean makeRoot() Создает корень, если Active Record объект новый.
      * @return array идентификатор и название созданного проекта, JSON.
      */
     public function actionCreate()

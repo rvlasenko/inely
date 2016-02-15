@@ -98,19 +98,6 @@ Methods
 
 
 
-### actionGet
-
-    mixed backend\controllers\UserController::actionGet()
-
-
-
-
-
-* Visibility: **public**
-
-
-
-
 ### findModel
 
     \backend\controllers\модель backend\controllers\UserController::findModel(integer $id)

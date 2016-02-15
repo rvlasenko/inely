@@ -15,13 +15,14 @@ use Yii;
 use yii\base\Exception;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
 use yii\web\Response;
 
 /**
  * Class CommentController
  * @package backend\controllers
  */
-class CommentController extends TaskController
+class CommentController extends Controller
 {
     public function behaviors()
     {
