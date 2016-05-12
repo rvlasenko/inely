@@ -93,20 +93,6 @@ $this->title = 'Входящие ~ Inely';
                     <polygon points="30,5.077 26,2 11.5,22.5 4.5,15.5 1,19 12,30"></polygon>
                 </svg>
 
-                <div class="footer-space"></div>
-                <div id="footer">
-                    <div class="devider-footer-left"></div>
-                    <div class="time">
-                        <p id="spanDate"></p>
-                        <p id="clock"></p>
-                    </div>
-                    <div class="copyright">Make with Love
-                        <span class="entypo-heart"></span>
-                        <a href="/">hirootkit</a> All Rights Reserved
-                    </div>
-                    <div class="devider-footer"></div>
-                </div>
-
             </div>
         </div>
 

@@ -1,15 +1,15 @@
-<footer id="main-footer">
-
+<footer class="copyright-terms">
     <div class="container">
         <div class="row">
-            <ul class="footer-nav all-caps">
-                <li><a href="#" class="contact-trigger">Связаться с автором</a></li>
-            </ul> 
-
-            <div class="copyright">
-                <p>Copyright 2015 Vlasenko - All rights reserved.</p>
+            <div class="col-sm-5 col-md-6">
+                <small> &copy; 2016 Vlasenko. All rights reserved.</small>
             </div>
-        </div> 
-    </div> 
-
+            <div class="col-sm-7 col-md-6">
+                <ul class="terms-privacy">
+                    <li><a href="" data-toggle="modal" data-target="#modal-terms">Политика приватности</a></li>
+                    <li><a href="" data-toggle="modal" data-target="#modal-terms">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </footer>
