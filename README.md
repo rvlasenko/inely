@@ -10,7 +10,6 @@
     - [Требования](#Требования)
     - [Установка приложения](#Установка-приложения)
     - [Настройка веб-сервера](#Настройка-веб-сервера)
-- [Установка Docker](#Установка-docker)
 - [Установка Vagrant](#Установка-vagrant)
 
 ## Перед тем, как Вы начнёте
@@ -71,30 +70,6 @@ php console/yii app/setup
 Внесите в конфигурационный файл Вашего веб-сервера две новые корневые директории:
 - inely.dev     => /path/to/inely/frontend/web
 - app.inely.dev => /path/to/inely/backend/web
-
-## Установка Docker
-### Перед установкой
- - Прочтите, что такое [Docker](https://www.docker.com)
- - Установите его
-
-### Установка
-1. В корневой директории переименуйте ``.env.docker.dist`` в `.env`
-2. Запустите команды ``docker-compose build``
-3. ``docker-compose up -d``
-4. Настройте приложение командой ``docker-compose run cli app/setup``
-5. На этом всё – приложение доступно на http://inely.dev:8000
-
-### Docker FAQ
-- Как я могу выполнять консольные команды yii?
-
-``docker-compose run cli help``
-
-``docker-compose run cli migrate``
-
-``docker-compose run cli rbac-migrate``
-
-- Как мне подключиться к базе данных приложения с помощью инструментов, например, MySQLWorkbench?
-MySQL доступен по локальному адресу ``127.0.0.1``, порт ``33060``. Пользователь - `root`, Пароль - `root`
 
 ## Установка Vagrant
 1. Сперва установите [Vagrant](https://www.vagrantup.com/)
